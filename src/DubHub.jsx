@@ -209,9 +209,24 @@ function Filters({ f }) {
   );
 }
 
+// Seattle city limits, roughly: the map can't be panned or zoomed out past this.
+const SEATTLE_BOUNDS = [
+  [47.48, -122.46],
+  [47.74, -122.22],
+];
+
 function EventMap({ events }) {
   return (
-    <MapContainer center={[47.6553, -122.3035]} zoom={14} scrollWheelZoom zoomControl={false} className="map">
+    <MapContainer
+      center={[47.6553, -122.3035]}
+      zoom={14}
+      minZoom={12}
+      maxBounds={SEATTLE_BOUNDS}
+      maxBoundsViscosity={1}
+      scrollWheelZoom
+      zoomControl={false}
+      className="map"
+    >
       <ZoomControl position="topright" />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
