@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, CircleMarker, Popup, ZoomControl } from "react
 import "leaflet/dist/leaflet.css";
 import "./DubHub.css";
 
-const TABS = ["Home", "Events", "Clubs", "About"];
+const TABS = ["Home", "Events", "My Events", "Clubs", "About"];
 
 const TYPE_COLORS = {
   Study: "#4b2e83",
@@ -25,6 +25,52 @@ const EVENTS = [
   { id: 5, title: "Sunset hangout", type: "Hangout", host: "Jordan K.", where: "Gas Works Park", pos: [47.6456, -122.3344], going: 9, years: ["Junior", "Senior"], majors: [] },
   { id: 6, title: "Coffee and study", type: "Study", host: "Priya S.", where: "Capitol Hill", pos: [47.623, -122.3205], going: 4, years: YEARS, majors: ["Biology"] },
 ];
+
+// Placeholder data: replace with your real clubs list.
+const CLUBS = [
+  { name: "Math Club", category: "Academic", about: "Problem sessions, study groups, and talks from math faculty.", meets: "Tuesdays, Padelford Hall" },
+  { name: "Husky Gamers", category: "Gaming", about: "Board games, video games, and tournaments for every skill level.", meets: "Fridays, HUB" },
+  { name: "Data Science Society", category: "Tech", about: "Workshops and projects on machine learning and data analysis.", meets: "Wednesdays, Allen Center" },
+  { name: "Husky Hiking Club", category: "Outdoors", about: "Weekend day hikes and trips around the Cascades.", meets: "Saturdays, meet at Red Square" },
+  { name: "Vietnamese Student Association", category: "Cultural", about: "Culture nights, food events, and community for Vietnamese students and friends.", meets: "Thursdays, HUB" },
+  { name: "Pre-Health Society", category: "Academic", about: "Advising, MCAT prep, and volunteer opportunities for pre-med students.", meets: "Mondays, Mary Gates Hall" },
+  { name: "Husky Coding Club", category: "Tech", about: "Hackathons, interview practice, and building side projects together.", meets: "Thursdays, CSE2" },
+  { name: "Climbing Club", category: "Outdoors", about: "Climbing sessions at the IMA wall and trips to local crags.", meets: "Tuesdays, IMA" },
+  { name: "Film Society", category: "Arts", about: "Weekly screenings, discussions, and student film projects.", meets: "Wednesdays, Kane Hall" },
+  { name: "Entrepreneurship Club", category: "Business", about: "Startup talks, pitch nights, and networking with founders.", meets: "Mondays, PACCAR Hall" },
+];
+
+// Team shown on the About page; details load from each GitHub profile.
+const TEAM = [
+  { name: "Adam Nguyen", github: "adamxlegend" },
+  { name: "Quentin Nguyen", github: "nitneuqqq" },
+];
+
+const JOINED_KEY = "dubhub-joined";
+
+function useJoined() {
+  const [joined, setJoined] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(JOINED_KEY)) ?? [];
+    } catch {
+      return [];
+    }
+  });
+
+  const toggle = useCallback((id) => {
+    setJoined((ids) => {
+      const next = ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id];
+      try {
+        localStorage.setItem(JOINED_KEY, JSON.stringify(next));
+      } catch {
+        // Storage blocked: joins last for this visit only.
+      }
+      return next;
+    });
+  }, []);
+
+  return { joined, toggle };
+}
 
 // Sign-in uses Google, limited to UW's Google accounts (@uw.edu).
 // Set VITE_GOOGLE_CLIENT_ID in .env.local. This check runs in the browser only,
@@ -215,7 +261,20 @@ const SEATTLE_BOUNDS = [
   [47.74, -122.22],
 ];
 
-function EventMap({ events }) {
+function JoinButton({ event, j }) {
+  const isJoined = j.joined.includes(event.id);
+  return (
+    <button className={isJoined ? "join joined" : "join"} aria-pressed={isJoined} onClick={() => j.toggle(event.id)}>
+      {isJoined ? "Joined ✓ (leave)" : "Join event"}
+    </button>
+  );
+}
+
+function going(event, j) {
+  return event.going + (j.joined.includes(event.id) ? 1 : 0);
+}
+
+function EventMap({ events, j }) {
   return (
     <MapContainer
       center={[47.6553, -122.3035]}
@@ -246,9 +305,9 @@ function EventMap({ events }) {
             <br />
             Hosted by {e.host}
             <br />
-            {e.going} going
+            {going(e, j)} going
             <br />
-            <button className="join">Join event</button>
+            <JoinButton event={e} j={j} />
           </Popup>
         </CircleMarker>
       ))}
@@ -256,10 +315,10 @@ function EventMap({ events }) {
   );
 }
 
-function Home({ f }) {
+function Home({ f, j }) {
   return (
     <main className="home">
-      <EventMap events={f.events} />
+      <EventMap events={f.events} j={j} />
       <Filters f={f} />
       <div className="tagline">
         <h1>See what's happening at UW, right now.</h1>
@@ -269,33 +328,152 @@ function Home({ f }) {
   );
 }
 
-function EventsPage({ events }) {
+function EventList({ events, j }) {
+  return (
+    <ul className="list">
+      {events.map((e) => (
+        <li key={e.id}>
+          <span className="dot" style={{ background: TYPE_COLORS[e.type] }} />
+          <div className="grow">
+            <strong>{e.title}</strong>
+            <div className="meta">
+              {e.where}, hosted by {e.host}, {going(e, j)} going
+            </div>
+          </div>
+          <JoinButton event={e} j={j} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function EventsPage({ events, j }) {
   return (
     <main className="page">
       <h1>Events</h1>
-      <ul className="list">
-        {events.map((e) => (
-          <li key={e.id}>
-            <span className="dot" style={{ background: TYPE_COLORS[e.type] }} />
-            <div>
-              <strong>{e.title}</strong>
-              <div className="meta">
-                {e.where}, hosted by {e.host}, {e.going} going
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <EventList events={events} j={j} />
+    </main>
+  );
+}
+
+function MyEventsPage({ j, onBrowse }) {
+  const mine = EVENTS.filter((e) => j.joined.includes(e.id));
+  return (
+    <main className="page">
+      <h1>My Events</h1>
+      {mine.length > 0 ? (
+        <EventList events={mine} j={j} />
+      ) : (
+        <div className="empty">
+          <p>You haven't joined any events yet.</p>
+          <button className="join" onClick={onBrowse}>
+            Browse events
+          </button>
+        </div>
+      )}
     </main>
   );
 }
 
 function ClubsPage() {
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("All");
+  const categories = ["All", ...new Set(CLUBS.map((c) => c.category))];
+
+  const q = query.trim().toLowerCase();
+  const clubs = CLUBS.filter(
+    (c) =>
+      (category === "All" || c.category === category) &&
+      (!q || [c.name, c.category, c.about].some((s) => s.toLowerCase().includes(q)))
+  );
+
   return (
     <main className="page">
       <h1>Clubs</h1>
-      <p>Browse the clubs and RSOs on campus and see what they have coming up. (Hook this up to your clubs list.)</p>
+      <div className="club-search">
+        <input
+          type="search"
+          placeholder="Search clubs"
+          aria-label="Search clubs"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <select aria-label="Category" value={category} onChange={(e) => setCategory(e.target.value)}>
+          {categories.map((c) => (
+            <option key={c}>{c}</option>
+          ))}
+        </select>
+      </div>
+      <p className="count">
+        {clubs.length} club{clubs.length === 1 ? "" : "s"}
+      </p>
+      <ul className="list">
+        {clubs.map((c) => {
+          const upcoming = EVENTS.filter((e) => e.host === c.name).length;
+          return (
+            <li key={c.name}>
+              <div className="grow">
+                <strong>{c.name}</strong> <span className="tag">{c.category}</span>
+                <div>{c.about}</div>
+                <div className="meta">
+                  Meets {c.meets}
+                  {upcoming > 0 && `, ${upcoming} upcoming event${upcoming === 1 ? "" : "s"}`}
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+      {clubs.length === 0 && <p className="empty">No clubs match "{query}".</p>}
     </main>
+  );
+}
+
+function useGitHubProfile(login) {
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    if (!login) return;
+    let cancelled = false;
+    fetch(`https://api.github.com/users/${login}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((p) => !cancelled && setProfile(p))
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [login]);
+
+  return profile;
+}
+
+function TeamMember({ name, github }) {
+  const p = useGitHubProfile(github);
+  const initials = name
+    .split(" ")
+    .map((w) => w[0])
+    .join("");
+
+  return (
+    <li className="member">
+      {github ? (
+        <img src={`https://github.com/${github}.png?size=160`} alt="" />
+      ) : (
+        <span className="avatar">{initials}</span>
+      )}
+      <div>
+        <strong>{name}</strong>
+        {p?.bio && <div>{p.bio}</div>}
+        <div className="meta">
+          {[p?.location, p && `${p.public_repos} public repo${p.public_repos === 1 ? "" : "s"}`].filter(Boolean).join(", ")}
+        </div>
+        {github && (
+          <a href={`https://github.com/${github}`} target="_blank" rel="noreferrer">
+            @{github} on GitHub
+          </a>
+        )}
+      </div>
+    </li>
   );
 }
 
@@ -308,6 +486,12 @@ function AboutPage() {
         join one to get added to its group chat.
       </p>
       <p>Sign in with your UW ID so everyone on the map is a real student.</p>
+      <h2>Made by</h2>
+      <ul className="team">
+        {TEAM.map((m) => (
+          <TeamMember key={m.name} {...m} />
+        ))}
+      </ul>
     </main>
   );
 }
@@ -316,6 +500,7 @@ export default function DubHub() {
   const [tab, setTab] = useState("Home");
   const f = useFilteredEvents();
   const { user, signIn, signOut } = useUser();
+  const j = useJoined();
 
   return (
     <div className="app">
@@ -337,8 +522,9 @@ export default function DubHub() {
         <SignIn user={user} onSignIn={signIn} onSignOut={signOut} />
       </header>
 
-      {tab === "Home" && <Home f={f} />}
-      {tab === "Events" && <EventsPage events={f.events} />}
+      {tab === "Home" && <Home f={f} j={j} />}
+      {tab === "Events" && <EventsPage events={f.events} j={j} />}
+      {tab === "My Events" && <MyEventsPage j={j} onBrowse={() => setTab("Events")} />}
       {tab === "Clubs" && <ClubsPage />}
       {tab === "About" && <AboutPage />}
     </div>
