@@ -82,6 +82,56 @@ body {
   cursor: pointer;
 }
 
+.signin-wrap {
+  position: relative;
+}
+
+.signin-pop {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 280px;
+  padding: 16px;
+  background: #fff;
+  color: var(--text);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(28, 21, 48, 0.25);
+}
+
+.signin-pop p {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+
+.signin-pop .signin-error {
+  margin: 12px 0 0;
+  color: #b3261e;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.user img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.signout {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 button:focus-visible,
 select:focus-visible {
   outline: 3px solid #fff;

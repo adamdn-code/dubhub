@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, TileLayer, CircleMarker, Popup, ZoomControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./DubHub.css";
@@ -25,6 +25,129 @@ const EVENTS = [
   { id: 5, title: "Sunset hangout", type: "Hangout", host: "Jordan K.", where: "Gas Works Park", pos: [47.6456, -122.3344], going: 9, years: ["Junior", "Senior"], majors: [] },
   { id: 6, title: "Coffee and study", type: "Study", host: "Priya S.", where: "Capitol Hill", pos: [47.623, -122.3205], going: 4, years: YEARS, majors: ["Biology"] },
 ];
+
+// Sign-in uses Google, limited to UW's Google accounts (@uw.edu).
+// Set VITE_GOOGLE_CLIENT_ID in .env.local. This check runs in the browser only,
+// so a backend must verify the ID token before trusting it for anything important.
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const UW_DOMAIN = "uw.edu";
+const USER_KEY = "dubhub-user";
+
+function decodeJwt(token) {
+  const part = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+  const bytes = Uint8Array.from(atob(part), (c) => c.charCodeAt(0));
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+
+function useUser() {
+  const [user, setUser] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(USER_KEY));
+    } catch {
+      return null;
+    }
+  });
+
+  const signIn = useCallback((u) => {
+    setUser(u);
+    try {
+      localStorage.setItem(USER_KEY, JSON.stringify(u));
+    } catch {
+      // Storage blocked: stay signed in for this visit only.
+    }
+  }, []);
+
+  const signOut = useCallback(() => {
+    setUser(null);
+    try {
+      localStorage.removeItem(USER_KEY);
+    } catch {
+      // Nothing stored.
+    }
+    window.google?.accounts.id.disableAutoSelect();
+  }, []);
+
+  return { user, signIn, signOut };
+}
+
+function useGoogleScript(enabled) {
+  const [ready, setReady] = useState(() => Boolean(window.google?.accounts));
+
+  useEffect(() => {
+    if (!enabled || ready) return;
+    const script = document.createElement("script");
+    script.src = "https://accounts.google.com/gsi/client";
+    script.async = true;
+    script.onload = () => setReady(true);
+    document.head.appendChild(script);
+  }, [enabled, ready]);
+
+  return ready;
+}
+
+function SignIn({ user, onSignIn, onSignOut }) {
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState("");
+  const buttonRef = useRef(null);
+  const ready = useGoogleScript(open && Boolean(GOOGLE_CLIENT_ID));
+
+  useEffect(() => {
+    if (!open || !ready || !buttonRef.current) return;
+    window.google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      hd: UW_DOMAIN,
+      callback: ({ credential }) => {
+        const p = decodeJwt(credential);
+        if (p.hd !== UW_DOMAIN || !p.email_verified) {
+          setError("That isn't a UW account. Sign in with your @uw.edu email.");
+          return;
+        }
+        setError("");
+        setOpen(false);
+        onSignIn({ name: p.name, email: p.email, picture: p.picture });
+      },
+    });
+    window.google.accounts.id.renderButton(buttonRef.current, {
+      theme: "outline",
+      size: "large",
+      shape: "pill",
+      text: "signin_with",
+    });
+  }, [open, ready, onSignIn]);
+
+  if (user) {
+    return (
+      <div className="user">
+        {user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}
+        <span>{user.name}</span>
+        <button className="signout" onClick={onSignOut}>
+          Sign out
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="signin-wrap">
+      <button className="signin" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+        Sign in with UW ID
+      </button>
+      {open && (
+        <div className="signin-pop" role="dialog" aria-label="Sign in">
+          {GOOGLE_CLIENT_ID ? (
+            <>
+              <p>Use your UW Google account (NetID@uw.edu).</p>
+              <div ref={buttonRef} />
+            </>
+          ) : (
+            <p>Sign-in isn't set up yet: add VITE_GOOGLE_CLIENT_ID to .env.local.</p>
+          )}
+          {error && <p className="signin-error">{error}</p>}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function useFilteredEvents() {
   const [type, setType] = useState("All");
@@ -177,6 +300,7 @@ function AboutPage() {
 export default function DubHub() {
   const [tab, setTab] = useState("Home");
   const f = useFilteredEvents();
+  const { user, signIn, signOut } = useUser();
 
   return (
     <div className="app">
@@ -195,7 +319,7 @@ export default function DubHub() {
             </button>
           ))}
         </nav>
-        <button className="signin">Sign in with UW ID</button>
+        <SignIn user={user} onSignIn={signIn} onSignOut={signOut} />
       </header>
 
       {tab === "Home" && <Home f={f} />}
