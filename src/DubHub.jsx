@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, CircleMarker, Popup, ZoomControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./DubHub.css";
 
@@ -88,7 +88,8 @@ function Filters({ f }) {
 
 function EventMap({ events }) {
   return (
-    <MapContainer center={[47.6553, -122.3035]} zoom={14} scrollWheelZoom className="map">
+    <MapContainer center={[47.6553, -122.3035]} zoom={14} scrollWheelZoom zoomControl={false} className="map">
+      <ZoomControl position="topright" />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
