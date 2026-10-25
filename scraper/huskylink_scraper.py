@@ -13,14 +13,16 @@ It saves what it found to huskylink.json (kept on GitHub, so the other
 scrapers include it too) and updates public/clubs.json and public/events.json.
 Then push the website so the new clubs and events go live.
 
-It only makes two requests per run: the full directory (about 6 MB, takes
-around 30 seconds) and HuskyLink's public event feed.
+It downloads the full directory (about 6 MB, takes around 30 seconds), HuskyLink's
+public event feed, and its public past-events list (20 per request, one request a
+second), which records when each club last held an event in club_activity.json.
 """
 
 import html
 import json
 import re
 import sys
+import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 
@@ -31,11 +33,14 @@ from events_common import (
     POSTS_FILE,
     SITE_CLUBS_FILE,
     SITE_EVENTS_FILE,
+    ACTIVE_DAYS,
     TODAY,
+    finish_clubs,
     load_store,
     locate,
     merge_huskylink_clubs,
     merge_huskylink_events,
+    record_activity,
     write_site_clubs,
     write_site_events,
 )
@@ -170,15 +175,16 @@ def scrape_events():
     r.raise_for_status()
     last_day = (TODAY + timedelta(days=DAYS_AHEAD)).isoformat()
 
-    events, seen = [], set()
+    events, seen, activity = [], set(), []
     items = ET.fromstring(r.content).findall(".//item")
     items.sort(key=lambda i: i.findtext("eventStartDateTime") or "")
     for item in items:
         start = datetime.fromisoformat(item.findtext("eventStartDateTime")[:19])
         end = datetime.fromisoformat(item.findtext("eventEndDateTime")[:19])
+        host = clean(item.findtext("group"))
+        activity.append((host, start.date().isoformat()))  # any scheduled event counts as activity
         if not TODAY.isoformat() <= start.date().isoformat() <= last_day:
             continue
-        host = clean(item.findtext("group"))
         title = clean(item.findtext("title"))
         # Weekly meetings repeat dozens of times; only list the next one of each.
         if (host, title) in seen:
@@ -203,7 +209,32 @@ def scrape_events():
             "description": description or None,
         })
     print(f"Found {len(events)} upcoming events in the next {DAYS_AHEAD} days")
-    return events
+    return events, activity
+
+
+def scrape_past_activity():
+    """(club, date) for HuskyLink's public past events: what its own 'Past Events' filter shows."""
+    print("Reading HuskyLink's past events...", flush=True)
+    oldest = (TODAY - timedelta(days=ACTIVE_DAYS)).isoformat()
+    activity, offset = [], 0
+    while offset < 5000:
+        r = requests.get(f"{BASE}/mobile_ws/v17/mobile_events_list", params={"filter1": "past", "range": offset},
+                         headers=HEADERS, timeout=60)
+        r.raise_for_status()
+        page = [x for x in r.json() if x.get("listingSeparator") != "true" and x.get("p3")]
+        if not page:
+            break
+        for x in page:
+            # p4 is HTML like "<p ...>Fri, Oct 23, 2026</p>...", p9 the group's name.
+            m = re.search(r"\w{3}, (\w{3} \d{1,2}, \d{4})", clean(x.get("p4")))
+            if m:
+                activity.append((clean(x.get("p9")), datetime.strptime(m.group(1), "%b %d, %Y").date().isoformat()))
+        if activity and activity[-1][1] < oldest:
+            break
+        offset += 20
+        time.sleep(1)
+    print(f"Found {len(activity)} past events from {len({a[0] for a in activity})} clubs")
+    return activity
 
 
 def update_site_files():
@@ -227,7 +258,7 @@ def update_site_files():
     SITE_EVENTS_FILE.write_text(json.dumps(site, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote {len(site['events'])} upcoming events to {SITE_EVENTS_FILE}")
 
-    clubs = merge_huskylink_clubs(current(SITE_CLUBS_FILE, "clubs")["clubs"])
+    clubs = finish_clubs(merge_huskylink_clubs(current(SITE_CLUBS_FILE, "clubs")["clubs"]))
     SITE_CLUBS_FILE.write_text(json.dumps({"clubs": clubs}, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote {len(clubs)} clubs to {SITE_CLUBS_FILE}")
 
@@ -235,11 +266,13 @@ def update_site_files():
 def main():
     try:
         clubs = scrape_clubs()
-        events = scrape_events()
+        events, upcoming = scrape_events()
+        past = scrape_past_activity()
     except requests.RequestException as e:
         sys.exit(f"Couldn't reach HuskyLink ({e}). Nothing was changed.")
     if not clubs:
         sys.exit("HuskyLink's directory came back empty (the page may have changed). Nothing was changed.")
+    record_activity(upcoming + past)
     HUSKYLINK_FILE.write_text(
         json.dumps({"updated": datetime.now().isoformat(timespec="minutes"), "clubs": clubs, "events": events},
                    indent=1, ensure_ascii=False),

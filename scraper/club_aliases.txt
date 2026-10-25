@@ -1,0 +1,12 @@
+# Which Instagram account belongs to which HuskyLink club, for clubs whose names don't match.
+# One per line:  instagram_handle = Exact HuskyLink club name
+# Matching clubs become one entry on the site (HuskyLink's name, both links, all their events).
+# Only add pairs you're sure about; a wrong line merges two different clubs.
+uwaslclub = American Sign Language Club at University of Washington
+uwthetatau = Theta Tau Engineering Fraternity
+uwetruck = ETruck
+hknieee = Institute of Electrical and Electronics Engineers slash Eta Kappa Nu
+data_science_society_uw = Data Science Society at UW
+uw_investmentgroup = Investment Group at the University of Washington
+cseeduw = cseed
+aic.uw = Artificial Intelligence Student Collective @ UW

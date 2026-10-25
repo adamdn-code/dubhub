@@ -34,6 +34,9 @@ SITE_CLUBS_FILE = HERE.parent / "public" / "clubs.json"
 CLUBS_FILE = HERE / "clubs.txt"
 CLUB_PROFILES_FILE = STATE_DIR / "club_profiles.json"  # name + bio + website per handle
 CLUB_INFO_FILE = STATE_DIR / "club_info.json"          # AI category/summary per handle
+CLUB_ACTIVITY_FILE = HERE / "club_activity.json"  # latest event date per club; on GitHub, only moves forward
+CLUB_FIELDS_FILE = HERE / "club_fields.json"      # AI-sorted major fields per club; on GitHub
+CLUB_ALIASES_FILE = HERE / "club_aliases.txt"     # Instagram handle -> HuskyLink club name, by hand
 HUSKYLINK_FILE = HERE / "huskylink.json"  # huskylink_scraper.py output; on GitHub so every scraper sees it
 
 
@@ -60,6 +63,10 @@ FORGET_AFTER_DAYS = 120  # drop remembered posts older than this
 EVENT_TYPES = ["Study", "Club", "Food", "Hangout", "Game night"]
 CLUB_CATEGORIES = ["Academic", "Tech", "Engineering", "Business", "Cultural", "Arts",
                    "Outdoors", "Sports", "Gaming", "Service", "Social"]
+# Must match the major groups (MAJOR_GROUPS) in the website's Major filter.
+MAJOR_FIELDS = ["Engineering", "Computing & Math", "Sciences", "Health", "Social Sciences",
+                "Arts & Humanities", "Business"]
+ACTIVE_DAYS = 365  # clubs with no event in this long are left out of the site's club list
 
 # Seattle, same box the website's map is limited to.
 SEATTLE_BOUNDS = (47.48, -122.46, 47.74, -122.22)
@@ -644,7 +651,9 @@ def write_site_clubs(store):
             # A longer description only when there's a real bio or posts behind it, not just a name.
             "description": (i.get("description") or c["bio"]) if (c["bio"] or c["posts"]) else None,
         })
-    out = merge_huskylink_clubs(out)
+    record_activity((p["club"], e["date"]) for p in store.values() if p["club"] not in not_uw
+                    for e in p.get("events") or [])
+    out = finish_clubs(merge_huskylink_clubs(out))
     SITE_CLUBS_FILE.write_text(json.dumps({"clubs": out}, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote {len(out)} clubs to {SITE_CLUBS_FILE}")
     return out
@@ -672,23 +681,157 @@ def club_key(name):
     return re.sub(r"[^a-z0-9]+", "", n)
 
 
+def read_club_aliases():
+    """club_aliases.txt: 'instagram_handle = HuskyLink club name' -> {handle: name}."""
+    try:
+        lines = CLUB_ALIASES_FILE.read_text(encoding="utf-8").splitlines()
+    except FileNotFoundError:
+        return {}
+    aliases = {}
+    for line in lines:
+        handle, sep, name = line.split("#")[0].partition("=")
+        if sep and handle.strip() and name.strip():
+            aliases[handle.strip().lstrip("@").lower()] = name.strip()
+    return aliases
+
+
 def merge_huskylink_clubs(clubs):
-    """Add every HuskyLink group. A club already listed under a matching name gets the gaps filled in."""
+    """Add every HuskyLink group. A club already listed under a matching name (or matched to it in
+    club_aliases.txt) gets the gaps filled in."""
     clubs = [c for c in clubs if c.get("source") != "huskylink"]
     by_name = {club_key(c["name"]): c for c in clubs}
+    aliases = read_club_aliases()
+    for c in clubs:
+        if c.get("handle") in aliases:
+            by_name[club_key(aliases[c["handle"]])] = c
     for h in load_huskylink()["clubs"]:
         c = by_name.get(club_key(h["name"]))
         if c is None:
             clubs.append({**h, "source": "huskylink"})
             by_name[club_key(h["name"])] = clubs[-1]
             continue
-        if c["name"].startswith("@"):
-            c["name"] = h["name"]  # an Instagram handle is all we had; use the real name
+        if c["name"].startswith("@") or c.get("handle") in aliases:
+            c["name"] = h["name"]  # use HuskyLink's official name
         for field in ("website", "about", "description"):
             c[field] = c.get(field) or h[field]
         if c.get("category") in (None, "Other"):
             c["category"] = h["category"]
     clubs.sort(key=lambda c: c["name"].lstrip("@").lower())
+    return clubs
+
+
+# ------------------------------------------------- activity + major fields ---
+def activity_keys(host):
+    """Keys a host is remembered under: its tidied name and, for Instagram hosts, '@handle'."""
+    name, handle = parse_host(host)
+    return [k for k in (club_key(name) if name else None, f"@{handle}" if handle else None) if k]
+
+
+def record_activity(entries):
+    """Remember the latest event date per club. entries: (host name or 'Name (@handle)', 'YYYY-MM-DD')."""
+    activity = _load(CLUB_ACTIVITY_FILE, {})
+    for host, day in entries:
+        for k in activity_keys(host):
+            if day and day > activity.get(k, ""):
+                activity[k] = day
+    CLUB_ACTIVITY_FILE.write_text(json.dumps(dict(sorted(activity.items())), indent=0, ensure_ascii=False),
+                                  encoding="utf-8")
+
+
+def last_event(club, activity):
+    keys = [club_key(club["name"])] + ([f"@{club['handle']}"] if club.get("handle") else [])
+    return max((activity[k] for k in keys if k in activity), default=None)
+
+
+def ai_club_fields(clubs):
+    """Ask Groq which major fields each club relates to. Returns a list of field lists, or None."""
+    if not GROQ_KEY or not pick_model():
+        return None
+    listing = "\n".join(f"{i + 1}. {c['name']}: {(c.get('about') or c.get('description') or '')[:160]}"
+                        for i, c in enumerate(clubs))
+    prompt = f"""Sort these University of Washington student clubs into academic/career fields.
+Fields: {MAJOR_FIELDS}.
+A club can have several fields, or none. Give a field only when the club is clearly about that
+area of study or career (a pre-med club -> Health; a robotics club -> Engineering and
+Computing & Math; a consulting club -> Business; a dance team, faith group or most cultural
+and social clubs -> no fields).
+
+Reply with ONLY JSON: {{"clubs": [{{"club": 1, "fields": ["..."]}}]}}
+
+{listing}"""
+    for attempt in range(12):
+        try:
+            r = requests.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={"Authorization": f"Bearer {GROQ_KEY}"},
+                json={"model": pick_model(), "temperature": 0, "response_format": {"type": "json_object"},
+                      "messages": [{"role": "user", "content": prompt}],
+                      # gpt-oss models "think" first; keep it short to stay under the free token limits.
+                      **({"reasoning_effort": "low"} if "gpt-oss" in pick_model() else {})},
+                timeout=120,
+            )
+        except Exception as e:
+            print(f"  Groq request failed ({e}).", flush=True)
+            return None
+        if r.status_code == 429:
+            m = re.search(r"try again in (?:(\d+)h)?(?:(\d+)m)?([\d.]+)s", r.text)
+            wait = (int(m.group(1) or 0) * 3600 + int(m.group(2) or 0) * 60 + float(m.group(3))) if m else 30
+            if wait > 600:
+                print(f"  Groq's daily free limit is used up (resets in {wait / 3600:.1f} h). Run again later; "
+                      "finished clubs are saved.", flush=True)
+                return None
+            print(f"  Groq's free limit reached; waiting {wait:.0f}s...", flush=True)
+            time.sleep(wait + 2)
+            continue
+        if r.status_code == 400 and "json_validate_failed" in r.text:
+            continue  # the model's JSON came out malformed; just ask again
+        if r.status_code != 200:
+            print(f"  Groq error {r.status_code}: {r.text[:300]}", flush=True)
+            return None
+        try:
+            replies = json.loads(r.json()["choices"][0]["message"]["content"])["clubs"]
+        except (KeyError, TypeError, ValueError) as e:
+            print(f"  Groq's reply wasn't usable ({e}); asking again.", flush=True)
+            continue
+        # Each reply names its club by number, but sometimes by name; fall back to the order given.
+        numbers = {club_key(c["name"]): i for i, c in enumerate(clubs)}
+        got = {}
+        for n, reply in enumerate(replies):
+            ref = str(reply.get("club", "")).strip().rstrip(".")
+            i = int(ref) - 1 if ref.isdigit() else numbers.get(club_key(ref), n)
+            got[i] = reply.get("fields") or []
+        return [[f for f in got.get(i, []) if f in MAJOR_FIELDS] for i in range(len(clubs))]
+    return None
+
+
+def finish_clubs(clubs):
+    """Keep only clubs with an event in the past year (or coming up), and add their latest event
+    date and major fields. Both scrapers call this last. A club reappears once it holds an event."""
+    activity = _load(CLUB_ACTIVITY_FILE, {})
+    cutoff = (TODAY - timedelta(days=ACTIVE_DAYS)).isoformat()
+    for c in clubs:
+        c["last_event"] = last_event(c, activity)
+    total = len(clubs)
+    clubs = [c for c in clubs if (c["last_event"] or "") >= cutoff]
+    print(f"Keeping {len(clubs)} of {total} clubs (an event in the past {ACTIVE_DAYS} days or coming up)")
+
+    saved = _load(CLUB_FIELDS_FILE, {})
+    fingerprint = lambda c: f"{c['name']}|{(c.get('about') or c.get('description') or '')[:160]}"
+    todo = [c for c in clubs if saved.get(club_key(c["name"]), {}).get("from") != fingerprint(c)]
+    if todo and GROQ_KEY:
+        print(f"Sorting {len(todo)} club(s) into major fields with AI...", flush=True)
+    for i in range(0, len(todo), 20):
+        batch = todo[i:i + 20]
+        result = ai_club_fields(batch)
+        if result is None:
+            break
+        for c, fields in zip(batch, result):
+            saved[club_key(c["name"])] = {"fields": fields, "from": fingerprint(c)}
+        CLUB_FIELDS_FILE.write_text(json.dumps(saved, indent=0, ensure_ascii=False), encoding="utf-8")
+        print(f"  {min(i + 20, len(todo))}/{len(todo)} sorted", flush=True)
+
+    for c in clubs:
+        c["fields"] = saved.get(club_key(c["name"]), {}).get("fields", [])
     return clubs
 
 

@@ -56,6 +56,59 @@ const MAJOR_GROUPS = {
   ],
 };
 
+// Each major field's color, used on club tags, profile majors and the Major filters.
+const FIELD_COLORS = {
+  Engineering: "#d9480f",
+  "Computing & Math": "#1971c2",
+  Sciences: "#2f9e44",
+  Health: "#c2255c",
+  "Social Sciences": "#7048e8",
+  "Arts & Humanities": "#a87400",
+  Business: "#0c8599",
+};
+const FIELD_OF_MAJOR = Object.fromEntries(
+  Object.entries(MAJOR_GROUPS).flatMap(([field, majors]) => majors.map((m) => [m, field]))
+);
+
+// A Major filter choice is a specific major ("Mechanical Engineering") or a whole field ("field:Engineering").
+function fieldOf(choice) {
+  return choice.startsWith("field:") ? choice.slice(6) : FIELD_OF_MAJOR[choice];
+}
+
+// Clubs with no event in this long aren't shown. The scraper already leaves them out of clubs.json;
+// this also drops any that age out before the next scrape. Example clubs (no `last_event`) count as active.
+const ACTIVE_DAYS = 365;
+function isActive(club) {
+  if (!("last_event" in club)) return true;
+  const cutoff = new Date(Date.now() - ACTIVE_DAYS * 864e5).toISOString().slice(0, 10);
+  return (club.last_event ?? "") >= cutoff;
+}
+
+function FieldTag({ field }) {
+  const color = FIELD_COLORS[field] ?? "#6a5f85";
+  return (
+    <span className="tag field-tag" style={{ color, background: `${color}14`, borderColor: `${color}66` }}>
+      {field}
+    </span>
+  );
+}
+
+function MajorSelect({ value, onChange, ...props }) {
+  return (
+    <select value={value} onChange={(e) => onChange(e.target.value)} {...props}>
+      <option>Any major</option>
+      {Object.entries(MAJOR_GROUPS).map(([group, majors]) => (
+        <optgroup key={group} label={group}>
+          <option value={`field:${group}`}>All {group}</option>
+          {majors.map((m) => (
+            <option key={m}>{m}</option>
+          ))}
+        </optgroup>
+      ))}
+    </select>
+  );
+}
+
 // Sample events, shown only until the scraper (scraper/) has written public/events.json.
 const SAMPLE_EVENTS = [
   { id: 1, title: "Calc III study group", type: "Study", host: "Math Club", where: "Odegaard Library", pos: [47.6563, -122.3105], going: 12, years: ["Sophomore", "Junior"], majors: ["Mathematics"] },
@@ -349,22 +402,30 @@ function useEvents() {
   return data;
 }
 
-// Scraped events have no class year or major, so they're open to everyone.
-function useFilteredEvents(all) {
+// Scraped events have no class year, so they're open to every year. A major (or field) choice
+// shows events whose host club is in that major's field, e.g. Mechanical Engineering -> Engineering.
+function useFilteredEvents(all, clubList) {
   const [type, setType] = useState("All");
   const [year, setYear] = useState("All");
   const [major, setMajor] = useState("Any major");
 
-  const events = useMemo(
-    () =>
-      all.filter(
-        (e) =>
-          (type === "All" || e.type === type) &&
-          (year === "All" || !e.years || e.years.includes(year)) &&
-          (major === "Any major" || !e.majors?.length || e.majors.includes(major))
-      ),
-    [all, type, year, major]
-  );
+  const fieldsOf = useMemo(() => {
+    const map = new Map();
+    for (const e of all) map.set(e.id, clubList.find((c) => isHostedBy(e, c))?.fields ?? []);
+    return map;
+  }, [all, clubList]);
+
+  const events = useMemo(() => {
+    const field = major === "Any major" ? null : fieldOf(major);
+    const matchesMajor = (e) =>
+      !field ||
+      (e.majors?.length
+        ? e.majors.includes(major) || e.majors.some((m) => FIELD_OF_MAJOR[m] === field)
+        : fieldsOf.get(e.id).includes(field));
+    return all.filter(
+      (e) => (type === "All" || e.type === type) && (year === "All" || !e.years || e.years.includes(year)) && matchesMajor(e)
+    );
+  }, [all, fieldsOf, type, year, major]);
 
   return { events, type, setType, year, setYear, major, setMajor };
 }
@@ -397,17 +458,13 @@ function Filters({ f }) {
 
       <label>
         Major
-        <select value={f.major} onChange={(e) => f.setMajor(e.target.value)}>
-          <option>Any major</option>
-          {Object.entries(MAJOR_GROUPS).map(([group, majors]) => (
-            <optgroup key={group} label={group}>
-              {majors.map((m) => (
-                <option key={m}>{m}</option>
-              ))}
-            </optgroup>
-          ))}
-        </select>
+        <MajorSelect value={f.major} onChange={f.setMajor} />
       </label>
+      {f.major !== "Any major" && (
+        <p className="count">
+          Showing <FieldTag field={fieldOf(f.major)} /> events
+        </p>
+      )}
 
       <p className="count">
         {onMap} event{onMap === 1 ? "" : "s"} on the map
@@ -819,8 +876,11 @@ function ClubDetail({ club, hosted, clubs, onClose }) {
           &times;
         </button>
         <h2 id="club-detail-title">{club.name}</h2>
-        <p>
+        <p className="tags">
           <span className="tag">{club.category}</span>
+          {club.fields?.map((field) => (
+            <FieldTag key={field} field={field} />
+          ))}
         </p>
         <p>{club.description || club.about || (club.instagram ? "No description yet. Check their Instagram for more." : "No description yet.")}</p>
         {club.meets && <p className="meta">Meets {club.meets}</p>}
@@ -861,14 +921,18 @@ function ClubDetail({ club, hosted, clubs, onClose }) {
 function ClubsPage({ all, clubList, clubs: membership }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
+  const [major, setMajor] = useState("Any major");
   const [selected, setSelected] = useState(null);
   const categories = ["All", ...[...new Set(clubList.map((c) => c.category))].sort()];
 
   const q = query.trim().toLowerCase();
+  const field = major === "Any major" ? null : fieldOf(major);
   const clubs = clubList.filter(
     (c) =>
+      isActive(c) &&
       (category === "All" || c.category === category) &&
-      (!q || [c.name, c.handle, c.category, c.about].some((s) => s?.toLowerCase().includes(q)))
+      (!field || c.fields?.includes(field)) &&
+      (!q || [c.name, c.handle, c.category, c.about, ...(c.fields ?? [])].some((s) => s?.toLowerCase().includes(q)))
   );
 
   return (
@@ -887,10 +951,19 @@ function ClubsPage({ all, clubList, clubs: membership }) {
             <option key={c}>{c}</option>
           ))}
         </select>
+        <MajorSelect aria-label="Major" value={major} onChange={setMajor} />
       </div>
-      <p className="count">
-        {clubs.length} club{clubs.length === 1 ? "" : "s"}
-      </p>
+      <div className="club-options">
+        <p className="count">
+          {clubs.length} club{clubs.length === 1 ? "" : "s"}
+          {field && (
+            <>
+              {" "}
+              in <FieldTag field={field} />
+            </>
+          )}
+        </p>
+      </div>
       <ul className="list">
         {clubs.map((c) => {
           const upcoming = hostedBy(all, c).length;
@@ -901,13 +974,17 @@ function ClubsPage({ all, clubList, clubs: membership }) {
                   {c.name}
                   <span className="club-hint"> View details &rarr;</span>
                 </button>{" "}
-                <span className="tag">{c.category}</span>
+                <span className="tag">{c.category}</span>{" "}
+                {c.fields?.map((f) => (
+                  <FieldTag key={f} field={f} />
+                ))}
                 {c.about && <div>{c.about}</div>}
                 <div className="meta">
                   {[
                     c.meets && `Meets ${c.meets}`,
                     c.handle && c.name !== `@${c.handle}` && `@${c.handle}`,
                     upcoming > 0 && `${upcoming} upcoming event${upcoming === 1 ? "" : "s"}`,
+                    !upcoming && c.last_event && `Last event ${formatWhen({ date: c.last_event })}`,
                   ]
                     .filter(Boolean)
                     .join(", ")}
@@ -1076,7 +1153,15 @@ function ProfilePage({ user, profile, onChange, clubList, clubs, j, email }) {
           {profile.majors.length > 0 && (
             <ul className="chips" aria-labelledby="majors-label">
               {profile.majors.map((m) => (
-                <li key={m} className="chip">
+                <li
+                  key={m}
+                  className="chip"
+                  title={FIELD_OF_MAJOR[m]}
+                  style={FIELD_COLORS[FIELD_OF_MAJOR[m]] && {
+                    color: FIELD_COLORS[FIELD_OF_MAJOR[m]],
+                    background: `${FIELD_COLORS[FIELD_OF_MAJOR[m]]}14`,
+                  }}
+                >
                   {m}
                   <button aria-label={`Remove ${m}`} onClick={() => removeMajor(m)}>
                     &times;
@@ -1247,7 +1332,7 @@ export default function DubHub() {
   const [tab, setTab] = useState("Home");
   const { events: all, updated } = useEvents();
   const clubList = useClubs();
-  const f = useFilteredEvents(all);
+  const f = useFilteredEvents(all, clubList);
   const { user, signIn, signOut } = useUser();
   const { profile, update: updateProfile } = useProfile(user);
   const j = useJoined(JOINED_KEY);

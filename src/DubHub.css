@@ -464,7 +464,37 @@ select:focus-visible {
   cursor: pointer;
 }
 
+.field-tag {
+  border: 1px solid;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tags .field-tag {
+  margin-right: 0;
+}
+
+.club-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 4px;
+}
+
+.club-options .count {
+  margin: 0;
+}
+
 .club-search {
+  flex-wrap: wrap;
   display: flex;
   gap: 8px;
   margin-bottom: 8px;
@@ -480,8 +510,13 @@ select:focus-visible {
 }
 
 .club-search input {
-  flex: 1;
+  flex: 1 1 220px;
   min-width: 0;
+}
+
+.club-search select {
+  flex: 0 1 auto;
+  max-width: 200px;
 }
 
 .tag {
