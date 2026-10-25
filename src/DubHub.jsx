@@ -581,6 +581,33 @@ function EventList({ events, j }) {
   );
 }
 
+// Most popular first by "going" count. Scraped events have no counts yet,
+// so they rank after counted events, soonest first.
+function trending(events, j, limit = 5) {
+  const count = (e) => (e.going == null ? -1 : e.going + (j.joined.includes(e.id) ? 1 : 0));
+  const when = (e) => `${e.date ?? "9999"}T${e.start ?? ""}`;
+  return [...events].sort((a, b) => count(b) - count(a) || when(a).localeCompare(when(b))).slice(0, limit);
+}
+
+function TrendingRow({ events, j }) {
+  if (events.length === 0) return null;
+  return (
+    <section className="trending" aria-labelledby="trending-title">
+      <h2 id="trending-title">Trending</h2>
+      <ol className="trending-row">
+        {trending(events, j).map((e) => (
+          <li key={e.id} className="trending-card">
+            <span className="dot" style={{ background: TYPE_COLORS[e.type] }} />
+            <strong>{e.title}</strong>
+            <div className="meta">{[formatWhen(e), e.where, going(e, j)].filter(Boolean).join(" · ")}</div>
+            <JoinButton event={e} j={j} />
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
 function EventsPage({ events, updated, j }) {
   return (
     <main className="page">
@@ -591,6 +618,8 @@ function EventsPage({ events, updated, j }) {
           {new Date(updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}
         </p>
       )}
+      <TrendingRow events={events} j={j} />
+      <h2>All events</h2>
       <EventList events={events} j={j} />
     </main>
   );
