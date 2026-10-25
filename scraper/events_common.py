@@ -34,6 +34,7 @@ SITE_CLUBS_FILE = HERE.parent / "public" / "clubs.json"
 CLUBS_FILE = HERE / "clubs.txt"
 CLUB_PROFILES_FILE = STATE_DIR / "club_profiles.json"  # name + bio + website per handle
 CLUB_INFO_FILE = STATE_DIR / "club_info.json"          # AI category/summary per handle
+HUSKYLINK_FILE = HERE / "huskylink.json"  # huskylink_scraper.py output; on GitHub so every scraper sees it
 
 
 def _load_env_file():
@@ -493,7 +494,7 @@ def write_site_events(store):
                 # The post's caption, shown when someone opens the event on the site.
                 "description": (post.get("caption") or "").strip() or None,
             })
-    events.sort(key=lambda e: (e["date"], e["start"] or "99"))
+    events = merge_huskylink_events(events)
     SITE_EVENTS_FILE.parent.mkdir(exist_ok=True)
     SITE_EVENTS_FILE.write_text(
         json.dumps({"updated": datetime.now().isoformat(timespec="minutes"), "events": events},
@@ -643,10 +644,52 @@ def write_site_clubs(store):
             # A longer description only when there's a real bio or posts behind it, not just a name.
             "description": (i.get("description") or c["bio"]) if (c["bio"] or c["posts"]) else None,
         })
-    out.sort(key=lambda c: c["name"].lstrip("@").lower())
+    out = merge_huskylink_clubs(out)
     SITE_CLUBS_FILE.write_text(json.dumps({"clubs": out}, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote {len(out)} clubs to {SITE_CLUBS_FILE}")
     return out
+
+
+# --------------------------------------------------------------- huskylink ---
+def load_huskylink():
+    return _load(HUSKYLINK_FILE, {"clubs": [], "events": []})
+
+
+def merge_huskylink_events(events):
+    """Swap in the latest HuskyLink events (dropping any old ones), sorted by date."""
+    today = TODAY.isoformat()
+    events = [e for e in events if e.get("source") != "huskylink"]
+    events += [e for e in load_huskylink()["events"] if e["date"] >= today]
+    events.sort(key=lambda e: (e["date"], e["start"] or "99"))
+    return events
+
+
+def club_key(name):
+    """'Product Space @ UW', 'Product Space' and '@product_space_uw' all -> 'productspace'."""
+    n = re.sub(r"[._]", " ", name.casefold()).replace("&", "and")
+    n = re.sub(r"\b(at|@)\s*(the\s+)?(uw|university of washington)(\s+seattle)?\b"
+               r"|\buw\b|\buniversity of washington\b|\bchapter\b|\bthe\b", " ", n)
+    return re.sub(r"[^a-z0-9]+", "", n)
+
+
+def merge_huskylink_clubs(clubs):
+    """Add every HuskyLink group. A club already listed under a matching name gets the gaps filled in."""
+    clubs = [c for c in clubs if c.get("source") != "huskylink"]
+    by_name = {club_key(c["name"]): c for c in clubs}
+    for h in load_huskylink()["clubs"]:
+        c = by_name.get(club_key(h["name"]))
+        if c is None:
+            clubs.append({**h, "source": "huskylink"})
+            by_name[club_key(h["name"])] = clubs[-1]
+            continue
+        if c["name"].startswith("@"):
+            c["name"] = h["name"]  # an Instagram handle is all we had; use the real name
+        for field in ("website", "about", "description"):
+            c[field] = c.get(field) or h[field]
+        if c.get("category") in (None, "Other"):
+            c["category"] = h["category"]
+    clubs.sort(key=lambda c: c["name"].lstrip("@").lower())
+    return clubs
 
 
 if __name__ == "__main__":

@@ -456,7 +456,7 @@ function PostLink({ event }) {
   if (!event.url) return null;
   return (
     <a className="post-link" href={event.url} target="_blank" rel="noreferrer">
-      View post
+      {event.source === "huskylink" ? "View on HuskyLink" : "View post"}
     </a>
   );
 }
@@ -737,7 +737,7 @@ function EventsPage({ events, updated, j }) {
       <h1>Events</h1>
       {updated && (
         <p className="count">
-          From club Instagram posts, updated{" "}
+          From HuskyLink and club Instagram posts, updated{" "}
           {new Date(updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}
         </p>
       )}
@@ -822,7 +822,7 @@ function ClubDetail({ club, hosted, clubs, onClose }) {
         <p>
           <span className="tag">{club.category}</span>
         </p>
-        <p>{club.description || club.about || "No description yet. Check their Instagram for more."}</p>
+        <p>{club.description || club.about || (club.instagram ? "No description yet. Check their Instagram for more." : "No description yet.")}</p>
         {club.meets && <p className="meta">Meets {club.meets}</p>}
         {(club.website || club.instagram) && (
           <p className="club-links">
