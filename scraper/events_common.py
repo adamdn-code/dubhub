@@ -35,6 +35,7 @@ CLUBS_FILE = HERE / "clubs.txt"
 CLUB_PROFILES_FILE = STATE_DIR / "club_profiles.json"  # name + bio + website per handle
 CLUB_INFO_FILE = STATE_DIR / "club_info.json"          # AI category/summary per handle
 HUSKYLINK_FILE = HERE / "huskylink.json"  # huskylink_scraper.py output; on GitHub so every scraper sees it
+CLUB_INSTAGRAM_FILE = HERE / "club_instagram.json"  # find_instagram_handles.py output: club name -> handle
 
 
 def _load_env_file():
@@ -672,20 +673,31 @@ def club_key(name):
     return re.sub(r"[^a-z0-9]+", "", n)
 
 
+def found_instagram_handles():
+    """HuskyLink club name -> Instagram handle, for clubs find_instagram_handles.py found one for."""
+    return {name: v["handle"] for name, v in _load(CLUB_INSTAGRAM_FILE, {}).items() if v.get("handle")}
+
+
 def merge_huskylink_clubs(clubs):
-    """Add every HuskyLink group. A club already listed under a matching name gets the gaps filled in."""
+    """Add every HuskyLink group. A club already listed under the same Instagram or a matching
+    name gets the gaps filled in."""
     clubs = [c for c in clubs if c.get("source") != "huskylink"]
     by_name = {club_key(c["name"]): c for c in clubs}
+    by_handle = {c["handle"]: c for c in clubs if c.get("handle")}
+    handles = found_instagram_handles()
     for h in load_huskylink()["clubs"]:
-        c = by_name.get(club_key(h["name"]))
+        handle = handles.get(h["name"])
+        if handle:
+            h = {**h, "handle": handle, "instagram": f"https://www.instagram.com/{handle}/"}
+        c = by_handle.get(handle) or by_name.get(club_key(h["name"]))
         if c is None:
             clubs.append({**h, "source": "huskylink"})
             by_name[club_key(h["name"])] = clubs[-1]
             continue
         if c["name"].startswith("@"):
             c["name"] = h["name"]  # an Instagram handle is all we had; use the real name
-        for field in ("website", "about", "description"):
-            c[field] = c.get(field) or h[field]
+        for field in ("website", "about", "description", "handle", "instagram"):
+            c[field] = c.get(field) or h.get(field)
         if c.get("category") in (None, "Other"):
             c["category"] = h["category"]
     clubs.sort(key=lambda c: c["name"].lstrip("@").lower())
