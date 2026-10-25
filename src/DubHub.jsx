@@ -461,6 +461,39 @@ function PostLink({ event }) {
   );
 }
 
+// Google Calendar "add event" link, or null if the event has no date.
+// Times are UW (Seattle) time; events with no start time become all-day, and no end means one hour.
+function googleCalendarUrl(e) {
+  if (!e.date) return null;
+  const day = e.date.replaceAll("-", "");
+  let dates;
+  if (e.start) {
+    const [h, m] = e.start.split(":").map(Number);
+    const end = e.end ?? `${String(Math.min(h + 1, 23)).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+    const stamp = (hhmm) => `${day}T${hhmm.replace(":", "")}00`;
+    dates = `${stamp(e.start)}/${stamp(end)}`;
+  } else {
+    const [y, mo, d] = e.date.split("-").map(Number);
+    const next = new Date(Date.UTC(y, mo - 1, d + 1)).toISOString().slice(0, 10).replaceAll("-", "");
+    dates = `${day}/${next}`;
+  }
+  const details = [e.description?.slice(0, 1500), e.url].filter(Boolean).join("\n\n");
+  const params = new URLSearchParams({ action: "TEMPLATE", text: e.title, dates, ctz: "America/Los_Angeles" });
+  if (details) params.set("details", details);
+  if (e.where) params.set("location", e.where === "Online" ? "Online" : `${e.where}, University of Washington, Seattle`);
+  return `https://calendar.google.com/calendar/render?${params}`;
+}
+
+function CalendarLink({ event }) {
+  const url = googleCalendarUrl(event);
+  if (!url) return null;
+  return (
+    <a className="post-link" href={url} target="_blank" rel="noreferrer">
+      Add to Google Calendar
+    </a>
+  );
+}
+
 // Free vector basemap from OpenFreeMap (no API key), drawn with MapLibre inside Leaflet.
 const MAP_STYLE = "https://tiles.openfreemap.org/styles/liberty";
 const MAP_ATTRIBUTION =
@@ -626,7 +659,8 @@ function EventDetail({ event, j, onClose }) {
             ))}
         </p>
         <p className="event-description">{event.description || "No description yet."}</p>
-        <p>
+        <p className="club-links">
+          <CalendarLink event={event} />
           <PostLink event={event} />
         </p>
         <JoinButton event={event} j={j} />
