@@ -275,6 +275,43 @@ select:focus-visible {
   font-size: 22px;
 }
 
+/* Events: horizontal "Trending" row */
+.trending h2 {
+  color: var(--gold);
+}
+
+.trending-row {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 0 0 8px;
+  margin: 0;
+  scroll-snap-type: x mandatory;
+}
+
+.trending-card {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #ddd6ec;
+  border-radius: 10px;
+  scroll-snap-align: start;
+  line-height: 1.35;
+}
+
+.trending-card .dot {
+  margin-top: 0;
+}
+
+.trending-card .join {
+  margin-top: auto;
+}
+
 .grow {
   flex: 1;
   min-width: 0;
