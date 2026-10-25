@@ -402,9 +402,33 @@ function useEvents() {
   return data;
 }
 
+// "When" choices: how many days after today each one reaches (rolling, so "This week" is always 7 days).
+const WHEN_DAYS = { Today: 0, "This week": 6, "This month": 30, "Any time": null };
+
+// "YYYY-MM-DD" for today plus `days`, in the viewer's own time zone.
+function localDate(days = 0) {
+  return new Date(Date.now() + days * 864e5).toLocaleDateString("en-CA");
+}
+
+function inWhen(event, when) {
+  if (WHEN_DAYS[when] == null || !event.date) return true; // sample events have no date
+  return event.date >= localDate(0) && event.date <= localDate(WHEN_DAYS[when]);
+}
+
+function WhenSelect({ value, onChange, ...props }) {
+  return (
+    <select value={value} onChange={(e) => onChange(e.target.value)} {...props}>
+      {Object.keys(WHEN_DAYS).map((w) => (
+        <option key={w}>{w}</option>
+      ))}
+    </select>
+  );
+}
+
 // Scraped events have no class year, so they're open to every year. A major (or field) choice
 // shows events whose host club is in that major's field, e.g. Mechanical Engineering -> Engineering.
 function useFilteredEvents(all, clubList) {
+  const [when, setWhen] = useState("This week");
   const [type, setType] = useState("All");
   const [year, setYear] = useState("All");
   const [major, setMajor] = useState("Any major");
@@ -423,11 +447,15 @@ function useFilteredEvents(all, clubList) {
         ? e.majors.includes(major) || e.majors.some((m) => FIELD_OF_MAJOR[m] === field)
         : fieldsOf.get(e.id).includes(field));
     return all.filter(
-      (e) => (type === "All" || e.type === type) && (year === "All" || !e.years || e.years.includes(year)) && matchesMajor(e)
+      (e) =>
+        inWhen(e, when) &&
+        (type === "All" || e.type === type) &&
+        (year === "All" || !e.years || e.years.includes(year)) &&
+        matchesMajor(e)
     );
-  }, [all, fieldsOf, type, year, major]);
+  }, [all, fieldsOf, when, type, year, major]);
 
-  return { events, type, setType, year, setYear, major, setMajor };
+  return { events, when, setWhen, type, setType, year, setYear, major, setMajor };
 }
 
 function Filters({ f }) {
@@ -435,6 +463,11 @@ function Filters({ f }) {
   return (
     <aside className="filters" aria-label="Event filters">
       <h2>Find something to do</h2>
+
+      <label>
+        When
+        <WhenSelect value={f.when} onChange={f.setWhen} />
+      </label>
 
       <label>
         Event type
@@ -467,18 +500,56 @@ function Filters({ f }) {
       )}
 
       <p className="count">
-        {onMap} event{onMap === 1 ? "" : "s"} on the map
-        {f.events.length > onMap && `, ${f.events.length - onMap} more in Events`}
+        {f.events.length === 0 && f.when !== "Any time" ? (
+          <>
+            Nothing {f.when.toLowerCase()} yet.{" "}
+            <button className="link-button" onClick={() => f.setWhen(f.when === "Today" ? "This week" : "Any time")}>
+              Show {f.when === "Today" ? "this week" : "any time"}
+            </button>
+          </>
+        ) : (
+          <>
+            {onMap} event{onMap === 1 ? "" : "s"} on the map
+            {f.events.length > onMap && `, ${f.events.length - onMap} more in Events`}
+          </>
+        )}
       </p>
     </aside>
   );
 }
 
-// Seattle city limits, roughly: the map can't be panned or zoomed out past this.
-const SEATTLE_BOUNDS = [
-  [47.48, -122.46],
-  [47.74, -122.22],
+// Map areas from smallest to largest. The map uses the smallest one that fits every event with a
+// location, and can't be panned or zoomed out past it; it grows when an event shows up farther out.
+const MAP_AREAS = [
+  { name: "UW campus", bounds: [[47.6475, -122.3195], [47.662, -122.295]] },
+  { name: "University District", bounds: [[47.645, -122.33], [47.676, -122.287]] },
+  { name: "North-central Seattle", bounds: [[47.615, -122.365], [47.695, -122.265]] },
+  { name: "Seattle", bounds: [[47.48, -122.46], [47.74, -122.22]] },
 ];
+
+function mapAreaFor(events) {
+  const inside = ([lat, lng], [[s, w], [n, e]]) => lat >= s && lat <= n && lng >= w && lng <= e;
+  const spots = events.filter((ev) => ev.pos).map((ev) => ev.pos);
+  return MAP_AREAS.find((a) => spots.every((p) => inside(p, a.bounds))) ?? MAP_AREAS.at(-1);
+}
+
+// Fits the map to its area and keeps it there.
+function MapArea({ area }) {
+  const map = useMap();
+
+  useEffect(() => {
+    const bounds = L.latLngBounds(area.bounds);
+    // getBoundsZoom never goes below the current minimum, so clear the old area's limit first.
+    map.setMinZoom(0);
+    map.setMinZoom(map.getBoundsZoom(bounds));
+    map.setMaxBounds(bounds.pad(0.05));
+    // Leave room for the filter panel on wide screens.
+    const panel = map.getSize().x > 700 ? [260, 0] : [0, 0];
+    map.fitBounds(bounds, { paddingTopLeft: panel });
+  }, [map, area]);
+
+  return null;
+}
 
 function JoinButton({ event, j }) {
   const isJoined = j.joined.includes(event.id);
@@ -639,19 +710,18 @@ function BaseMap() {
   return null;
 }
 
-function EventMap({ events, j }) {
+function EventMap({ events, area, j }) {
   return (
     <MapContainer
       center={[47.6553, -122.3035]}
-      zoom={14}
-      minZoom={12}
-      maxBounds={SEATTLE_BOUNDS}
+      zoom={15}
       maxBoundsViscosity={1}
       scrollWheelZoom
       zoomControl={false}
       className="map"
     >
       <ZoomControl position="topright" />
+      <MapArea area={area} />
       <BaseMap />
       {events
         .filter((e) => e.pos)
@@ -675,10 +745,10 @@ function EventMap({ events, j }) {
   );
 }
 
-function Home({ f, j }) {
+function Home({ f, area, j }) {
   return (
     <main className="home">
-      <EventMap events={f.events} j={j} />
+      <EventMap events={f.events} area={area} j={j} />
       <Filters f={f} />
       <div className="tagline">
         <h1>See what's happening at UW, right now.</h1>
@@ -788,11 +858,14 @@ function TrendingRow({ events, j, onSelect }) {
   );
 }
 
-function EventsPage({ events, updated, j }) {
+function EventsPage({ events, updated, j, when, onWhenChange }) {
   const [selected, setSelected] = useState(null);
   return (
     <main className="page">
-      <h1>Events</h1>
+      <div className="page-head">
+        <h1>Events</h1>
+        <WhenSelect aria-label="When" value={when} onChange={onWhenChange} />
+      </div>
       {updated && (
         <p className="count">
           From HuskyLink and club Instagram posts, updated{" "}
@@ -1334,6 +1407,8 @@ export default function DubHub() {
   const { events: all, updated } = useEvents();
   const clubList = useClubs();
   const f = useFilteredEvents(all, clubList);
+  // Based on every event, not just the filtered ones, so the map doesn't jump around while filtering.
+  const mapArea = useMemo(() => mapAreaFor(all), [all]);
   const { user, signIn, signOut } = useUser();
   const { profile, update: updateProfile } = useProfile(user);
   const j = useJoined(JOINED_KEY);
@@ -1363,8 +1438,10 @@ export default function DubHub() {
         <SignIn user={user} onSignIn={signIn} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
       </header>
 
-      {tab === "Home" && <Home f={f} j={j} />}
-      {tab === "Events" && <EventsPage events={f.events} updated={updated} j={j} />}
+      {tab === "Home" && <Home f={f} area={mapArea} j={j} />}
+      {tab === "Events" && (
+        <EventsPage events={f.events} updated={updated} j={j} when={f.when} onWhenChange={f.setWhen} />
+      )}
       {tab === "My Events" && (
         <MyEventsPage all={all} clubList={clubList} j={j} clubs={clubs} onBrowse={() => setTab("Events")} />
       )}
