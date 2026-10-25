@@ -68,7 +68,7 @@ const SAMPLE_EVENTS = [
 
 // Example clubs, shown only until the scraper (scraper/) has written public/clubs.json.
 // `about` is the one-line blurb shown in the list; `description` is the longer text shown
-// when you click a club. Scraped clubs also have `handle` and `instagram`, and may lack `meets`.
+// when you click a club. Scraped clubs also have `handle`, `instagram` and `website` (or null), and may lack `meets`.
 const SAMPLE_CLUBS = [
   {
     name: "Math Club",
@@ -575,14 +575,64 @@ function Home({ f, j }) {
   );
 }
 
-function EventList({ events, j }) {
+function EventTitle({ event, onSelect }) {
+  return (
+    <button className="club-link" onClick={() => onSelect(event)}>
+      {event.title}
+    </button>
+  );
+}
+
+function EventDetail({ event, j, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div className="club-backdrop" onClick={onClose}>
+      <div
+        className="club-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="event-detail-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
+          &times;
+        </button>
+        <h2 id="event-detail-title">{event.title}</h2>
+        <p>
+          <span className="tag">{event.type}</span>
+        </p>
+        <p className="meta">
+          {[formatWhen(event), event.where ?? "Location not listed", `Hosted by ${event.host}`, going(event, j)]
+            .filter(Boolean)
+            .map((line) => (
+              <span key={line} className="event-detail-line">
+                {line}
+              </span>
+            ))}
+        </p>
+        <p className="event-description">{event.description || "No description yet."}</p>
+        <p>
+          <PostLink event={event} />
+        </p>
+        <JoinButton event={event} j={j} />
+      </div>
+    </div>
+  );
+}
+
+function EventList({ events, j, onSelect }) {
   return (
     <ul className="list">
       {events.map((e) => (
         <li key={e.id}>
           <span className="dot" style={{ background: TYPE_COLORS[e.type] }} />
           <div className="grow">
-            <strong>{e.title}</strong>
+            <EventTitle event={e} onSelect={onSelect} />
             <div className="meta">
               {[formatWhen(e), e.where ?? "Location not listed", `hosted by ${e.host}`, going(e, j)]
                 .filter(Boolean)
@@ -605,7 +655,7 @@ function trending(events, j, limit = 5) {
   return [...events].sort((a, b) => count(b) - count(a) || when(a).localeCompare(when(b))).slice(0, limit);
 }
 
-function TrendingRow({ events, j }) {
+function TrendingRow({ events, j, onSelect }) {
   if (events.length === 0) return null;
   return (
     <section className="trending" aria-labelledby="trending-title">
@@ -614,7 +664,7 @@ function TrendingRow({ events, j }) {
         {trending(events, j).map((e) => (
           <li key={e.id} className="trending-card">
             <span className="dot" style={{ background: TYPE_COLORS[e.type] }} />
-            <strong>{e.title}</strong>
+            <EventTitle event={e} onSelect={onSelect} />
             <div className="meta">{[formatWhen(e), e.where, going(e, j)].filter(Boolean).join(" · ")}</div>
             <JoinButton event={e} j={j} />
           </li>
@@ -625,6 +675,7 @@ function TrendingRow({ events, j }) {
 }
 
 function EventsPage({ events, updated, j }) {
+  const [selected, setSelected] = useState(null);
   return (
     <main className="page">
       <h1>Events</h1>
@@ -634,9 +685,10 @@ function EventsPage({ events, updated, j }) {
           {new Date(updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}
         </p>
       )}
-      <TrendingRow events={events} j={j} />
+      <TrendingRow events={events} j={j} onSelect={setSelected} />
       <h2>All events</h2>
-      <EventList events={events} j={j} />
+      <EventList events={events} j={j} onSelect={setSelected} />
+      {selected && <EventDetail event={selected} j={j} onClose={() => setSelected(null)} />}
     </main>
   );
 }
@@ -665,6 +717,7 @@ function hostedBy(all, club) {
 function MyEventsPage({ all, clubList, j, clubs, onBrowse }) {
   const myClubs = clubList.filter((c) => clubs.joined.includes(c.name));
   const mine = all.filter((e) => j.joined.includes(e.id) || myClubs.some((c) => isHostedBy(e, c)));
+  const [selected, setSelected] = useState(null);
   return (
     <main className="page">
       <h1>My Events</h1>
@@ -672,7 +725,7 @@ function MyEventsPage({ all, clubList, j, clubs, onBrowse }) {
         <p className="count">Includes events from your clubs: {clubs.joined.join(", ")}</p>
       )}
       {mine.length > 0 ? (
-        <EventList events={mine} j={j} />
+        <EventList events={mine} j={j} onSelect={setSelected} />
       ) : (
         <div className="empty">
           <p>You haven't joined any events or clubs yet.</p>
@@ -681,6 +734,7 @@ function MyEventsPage({ all, clubList, j, clubs, onBrowse }) {
           </button>
         </div>
       )}
+      {selected && <EventDetail event={selected} j={j} onClose={() => setSelected(null)} />}
     </main>
   );
 }
@@ -710,11 +764,18 @@ function ClubDetail({ club, hosted, clubs, onClose }) {
         </p>
         <p>{club.description || club.about || "No description yet. Check their Instagram for more."}</p>
         {club.meets && <p className="meta">Meets {club.meets}</p>}
-        {club.instagram && (
-          <p>
-            <a className="post-link" href={club.instagram} target="_blank" rel="noreferrer">
-              @{club.handle} on Instagram
-            </a>
+        {(club.website || club.instagram) && (
+          <p className="club-links">
+            {club.website && (
+              <a className="post-link" href={club.website} target="_blank" rel="noreferrer">
+                Website
+              </a>
+            )}
+            {club.instagram && (
+              <a className="post-link" href={club.instagram} target="_blank" rel="noreferrer">
+                @{club.handle} on Instagram
+              </a>
+            )}
           </p>
         )}
         <ClubJoinButton club={club} clubs={clubs} />
@@ -791,6 +852,11 @@ function ClubsPage({ all, clubList, clubs: membership }) {
                     .filter(Boolean)
                     .join(", ")}
                 </div>
+                {c.website && (
+                  <a className="post-link" href={c.website} target="_blank" rel="noreferrer">
+                    Website
+                  </a>
+                )}
               </div>
               <ClubJoinButton club={c} clubs={membership} />
             </li>

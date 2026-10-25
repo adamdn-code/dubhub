@@ -264,6 +264,12 @@ select:focus-visible {
   cursor: pointer;
 }
 
+.club-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
 .post-link {
   font-size: 14px;
   font-weight: 600;
@@ -579,6 +585,16 @@ input:focus-visible,
 
 .club-modal p {
   margin: 0 0 12px;
+}
+
+.event-detail-line {
+  display: block;
+}
+
+/* Captions keep their own line breaks. */
+.event-description {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
 }
 
 .club-modal .club-close {

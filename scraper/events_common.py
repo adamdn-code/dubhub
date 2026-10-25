@@ -32,7 +32,7 @@ GEOCODE_FILE = STATE_DIR / "geocode.json"
 SITE_EVENTS_FILE = HERE.parent / "public" / "events.json"
 SITE_CLUBS_FILE = HERE.parent / "public" / "clubs.json"
 CLUBS_FILE = HERE / "clubs.txt"
-CLUB_PROFILES_FILE = STATE_DIR / "club_profiles.json"  # name + bio per handle
+CLUB_PROFILES_FILE = STATE_DIR / "club_profiles.json"  # name + bio + website per handle
 CLUB_INFO_FILE = STATE_DIR / "club_info.json"          # AI category/summary per handle
 
 
@@ -490,6 +490,8 @@ def write_site_events(store):
                 "end": e["end"],
                 "url": post["url"],
                 "source": post["source"],
+                # The post's caption, shown when someone opens the event on the site.
+                "description": (post.get("caption") or "").strip() or None,
             })
     events.sort(key=lambda e: (e["date"], e["start"] or "99"))
     SITE_EVENTS_FILE.parent.mkdir(exist_ok=True)
@@ -524,12 +526,12 @@ def read_club_handles():
 _profiles = None
 
 
-def save_club_profile(handle, name, bio):
-    """Remember a club's real Instagram name and bio (the Instagram scraper calls this)."""
+def save_club_profile(handle, name, bio, website=None):
+    """Remember a club's real Instagram name, bio and profile link (the Instagram scraper calls this)."""
     global _profiles
     if _profiles is None:
         _profiles = _load(CLUB_PROFILES_FILE, {})
-    _profiles[handle.lower()] = {"name": name or None, "bio": bio or None}
+    _profiles[handle.lower()] = {"name": name or None, "bio": bio or None, "website": website or None}
     _save(CLUB_PROFILES_FILE, _profiles)
 
 
@@ -606,7 +608,7 @@ def write_site_clubs(store):
     for h in handles:
         prof = profiles.get(h, {})
         clubs.append({"handle": h, "name": prof.get("name") or names.get(h) or f"@{h}",
-                      "bio": prof.get("bio"), "posts": posts.get(h, [])[:3]})
+                      "bio": prof.get("bio"), "website": prof.get("website"), "posts": posts.get(h, [])[:3]})
 
     # Only ask the AI about clubs whose name/bio/posts changed since last time, and skip clubs
     # we know nothing about yet (just a handle), so it can't guess from the letters.
@@ -635,6 +637,7 @@ def write_site_clubs(store):
             "name": c["name"],
             "handle": c["handle"],
             "instagram": f"https://www.instagram.com/{c['handle']}/",
+            "website": c["website"],
             "category": i.get("category") or "Other",
             "about": i.get("about") or (c["bio"] or "").split("\n")[0][:120] or None,
             # A longer description only when there's a real bio or posts behind it, not just a name.

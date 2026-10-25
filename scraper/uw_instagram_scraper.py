@@ -100,7 +100,7 @@ def scrape_instagram(store):
         try:
             profile = instaloader.Profile.from_username(L.context, handle)
             club = uw_event_scraper.format_club(profile.full_name or None, handle)
-            save_club_profile(handle, profile.full_name, profile.biography)  # no extra request
+            save_club_profile(handle, profile.full_name, profile.biography, profile.external_url)  # no extra request
             new = 0
             for post in islice(profile.get_posts(), POSTS_PER_CLUB):
                 pinned = getattr(post, "is_pinned", False)
