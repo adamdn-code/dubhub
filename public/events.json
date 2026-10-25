@@ -1,0 +1,37 @@
+{
+ "updated": "2026-10-24T18:08",
+ "events": [
+  {
+   "id": "DeoIC_DInbR-0",
+   "title": "Beginners session",
+   "type": "Club",
+   "host": "@uwaslclub",
+   "where": "HUB RM 332",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-10-26",
+   "start": "17:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/DeoIC_DInbR/",
+   "source": "google"
+  },
+  {
+   "id": "DexjLmrPMah-0",
+   "title": "Fall Quarter Proposal Workshop",
+   "type": "Club",
+   "host": "@uw_stf",
+   "where": "HUB 250",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-02",
+   "start": "19:00",
+   "end": "21:00",
+   "url": "https://www.instagram.com/p/DexjLmrPMah/",
+   "source": "google"
+  }
+ ]
+}
