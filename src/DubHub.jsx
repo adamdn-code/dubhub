@@ -505,6 +505,8 @@ const MAP_COLORS = {
   water: "#a6d1f2",
   park: "#b5e0a0",
   wood: "#a6d98f",
+  wetland: "#c5e6b4",
+  plaza: "#ece9e4",
   building: "#e5e2dc",
   school: "#ece8e1",
   road: "#ffffff",
@@ -531,9 +533,18 @@ function restyle(style) {
     waterway_river: { "line-color": C.water },
     waterway_other: { "line-color": C.water },
     waterway_tunnel: { "line-color": C.water },
+    // Flat colors instead of the grass-tuft and striped textures.
+    landcover_wetland: { "fill-color": C.wetland, "fill-opacity": 1 },
+    road_area_pattern: { "fill-color": C.plaza, "fill-opacity": 1 },
   };
 
+  // Bus stop icons and their long names ("... & NE Pacific Pl - Bay 5") clutter the map.
+  style.layers = style.layers.filter((layer) => layer.id !== "poi_transit");
+  const notBusStop = ["!", ["match", ["get", "class"], ["bus"], true, false]];
+
   for (const layer of style.layers) {
+    if (layer.paint?.["fill-pattern"]) delete layer.paint["fill-pattern"];
+    if (/^poi_/.test(layer.id)) layer.filter = ["all", layer.filter, notBusStop];
     const paint = (layer.paint ??= {});
     if (set[layer.id]) {
       Object.assign(paint, set[layer.id]);
