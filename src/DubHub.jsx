@@ -17,7 +17,44 @@ const TYPE_COLORS = {
 };
 
 const YEARS = ["Freshman", "Sophomore", "Junior", "Senior"];
-const MAJORS = ["Any major", "Computer Science", "Mathematics", "Informatics", "Biology", "Business"];
+// Majors grouped by area so the dropdown stays easy to scan.
+const MAJOR_GROUPS = {
+  Engineering: [
+    "Aeronautics & Astronautics",
+    "Bioengineering",
+    "Chemical Engineering",
+    "Civil Engineering",
+    "Computer Engineering",
+    "Electrical Engineering",
+    "Human Centered Design & Engineering",
+    "Industrial Engineering",
+    "Materials Science",
+    "Mechanical Engineering",
+  ],
+  "Computing & Math": ["Applied Mathematics", "Computer Science", "Informatics", "Mathematics", "Statistics"],
+  Sciences: ["Biochemistry", "Biology", "Chemistry", "Environmental Science", "Neuroscience", "Physics"],
+  Health: ["Nursing", "Public Health"],
+  "Social Sciences": [
+    "Anthropology",
+    "Economics",
+    "International Studies",
+    "Political Science",
+    "Psychology",
+    "Sociology",
+  ],
+  "Arts & Humanities": ["Art", "Communication", "Design", "English", "History", "Music", "Philosophy"],
+  Business: [
+    "Accounting",
+    "Entrepreneurship",
+    "Finance",
+    "General Business",
+    "Human Resources Management",
+    "Information Systems",
+    "Management",
+    "Marketing",
+    "Operations & Supply Chain Management",
+  ],
+};
 
 // Placeholder data: replace with your real events from your backend.
 const EVENTS = [
@@ -122,11 +159,13 @@ const TEAM = [
 ];
 
 const JOINED_KEY = "dubhub-joined";
+const CLUBS_KEY = "dubhub-clubs";
 
-function useJoined() {
+// A saved list of IDs: event IDs under JOINED_KEY, club names under CLUBS_KEY.
+function useJoined(key) {
   const [joined, setJoined] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem(JOINED_KEY)) ?? [];
+      return JSON.parse(localStorage.getItem(key)) ?? [];
     } catch {
       return [];
     }
@@ -136,13 +175,13 @@ function useJoined() {
     setJoined((ids) => {
       const next = ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id];
       try {
-        localStorage.setItem(JOINED_KEY, JSON.stringify(next));
+        localStorage.setItem(key, JSON.stringify(next));
       } catch {
         // Storage blocked: joins last for this visit only.
       }
       return next;
     });
-  }, []);
+  }, [key]);
 
   return { joined, toggle };
 }
@@ -317,8 +356,13 @@ function Filters({ f }) {
       <label>
         Major
         <select value={f.major} onChange={(e) => f.setMajor(e.target.value)}>
-          {MAJORS.map((m) => (
-            <option key={m}>{m}</option>
+          <option>Any major</option>
+          {Object.entries(MAJOR_GROUPS).map(([group, majors]) => (
+            <optgroup key={group} label={group}>
+              {majors.map((m) => (
+                <option key={m}>{m}</option>
+              ))}
+            </optgroup>
           ))}
         </select>
       </label>
@@ -503,16 +547,29 @@ function EventsPage({ events, j }) {
   );
 }
 
-function MyEventsPage({ j, onBrowse }) {
-  const mine = EVENTS.filter((e) => j.joined.includes(e.id));
+function ClubJoinButton({ club, clubs }) {
+  const isMember = clubs.joined.includes(club.name);
+  return (
+    <button className={isMember ? "join joined" : "join"} aria-pressed={isMember} onClick={() => clubs.toggle(club.name)}>
+      {isMember ? "Member ✓ (leave)" : "Join club"}
+    </button>
+  );
+}
+
+// My Events shows events you joined plus every event hosted by a club you're in.
+function MyEventsPage({ j, clubs, onBrowse }) {
+  const mine = EVENTS.filter((e) => j.joined.includes(e.id) || clubs.joined.includes(e.host));
   return (
     <main className="page">
       <h1>My Events</h1>
+      {clubs.joined.length > 0 && (
+        <p className="count">Includes events from your clubs: {clubs.joined.join(", ")}</p>
+      )}
       {mine.length > 0 ? (
         <EventList events={mine} j={j} />
       ) : (
         <div className="empty">
-          <p>You haven't joined any events yet.</p>
+          <p>You haven't joined any events or clubs yet.</p>
           <button className="join" onClick={onBrowse}>
             Browse events
           </button>
@@ -522,7 +579,7 @@ function MyEventsPage({ j, onBrowse }) {
   );
 }
 
-function ClubDetail({ club, onClose }) {
+function ClubDetail({ club, clubs, onClose }) {
   const hosted = EVENTS.filter((e) => e.host === club.name);
 
   useEffect(() => {
@@ -549,6 +606,7 @@ function ClubDetail({ club, onClose }) {
         </p>
         <p>{club.description}</p>
         <p className="meta">Meets {club.meets}</p>
+        <ClubJoinButton club={club} clubs={clubs} />
 
         <h3>Upcoming events</h3>
         {hosted.length === 0 ? (
@@ -568,7 +626,7 @@ function ClubDetail({ club, onClose }) {
   );
 }
 
-function ClubsPage() {
+function ClubsPage({ clubs: membership }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [selected, setSelected] = useState(null);
@@ -618,13 +676,14 @@ function ClubsPage() {
                   {upcoming > 0 && `, ${upcoming} upcoming event${upcoming === 1 ? "" : "s"}`}
                 </div>
               </div>
+              <ClubJoinButton club={c} clubs={membership} />
             </li>
           );
         })}
       </ul>
       {clubs.length === 0 && <p className="empty">No clubs match "{query}".</p>}
 
-      {selected && <ClubDetail club={selected} onClose={() => setSelected(null)} />}
+      {selected && <ClubDetail club={selected} clubs={membership} onClose={() => setSelected(null)} />}
     </main>
   );
 }
@@ -700,7 +759,8 @@ export default function DubHub() {
   const [tab, setTab] = useState("Home");
   const f = useFilteredEvents();
   const { user, signIn, signOut } = useUser();
-  const j = useJoined();
+  const j = useJoined(JOINED_KEY);
+  const clubs = useJoined(CLUBS_KEY);
 
   return (
     <div className="app">
@@ -726,8 +786,8 @@ export default function DubHub() {
 
       {tab === "Home" && <Home f={f} j={j} />}
       {tab === "Events" && <EventsPage events={f.events} j={j} />}
-      {tab === "My Events" && <MyEventsPage j={j} onBrowse={() => setTab("Events")} />}
-      {tab === "Clubs" && <ClubsPage />}
+      {tab === "My Events" && <MyEventsPage j={j} clubs={clubs} onBrowse={() => setTab("Events")} />}
+      {tab === "Clubs" && <ClubsPage clubs={clubs} />}
       {tab === "About" && <AboutPage />}
     </div>
   );
