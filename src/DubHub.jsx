@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, TileLayer, CircleMarker, Popup, ZoomControl } from "react-leaflet";
+import { useEffect, useMemo, useState } from "react";
+import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./DubHub.css";
 
-const TABS = ["Home", "Events", "Clubs", "About"];
+const TABS = ["Home", "Events", "Saved", "Clubs", "About"];
 
 const TYPE_COLORS = {
   Study: "#4b2e83",
@@ -26,129 +26,6 @@ const EVENTS = [
   { id: 6, title: "Coffee and study", type: "Study", host: "Priya S.", where: "Capitol Hill", pos: [47.623, -122.3205], going: 4, years: YEARS, majors: ["Biology"] },
 ];
 
-// Sign-in uses Google, limited to UW's Google accounts (@uw.edu).
-// Set VITE_GOOGLE_CLIENT_ID in .env.local. This check runs in the browser only,
-// so a backend must verify the ID token before trusting it for anything important.
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-const UW_DOMAIN = "uw.edu";
-const USER_KEY = "dubhub-user";
-
-function decodeJwt(token) {
-  const part = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
-  const bytes = Uint8Array.from(atob(part), (c) => c.charCodeAt(0));
-  return JSON.parse(new TextDecoder().decode(bytes));
-}
-
-function useUser() {
-  const [user, setUser] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem(USER_KEY));
-    } catch {
-      return null;
-    }
-  });
-
-  const signIn = useCallback((u) => {
-    setUser(u);
-    try {
-      localStorage.setItem(USER_KEY, JSON.stringify(u));
-    } catch {
-      // Storage blocked: stay signed in for this visit only.
-    }
-  }, []);
-
-  const signOut = useCallback(() => {
-    setUser(null);
-    try {
-      localStorage.removeItem(USER_KEY);
-    } catch {
-      // Nothing stored.
-    }
-    window.google?.accounts.id.disableAutoSelect();
-  }, []);
-
-  return { user, signIn, signOut };
-}
-
-function useGoogleScript(enabled) {
-  const [ready, setReady] = useState(() => Boolean(window.google?.accounts));
-
-  useEffect(() => {
-    if (!enabled || ready) return;
-    const script = document.createElement("script");
-    script.src = "https://accounts.google.com/gsi/client";
-    script.async = true;
-    script.onload = () => setReady(true);
-    document.head.appendChild(script);
-  }, [enabled, ready]);
-
-  return ready;
-}
-
-function SignIn({ user, onSignIn, onSignOut }) {
-  const [open, setOpen] = useState(false);
-  const [error, setError] = useState("");
-  const buttonRef = useRef(null);
-  const ready = useGoogleScript(open && Boolean(GOOGLE_CLIENT_ID));
-
-  useEffect(() => {
-    if (!open || !ready || !buttonRef.current) return;
-    window.google.accounts.id.initialize({
-      client_id: GOOGLE_CLIENT_ID,
-      hd: UW_DOMAIN,
-      callback: ({ credential }) => {
-        const p = decodeJwt(credential);
-        if (p.hd !== UW_DOMAIN || !p.email_verified) {
-          setError("That isn't a UW account. Sign in with your @uw.edu email.");
-          return;
-        }
-        setError("");
-        setOpen(false);
-        onSignIn({ name: p.name, email: p.email, picture: p.picture });
-      },
-    });
-    window.google.accounts.id.renderButton(buttonRef.current, {
-      theme: "outline",
-      size: "large",
-      shape: "pill",
-      text: "signin_with",
-    });
-  }, [open, ready, onSignIn]);
-
-  if (user) {
-    return (
-      <div className="user">
-        {user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}
-        <span>{user.name}</span>
-        <button className="signout" onClick={onSignOut}>
-          Sign out
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <div className="signin-wrap">
-      <button className="signin" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
-        Sign in with UW ID
-      </button>
-      {open && (
-        <div className="signin-pop" role="dialog" aria-label="Sign in">
-          {GOOGLE_CLIENT_ID ? (
-            <>
-              <p>Use your UW Google account (NetID@uw.edu).</p>
-              <div ref={buttonRef} />
-            </>
-          ) : (
-            <p>Sign-in isn't set up yet: add VITE_GOOGLE_CLIENT_ID to .env.local.</p>
-          )}
-          {error && <p className="signin-error">{error}</p>}
-        </div>
-      )}
-    </div>
-  );
-}
-
 function useFilteredEvents() {
   const [type, setType] = useState("All");
   const [year, setYear] = useState("All");
@@ -166,6 +43,150 @@ function useFilteredEvents() {
   );
 
   return { events, type, setType, year, setYear, major, setMajor };
+}
+
+// ---- Accounts and saved events ----
+// NOTE: this is a front-end-only stand-in. The "account" and each person's saved
+// events are kept in this browser's localStorage, so they don't follow you to another
+// device and nothing verifies that the email is really yours. To make it real, replace
+// the read/write helpers and useAccount() with calls to your backend / UW sign-in.
+const USER_KEY = "dubhub:user";
+const savedKey = (email) => `dubhub:saved:${email}`;
+const UW_EMAIL = /^[^\s@]+@(uw|u\.washington)\.edu$/i;
+
+function readJSON(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function writeJSON(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    // Storage can be unavailable (private mode, full); the app still works for this visit.
+  }
+}
+
+function useAccount() {
+  const [user, setUser] = useState(() => readJSON(USER_KEY, null));
+  const [savedIds, setSavedIds] = useState(() => {
+    const u = readJSON(USER_KEY, null);
+    return u ? readJSON(savedKey(u.email), []) : [];
+  });
+
+  // alsoSaveId lets a visitor who clicked "Save" while signed out finish that save after signing in.
+  const signIn = (u, alsoSaveId) => {
+    const existing = readJSON(savedKey(u.email), []);
+    const next = alsoSaveId != null && !existing.includes(alsoSaveId) ? [...existing, alsoSaveId] : existing;
+    writeJSON(USER_KEY, u);
+    writeJSON(savedKey(u.email), next);
+    setUser(u);
+    setSavedIds(next);
+  };
+
+  const signOut = () => {
+    try {
+      localStorage.removeItem(USER_KEY);
+    } catch {
+      // ignore
+    }
+    setUser(null);
+    setSavedIds([]);
+  };
+
+  const toggleSaved = (id) => {
+    if (!user) return;
+    const next = savedIds.includes(id) ? savedIds.filter((x) => x !== id) : [...savedIds, id];
+    writeJSON(savedKey(user.email), next);
+    setSavedIds(next);
+  };
+
+  return { user, savedIds, signIn, signOut, toggleSaved };
+}
+
+function SaveButton({ saved, onClick }) {
+  return (
+    <button className={saved ? "save saved" : "save"} aria-pressed={saved} onClick={onClick}>
+      {saved ? "Saved ✓" : "Save"}
+    </button>
+  );
+}
+
+function SignInModal({ onClose, onSignIn, savingTitle }) {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  const submit = (e) => {
+    e.preventDefault();
+    const clean = email.trim().toLowerCase();
+    if (!UW_EMAIL.test(clean)) {
+      setError("Use your UW email (it ends in @uw.edu).");
+      return;
+    }
+    onSignIn({ email: clean, name: name.trim() || clean.split("@")[0] });
+  };
+
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <form
+        className="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="signin-title"
+        onClick={(e) => e.stopPropagation()}
+        onSubmit={submit}
+      >
+        <h2 id="signin-title">Sign in with UW ID</h2>
+        {savingTitle && <p className="modal-note">Sign in to save "{savingTitle}".</p>}
+
+        <label>
+          UW email
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setError("");
+            }}
+            placeholder="netid@uw.edu"
+            autoFocus
+            required
+          />
+        </label>
+
+        <label>
+          Name (optional)
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="What should we call you?" />
+        </label>
+
+        {error && (
+          <p className="form-error" role="alert">
+            {error}
+          </p>
+        )}
+
+        <div className="modal-actions">
+          <button type="button" className="ghost" onClick={onClose}>
+            Cancel
+          </button>
+          <button type="submit" className="join">
+            Sign in
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 function Filters({ f }) {
@@ -209,10 +230,9 @@ function Filters({ f }) {
   );
 }
 
-function EventMap({ events }) {
+function EventMap({ events, savedIds, onToggleSave }) {
   return (
-    <MapContainer center={[47.6553, -122.3035]} zoom={14} scrollWheelZoom zoomControl={false} className="map">
-      <ZoomControl position="topright" />
+    <MapContainer center={[47.6553, -122.3035]} zoom={14} scrollWheelZoom className="map">
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -233,7 +253,10 @@ function EventMap({ events }) {
             <br />
             {e.going} going
             <br />
-            <button className="join">Join event</button>
+            <div className="popup-actions">
+              <button className="join">Join event</button>
+              <SaveButton saved={savedIds.includes(e.id)} onClick={() => onToggleSave(e.id)} />
+            </div>
           </Popup>
         </CircleMarker>
       ))}
@@ -241,10 +264,10 @@ function EventMap({ events }) {
   );
 }
 
-function Home({ f }) {
+function Home({ f, savedIds, onToggleSave }) {
   return (
     <main className="home">
-      <EventMap events={f.events} />
+      <EventMap events={f.events} savedIds={savedIds} onToggleSave={onToggleSave} />
       <Filters f={f} />
       <div className="tagline">
         <h1>See what's happening at UW, right now.</h1>
@@ -254,23 +277,65 @@ function Home({ f }) {
   );
 }
 
-function EventsPage({ events }) {
+function EventRow({ event: e, children }) {
+  return (
+    <li>
+      <span className="dot" style={{ background: TYPE_COLORS[e.type] }} />
+      <div>
+        <strong>{e.title}</strong>
+        <div className="meta">
+          {e.where}, hosted by {e.host}, {e.going} going
+        </div>
+      </div>
+      <div className="row-action">{children}</div>
+    </li>
+  );
+}
+
+function EventsPage({ events, savedIds, onToggleSave }) {
   return (
     <main className="page">
       <h1>Events</h1>
       <ul className="list">
         {events.map((e) => (
-          <li key={e.id}>
-            <span className="dot" style={{ background: TYPE_COLORS[e.type] }} />
-            <div>
-              <strong>{e.title}</strong>
-              <div className="meta">
-                {e.where}, hosted by {e.host}, {e.going} going
-              </div>
-            </div>
-          </li>
+          <EventRow key={e.id} event={e}>
+            <SaveButton saved={savedIds.includes(e.id)} onClick={() => onToggleSave(e.id)} />
+          </EventRow>
         ))}
       </ul>
+    </main>
+  );
+}
+
+function SavedPage({ user, events, onUnsave, onSignInClick }) {
+  if (!user) {
+    return (
+      <main className="page">
+        <h1>Saved events</h1>
+        <p>Sign in to save events and see them all here.</p>
+        <button className="join" onClick={onSignInClick}>
+          Sign in with UW ID
+        </button>
+      </main>
+    );
+  }
+
+  return (
+    <main className="page">
+      <h1>Saved events</h1>
+      {events.length === 0 ? (
+        <p>You haven't saved any events yet. Press Save on an event in the map or on the Events tab.</p>
+      ) : (
+        <ul className="list">
+          {events.map((e) => (
+            <EventRow key={e.id} event={e}>
+              <button className="ghost" onClick={() => onUnsave(e.id)}>
+                Remove
+              </button>
+            </EventRow>
+          ))}
+        </ul>
+      )}
     </main>
   );
 }
@@ -300,7 +365,37 @@ function AboutPage() {
 export default function DubHub() {
   const [tab, setTab] = useState("Home");
   const f = useFilteredEvents();
-  const { user, signIn, signOut } = useUser();
+  const { user, savedIds, signIn, signOut, toggleSaved } = useAccount();
+  const [signInOpen, setSignInOpen] = useState(false);
+  const [pendingSaveId, setPendingSaveId] = useState(null);
+
+  // Saving needs an account: signed-out visitors get the sign-in box first, then the save completes.
+  const requestSave = (id) => {
+    if (!user) {
+      setPendingSaveId(id);
+      setSignInOpen(true);
+      return;
+    }
+    toggleSaved(id);
+  };
+
+  const openSignIn = () => {
+    setPendingSaveId(null);
+    setSignInOpen(true);
+  };
+
+  const closeSignIn = () => {
+    setSignInOpen(false);
+    setPendingSaveId(null);
+  };
+
+  const handleSignIn = (u) => {
+    signIn(u, pendingSaveId);
+    closeSignIn();
+  };
+
+  const savedEvents = EVENTS.filter((e) => savedIds.includes(e.id));
+  const pendingEvent = EVENTS.find((e) => e.id === pendingSaveId);
 
   return (
     <div className="app">
@@ -315,17 +410,31 @@ export default function DubHub() {
               className={tab === t ? "tab active" : "tab"}
               onClick={() => setTab(t)}
             >
-              {t}
+              {t === "Saved" && user && savedIds.length > 0 ? `Saved (${savedIds.length})` : t}
             </button>
           ))}
         </nav>
-        <SignIn user={user} onSignIn={signIn} onSignOut={signOut} />
+        {user ? (
+          <div className="account">
+            <span className="who">Hi, {user.name}</span>
+            <button className="signin" onClick={signOut}>
+              Sign out
+            </button>
+          </div>
+        ) : (
+          <button className="signin" onClick={openSignIn}>
+            Sign in<span className="long"> with UW ID</span>
+          </button>
+        )}
       </header>
 
-      {tab === "Home" && <Home f={f} />}
-      {tab === "Events" && <EventsPage events={f.events} />}
+      {tab === "Home" && <Home f={f} savedIds={savedIds} onToggleSave={requestSave} />}
+      {tab === "Events" && <EventsPage events={f.events} savedIds={savedIds} onToggleSave={requestSave} />}
+      {tab === "Saved" && <SavedPage user={user} events={savedEvents} onUnsave={toggleSaved} onSignInClick={openSignIn} />}
       {tab === "Clubs" && <ClubsPage />}
       {tab === "About" && <AboutPage />}
+
+      {signInOpen && <SignInModal onClose={closeSignIn} onSignIn={handleSignIn} savingTitle={pendingEvent?.title} />}
     </div>
   );
 }
