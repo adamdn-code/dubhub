@@ -126,6 +126,24 @@ body {
   border-radius: 50%;
 }
 
+.user-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.user-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .signout {
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -324,6 +342,77 @@ select:focus-visible {
 
 .empty {
   color: #6a5f85;
+}
+
+.profile-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-head img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+}
+
+.profile-head h1 {
+  margin: 0;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 420px;
+}
+
+.profile-form label,
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.profile-form select {
+  font: inherit;
+  font-weight: 400;
+  padding: 8px 10px;
+  border: 1px solid #cfc8e0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.chips {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #ece6f7;
+  color: var(--purple-mid);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.chip button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0 2px;
+  cursor: pointer;
 }
 
 .club-search {

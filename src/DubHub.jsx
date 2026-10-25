@@ -245,7 +245,7 @@ function useGoogleScript(enabled) {
   return ready;
 }
 
-function SignIn({ user, onSignIn, onSignOut }) {
+function SignIn({ user, onSignIn, onSignOut, onOpenProfile }) {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");
   const buttonRef = useRef(null);
@@ -278,8 +278,10 @@ function SignIn({ user, onSignIn, onSignOut }) {
   if (user) {
     return (
       <div className="user">
-        {user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}
-        <span>{user.name}</span>
+        <button className="user-button" onClick={onOpenProfile} title="Your profile">
+          {user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}
+          <span>{user.name}</span>
+        </button>
         <button className="signout" onClick={onSignOut}>
           Sign out
         </button>
@@ -809,6 +811,126 @@ function ClubsPage({ all, clubList, clubs: membership }) {
   );
 }
 
+// Each signed-in account gets its own profile on this device: { year, majors }.
+const PROFILE_KEY = "dubhub-profile";
+const MAX_MAJORS = 3;
+
+function loadProfile(email) {
+  try {
+    return { year: "", majors: [], ...JSON.parse(localStorage.getItem(`${PROFILE_KEY}:${email}`)) };
+  } catch {
+    return { year: "", majors: [] };
+  }
+}
+
+function useProfile(user) {
+  const [profiles, setProfiles] = useState({});
+  const profile = user ? profiles[user.email] ?? loadProfile(user.email) : null;
+
+  const update = useCallback(
+    (changes) => {
+      if (!user) return;
+      const next = { ...(profiles[user.email] ?? loadProfile(user.email)), ...changes };
+      setProfiles((p) => ({ ...p, [user.email]: next }));
+      try {
+        localStorage.setItem(`${PROFILE_KEY}:${user.email}`, JSON.stringify(next));
+      } catch {
+        // Storage blocked: the profile lasts for this visit only.
+      }
+    },
+    [user, profiles]
+  );
+
+  return { profile, update };
+}
+
+function ProfilePage({ user, profile, onChange, clubList, clubs, j }) {
+  if (!user) {
+    return (
+      <main className="page">
+        <h1>Your profile</h1>
+        <p className="empty">Sign in with your UW ID (top right) to set up your profile.</p>
+      </main>
+    );
+  }
+
+  const myClubs = clubList.filter((c) => clubs.joined.includes(c.name));
+  const addMajor = (m) => m && onChange({ majors: [...profile.majors, m] });
+  const removeMajor = (m) => onChange({ majors: profile.majors.filter((x) => x !== m) });
+
+  return (
+    <main className="page">
+      <div className="profile-head">
+        {user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}
+        <div>
+          <h1>{user.name}</h1>
+          <div className="meta">{user.email}</div>
+        </div>
+      </div>
+
+      <h2>About you</h2>
+      <div className="profile-form">
+        <label>
+          Class year
+          <select value={profile.year} onChange={(e) => onChange({ year: e.target.value })}>
+            <option value="">Choose your year</option>
+            {YEARS.map((y) => (
+              <option key={y}>{y}</option>
+            ))}
+          </select>
+        </label>
+
+        <div className="profile-field">
+          <span id="majors-label">Majors {profile.majors.length > 0 && `(${profile.majors.length}/${MAX_MAJORS})`}</span>
+          {profile.majors.length > 0 && (
+            <ul className="chips" aria-labelledby="majors-label">
+              {profile.majors.map((m) => (
+                <li key={m} className="chip">
+                  {m}
+                  <button aria-label={`Remove ${m}`} onClick={() => removeMajor(m)}>
+                    &times;
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+          {profile.majors.length < MAX_MAJORS && (
+            <select aria-labelledby="majors-label" value="" onChange={(e) => addMajor(e.target.value)}>
+              <option value="">{profile.majors.length ? "Add another major" : "Add a major"}</option>
+              {Object.entries(MAJOR_GROUPS).map(([group, majors]) => (
+                <optgroup key={group} label={group}>
+                  {majors
+                    .filter((m) => !profile.majors.includes(m))
+                    .map((m) => (
+                      <option key={m}>{m}</option>
+                    ))}
+                </optgroup>
+              ))}
+            </select>
+          )}
+        </div>
+        <p className="count">Saved automatically on this device.</p>
+      </div>
+
+      <h2>Your clubs</h2>
+      {myClubs.length > 0 ? (
+        <ul className="chips">
+          {myClubs.map((c) => (
+            <li key={c.name} className="chip">
+              {c.name}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="empty">You haven't joined any clubs yet.</p>
+      )}
+      <p className="meta">
+        {j.joined.length} event{j.joined.length === 1 ? "" : "s"} joined
+      </p>
+    </main>
+  );
+}
+
 function useGitHubProfile(login) {
   const [profile, setProfile] = useState(null);
 
@@ -882,6 +1004,7 @@ export default function DubHub() {
   const clubList = useClubs();
   const f = useFilteredEvents(all);
   const { user, signIn, signOut } = useUser();
+  const { profile, update: updateProfile } = useProfile(user);
   const j = useJoined(JOINED_KEY);
   const clubs = useJoined(CLUBS_KEY);
 
@@ -904,7 +1027,7 @@ export default function DubHub() {
             </button>
           ))}
         </nav>
-        <SignIn user={user} onSignIn={signIn} onSignOut={signOut} />
+        <SignIn user={user} onSignIn={signIn} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
       </header>
 
       {tab === "Home" && <Home f={f} j={j} />}
@@ -914,6 +1037,9 @@ export default function DubHub() {
       )}
       {tab === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} />}
       {tab === "About" && <AboutPage />}
+      {tab === "Profile" && (
+        <ProfilePage user={user} profile={profile} onChange={updateProfile} clubList={clubList} clubs={clubs} j={j} />
+      )}
     </div>
   );
 }
