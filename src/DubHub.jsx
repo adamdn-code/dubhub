@@ -30,17 +30,89 @@ const SAMPLE_EVENTS = [
 ];
 
 // Placeholder data: replace with your real clubs list.
+// `about` is the one-line blurb shown in the list; `description` is the longer text shown
+// when you click a club. The descriptions below are placeholder wording, so swap in each club's real text.
 const CLUBS = [
-  { name: "Math Club", category: "Academic", about: "Problem sessions, study groups, and talks from math faculty.", meets: "Tuesdays, Padelford Hall" },
-  { name: "Husky Gamers", category: "Gaming", about: "Board games, video games, and tournaments for every skill level.", meets: "Fridays, HUB" },
-  { name: "Data Science Society", category: "Tech", about: "Workshops and projects on machine learning and data analysis.", meets: "Wednesdays, Allen Center" },
-  { name: "Husky Hiking Club", category: "Outdoors", about: "Weekend day hikes and trips around the Cascades.", meets: "Saturdays, meet at Red Square" },
-  { name: "Vietnamese Student Association", category: "Cultural", about: "Culture nights, food events, and community for Vietnamese students and friends.", meets: "Thursdays, HUB" },
-  { name: "Pre-Health Society", category: "Academic", about: "Advising, MCAT prep, and volunteer opportunities for pre-med students.", meets: "Mondays, Mary Gates Hall" },
-  { name: "Husky Coding Club", category: "Tech", about: "Hackathons, interview practice, and building side projects together.", meets: "Thursdays, CSE2" },
-  { name: "Climbing Club", category: "Outdoors", about: "Climbing sessions at the IMA wall and trips to local crags.", meets: "Tuesdays, IMA" },
-  { name: "Film Society", category: "Arts", about: "Weekly screenings, discussions, and student film projects.", meets: "Wednesdays, Kane Hall" },
-  { name: "Entrepreneurship Club", category: "Business", about: "Startup talks, pitch nights, and networking with founders.", meets: "Mondays, PACCAR Hall" },
+  {
+    name: "Math Club",
+    category: "Academic",
+    about: "Problem sessions, study groups, and talks from math faculty.",
+    description:
+      "A relaxed community for anyone who likes math, whether you're a major or just curious. Members work through problem sets together, prepare for competitions, and hear guest talks about research and careers. No experience needed, and snacks usually show up.",
+    meets: "Tuesdays, Padelford Hall",
+  },
+  {
+    name: "Husky Gamers",
+    category: "Gaming",
+    about: "Board games, video games, and tournaments for every skill level.",
+    description:
+      "A friendly space to play games and meet people, from tabletop classics to console and PC tournaments. Beginners are welcome, and each week mixes casual open play with the occasional organized bracket. Bring a game you love or just show up and join a table.",
+    meets: "Fridays, HUB",
+  },
+  {
+    name: "Data Science Society",
+    category: "Tech",
+    about: "Workshops and projects on machine learning and data analysis.",
+    description:
+      "Hands-on workshops and team projects covering data analysis, visualization, and machine learning. Sessions range from beginner-friendly intros to deeper dives, and members often turn what they learn into portfolio projects. Great for anyone building skills for internships or research.",
+    meets: "Wednesdays, Allen Center",
+  },
+  {
+    name: "Husky Hiking Club",
+    category: "Outdoors",
+    about: "Weekend day hikes and trips around the Cascades.",
+    description:
+      "Day hikes and weekend trips to trails around Washington, planned for a range of fitness levels. It's an easy way to get off campus, find a ride, and meet people who like being outside. Check each trip's details for distance, difficulty, and what to bring.",
+    meets: "Saturdays, meet at Red Square",
+  },
+  {
+    name: "Vietnamese Student Association",
+    category: "Cultural",
+    about: "Culture nights, food events, and community for Vietnamese students and friends.",
+    description:
+      "A community for Vietnamese students and anyone interested in the culture. Expect culture nights, shared meals, performances, and casual hangouts that make campus feel more like home. Everyone is welcome, whether or not you have a Vietnamese background.",
+    meets: "Thursdays, HUB",
+  },
+  {
+    name: "Pre-Health Society",
+    category: "Academic",
+    about: "Advising, MCAT prep, and volunteer opportunities for pre-med students.",
+    description:
+      "Support for students heading toward careers in medicine and health. The club shares advising tips, exam prep resources, and volunteer and shadowing opportunities, and connects you with peers on the same path. Open to all majors on a pre-health track.",
+    meets: "Mondays, Mary Gates Hall",
+  },
+  {
+    name: "Husky Coding Club",
+    category: "Tech",
+    about: "Hackathons, interview practice, and building side projects together.",
+    description:
+      "A place to build things and get better at programming with other students. Members run hackathons, practice technical interviews, and team up on side projects, with mentors helping newer coders get started. All languages and experience levels are welcome.",
+    meets: "Thursdays, CSE2",
+  },
+  {
+    name: "Climbing Club",
+    category: "Outdoors",
+    about: "Climbing sessions at the IMA wall and trips to local crags.",
+    description:
+      "Regular climbing sessions at the IMA wall plus trips to outdoor crags around the region. Beginners can learn the basics and borrow gear, while experienced climbers find partners and projects. Safety and a welcoming atmosphere come first.",
+    meets: "Tuesdays, IMA",
+  },
+  {
+    name: "Film Society",
+    category: "Arts",
+    about: "Weekly screenings, discussions, and student film projects.",
+    description:
+      "Weekly screenings of films from many eras and countries, followed by relaxed discussion. Members also collaborate on student film projects, from writing and shooting to editing. Whether you want to watch, talk, or make, there's a spot for you.",
+    meets: "Wednesdays, Kane Hall",
+  },
+  {
+    name: "Entrepreneurship Club",
+    category: "Business",
+    about: "Startup talks, pitch nights, and networking with founders.",
+    description:
+      "For students who want to start something or learn how startups work. The club hosts talks from founders, pitch nights where you can test an idea, and networking events with people in the local startup scene. Open to every major, with or without an idea yet.",
+    meets: "Mondays, PACCAR Hall",
+  },
 ];
 
 // Team shown on the About page; details load from each GitHub profile.
@@ -499,9 +571,59 @@ function MyEventsPage({ all, j, onBrowse }) {
   );
 }
 
+// Scraped events name the host "Club Name (@handle)", so match either form.
+function hostedBy(all, club) {
+  return all.filter((e) => e.host === club.name || e.host.startsWith(`${club.name} (@`));
+}
+
+function ClubDetail({ club, hosted, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div className="club-backdrop" onClick={onClose}>
+      <div
+        className="club-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="club-detail-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
+          &times;
+        </button>
+        <h2 id="club-detail-title">{club.name}</h2>
+        <p>
+          <span className="tag">{club.category}</span>
+        </p>
+        <p>{club.description}</p>
+        <p className="meta">Meets {club.meets}</p>
+
+        <h3>Upcoming events</h3>
+        {hosted.length === 0 ? (
+          <p className="empty">No upcoming events listed yet.</p>
+        ) : (
+          <ul className="club-events">
+            {hosted.map((e) => (
+              <li key={e.id}>
+                <strong>{e.title}</strong>
+                <div className="meta">{[formatWhen(e), e.where].filter(Boolean).join(", ")}</div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function ClubsPage({ all }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
+  const [selected, setSelected] = useState(null);
   const categories = ["All", ...new Set(CLUBS.map((c) => c.category))];
 
   const q = query.trim().toLowerCase();
@@ -533,11 +655,15 @@ function ClubsPage({ all }) {
       </p>
       <ul className="list">
         {clubs.map((c) => {
-          const upcoming = all.filter((e) => e.host === c.name || e.host.startsWith(`${c.name} (@`)).length;
+          const upcoming = hostedBy(all, c).length;
           return (
             <li key={c.name}>
               <div className="grow">
-                <strong>{c.name}</strong> <span className="tag">{c.category}</span>
+                <button className="club-link" onClick={() => setSelected(c)}>
+                  {c.name}
+                  <span className="club-hint"> View details &rarr;</span>
+                </button>{" "}
+                <span className="tag">{c.category}</span>
                 <div>{c.about}</div>
                 <div className="meta">
                   Meets {c.meets}
@@ -549,6 +675,8 @@ function ClubsPage({ all }) {
         })}
       </ul>
       {clubs.length === 0 && <p className="empty">No clubs match "{query}".</p>}
+
+      {selected && <ClubDetail club={selected} hosted={hostedBy(all, selected)} onClose={() => setSelected(null)} />}
     </main>
   );
 }
@@ -630,7 +758,9 @@ export default function DubHub() {
   return (
     <div className="app">
       <header className="nav">
-        <div className="logo">DubHub</div>
+        <button className="logo" onClick={() => setTab("Home")}>
+          DubHub
+        </button>
         <nav className="tabs" role="tablist">
           {TABS.map((t) => (
             <button
