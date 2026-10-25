@@ -811,16 +811,24 @@ function ClubsPage({ all, clubList, clubs: membership }) {
   );
 }
 
-// Each signed-in account gets its own profile on this device: { year, majors }.
+// Each signed-in account gets its own profile on this device: { year, majors, phone, sms }.
 const PROFILE_KEY = "dubhub-profile";
 const MAX_MAJORS = 3;
+const EMPTY_PROFILE = { year: "", majors: [], phone: "", sms: false };
 
 function loadProfile(email) {
   try {
-    return { year: "", majors: [], ...JSON.parse(localStorage.getItem(`${PROFILE_KEY}:${email}`)) };
+    return { ...EMPTY_PROFILE, ...JSON.parse(localStorage.getItem(`${PROFILE_KEY}:${email}`)) };
   } catch {
-    return { year: "", majors: [] };
+    return EMPTY_PROFILE;
   }
+}
+
+// "(206) 555-0123", "206.555.0123" or "+1 206 555 0123" -> "2065550123"; null if not a US number.
+function phoneDigits(text) {
+  let d = (text || "").replace(/\D/g, "");
+  if (d.length === 11 && d.startsWith("1")) d = d.slice(1);
+  return d.length === 10 ? d : null;
 }
 
 function useProfile(user) {
@@ -910,6 +918,38 @@ function ProfilePage({ user, profile, onChange, clubList, clubs, j }) {
           )}
         </div>
         <p className="count">Saved automatically on this device.</p>
+      </div>
+
+      <h2>Notifications</h2>
+      <div className="profile-form">
+        <label>
+          Phone number
+          <input
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel-national"
+            placeholder="(206) 555-0123"
+            value={profile.phone}
+            onChange={(e) => onChange({ phone: e.target.value, ...(phoneDigits(e.target.value) ? {} : { sms: false }) })}
+          />
+        </label>
+        {profile.phone && !phoneDigits(profile.phone) && (
+          <p className="field-error">Enter a 10-digit US phone number.</p>
+        )}
+        <label className="check">
+          <input
+            type="checkbox"
+            checked={profile.sms}
+            disabled={!phoneDigits(profile.phone)}
+            onChange={(e) => onChange({ sms: e.target.checked })}
+          />
+          Text me reminders for events I join
+        </label>
+        <p className="count">
+          By checking this box, you agree to receive text messages from DubHub about events you join. Message
+          frequency varies. Message and data rates may apply. Reply STOP to unsubscribe or HELP for help.
+        </p>
+        <p className="notice">Text reminders are coming soon. We aren't sending texts yet.</p>
       </div>
 
       <h2>Your clubs</h2>

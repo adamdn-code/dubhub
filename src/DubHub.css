@@ -375,13 +375,52 @@ select:focus-visible {
   font-weight: 600;
 }
 
-.profile-form select {
+.profile-form select,
+.profile-form input[type="tel"] {
   font: inherit;
   font-weight: 400;
   padding: 8px 10px;
   border: 1px solid #cfc8e0;
   border-radius: 8px;
   background: #fff;
+}
+
+.profile-form label.check {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profile-form label.check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--purple-mid);
+}
+
+.profile-form label.check:has(input:disabled) {
+  color: #9a92ad;
+  cursor: not-allowed;
+}
+
+.profile-form .count,
+.profile-form .field-error,
+.profile-form .notice {
+  margin: 0;
+}
+
+.field-error {
+  color: #b3261e;
+  font-size: 14px;
+}
+
+.notice {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #fff7e0;
+  color: #6b5200;
+  font-size: 14px;
 }
 
 .chips {
