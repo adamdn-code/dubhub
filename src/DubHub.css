@@ -228,6 +228,12 @@ select:focus-visible {
   cursor: pointer;
 }
 
+.post-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--purple-mid);
+}
+
 .join.joined {
   background: #fff;
   color: var(--purple-mid);

@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Scraper memory (captions, lookups) and Python cache: stays on your computer
+scraper/state/
+__pycache__/
+scraper/.env

@@ -19,8 +19,8 @@ const TYPE_COLORS = {
 const YEARS = ["Freshman", "Sophomore", "Junior", "Senior"];
 const MAJORS = ["Any major", "Computer Science", "Mathematics", "Informatics", "Biology", "Business"];
 
-// Placeholder data: replace with your real events from your backend.
-const EVENTS = [
+// Sample events, shown only until the scraper (scraper/) has written public/events.json.
+const SAMPLE_EVENTS = [
   { id: 1, title: "Calc III study group", type: "Study", host: "Math Club", where: "Odegaard Library", pos: [47.6563, -122.3105], going: 12, years: ["Sophomore", "Junior"], majors: ["Mathematics"] },
   { id: 2, title: "Board game night", type: "Game night", host: "Husky Gamers", where: "HUB Ballroom", pos: [47.6552, -122.305], going: 28, years: YEARS, majors: [] },
   { id: 3, title: "Dinner on the Ave", type: "Food", host: "Alex T.", where: "University Ave", pos: [47.66, -122.313], going: 6, years: ["Freshman"], majors: [] },
@@ -198,26 +198,42 @@ function SignIn({ user, onSignIn, onSignOut }) {
   );
 }
 
-function useFilteredEvents() {
+// Loads the scraped events; falls back to the samples if there aren't any yet.
+function useEvents() {
+  const [data, setData] = useState({ events: [], updated: null });
+
+  useEffect(() => {
+    fetch("/events.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null)
+      .then((d) => setData(d?.events?.length ? d : { events: SAMPLE_EVENTS, updated: null }));
+  }, []);
+
+  return data;
+}
+
+// Scraped events have no class year or major, so they're open to everyone.
+function useFilteredEvents(all) {
   const [type, setType] = useState("All");
   const [year, setYear] = useState("All");
   const [major, setMajor] = useState("Any major");
 
   const events = useMemo(
     () =>
-      EVENTS.filter(
+      all.filter(
         (e) =>
           (type === "All" || e.type === type) &&
-          (year === "All" || e.years.includes(year)) &&
-          (major === "Any major" || e.majors.length === 0 || e.majors.includes(major))
+          (year === "All" || !e.years || e.years.includes(year)) &&
+          (major === "Any major" || !e.majors?.length || e.majors.includes(major))
       ),
-    [type, year, major]
+    [all, type, year, major]
   );
 
   return { events, type, setType, year, setYear, major, setMajor };
 }
 
 function Filters({ f }) {
+  const onMap = f.events.filter((e) => e.pos).length;
   return (
     <aside className="filters" aria-label="Event filters">
       <h2>Find something to do</h2>
@@ -252,7 +268,8 @@ function Filters({ f }) {
       </label>
 
       <p className="count">
-        {f.events.length} event{f.events.length === 1 ? "" : "s"} on the map
+        {onMap} event{onMap === 1 ? "" : "s"} on the map
+        {f.events.length > onMap && `, ${f.events.length - onMap} more in Events`}
       </p>
     </aside>
   );
@@ -273,8 +290,33 @@ function JoinButton({ event, j }) {
   );
 }
 
+// "12 going", or null for scraped events, which have no real attendance numbers.
 function going(event, j) {
-  return event.going + (j.joined.includes(event.id) ? 1 : 0);
+  if (event.going == null) return null;
+  return `${event.going + (j.joined.includes(event.id) ? 1 : 0)} going`;
+}
+
+function formatTime(hhmm) {
+  const [h, m] = hhmm.split(":").map(Number);
+  return new Date(2000, 0, 1, h, m).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+}
+
+// "Thu, Oct 29, 7:00 PM–8:30 PM"
+function formatWhen(e) {
+  if (!e.date) return null;
+  const [y, m, d] = e.date.split("-").map(Number);
+  const day = new Date(y, m - 1, d).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+  if (!e.start) return day;
+  return `${day}, ${formatTime(e.start)}${e.end ? `–${formatTime(e.end)}` : ""}`;
+}
+
+function PostLink({ event }) {
+  if (!event.url) return null;
+  return (
+    <a className="post-link" href={event.url} target="_blank" rel="noreferrer">
+      View post
+    </a>
+  );
 }
 
 // Free vector basemap from OpenFreeMap (no API key), drawn with MapLibre inside Leaflet.
@@ -366,26 +408,24 @@ function EventMap({ events, j }) {
     >
       <ZoomControl position="topright" />
       <BaseMap />
-      {events.map((e) => (
-        <CircleMarker
-          key={e.id}
-          center={e.pos}
-          radius={9 + Math.min(e.going / 6, 8)}
-          pathOptions={{ color: "#fff", weight: 2, fillColor: TYPE_COLORS[e.type], fillOpacity: 0.95 }}
-        >
-          <Popup>
-            <strong>{e.title}</strong>
-            <br />
-            {e.where}
-            <br />
-            Hosted by {e.host}
-            <br />
-            {going(e, j)} going
-            <br />
-            <JoinButton event={e} j={j} />
-          </Popup>
-        </CircleMarker>
-      ))}
+      {events
+        .filter((e) => e.pos)
+        .map((e) => (
+          <CircleMarker
+            key={e.id}
+            center={e.pos}
+            radius={9 + Math.min((e.going ?? 0) / 6, 8)}
+            pathOptions={{ color: "#fff", weight: 2, fillColor: TYPE_COLORS[e.type], fillOpacity: 0.95 }}
+          >
+            <Popup>
+              <strong>{e.title}</strong>
+              {[formatWhen(e), e.where, `Hosted by ${e.host}`, going(e, j)].filter(Boolean).map((line) => (
+                <div key={line}>{line}</div>
+              ))}
+              <JoinButton event={e} j={j} /> <PostLink event={e} />
+            </Popup>
+          </CircleMarker>
+        ))}
     </MapContainer>
   );
 }
@@ -412,8 +452,11 @@ function EventList({ events, j }) {
           <div className="grow">
             <strong>{e.title}</strong>
             <div className="meta">
-              {e.where}, hosted by {e.host}, {going(e, j)} going
+              {[formatWhen(e), e.where ?? "Location not listed", `hosted by ${e.host}`, going(e, j)]
+                .filter(Boolean)
+                .join(", ")}
             </div>
+            <PostLink event={e} />
           </div>
           <JoinButton event={e} j={j} />
         </li>
@@ -422,17 +465,23 @@ function EventList({ events, j }) {
   );
 }
 
-function EventsPage({ events, j }) {
+function EventsPage({ events, updated, j }) {
   return (
     <main className="page">
       <h1>Events</h1>
+      {updated && (
+        <p className="count">
+          From club Instagram posts, updated{" "}
+          {new Date(updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}
+        </p>
+      )}
       <EventList events={events} j={j} />
     </main>
   );
 }
 
-function MyEventsPage({ j, onBrowse }) {
-  const mine = EVENTS.filter((e) => j.joined.includes(e.id));
+function MyEventsPage({ all, j, onBrowse }) {
+  const mine = all.filter((e) => j.joined.includes(e.id));
   return (
     <main className="page">
       <h1>My Events</h1>
@@ -450,7 +499,7 @@ function MyEventsPage({ j, onBrowse }) {
   );
 }
 
-function ClubsPage() {
+function ClubsPage({ all }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const categories = ["All", ...new Set(CLUBS.map((c) => c.category))];
@@ -484,7 +533,7 @@ function ClubsPage() {
       </p>
       <ul className="list">
         {clubs.map((c) => {
-          const upcoming = EVENTS.filter((e) => e.host === c.name).length;
+          const upcoming = all.filter((e) => e.host === c.name || e.host.startsWith(`${c.name} (@`)).length;
           return (
             <li key={c.name}>
               <div className="grow">
@@ -573,7 +622,8 @@ function AboutPage() {
 
 export default function DubHub() {
   const [tab, setTab] = useState("Home");
-  const f = useFilteredEvents();
+  const { events: all, updated } = useEvents();
+  const f = useFilteredEvents(all);
   const { user, signIn, signOut } = useUser();
   const j = useJoined();
 
@@ -598,9 +648,9 @@ export default function DubHub() {
       </header>
 
       {tab === "Home" && <Home f={f} j={j} />}
-      {tab === "Events" && <EventsPage events={f.events} j={j} />}
-      {tab === "My Events" && <MyEventsPage j={j} onBrowse={() => setTab("Events")} />}
-      {tab === "Clubs" && <ClubsPage />}
+      {tab === "Events" && <EventsPage events={f.events} updated={updated} j={j} />}
+      {tab === "My Events" && <MyEventsPage all={all} j={j} onBrowse={() => setTab("Events")} />}
+      {tab === "Clubs" && <ClubsPage all={all} />}
       {tab === "About" && <AboutPage />}
     </div>
   );

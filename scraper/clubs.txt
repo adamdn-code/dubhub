@@ -1,0 +1,20 @@
+# One Instagram handle per line (with or without the @).
+# Lines starting with # are ignored. Example:
+# huskyclimbing
+# uwchess
+cseeduw
+uwproductspace
+uw_cbc
+hcp.uw
+dubhacks.next
+uwetruck
+uwthetatau
+hknieee
+data_science_society_uw
+uwrecycling
+aic.uw
+uw_iba
+uw_investmentgroup
+atc.uw
+claude.uofwa
+
