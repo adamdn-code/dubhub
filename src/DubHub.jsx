@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, CircleMarker, Popup, ZoomControl, useMap } from "react-leaflet";
+import { MapContainer, CircleMarker, Marker, Popup, ZoomControl, useMap } from "react-leaflet";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -66,6 +66,7 @@ const FIELD_COLORS = {
   "Arts & Humanities": "#a87400",
   Business: "#0c8599",
 };
+const MAJOR_FIELDS_ORDER = Object.keys(FIELD_COLORS);
 const FIELD_OF_MAJOR = Object.fromEntries(
   Object.entries(MAJOR_GROUPS).flatMap(([field, majors]) => majors.map((m) => [m, field]))
 );
@@ -425,35 +426,40 @@ function WhenSelect({ value, onChange, ...props }) {
   );
 }
 
+// Gives each event `fields`: its own majors' fields (sample events) or its host club's fields.
+function withFields(events, clubList) {
+  return events.map((e) => ({
+    ...e,
+    fields: e.majors?.length
+      ? [...new Set(e.majors.map((m) => FIELD_OF_MAJOR[m]).filter(Boolean))]
+      : clubList.find((c) => isHostedBy(e, c))?.fields ?? [],
+  }));
+}
+
+// Dots are colored by the event's (first) major field; general-interest events are gray.
+const NO_FIELD_COLOR = "#8a8398";
+function eventColor(e) {
+  return FIELD_COLORS[e.fields?.[0]] ?? NO_FIELD_COLOR;
+}
+
 // Scraped events have no class year, so they're open to every year. A major (or field) choice
-// shows events whose host club is in that major's field, e.g. Mechanical Engineering -> Engineering.
-function useFilteredEvents(all, clubList) {
+// shows events in that major's field, e.g. Mechanical Engineering -> Engineering.
+function useFilteredEvents(all) {
   const [when, setWhen] = useState("This week");
   const [type, setType] = useState("All");
   const [year, setYear] = useState("All");
   const [major, setMajor] = useState("Any major");
 
-  const fieldsOf = useMemo(() => {
-    const map = new Map();
-    for (const e of all) map.set(e.id, clubList.find((c) => isHostedBy(e, c))?.fields ?? []);
-    return map;
-  }, [all, clubList]);
-
   const events = useMemo(() => {
     const field = major === "Any major" ? null : fieldOf(major);
-    const matchesMajor = (e) =>
-      !field ||
-      (e.majors?.length
-        ? e.majors.includes(major) || e.majors.some((m) => FIELD_OF_MAJOR[m] === field)
-        : fieldsOf.get(e.id).includes(field));
     return all.filter(
       (e) =>
         inWhen(e, when) &&
         (type === "All" || e.type === type) &&
         (year === "All" || !e.years || e.years.includes(year)) &&
-        matchesMajor(e)
+        (!field || e.fields.includes(field))
     );
-  }, [all, fieldsOf, when, type, year, major]);
+  }, [all, when, type, year, major]);
 
   return { events, when, setWhen, type, setType, year, setYear, major, setMajor };
 }
@@ -533,7 +539,10 @@ function mapAreaFor(events) {
   return MAP_AREAS.find((a) => spots.every((p) => inside(p, a.bounds))) ?? MAP_AREAS.at(-1);
 }
 
-// Fits the map to its area and keeps it there.
+// Leave room for the filter panel on wide screens.
+const panelPadding = (map) => (map.getSize().x > 700 ? [260, 0] : [0, 0]);
+
+// Fits the map to its area and keeps it there (it can't be zoomed out or panned past it).
 function MapArea({ area }) {
   const map = useMap();
 
@@ -543,12 +552,62 @@ function MapArea({ area }) {
     map.setMinZoom(0);
     map.setMinZoom(map.getBoundsZoom(bounds));
     map.setMaxBounds(bounds.pad(0.05));
-    // Leave room for the filter panel on wide screens.
-    const panel = map.getSize().x > 700 ? [260, 0] : [0, 0];
-    map.fitBounds(bounds, { paddingTopLeft: panel });
+    map.fitBounds(bounds, { paddingTopLeft: panelPadding(map) });
   }, [map, area]);
 
   return null;
+}
+
+const escapeHtml = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const labelIcons = new Map(); // reuse icons so re-renders don't restart the fade animation
+function labelIcon(text, dir) {
+  const key = `${dir}|${text}`;
+  if (!labelIcons.has(key)) {
+    labelIcons.set(key, L.divIcon({ className: "intro-anchor", html: `<span class="intro-label ${dir}">${escapeHtml(text)}</span>`, iconSize: [0, 0] }));
+  }
+  return labelIcons.get(key);
+}
+
+// A label's on-screen width: its text in the label font (bold 13px), plus padding and a small gap.
+let measureCtx;
+function labelWidth(text) {
+  measureCtx ??= document.createElement("canvas").getContext("2d");
+  measureCtx.font = `700 13px ${getComputedStyle(document.body).fontFamily}`;
+  return measureCtx.measureText(text).width + 20 + 8;
+}
+
+// Event names shown over their dots when the site opens. Each label goes above its dot, or below it
+// if that would overlap a label already placed; if neither fits it's skipped (hover still works).
+function IntroLabels({ places }) {
+  const map = useMap();
+  const [, redraw] = useState(0);
+
+  useEffect(() => {
+    const update = () => redraw((n) => n + 1);
+    map.on("zoomend moveend", update);
+    return () => map.off("zoomend moveend", update);
+  }, [map]);
+
+  const taken = [];
+  const shown = [];
+  for (const place of [...places].sort((a, b) => b.count - a.count)) {
+    const pt = map.latLngToContainerPoint(place.pos);
+    const w = labelWidth(place.text);
+    const h = 28;
+    for (const dir of ["above", "below"]) {
+      const top = dir === "above" ? pt.y - 12 - h : pt.y + 12;
+      const box = { l: pt.x - w / 2, r: pt.x + w / 2, t: top, b: top + h };
+      if (taken.every((o) => box.r < o.l || box.l > o.r || box.b < o.t || box.t > o.b)) {
+        taken.push(box);
+        shown.push({ ...place, dir });
+        break;
+      }
+    }
+  }
+
+  return shown.map((p) => (
+    <Marker key={p.pos.join()} position={p.pos} icon={labelIcon(p.text, p.dir)} interactive={false} keyboard={false} />
+  ));
 }
 
 function JoinButton({ event, j }) {
@@ -710,7 +769,36 @@ function BaseMap() {
   return null;
 }
 
-function EventMap({ events, area, j }) {
+// Hovering a dot opens its pop-up (same as clicking). It stays open while the mouse is on the dot
+// or the pop-up, so its buttons can still be clicked, and closes shortly after the mouse leaves.
+let popupCloseTimer;
+const closeSoon = (layer) => {
+  popupCloseTimer = setTimeout(() => layer.closePopup(), 300);
+};
+const HOVER_POPUP = {
+  mouseover: (ev) => {
+    clearTimeout(popupCloseTimer);
+    ev.target.openPopup();
+  },
+  mouseout: (ev) => closeSoon(ev.target),
+  popupopen: (ev) => {
+    const el = ev.popup.getElement();
+    el.onmouseenter = () => clearTimeout(popupCloseTimer);
+    el.onmouseleave = () => closeSoon(ev.target);
+  },
+};
+
+function EventMap({ events, area, introLabels, j }) {
+  const located = events.filter((e) => e.pos);
+  // One intro label per place, so events in the same building don't pile up.
+  const byPlace = new Map();
+  for (const e of located) byPlace.set(e.pos.join(), [...(byPlace.get(e.pos.join()) ?? []), e]);
+  const places = [...byPlace.values()].map((list) => ({
+    pos: list[0].pos,
+    count: list.length,
+    text: list.length > 1 ? `${list[0].title} +${list.length - 1} more` : list[0].title,
+  }));
+
   return (
     <MapContainer
       center={[47.6553, -122.3035]}
@@ -723,32 +811,56 @@ function EventMap({ events, area, j }) {
       <ZoomControl position="topright" />
       <MapArea area={area} />
       <BaseMap />
-      {events
-        .filter((e) => e.pos)
-        .map((e) => (
-          <CircleMarker
-            key={e.id}
-            center={e.pos}
-            radius={9 + Math.min((e.going ?? 0) / 6, 8)}
-            pathOptions={{ color: "#fff", weight: 2, fillColor: TYPE_COLORS[e.type], fillOpacity: 0.95 }}
-          >
-            <Popup>
-              <strong>{e.title}</strong>
-              {[formatWhen(e), e.where, `Hosted by ${e.host}`, going(e, j)].filter(Boolean).map((line) => (
-                <div key={line}>{line}</div>
-              ))}
-              <JoinButton event={e} j={j} /> <PostLink event={e} />
-            </Popup>
-          </CircleMarker>
-        ))}
+      {located.map((e) => (
+        <CircleMarker
+          key={e.id}
+          center={e.pos}
+          radius={9 + Math.min((e.going ?? 0) / 6, 8)}
+          pathOptions={{ color: "#fff", weight: 2, fillColor: eventColor(e), fillOpacity: 0.95 }}
+          eventHandlers={HOVER_POPUP}
+        >
+          <Popup autoPan={false}>
+            <strong>{e.title}</strong>
+            {[formatWhen(e), e.where, `Hosted by ${e.host}`, going(e, j)].filter(Boolean).map((line) => (
+              <div key={line}>{line}</div>
+            ))}
+            <JoinButton event={e} j={j} /> <PostLink event={e} />
+          </Popup>
+        </CircleMarker>
+      ))}
+      {introLabels && <IntroLabels places={places} />}
     </MapContainer>
   );
 }
 
-function Home({ f, area, j }) {
+function MapLegend({ events }) {
+  const located = events.filter((e) => e.pos);
+  const fields = MAJOR_FIELDS_ORDER.filter((field) => located.some((e) => e.fields[0] === field));
+  const general = located.some((e) => !e.fields.length);
+  if (!fields.length && !general) return null;
+  return (
+    <ul className="map-legend" aria-label="Dot colors">
+      {fields.map((field) => (
+        <li key={field}>
+          <span className="dot" style={{ background: FIELD_COLORS[field] }} />
+          {field}
+        </li>
+      ))}
+      {general && (
+        <li>
+          <span className="dot" style={{ background: NO_FIELD_COLOR }} />
+          General interest
+        </li>
+      )}
+    </ul>
+  );
+}
+
+function Home({ f, area, introLabels, j }) {
   return (
     <main className="home">
-      <EventMap events={f.events} area={area} j={j} />
+      <EventMap events={f.events} area={area} introLabels={introLabels} j={j} />
+      <MapLegend events={f.events} />
       <Filters f={f} />
       <div className="tagline">
         <h1>See what's happening at UW, right now.</h1>
@@ -814,7 +926,7 @@ function EventList({ events, j, onSelect }) {
     <ul className="list">
       {events.map((e) => (
         <li key={e.id}>
-          <span className="dot" style={{ background: TYPE_COLORS[e.type] }} />
+          <span className="dot" style={{ background: eventColor(e) }} />
           <div className="grow">
             <EventTitle event={e} onSelect={onSelect} />
             <div className="meta">
@@ -847,7 +959,7 @@ function TrendingRow({ events, j, onSelect }) {
       <ol className="trending-row">
         {trending(events, j).map((e) => (
           <li key={e.id} className="trending-card">
-            <span className="dot" style={{ background: TYPE_COLORS[e.type] }} />
+            <span className="dot" style={{ background: eventColor(e) }} />
             <EventTitle event={e} onSelect={onSelect} />
             <div className="meta">{[formatWhen(e), e.where, going(e, j)].filter(Boolean).join(" · ")}</div>
             <JoinButton event={e} j={j} />
@@ -1404,9 +1516,16 @@ function AboutPage() {
 
 export default function DubHub() {
   const [tab, setTab] = useState("Home");
-  const { events: all, updated } = useEvents();
+  const { events: loaded, updated } = useEvents();
   const clubList = useClubs();
-  const f = useFilteredEvents(all, clubList);
+  const all = useMemo(() => withFields(loaded, clubList), [loaded, clubList]);
+  const f = useFilteredEvents(all);
+  // Event names flash over their dots for a few seconds when the site first opens.
+  const [introLabels, setIntroLabels] = useState(true);
+  useEffect(() => {
+    const t = setTimeout(() => setIntroLabels(false), 5000);
+    return () => clearTimeout(t);
+  }, []);
   // Based on every event, not just the filtered ones, so the map doesn't jump around while filtering.
   const mapArea = useMemo(() => mapAreaFor(all), [all]);
   const { user, signIn, signOut } = useUser();
@@ -1438,7 +1557,7 @@ export default function DubHub() {
         <SignIn user={user} onSignIn={signIn} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
       </header>
 
-      {tab === "Home" && <Home f={f} area={mapArea} j={j} />}
+      {tab === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} />}
       {tab === "Events" && (
         <EventsPage events={f.events} updated={updated} j={j} when={f.when} onWhenChange={f.setWhen} />
       )}
