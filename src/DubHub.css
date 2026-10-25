@@ -391,6 +391,10 @@ select:focus-visible {
   background: #fff;
 }
 
+.profile-form + .profile-form {
+  margin-top: 24px;
+}
+
 .profile-form label.check {
   flex-direction: row;
   align-items: center;

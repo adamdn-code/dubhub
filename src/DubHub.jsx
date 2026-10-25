@@ -264,7 +264,17 @@ function SignIn({ user, onSignIn, onSignOut, onOpenProfile }) {
         }
         setError("");
         setOpen(false);
-        onSignIn({ name: p.name, email: p.email, picture: p.picture });
+        const u = { name: p.name, email: p.email, picture: p.picture };
+        onSignIn(u);
+        // Also get a DubHub server token (used for email reminders); fine if the server isn't set up.
+        fetch("/api/session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ credential }),
+        })
+          .then((r) => (r.ok ? r.json() : null))
+          .then((d) => d?.token && onSignIn({ ...u, session: d.token }))
+          .catch(() => {});
       },
     });
     window.google.accounts.id.renderButton(buttonRef.current, {
@@ -713,10 +723,14 @@ function hostedBy(all, club) {
   return all.filter((e) => isHostedBy(e, club));
 }
 
-// My Events shows events you joined plus every event hosted by a club you're in.
-function MyEventsPage({ all, clubList, j, clubs, onBrowse }) {
+// Events you joined plus every event hosted by a club you're in.
+function myEventsFor(all, clubList, j, clubs) {
   const myClubs = clubList.filter((c) => clubs.joined.includes(c.name));
-  const mine = all.filter((e) => j.joined.includes(e.id) || myClubs.some((c) => isHostedBy(e, c)));
+  return all.filter((e) => j.joined.includes(e.id) || myClubs.some((c) => isHostedBy(e, c)));
+}
+
+function MyEventsPage({ all, clubList, j, clubs, onBrowse }) {
+  const mine = myEventsFor(all, clubList, j, clubs);
   const [selected, setSelected] = useState(null);
   return (
     <main className="page">
@@ -918,7 +932,64 @@ function useProfile(user) {
   return { profile, update };
 }
 
-function ProfilePage({ user, profile, onChange, clubList, clubs, j }) {
+// Morning email reminders, stored on the server (api/). status: "loading" | "on" | "off" |
+// "needs-signin" (signed in before reminders existed, so no server token) | "unavailable".
+function useEmailReminders(user, myEvents) {
+  const session = user?.session;
+  const [state, setState] = useState({ session: null, status: "loading", error: "" });
+  const current = state.session === session ? state : { session, status: "loading", error: "" };
+  const status = !user ? "off" : !session ? "needs-signin" : current.status;
+
+  const call = useCallback(
+    (method, body) =>
+      fetch("/api/reminders", {
+        method,
+        headers: { Authorization: `Bearer ${session}`, "Content-Type": "application/json" },
+        body: body && JSON.stringify(body),
+      }).then(async (r) => {
+        if (r.status === 401) return { status: "needs-signin" };
+        if (!r.ok) return { status: "unavailable" };
+        const d = await r.json();
+        return { status: d.enabled ? "on" : "off" };
+      }),
+    [session]
+  );
+
+  // Ask the server whether reminders are on (they can be turned off from an email's link).
+  useEffect(() => {
+    if (!session) return;
+    let cancelled = false;
+    call("GET")
+      .catch(() => ({ status: "unavailable" }))
+      .then((s) => !cancelled && setState({ session, error: "", ...s }));
+    return () => {
+      cancelled = true;
+    };
+  }, [session, call]);
+
+  // Only the fields the email needs.
+  const snapshot = JSON.stringify(
+    myEvents.map(({ id, title, date, start, end, where, host, url }) => ({ id, title, date, start, end, where, host, url }))
+  );
+
+  // Keep the server's copy of My Events up to date while reminders are on.
+  useEffect(() => {
+    if (status !== "on") return;
+    const t = setTimeout(() => call("POST", { events: JSON.parse(snapshot) }).catch(() => {}), 800);
+    return () => clearTimeout(t);
+  }, [status, snapshot, call]);
+
+  const setEnabled = (enabled) => {
+    setState({ session, status: "loading", error: "" });
+    call("POST", { enabled, events: JSON.parse(snapshot) })
+      .catch(() => ({ status: enabled ? "off" : "on", error: "Couldn't reach DubHub. Try again." }))
+      .then((s) => setState({ session, error: "", ...s }));
+  };
+
+  return { status, error: current.error, setEnabled };
+}
+
+function ProfilePage({ user, profile, onChange, clubList, clubs, j, email }) {
   if (!user) {
     return (
       <main className="page">
@@ -987,6 +1058,28 @@ function ProfilePage({ user, profile, onChange, clubList, clubs, j }) {
       </div>
 
       <h2>Notifications</h2>
+      <div className="profile-form">
+        <label className="check">
+          <input
+            type="checkbox"
+            checked={email.status === "on"}
+            disabled={email.status !== "on" && email.status !== "off"}
+            onChange={(e) => email.setEnabled(e.target.checked)}
+          />
+          Email me reminders for my events
+        </label>
+        <p className="count">
+          A morning email to {user.email} on days you have something in My Events (today and tomorrow).
+        </p>
+        {email.status === "needs-signin" && (
+          <p className="notice">Sign out and sign back in to turn on email reminders.</p>
+        )}
+        {email.status === "unavailable" && (
+          <p className="notice">Email reminders aren't set up on the server yet.</p>
+        )}
+        {email.error && <p className="field-error">{email.error}</p>}
+      </div>
+
       <div className="profile-form">
         <label>
           Phone number
@@ -1113,6 +1206,8 @@ export default function DubHub() {
   const { profile, update: updateProfile } = useProfile(user);
   const j = useJoined(JOINED_KEY);
   const clubs = useJoined(CLUBS_KEY);
+  const myEvents = useMemo(() => myEventsFor(all, clubList, j, clubs), [all, clubList, j, clubs]);
+  const email = useEmailReminders(user, myEvents);
 
   return (
     <div className="app">
@@ -1144,7 +1239,15 @@ export default function DubHub() {
       {tab === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} />}
       {tab === "About" && <AboutPage />}
       {tab === "Profile" && (
-        <ProfilePage user={user} profile={profile} onChange={updateProfile} clubList={clubList} clubs={clubs} j={j} />
+        <ProfilePage
+          user={user}
+          profile={profile}
+          onChange={updateProfile}
+          clubList={clubList}
+          clubs={clubs}
+          j={j}
+          email={email}
+        />
       )}
     </div>
   );
