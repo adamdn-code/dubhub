@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, TileLayer, CircleMarker, Popup, ZoomControl } from "react-leaflet";
+import { MapContainer, CircleMarker, Popup, ZoomControl, useMap } from "react-leaflet";
+import L from "leaflet";
+import "@maplibre/maplibre-gl-leaflet";
 import "leaflet/dist/leaflet.css";
+import "maplibre-gl/dist/maplibre-gl.css";
 import "./DubHub.css";
 
 const TABS = ["Home", "Events", "My Events", "Clubs", "About"];
@@ -274,6 +277,81 @@ function going(event, j) {
   return event.going + (j.joined.includes(event.id) ? 1 : 0);
 }
 
+// Free vector basemap from OpenFreeMap (no API key), drawn with MapLibre inside Leaflet.
+const MAP_STYLE = "https://tiles.openfreemap.org/styles/liberty";
+const MAP_ATTRIBUTION =
+  '<a href="https://openfreemap.org">OpenFreeMap</a> &copy; <a href="https://www.openmaptiles.org/">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+// Apple Maps-like palette: white roads with gray edges, soft blue water, light green parks.
+const MAP_COLORS = {
+  background: "#f4f2ee",
+  water: "#a6d1f2",
+  park: "#b5e0a0",
+  wood: "#a6d98f",
+  building: "#e5e2dc",
+  school: "#ece8e1",
+  road: "#ffffff",
+  highway: "#fdfcfa",
+  casing: "#dcd8d1",
+  highwayCasing: "#c9c4bb",
+};
+
+function restyle(style) {
+  const C = MAP_COLORS;
+  const green = { "fill-color": C.park, "fill-opacity": 1 };
+  const set = {
+    background: { "background-color": C.background },
+    water: { "fill-color": C.water },
+    park: { ...green, "fill-outline-color": C.park },
+    landcover_grass: green,
+    landcover_wood: { "fill-color": C.wood, "fill-opacity": 1 },
+    landuse_pitch: green,
+    landuse_track: green,
+    landuse_cemetery: green,
+    building: { "fill-color": C.building },
+    landuse_school: { "fill-color": C.school },
+    landuse_residential: { "fill-opacity": 0 },
+    waterway_river: { "line-color": C.water },
+    waterway_other: { "line-color": C.water },
+    waterway_tunnel: { "line-color": C.water },
+  };
+
+  for (const layer of style.layers) {
+    const paint = (layer.paint ??= {});
+    if (set[layer.id]) {
+      Object.assign(paint, set[layer.id]);
+    } else if (layer.type === "line" && /^(road|bridge|tunnel)_/.test(layer.id) && !/rail|path/.test(layer.id)) {
+      const isHighway = /motorway|trunk/.test(layer.id);
+      paint["line-color"] = layer.id.endsWith("casing")
+        ? isHighway ? C.highwayCasing : C.casing
+        : isHighway ? C.highway : C.road;
+    }
+  }
+  return style;
+}
+
+function BaseMap() {
+  const map = useMap();
+
+  useEffect(() => {
+    let layer;
+    let cancelled = false;
+    fetch(MAP_STYLE)
+      .then((r) => r.json())
+      .then((style) => {
+        if (cancelled) return;
+        layer = L.maplibreGL({ style: restyle(style), attribution: MAP_ATTRIBUTION }).addTo(map);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+      if (layer) map.removeLayer(layer);
+    };
+  }, [map]);
+
+  return null;
+}
+
 function EventMap({ events, j }) {
   return (
     <MapContainer
@@ -287,15 +365,7 @@ function EventMap({ events, j }) {
       className="map"
     >
       <ZoomControl position="topright" />
-      <TileLayer
-        attribution="Tiles &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors"
-        url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
-        maxNativeZoom={16}
-      />
-      <TileLayer
-        url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}"
-        maxNativeZoom={16}
-      />
+      <BaseMap />
       {events.map((e) => (
         <CircleMarker
           key={e.id}
