@@ -595,10 +595,11 @@ function restyle(style) {
     road_area_pattern: { "fill-color": C.plaza, "fill-opacity": 1 },
   };
 
-  // Bus stop icons with their long names ("... & NE Pacific Pl - Bay 5") and parking "P" signs
-  // clutter the map.
+  // Icons that clutter the map: bus stops with their long names ("... & NE Pacific Pl - Bay 5"),
+  // parking "P" signs, and (zoomed all the way in) info points, restrooms and trash cans.
   style.layers = style.layers.filter((layer) => layer.id !== "poi_transit");
-  const notBusStop = ["!", ["match", ["get", "class"], ["bus", "parking", "bicycle_parking"], true, false]];
+  const hidden = ["bus", "parking", "bicycle_parking", "information", "toilets", "waste_basket"];
+  const notBusStop = ["!", ["match", ["get", "class"], hidden, true, false]];
 
   for (const layer of style.layers) {
     if (layer.paint?.["fill-pattern"]) delete layer.paint["fill-pattern"];
