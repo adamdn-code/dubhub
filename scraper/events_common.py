@@ -30,6 +30,10 @@ STATE_DIR = HERE / "state"
 POSTS_FILE = STATE_DIR / "posts.json"
 GEOCODE_FILE = STATE_DIR / "geocode.json"
 SITE_EVENTS_FILE = HERE.parent / "public" / "events.json"
+SITE_CLUBS_FILE = HERE.parent / "public" / "clubs.json"
+CLUBS_FILE = HERE / "clubs.txt"
+CLUB_PROFILES_FILE = STATE_DIR / "club_profiles.json"  # name + bio per handle
+CLUB_INFO_FILE = STATE_DIR / "club_info.json"          # AI category/summary per handle
 
 
 def _load_env_file():
@@ -53,6 +57,8 @@ FORGET_AFTER_DAYS = 120  # drop remembered posts older than this
 
 # Must match the event types (and colors) the website knows about.
 EVENT_TYPES = ["Study", "Club", "Food", "Hangout", "Game night"]
+CLUB_CATEGORIES = ["Academic", "Tech", "Engineering", "Business", "Cultural", "Arts",
+                   "Outdoors", "Sports", "Gaming", "Service", "Social"]
 
 # Seattle, same box the website's map is limited to.
 SEATTLE_BOUNDS = (47.48, -122.46, 47.74, -122.22)
@@ -457,10 +463,14 @@ def redo_keyword_posts(store):
         process_posts(redo, store)
 
 
+def not_uw_clubs(store):
+    """A Google-found account with any post mentioning a semester, another campus, etc. isn't UW Seattle."""
+    return {p["club"] for p in store.values() if p["source"] != "instagram" and NOT_UW_SIGNS.search(p["caption"])}
+
+
 def write_site_events(store):
     """Write every upcoming event to public/events.json for the website."""
-    # A Google-found account with any post mentioning a semester, another campus, etc. isn't UW Seattle.
-    not_uw = {p["club"] for p in store.values() if p["source"] != "instagram" and NOT_UW_SIGNS.search(p["caption"])}
+    not_uw = not_uw_clubs(store)
     events = []
     for key, post in store.items():
         if post["club"] in not_uw:
@@ -491,3 +501,153 @@ def write_site_events(store):
     on_map = sum(1 for e in events if e["pos"])
     print(f"Wrote {len(events)} upcoming events ({on_map} with a map location) to {SITE_EVENTS_FILE}")
     return events
+
+
+# ------------------------------------------------------------------- clubs ---
+HOST_RE = re.compile(r"^(?:(?P<name>.+) )?\(?@(?P<handle>[\w.]+)\)?$")
+
+
+def parse_host(host):
+    """'Product Space @ UW (@uwproductspace)' -> ('Product Space @ UW', 'uwproductspace'); '@x' -> (None, 'x')."""
+    m = HOST_RE.match(host or "")
+    return (m["name"], m["handle"].lower()) if m else (host, None)
+
+
+def read_club_handles():
+    try:
+        lines = CLUBS_FILE.read_text(encoding="utf-8").splitlines()
+    except FileNotFoundError:
+        return []
+    return [h.lower() for h in (line.split("#")[0].strip().lstrip("@") for line in lines) if h]
+
+
+_profiles = None
+
+
+def save_club_profile(handle, name, bio):
+    """Remember a club's real Instagram name and bio (the Instagram scraper calls this)."""
+    global _profiles
+    if _profiles is None:
+        _profiles = _load(CLUB_PROFILES_FILE, {})
+    _profiles[handle.lower()] = {"name": name or None, "bio": bio or None}
+    _save(CLUB_PROFILES_FILE, _profiles)
+
+
+def ai_club_info(clubs):
+    """Ask Groq for a category, one-line summary and short description per club, or None."""
+    if not GROQ_KEY or not pick_model():
+        return None
+    listing = "\n\n".join(
+        f"CLUB {i + 1}\nName: {c['name']}\nInstagram: @{c['handle']}\nBio: {c['bio'] or '(none)'}\n"
+        + "\n".join(f"Post: {p[:300]}" for p in c["posts"])
+        for i, c in enumerate(clubs)
+    )
+    prompt = f"""Below are University of Washington student clubs with their Instagram bio and a few recent posts.
+
+For each club write:
+- "category": exactly one of {CLUB_CATEGORIES}.
+- "about": one line (max 90 characters) saying what the club does.
+- "description": 2-3 friendly sentences about the club for students browsing clubs.
+Only use facts from the name, bio and posts. Never invent meeting times, places, numbers or claims.
+Describe the club in general terms: don't mention specific event dates, which go out of date.
+If there's too little information, keep "about" short and general (based on the name) and set
+"description" to null. Never mention that information is missing.
+
+Reply with ONLY JSON: {{"clubs": [{{"club": 1, "category": "...", "about": "...", "description": "..."}}]}}
+
+{listing}"""
+    for attempt in range(5):
+        try:
+            r = requests.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={"Authorization": f"Bearer {GROQ_KEY}"},
+                json={"model": pick_model(), "temperature": 0, "response_format": {"type": "json_object"},
+                      "messages": [{"role": "user", "content": prompt}]},
+                timeout=90,
+            )
+        except Exception as e:
+            print(f"Groq request failed ({e}); clubs get basic info for now.", file=sys.stderr)
+            return None
+        if r.status_code == 429 and attempt < 4:
+            m = re.search(r"try again in ([\d.]+)s", r.text)
+            time.sleep((float(m.group(1)) if m else 20) + 2)
+            continue
+        if r.status_code != 200:
+            print(f"Groq error {r.status_code}: {r.text[:300]}", file=sys.stderr)
+            return None
+        try:
+            got = {int(c["club"]): c for c in json.loads(r.json()["choices"][0]["message"]["content"])["clubs"]}
+        except (KeyError, TypeError, ValueError):
+            return None
+        return [got.get(i + 1) for i in range(len(clubs))]
+    return None
+
+
+def write_site_clubs(store):
+    """Write public/clubs.json: clubs.txt accounts plus UW clubs the scrapers found events for."""
+    profiles = _load(CLUB_PROFILES_FILE, {})
+    info = _load(CLUB_INFO_FILE, {})
+    not_uw = not_uw_clubs(store)
+
+    names, posts = {}, {}
+    for post in sorted(store.values(), key=lambda p: p.get("posted") or "", reverse=True):
+        name, handle = parse_host(post["club"])
+        if not handle or post["club"] in not_uw:
+            continue
+        if name:
+            names.setdefault(handle, name)
+        if post["caption"]:
+            posts.setdefault(handle, []).append(post["caption"])
+
+    found = {parse_host(p["club"])[1] for p in store.values() if p.get("events") and p["club"] not in not_uw}
+    handles = list(dict.fromkeys(read_club_handles() + sorted(h for h in found if h)))
+
+    clubs = []
+    for h in handles:
+        prof = profiles.get(h, {})
+        clubs.append({"handle": h, "name": prof.get("name") or names.get(h) or f"@{h}",
+                      "bio": prof.get("bio"), "posts": posts.get(h, [])[:3]})
+
+    # Only ask the AI about clubs whose name/bio/posts changed since last time, and skip clubs
+    # we know nothing about yet (just a handle), so it can't guess from the letters.
+    fingerprint = lambda c: json.dumps([c["name"], c["bio"], c["posts"]], ensure_ascii=False)
+    knows_something = lambda c: c["bio"] or c["posts"] or not c["name"].startswith("@")
+    todo = [c for c in clubs if knows_something(c) and info.get(c["handle"], {}).get("from") != fingerprint(c)]
+    for i in range(0, len(todo), 8):
+        batch = todo[i:i + 8]
+        result = ai_club_info(batch)
+        if result is None:
+            break
+        for c, r in zip(batch, result):
+            if r:
+                info[c["handle"]] = {
+                    "category": r.get("category") if r.get("category") in CLUB_CATEGORIES else "Social",
+                    "about": (r.get("about") or "").strip()[:120] or None,
+                    "description": (r.get("description") or "").strip() or None,
+                    "from": fingerprint(c),
+                }
+    _save(CLUB_INFO_FILE, info)
+
+    out = []
+    for c in clubs:
+        i = info.get(c["handle"], {})
+        out.append({
+            "name": c["name"],
+            "handle": c["handle"],
+            "instagram": f"https://www.instagram.com/{c['handle']}/",
+            "category": i.get("category") or "Other",
+            "about": i.get("about") or (c["bio"] or "").split("\n")[0][:120] or None,
+            # A longer description only when there's a real bio or posts behind it, not just a name.
+            "description": (i.get("description") or c["bio"]) if (c["bio"] or c["posts"]) else None,
+        })
+    out.sort(key=lambda c: c["name"].lstrip("@").lower())
+    SITE_CLUBS_FILE.write_text(json.dumps({"clubs": out}, indent=1, ensure_ascii=False), encoding="utf-8")
+    print(f"Wrote {len(out)} clubs to {SITE_CLUBS_FILE}")
+    return out
+
+
+if __name__ == "__main__":
+    # Rebuild the site files from what's already saved, without scraping anything new.
+    saved = load_store()
+    write_site_events(saved)
+    write_site_clubs(saved)

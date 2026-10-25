@@ -66,10 +66,10 @@ const SAMPLE_EVENTS = [
   { id: 6, title: "Coffee and study", type: "Study", host: "Priya S.", where: "Capitol Hill", pos: [47.623, -122.3205], going: 4, years: YEARS, majors: ["Biology"] },
 ];
 
-// Placeholder data: replace with your real clubs list.
+// Example clubs, shown only until the scraper (scraper/) has written public/clubs.json.
 // `about` is the one-line blurb shown in the list; `description` is the longer text shown
-// when you click a club. The descriptions below are placeholder wording, so swap in each club's real text.
-const CLUBS = [
+// when you click a club. Scraped clubs also have `handle` and `instagram`, and may lack `meets`.
+const SAMPLE_CLUBS = [
   {
     name: "Math Club",
     category: "Academic",
@@ -307,6 +307,20 @@ function SignIn({ user, onSignIn, onSignOut }) {
       )}
     </div>
   );
+}
+
+// Loads the scraped clubs; falls back to the examples if there aren't any yet.
+function useClubs() {
+  const [clubs, setClubs] = useState([]);
+
+  useEffect(() => {
+    fetch("/clubs.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null)
+      .then((d) => setClubs(d?.clubs?.length ? d.clubs : SAMPLE_CLUBS));
+  }, []);
+
+  return clubs;
 }
 
 // Loads the scraped events; falls back to the samples if there aren't any yet.
@@ -605,18 +619,21 @@ function ClubJoinButton({ club, clubs }) {
   );
 }
 
-// Scraped events name the host "Club Name (@handle)", so match either form.
-function isHostedBy(event, clubName) {
-  return event.host === clubName || event.host.startsWith(`${clubName} (@`);
+// Scraped events name the host "Club Name (@handle)" or "@handle"; match by handle when we have one.
+function isHostedBy(event, club) {
+  const host = event.host.toLowerCase();
+  if (club.handle && (host === `@${club.handle}` || host.endsWith(`(@${club.handle})`))) return true;
+  return event.host === club.name || event.host.startsWith(`${club.name} (@`);
 }
 
 function hostedBy(all, club) {
-  return all.filter((e) => isHostedBy(e, club.name));
+  return all.filter((e) => isHostedBy(e, club));
 }
 
 // My Events shows events you joined plus every event hosted by a club you're in.
-function MyEventsPage({ all, j, clubs, onBrowse }) {
-  const mine = all.filter((e) => j.joined.includes(e.id) || clubs.joined.some((name) => isHostedBy(e, name)));
+function MyEventsPage({ all, clubList, j, clubs, onBrowse }) {
+  const myClubs = clubList.filter((c) => clubs.joined.includes(c.name));
+  const mine = all.filter((e) => j.joined.includes(e.id) || myClubs.some((c) => isHostedBy(e, c)));
   return (
     <main className="page">
       <h1>My Events</h1>
@@ -660,8 +677,15 @@ function ClubDetail({ club, hosted, clubs, onClose }) {
         <p>
           <span className="tag">{club.category}</span>
         </p>
-        <p>{club.description}</p>
-        <p className="meta">Meets {club.meets}</p>
+        <p>{club.description || club.about || "No description yet. Check their Instagram for more."}</p>
+        {club.meets && <p className="meta">Meets {club.meets}</p>}
+        {club.instagram && (
+          <p>
+            <a className="post-link" href={club.instagram} target="_blank" rel="noreferrer">
+              @{club.handle} on Instagram
+            </a>
+          </p>
+        )}
         <ClubJoinButton club={club} clubs={clubs} />
 
         <h3>Upcoming events</h3>
@@ -682,17 +706,17 @@ function ClubDetail({ club, hosted, clubs, onClose }) {
   );
 }
 
-function ClubsPage({ all, clubs: membership }) {
+function ClubsPage({ all, clubList, clubs: membership }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [selected, setSelected] = useState(null);
-  const categories = ["All", ...new Set(CLUBS.map((c) => c.category))];
+  const categories = ["All", ...[...new Set(clubList.map((c) => c.category))].sort()];
 
   const q = query.trim().toLowerCase();
-  const clubs = CLUBS.filter(
+  const clubs = clubList.filter(
     (c) =>
       (category === "All" || c.category === category) &&
-      (!q || [c.name, c.category, c.about].some((s) => s.toLowerCase().includes(q)))
+      (!q || [c.name, c.handle, c.category, c.about].some((s) => s?.toLowerCase().includes(q)))
   );
 
   return (
@@ -726,10 +750,15 @@ function ClubsPage({ all, clubs: membership }) {
                   <span className="club-hint"> View details &rarr;</span>
                 </button>{" "}
                 <span className="tag">{c.category}</span>
-                <div>{c.about}</div>
+                {c.about && <div>{c.about}</div>}
                 <div className="meta">
-                  Meets {c.meets}
-                  {upcoming > 0 && `, ${upcoming} upcoming event${upcoming === 1 ? "" : "s"}`}
+                  {[
+                    c.meets && `Meets ${c.meets}`,
+                    c.handle && c.name !== `@${c.handle}` && `@${c.handle}`,
+                    upcoming > 0 && `${upcoming} upcoming event${upcoming === 1 ? "" : "s"}`,
+                  ]
+                    .filter(Boolean)
+                    .join(", ")}
                 </div>
               </div>
               <ClubJoinButton club={c} clubs={membership} />
@@ -821,6 +850,7 @@ function AboutPage() {
 export default function DubHub() {
   const [tab, setTab] = useState("Home");
   const { events: all, updated } = useEvents();
+  const clubList = useClubs();
   const f = useFilteredEvents(all);
   const { user, signIn, signOut } = useUser();
   const j = useJoined(JOINED_KEY);
@@ -850,8 +880,10 @@ export default function DubHub() {
 
       {tab === "Home" && <Home f={f} j={j} />}
       {tab === "Events" && <EventsPage events={f.events} updated={updated} j={j} />}
-      {tab === "My Events" && <MyEventsPage all={all} j={j} clubs={clubs} onBrowse={() => setTab("Events")} />}
-      {tab === "Clubs" && <ClubsPage all={all} clubs={clubs} />}
+      {tab === "My Events" && (
+        <MyEventsPage all={all} clubList={clubList} j={j} clubs={clubs} onBrowse={() => setTab("Events")} />
+      )}
+      {tab === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} />}
       {tab === "About" && <AboutPage />}
     </div>
   );

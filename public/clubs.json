@@ -1,0 +1,140 @@
+{
+ "clubs": [
+  {
+   "name": "AI Collective @ UW",
+   "handle": "aic.uw",
+   "instagram": "https://www.instagram.com/aic.uw/",
+   "category": "Tech",
+   "about": "Focuses on AI research and projects for UW students.",
+   "description": null
+  },
+  {
+   "name": "@atc.uw",
+   "handle": "atc.uw",
+   "instagram": "https://www.instagram.com/atc.uw/",
+   "category": "Other",
+   "about": null,
+   "description": null
+  },
+  {
+   "name": "Claude Builder Club @ UW",
+   "handle": "claude.uofwa",
+   "instagram": "https://www.instagram.com/claude.uofwa/",
+   "category": "Tech",
+   "about": "Explores building projects using Claude AI.",
+   "description": null
+  },
+  {
+   "name": "@cseeduw",
+   "handle": "cseeduw",
+   "instagram": "https://www.instagram.com/cseeduw/",
+   "category": "Other",
+   "about": null,
+   "description": null
+  },
+  {
+   "name": "@data_science_society_uw",
+   "handle": "data_science_society_uw",
+   "instagram": "https://www.instagram.com/data_science_society_uw/",
+   "category": "Other",
+   "about": null,
+   "description": null
+  },
+  {
+   "name": "DubHacks NEXT",
+   "handle": "dubhacks.next",
+   "instagram": "https://www.instagram.com/dubhacks.next/",
+   "category": "Tech",
+   "about": "Hosts hackathons and tech projects for UW students.",
+   "description": null
+  },
+  {
+   "name": "@hcp.uw",
+   "handle": "hcp.uw",
+   "instagram": "https://www.instagram.com/hcp.uw/",
+   "category": "Other",
+   "about": null,
+   "description": null
+  },
+  {
+   "name": "IEEE UW",
+   "handle": "hknieee",
+   "instagram": "https://www.instagram.com/hknieee/",
+   "category": "Engineering",
+   "about": "Student chapter of IEEE supporting engineering interests.",
+   "description": null
+  },
+  {
+   "name": "Product Space @ UW",
+   "handle": "uwproductspace",
+   "instagram": "https://www.instagram.com/uwproductspace/",
+   "category": "Business",
+   "about": "Explores product development and entrepreneurship at UW.",
+   "description": null
+  },
+  {
+   "name": "University of Washington Investment Group",
+   "handle": "uw_investmentgroup",
+   "instagram": "https://www.instagram.com/uw_investmentgroup/",
+   "category": "Business",
+   "about": "Student‑run group studying investing and finance.",
+   "description": null
+  },
+  {
+   "name": "@uw_cbc",
+   "handle": "uw_cbc",
+   "instagram": "https://www.instagram.com/uw_cbc/",
+   "category": "Other",
+   "about": null,
+   "description": null
+  },
+  {
+   "name": "@uw_iba",
+   "handle": "uw_iba",
+   "instagram": "https://www.instagram.com/uw_iba/",
+   "category": "Other",
+   "about": null,
+   "description": null
+  },
+  {
+   "name": "@uw_stf",
+   "handle": "uw_stf",
+   "instagram": "https://www.instagram.com/uw_stf/",
+   "category": "Service",
+   "about": "Provides funding support and proposal guidance for student projects.",
+   "description": "The @uw_stf club offers workshops to guide students through the proposal and funding process. Their Fall Quarter Proposal Workshop helps members craft strong project proposals."
+  },
+  {
+   "name": "@uwaslclub",
+   "handle": "uwaslclub",
+   "instagram": "https://www.instagram.com/uwaslclub/",
+   "category": "Cultural",
+   "about": "Learns and practices American Sign Language.",
+   "description": "The @uwaslclub meets weekly to teach and practice American Sign Language. Beginners sessions introduce basic signs, while later meetings build fluency."
+  },
+  {
+   "name": "@uwetruck",
+   "handle": "uwetruck",
+   "instagram": "https://www.instagram.com/uwetruck/",
+   "category": "Other",
+   "about": null,
+   "description": null
+  },
+  {
+   "name": "@uwrecycling",
+   "handle": "uwrecycling",
+   "instagram": "https://www.instagram.com/uwrecycling/",
+   "category": "Other",
+   "about": null,
+   "description": null
+  },
+  {
+   "name": "@uwthetatau",
+   "handle": "uwthetatau",
+   "instagram": "https://www.instagram.com/uwthetatau/",
+   "category": "Other",
+   "about": null,
+   "description": null
+  }
+ ]
+}

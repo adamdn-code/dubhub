@@ -16,7 +16,8 @@ Every run (PowerShell, from this folder):
      $env:SERPAPI_KEY = "..."           # optional, used if Instagram blocks you
      python uw_instagram_scraper.py
 
-Then push the website so the new public/events.json goes live.
+Then push the website so the new public/events.json and public/clubs.json go live.
+(To rebuild those two files from saved data without scraping: python events_common.py)
 
 To avoid getting blocked, it:
   - runs at most once every 20 hours (use --force to override),
@@ -43,7 +44,9 @@ from events_common import (
     load_store,
     process_posts,
     redo_keyword_posts,
+    save_club_profile,
     save_store,
+    write_site_clubs,
     write_site_events,
 )
 
@@ -97,6 +100,7 @@ def scrape_instagram(store):
         try:
             profile = instaloader.Profile.from_username(L.context, handle)
             club = uw_event_scraper.format_club(profile.full_name or None, handle)
+            save_club_profile(handle, profile.full_name, profile.biography)  # no extra request
             new = 0
             for post in islice(profile.get_posts(), POSTS_PER_CLUB):
                 pinned = getattr(post, "is_pinned", False)
@@ -163,6 +167,7 @@ def main():
     redo_keyword_posts(store)
     save_store(store)
     write_site_events(store)
+    write_site_clubs(store)
 
 
 if __name__ == "__main__":

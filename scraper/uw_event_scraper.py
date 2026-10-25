@@ -24,6 +24,7 @@ from events_common import (
     process_posts,
     redo_keyword_posts,
     save_store,
+    write_site_clubs,
     write_site_events,
 )
 
@@ -172,6 +173,7 @@ def main():
     redo_keyword_posts(store)
     save_store(store)
     write_site_events(store)
+    write_site_clubs(store)
 
 
 if __name__ == "__main__":
