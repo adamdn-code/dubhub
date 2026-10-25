@@ -17,7 +17,44 @@ const TYPE_COLORS = {
 };
 
 const YEARS = ["Freshman", "Sophomore", "Junior", "Senior"];
-const MAJORS = ["Any major", "Computer Science", "Mathematics", "Informatics", "Biology", "Business"];
+// Majors grouped by area so the dropdown stays easy to scan.
+const MAJOR_GROUPS = {
+  Engineering: [
+    "Aeronautics & Astronautics",
+    "Bioengineering",
+    "Chemical Engineering",
+    "Civil Engineering",
+    "Computer Engineering",
+    "Electrical Engineering",
+    "Human Centered Design & Engineering",
+    "Industrial Engineering",
+    "Materials Science",
+    "Mechanical Engineering",
+  ],
+  "Computing & Math": ["Applied Mathematics", "Computer Science", "Informatics", "Mathematics", "Statistics"],
+  Sciences: ["Biochemistry", "Biology", "Chemistry", "Environmental Science", "Neuroscience", "Physics"],
+  Health: ["Nursing", "Public Health"],
+  "Social Sciences": [
+    "Anthropology",
+    "Economics",
+    "International Studies",
+    "Political Science",
+    "Psychology",
+    "Sociology",
+  ],
+  "Arts & Humanities": ["Art", "Communication", "Design", "English", "History", "Music", "Philosophy"],
+  Business: [
+    "Accounting",
+    "Entrepreneurship",
+    "Finance",
+    "General Business",
+    "Human Resources Management",
+    "Information Systems",
+    "Management",
+    "Marketing",
+    "Operations & Supply Chain Management",
+  ],
+};
 
 // Sample events, shown only until the scraper (scraper/) has written public/events.json.
 const SAMPLE_EVENTS = [
@@ -122,11 +159,13 @@ const TEAM = [
 ];
 
 const JOINED_KEY = "dubhub-joined";
+const CLUBS_KEY = "dubhub-clubs";
 
-function useJoined() {
+// A saved list of IDs: event IDs under JOINED_KEY, club names under CLUBS_KEY.
+function useJoined(key) {
   const [joined, setJoined] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem(JOINED_KEY)) ?? [];
+      return JSON.parse(localStorage.getItem(key)) ?? [];
     } catch {
       return [];
     }
@@ -136,13 +175,13 @@ function useJoined() {
     setJoined((ids) => {
       const next = ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id];
       try {
-        localStorage.setItem(JOINED_KEY, JSON.stringify(next));
+        localStorage.setItem(key, JSON.stringify(next));
       } catch {
         // Storage blocked: joins last for this visit only.
       }
       return next;
     });
-  }, []);
+  }, [key]);
 
   return { joined, toggle };
 }
@@ -333,8 +372,13 @@ function Filters({ f }) {
       <label>
         Major
         <select value={f.major} onChange={(e) => f.setMajor(e.target.value)}>
-          {MAJORS.map((m) => (
-            <option key={m}>{m}</option>
+          <option>Any major</option>
+          {Object.entries(MAJOR_GROUPS).map(([group, majors]) => (
+            <optgroup key={group} label={group}>
+              {majors.map((m) => (
+                <option key={m}>{m}</option>
+              ))}
+            </optgroup>
           ))}
         </select>
       </label>
@@ -552,16 +596,38 @@ function EventsPage({ events, updated, j }) {
   );
 }
 
-function MyEventsPage({ all, j, onBrowse }) {
-  const mine = all.filter((e) => j.joined.includes(e.id));
+function ClubJoinButton({ club, clubs }) {
+  const isMember = clubs.joined.includes(club.name);
+  return (
+    <button className={isMember ? "join joined" : "join"} aria-pressed={isMember} onClick={() => clubs.toggle(club.name)}>
+      {isMember ? "Member ✓ (leave)" : "Join club"}
+    </button>
+  );
+}
+
+// Scraped events name the host "Club Name (@handle)", so match either form.
+function isHostedBy(event, clubName) {
+  return event.host === clubName || event.host.startsWith(`${clubName} (@`);
+}
+
+function hostedBy(all, club) {
+  return all.filter((e) => isHostedBy(e, club.name));
+}
+
+// My Events shows events you joined plus every event hosted by a club you're in.
+function MyEventsPage({ all, j, clubs, onBrowse }) {
+  const mine = all.filter((e) => j.joined.includes(e.id) || clubs.joined.some((name) => isHostedBy(e, name)));
   return (
     <main className="page">
       <h1>My Events</h1>
+      {clubs.joined.length > 0 && (
+        <p className="count">Includes events from your clubs: {clubs.joined.join(", ")}</p>
+      )}
       {mine.length > 0 ? (
         <EventList events={mine} j={j} />
       ) : (
         <div className="empty">
-          <p>You haven't joined any events yet.</p>
+          <p>You haven't joined any events or clubs yet.</p>
           <button className="join" onClick={onBrowse}>
             Browse events
           </button>
@@ -571,12 +637,7 @@ function MyEventsPage({ all, j, onBrowse }) {
   );
 }
 
-// Scraped events name the host "Club Name (@handle)", so match either form.
-function hostedBy(all, club) {
-  return all.filter((e) => e.host === club.name || e.host.startsWith(`${club.name} (@`));
-}
-
-function ClubDetail({ club, hosted, onClose }) {
+function ClubDetail({ club, hosted, clubs, onClose }) {
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
@@ -601,6 +662,7 @@ function ClubDetail({ club, hosted, onClose }) {
         </p>
         <p>{club.description}</p>
         <p className="meta">Meets {club.meets}</p>
+        <ClubJoinButton club={club} clubs={clubs} />
 
         <h3>Upcoming events</h3>
         {hosted.length === 0 ? (
@@ -620,7 +682,7 @@ function ClubDetail({ club, hosted, onClose }) {
   );
 }
 
-function ClubsPage({ all }) {
+function ClubsPage({ all, clubs: membership }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [selected, setSelected] = useState(null);
@@ -670,13 +732,21 @@ function ClubsPage({ all }) {
                   {upcoming > 0 && `, ${upcoming} upcoming event${upcoming === 1 ? "" : "s"}`}
                 </div>
               </div>
+              <ClubJoinButton club={c} clubs={membership} />
             </li>
           );
         })}
       </ul>
       {clubs.length === 0 && <p className="empty">No clubs match "{query}".</p>}
 
-      {selected && <ClubDetail club={selected} hosted={hostedBy(all, selected)} onClose={() => setSelected(null)} />}
+      {selected && (
+        <ClubDetail
+          club={selected}
+          hosted={hostedBy(all, selected)}
+          clubs={membership}
+          onClose={() => setSelected(null)}
+        />
+      )}
     </main>
   );
 }
@@ -753,7 +823,8 @@ export default function DubHub() {
   const { events: all, updated } = useEvents();
   const f = useFilteredEvents(all);
   const { user, signIn, signOut } = useUser();
-  const j = useJoined();
+  const j = useJoined(JOINED_KEY);
+  const clubs = useJoined(CLUBS_KEY);
 
   return (
     <div className="app">
@@ -779,8 +850,8 @@ export default function DubHub() {
 
       {tab === "Home" && <Home f={f} j={j} />}
       {tab === "Events" && <EventsPage events={f.events} updated={updated} j={j} />}
-      {tab === "My Events" && <MyEventsPage all={all} j={j} onBrowse={() => setTab("Events")} />}
-      {tab === "Clubs" && <ClubsPage all={all} />}
+      {tab === "My Events" && <MyEventsPage all={all} j={j} clubs={clubs} onBrowse={() => setTab("Events")} />}
+      {tab === "Clubs" && <ClubsPage all={all} clubs={clubs} />}
       {tab === "About" && <AboutPage />}
     </div>
   );
