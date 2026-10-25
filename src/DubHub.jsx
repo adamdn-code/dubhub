@@ -705,7 +705,9 @@ export default function DubHub() {
   return (
     <div className="app">
       <header className="nav">
-        <div className="logo">DubHub</div>
+        <button className="logo" onClick={() => setTab("Home")}>
+          DubHub
+        </button>
         <nav className="tabs" role="tablist">
           {TABS.map((t) => (
             <button
