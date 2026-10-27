@@ -206,11 +206,12 @@ const SAMPLE_CLUBS = [
   },
 ];
 
-// Team shown on the About page; details load from each GitHub profile.
+// Team shown on the About page; details load from each GitHub profile. `photo` (a file in
+// public/team/) is used instead of the GitHub picture when set.
 const TEAM = [
   { name: "Adam Nguyen", github: "adamxlegend" },
   { name: "Quentin Nguyen", github: "nitneuqqq" },
-  { name: "Kelan Huynh", github: null },
+  { name: "Kelan Huynh", github: null, linkedin: "https://www.linkedin.com/in/kelanhuynh" },
 ];
 
 const JOINED_KEY = "dubhub-joined";
@@ -1466,20 +1467,17 @@ function useGitHubProfile(login) {
   return profile;
 }
 
-function TeamMember({ name, github }) {
+function TeamMember({ name, github, linkedin, photo }) {
   const p = useGitHubProfile(github);
   const initials = name
     .split(" ")
     .map((w) => w[0])
     .join("");
+  const picture = photo || (github && `https://github.com/${github}.png?size=160`);
 
   return (
     <li className="member">
-      {github ? (
-        <img src={`https://github.com/${github}.png?size=160`} alt="" />
-      ) : (
-        <span className="avatar">{initials}</span>
-      )}
+      {picture ? <img src={picture} alt="" /> : <span className="avatar">{initials}</span>}
       <div>
         <strong>{name}</strong>
         {p?.bio && <div>{p.bio}</div>}
@@ -1489,6 +1487,11 @@ function TeamMember({ name, github }) {
         {github && (
           <a href={`https://github.com/${github}`} target="_blank" rel="noreferrer">
             @{github} on GitHub
+          </a>
+        )}
+        {linkedin && (
+          <a href={linkedin} target="_blank" rel="noreferrer">
+            {name.split(" ")[0]} on LinkedIn
           </a>
         )}
       </div>
