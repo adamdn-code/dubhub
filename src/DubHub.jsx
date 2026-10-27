@@ -210,6 +210,7 @@ const SAMPLE_CLUBS = [
 const TEAM = [
   { name: "Adam Nguyen", github: "adamxlegend" },
   { name: "Quentin Nguyen", github: "nitneuqqq" },
+  { name: "Kelan Huynh", github: null },
 ];
 
 const JOINED_KEY = "dubhub-joined";
