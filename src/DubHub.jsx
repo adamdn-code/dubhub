@@ -473,14 +473,31 @@ function WhenSelect({ value, onChange, ...props }) {
   );
 }
 
-// Gives each event `fields`: its own majors' fields (sample events) or its host club's fields.
+// Gives each event its host `club` (when it's a known club) and `fields`: its own majors'
+// fields (sample events) or its host club's fields.
 function withFields(events, clubList) {
-  return events.map((e) => ({
-    ...e,
-    fields: e.majors?.length
-      ? [...new Set(e.majors.map((m) => FIELD_OF_MAJOR[m]).filter(Boolean))]
-      : clubList.find((c) => isHostedBy(e, c))?.fields ?? [],
-  }));
+  return events.map((e) => {
+    const club = clubList.find((c) => isHostedBy(e, c));
+    return {
+      ...e,
+      club,
+      fields: e.majors?.length
+        ? [...new Set(e.majors.map((m) => FIELD_OF_MAJOR[m]).filter(Boolean))]
+        : club?.fields ?? [],
+    };
+  });
+}
+
+// "Product Space @ UW (@uwproductspace)" -> "Product Space @ UW"; "@vsauw" stays as is.
+function hostName(event) {
+  return event.club?.name ?? event.host.replace(/\s*\(@[\w.]+\)$/, "");
+}
+
+// The first couple of sentences of a description, for small spaces like the map pop-up.
+function shortText(text, max = 150) {
+  if (!text) return null;
+  const flat = text.replace(/\s+/g, " ").trim();
+  return flat.length <= max ? flat : `${flat.slice(0, max).replace(/\s+\S*$/, "")}…`;
 }
 
 // Dots are colored by the event's (first) major field; general-interest events are gray.
@@ -891,12 +908,22 @@ function EventMap({ events, area, introLabels, j }) {
           pathOptions={{ color: "#fff", weight: 2, fillColor: eventColor(e), fillOpacity: 0.95 }}
           eventHandlers={HOVER_POPUP}
         >
-          <Popup autoPan={false}>
-            <strong>{e.title}</strong>
-            {[formatWhen(e), e.where, `Hosted by ${e.host}`, going(e, j)].filter(Boolean).map((line) => (
-              <div key={line}>{line}</div>
-            ))}
-            <JoinButton event={e} j={j} /> <PostLink event={e} />
+          <Popup autoPan={false} maxWidth={380} minWidth={300}>
+            <div className="map-popup">
+              <div className="map-popup-club">
+                <Thumb src={e.club?.logo} label={hostName(e)} color={eventColor(e)} className="map-popup-logo" />
+                <span className="map-popup-club-label">Hosted by</span>
+                <span className="map-popup-club-name">{hostName(e)}</span>
+              </div>
+              <div className="map-popup-main">
+                <strong>{e.title}</strong>
+                {[formatWhen(e), e.where, going(e, j)].filter(Boolean).map((line) => (
+                  <div key={line}>{line}</div>
+                ))}
+                {shortText(e.description) && <p className="map-popup-desc">{shortText(e.description)}</p>}
+                <JoinButton event={e} j={j} /> <PostLink event={e} />
+              </div>
+            </div>
           </Popup>
         </CircleMarker>
       ))}
