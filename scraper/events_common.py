@@ -723,7 +723,7 @@ def merge_huskylink_clubs(clubs):
             continue
         if c["name"].startswith("@") or c.get("handle") in aliases:
             c["name"] = h["name"]  # use HuskyLink's official name
-        for field in ("website", "about", "description", "handle", "instagram"):
+        for field in ("website", "about", "description", "handle", "instagram", "logo"):
             c[field] = c.get(field) or h.get(field)
         if c.get("category") in (None, "Other"):
             c["category"] = h["category"]

@@ -113,6 +113,15 @@ def first_sentence(text, limit=120):
     return s if len(s) <= limit else s[: limit - 1].rsplit(" ", 1)[0] + "…"
 
 
+def image_url(path):
+    """A HuskyLink image path -> a full link. Only the link is saved; visitors' browsers load the
+    image from HuskyLink's image server, so the scraper never downloads any."""
+    path = (path or "").strip()
+    if not path:
+        return None
+    return path if path.startswith("http") else f"{BASE}{path if path.startswith('/') else '/' + path}"
+
+
 # ------------------------------------------------------------------- clubs ---
 def scrape_clubs():
     print("Downloading the HuskyLink club directory (about 30 seconds)...", flush=True)
@@ -126,6 +135,7 @@ def scrape_clubs():
         url = re.search(r'<h2 class="media-heading[^"]*">\s*<a[^>]*href="\s*(\S+?)\s*"', item, re.S)
         kind = re.search(r'<p class="h5 media-heading grey-element">(.*?)</p>', item, re.S)
         mission = re.search(r'id="club_\d+"[^>]*>\s*<strong>Mission</strong><br>(.*?)</p>', item, re.S)
+        logo = re.search(r'<img class="media-object[^>]*src="([^"]+)"', item)
 
         group_type, _, category = re.sub(r"\s+", " ", clean(kind.group(1) if kind else "")).partition(" - ")
         mission = clean(mission.group(1)) if mission else ""
@@ -135,6 +145,7 @@ def scrape_clubs():
             "category": CATEGORY_MAP.get(category.strip()) or GROUP_TYPE_MAP.get(group_type.strip()) or "Other",
             "about": first_sentence(mission) if mission else None,
             "description": mission[:1000] or None,
+            "logo": image_url(logo.group(1)) if logo and "listing-default" not in logo.group(1) else None,
         })
     print(f"Found {len(clubs)} groups")
     return clubs
@@ -207,6 +218,7 @@ def scrape_events():
             "url": item.findtext("eventLink"),
             "source": "huskylink",
             "description": description or None,
+            "image": image_url(item.findtext("eventPhotoFullUrl") or item.findtext("eventPhoto")),
         })
     print(f"Found {len(events)} upcoming events in the next {DAYS_AHEAD} days")
     return events, activity

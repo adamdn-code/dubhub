@@ -6,6 +6,7 @@
    "category": "Business",
    "about": "AIESEC is a global non-profit organization that sends people abroad to develop their international knowledge and…",
    "description": "AIESEC is a global non-profit organization that sends people abroad to develop their international knowledge and personal skills. As a member of our organization, you will help find and send these people abroad while developing your own skills and gaining real work experience without the pressure of a job.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_633124_AIESECHumanBlue_e40cb47a-4e6b-421e-a87b-336db5fdb659_92717320.png",
    "source": "huskylink",
    "last_event": "2026-09-29",
    "fields": []
@@ -16,6 +17,7 @@
    "category": "Social",
    "about": "We listen to music.",
    "description": "We listen to music.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_631794_alc_logo_c3dd7ed2-132f-4437-9aa8-18758c3b3cff_101191447.png",
    "source": "huskylink",
    "last_event": "2026-10-08",
    "fields": [
@@ -28,6 +30,9 @@
    "category": "Academic",
    "about": "We're a coed professional design fraternity.",
    "description": "We're a coed professional design fraternity. We welcome anyone with an interest in creative work or design to develop our professional network between student creatives and designers in relevant fields to create a welcoming design community.",
+   "logo": null,
+   "handle": "alphathetadeltauw",
+   "instagram": "https://www.instagram.com/alphathetadeltauw/",
    "source": "huskylink",
    "last_event": "2026-10-07",
    "fields": [
@@ -40,6 +45,9 @@
    "category": "Social",
    "about": "Work with the American Cancer Society nonprofit to spread cancer awareness to our campus and local community through…",
    "description": "Work with the American Cancer Society nonprofit to spread cancer awareness to our campus and local community through various events and plan the ACS fundraiser, Relay for Life at UW.",
+   "logo": null,
+   "handle": "uwrelayforlife",
+   "instagram": "https://www.instagram.com/uwrelayforlife/",
    "source": "huskylink",
    "last_event": "2026-11-04",
    "fields": [
@@ -52,6 +60,7 @@
    "category": "Academic",
    "about": "The American Red Cross at UW is an affiliated chapter of the national humanitarian organization, focusing on emergency…",
    "description": "The American Red Cross at UW is an affiliated chapter of the national humanitarian organization, focusing on emergency relief and disaster preparedness. Our RSO holds blood drives, CPR/First Aid training, disaster preparedness education, and more!",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-19",
    "fields": []
@@ -65,7 +74,8 @@
    "about": "Learns and practices American Sign Language.",
    "description": "The @uwaslclub meets weekly to teach and practice American Sign Language. Beginners sessions introduce basic signs, while later meetings build fluency.",
    "last_event": "2026-10-26",
-   "fields": []
+   "fields": [],
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_608390_uwasl_logojpg_8f3e301d-3af9-4c01-9d15-6ae02ba8ed2c_92622561.jpeg"
   },
   {
    "name": "Applied Mathematics Club",
@@ -73,8 +83,9 @@
    "category": "Academic",
    "about": "Applied Mathematics Club devotes building an active and inclusive community for people interested in applied math,…",
    "description": "Applied Mathematics Club devotes building an active and inclusive community for people interested in applied math, computational finance, statistics, etc.",
+   "logo": null,
    "source": "huskylink",
-   "last_event": "2026-10-19",
+   "last_event": "2026-11-02",
    "fields": [
     "Computing & Math"
    ]
@@ -85,6 +96,7 @@
    "category": "Cultural",
    "about": "The purpose of this organization is to promote Armenian culture at the University of Washington and form a community…",
    "description": "The purpose of this organization is to promote Armenian culture at the University of Washington and form a community of students from all backgrounds who are interested in engaging with the culture, language, and life.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_633257_StickerDesign1_2_2524bed3-1fc2-4f89-995d-e1b7bd316342_923202615.png",
    "source": "huskylink",
    "last_event": "2026-10-23",
    "fields": []
@@ -95,6 +107,7 @@
    "category": "Cultural",
    "about": "To reach into the collegiate communityprimarily Asian Pacific Americanswith the lifechanging message of Jesus Christ…",
    "description": "To reach into the collegiate communityprimarily Asian Pacific Americanswith the lifechanging message of Jesus Christ and give students a safe place to feel accepted and to belong to.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-12-09",
    "fields": []
@@ -105,6 +118,7 @@
    "category": "Engineering",
    "about": "Exploring Engineering through Astronomy",
    "description": "Exploring Engineering through Astronomy",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-06",
    "fields": [
@@ -118,6 +132,7 @@
    "category": "Service",
    "about": null,
    "description": null,
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_599699_640407923_18563206138046567_1145966123176472881_njpg_83f9ba38-3423-44fa-bfa3-f73e5391faab_93114558.jpeg",
    "source": "huskylink",
    "last_event": "2026-09-28",
    "fields": []
@@ -128,6 +143,7 @@
    "category": "Service",
    "about": null,
    "description": null,
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_599699_464674995_574407955153245_2899625068551453723_njpg_db31ad2b-603c-4042-8671-6a96b2f21301_93115059.jpeg",
    "source": "huskylink",
    "last_event": "2026-10-16",
    "fields": []
@@ -138,8 +154,9 @@
    "category": "Engineering",
    "about": "AWS Student Builder Group at the University of Washington is a student-led organization that helps students learn…",
    "description": "AWS Student Builder Group at the University of Washington is a student-led organization that helps students learn cloud computing through hands-on workshops, projects, and community events, regardless of prior experience.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_637173_Final_Rebrand_Verbose_Logo_Design_Zoomed_out_36b5e5bc-1d05-4a20-a839-904eee4153f6_1012144513.png",
    "source": "huskylink",
-   "last_event": "2026-10-29",
+   "last_event": "2026-11-17",
    "fields": [
     "Computing & Math"
    ]
@@ -150,6 +167,7 @@
    "category": "Sports",
    "about": "The Barbell Club at the University of Washington is an inclusive, student-run organization dedicated to creating a…",
    "description": "The Barbell Club at the University of Washington is an inclusive, student-run organization dedicated to creating a community for students interested in or currently active in weight training and/or physique building. We operate as a social fitness club on the UW Seattle campus, hosting weekly group lifts at the IMA as well as regular meetups and social events on campus. Our goal is to help students connect and build friendships with others who share their commitment to health, fitness, and personal growth.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_637045_Profile_picjpg_5ba112ec-aa51-4b6a-8d82-8754bd3ff1bc_109195527.jpeg",
    "source": "huskylink",
    "last_event": "2026-12-01",
    "fields": []
@@ -160,6 +178,7 @@
    "category": "Engineering",
    "about": "We are an all major club providing students with engineering design experience and professional development via…",
    "description": "We are an all major club providing students with engineering design experience and professional development via sustainable medical technology projects.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-08",
    "fields": [
@@ -173,6 +192,7 @@
    "category": "Service",
    "about": "Bracelets of Hopes is an organization that sends handcrafted friendship bracelets to children impacted by housing…",
    "description": "Bracelets of Hopes is an organization that sends handcrafted friendship bracelets to children impacted by housing insecurity or domestic violence, with a note to remind them they always have a friend. This aims to reduce stress and feelings of isolation. Please navigate to \"More\" >> “Links” to fill out the BOH interest form!",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_626677_Copy_of_Bracelets_fo_hope_6abb26fd-8d42-43bd-9782-3491a8452086_1010152916.png",
    "source": "huskylink",
    "last_event": "2026-10-15",
    "fields": []
@@ -183,6 +203,7 @@
    "category": "Cultural",
    "about": "A group that will provide a collaborative space for those interested in Chinese translation to practice and grow in…",
    "description": "A group that will provide a collaborative space for those interested in Chinese translation to practice and grow in the craft together.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_625493_Screenshot_20261016_194832_799a308e-38bf-4026-bda1-2b0c6c03672e_1016225751.png",
    "source": "huskylink",
    "last_event": "2026-12-11",
    "fields": [
@@ -195,6 +216,9 @@
    "category": "Arts",
    "about": "The Costume Club will practice creative and technical skills to design and construct costumes.",
    "description": "The Costume Club will practice creative and technical skills to design and construct costumes. We will promote student interest in creation of costumes including high fashion, theater, sewing, props, and cosplay, and share the skills and knowledge.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_602988_1500_adbed7cd-63a7-4e52-9312-846b11e92d04_10141813.png",
+   "handle": "uwcostumeclub",
+   "instagram": "https://www.instagram.com/uwcostumeclub/",
    "source": "huskylink",
    "last_event": "2026-11-06",
    "fields": [
@@ -207,6 +231,9 @@
    "category": "Other",
    "about": "The Disability and Deaf Cultural Center — also known as the D Center — is a physical and virtual community gathering…",
    "description": "The Disability and Deaf Cultural Center — also known as the D Center — is a physical and virtual community gathering space for UW students, staff, and faculty who identify as Disabled, D/deaf, or allies. We are committed to fostering a safe space for folks of all abilities to learn, socialize, and celebrate pride in community with each other.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_599699_WebsiteWelcome_c7e7713b-809c-4928-914c-62d1b6da6667_713151919.png",
+   "handle": "uwdcenter",
+   "instagram": "https://www.instagram.com/uwdcenter/",
    "source": "huskylink",
    "last_event": "2026-10-01",
    "fields": []
@@ -217,6 +244,9 @@
    "category": "Other",
    "about": "The Samuel E.",
    "description": "The Samuel E. Kelly Ethnic Cultural Center of the University of Washington is part of The Office of Minority Affairs & Diversity. The Kelly ECC has a wealth of resources and opportunities available to students including student advising, organizational development, personal growth, and referrals to different departments and programs. The Kelly ECC is an inclusive and affirming space that cultivates a transformative student experience. We serve and empower historically marginalized and underrepresented students by providing educational and cultural opportunities for holistic development.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_599712_gg700x500_1jpg_515d7df2-a78c-426f-920c-4a04fec79211_916185829.jpeg",
+   "handle": "uw_ecc",
+   "instagram": "https://www.instagram.com/uw_ecc/",
    "source": "huskylink",
    "last_event": "2026-10-01",
    "fields": []
@@ -227,6 +257,9 @@
    "category": "Cultural",
    "about": "The mission of the Filipino American Student Association at the University of Washington shall be to foster unity and…",
    "description": "The mission of the Filipino American Student Association at the University of Washington shall be to foster unity and pride among its members and surrounding community through educational, political, cultural and social advancement.",
+   "logo": null,
+   "handle": "fasasauw",
+   "instagram": "https://www.instagram.com/fasasauw/",
    "source": "huskylink",
    "last_event": "2026-10-08",
    "fields": []
@@ -237,6 +270,7 @@
    "category": "Business",
    "about": "FosterMed aims to empower students from diverse academic backgrounds to explore the intersection of business and the…",
    "description": "FosterMed aims to empower students from diverse academic backgrounds to explore the intersection of business and the healthcare industry, fostering a comprehensive perspective that considers patient wellbeing, ethics, and business sustainability.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-15",
    "fields": [
@@ -250,6 +284,7 @@
    "category": "Gaming",
    "about": "The Gaming Association at UW is the university's premiere student run alliance of gaming organizations and aims to…",
    "description": "The Gaming Association at UW is the university's premiere student run alliance of gaming organizations and aims to foster community, competitive play, and career development.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_611982__9pdX6nH_400x400jpg_64a042e1-d579-43c7-9a49-23cb62988321_1014201522.jpeg",
    "source": "huskylink",
    "last_event": "2027-04-24",
    "fields": []
@@ -260,6 +295,7 @@
    "category": "Sports",
    "about": "Our mission is to promote female weightlifting while empowering women to feel strong and beautiful in a judgmentfree…",
    "description": "Our mission is to promote female weightlifting while empowering women to feel strong and beautiful in a judgmentfree community.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-08",
    "fields": []
@@ -270,6 +306,9 @@
    "category": "Social",
    "about": "We are a casual art club focused on facilitating the visual art and writing skills needed to tell stories and produce…",
    "description": "We are a casual art club focused on facilitating the visual art and writing skills needed to tell stories and produce original works. We welcome artists and writers alike to share to join us in creating art and community bonding.",
+   "logo": null,
+   "handle": "graphicnovelsclub.uw",
+   "instagram": "https://www.instagram.com/graphicnovelsclub.uw/",
    "source": "huskylink",
    "last_event": "2026-12-08",
    "fields": [
@@ -282,6 +321,7 @@
    "category": "Arts",
    "about": "We seek to foster a community of students who are interested in the culture and expansion of Hip Hop and connect them…",
    "description": "We seek to foster a community of students who are interested in the culture and expansion of Hip Hop and connect them to the growing Northwest scene by hosting events related to the 5 pillars of Hip Hop (Breakdancing, Graffiti, DJing, MCing, & Knowledge)",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_633488_HHSA_REBRAND_WhiteOnBlack_1_76a638cf-a7bf-4e5b-8f96-d73b4995b61c_107165921.png",
    "source": "huskylink",
    "last_event": "2026-10-02",
    "fields": []
@@ -292,6 +332,7 @@
    "category": "Academic",
    "about": "We are a service group dedicated to helping the underserved youth population in the Seattle metropolitan area.",
    "description": "We are a service group dedicated to helping the underserved youth population in the Seattle metropolitan area. We accomplish this goal through education, fundraising, and service projects to make a difference in the lives of a child in need.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-27",
    "fields": []
@@ -302,6 +343,7 @@
    "category": "Service",
    "about": "We aim to pragmatically tackle barriers between imprisoned people and education through collaboration and activism in…",
    "description": "We aim to pragmatically tackle barriers between imprisoned people and education through collaboration and activism in local prisons and on the University of Washington campus.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-14",
    "fields": [
@@ -314,6 +356,7 @@
    "category": "Social",
    "about": "HFC is a club for any fan of anthropomorphic animals who is looking for an inclusive and exciting space that also…",
    "description": "HFC is a club for any fan of anthropomorphic animals who is looking for an inclusive and exciting space that also serve as a connection to the furry community at large.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_607667_20260423_Cherry_pfp_ed333695-59d2-4721-8d03-88c1c90a7083_92420361.png",
    "source": "huskylink",
    "last_event": "2026-09-29",
    "fields": []
@@ -324,6 +367,7 @@
    "category": "Arts",
    "about": "Husky Jam is an RSO dedicated to providing a space for student bands of any genre to perform music.",
    "description": "Husky Jam is an RSO dedicated to providing a space for student bands of any genre to perform music. We produce shows with performers in mind so that you can rock out to your heart's content! We have officer applications open every fall quarter and throughout the year as needed.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_615267_image_20260925_112355724_78092b84-c303-4db4-b43e-7f50ce6a9873_925142413.png",
    "source": "huskylink",
    "last_event": "2026-09-27",
    "fields": [
@@ -336,6 +380,9 @@
    "category": "Other",
    "about": "The HUB supports the Husky Experience by enhancing UW community, providing a dynamic event center, and fostering…",
    "description": "The HUB supports the Husky Experience by enhancing UW community, providing a dynamic event center, and fostering student engagement.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_599699_54511181_417637832146601_7374993682329501696_njpg_90f8a930-0ad5-4084-9763-219ca9d3a535_72112140.jpeg",
+   "handle": "hubatuw",
+   "instagram": "https://www.instagram.com/hubatuw/",
    "source": "huskylink",
    "last_event": "2026-09-28",
    "fields": []
@@ -346,6 +393,7 @@
    "category": "Sports",
    "about": "Provide fun, safe, high quality and affordable mountain experiences to skiers and snowboarders of all ability levels,…",
    "description": "Provide fun, safe, high quality and affordable mountain experiences to skiers and snowboarders of all ability levels, and to foster friendships among likeminded winter sports enthusiasts.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_636152_logo_5848209b-72c7-40bf-a9d5-a2cd12b7797f_922143513.png",
    "source": "huskylink",
    "last_event": "2026-11-02",
    "fields": []
@@ -356,6 +404,7 @@
    "category": "Academic",
    "about": "This organization, a local student chapter of INFORMS, serves to encourage interest in the fields of Operations…",
    "description": "This organization, a local student chapter of INFORMS, serves to encourage interest in the fields of Operations Research, Management Sciences, and Data Science & Analytics. All UW students are welcome to join.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-06",
    "fields": [
@@ -369,6 +418,7 @@
    "category": "Academic",
    "about": "We are the youth services student organization and resource network at the iSchool, aiming to prepare and connect…",
    "description": "We are the youth services student organization and resource network at the iSchool, aiming to prepare and connect students to their future careers.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_641156_iYouth_logo_3_a470d3b4-6693-40e4-9653-726a9fba8da9_10717116.png",
    "source": "huskylink",
    "last_event": "2026-10-13",
    "fields": [
@@ -381,6 +431,7 @@
    "category": "Social",
    "about": "We are Jsongs!",
    "description": "We are Jsongs! A place for you to discover new Japanese music from any genre and to discuss and share with friends. At our general meetings, you can share the music you love through karaoke. Occasionally we have collaborations with other clubs and have special activities! https://discord.gg/9TdNrX6W2g",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_649905_Jsongs_club_logo_74e46019-8872-4e04-bd29-03cdff9502dc_1014215.png",
    "source": "huskylink",
    "last_event": "2026-10-02",
    "fields": []
@@ -391,6 +442,7 @@
    "category": "Academic",
    "about": "A space for students to explore ideas, propose their own projects, and tackle campus and global challenges.",
    "description": "A space for students to explore ideas, propose their own projects, and tackle campus and global challenges. Our goal is to connect students with the resources and mentors to build solutions from concept to completion.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-23",
    "fields": [
@@ -403,6 +455,7 @@
    "category": "Arts",
    "about": "To build community among other fellow UW students, and promote cultural awareness by playing, studying, and performing…",
    "description": "To build community among other fellow UW students, and promote cultural awareness by playing, studying, and performing Mariachi Music.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-07",
    "fields": [
@@ -415,11 +468,23 @@
    "category": "Academic",
    "about": "Our club focuses on volunteering, shadowing opportunities, guest talks from medical professionals, and potentially…",
    "description": "Our club focuses on volunteering, shadowing opportunities, guest talks from medical professionals, and potentially assisting members in obtaining certifications such as CPR and basic health skills.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_626482_content_f793e374-4d24-481d-9afd-ff623f8d906c_106163443.png",
    "source": "huskylink",
-   "last_event": "2026-10-12",
+   "last_event": "2026-12-07",
    "fields": [
     "Health"
    ]
+  },
+  {
+   "name": "Men’s Basketball Club @ UW",
+   "website": "https://huskylink.washington.edu/mensclubbasketball/",
+   "category": "Sports",
+   "about": "Providing basketball enthusiasts at the University of Washington with an opportunity to continue their career through…",
+   "description": "Providing basketball enthusiasts at the University of Washington with an opportunity to continue their career through competitive leagues and tournaments throughout the Pacific Northwest.",
+   "logo": null,
+   "source": "huskylink",
+   "last_event": "2026-11-17",
+   "fields": []
   },
   {
    "name": "New Student and Transfer Programs",
@@ -427,6 +492,7 @@
    "category": "Other",
    "about": null,
    "description": null,
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_649314_NSTP_Square_dd5dd2a3-fa0e-47c0-bf93-3d0068bef1ce_10816710.png",
    "source": "huskylink",
    "last_event": "2026-12-08",
    "fields": []
@@ -437,6 +503,7 @@
    "category": "Academic",
    "about": "Organization dedicated to supporting the National Marrow Donor Program (NMDP) by adding young, ethnically diverse…",
    "description": "Organization dedicated to supporting the National Marrow Donor Program (NMDP) by adding young, ethnically diverse potential donors to the bone marrow and blood stem cell registry.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_643287_nmdp_logojpg_f9ec730d-0fa2-494e-8e76-a1fe9c9148ae_928143134.jpeg",
    "source": "huskylink",
    "last_event": "2026-12-08",
    "fields": [
@@ -449,6 +516,7 @@
    "category": "Academic",
    "about": "Organic Steps is UW's only organic chemistry tutor club.",
    "description": "Organic Steps is UW's only organic chemistry tutor club. Our goal is to provide academic help that is specific to student's needs.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-09",
    "fields": [
@@ -461,6 +529,7 @@
    "category": "Academic",
    "about": "To provide discussion of medical philosophy to prehealth professionals.",
    "description": "To provide discussion of medical philosophy to prehealth professionals. Here, we will try to answer “what is medicine” using a core of philosophy and approaches to modern dilemmas in medicine.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-11-02",
    "fields": [
@@ -478,7 +547,8 @@
    "last_event": "2026-11-07",
    "fields": [
     "Business"
-   ]
+   ],
+   "logo": null
   },
   {
    "name": "Project Sunshine at the University of Washington",
@@ -486,6 +556,7 @@
    "category": "Social",
    "about": "Project Sunshine is an organization that comforts and attempts to normalize inpatient pediatrics lives through the…",
    "description": "Project Sunshine is an organization that comforts and attempts to normalize inpatient pediatrics lives through the power of play! We also make cards for local hospitals and send Sending Sunshine activity kits to hospitals nationwide.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_615292_Copy_of_IG_Logojpg_d2b48403-799e-4481-81cc-6812b9230b04_102316410.jpeg",
    "source": "huskylink",
    "last_event": "2026-10-26",
    "fields": [
@@ -498,6 +569,9 @@
    "category": "Academic",
    "about": "Involving students from all backgrounds and supporting them.",
    "description": "Involving students from all backgrounds and supporting them. Creating a stimulating and motivating community of physics enthusiasts. Encouraging creativity beyond the classroom to push the boundaries of science and have fun while doing that.",
+   "logo": null,
+   "handle": "sps.uw",
+   "instagram": "https://www.instagram.com/sps.uw/",
    "source": "huskylink",
    "last_event": "2026-10-30",
    "fields": [
@@ -510,6 +584,9 @@
    "category": "Engineering",
    "about": "The SWE at UW section provides a community for students that support diversity within engineering and STEM professions.",
    "description": "The SWE at UW section provides a community for students that support diversity within engineering and STEM professions.\nOur mission is to stimulate women to achieve their full potential in careers as engineers and leaders.",
+   "logo": null,
+   "handle": "uwswe",
+   "instagram": "https://www.instagram.com/uwswe/",
    "source": "huskylink",
    "last_event": "2026-10-07",
    "fields": [
@@ -522,6 +599,7 @@
    "category": "Other",
    "about": null,
    "description": null,
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_599699_SAO_2023_Logo_2jpg_bb8971d4-cc5c-4f90-a22c-668661b2c1fd_79122621.jpeg",
    "source": "huskylink",
    "last_event": "2026-12-10",
    "fields": []
@@ -532,6 +610,7 @@
    "category": "Service",
    "about": "Our club wants to create an educated community full of mushroom enthusiasts and people who care about the environment.",
    "description": "Our club wants to create an educated community full of mushroom enthusiasts and people who care about the environment.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-15",
    "fields": [
@@ -544,6 +623,7 @@
    "category": "Service",
    "about": "SEI is a group of undergraduate students working to establish a Sustainability General Education Requirement on campus.",
    "description": "SEI is a group of undergraduate students working to establish a Sustainability General Education Requirement on campus.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-22",
    "fields": [
@@ -556,6 +636,7 @@
    "category": "Engineering",
    "about": "Synaptech is an engineering RSO dedicated to advancing neurotechnology through hands-on student projects and…",
    "description": "Synaptech is an engineering RSO dedicated to advancing neurotechnology through hands-on student projects and interdisciplinary education. We focus on developing real-world applications using neural interfaces while exploring the vital intersections of neuroscience, neural engineering, and neuroethics. By providing accessible hardware resources and fostering a collaborative community, we empower students to transform their ideas into impactful innovations. We're open to everyone, from all majors!",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_623903_bannercompactsquare_a757222c-c1d0-4a2a-bc01-04118c641912_926191226.png",
    "source": "huskylink",
    "last_event": "2026-10-01",
    "fields": [
@@ -569,6 +650,7 @@
    "category": "Arts",
    "about": "Taiko Kai’s purpose is to celebrate and share the traditional Japanese performing art of taiko drumming across all…",
    "description": "Taiko Kai’s purpose is to celebrate and share the traditional Japanese performing art of taiko drumming across all communities by educating each other on the artform and cultural significance. UW students can join regardless of experience or background; we aim to nurture everyone's curiosity about taiko. Taiko Kai offers holistic development through providing a variety of opportunities for members to be involved: typical practices for honing drumming techniques, the maintenance and care of our equipment, creative work such as uniform-making and designing promotional material, and experiencing the range of venues and organizations that invite us to perform for them. Through our efforts to bring taiko to all audiences while providing the space for members to contribute how they want to, we've cultivated a space that upholds our values of inclusivity and empowerment.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_635234_taiko_kai_logo_text_red_54d412d9-7892-4857-b3ba-e92214684ae4_92722229.png",
    "source": "huskylink",
    "last_event": "2026-10-10",
    "fields": []
@@ -579,6 +661,7 @@
    "category": "Social",
    "about": "The Women’s Network is an organization that encourages and promotes the empowerment of women.",
    "description": "The Women’s Network is an organization that encourages and promotes the empowerment of women. The mission of the club is to inspire and empower women of all ages, backgrounds and interests to act on their own ambitions.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-10-28",
    "fields": []
@@ -589,9 +672,25 @@
    "category": "Cultural",
    "about": "The Tzu Chi Collegiate Association at Seattle (Seattle & UW Tzu Ching) is the servicebased collegiate organization…",
    "description": "The Tzu Chi Collegiate Association at Seattle (Seattle & UW Tzu Ching) is the servicebased collegiate organization that carries out the missions of the Tzu Chi Foundation. The Tzu Ching club provides an opportunity for volunteer work in the local area.",
+   "logo": null,
+   "handle": "tzuching_seattle",
+   "instagram": "https://www.instagram.com/tzuching_seattle/",
    "source": "huskylink",
    "last_event": "2026-10-15",
    "fields": []
+  },
+  {
+   "name": "Undergraduate Theater Society",
+   "website": "https://undergraduatetheatersociety.wordpress.com/",
+   "category": "Arts",
+   "about": "The Undergraduate Theater Society works to support and expand the academic theater community within the UW…",
+   "description": "The Undergraduate Theater Society works to support and expand the academic theater community within the UW undergraduate community and the UW School of Drama. We strive to offer rich artistic and practical opportunities to the undergraduate theater community at the University of Washington by providing human, financial, and technical resources. By producing engaging theatre, we strive to explore the lived experiences of our diverse world.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_627845_Generic_UTS_Cover_Photojpg_c669de04-075c-44b9-a4db-cf476dcfa567_102722730.jpeg",
+   "source": "huskylink",
+   "last_event": "2026-11-06",
+   "fields": [
+    "Arts & Humanities"
+   ]
   },
   {
    "name": "United Nations Association University of Washington Chapter",
@@ -599,6 +698,7 @@
    "category": "Service",
    "about": "We are dedicated to educating, inspiring, and mobilizing students to support the principles and vital work of the UN…",
    "description": "We are dedicated to educating, inspiring, and mobilizing students to support the principles and vital work of the UN and strengthen the UN system. We advocate for the UN, stand up for human rights, and learn how to meet UN sustainability goals.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-12-09",
    "fields": [
@@ -622,6 +722,7 @@
    "category": "Service",
    "about": "Animal Advocacy at UW as a goal of creating a strong community of students passionate about reducing animal cruelty.",
    "description": "Animal Advocacy at UW as a goal of creating a strong community of students passionate about reducing animal cruelty. We welcome everyone.",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-11-16",
    "fields": []
@@ -632,6 +733,9 @@
    "category": "Cultural",
    "about": "The Vietnamese Student Association serves to promote and preserve the Vietnamese culture at the University of…",
    "description": "The Vietnamese Student Association serves to promote and preserve the Vietnamese culture at the University of Washington and its surrounding communities through cultural, social, and educational events.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_609111_Screenshot_20260929_at_113117AM_fd8cbba3-4f45-4073-bfba-650e0844d244_929143245.png",
+   "handle": "vsauw",
+   "instagram": "https://www.instagram.com/vsauw/",
    "source": "huskylink",
    "last_event": "2026-10-05",
    "fields": []
@@ -642,6 +746,9 @@
    "category": "Service",
    "about": "WashPIRG is a a nonpartisan, studentrun organization dedicated to making a difference on issues students care about.",
    "description": "WashPIRG is a a nonpartisan, studentrun organization dedicated to making a difference on issues students care about. We give students the skills and opportunities to mobilize and advocate for social change.\nGet involved at washpirgstudents.org!",
+   "logo": null,
+   "handle": "washpirg_uw",
+   "instagram": "https://www.instagram.com/washpirg_uw/",
    "source": "huskylink",
    "last_event": "2026-12-07",
    "fields": [
@@ -654,6 +761,7 @@
    "category": "Gaming",
    "about": "Our purpose is to build a community of Magic: The Gathering players at UW and to run weekly events encompassing a…",
    "description": "Our purpose is to build a community of Magic: The Gathering players at UW and to run weekly events encompassing a variety of different formats. Join the discord to learn more about how to get involved here https://discord.gg/Mfmg84f",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_625493_uw_wgajpg_63a5e8b3-7975-4ff9-ae8a-d4a05c308bf8_10921544.jpeg",
    "source": "huskylink",
    "last_event": "2027-06-02",
    "fields": []
@@ -664,6 +772,9 @@
    "category": "Service",
    "about": "WECARE works to empower women globally through expanding resources for health, education, and more.",
    "description": "WECARE works to empower women globally through expanding resources for health, education, and more. We aim to create an environment where students from all backgrounds and identities can gain a sense of community together between shared values. Through workshops, outreach, and collaborations with community partners, we aim to close knowledge gaps and reduce stigma surrounding topics that are often overlooked in traditional education. We understand that education is empowerment. WECARE is one of the founding RSOs of the Pregnancy Test Access Project, bringing free pregnancy tests to UW's campus, available for all students! More info on our Instagram @wecareuw.",
+   "logo": null,
+   "handle": "wecareuw",
+   "instagram": "https://www.instagram.com/wecareuw/",
    "source": "huskylink",
    "last_event": "2026-10-27",
    "fields": [
@@ -676,6 +787,7 @@
    "category": "Engineering",
    "about": "As the 3D printing club at UW, we provide a hub for anyone interested in 3D printing.",
    "description": "As the 3D printing club at UW, we provide a hub for anyone interested in 3D printing. Whether you're a beginner or an expert, we have something for everyone. Experience is not required, and neither is any time commitment. During Fall Quarter, we hold weekly workshops mostly aimed towards beginners. These will teach the basics of 3D modeling in OnShape, as well as how to print using the club printers. We also provide members with the opportunity to work on a larger scale 3D printing project with other members throughout the year. Joining a team is not required, but it is a good way to get hands on experience and learn more about hardware and software in the process. Check out our website to learn more!",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_603000_woof3dLogo_1_4e4190c3-a428-4e25-a002-6b11e159b346_923174426.png",
    "source": "huskylink",
    "last_event": "2026-12-07",
    "fields": [
@@ -689,6 +801,7 @@
    "category": "Social",
    "about": "Interested in creative writing?",
    "description": "Interested in creative writing? We create a positive, casual space where people interested in a variety of forms of creative writing can meet and provide each other with support and feedback. Bring something to share or just come to chat! :)",
+   "logo": null,
    "source": "huskylink",
    "last_event": "2026-12-07",
    "fields": [
