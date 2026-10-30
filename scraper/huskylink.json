@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T19:43",
+ "updated": "2026-10-29T17:53",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -33,8 +33,8 @@
    "name": "Academy of General Dentistry ( AGD ) Student Chapter at University of Washington School of Dentistry",
    "website": "https://www.instagram.com/wagduw?igsh=MXA2MnVjYnZ1cHVt",
    "category": "Academic",
-   "about": "The purpose is to serve the needs and represent the interests of\\r\\ndental students, to further their educational…",
-   "description": "The purpose is to serve the needs and represent the interests of\\r\\ndental students, to further their educational needs and goals, to foster camaraderie among the\\r\\nmembers, and to encourage continued membership in the AGD."
+   "about": "The purpose is to serve the needs and represent the interests of",
+   "description": "The purpose is to serve the needs and represent the interests of\ndental students, to further their educational needs and goals, to foster camaraderie among the\nmembers, and to encourage continued membership in the AGD."
   },
   {
    "name": "Academy of Managed Care Pharmacy",
@@ -97,7 +97,7 @@
    "website": "https://huskylink.washington.edu/addictionmedicineinterestgroup/",
    "category": "Academic",
    "about": "The Addiction Medicine Interest Group is an interest group at the University of Washington School of Medicine that…",
-   "description": "The Addiction Medicine Interest Group is an interest group at the University of Washington School of Medicine that provides opportunities for education and advocacy relating to substance use disorder, addiction medicine, and harm reduction.\\r\\n"
+   "description": "The Addiction Medicine Interest Group is an interest group at the University of Washington School of Medicine that provides opportunities for education and advocacy relating to substance use disorder, addiction medicine, and harm reduction."
   },
   {
    "name": "Adelpos",
@@ -111,7 +111,7 @@
    "website": "https://www.aruw.org",
    "category": "Engineering",
    "about": "We do not accept applications from this website (HuskyLink).",
-   "description": "We do not accept applications from this website (HuskyLink). For inquiries or to apply, please visit aruw.org.\\r\\n\\r\\nARUW is a competitive robotics team of over 70 students designing, building, and programming robots for the RoboMaster competition."
+   "description": "We do not accept applications from this website (HuskyLink). For inquiries or to apply, please visit aruw.org.\nARUW is a competitive robotics team of over 70 students designing, building, and programming robots for the RoboMaster competition."
   },
   {
    "name": "Advancing Husky Artistry",
@@ -139,7 +139,7 @@
    "website": "https://huskylink.washington.edu/acsa/",
    "category": "Cultural",
    "about": "African Caribbean Student Association is an organization to welcome all African and Caribbean students on campus.",
-   "description": "African Caribbean Student Association is an organization to welcome all African and Caribbean students on campus. We strive to Promotion cultural exchange within different African and Caribbean national and cultural groups as well as educate.\\r\\n"
+   "description": "African Caribbean Student Association is an organization to welcome all African and Caribbean students on campus. We strive to Promotion cultural exchange within different African and Caribbean national and cultural groups as well as educate."
   },
   {
    "name": "African Youth Research Program",
@@ -356,7 +356,7 @@
    "website": "https://huskylink.washington.edu/aawd/",
    "category": "Academic",
    "about": "The American Association of Women Dentists UW Chapter aims to uplift women in dentistry by holding networking events,…",
-   "description": "The American Association of Women Dentists UW Chapter aims to uplift women in dentistry by holding networking events, women’s history month events, and lunch &amp; learns to highlight some of the impactful women in our local dental community.\\r\\n"
+   "description": "The American Association of Women Dentists UW Chapter aims to uplift women in dentistry by holding networking events, women’s history month events, and lunch &amp; learns to highlight some of the impactful women in our local dental community."
   },
   {
    "name": "American Cancer Society On Campus",
@@ -419,7 +419,7 @@
    "website": "https://www.uwama.com/",
    "category": "Business",
    "about": "To unleash the potential of students by providing them with marketingrelated resources to develop a future…",
-   "description": "To unleash the potential of students by providing them with marketingrelated resources to develop a future professional career while attending college. We cultivate students’ passion for marketing, foster relationships with professional endeavors.\\r\\n"
+   "description": "To unleash the potential of students by providing them with marketingrelated resources to develop a future professional career while attending college. We cultivate students’ passion for marketing, foster relationships with professional endeavors."
   },
   {
    "name": "American Medical Women’s Association UW Branch",
@@ -454,7 +454,7 @@
    "website": "https://huskylink.washington.edu/redcross/",
    "category": "Academic",
    "about": "The American Red Cross at UW is an affiliated chapter of the national humanitarian organization, focusing on emergency…",
-   "description": "The American Red Cross at UW is an affiliated chapter of the national humanitarian organization, focusing on emergency relief and disaster preparedness. Our RSO holds blood drives, CPR/First Aid training, disaster preparedness education, and more!\\r\\n\\r\\n"
+   "description": "The American Red Cross at UW is an affiliated chapter of the national humanitarian organization, focusing on emergency relief and disaster preparedness. Our RSO holds blood drives, CPR/First Aid training, disaster preparedness education, and more!"
   },
   {
    "name": "American Sign Language Club at University of Washington",
@@ -510,14 +510,14 @@
    "website": "http://students.washington.edu/awra/",
    "category": "Service",
    "about": "To provide University of Washington students a chance for professional growth, learning, and connections in the…",
-   "description": "To provide University of Washington students a chance for professional growth, learning, and connections in the hydrological sector and related fields.\\r\\n"
+   "description": "To provide University of Washington students a chance for professional growth, learning, and connections in the hydrological sector and related fields."
   },
   {
    "name": "Amnesty International UW",
    "website": "http://www.amnestyusa.org/",
    "category": "Service",
-   "about": "We campaign for a world where human rights are enjoyed by all.\\r\\n",
-   "description": "We campaign for a world where human rights are enjoyed by all.\\r\\n"
+   "about": "We campaign for a world where human rights are enjoyed by all.",
+   "description": "We campaign for a world where human rights are enjoyed by all."
   },
   {
    "name": "AnakbayanUW",
@@ -573,14 +573,14 @@
    "website": "https://huskylink.washington.edu/animenationuw/",
    "category": "Social",
    "about": "Anime Nation is an inclusive, friendly community dedicated to creating and promoting spaces for people who enjoy or…",
-   "description": "Anime Nation is an inclusive, friendly community dedicated to creating and promoting spaces for people who enjoy or are passionate about anime/otaku culture to befriend and socialize \\r\\n\\r\\nWe host/help bring huge events to the UW/Seattle otaku community!"
+   "description": "Anime Nation is an inclusive, friendly community dedicated to creating and promoting spaces for people who enjoy or are passionate about anime/otaku culture to befriend and socialize\nWe host/help bring huge events to the UW/Seattle otaku community!"
   },
   {
    "name": "Anti Cinema Cinema Club",
    "website": "https://discord.gg/M274typ",
    "category": "Social",
-   "about": "The club 💃🎊🕺 for laughing at 😂🤣 / loving 😍💋 so \"bad 😡👎 that it's good\" 🤗👍 movies 📽️🎬\\r\\n Possibly the only movie…",
-   "description": "The club 💃🎊🕺 for laughing at 😂🤣 / loving 😍💋 so \"bad 😡👎 that it's good\" 🤗👍 movies 📽️🎬\\r\\n Possibly the only movie related club at UW 😳 Certainly the best 🥵🔥💯\\r\\n\\r\\nInstagram: https://www.instagram.com/acccuw\\r\\nDiscord: discord.gg/M27"
+   "about": "The club 💃🎊🕺 for laughing at 😂🤣 / loving 😍💋 so \"bad 😡👎 that it's good\" 🤗👍 movies 📽️🎬",
+   "description": "The club 💃🎊🕺 for laughing at 😂🤣 / loving 😍💋 so \"bad 😡👎 that it's good\" 🤗👍 movies 📽️🎬\nPossibly the only movie related club at UW 😳 Certainly the best 🥵🔥💯\nInstagram: https://www.instagram.com/acccuw\nDiscord: discord.gg/M27"
   },
   {
    "name": "AntiAI AI Club",
@@ -601,7 +601,7 @@
    "website": "https://huskylink.washington.edu/amathclub/",
    "category": "Academic",
    "about": "Applied Mathematics Club devotes building an active and inclusive community for people interested in applied math,…",
-   "description": "Applied Mathematics Club devotes building an active and inclusive community for people interested in applied math, computational finance, statistics, etc.\\r\\n"
+   "description": "Applied Mathematics Club devotes building an active and inclusive community for people interested in applied math, computational finance, statistics, etc."
   },
   {
    "name": "Arab Student Association at The University of Washington",
@@ -621,8 +621,8 @@
    "name": "Archaeology Club at the University of Washington",
    "website": "https://huskylink.washington.edu/archaeologyclub/",
    "category": "Academic",
-   "about": "To expand interest and experience within archeological fields, including educational and experimental excursions.\\r\\n",
-   "description": "To expand interest and experience within archeological fields, including educational and experimental excursions.\\r\\n"
+   "about": "To expand interest and experience within archeological fields, including educational and experimental excursions.",
+   "description": "To expand interest and experience within archeological fields, including educational and experimental excursions."
   },
   {
    "name": "Armenian Student Association at the University of Washington",
@@ -657,7 +657,7 @@
    "website": "http://linktr.ee/uwascend",
    "category": "Business",
    "about": "Ascend UW enables aspiring leaders to connect with professionals and support Asian and Pacific Islander (API)*…",
-   "description": "Ascend UW enables aspiring leaders to connect with professionals and support Asian and Pacific Islander (API)* students in Business and STEM fields through professional and leadership development. \\r\\n\\r\\n*All identities are welcome."
+   "description": "Ascend UW enables aspiring leaders to connect with professionals and support Asian and Pacific Islander (API)* students in Business and STEM fields through professional and leadership development.\n*All identities are welcome."
   },
   {
    "name": "ASHRAE Chapter at University of Washington",
@@ -706,7 +706,7 @@
    "website": "https://discord.gg/mdah7ymben",
    "category": "Social",
    "about": "A24: Asian cinema 24/7 is a studentled film club dedicated to celebrating the rich and diverse world of Asian cinema.",
-   "description": "A24: Asian cinema 24/7 is a studentled film club dedicated to celebrating the rich and diverse world of Asian cinema. We host weekly screenings of films from across Asia, spanning different eras, genres, and cultures.\\r\\n"
+   "description": "A24: Asian cinema 24/7 is a studentled film club dedicated to celebrating the rich and diverse world of Asian cinema. We host weekly screenings of films from across Asia, spanning different eras, genres, and cultures."
   },
   {
    "name": "Asian Dental Student Association",
@@ -720,7 +720,7 @@
    "website": "https://huskylink.washington.edu/allgsa/",
    "category": "Academic",
    "about": "We are the graduate Students at the Department of Asian Languages &amp; Literature.",
-   "description": "We are the graduate Students at the Department of Asian Languages &amp; Literature. We provide a space of community for Asian languages &amp; literature graduate students to support each other in their academic and social lives.\\r\\n"
+   "description": "We are the graduate Students at the Department of Asian Languages &amp; Literature. We provide a space of community for Asian languages &amp; literature graduate students to support each other in their academic and social lives."
   },
   {
    "name": "Asian Nursing Student Association at University of Washington School of Nursing",
@@ -832,7 +832,7 @@
    "website": "https://huskylink.washington.edu/ams/",
    "category": "Academic",
    "about": "The goal of this organization is to help connect stem students at UW with various medical professionals.",
-   "description": "The goal of this organization is to help connect stem students at UW with various medical professionals. This organization will reach out to doctors and organizations, and conduct group interviews and field trips to their offices.\\r\\n"
+   "description": "The goal of this organization is to help connect stem students at UW with various medical professionals. This organization will reach out to doctors and organizations, and conduct group interviews and field trips to their offices."
   },
   {
    "name": "Association of Native American Medical Students UW Chapter",
@@ -1112,7 +1112,7 @@
    "website": "https://huskylink.washington.edu/beekeepingclub/",
    "category": "Service",
    "about": "BEE cool, hang out with the bees!!",
-   "description": "BEE cool, hang out with the bees!! We have 3 hives located at the UW farm. Looking forward to harvesting honey and wax this spring! Beekeeping club aims to provide beekeeping related education, formal/informal classes, and research opportunities.\\r\\n"
+   "description": "BEE cool, hang out with the bees!! We have 3 hives located at the UW farm. Looking forward to harvesting honey and wax this spring! Beekeeping club aims to provide beekeeping related education, formal/informal classes, and research opportunities."
   },
   {
    "name": "Bengali Students Association",
@@ -1315,14 +1315,14 @@
    "website": "https://huskylink.washington.edu/uwbjj/",
    "category": "Sports",
    "about": "To practice Brazilian JiuJitsu with those who enjoy it.",
-   "description": "To practice Brazilian JiuJitsu with those who enjoy it. \\r\\n\\r\\nPlease contact us through our facebook page or discord for best results!"
+   "description": "To practice Brazilian JiuJitsu with those who enjoy it.\nPlease contact us through our facebook page or discord for best results!"
   },
   {
    "name": "Brazilian Student Association at the University of Washington",
    "website": "https://huskylink.washington.edu/brasa/",
    "category": "Cultural",
-   "about": "The Brazilian Student Association at the University of Washington supports Brazilian and Brazilaffiliated students,…",
-   "description": "The Brazilian Student Association at the University of Washington supports Brazilian and Brazilaffiliated students, fostering connections through cultural events, workshops, and global networks. We promote diversity, collaboration, and communal learning"
+   "about": "The Brazilian Student Association at the University of Washington supports Brazilian and Brazil affiliated students,…",
+   "description": "The Brazilian Student Association at the University of Washington supports Brazilian and Brazil affiliated students, fostering connections through cultural events, workshops, and global networks. We promote diversity, collaboration, and communal learning"
   },
   {
    "name": "Breakfast Ball Golf Club",
@@ -1483,7 +1483,7 @@
    "website": "https://linktr.ee/uwcsquared",
    "category": "Business",
    "about": "The Case Club (CSquared) at the University of Washington's goal is to teach members the critical public speaking,…",
-   "description": "The Case Club (CSquared) at the University of Washington's goal is to teach members the critical public speaking, slide making, analysis, teamwork and leadership skills so they can apply them to internal and external case competitions.\\r\\n"
+   "description": "The Case Club (CSquared) at the University of Washington's goal is to teach members the critical public speaking, slide making, analysis, teamwork and leadership skills so they can apply them to internal and external case competitions."
   },
   {
    "name": "Catholic Newman Center at the UW",
@@ -1553,7 +1553,7 @@
    "website": "https://chanoyuclub.wordpress.com/",
    "category": "Cultural",
    "about": "The mission of Chanoyu Club is to promote the study and practice of Japanese Tea Ceremony, and the 4 key values of…",
-   "description": "The mission of Chanoyu Club is to promote the study and practice of Japanese Tea Ceremony, and the 4 key values of Chanoyu: 和(harmony), 敬(respect), 清(purity), and 寂(tranquility).\\r\\n"
+   "description": "The mission of Chanoyu Club is to promote the study and practice of Japanese Tea Ceremony, and the 4 key values of Chanoyu: 和(harmony), 敬(respect), 清(purity), and 寂(tranquility)."
   },
   {
    "name": "ChemECar at UW",
@@ -1637,7 +1637,7 @@
    "website": "https://huskylink.washington.edu/adopteecircleuw/",
    "category": "Cultural",
    "about": "The Chinese Adoptee Circle at the UW connects students adopted from China.",
-   "description": "The Chinese Adoptee Circle at the UW connects students adopted from China. Through shared experiences, events, and hangouts, we foster a supportive community where members can build meaningful bonds and explore identity together.\\r\\n"
+   "description": "The Chinese Adoptee Circle at the UW connects students adopted from China. Through shared experiences, events, and hangouts, we foster a supportive community where members can build meaningful bonds and explore identity together."
   },
   {
    "name": "Chinese Covenant at the University of Washington",
@@ -1693,7 +1693,7 @@
    "website": "http://christianstudentsuw.org",
    "category": "Cultural",
    "about": "The purpose of this club is to promote Christian fellowship and communication on campus.",
-   "description": "The purpose of this club is to promote Christian fellowship and communication on campus. \\r\\n"
+   "description": "The purpose of this club is to promote Christian fellowship and communication on campus."
   },
   {
    "name": "Christians in Seattle",
@@ -1728,14 +1728,14 @@
    "website": "https://huskylink.washington.edu/climatecollaboratory/",
    "category": "Service",
    "about": "A student organization focused on bringing together students from various disciplines to collectively engage with…",
-   "description": "A student organization focused on bringing together students from various disciplines to collectively engage with climate and environmental issues.\\r\\n"
+   "description": "A student organization focused on bringing together students from various disciplines to collectively engage with climate and environmental issues."
   },
   {
    "name": "Climbing Club at the University of Washington",
    "website": "https://huskylink.washington.edu/climb/",
    "category": "Sports",
    "about": "The Climbing Club is an organization focusing on rock and ice climbing, mountaineering, scrambling, hiking,…",
-   "description": "The Climbing Club is an organization focusing on rock and ice climbing, mountaineering, scrambling, hiking, snowshoeing, and any other mountain sport. Our focus is to get people outside through our events. If it's on a mountain, we probably do it! \\r\\n\\r\\n"
+   "description": "The Climbing Club is an organization focusing on rock and ice climbing, mountaineering, scrambling, hiking, snowshoeing, and any other mountain sport. Our focus is to get people outside through our events. If it's on a mountain, we probably do it!"
   },
   {
    "name": "Climbing Team at the University of Washington",
@@ -1909,8 +1909,8 @@
    "name": "Crafticians",
    "website": "https://huskylink.washington.edu/crafticians/",
    "category": "Social",
-   "about": "Crafticians is a club dedicated to providing a supportive space where graduate students can\\r\\ntake time away from…",
-   "description": "Crafticians is a club dedicated to providing a supportive space where graduate students can\\r\\ntake time away from academic pressures to pursue their creative hobbies."
+   "about": "Crafticians is a club dedicated to providing a supportive space where graduate students can",
+   "description": "Crafticians is a club dedicated to providing a supportive space where graduate students can\ntake time away from academic pressures to pursue their creative hobbies."
   },
   {
    "name": "Creating a Company at UW",
@@ -2057,7 +2057,7 @@
    "website": "https://www.deltachi.org/",
    "category": "Social",
    "about": "The members of the Delta Chi Fraternity believe that great advantages are derived through brotherhood; by promoting…",
-   "description": "The members of the Delta Chi Fraternity believe that great advantages are derived through brotherhood; by promoting friendship, developing character, advancing justice, and assisting in education, we inspire our members daily to be men of action.\\r\\n"
+   "description": "The members of the Delta Chi Fraternity believe that great advantages are derived through brotherhood; by promoting friendship, developing character, advancing justice, and assisting in education, we inspire our members daily to be men of action."
   },
   {
    "name": "Delta Delta Delta",
@@ -2154,8 +2154,8 @@
    "name": "Dental Class of 2028 at UW",
    "website": "https://huskylink.washington.edu/dental2028/",
    "category": "Academic",
-   "about": "This organization represents members of the Dental Class of 2028 at the University of Washington.\\r\\n",
-   "description": "This organization represents members of the Dental Class of 2028 at the University of Washington.\\r\\n"
+   "about": "This organization represents members of the Dental Class of 2028 at the University of Washington.",
+   "description": "This organization represents members of the Dental Class of 2028 at the University of Washington."
   },
   {
    "name": "Dental Class of 2029 at UW",
@@ -2350,15 +2350,15 @@
    "name": "Emergency Medicine Interest Group",
    "website": null,
    "category": "Academic",
-   "about": "EMIG is a studentrun organization within UWSOM whose goals are to introduce students to emergency medicine and to…",
-   "description": "EMIG is a studentrun organization within UWSOM whose goals are to introduce students to emergency medicine and to stimulate interest in this exciting field. In general, the club's activities consist of organizing skill"
+   "about": "EMIG is a student run organization within UWSOM whose goals are to introduce students to emergency medicine and to…",
+   "description": "EMIG is a student run organization within UWSOM whose goals are to introduce students to emergency medicine and to stimulate interest in this exciting field. In general, the club's activities consist of organizing skills, leadership, and emergency medicine."
   },
   {
    "name": "End Overdose",
    "website": "http://endoverdose.net",
    "category": "Service",
    "about": "End Overdose is a nonprofit based out of Los Angeles, California.",
-   "description": "End Overdose is a nonprofit based out of Los Angeles, California. Our goal is to end overdoserelated deaths through harm reduction training and the distribution of resources such as Narcan and Fentanyl testing strips.\\r\\n"
+   "description": "End Overdose is a nonprofit based out of Los Angeles, California. Our goal is to end overdoserelated deaths through harm reduction training and the distribution of resources such as Narcan and Fentanyl testing strips."
   },
   {
    "name": "Engineering Horizons Club At UW",
@@ -2547,7 +2547,7 @@
    "website": "https://huskylink.washington.edu/filamsacbe/",
    "category": "Academic",
    "about": "FilAm sa CBE is a studentled affinity group and RSO for Filipino and FilipinoAmerican students within the College of…",
-   "description": "FilAm sa CBE is a studentled affinity group and RSO for Filipino and FilipinoAmerican students within the College of Built Environments. We are current students, alumni, and scholars who are passionate about community,\\r\\nculture, and design."
+   "description": "FilAm sa CBE is a studentled affinity group and RSO for Filipino and FilipinoAmerican students within the College of Built Environments. We are current students, alumni, and scholars who are passionate about community,\nculture, and design."
   },
   {
    "name": "Filipino American Student Association",
@@ -2602,8 +2602,8 @@
    "name": "First Love at UW",
    "website": "https://huskylink.washington.edu/fluw/",
    "category": "Cultural",
-   "about": "The purpose of the FL@UW includes the following:\\r\\n To give students an opportunity to find Christ in their youth at…",
-   "description": "The purpose of the FL@UW includes the following:\\r\\n To give students an opportunity to find Christ in their youth at the University of Washington.\\r\\n To offer a platform for training students to serve Christ at the"
+   "about": "The purpose of the FL@UW includes the following:",
+   "description": "The purpose of the FL@UW includes the following:\nTo give students an opportunity to find Christ in their youth at the University of Washington.\nTo offer a platform for training students to serve Christ at the"
   },
   {
    "name": "First Nations at UW",
@@ -2616,8 +2616,8 @@
    "name": "Fish and Turtle Club",
    "website": "https://huskylink.washington.edu/fishtrtl/",
    "category": "Service",
-   "about": "Fish & Turtle's main goal at the University of Washington is to promote marine life welfare\\r\\nand build a community…",
-   "description": "Fish & Turtle's main goal at the University of Washington is to promote marine life welfare\\r\\nand build a community embracing environmental awareness. The Fish & Turtle club works to support others and promote inclusivity and environmentalism."
+   "about": "Fish & Turtle's main goal at the University of Washington is to promote marine life welfare",
+   "description": "Fish & Turtle's main goal at the University of Washington is to promote marine life welfare\nand build a community embracing environmental awareness. The Fish & Turtle club works to support others and promote inclusivity and environmentalism."
   },
   {
    "name": "Fishing Club @ UW",
@@ -2638,7 +2638,7 @@
    "website": "https://huskylink.washington.edu/fitted/",
    "category": "Social",
    "about": "fitted.",
-   "description": "fitted. strives to establish a cohesive and inclusive platform for the fashionminded at the University of Washington by cultivating greater connections in the community through campuswide events and meaningful online presence.\\r\\n\\r\\n"
+   "description": "fitted. strives to establish a cohesive and inclusive platform for the fashionminded at the University of Washington by cultivating greater connections in the community through campuswide events and meaningful online presence."
   },
   {
    "name": "FOOS at UW",
@@ -2652,7 +2652,7 @@
    "website": "https://huskylink.washington.edu/fisatuw/",
    "category": "Social",
    "about": "Our aim is to create a support group for students at UW who have been justiceimpacted.",
-   "description": "Our aim is to create a support group for students at UW who have been justiceimpacted. It will be a place where students can lean on one another, and share resources.\\r\\n"
+   "description": "Our aim is to create a support group for students at UW who have been justiceimpacted. It will be a place where students can lean on one another, and share resources."
   },
   {
    "name": "Formula Motorsports",
@@ -2701,7 +2701,7 @@
    "website": "https://huskylink.washington.edu/operationsmanagement/",
    "category": "Business",
    "about": "The mission of the Operations Management Club is to prepare Foster MBAs to be innovators in production and business…",
-   "description": "The mission of the Operations Management Club is to prepare Foster MBAs to be innovators in production and business process management and expose students to real world applications of operations systems.\\r\\n"
+   "description": "The mission of the Operations Management Club is to prepare Foster MBAs to be innovators in production and business process management and expose students to real world applications of operations systems."
   },
   {
    "name": "Foster School of Business",
@@ -2813,7 +2813,7 @@
    "website": "http://uwgamma.wixsite.com/genuinegammas",
    "category": "Social",
    "about": "We are a multicultural organization that exists to increase the number of women with a college education and to…",
-   "description": "We are a multicultural organization that exists to increase the number of women with a college education and to enhance the individual leader in each member. Volunteerism, both short and longterm, is a cornerstone of our organization.\\r\\n​"
+   "description": "We are a multicultural organization that exists to increase the number of women with a college education and to enhance the individual leader in each member. Volunteerism, both short and longterm, is a cornerstone of our organization.\n​"
   },
   {
    "name": "Gamma Phi Beta, Lambda Chapter",
@@ -2834,7 +2834,7 @@
    "website": "https://huskylink.washington.edu/gwssrso/",
    "category": "Academic",
    "about": "Rooted in the feminist tradition of communal organizing, the GWSS RSO aims to organize events and build kinship…",
-   "description": "Rooted in the feminist tradition of communal organizing, the GWSS RSO aims to organize events and build kinship amongst students devoted to feminist, queer, and intersectional work.\\r\\n"
+   "description": "Rooted in the feminist tradition of communal organizing, the GWSS RSO aims to organize events and build kinship amongst students devoted to feminist, queer, and intersectional work."
   },
   {
    "name": "Geography Graduate Student Association",
@@ -2932,7 +2932,7 @@
    "website": "https://huskylink.washington.edu/gssa/",
    "category": "Academic",
    "about": "Global Surgery Student Alliance is the national studentrun global surgery working group for the U.S., affiliated with…",
-   "description": "Global Surgery Student Alliance is the national studentrun global surgery working group for the U.S., affiliated with InciSioN (the International Student Surgical Network).\\r\\n"
+   "description": "Global Surgery Student Alliance is the national studentrun global surgery working group for the U.S., affiliated with InciSioN (the International Student Surgical Network)."
   },
   {
    "name": "GO FOR GO",
@@ -3016,7 +3016,7 @@
    "website": "https://greymattersjournal.org/",
    "category": "Academic",
    "about": "We are a neuroscience outreach organization founded on the core belief that science education should be accessible to…",
-   "description": "We are a neuroscience outreach organization founded on the core belief that science education should be accessible to everyone, regardless of educational background. We publish highquality, quarterly neuroscience journals and host exciting events!\\r\\n"
+   "description": "We are a neuroscience outreach organization founded on the core belief that science education should be accessible to everyone, regardless of educational background. We publish highquality, quarterly neuroscience journals and host exciting events!"
   },
   {
    "name": "GRIT LIFT Bodybuilding Club @UW",
@@ -3051,7 +3051,7 @@
    "website": "https://huskylink.washington.edu/uwhackysack/",
    "category": "Sports",
    "about": "Our mission is to create fun and chill space for people to enjoy the game of hacky sack.",
-   "description": "Our mission is to create fun and chill space for people to enjoy the game of hacky sack. All skill levels are welcome. Come hack with us! @uwhackysack on Instagram > follow usssss\\r\\n\\r\\nEmail me your email to get on the mailing list !"
+   "description": "Our mission is to create fun and chill space for people to enjoy the game of hacky sack. All skill levels are welcome. Come hack with us! @uwhackysack on Instagram > follow usssss\nEmail me your email to get on the mailing list !"
   },
   {
    "name": "Han Chinese Cultural Association",
@@ -3275,7 +3275,7 @@
    "website": "http://uwhps.com",
    "category": "Engineering",
    "about": "HPS is an engineering RSO that designs, builds, and races human powered submarines.",
-   "description": "HPS is an engineering RSO that designs, builds, and races human powered submarines. Every year we compete against teams from around the world in the International Submarine Races.\\r\\n"
+   "description": "HPS is an engineering RSO that designs, builds, and races human powered submarines. Every year we compete against teams from around the world in the International Submarine Races."
   },
   {
    "name": "Humans vs. Zombies Tag",
@@ -3303,7 +3303,7 @@
    "website": "https://sites.google.com/uw.edu/huskiesforhousing/home",
    "category": "Service",
    "about": "Huskies for Housing (H4H) is an interdisciplinary group that aims to increase awareness of homelessness as a public…",
-   "description": "Huskies for Housing (H4H) is an interdisciplinary group that aims to increase awareness of homelessness as a public health crisis and activate the UW community to address homelessness.\\r\\n"
+   "description": "Huskies for Housing (H4H) is an interdisciplinary group that aims to increase awareness of homelessness as a public health crisis and activate the UW community to address homelessness."
   },
   {
    "name": "Huskies for Kids",
@@ -3316,8 +3316,8 @@
    "name": "Huskies for Liberty",
    "website": "https://huskylink.washington.edu/hfl/",
    "category": "Service",
-   "about": "Huskies for Liberty is a student group promoting the values of free speech and individual rights.\\r\\n",
-   "description": "Huskies for Liberty is a student group promoting the values of free speech and individual rights.\\r\\n"
+   "about": "Huskies for Liberty is a student group promoting the values of free speech and individual rights.",
+   "description": "Huskies for Liberty is a student group promoting the values of free speech and individual rights."
   },
   {
    "name": "Huskies for Opportunities in Prison Education",
@@ -3331,14 +3331,14 @@
    "website": "https://huskylink.washington.edu/huskies4prebornlives/",
    "category": "Service",
    "about": "Huskies for Preborn Lives seeks to promote the innate value of all human lives from the moment of conception with the…",
-   "description": "Huskies for Preborn Lives seeks to promote the innate value of all human lives from the moment of conception with the ultimate goal of making abortion unavailable and unthinkable, without exception.\\r\\n"
+   "description": "Huskies for Preborn Lives seeks to promote the innate value of all human lives from the moment of conception with the ultimate goal of making abortion unavailable and unthinkable, without exception."
   },
   {
    "name": "Huskies for Reproductive Freedom",
    "website": "https://www.prochoicewashington.org/",
    "category": "Service",
    "about": "Our goal is to support the mission of ProChoice Washington by advocating for inclusive and impactful prochoice…",
-   "description": "Our goal is to support the mission of ProChoice Washington by advocating for inclusive and impactful prochoice legislation and by working to transform the campus into an actively prochoice community.\\r\\n"
+   "description": "Our goal is to support the mission of ProChoice Washington by advocating for inclusive and impactful prochoice legislation and by working to transform the campus into an actively prochoice community."
   },
   {
    "name": "Husky Archery Club",
@@ -3373,14 +3373,14 @@
    "website": "https://huskylink.washington.edu/huskyclubcrawlers/",
    "category": "Social",
    "about": "We meet with different RSO's every week!",
-   "description": "We meet with different RSO's every week! A way to try new clubs and meet new people! One week pickleball club, next hacky sack, etc!\\r\\n"
+   "description": "We meet with different RSO's every week! A way to try new clubs and meet new people! One week pickleball club, next hacky sack, etc!"
   },
   {
    "name": "Husky Coding Project",
    "website": "http://students.washington.edu/hcpuw",
    "category": "Engineering",
    "about": "To create an internshiplike environment that promotes the growth and development of our club members by providing…",
-   "description": "To create an internshiplike environment that promotes the growth and development of our club members by providing projectbased experiences on larger teams and encouraging peertopeer learning.\\r\\n"
+   "description": "To create an internshiplike environment that promotes the growth and development of our club members by providing projectbased experiences on larger teams and encouraging peertopeer learning."
   },
   {
    "name": "Husky Cricket Club",
@@ -3394,7 +3394,7 @@
    "website": "https://sites.google.com/view/huskyculinaryclub/home",
    "category": "Social",
    "about": "In the Husky Culinary Club, we learn ways to further our interests in the culinary world!",
-   "description": "In the Husky Culinary Club, we learn ways to further our interests in the culinary world! We seek to learn new cooking techniques and cultural significance about our food. Whether a brand new cook or a Michelin star chef, you have a place here!\\r\\n"
+   "description": "In the Husky Culinary Club, we learn ways to further our interests in the culinary world! We seek to learn new cooking techniques and cultural significance about our food. Whether a brand new cook or a Michelin star chef, you have a place here!"
   },
   {
    "name": "Husky Cycling Club",
@@ -3415,7 +3415,7 @@
    "website": "https://huskylink.washington.edu/hffc/",
    "category": "Sports",
    "about": "Our goal here is to connect both experienced and inexperienced anglers to build a strong community of outdoor…",
-   "description": "Our goal here is to connect both experienced and inexperienced anglers to build a strong community of outdoor enthusiasts. HFFC members will have opportunities to participate in fishing trips, learn how to tie and cast, and receive access to discounts.\\r\\n"
+   "description": "Our goal here is to connect both experienced and inexperienced anglers to build a strong community of outdoor enthusiasts. HFFC members will have opportunities to participate in fishing trips, learn how to tie and cast, and receive access to discounts."
   },
   {
    "name": "Husky Flying Club",
@@ -3533,8 +3533,8 @@
    "name": "Husky Robotics Team",
    "website": "https://huskyrobotics.me",
    "category": "Engineering",
-   "about": "Husky Robotics Team designs and builds robots to compete in the Rover Challenge Series, including URC and…",
-   "description": "Husky Robotics Team designs and builds robots to compete in the Rover Challenge Series, including URC and CIRC.\\r\\nMore info at https://uwrobots.org\\r\\n[NOTE: WE DO NOT ACCEPT APPLICATIONS FROM THIS PAGE. APPLY ONLINE AT OUR WEBSITE LISTED ABOVE.]\\r\\n"
+   "about": "Husky Robotics Team designs and builds robots to compete in the Rover Challenge Series, including URC and CIRC.",
+   "description": "Husky Robotics Team designs and builds robots to compete in the Rover Challenge Series, including URC and CIRC.\nMore info at https://uwrobots.org\n[NOTE: WE DO NOT ACCEPT APPLICATIONS FROM THIS PAGE. APPLY ONLINE AT OUR WEBSITE LISTED ABOVE.]"
   },
   {
    "name": "Husky Roundnet Club",
@@ -3548,7 +3548,7 @@
    "website": "http://www.huskyrugby.com/",
    "category": "Sports",
    "about": "The Husky Rugby Club at the University of Washington promotes rugby by offering students opportunities to play, learn,…",
-   "description": "The Husky Rugby Club at the University of Washington promotes rugby by offering students opportunities to play, learn, and grow in a supportive team environment. The club competes at a D1AA divisional level.\\r\\n"
+   "description": "The Husky Rugby Club at the University of Washington promotes rugby by offering students opportunities to play, learn, and grow in a supportive team environment. The club competes at a D1AA divisional level."
   },
   {
    "name": "Husky Running Club",
@@ -3618,7 +3618,7 @@
    "website": "http://huskysurfclub.com",
    "category": "Sports",
    "about": "If you would like to join Husky Surf Club please join the facebook group.",
-   "description": "If you would like to join Husky Surf Club please join the facebook group. \\r\\n\\r\\nhttps://www.facebook.com/groups/957988905161023\\r\\n\\r\\nWe love to surf so if you do to join the club!"
+   "description": "If you would like to join Husky Surf Club please join the facebook group.\nhttps://www.facebook.com/groups/957988905161023\nWe love to surf so if you do to join the club!"
   },
   {
    "name": "Husky Table Tennis Club",
@@ -3674,7 +3674,7 @@
    "website": "https://huskylink.washington.edu/huskywiffleclub/",
    "category": "Sports",
    "about": "Husky Wiffle Club exists to provide students with an opportunity to play fun, casual games of Wiffle Ball, regardless…",
-   "description": "Husky Wiffle Club exists to provide students with an opportunity to play fun, casual games of Wiffle Ball, regardless of prior Wiffle Ball/baseball experience.\\r\\n"
+   "description": "Husky Wiffle Club exists to provide students with an opportunity to play fun, casual games of Wiffle Ball, regardless of prior Wiffle Ball/baseball experience."
   },
   {
    "name": "Husky Winter Sports",
@@ -3694,8 +3694,8 @@
    "name": "Husky Wushu Club",
    "website": "http://students.washington.edu/uwwushu/",
    "category": "Sports",
-   "about": "The purpose of this organization to provide and develop a community committed to the\\r\\nadvancement of Wushu through…",
-   "description": "The purpose of this organization to provide and develop a community committed to the\\r\\nadvancement of Wushu through organized and goaloriented training programs, team competition at\\r\\nnational tournaments, and team performances and cultural demonstrations."
+   "about": "The purpose of this organization to provide and develop a community committed to the",
+   "description": "The purpose of this organization to provide and develop a community committed to the\nadvancement of Wushu through organized and goaloriented training programs, team competition at\nnational tournaments, and team performances and cultural demonstrations."
   },
   {
    "name": "HuskyADAPT",
@@ -3723,14 +3723,14 @@
    "website": "https://www.ijournaluw.com/",
    "category": "Academic",
    "about": "The UW iSchool Student Journal is a studentdriven publication dedicated to encouraging critical dialogue, innovative…",
-   "description": "The UW iSchool Student Journal is a studentdriven publication dedicated to encouraging critical dialogue, innovative ideas, and diverse perspectives within the iSchool community.\\r\\n"
+   "description": "The UW iSchool Student Journal is a studentdriven publication dedicated to encouraging critical dialogue, innovative ideas, and diverse perspectives within the iSchool community."
   },
   {
    "name": "Immigrant Rights are Human Rights: Students for La Resistencia",
    "website": "https://laresistencianw.org",
    "category": "Service",
    "about": "IRHR will facilitate UW students to organize under the guidance of La Resistencia, an undocumentedled local grassroots…",
-   "description": "IRHR will facilitate UW students to organize under the guidance of La Resistencia, an undocumentedled local grassroots organization fighting to shut down the Northwest Detention Center (NWDC) and end the oppressive border regime.\\r\\n"
+   "description": "IRHR will facilitate UW students to organize under the guidance of La Resistencia, an undocumentedled local grassroots organization fighting to shut down the Northwest Detention Center (NWDC) and end the oppressive border regime."
   },
   {
    "name": "implement at UW",
@@ -3758,7 +3758,7 @@
    "website": "https://sites.uw.edu/incsuw/",
    "category": "Academic",
    "about": "A student organization to educate and empower undergrads, grad students, post docs, faculty, and staff in the chemical…",
-   "description": "A student organization to educate and empower undergrads, grad students, post docs, faculty, and staff in the chemical sciences by providing an open space for dialogue, mentorship, collaboration, camaraderie, and skill building.\\r\\n"
+   "description": "A student organization to educate and empower undergrads, grad students, post docs, faculty, and staff in the chemical sciences by providing an open space for dialogue, mentorship, collaboration, camaraderie, and skill building."
   },
   {
    "name": "Indian Student Association at University of Washington",
@@ -3961,7 +3961,7 @@
    "website": "https://huskylink.washington.edu/iqueeries/",
    "category": "Social",
    "about": "iQueeries is a studentled organization whose mission is to create a safe, inclusive, and empowering space for…",
-   "description": "iQueeries is a studentled organization whose mission is to create a safe, inclusive, and empowering space for queeridentifying students within the Information School.\\r\\n"
+   "description": "iQueeries is a studentled organization whose mission is to create a safe, inclusive, and empowering space for queeridentifying students within the Information School."
   },
   {
    "name": "Italian Language and Culture Club at UW",
@@ -4023,8 +4023,8 @@
    "name": "Jewish Voice for Peace ( JVP UW )",
    "website": "https://huskylink.washington.edu/jvpuw/",
    "category": "Service",
-   "about": "We seek to establish and build the antiimperialist Jewish presence and community\\r\\non campus.",
-   "description": "We seek to establish and build the antiimperialist Jewish presence and community\\r\\non campus. JVP envisions a world where all people — from the U.S. to Palestine — live in freedom, justice, equality, and dignity."
+   "about": "We seek to establish and build the antiimperialist Jewish presence and community",
+   "description": "We seek to establish and build the antiimperialist Jewish presence and community\non campus. JVP envisions a world where all people — from the U.S. to Palestine — live in freedom, justice, equality, and dignity."
   },
   {
    "name": "Journal Club at Alaska WWAMI",
@@ -4171,14 +4171,14 @@
    "website": "https://huskylink.washington.edu/khsa/",
    "category": "Cultural",
    "about": "Khmer Student Association (KhSA) at the UW strives to advocate, promote, and preserve our unique culture through…",
-   "description": "Khmer Student Association (KhSA) at the UW strives to advocate, promote, and preserve our unique culture through social, cultural, and educational progression.\\r\\n\\r\\nCheck our social media for meeting and event dates."
+   "description": "Khmer Student Association (KhSA) at the UW strives to advocate, promote, and preserve our unique culture through social, cultural, and educational progression.\nCheck our social media for meeting and event dates."
   },
   {
    "name": "Kinspire UW",
    "website": "https://huskylink.washington.edu/kinspire/",
    "category": "Service",
    "about": "Kinspire's mission is focused on working on projects that directly impact the children that we work with.",
-   "description": "Kinspire's mission is focused on working on projects that directly impact the children that we work with. Kinspire UW focuses on building materials and fundraising to provide our students with resources that help advance their educational pursuits.\\r\\n"
+   "description": "Kinspire's mission is focused on working on projects that directly impact the children that we work with. Kinspire UW focuses on building materials and fundraising to provide our students with resources that help advance their educational pursuits."
   },
   {
    "name": "Kkanmanul",
@@ -4318,7 +4318,7 @@
    "website": "https://huskylink.washington.edu/lavenderpages/",
    "category": "Social",
    "about": "We are a book club that reads sapphic books every three weeks.",
-   "description": "We are a book club that reads sapphic books every three weeks. Sometimes we do book related crafts and games.\\r\\n"
+   "description": "We are a book club that reads sapphic books every three weeks. Sometimes we do book related crafts and games."
   },
   {
    "name": "Law and Business Association",
@@ -4339,7 +4339,7 @@
    "website": "https://huskylink.washington.edu/leadingwomenoftomorrow/",
    "category": "Service",
    "about": "Leading Women of Tomorrow seeks to empower more young women and nonbinary folks to consider careers in public service,…",
-   "description": "Leading Women of Tomorrow seeks to empower more young women and nonbinary folks to consider careers in public service, with the aim of bridging the gender gap among public representatives.\\r\\n"
+   "description": "Leading Women of Tomorrow seeks to empower more young women and nonbinary folks to consider careers in public service, with the aim of bridging the gender gap among public representatives."
   },
   {
    "name": "League of Astronomers",
@@ -4380,8 +4380,8 @@
    "name": "Leukemia and Lymphoma Society",
    "website": "https://huskylink.washington.edu/lls/",
    "category": "Academic",
-   "about": "Help cure blood cancer and improve quality of life of all patients and their families\\r\\n",
-   "description": "Help cure blood cancer and improve quality of life of all patients and their families\\r\\n"
+   "about": "Help cure blood cancer and improve quality of life of all patients and their families",
+   "description": "Help cure blood cancer and improve quality of life of all patients and their families"
   },
   {
    "name": "Life Sciences Law Society",
@@ -4444,7 +4444,7 @@
    "website": "https://huskylink.washington.edu/creativehub/",
    "category": "Engineering",
    "about": "Lumina at the University of Washington is a projectbased student organization that gathers students from different…",
-   "description": "Lumina at the University of Washington is a projectbased student organization that gathers students from different skills and background to work on technical & creative projects.\\r\\n"
+   "description": "Lumina at the University of Washington is a projectbased student organization that gathers students from different skills and background to work on technical & creative projects."
   },
   {
    "name": "Lutheran Campus Ministry @ UW",
@@ -4577,14 +4577,14 @@
    "website": "https://huskylink.washington.edu/medicalgeneticsinterestgroup/",
    "category": "Academic",
    "about": "The Medical Genetics Interest Group educates students on genetics in medicine, exploring research, career paths, and…",
-   "description": "The Medical Genetics Interest Group educates students on genetics in medicine, exploring research, career paths, and ethical issues while highlighting the importance of genetic knowledge across all medical specialties.\\r\\n"
+   "description": "The Medical Genetics Interest Group educates students on genetics in medicine, exploring research, career paths, and ethical issues while highlighting the importance of genetic knowledge across all medical specialties."
   },
   {
    "name": "Medical Humanities Interest Group",
    "website": "https://huskylink.washington.edu/mhig/",
    "category": "Academic",
    "about": "An interest group for medical students looking to integrate humanities, bioethics, narratives, and the arts into their…",
-   "description": "An interest group for medical students looking to integrate humanities, bioethics, narratives, and the arts into their medical education.\\r\\n"
+   "description": "An interest group for medical students looking to integrate humanities, bioethics, narratives, and the arts into their medical education."
   },
   {
    "name": "Medical Research Interest Group",
@@ -4618,8 +4618,8 @@
    "name": "Medical Students with Disabilities and Chronic Illnesses and their Allies",
    "website": "https://huskylink.washington.edu/msdcia/",
    "category": "Academic",
-   "about": "Student group focused on disability awareness, advocacy, education, and community.\\r\\n",
-   "description": "Student group focused on disability awareness, advocacy, education, and community.\\r\\n"
+   "about": "Student group focused on disability awareness, advocacy, education, and community.",
+   "description": "Student group focused on disability awareness, advocacy, education, and community."
   },
   {
    "name": "Medicine in Motion UWSOD Chapter",
@@ -4843,7 +4843,7 @@
    "website": "https://huskylink.washington.edu/museumsandmentors/",
    "category": "Academic",
    "about": "The club’s goal is to give students the opportunity to delve deeper into museum content through faculty’s insights,…",
-   "description": "The club’s goal is to give students the opportunity to delve deeper into museum content through faculty’s insights, research, and academic perspectives. Dedicated to fostering experiential learning and meaningful dialogue beyond the classroom.\\r\\n"
+   "description": "The club’s goal is to give students the opportunity to delve deeper into museum content through faculty’s insights, research, and academic perspectives. Dedicated to fostering experiential learning and meaningful dialogue beyond the classroom."
   },
   {
    "name": "Music For a Cause",
@@ -4961,8 +4961,8 @@
    "name": "National Security Law Society",
    "website": "https://huskylink.washington.edu/nsls/",
    "category": "Academic",
-   "about": "The mission of the National Security Law Society (NSLS) is to connect students who are interested in\\r\\npursuing a…",
-   "description": "The mission of the National Security Law Society (NSLS) is to connect students who are interested in\\r\\npursuing a career in the national security sector. As a unit, the NSLS will help its members network and connect with local and national public and priva"
+   "about": "The mission of the National Security Law Society (NSLS) is to connect students who are interested in",
+   "description": "The mission of the National Security Law Society (NSLS) is to connect students who are interested in\npursuing a career in the national security sector. As a unit, the NSLS will help its members network and connect with local and national public and priva"
   },
   {
    "name": "National Society of Black Engineers",
@@ -5025,7 +5025,7 @@
    "website": "https://www.uwnetimpact.org/",
    "category": "Business",
    "about": "Net Impact UW is a sustainable business club, aiming to inspire environmental action and increase awareness through…",
-   "description": "Net Impact UW is a sustainable business club, aiming to inspire environmental action and increase awareness through education, activism, and career development. \\r\\n"
+   "description": "Net Impact UW is a sustainable business club, aiming to inspire environmental action and increase awareness through education, activism, and career development."
   },
   {
    "name": "NetworkAI",
@@ -5046,7 +5046,7 @@
    "website": "https://huskylink.washington.edu/nsig/",
    "category": "Academic",
    "about": "This group is for medical students at UWSOM.",
-   "description": "This group is for medical students at UWSOM. \\r\\nThe Neurological Surgery Interest Group aims to provide medical students with mentorship opportunities through collaboration with UWSOM faculty and residents. \\r\\nIf interested in joining email nsig@uw.edu\\r\\n\\r\\n"
+   "description": "This group is for medical students at UWSOM.\nThe Neurological Surgery Interest Group aims to provide medical students with mentorship opportunities through collaboration with UWSOM faculty and residents.\nIf interested in joining email nsig@uw.edu"
   },
   {
    "name": "Neuroscience Community Outreach Group",
@@ -5214,7 +5214,7 @@
    "website": "https://huskylink.washington.edu/origamiclub/",
    "category": "Sports",
    "about": "Welcome to Origami Club!",
-   "description": "Welcome to Origami Club! Our goal is to provide a recreational environment where people can relax, learn, and fold origami. Everyone is welcome and no folding experience is required. \\r\\nThursdays 3:305:00PM SMI 107. No need to click Join, just show up :)"
+   "description": "Welcome to Origami Club! Our goal is to provide a recreational environment where people can relax, learn, and fold origami. Everyone is welcome and no folding experience is required.\nThursdays 3:305:00PM SMI 107. No need to click Join, just show up :)"
   },
   {
    "name": "ORIGINS: Life in the Universe",
@@ -5333,7 +5333,7 @@
    "website": "https://huskylink.washington.edu/psuw/",
    "category": "Academic",
    "about": "Promoting equal opportunities for members pursuing pediatric careers through volunteering and outreach, while…",
-   "description": "Promoting equal opportunities for members pursuing pediatric careers through volunteering and outreach, while fostering ethical leadership through journalism.\\r\\n"
+   "description": "Promoting equal opportunities for members pursuing pediatric careers through volunteering and outreach, while fostering ethical leadership through journalism."
   },
   {
    "name": "Peers at the University of Washington",
@@ -5403,7 +5403,7 @@
    "website": "https://www.uwpct.com/",
    "category": "Business",
    "about": "Phi Chi Theta is a coed business fraternity for all majors.",
-   "description": "Phi Chi Theta is a coed business fraternity for all majors. Committed to professionalism, philanthropy, and community, our members benefit by being part of a supportive community that fosters growth.\\r\\n"
+   "description": "Phi Chi Theta is a coed business fraternity for all majors. Committed to professionalism, philanthropy, and community, our members benefit by being part of a supportive community that fosters growth."
   },
   {
    "name": "Phi Delta Epsilon International Medical Fraternity",
@@ -5529,7 +5529,7 @@
    "website": "https://huskylink.washington.edu/nupsa/",
    "category": "Service",
    "about": "We are the Political Science Association at UW!",
-   "description": "We are the Political Science Association at UW! Open to anyone with an interest in learning more about the field of Political Science! Check our instagram and discord for meeting updates! \\r\\n"
+   "description": "We are the Political Science Association at UW! Open to anyone with an interest in learning more about the field of Political Science! Check our instagram and discord for meeting updates!"
   },
   {
    "name": "Planetary Health Interest Group at UWSOM",
@@ -5578,7 +5578,7 @@
    "website": "https://uwpmassociation.wixsite.com/site",
    "category": "Business",
    "about": "Founded in 2023 by Business, Informatics, Computer Science, and Communications students, the UW PM Association aims to…",
-   "description": "Founded in 2023 by Business, Informatics, Computer Science, and Communications students, the UW PM Association aims to connect students at the University of Washington with opportunities and careers in Product, Program, and Project Management.\\r\\n"
+   "description": "Founded in 2023 by Business, Informatics, Computer Science, and Communications students, the UW PM Association aims to connect students at the University of Washington with opportunities and careers in Product, Program, and Project Management."
   },
   {
    "name": "Poetry Club at the University of Washington",
@@ -5613,7 +5613,7 @@
    "website": "https://huskylink.washington.edu/predentalclub/",
    "category": "Academic",
    "about": "The PreDental Club is a studentrun, nofee predental organization that provides free access to academic resources,…",
-   "description": "The PreDental Club is a studentrun, nofee predental organization that provides free access to academic resources, mentorship, professional development, service, and exposure to the dental profession for all interested UW students.\\r\\n"
+   "description": "The PreDental Club is a studentrun, nofee predental organization that provides free access to academic resources, mentorship, professional development, service, and exposure to the dental profession for all interested UW students."
   },
   {
    "name": "PreGenetic Counseling Club at the University of Washington",
@@ -5640,8 +5640,8 @@
    "name": "PrePhysician Scientist Club at UW",
    "website": "https://linktr.ee/uwppsc?fbclid=IwAR1bEl3JQrpwVuUpfqzj5kH5kdDHlEvMNJR4oULLSsilimXcQDO2UmeAniI",
    "category": "Academic",
-   "about": "The PrePhysician Scientist Club at UW promotes the career development of UW students interested in\\r\\npursuing careers…",
-   "description": "The PrePhysician Scientist Club at UW promotes the career development of UW students interested in\\r\\npursuing careers involving both research and medicine.\\r\\nMembers will learn about research, scholarships, the med school application process, and more."
+   "about": "The PrePhysician Scientist Club at UW promotes the career development of UW students interested in",
+   "description": "The PrePhysician Scientist Club at UW promotes the career development of UW students interested in\npursuing careers involving both research and medicine.\nMembers will learn about research, scholarships, the med school application process, and more."
   },
   {
    "name": "PreVeterinary Society",
@@ -5676,21 +5676,21 @@
    "website": "https://www.productspace.org/",
    "category": "Business",
    "about": "Product Space strives to provide mentorship in product management, marketing, design, and internship recruitment.",
-   "description": "Product Space strives to provide mentorship in product management, marketing, design, and internship recruitment. We also work on realworld client projects in these topics to give students realworld opportunities in the PM field.\\r\\n"
+   "description": "Product Space strives to provide mentorship in product management, marketing, design, and internship recruitment. We also work on realworld client projects in these topics to give students realworld opportunities in the PM field."
   },
   {
    "name": "Program on Climate Change Undergraduate Cohort",
-   "website": "https://pcc.uw.edu/research/undergraduateclimatecohort/",
+   "website": "https://pcc.uw.edu/research/undergraduate-climate-cohort/",
    "category": "Service",
-   "about": "The Program on Climate Change Undergraduate Cohort (UCo) is a place for undergraduates\\r\\ninterested in advancing…",
-   "description": "The Program on Climate Change Undergraduate Cohort (UCo) is a place for undergraduates\\r\\ninterested in advancing climate science to steer their own proverbial ship, create events, and belong to a\\r\\ncommunity of others interested in climate science."
+   "about": "The Program on Climate Change Undergraduate Cohort (UCo) is a place for undergraduates",
+   "description": "The Program on Climate Change Undergraduate Cohort (UCo) is a place for undergraduates\ninterested in advancing climate science to steer their own proverbial ship, create events, and belong to a\ncommunity of others interested in climate science."
   },
   {
    "name": "Progressive Student Union at UW",
    "website": "https://huskylink.washington.edu/psuuw/",
    "category": "Service",
-   "about": "Fighting to build a progressive student movement!\\r\\n \\r\\nThrough direct action, we fight against US wars and…",
-   "description": "Fighting to build a progressive student movement!\\r\\n \\r\\nThrough direct action, we fight against US wars and intervention, racist discrimination, police crimes, homophobic/transphobic attacks, attacks on women, attacks on reproductive rights, and much more."
+   "about": "Fighting to build a progressive student movement!",
+   "description": "Fighting to build a progressive student movement!\nThrough direct action, we fight against US wars and intervention, racist discrimination, police crimes, homophobic/transphobic attacks, attacks on women, attacks on reproductive rights, and much more."
   },
   {
    "name": "Project IF",
@@ -5795,14 +5795,14 @@
    "website": "https://huskylink.washington.edu/pspc/",
    "category": "Academic",
    "about": "The purpose of the Public Speaking & Professional Communication Club is to help students strengthen their…",
-   "description": "The purpose of the Public Speaking & Professional Communication Club is to help students strengthen their communication, presentation, and leadership skills in both academic and professional settings.\\r\\n\\r\\n"
+   "description": "The purpose of the Public Speaking & Professional Communication Club is to help students strengthen their communication, presentation, and leadership skills in both academic and professional settings."
   },
   {
    "name": "Punjabi Cultural Association",
    "website": "https://huskylink.washington.edu/pca/",
    "category": "Cultural",
    "about": "The purpose and motivation behind PCA will be to help educate the Seattle region on Punjabi Culture, History, and…",
-   "description": "The purpose and motivation behind PCA will be to help educate the Seattle region on Punjabi Culture, History, and lifestyles through educational yet entertaining methods.\\r\\n"
+   "description": "The purpose and motivation behind PCA will be to help educate the Seattle region on Punjabi Culture, History, and lifestyles through educational yet entertaining methods."
   },
   {
    "name": "Pup Support",
@@ -5921,7 +5921,7 @@
    "website": "https://www.regenerationfieldinstitute.com/",
    "category": "Service",
    "about": "Regeneration Field Institute at UW is dedicated to engaging students and faculty in construction with sustainable…",
-   "description": "Regeneration Field Institute at UW is dedicated to engaging students and faculty in construction with sustainable materials, regenerative agriculture, and worldwide conservation.\\r\\n"
+   "description": "Regeneration Field Institute at UW is dedicated to engaging students and faculty in construction with sustainable materials, regenerative agriculture, and worldwide conservation."
   },
   {
    "name": "Registered Student Organization Accounts",
@@ -6088,8 +6088,8 @@
    "name": "Saudi Student Association",
    "website": "https://huskylink.washington.edu/saudiuw/",
    "category": "Cultural",
-   "about": "The Saudi Student Association (SSA) is an organization committed to uniting the Saudi community of UW and…",
-   "description": "The Saudi Student Association (SSA) is an organization committed to uniting the Saudi community of UW and beyond!\\r\\nSSA strives to spread Saudi culture by celebrations, events, and much more; Supporting the Saudi and MENA community, and enlighten others!"
+   "about": "The Saudi Student Association (SSA) is an organization committed to uniting the Saudi community of UW and beyond!",
+   "description": "The Saudi Student Association (SSA) is an organization committed to uniting the Saudi community of UW and beyond!\nSSA strives to spread Saudi culture by celebrations, events, and much more; Supporting the Saudi and MENA community, and enlighten others!"
   },
   {
    "name": "Scandinavian Club at UW",
@@ -6208,7 +6208,7 @@
    "website": "https://huskylink.washington.edu/sekaibeyond/",
    "category": "Social",
    "about": "Sekai Beyond is a unique anime club that focuses on Japanese performances and shows especially.",
-   "description": "Sekai Beyond is a unique anime club that focuses on Japanese performances and shows especially. We love to put on shows, public performances, and even game competitions. We also do a lot of video taking and photographic series.\\r\\n"
+   "description": "Sekai Beyond is a unique anime club that focuses on Japanese performances and shows especially. We love to put on shows, public performances, and even game competitions. We also do a lot of video taking and photographic series."
   },
   {
    "name": "Self Improvement Club at the University of Washington",
@@ -6355,7 +6355,7 @@
    "website": "https://huskylink.washington.edu/sicatuw/",
    "category": "Arts",
    "about": "The Social and Inclusivity Committee at the University of Washington aims to promote inclusiveness bridging the gap…",
-   "description": "The Social and Inclusivity Committee at the University of Washington aims to promote inclusiveness bridging the gap between social divides at the University of Washington by bringing all students together through RECURRING on campus social events.\\r\\n"
+   "description": "The Social and Inclusivity Committee at the University of Washington aims to promote inclusiveness bridging the gap between social divides at the University of Washington by bringing all students together through RECURRING on campus social events."
   },
   {
    "name": "Socialist Alternative at UW",
@@ -6439,7 +6439,7 @@
    "website": "https://www.uwshpe.com/",
    "category": "Engineering",
    "about": "SHPE is the leading socialtechnical organization whose primary function is to enhance and achieve the potential of…",
-   "description": "SHPE is the leading socialtechnical organization whose primary function is to enhance and achieve the potential of underrepresented students in engineering, math and science.\\r\\n"
+   "description": "SHPE is the leading socialtechnical organization whose primary function is to enhance and achieve the potential of underrepresented students in engineering, math and science."
   },
   {
    "name": "Society of Music Educators",
@@ -6466,8 +6466,8 @@
    "name": "Society of Women Engineers at UW",
    "website": "http://www.sweuw.org",
    "category": "Engineering",
-   "about": "The SWE at UW section provides a community for students that support diversity within engineering and STEM…",
-   "description": "The SWE at UW section provides a community for students that support diversity within engineering and STEM professions.\\r\\n\\r\\nOur mission is to stimulate women to achieve their full potential in careers as engineers and leaders."
+   "about": "The SWE at UW section provides a community for students that support diversity within engineering and STEM professions.",
+   "description": "The SWE at UW section provides a community for students that support diversity within engineering and STEM professions.\nOur mission is to stimulate women to achieve their full potential in careers as engineers and leaders."
   },
   {
    "name": "Software Engineering Career Club",
@@ -6600,7 +6600,7 @@
    "website": "https://huskylink.washington.edu/startupclub/",
    "category": "Business",
    "about": "The Startup Club is a hub for entrepreneurial minds to innovate, collaborate, and bring ideas to life.",
-   "description": "The Startup Club is a hub for entrepreneurial minds to innovate, collaborate, and bring ideas to life. We provide mentorship, funding opportunities, workshops, and networking with industry experts. Join us to turn your vision into reality.\\r\\n"
+   "description": "The Startup Club is a hub for entrepreneurial minds to innovate, collaborate, and bring ideas to life. We provide mentorship, funding opportunities, workshops, and networking with industry experts. Join us to turn your vision into reality."
   },
   {
    "name": "Statistics and Probability Association",
@@ -6620,8 +6620,8 @@
    "name": "STEM Book Club",
    "website": "https://sites.google.com/view/stembookclub/home",
    "category": "Social",
-   "about": "Check out our website to learn more and apply!\\r\\nhttps://sites.google.com/view/uwstembookclub/home\\r\\n\\r\\nThe STEM…",
-   "description": "Check out our website to learn more and apply!\\r\\nhttps://sites.google.com/view/uwstembookclub/home\\r\\n\\r\\nThe STEM Book Club encourages scientific exploration through books, films, and research."
+   "about": "Check out our website to learn more and apply!",
+   "description": "Check out our website to learn more and apply!\nhttps://sites.google.com/view/uwstembookclub/home\nThe STEM Book Club encourages scientific exploration through books, films, and research."
   },
   {
    "name": "STEM Pals",
@@ -6649,7 +6649,7 @@
    "website": "https://huskylink.washington.edu/stbseattle/",
    "category": "Academic",
    "about": "UWSOM Service Learning Project and student group.",
-   "description": "UWSOM Service Learning Project and student group. \\r\\nWe teach Stop the Bleed classes using the American College of Surgeons official STB curriculum. \\r\\nOur goal is to extend the basic, lifesaving principles and practices of hemorrhage control to everyone."
+   "description": "UWSOM Service Learning Project and student group.\nWe teach Stop the Bleed classes using the American College of Surgeons official STB curriculum.\nOur goal is to extend the basic, lifesaving principles and practices of hemorrhage control to everyone."
   },
   {
    "name": "Strawberries and Sudoku at UW",
@@ -6768,7 +6768,7 @@
    "website": "https://www.facebook.com/uw.snpha/",
    "category": "Academic",
    "about": "SNPhA is an educational service association of pharmacy students who are concerned about pharmacy and healthcare…",
-   "description": "SNPhA is an educational service association of pharmacy students who are concerned about pharmacy and healthcare related issues, and the poor minority representation in pharmacy and other healthrelated professions.\\r\\n\\r\\n"
+   "description": "SNPhA is an educational service association of pharmacy students who are concerned about pharmacy and healthcare related issues, and the poor minority representation in pharmacy and other healthrelated professions."
   },
   {
    "name": "Student Occupational Therapy Association",
@@ -6782,7 +6782,7 @@
    "website": "https://huskylink.washington.edu/sodadonate/",
    "category": "Academic",
    "about": "Advocate for the lifesaving impact of organ and tissue donation and work to help reduce organ shortage through…",
-   "description": "Advocate for the lifesaving impact of organ and tissue donation and work to help reduce organ shortage through education, fundraising, outreach, and donor registration efforts at the University of Washington community. \\r\\n"
+   "description": "Advocate for the lifesaving impact of organ and tissue donation and work to help reduce organ shortage through education, fundraising, outreach, and donor registration efforts at the University of Washington community."
   },
   {
    "name": "Student Organization Resource Center",
@@ -6824,7 +6824,7 @@
    "website": "https://studentsdemandaction.org/",
    "category": "Service",
    "about": "We’re young activists committed to ending gun violence in our communities.",
-   "description": "We’re young activists committed to ending gun violence in our communities. We’re rising up and organizing in our university to demand action to end gun violence.\\r\\n"
+   "description": "We’re young activists committed to ending gun violence in our communities. We’re rising up and organizing in our university to demand action to end gun violence."
   },
   {
    "name": "Students for a National Health Program at the University of Washington",
@@ -6866,14 +6866,14 @@
    "website": "https://www.facebook.com/scphuw/",
    "category": "Academic",
    "about": "SCPH is dedicated to providing a space for students of color interested in public health.",
-   "description": "SCPH is dedicated to providing a space for students of color interested in public health. We strive to promote health within marginalized communities through education, service, professional development, social justice, and empowerment.\\r\\n"
+   "description": "SCPH is dedicated to providing a space for students of color interested in public health. We strive to promote health within marginalized communities through education, service, professional development, social justice, and empowerment."
   },
   {
    "name": "Students of Color in LIS at the University of Washington",
    "website": "https://huskylink.washington.edu/soclisuw/",
    "category": "Academic",
-   "about": "The purpose of this organization shall be to help support students of color in the Masters of Library\\r\\n\\r\\nand…",
-   "description": "The purpose of this organization shall be to help support students of color in the Masters of Library\\r\\n\\r\\nand Information Science program at the University of Washington iSchool."
+   "about": "The purpose of this organization shall be to help support students of color in the Masters of Library",
+   "description": "The purpose of this organization shall be to help support students of color in the Masters of Library\nand Information Science program at the University of Washington iSchool."
   },
   {
    "name": "StudentsCare at UW",
@@ -6908,21 +6908,21 @@
    "website": "https://huskylink.washington.edu/sia/",
    "category": "Academic",
    "about": "We are a Registered Student Organization at the University of Washington with a focus on expanding knowledge and…",
-   "description": "We are a Registered Student Organization at the University of Washington with a focus on expanding knowledge and opportunities for undergraduate students interested in surgery. Join us for panels, clinics, and tours!\\r\\n"
+   "description": "We are a Registered Student Organization at the University of Washington with a focus on expanding knowledge and opportunities for undergraduate students interested in surgery. Join us for panels, clinics, and tours!"
   },
   {
    "name": "Surgery Interest Group at the UW School of Medicine",
    "website": "https://huskylink.washington.edu/uwsig/",
    "category": "Academic",
-   "about": "The purpose of SIG is to promote student interest in surgery, network with surgeons in various subspecialties and…",
-   "description": "The purpose of SIG is to promote student interest in surgery, network with surgeons in various subspecialties and maintain mentoring relationships with surgeons in the Department of Surgery at the University of Washington and"
+   "about": "The purpose of SIG @ UWSOM is to promote student interest in surgery, network with surgeons in various subspecialties…",
+   "description": "The purpose of SIG @ UWSOM is to promote student interest in surgery, network with surgeons in various subspecialties and maintain mentoring relationships with surgeons at the University of Washington."
   },
   {
    "name": "Survivors and Allies In Law",
    "website": "https://sites.google.com/uw.edu/survivorsalliesinlaw/home",
    "category": "Academic",
-   "about": "We are a law student organization committed to service, advocacy, and community with the goal of supporting…",
-   "description": "We are a law student organization committed to service, advocacy, and community with the goal of supporting survivors.\\r\\n"
+   "about": "We are a law student organization committed to service, advocacy, and community with the goal of supporting survivors.",
+   "description": "We are a law student organization committed to service, advocacy, and community with the goal of supporting survivors."
   },
   {
    "name": "Sustainable Education Initiative",
@@ -6970,15 +6970,15 @@
    "name": "Taiwanese Graduate Students and Professional Association",
    "website": "https://www.facebook.com/UWTGSA/",
    "category": "Cultural",
-   "about": "We support Taiwanese international graduate students and alumni by creating a space that\\r\\nfosters belonging and…",
-   "description": "We support Taiwanese international graduate students and alumni by creating a space that\\r\\nfosters belonging and sustainable communitybuilding."
+   "about": "We support Taiwanese international graduate students and alumni by creating a space that",
+   "description": "We support Taiwanese international graduate students and alumni by creating a space that\nfosters belonging and sustainable communitybuilding."
   },
   {
    "name": "Taiwanese Overseas Student Association",
    "website": "http://www.tosauw.com/",
    "category": "Cultural",
-   "about": "Taiwanese Overseas Student Association (TOSA) is a nonprofit, \\r\\nstudentrun organization at the University of…",
-   "description": "Taiwanese Overseas Student Association (TOSA) is a nonprofit, \\r\\nstudentrun organization at the University of Washington."
+   "about": "Taiwanese Overseas Student Association (TOSA) is a nonprofit,",
+   "description": "Taiwanese Overseas Student Association (TOSA) is a nonprofit,\nstudentrun organization at the University of Washington."
   },
   {
    "name": "Taiwanese Student Association",
@@ -7040,8 +7040,8 @@
    "name": "Tea Club",
    "website": "https://huskylink.washington.edu/teaclub/",
    "category": "Social",
-   "about": "We provide a way for experienced tea drinkers or people potentially curious about the world of tea to come together,…",
-   "description": "We provide a way for experienced tea drinkers or people potentially curious about the world of tea to come together, meet each other, talk about tea, and drink tea together. Join our Discord For Announcements of Meeting Times https://discord.gg/9CkbPemrH Follow our Instagram https://www.instagram.com/teaclubuw/"
+   "about": "The UW Tea Club is a student organization that creates a safe space for connection, mindfulness, and relaxation…",
+   "description": "The UW Tea Club is a student organization that creates a safe space for connection, mindfulness, and relaxation through learning and experiencing tea and tea culture. We are open to students of all majors and backgrounds who are interested in drinking or learning more about tea! Whether you're a casual, serious, or competitive enjoyer of tea, be sure to join our discord to stay up to date on our weekly member hosted tea time, or for details on events hosted by one of our many local company sponsors! We welcome any and all who wish to share in our hospitali-tea! Join our Discord For Announcements of Meeting Times https://discord.gg/9CkbPemrH Follow our Instagram https://www.instagram.com/teaclubuw/"
   },
   {
    "name": "Team Bao",
@@ -7236,8 +7236,8 @@
    "name": "The German Club at the University of Washington",
    "website": "https://huskylink.washington.edu/germanclub/",
    "category": "Cultural",
-   "about": "Through its meetings and special events, the German Club at the University of Washington\\r\\ncreates a welcoming…",
-   "description": "Through its meetings and special events, the German Club at the University of Washington\\r\\ncreates a welcoming community for students at UW who are interested in practicing the German language and learning about the cultures of the Germanspeaking world."
+   "about": "Through its meetings and special events, the German Club at the University of Washington",
+   "description": "Through its meetings and special events, the German Club at the University of Washington\ncreates a welcoming community for students at UW who are interested in practicing the German language and learning about the cultures of the Germanspeaking world."
   },
   {
    "name": "The Golf Club at UW",
@@ -7272,7 +7272,7 @@
    "website": "http://thekompanyuw.com",
    "category": "Arts",
    "about": "THE KOMPANY is a KPop dance company formed to provide learning opportunities for those interested in KPop and HipHop…",
-   "description": "THE KOMPANY is a KPop dance company formed to provide learning opportunities for those interested in KPop and HipHop dance, as well as performing and filming opportunities for those interested in participating in video dance cover production.\\r\\n"
+   "description": "THE KOMPANY is a KPop dance company formed to provide learning opportunities for those interested in KPop and HipHop dance, as well as performing and filming opportunities for those interested in participating in video dance cover production."
   },
   {
    "name": "The Lettuce Eating Club at the University of Washington",
@@ -7286,7 +7286,7 @@
    "website": "https://chideltasigmainc.wixsite.com/home",
    "category": "Social",
    "about": "The first and only AAPIinterest sorority at the University of Washington seeking to promote awareness of our…",
-   "description": "The first and only AAPIinterest sorority at the University of Washington seeking to promote awareness of our philanthropies, AAPI experiences, empowerment of womxn leaders, and supporting academic aspirations.\\r\\n"
+   "description": "The first and only AAPIinterest sorority at the University of Washington seeking to promote awareness of our philanthropies, AAPI experiences, empowerment of womxn leaders, and supporting academic aspirations."
   },
   {
    "name": "The Museum Society at UW",
@@ -7356,7 +7356,7 @@
    "website": "https://huskylink.washington.edu/theundergraduatelawreview/",
    "category": "Academic",
    "about": "The Undergraduate Law Review's mission is to provide undergraduate students the opportunity to engage critically with…",
-   "description": "The Undergraduate Law Review's mission is to provide undergraduate students the opportunity to engage critically with the laws which govern our lives, to guide members toward achievement in critical practice, and to publish legal scholarship.\\r\\n"
+   "description": "The Undergraduate Law Review's mission is to provide undergraduate students the opportunity to engage critically with the laws which govern our lives, to guide members toward achievement in critical practice, and to publish legal scholarship."
   },
   {
    "name": "The Washington Journal of Social and Environmental Justice",
@@ -7454,14 +7454,14 @@
    "website": "https://linktr.ee/uwtsdb",
    "category": "Engineering",
    "about": "Students participate in an intercollegiate competition in designing and building a twostory timber structure within…",
-   "description": "Students participate in an intercollegiate competition in designing and building a twostory timber structure within one hour! Engineering principles and methods are emphasized in optimizing the performance and efficiency of the structure. Join us!\\r\\n"
+   "description": "Students participate in an intercollegiate competition in designing and building a twostory timber structure within one hour! Engineering principles and methods are emphasized in optimizing the performance and efficiency of the structure. Join us!"
   },
   {
    "name": "Timmy Global Health UW Chapter",
    "website": "https://timmyglobalhealth.org/",
    "category": "Academic",
-   "about": "Mission: Timmy Global Health works to empower communities to address health disparities in a sustainable…",
-   "description": "Mission: Timmy Global Health works to empower communities to address health disparities in a sustainable way\\r\\nVision: Building a healthier world through a community of global leaders"
+   "about": "Mission: Timmy Global Health works to empower communities to address health disparities in a sustainable way",
+   "description": "Mission: Timmy Global Health works to empower communities to address health disparities in a sustainable way\nVision: Building a healthier world through a community of global leaders"
   },
   {
    "name": "tiny hearts association",
@@ -7556,10 +7556,10 @@
   },
   {
    "name": "Undergraduate Theater Society",
-   "website": "https://uwuts.com/",
+   "website": "https://undergraduatetheatersociety.wordpress.com/",
    "category": "Arts",
-   "about": "The Undergraduate Theater Society creates inclusive and equitable quality learning opportunities for all…",
-   "description": "The Undergraduate Theater Society creates inclusive and equitable quality learning opportunities for all undergraduates at the University of Washington. By producing engaging theatre, we strive to explore the lived experiences of our diverse world."
+   "about": "The Undergraduate Theater Society works to support and expand the academic theater community within the UW…",
+   "description": "The Undergraduate Theater Society works to support and expand the academic theater community within the UW undergraduate community and the UW School of Drama. We strive to offer rich artistic and practical opportunities to the undergraduate theater community at the University of Washington by providing human, financial, and technical resources. By producing engaging theatre, we strive to explore the lived experiences of our diverse world."
   },
   {
    "name": "Undergraduate Women in Business ( UWiB )",
@@ -7629,7 +7629,7 @@
    "website": "https://huskylink.washington.edu/unplugged/",
    "category": "Arts",
    "about": "Unplugged is a fusion band at the University of Washington (Seattle) that performs South Asian and Western inspired…",
-   "description": "Unplugged is a fusion band at the University of Washington (Seattle) that performs South Asian and Western inspired pieces.\\r\\n"
+   "description": "Unplugged is a fusion band at the University of Washington (Seattle) that performs South Asian and Western inspired pieces."
   },
   {
    "name": "Urban Accessibility Group",
@@ -7712,8 +7712,8 @@
    "name": "Viable Veganism at UW",
    "website": "https://huskylink.washington.edu/viableveganismuw/",
    "category": "Service",
-   "about": "VVUW has the goal of raising awareness about vegan diets/lifestyles, as well as promoting increased veganism and…",
-   "description": "VVUW has the goal of raising awareness about vegan diets/lifestyles, as well as promoting increased veganism and activism on campus."
+   "about": "Animal Advocacy at UW as a goal of creating a strong community of students passionate about reducing animal cruelty.",
+   "description": "Animal Advocacy at UW as a goal of creating a strong community of students passionate about reducing animal cruelty. We welcome everyone."
   },
   {
    "name": "Vietnam Health Clinic",
@@ -7727,7 +7727,7 @@
    "website": "https://huskylink.washington.edu/visa/",
    "category": "Cultural",
    "about": "VISA is dedicated to providing a platform where Vietnamese international students can connect, share experiences, and…",
-   "description": "VISA is dedicated to providing a platform where Vietnamese international students can connect, share experiences, and support one another in navigating the challenges of studying and living abroad.\\r\\n"
+   "description": "VISA is dedicated to providing a platform where Vietnamese international students can connect, share experiences, and support one another in navigating the challenges of studying and living abroad."
   },
   {
    "name": "Vietnamese Student Association",
@@ -7762,7 +7762,7 @@
    "website": "https://huskylink.washington.edu/vitalsigns/",
    "category": "Academic",
    "about": "Vital Signs is a studentrun, undergraduate journal, made by and for all PreHealth students.",
-   "description": "Vital Signs is a studentrun, undergraduate journal, made by and for all PreHealth students. We publish articles, essays, opeds, and even creative works about medicine, health, and the students trying to find their place within it.\\r\\n"
+   "description": "Vital Signs is a studentrun, undergraduate journal, made by and for all PreHealth students. We publish articles, essays, opeds, and even creative works about medicine, health, and the students trying to find their place within it."
   },
   {
    "name": "Vocal Jazz at UW",
@@ -7853,7 +7853,7 @@
    "website": "http://www.washpirgstudents.org",
    "category": "Service",
    "about": "WashPIRG is a a nonpartisan, studentrun organization dedicated to making a difference on issues students care about.",
-   "description": "WashPIRG is a a nonpartisan, studentrun organization dedicated to making a difference on issues students care about. We give students the skills and opportunities to mobilize and advocate for social change. \\r\\n\\r\\nGet involved at washpirgstudents.org!"
+   "description": "WashPIRG is a a nonpartisan, studentrun organization dedicated to making a difference on issues students care about. We give students the skills and opportunities to mobilize and advocate for social change.\nGet involved at washpirgstudents.org!"
   },
   {
    "name": "Washington State Pharmacy Association Student Chapter",
@@ -7909,14 +7909,14 @@
    "website": "https://huskylink.washington.edu/wcc/",
    "category": "Cultural",
    "about": "Our club's main goal is to discuss and explore contemporary Wasian identity in the postmodernist cultural landscape of…",
-   "description": "Our club's main goal is to discuss and explore contemporary Wasian identity in the postmodernist cultural landscape of America. Anyone, regardless of race, is welcome to join.\\r\\n\\r\\n"
+   "description": "Our club's main goal is to discuss and explore contemporary Wasian identity in the postmodernist cultural landscape of America. Anyone, regardless of race, is welcome to join."
   },
   {
    "name": "Water and Infrastructure Professionals",
    "website": "https://huskylink.washington.edu/wips/",
    "category": "Service",
    "about": "Water and Infrastructure Professionals (WIPs) is affiliated with local professional organizations related to drinking…",
-   "description": "Water and Infrastructure Professionals (WIPs) is affiliated with local professional organizations related to drinking water, wastewater, & infrastructure. Connect with WIPs to network, learn, and have fun.\\r\\n\\r\\n\\r\\n"
+   "description": "Water and Infrastructure Professionals (WIPs) is affiliated with local professional organizations related to drinking water, wastewater, & infrastructure. Connect with WIPs to network, learn, and have fun."
   },
   {
    "name": "Wealth Management Association",
@@ -7951,7 +7951,7 @@
    "website": "https://huskylink.washington.edu/marshalltraverse/",
    "category": "Social",
    "about": "promote and bring wellness to the University of Washington Latina community campus.",
-   "description": "promote and bring wellness to the University of Washington Latina community campus. At the same time, bringing awareness to the struggles of mental health and being faced with generational trauma.\\r\\n"
+   "description": "promote and bring wellness to the University of Washington Latina community campus. At the same time, bringing awareness to the struggles of mental health and being faced with generational trauma."
   },
   {
    "name": "Wesley Club",
@@ -8224,14 +8224,14 @@
    "website": "https://huskylink.washington.edu/zaytoonuw/",
    "category": "Cultural",
    "about": "Zaytoon is a student lead Palestinianled organization that is dedicated to fostering a strong community for…",
-   "description": "Zaytoon is a student lead Palestinianled organization that is dedicated to fostering a strong community for Palestinian students and allies at UW. In this space we aim to form meaningful relationships and enrich our cultural heritage.\\r\\n"
+   "description": "Zaytoon is a student lead Palestinianled organization that is dedicated to fostering a strong community for Palestinian students and allies at UW. In this space we aim to form meaningful relationships and enrich our cultural heritage."
   },
   {
    "name": "Zeta Phi Beta Sorority, Incorporated Kappa Nu Chapter",
    "website": "https://huskylink.washington.edu/kappanu/",
    "category": "Social",
    "about": "To foster the ideals of service, charity, scholarship, civic and cultural endeavors, sisterhood, and finer womanhood.",
-   "description": "To foster the ideals of service, charity, scholarship, civic and cultural endeavors, sisterhood, and finer womanhood. \\r\\n"
+   "description": "To foster the ideals of service, charity, scholarship, civic and cultural endeavors, sisterhood, and finer womanhood."
   },
   {
    "name": "Zeta Psi",
@@ -8249,265 +8249,6 @@
   }
  ],
  "events": [
-  {
-   "id": "hl-375140",
-   "title": "Beginner Workshops (CAD)",
-   "type": "Study",
-   "host": "Woof3D",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-26",
-   "start": "17:30",
-   "end": "18:30",
-   "url": "https://huskylink.washington.edu/woof3d/rsvp?id=375140",
-   "source": "huskylink",
-   "description": "Intro to CAD (OnShape) and 3D printing"
-  },
-  {
-   "id": "hl-375239",
-   "title": "Commander Night at the Hub!",
-   "type": "Game night",
-   "host": "WGA Magic: The Gathering",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-26",
-   "start": "18:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375239",
-   "source": "huskylink",
-   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!"
-  },
-  {
-   "id": "hl-375426",
-   "title": "Fall Card Making!",
-   "type": "Club",
-   "host": "Project Sunshine at the University of Washington",
-   "where": "Savery Hall",
-   "pos": [
-    47.65712,
-    -122.30842
-   ],
-   "date": "2026-10-26",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/projsun/rsvp?id=375426",
-   "source": "huskylink",
-   "description": "We will be meeting in Savery Hall 162 at 6pm then walk together to the HUB where we will be making the cards! No prior art experience is needed so bring your friends too! Once we finish we will collect all of the cards and send them to pediatric patients in hospitals."
-  },
-  {
-   "id": "hl-375003",
-   "title": "WashPIRG CORE Meeting",
-   "type": "Club",
-   "host": "Washington Public Interest Research Group",
-   "where": "Mechanical Engineering",
-   "pos": [
-    47.65369,
-    -122.30476
-   ],
-   "date": "2026-10-26",
-   "start": "18:30",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/washpirg/rsvp?id=375003",
-   "source": "huskylink",
-   "description": "Come hang out with WashPIRG on Mondays, 6:30pm-8:00pm in MEB 238! We're a student advocacy group focused on environmental and social justice causes! At CORE meetings, we discuss upcoming events, plans, and ideas. These weekly meetings give space for our different campaigns to work on their goals throughout the quarter."
-  },
-  {
-   "id": "hl-375122",
-   "title": "Writers in Progress Meeting (Halloween!)",
-   "type": "Club",
-   "host": "Writers in Progress",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-26",
-   "start": "19:00",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/writersinprogressuw/rsvp?id=375122",
-   "source": "huskylink",
-   "description": "We will be writing and sharing two-sentence horror stories.\nRegistration not required :) Feel free to drop in and say hi"
-  },
-  {
-   "id": "hl-375402",
-   "title": "Video Game Party",
-   "type": "Game night",
-   "host": "New Student & Transfer Programs",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-27",
-   "start": "14:00",
-   "end": "15:00",
-   "url": "https://huskylink.washington.edu/NSTP/rsvp?id=375402",
-   "source": "huskylink",
-   "description": "Get your game on with the CTC!\nMario Kart\nSuper Smash Bros\nJust Dance\nAnd free popcorn!\nWe play every Tuesday from 2-4PM!"
-  },
-  {
-   "id": "hl-375158",
-   "title": "Graphic Novels Club Meeting",
-   "type": "Club",
-   "host": "Graphic Novels Club at UW",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-27",
-   "start": "17:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/gnc/rsvp?id=375158",
-   "source": "huskylink",
-   "description": "Want to talk about comics, learn how to draw them, or just hang out in a chill and artsy space to draw and make friends? Then this club is for you! Art supplies is available, and we provide free snacks at the first and last meeting of the quarter. :)"
-  },
-  {
-   "id": "hl-375100",
-   "title": "General Meeting",
-   "type": "Club",
-   "host": "NMDP UW",
-   "where": "SAV 136",
-   "pos": [
-    47.65712,
-    -122.30842
-   ],
-   "date": "2026-10-27",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375100",
-   "source": "huskylink",
-   "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!"
-  },
-  {
-   "id": "hl-375298",
-   "title": "Barbell Club Halloween Lift",
-   "type": "Hangout",
-   "host": "Barbell Club at the University of Washington",
-   "where": "IMA",
-   "pos": [
-    47.65374,
-    -122.30123
-   ],
-   "date": "2026-10-27",
-   "start": "18:00",
-   "end": "19:30",
-   "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375298",
-   "source": "huskylink",
-   "description": "Join members and club officers at the Intramural Activities Building (IMA) for an extra special Halloween group lift. We encourage wearing costumes and cosplay!"
-  },
-  {
-   "id": "hl-375416",
-   "title": "Endometriosis Education & Advocacy Guide with WECARE",
-   "type": "Study",
-   "host": "Women Empowerment through Collaborations, Awareness, and Resources for Education",
-   "where": "Savery Hall, Room 138",
-   "pos": [
-    47.65712,
-    -122.30842
-   ],
-   "date": "2026-10-27",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/wecareuw/rsvp?id=375416",
-   "source": "huskylink",
-   "description": "Endometriosis is one of the most invasive diseases and affects 1 in 10 women, but it still goes under the radar in most settings.\nWECARE is hosting a fun interactive event to educate more students about endometriosis and help you become an advocate for it in your everyday life!\nAll UW students are welcome to join the conversation and help us build community together. Plus, challenge your knowledge with a Kahoot and win prizes!\n*Educational resources are provided and guided by the ENPOWR program with the Endometriosis Foundation of America. Lila, WECARE UW President and ENPOWR ambassador, has researched endometriosis at UW Medicine for over 1 year!"
-  },
-  {
-   "id": "hl-375430",
-   "title": "Huskies for Kids RSO General Meeting 10/27",
-   "type": "Club",
-   "host": "Huskies for Kids",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-27",
-   "start": "19:00",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/huskids/rsvp?id=375430",
-   "source": "huskylink",
-   "description": "Bracelet Making in Partnership with the Women’s Shelter Jewelry Project"
-  },
-  {
-   "id": "hl-375052",
-   "title": "UNA UW Chapter Meeting",
-   "type": "Club",
-   "host": "United Nations Association University of Washington Chapter",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-28",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/unauw/rsvp?id=375052",
-   "source": "huskylink",
-   "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!"
-  },
-  {
-   "id": "hl-375408",
-   "title": "Pumpkin Painting Competition",
-   "type": "Hangout",
-   "host": "The Women's Network at UW",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-28",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/thewomensnetwork/rsvp?id=375408",
-   "source": "huskylink",
-   "description": "Halloween social pumpkin painting competition."
-  },
-  {
-   "id": "hl-374973",
-   "title": "Info Session",
-   "type": "Hangout",
-   "host": "Husky Winter Sports",
-   "where": "Winkenwerder (WFS) Room 201",
-   "pos": [
-    47.65139,
-    -122.30687
-   ],
-   "date": "2026-10-28",
-   "start": "19:00",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/huskyws/rsvp?id=374973",
-   "source": "huskylink",
-   "description": "Come learn how to SKI FOR FREE as a UW student !!! AND GET STOKED FOR THE SKI SEASON AND possibly get some FREE SWAGG????"
-  },
-  {
-   "id": "hl-375369",
-   "title": "Large Group",
-   "type": "Club",
-   "host": "Asian American Christian Fellowship",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-28",
-   "start": "19:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375369",
-   "source": "huskylink",
-   "description": "Weekly gathering that brings together the entire community of AACF for worship, teaching, and community-building activities.\nCheck our Instagram @uwaacf for details! Locations may be subject to change each week."
-  },
-  {
-   "id": "hl-375336",
-   "title": "RSO Drop-In Advising",
-   "type": "Study",
-   "host": "Student Activities Office",
-   "where": "HUB",
-   "pos": [
-    47.65537,
-    -122.3051
-   ],
-   "date": "2026-10-29",
-   "start": "13:00",
-   "end": "16:00",
-   "url": "https://huskylink.washington.edu/SAO/rsvp?id=375336",
-   "source": "huskylink",
-   "description": "The Student Activities Office (SAO) offers RSO Drop-In Advising hours in HUB 111B, located within the RSO Resource Center. These drop-in hours provide RSOs with an opportunity to connect with an SAO Advisor, ask questions, and receive guidance and support on a variety of topics."
-  },
-  {
-   "id": "hl-375323",
-   "title": "2026–27 Kickoff",
-   "type": "Hangout",
-   "host": "AWS Cloud Club at the University of Washington",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-29",
-   "start": "16:00",
-   "end": "17:00",
-   "url": "https://huskylink.washington.edu/awscloudclubatuw/rsvp?id=375323",
-   "source": "huskylink",
-   "description": "Heard something brewing in the ☁️…\nJoin us for the AWS SBG Kickoff!\nMeet our team, connect with other members, and learn more about what we do and what’s coming up.\nGould 322\n️ October 29 | 4–5 PM\nSee you there!"
-  },
   {
    "id": "hl-375414",
    "title": "Research and REU Info Session",
@@ -8543,6 +8284,34 @@
    "description": "Meet at Fridays at 3pm in the Asian Languages & Literature Department Lounge (M218) of Gowen Hall. All are welcome!"
   },
   {
+   "id": "hl-375460",
+   "title": "AMATH Club: Tasty Tower of Terror!",
+   "type": "Hangout",
+   "host": "Applied Mathematics Club",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-02",
+   "start": "17:00",
+   "end": "18:00",
+   "url": "https://huskylink.washington.edu/amathclub/rsvp?id=375460",
+   "source": "huskylink",
+   "description": "Halloween is not over yet!\nJoin AMATH Club in making a candy salad and participate in our tower building competition! We’ll be meeting in LEW 208 at 5 pm! Bringing your candy of choice will be appreciated, but we will also provide some. Please RSVP on our Instagram account so we can bring enough for everyone!\nFollow us on our Instagram Account for more information and to be kept updated on all events for our club: @amathclub.uw"
+  },
+  {
+   "id": "hl-375141",
+   "title": "Beginner Workshops (CAD)",
+   "type": "Study",
+   "host": "Woof3D",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-02",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://huskylink.washington.edu/woof3d/rsvp?id=375141",
+   "source": "huskylink",
+   "description": "Intro to CAD (OnShape) and 3D printing"
+  },
+  {
    "id": "hl-375092",
    "title": "Hot Topics Hard Questions",
    "type": "Study",
@@ -8558,6 +8327,37 @@
    "url": "https://huskylink.washington.edu/philmed/rsvp?id=375092",
    "source": "huskylink",
    "description": "Medicine constantly occupies news headlines, bringing up new potential philosophical questions every week. For this event, we will choose a few headlines from right before our meeting to discuss. Join us Monday, Nov. 2, from 6-7 p.m. in THO 135 to explore the ethics of now."
+  },
+  {
+   "id": "hl-375241",
+   "title": "Commander Night at the Hub!",
+   "type": "Game night",
+   "host": "WGA Magic: The Gathering",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-02",
+   "start": "18:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375241",
+   "source": "huskylink",
+   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!"
+  },
+  {
+   "id": "hl-375004",
+   "title": "WashPIRG CORE Meeting",
+   "type": "Club",
+   "host": "Washington Public Interest Research Group",
+   "where": "Mechanical Engineering",
+   "pos": [
+    47.65369,
+    -122.30476
+   ],
+   "date": "2026-11-02",
+   "start": "18:30",
+   "end": "20:00",
+   "url": "https://huskylink.washington.edu/washpirg/rsvp?id=375004",
+   "source": "huskylink",
+   "description": "Come hang out with WashPIRG on Mondays, 6:30pm-8:00pm in MEB 238! We're a student advocacy group focused on environmental and social justice causes! At CORE meetings, we discuss upcoming events, plans, and ideas. These weekly meetings give space for our different campaigns to work on their goals throughout the quarter."
   },
   {
    "id": "hl-374974",
@@ -8588,6 +8388,34 @@
    "description": "A meeting usually includes an icebreaker, a short freewrite, and a feedback session.\nRegistration not required :) Feel free to drop in and say hi"
   },
   {
+   "id": "hl-375403",
+   "title": "Video Game Party",
+   "type": "Game night",
+   "host": "New Student & Transfer Programs",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-03",
+   "start": "14:00",
+   "end": "15:00",
+   "url": "https://huskylink.washington.edu/NSTP/rsvp?id=375403",
+   "source": "huskylink",
+   "description": "Get your game on with the CTC!\nMario Kart\nSuper Smash Bros\nJust Dance\nAnd free popcorn!\nWe play every Tuesday from 2-4PM!"
+  },
+  {
+   "id": "hl-375159",
+   "title": "Graphic Novels Club Meeting",
+   "type": "Club",
+   "host": "Graphic Novels Club at UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-03",
+   "start": "17:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/gnc/rsvp?id=375159",
+   "source": "huskylink",
+   "description": "Want to talk about comics, learn how to draw them, or just hang out in a chill and artsy space to draw and make friends? Then this club is for you! Art supplies is available, and we provide free snacks at the first and last meeting of the quarter. :)"
+  },
+  {
    "id": "hl-375299",
    "title": "Barbell Club Deload Game Night",
    "type": "Game night",
@@ -8602,6 +8430,34 @@
    "description": "Join members and club officers on campus for a relaxing game night!"
   },
   {
+   "id": "hl-375454",
+   "title": "Open Gym",
+   "type": "Hangout",
+   "host": "Men's Basketball Club @ UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-03",
+   "start": "18:30",
+   "end": "19:30",
+   "url": "https://huskylink.washington.edu/mensclubbasketball/rsvp?id=375454",
+   "source": "huskylink",
+   "description": "Pull up to Gym A to meet each other and play casual pickup basketball"
+  },
+  {
+   "id": "hl-375053",
+   "title": "UNA UW Chapter Meeting",
+   "type": "Club",
+   "host": "United Nations Association University of Washington Chapter",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-04",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/unauw/rsvp?id=375053",
+   "source": "huskylink",
+   "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!"
+  },
+  {
    "id": "hl-375422",
    "title": "American Cancer Society General Meeting - Trivia",
    "type": "Club",
@@ -8614,6 +8470,51 @@
    "url": "https://huskylink.washington.edu/acsuw/rsvp?id=375422",
    "source": "huskylink",
    "description": "Come join ACS (also commonly known as Relay for Life) for our November general meeting! You'll get the opportunity to learn about our club and our committees, play some fun trivia for a prize, and meet new people. Anyone is welcome to come!"
+  },
+  {
+   "id": "hl-375370",
+   "title": "Large Group",
+   "type": "Club",
+   "host": "Asian American Christian Fellowship",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-04",
+   "start": "19:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375370",
+   "source": "huskylink",
+   "description": "Weekly gathering that brings together the entire community of AACF for worship, teaching, and community-building activities.\nCheck our Instagram @uwaacf for details! Locations may be subject to change each week."
+  },
+  {
+   "id": "hl-375337",
+   "title": "RSO Drop-In Advising",
+   "type": "Study",
+   "host": "Student Activities Office",
+   "where": "HUB",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-05",
+   "start": "13:00",
+   "end": "16:00",
+   "url": "https://huskylink.washington.edu/SAO/rsvp?id=375337",
+   "source": "huskylink",
+   "description": "The Student Activities Office (SAO) offers RSO Drop-In Advising hours in HUB 111B, located within the RSO Resource Center. These drop-in hours provide RSOs with an opportunity to connect with an SAO Advisor, ask questions, and receive guidance and support on a variety of topics."
+  },
+  {
+   "id": "hl-375462",
+   "title": "RSO Listening Session",
+   "type": "Study",
+   "host": "Student Activities Office",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-05",
+   "start": "17:00",
+   "end": "18:00",
+   "url": "https://huskylink.washington.edu/SAO/rsvp?id=375462",
+   "source": "huskylink",
+   "description": "You're invited to a listening session on the proposed changes to the student code of conduct as they relate to RSOs. University Administrators will explain the proposed changes and collect feedback from student leaders."
   },
   {
    "id": "hl-375344",
@@ -8633,6 +8534,62 @@
    "description": "Ever thought about entering a cosplay contest? Now is your chance! Show off your cosplay, get feedback from masters-level judges, and meet fellow cosplayers. Cosplays do NOT have to be handmade! Prizes to be announced soon.\nPlease register for the competition using the google form attached."
   },
   {
+   "id": "hl-375452",
+   "title": "UTS Town Hall",
+   "type": "Club",
+   "host": "Undergraduate Theater Society",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-06",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/uwuts/rsvp?id=375452",
+   "source": "huskylink",
+   "description": "All UTS members are welcome to attend UTS's first Town Hall! This event will be an insight into the functions and ongoings of the UTS Board and an opportunity for community members to voice any concerns for the club's future and ask questions to the Board directly."
+  },
+  {
+   "id": "hl-375453",
+   "title": "Ghostlight",
+   "type": "Hangout",
+   "host": "Undergraduate Theater Society",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-06",
+   "start": "19:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/uwuts/rsvp?id=375453",
+   "source": "huskylink",
+   "description": "All members of the drama community are welcome to attend UTS's fun and low-stakes acting opportunity Ghostlight! Attendees can bring their favorite scenes from movies and shows they've been wanting to perform, or use scenes that we provide. We'll take turns performing with partners and random groups and cheer our fellow actors on. And, be sure to attend our first Town Hall meeting right before Ghostlight at 6pm to hear about more fun events in the future!"
+  },
+  {
+   "id": "hl-375443",
+   "title": "Med Connect: Connecting You to Healthcare",
+   "type": "Club",
+   "host": "Med Connect",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-09",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/medconnect/rsvp?id=375443",
+   "source": "huskylink",
+   "description": "Interested in healthcare? We can connect you!\nOur mission is to break down barriers to healthcare experiences at UW by connecting students with meaningful opportunities and equipping them with the skills to succeed in empathetic, compassionate healthcare.\nWhether you’re pre-med, pre-nursing, pre-PA, pre-pharmacy, or simply interested in getting involved in healthcare, we’re here to help guide you toward your goals.\nCome meet fellow students, learn about upcoming clinical, volunteering, shadowing, and research opportunities, and discover how MedConnect can help you take the next step in your healthcare journey!"
+  },
+  {
+   "id": "hl-375101",
+   "title": "General Meeting",
+   "type": "Club",
+   "host": "NMDP UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-10",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375101",
+   "source": "huskylink",
+   "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!"
+  },
+  {
    "id": "hl-375300",
    "title": "Barbell Club Caffeine Lift",
    "type": "Hangout",
@@ -8648,6 +8605,23 @@
    "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375300",
    "source": "huskylink",
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters."
+  },
+  {
+   "id": "hl-375371",
+   "title": "Worship Night",
+   "type": "Club",
+   "host": "Asian American Christian Fellowship",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-11",
+   "start": "15:30",
+   "end": "17:30",
+   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375371",
+   "source": "huskylink",
+   "description": "Come join us for a worship night gathering at the Red Square!\nCheck our Instagram @uwaacf for details!"
   },
   {
    "id": "hl-375343",
@@ -8668,7 +8642,7 @@
   },
   {
    "id": "hl-375385",
-   "title": "Sentient Film Screening with Animal Rights at UW",
+   "title": "Sentient Film Screening with Animal Advocacy at UW",
    "type": "Hangout",
    "host": "Viable Veganism at UW",
    "where": "HUB 334",
@@ -8677,11 +8651,25 @@
     -122.3051
    ],
    "date": "2026-11-16",
-   "start": "18:00",
-   "end": "21:00",
+   "start": "18:30",
+   "end": "20:30",
    "url": "https://huskylink.washington.edu/viableveganismuw/rsvp?id=375385",
    "source": "huskylink",
-   "description": "Come watch the screening for the powerful documentary Sentient, which explores animal experimentation, ahead of its release along with a Q&A with Dr. Lisa Jones-Engel!\nWhen/where: HUB 334 on November 16th from 6-9PM\nEveryone is welcome, regardless of diet, lifestyle, or familiarity with animal rights! Free vegan pizza and snacks will be provided.\nFree admission, please RSVP!"
+   "description": "Come watch the screening for the powerful documentary Sentient, which explores animal experimentation, ahead of its release along with a Q&A with Dr. Lisa Jones-Engel!\nWhen/where: HUB 334 on November 16th from 6:30-8:30PM\nEveryone is welcome, regardless of diet, lifestyle, or familiarity with animal rights! Free vegan pizza and snacks will be provided.\nFree admission, please RSVP! https://luma.com/5bcotf0s"
+  },
+  {
+   "id": "hl-375450",
+   "title": "Food & Friends",
+   "type": "Hangout",
+   "host": "AWS Cloud Club at the University of Washington",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-17",
+   "start": "17:00",
+   "end": "18:00",
+   "url": "https://huskylink.washington.edu/awscloudclubatuw/rsvp?id=375450",
+   "source": "huskylink",
+   "description": "Seconds are encouraged. There's always room at the table.\nWe’re back with our second event of the quarter. Join us for Food & Friends, an AWS SBG fall social with Friendsgiving vibes. Bring your favorite food, drinks, and games to share, and come hang out with us!"
   },
   {
    "id": "hl-375297",
@@ -8699,6 +8687,37 @@
    "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375297",
    "source": "huskylink",
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters."
+  },
+  {
+   "id": "hl-375103",
+   "title": "General Meeting (Tentative)",
+   "type": "Club",
+   "host": "NMDP UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-24",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375103",
+   "source": "huskylink",
+   "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!"
+  },
+  {
+   "id": "hl-375301",
+   "title": "Barbell Club MAX OUT Day",
+   "type": "Hangout",
+   "host": "Barbell Club at the University of Washington",
+   "where": "IMA",
+   "pos": [
+    47.65374,
+    -122.30123
+   ],
+   "date": "2026-11-24",
+   "start": "18:00",
+   "end": "19:30",
+   "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375301",
+   "source": "huskylink",
+   "description": "It is nearly the end of the quarter, and it is time to see how strong you have become! Join us at the IMA for a day dedicated to beating personal records. Spotters will be available, and blood will be pumping."
   }
  ]
 }

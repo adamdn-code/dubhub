@@ -5,6 +5,7 @@ puts their upcoming events on the website (public/events.json).
 Setup (one time):
   1. pip install instaloader requests
   2. List club handles in clubs.txt, one per line (# lines are ignored).
+     It also reads every handle find_instagram_handles.py saved to club_instagram.json.
   3. Log in once with the THROWAWAY account (not your main one):
          python -m instaloader --login=dubhub.uw
   4. Optional but recommended, for much better event details: a free Groq key
@@ -21,12 +22,15 @@ Then push the website so the new public/events.json and public/clubs.json go liv
 
 To avoid getting blocked, it:
   - runs at most once every 20 hours (use --force to override),
+  - checks 40 clubs per run, the ones checked longest ago first, so every club
+    gets its turn over a few runs,
   - waits 30-60 seconds between clubs,
   - only reads posts from the past 3 weeks and stops at posts it already read,
   - stops immediately if Instagram pushes back, and then tries Google instead.
 Options: --force (ignore the 20 hour limit), --google (skip Instagram, only use Google)
 """
 
+import json
 import os
 import random
 import sys
@@ -41,6 +45,7 @@ from events_common import (
     LOOKBACK_DAYS,
     STATE_DIR,
     TODAY,
+    found_instagram_handles,
     load_store,
     process_posts,
     redo_keyword_posts,
@@ -53,16 +58,35 @@ from events_common import (
 IG_USERNAME = os.environ.get("IG_USERNAME")
 CLUBS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "clubs.txt")
 LAST_RUN_FILE = STATE_DIR / "last_instagram_run.txt"
+CHECKED_FILE = STATE_DIR / "instagram_checked.json"  # handle -> when it was last checked
+CLUBS_PER_RUN = 40           # more per run means a bigger chance of being blocked
 POSTS_PER_CLUB = 6           # newest posts to check per club, at most
 MIN_WAIT, MAX_WAIT = 30, 60  # seconds between clubs; slower = less chance of being blocked
 MIN_HOURS_BETWEEN_RUNS = 20
 
 
 def read_clubs():
-    if not os.path.exists(CLUBS_FILE):
-        sys.exit("Make a clubs.txt file with one Instagram handle per line.")
-    with open(CLUBS_FILE, encoding="utf-8") as f:
-        return [h for h in (line.split("#")[0].strip().lstrip("@") for line in f) if h]
+    """Handles from clubs.txt plus the ones find_instagram_handles.py found."""
+    handles = []
+    if os.path.exists(CLUBS_FILE):
+        with open(CLUBS_FILE, encoding="utf-8") as f:
+            handles = [h for h in (line.split("#")[0].strip().lstrip("@") for line in f) if h]
+    handles += found_instagram_handles().values()
+    if not handles:
+        sys.exit("No clubs to check. Add handles to clubs.txt or run find_instagram_handles.py.")
+    return list(dict.fromkeys(h.lower() for h in handles))
+
+
+def load_checked():
+    try:
+        return json.loads(CHECKED_FILE.read_text(encoding="utf-8"))
+    except (FileNotFoundError, ValueError):
+        return {}
+
+
+def this_runs_clubs(handles, checked):
+    """The clubs checked longest ago (never-checked ones first)."""
+    return sorted(handles, key=lambda h: checked.get(h, ""))[:CLUBS_PER_RUN]
 
 
 def ran_recently():
@@ -89,7 +113,10 @@ def scrape_instagram(store):
     LAST_RUN_FILE.write_text(datetime.now().isoformat())
 
     cutoff = TODAY - timedelta(days=LOOKBACK_DAYS)
-    handles = read_clubs()
+    every = read_clubs()
+    checked = load_checked()
+    handles = this_runs_clubs(every, checked)
+    print(f"Checking {len(handles)} of {len(every)} clubs this run; the rest get their turn on later runs.")
     posts = []
     for i, handle in enumerate(handles):
         if i:
@@ -136,6 +163,9 @@ def scrape_instagram(store):
             print("Stopping now so it doesn't get worse. Open Instagram as "
                   f"{IG_USERNAME}, clear any warning, and wait 24-48 hours before trying again.")
             return posts, True
+        # Checked (or missing/private): move it to the back of the line.
+        checked[handle] = datetime.now().isoformat(timespec="minutes")
+        CHECKED_FILE.write_text(json.dumps(checked, indent=1), encoding="utf-8")
     return posts, False
 
 

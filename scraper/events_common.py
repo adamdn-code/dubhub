@@ -38,6 +38,7 @@ CLUB_ACTIVITY_FILE = HERE / "club_activity.json"  # latest event date per club; 
 CLUB_FIELDS_FILE = HERE / "club_fields.json"      # AI-sorted major fields per club; on GitHub
 CLUB_ALIASES_FILE = HERE / "club_aliases.txt"     # Instagram handle -> HuskyLink club name, by hand
 HUSKYLINK_FILE = HERE / "huskylink.json"  # huskylink_scraper.py output; on GitHub so every scraper sees it
+CLUB_INSTAGRAM_FILE = HERE / "club_instagram.json"  # find_instagram_handles.py output: club name -> handle
 
 
 def _load_env_file():
@@ -667,7 +668,7 @@ def load_huskylink():
 def merge_huskylink_events(events):
     """Swap in the latest HuskyLink events (dropping any old ones), sorted by date."""
     today = TODAY.isoformat()
-    events = [e for e in events if e.get("source") != "huskylink"]
+    events = [e for e in events if e.get("source") != "huskylink" and e["date"] >= today]
     events += [e for e in load_huskylink()["events"] if e["date"] >= today]
     events.sort(key=lambda e: (e["date"], e["start"] or "99"))
     return events
@@ -695,27 +696,41 @@ def read_club_aliases():
     return aliases
 
 
+def found_instagram_handles():
+    """HuskyLink club name -> Instagram handle, for clubs find_instagram_handles.py found one for."""
+    return {name: v["handle"] for name, v in _load(CLUB_INSTAGRAM_FILE, {}).items() if v.get("handle")}
+
+
 def merge_huskylink_clubs(clubs):
-    """Add every HuskyLink group. A club already listed under a matching name (or matched to it in
-    club_aliases.txt) gets the gaps filled in."""
+    """Add every HuskyLink group. A club already listed under the same Instagram, a matching name,
+    or matched to it in club_aliases.txt gets the gaps filled in."""
     clubs = [c for c in clubs if c.get("source") != "huskylink"]
     by_name = {club_key(c["name"]): c for c in clubs}
+    by_handle = {c["handle"]: c for c in clubs if c.get("handle")}
     aliases = read_club_aliases()
     for c in clubs:
         if c.get("handle") in aliases:
             by_name[club_key(aliases[c["handle"]])] = c
+    handles = found_instagram_handles()
     for h in load_huskylink()["clubs"]:
-        c = by_name.get(club_key(h["name"]))
+        handle = handles.get(h["name"])
+        if handle:
+            h = {**h, "handle": handle, "instagram": f"https://www.instagram.com/{handle}/"}
+        c = by_handle.get(handle) or by_name.get(club_key(h["name"]))
         if c is None:
             clubs.append({**h, "source": "huskylink"})
             by_name[club_key(h["name"])] = clubs[-1]
             continue
         if c["name"].startswith("@") or c.get("handle") in aliases:
             c["name"] = h["name"]  # use HuskyLink's official name
-        for field in ("website", "about", "description"):
-            c[field] = c.get(field) or h[field]
+        for field in ("website", "about", "description", "handle", "instagram"):
+            c[field] = c.get(field) or h.get(field)
         if c.get("category") in (None, "Other"):
             c["category"] = h["category"]
+    for c in clubs:  # some HuskyLink missions have a typed-in "\r\n"; older merges kept it
+        for field in ("about", "description"):
+            if c.get(field):
+                c[field] = re.sub(r"\\r\\n|\\n|\\r", "\n", c[field])
     clubs.sort(key=lambda c: c["name"].lstrip("@").lower())
     return clubs
 

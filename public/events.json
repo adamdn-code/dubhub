@@ -1,282 +1,6 @@
 {
- "updated": "2026-10-24T20:27",
+ "updated": "2026-10-29T18:10",
  "events": [
-  {
-   "id": "DeoIC_DInbR-0",
-   "title": "Beginners session",
-   "type": "Club",
-   "host": "@uwaslclub",
-   "where": "HUB RM 332",
-   "pos": [
-    47.65537,
-    -122.3051
-   ],
-   "date": "2026-10-26",
-   "start": "17:00",
-   "end": "19:00",
-   "url": "https://www.instagram.com/p/DeoIC_DInbR/",
-   "source": "google",
-   "description": "Excluding our Dawg Daze workshop this Friday, we'll be meeting every Monday, 5-7pm, in HUB RM 332. At each meeting, we'll have our beginners sessions from 5-6pm ..."
-  },
-  {
-   "id": "hl-375140",
-   "title": "Beginner Workshops (CAD)",
-   "type": "Study",
-   "host": "Woof3D",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-26",
-   "start": "17:30",
-   "end": "18:30",
-   "url": "https://huskylink.washington.edu/woof3d/rsvp?id=375140",
-   "source": "huskylink",
-   "description": "Intro to CAD (OnShape) and 3D printing"
-  },
-  {
-   "id": "hl-375239",
-   "title": "Commander Night at the Hub!",
-   "type": "Game night",
-   "host": "WGA Magic: The Gathering",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-26",
-   "start": "18:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375239",
-   "source": "huskylink",
-   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!"
-  },
-  {
-   "id": "hl-375426",
-   "title": "Fall Card Making!",
-   "type": "Club",
-   "host": "Project Sunshine at the University of Washington",
-   "where": "Savery Hall",
-   "pos": [
-    47.65712,
-    -122.30842
-   ],
-   "date": "2026-10-26",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/projsun/rsvp?id=375426",
-   "source": "huskylink",
-   "description": "We will be meeting in Savery Hall 162 at 6pm then walk together to the HUB where we will be making the cards! No prior art experience is needed so bring your friends too! Once we finish we will collect all of the cards and send them to pediatric patients in hospitals."
-  },
-  {
-   "id": "hl-375003",
-   "title": "WashPIRG CORE Meeting",
-   "type": "Club",
-   "host": "Washington Public Interest Research Group",
-   "where": "Mechanical Engineering",
-   "pos": [
-    47.65369,
-    -122.30476
-   ],
-   "date": "2026-10-26",
-   "start": "18:30",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/washpirg/rsvp?id=375003",
-   "source": "huskylink",
-   "description": "Come hang out with WashPIRG on Mondays, 6:30pm-8:00pm in MEB 238! We're a student advocacy group focused on environmental and social justice causes! At CORE meetings, we discuss upcoming events, plans, and ideas. These weekly meetings give space for our different campaigns to work on their goals throughout the quarter."
-  },
-  {
-   "id": "hl-375122",
-   "title": "Writers in Progress Meeting (Halloween!)",
-   "type": "Club",
-   "host": "Writers in Progress",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-26",
-   "start": "19:00",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/writersinprogressuw/rsvp?id=375122",
-   "source": "huskylink",
-   "description": "We will be writing and sharing two-sentence horror stories.\nRegistration not required :) Feel free to drop in and say hi"
-  },
-  {
-   "id": "hl-375402",
-   "title": "Video Game Party",
-   "type": "Game night",
-   "host": "New Student & Transfer Programs",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-27",
-   "start": "14:00",
-   "end": "15:00",
-   "url": "https://huskylink.washington.edu/NSTP/rsvp?id=375402",
-   "source": "huskylink",
-   "description": "Get your game on with the CTC!\nMario Kart\nSuper Smash Bros\nJust Dance\nAnd free popcorn!\nWe play every Tuesday from 2-4PM!"
-  },
-  {
-   "id": "hl-375158",
-   "title": "Graphic Novels Club Meeting",
-   "type": "Club",
-   "host": "Graphic Novels Club at UW",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-27",
-   "start": "17:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/gnc/rsvp?id=375158",
-   "source": "huskylink",
-   "description": "Want to talk about comics, learn how to draw them, or just hang out in a chill and artsy space to draw and make friends? Then this club is for you! Art supplies is available, and we provide free snacks at the first and last meeting of the quarter. :)"
-  },
-  {
-   "id": "hl-375100",
-   "title": "General Meeting",
-   "type": "Club",
-   "host": "NMDP UW",
-   "where": "SAV 136",
-   "pos": [
-    47.65712,
-    -122.30842
-   ],
-   "date": "2026-10-27",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375100",
-   "source": "huskylink",
-   "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!"
-  },
-  {
-   "id": "hl-375298",
-   "title": "Barbell Club Halloween Lift",
-   "type": "Hangout",
-   "host": "Barbell Club at the University of Washington",
-   "where": "IMA",
-   "pos": [
-    47.65374,
-    -122.30123
-   ],
-   "date": "2026-10-27",
-   "start": "18:00",
-   "end": "19:30",
-   "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375298",
-   "source": "huskylink",
-   "description": "Join members and club officers at the Intramural Activities Building (IMA) for an extra special Halloween group lift. We encourage wearing costumes and cosplay!"
-  },
-  {
-   "id": "hl-375416",
-   "title": "Endometriosis Education & Advocacy Guide with WECARE",
-   "type": "Study",
-   "host": "Women Empowerment through Collaborations, Awareness, and Resources for Education",
-   "where": "Savery Hall, Room 138",
-   "pos": [
-    47.65712,
-    -122.30842
-   ],
-   "date": "2026-10-27",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/wecareuw/rsvp?id=375416",
-   "source": "huskylink",
-   "description": "Endometriosis is one of the most invasive diseases and affects 1 in 10 women, but it still goes under the radar in most settings.\nWECARE is hosting a fun interactive event to educate more students about endometriosis and help you become an advocate for it in your everyday life!\nAll UW students are welcome to join the conversation and help us build community together. Plus, challenge your knowledge with a Kahoot and win prizes!\n*Educational resources are provided and guided by the ENPOWR program with the Endometriosis Foundation of America. Lila, WECARE UW President and ENPOWR ambassador, has researched endometriosis at UW Medicine for over 1 year!"
-  },
-  {
-   "id": "hl-375430",
-   "title": "Huskies for Kids RSO General Meeting 10/27",
-   "type": "Club",
-   "host": "Huskies for Kids",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-27",
-   "start": "19:00",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/huskids/rsvp?id=375430",
-   "source": "huskylink",
-   "description": "Bracelet Making in Partnership with the Women’s Shelter Jewelry Project"
-  },
-  {
-   "id": "hl-375052",
-   "title": "UNA UW Chapter Meeting",
-   "type": "Club",
-   "host": "United Nations Association University of Washington Chapter",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-28",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/unauw/rsvp?id=375052",
-   "source": "huskylink",
-   "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!"
-  },
-  {
-   "id": "hl-375408",
-   "title": "Pumpkin Painting Competition",
-   "type": "Hangout",
-   "host": "The Women's Network at UW",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-28",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/thewomensnetwork/rsvp?id=375408",
-   "source": "huskylink",
-   "description": "Halloween social pumpkin painting competition."
-  },
-  {
-   "id": "hl-374973",
-   "title": "Info Session",
-   "type": "Hangout",
-   "host": "Husky Winter Sports",
-   "where": "Winkenwerder (WFS) Room 201",
-   "pos": [
-    47.65139,
-    -122.30687
-   ],
-   "date": "2026-10-28",
-   "start": "19:00",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/huskyws/rsvp?id=374973",
-   "source": "huskylink",
-   "description": "Come learn how to SKI FOR FREE as a UW student !!! AND GET STOKED FOR THE SKI SEASON AND possibly get some FREE SWAGG????"
-  },
-  {
-   "id": "hl-375369",
-   "title": "Large Group",
-   "type": "Club",
-   "host": "Asian American Christian Fellowship",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-28",
-   "start": "19:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375369",
-   "source": "huskylink",
-   "description": "Weekly gathering that brings together the entire community of AACF for worship, teaching, and community-building activities.\nCheck our Instagram @uwaacf for details! Locations may be subject to change each week."
-  },
-  {
-   "id": "hl-375336",
-   "title": "RSO Drop-In Advising",
-   "type": "Study",
-   "host": "Student Activities Office",
-   "where": "HUB",
-   "pos": [
-    47.65537,
-    -122.3051
-   ],
-   "date": "2026-10-29",
-   "start": "13:00",
-   "end": "16:00",
-   "url": "https://huskylink.washington.edu/SAO/rsvp?id=375336",
-   "source": "huskylink",
-   "description": "The Student Activities Office (SAO) offers RSO Drop-In Advising hours in HUB 111B, located within the RSO Resource Center. These drop-in hours provide RSOs with an opportunity to connect with an SAO Advisor, ask questions, and receive guidance and support on a variety of topics."
-  },
-  {
-   "id": "hl-375323",
-   "title": "2026–27 Kickoff",
-   "type": "Hangout",
-   "host": "AWS Cloud Club at the University of Washington",
-   "where": null,
-   "pos": null,
-   "date": "2026-10-29",
-   "start": "16:00",
-   "end": "17:00",
-   "url": "https://huskylink.washington.edu/awscloudclubatuw/rsvp?id=375323",
-   "source": "huskylink",
-   "description": "Heard something brewing in the ☁️…\nJoin us for the AWS SBG Kickoff!\nMeet our team, connect with other members, and learn more about what we do and what’s coming up.\nGould 322\n️ October 29 | 4–5 PM\nSee you there!"
-  },
   {
    "id": "hl-375414",
    "title": "Research and REU Info Session",
@@ -312,6 +36,34 @@
    "description": "Meet at Fridays at 3pm in the Asian Languages & Literature Department Lounge (M218) of Gowen Hall. All are welcome!"
   },
   {
+   "id": "hl-375460",
+   "title": "AMATH Club: Tasty Tower of Terror!",
+   "type": "Hangout",
+   "host": "Applied Mathematics Club",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-02",
+   "start": "17:00",
+   "end": "18:00",
+   "url": "https://huskylink.washington.edu/amathclub/rsvp?id=375460",
+   "source": "huskylink",
+   "description": "Halloween is not over yet!\nJoin AMATH Club in making a candy salad and participate in our tower building competition! We’ll be meeting in LEW 208 at 5 pm! Bringing your candy of choice will be appreciated, but we will also provide some. Please RSVP on our Instagram account so we can bring enough for everyone!\nFollow us on our Instagram Account for more information and to be kept updated on all events for our club: @amathclub.uw"
+  },
+  {
+   "id": "hl-375141",
+   "title": "Beginner Workshops (CAD)",
+   "type": "Study",
+   "host": "Woof3D",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-02",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://huskylink.washington.edu/woof3d/rsvp?id=375141",
+   "source": "huskylink",
+   "description": "Intro to CAD (OnShape) and 3D printing"
+  },
+  {
    "id": "hl-375092",
    "title": "Hot Topics Hard Questions",
    "type": "Study",
@@ -327,6 +79,37 @@
    "url": "https://huskylink.washington.edu/philmed/rsvp?id=375092",
    "source": "huskylink",
    "description": "Medicine constantly occupies news headlines, bringing up new potential philosophical questions every week. For this event, we will choose a few headlines from right before our meeting to discuss. Join us Monday, Nov. 2, from 6-7 p.m. in THO 135 to explore the ethics of now."
+  },
+  {
+   "id": "hl-375241",
+   "title": "Commander Night at the Hub!",
+   "type": "Game night",
+   "host": "WGA Magic: The Gathering",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-02",
+   "start": "18:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375241",
+   "source": "huskylink",
+   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!"
+  },
+  {
+   "id": "hl-375004",
+   "title": "WashPIRG CORE Meeting",
+   "type": "Club",
+   "host": "Washington Public Interest Research Group",
+   "where": "Mechanical Engineering",
+   "pos": [
+    47.65369,
+    -122.30476
+   ],
+   "date": "2026-11-02",
+   "start": "18:30",
+   "end": "20:00",
+   "url": "https://huskylink.washington.edu/washpirg/rsvp?id=375004",
+   "source": "huskylink",
+   "description": "Come hang out with WashPIRG on Mondays, 6:30pm-8:00pm in MEB 238! We're a student advocacy group focused on environmental and social justice causes! At CORE meetings, we discuss upcoming events, plans, and ideas. These weekly meetings give space for our different campaigns to work on their goals throughout the quarter."
   },
   {
    "id": "DexjLmrPMah-0",
@@ -374,6 +157,34 @@
    "description": "A meeting usually includes an icebreaker, a short freewrite, and a feedback session.\nRegistration not required :) Feel free to drop in and say hi"
   },
   {
+   "id": "hl-375403",
+   "title": "Video Game Party",
+   "type": "Game night",
+   "host": "New Student & Transfer Programs",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-03",
+   "start": "14:00",
+   "end": "15:00",
+   "url": "https://huskylink.washington.edu/NSTP/rsvp?id=375403",
+   "source": "huskylink",
+   "description": "Get your game on with the CTC!\nMario Kart\nSuper Smash Bros\nJust Dance\nAnd free popcorn!\nWe play every Tuesday from 2-4PM!"
+  },
+  {
+   "id": "hl-375159",
+   "title": "Graphic Novels Club Meeting",
+   "type": "Club",
+   "host": "Graphic Novels Club at UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-03",
+   "start": "17:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/gnc/rsvp?id=375159",
+   "source": "huskylink",
+   "description": "Want to talk about comics, learn how to draw them, or just hang out in a chill and artsy space to draw and make friends? Then this club is for you! Art supplies is available, and we provide free snacks at the first and last meeting of the quarter. :)"
+  },
+  {
    "id": "hl-375299",
    "title": "Barbell Club Deload Game Night",
    "type": "Game night",
@@ -388,6 +199,34 @@
    "description": "Join members and club officers on campus for a relaxing game night!"
   },
   {
+   "id": "hl-375454",
+   "title": "Open Gym",
+   "type": "Hangout",
+   "host": "Men's Basketball Club @ UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-03",
+   "start": "18:30",
+   "end": "19:30",
+   "url": "https://huskylink.washington.edu/mensclubbasketball/rsvp?id=375454",
+   "source": "huskylink",
+   "description": "Pull up to Gym A to meet each other and play casual pickup basketball"
+  },
+  {
+   "id": "hl-375053",
+   "title": "UNA UW Chapter Meeting",
+   "type": "Club",
+   "host": "United Nations Association University of Washington Chapter",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-04",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/unauw/rsvp?id=375053",
+   "source": "huskylink",
+   "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!"
+  },
+  {
    "id": "hl-375422",
    "title": "American Cancer Society General Meeting - Trivia",
    "type": "Club",
@@ -400,6 +239,51 @@
    "url": "https://huskylink.washington.edu/acsuw/rsvp?id=375422",
    "source": "huskylink",
    "description": "Come join ACS (also commonly known as Relay for Life) for our November general meeting! You'll get the opportunity to learn about our club and our committees, play some fun trivia for a prize, and meet new people. Anyone is welcome to come!"
+  },
+  {
+   "id": "hl-375370",
+   "title": "Large Group",
+   "type": "Club",
+   "host": "Asian American Christian Fellowship",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-04",
+   "start": "19:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375370",
+   "source": "huskylink",
+   "description": "Weekly gathering that brings together the entire community of AACF for worship, teaching, and community-building activities.\nCheck our Instagram @uwaacf for details! Locations may be subject to change each week."
+  },
+  {
+   "id": "hl-375337",
+   "title": "RSO Drop-In Advising",
+   "type": "Study",
+   "host": "Student Activities Office",
+   "where": "HUB",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-05",
+   "start": "13:00",
+   "end": "16:00",
+   "url": "https://huskylink.washington.edu/SAO/rsvp?id=375337",
+   "source": "huskylink",
+   "description": "The Student Activities Office (SAO) offers RSO Drop-In Advising hours in HUB 111B, located within the RSO Resource Center. These drop-in hours provide RSOs with an opportunity to connect with an SAO Advisor, ask questions, and receive guidance and support on a variety of topics."
+  },
+  {
+   "id": "hl-375462",
+   "title": "RSO Listening Session",
+   "type": "Study",
+   "host": "Student Activities Office",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-05",
+   "start": "17:00",
+   "end": "18:00",
+   "url": "https://huskylink.washington.edu/SAO/rsvp?id=375462",
+   "source": "huskylink",
+   "description": "You're invited to a listening session on the proposed changes to the student code of conduct as they relate to RSOs. University Administrators will explain the proposed changes and collect feedback from student leaders."
   },
   {
    "id": "hl-375344",
@@ -419,6 +303,62 @@
    "description": "Ever thought about entering a cosplay contest? Now is your chance! Show off your cosplay, get feedback from masters-level judges, and meet fellow cosplayers. Cosplays do NOT have to be handmade! Prizes to be announced soon.\nPlease register for the competition using the google form attached."
   },
   {
+   "id": "hl-375452",
+   "title": "UTS Town Hall",
+   "type": "Club",
+   "host": "Undergraduate Theater Society",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-06",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/uwuts/rsvp?id=375452",
+   "source": "huskylink",
+   "description": "All UTS members are welcome to attend UTS's first Town Hall! This event will be an insight into the functions and ongoings of the UTS Board and an opportunity for community members to voice any concerns for the club's future and ask questions to the Board directly."
+  },
+  {
+   "id": "hl-375453",
+   "title": "Ghostlight",
+   "type": "Hangout",
+   "host": "Undergraduate Theater Society",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-06",
+   "start": "19:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/uwuts/rsvp?id=375453",
+   "source": "huskylink",
+   "description": "All members of the drama community are welcome to attend UTS's fun and low-stakes acting opportunity Ghostlight! Attendees can bring their favorite scenes from movies and shows they've been wanting to perform, or use scenes that we provide. We'll take turns performing with partners and random groups and cheer our fellow actors on. And, be sure to attend our first Town Hall meeting right before Ghostlight at 6pm to hear about more fun events in the future!"
+  },
+  {
+   "id": "hl-375443",
+   "title": "Med Connect: Connecting You to Healthcare",
+   "type": "Club",
+   "host": "Med Connect",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-09",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/medconnect/rsvp?id=375443",
+   "source": "huskylink",
+   "description": "Interested in healthcare? We can connect you!\nOur mission is to break down barriers to healthcare experiences at UW by connecting students with meaningful opportunities and equipping them with the skills to succeed in empathetic, compassionate healthcare.\nWhether you’re pre-med, pre-nursing, pre-PA, pre-pharmacy, or simply interested in getting involved in healthcare, we’re here to help guide you toward your goals.\nCome meet fellow students, learn about upcoming clinical, volunteering, shadowing, and research opportunities, and discover how MedConnect can help you take the next step in your healthcare journey!"
+  },
+  {
+   "id": "hl-375101",
+   "title": "General Meeting",
+   "type": "Club",
+   "host": "NMDP UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-10",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375101",
+   "source": "huskylink",
+   "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!"
+  },
+  {
    "id": "hl-375300",
    "title": "Barbell Club Caffeine Lift",
    "type": "Hangout",
@@ -434,6 +374,23 @@
    "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375300",
    "source": "huskylink",
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters."
+  },
+  {
+   "id": "hl-375371",
+   "title": "Worship Night",
+   "type": "Club",
+   "host": "Asian American Christian Fellowship",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-11",
+   "start": "15:30",
+   "end": "17:30",
+   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375371",
+   "source": "huskylink",
+   "description": "Come join us for a worship night gathering at the Red Square!\nCheck our Instagram @uwaacf for details!"
   },
   {
    "id": "hl-375343",
@@ -454,7 +411,7 @@
   },
   {
    "id": "hl-375385",
-   "title": "Sentient Film Screening with Animal Rights at UW",
+   "title": "Sentient Film Screening with Animal Advocacy at UW",
    "type": "Hangout",
    "host": "Viable Veganism at UW",
    "where": "HUB 334",
@@ -463,11 +420,25 @@
     -122.3051
    ],
    "date": "2026-11-16",
-   "start": "18:00",
-   "end": "21:00",
+   "start": "18:30",
+   "end": "20:30",
    "url": "https://huskylink.washington.edu/viableveganismuw/rsvp?id=375385",
    "source": "huskylink",
-   "description": "Come watch the screening for the powerful documentary Sentient, which explores animal experimentation, ahead of its release along with a Q&A with Dr. Lisa Jones-Engel!\nWhen/where: HUB 334 on November 16th from 6-9PM\nEveryone is welcome, regardless of diet, lifestyle, or familiarity with animal rights! Free vegan pizza and snacks will be provided.\nFree admission, please RSVP!"
+   "description": "Come watch the screening for the powerful documentary Sentient, which explores animal experimentation, ahead of its release along with a Q&A with Dr. Lisa Jones-Engel!\nWhen/where: HUB 334 on November 16th from 6:30-8:30PM\nEveryone is welcome, regardless of diet, lifestyle, or familiarity with animal rights! Free vegan pizza and snacks will be provided.\nFree admission, please RSVP! https://luma.com/5bcotf0s"
+  },
+  {
+   "id": "hl-375450",
+   "title": "Food & Friends",
+   "type": "Hangout",
+   "host": "AWS Cloud Club at the University of Washington",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-17",
+   "start": "17:00",
+   "end": "18:00",
+   "url": "https://huskylink.washington.edu/awscloudclubatuw/rsvp?id=375450",
+   "source": "huskylink",
+   "description": "Seconds are encouraged. There's always room at the table.\nWe’re back with our second event of the quarter. Join us for Food & Friends, an AWS SBG fall social with Friendsgiving vibes. Bring your favorite food, drinks, and games to share, and come hang out with us!"
   },
   {
    "id": "hl-375297",
@@ -485,6 +456,37 @@
    "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375297",
    "source": "huskylink",
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters."
+  },
+  {
+   "id": "hl-375103",
+   "title": "General Meeting (Tentative)",
+   "type": "Club",
+   "host": "NMDP UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-24",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375103",
+   "source": "huskylink",
+   "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!"
+  },
+  {
+   "id": "hl-375301",
+   "title": "Barbell Club MAX OUT Day",
+   "type": "Hangout",
+   "host": "Barbell Club at the University of Washington",
+   "where": "IMA",
+   "pos": [
+    47.65374,
+    -122.30123
+   ],
+   "date": "2026-11-24",
+   "start": "18:00",
+   "end": "19:30",
+   "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375301",
+   "source": "huskylink",
+   "description": "It is nearly the end of the quarter, and it is time to see how strong you have become! Join us at the IMA for a day dedicated to beating personal records. Spotters will be available, and blood will be pumping."
   }
  ]
 }

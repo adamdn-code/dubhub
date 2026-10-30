@@ -8,6 +8,24 @@ import "./DubHub.css";
 
 const TABS = ["Home", "Events", "My Events", "Clubs", "About"];
 
+// Outline icons (24x24) for the tab bar; on phones the tabs move to the bottom with these.
+const TAB_ICONS = {
+  Home: "M3 10.5 12 3l9 7.5M5 9.5V21h5v-6h4v6h5V9.5",
+  Events: "M4 6h16v15H4zM4 10h16M8 3v4M16 3v4",
+  "My Events": "M6 3h12v18l-6-4-6 4z",
+  Clubs: "M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21v-1a7 7 0 0 1 14 0v1M16 3.5a4 4 0 0 1 0 7.5M18 14a6 6 0 0 1 4 6v1",
+  About: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 16v-5M12 8h.01",
+};
+
+function Icon({ d }) {
+  return (
+    <svg className="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d={d} />
+    </svg>
+  );
+}
+
 const TYPE_COLORS = {
   Study: "#4b2e83",
   Club: "#c5503a",
@@ -346,9 +364,9 @@ function SignIn({ user, onSignIn, onSignOut, onOpenProfile }) {
       <div className="user">
         <button className="user-button" onClick={onOpenProfile} title="Your profile">
           {user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}
-          <span>{user.name}</span>
+          <span className="wide-only">{user.name}</span>
         </button>
-        <button className="signout" onClick={onSignOut}>
+        <button className="signout wide-only" onClick={onSignOut}>
           Sign out
         </button>
       </div>
@@ -358,7 +376,7 @@ function SignIn({ user, onSignIn, onSignOut, onOpenProfile }) {
   return (
     <div className="signin-wrap">
       <button className="signin" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
-        Sign in with UW ID
+        Sign in<span className="wide-only"> with UW ID</span>
       </button>
       {open && (
         <div className="signin-pop" role="dialog" aria-label="Sign in">
@@ -402,7 +420,10 @@ function useEvents() {
       .then((d) => setData(d?.events?.length ? d : { events: SAMPLE_EVENTS, updated: null }));
   }, []);
 
-  return data;
+  // events.json only refreshes when a scraper runs, so hide events whose day has passed.
+  const today = new Date().toLocaleDateString("en-CA");
+  const events = useMemo(() => data.events.filter((e) => !e.date || e.date >= today), [data.events, today]);
+  return { events, updated: data.updated };
 }
 
 // "When" choices: how many days after today each one reaches (rolling, so "This week" is always 7 days).
@@ -615,8 +636,13 @@ function IntroLabels({ places }) {
 function JoinButton({ event, j }) {
   const isJoined = j.joined.includes(event.id);
   return (
-    <button className={isJoined ? "join joined" : "join"} aria-pressed={isJoined} onClick={() => j.toggle(event.id)}>
-      {isJoined ? "Joined ✓ (leave)" : "Join event"}
+    <button
+      className={isJoined ? "join joined" : "join"}
+      aria-pressed={isJoined}
+      title={isJoined ? "Click to leave this event" : undefined}
+      onClick={() => j.toggle(event.id)}
+    >
+      {isJoined ? "Joined ✓" : "Join"}
     </button>
   );
 }
@@ -923,26 +949,52 @@ function EventDetail({ event, j, onClose }) {
   );
 }
 
+// "Today", "Tomorrow", or "Wed, Nov 4" for an event's "2026-11-04" date.
+function dayLabel(date) {
+  if (!date) return "Date not listed";
+  const [y, m, d] = date.split("-").map(Number);
+  const day = new Date(y, m - 1, d);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const diff = Math.round((day - today) / 864e5);
+  if (diff === 0) return "Today";
+  if (diff === 1) return "Tomorrow";
+  return day.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+}
+
+// Events grouped under a heading per day, in date order (undated ones last).
 function EventList({ events, j, onSelect }) {
-  return (
-    <ul className="list">
-      {events.map((e) => (
-        <li key={e.id}>
-          <span className="dot" style={{ background: eventColor(e) }} />
-          <div className="grow">
-            <EventTitle event={e} onSelect={onSelect} />
-            <div className="meta">
-              {[formatWhen(e), e.where ?? "Location not listed", `hosted by ${e.host}`, going(e, j)]
-                .filter(Boolean)
-                .join(", ")}
-            </div>
-            <PostLink event={e} />
-          </div>
-          <JoinButton event={e} j={j} />
-        </li>
-      ))}
-    </ul>
-  );
+  const days = [];
+  for (const e of [...events].sort((a, b) => (a.date ?? "9999").localeCompare(b.date ?? "9999"))) {
+    const label = dayLabel(e.date);
+    if (days.at(-1)?.label !== label) days.push({ label, events: [] });
+    days.at(-1).events.push(e);
+  }
+  return days.map(({ label, events: list }) => (
+    <section key={label} className="day">
+      <h3 className="day-label">{label}</h3>
+      <ul className="list">
+        {list
+          .sort((a, b) => (a.start ?? "99").localeCompare(b.start ?? "99"))
+          .map((e) => (
+            <li key={e.id} className="event-row">
+              <div className="event-time">
+                {e.start ? formatTime(e.start) : "All day"}
+                {e.end && <span>{formatTime(e.end)}</span>}
+              </div>
+              <div className="grow">
+                <EventTitle event={e} onSelect={onSelect} />
+                <div className="meta">
+                  <span className="dot" style={{ background: eventColor(e) }} />
+                  {[e.type, e.where, e.host, going(e, j)].filter(Boolean).join(" · ")}
+                </div>
+              </div>
+              <JoinButton event={e} j={j} />
+            </li>
+          ))}
+      </ul>
+    </section>
+  ));
 }
 
 // Most popular first by "going" count. Scraped events have no counts yet,
@@ -972,23 +1024,57 @@ function TrendingRow({ events, j, onSelect }) {
   );
 }
 
-function EventsPage({ events, updated, j, when, onWhenChange }) {
+// Pill buttons for picking one option (filters shared with the map use these too).
+function ChipFilter({ label, options, value, onChange }) {
+  return (
+    <div className="chip-row" role="group" aria-label={label}>
+      {options.map((o) => (
+        <button key={o} className={o === value ? "chip-btn on" : "chip-btn"} aria-pressed={o === value} onClick={() => onChange(o)}>
+          {o}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function EventsPage({ f, updated, j }) {
   const [selected, setSelected] = useState(null);
+  const [query, setQuery] = useState("");
+  const q = query.trim().toLowerCase();
+  const events = q
+    ? f.events.filter((e) => [e.title, e.host, e.where, e.description].some((s) => s?.toLowerCase().includes(q)))
+    : f.events;
+
   return (
     <main className="page">
       <div className="page-head">
         <h1>Events</h1>
-        <WhenSelect aria-label="When" value={when} onChange={onWhenChange} />
+        <WhenSelect aria-label="When" value={f.when} onChange={f.setWhen} />
       </div>
       {updated && (
-        <p className="count">
-          From HuskyLink and club Instagram posts, updated{" "}
+        <p className="page-sub">
+          From HuskyLink and club Instagram posts · updated{" "}
           {new Date(updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}
         </p>
       )}
-      <TrendingRow events={events} j={j} onSelect={setSelected} />
-      <h2>All events</h2>
-      <EventList events={events} j={j} onSelect={setSelected} />
+      <div className="toolbar">
+        <input
+          type="search"
+          className="search"
+          placeholder="Search events, clubs, places"
+          aria-label="Search events"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <ChipFilter label="Event type" options={["All", ...Object.keys(TYPE_COLORS)]} value={f.type} onChange={f.setType} />
+      </div>
+      {!q && <TrendingRow events={events} j={j} onSelect={setSelected} />}
+      <h2>{q ? `${events.length} result${events.length === 1 ? "" : "s"}` : "All events"}</h2>
+      {events.length > 0 ? (
+        <EventList events={events} j={j} onSelect={setSelected} />
+      ) : (
+        <p className="empty">No events match{q ? ` "${query}"` : " these filters"}.</p>
+      )}
       {selected && <EventDetail event={selected} j={j} onClose={() => setSelected(null)} />}
     </main>
   );
@@ -997,8 +1083,14 @@ function EventsPage({ events, updated, j, when, onWhenChange }) {
 function ClubJoinButton({ club, clubs }) {
   const isMember = clubs.joined.includes(club.name);
   return (
-    <button className={isMember ? "join joined" : "join"} aria-pressed={isMember} onClick={() => clubs.toggle(club.name)}>
-      {isMember ? "Member ✓ (leave)" : "Join club"}
+    <button
+      className={isMember ? "join joined" : "join"}
+      aria-pressed={isMember}
+      aria-label={`${isMember ? "Leave" : "Join"} ${club.name}`}
+      title={isMember ? "Click to leave this club" : undefined}
+      onClick={() => clubs.toggle(club.name)}
+    >
+      {isMember ? "Joined ✓" : "Join"}
     </button>
   );
 }
@@ -1020,23 +1112,33 @@ function myEventsFor(all, clubList, j, clubs) {
   return all.filter((e) => j.joined.includes(e.id) || myClubs.some((c) => isHostedBy(e, c)));
 }
 
-function MyEventsPage({ all, clubList, j, clubs, onBrowse }) {
+function MyEventsPage({ all, clubList, j, clubs, onBrowse, onFindClubs }) {
   const mine = myEventsFor(all, clubList, j, clubs);
   const [selected, setSelected] = useState(null);
   return (
     <main className="page">
       <h1>My Events</h1>
       {clubs.joined.length > 0 && (
-        <p className="count">Includes events from your clubs: {clubs.joined.join(", ")}</p>
+        <p className="page-sub">
+          Events you joined, plus everything from {clubs.joined.length === 1 ? clubs.joined[0] : `your ${clubs.joined.length} clubs`}
+        </p>
       )}
       {mine.length > 0 ? (
         <EventList events={mine} j={j} onSelect={setSelected} />
       ) : (
-        <div className="empty">
-          <p>You haven't joined any events or clubs yet.</p>
-          <button className="join" onClick={onBrowse}>
-            Browse events
-          </button>
+        <div className="empty-card">
+          <h2>Nothing here yet</h2>
+          <p>
+            Join an event to save it here, or join a club and every event it posts shows up here on its own.
+          </p>
+          <div className="empty-actions">
+            <button className="join" onClick={onBrowse}>
+              Browse events
+            </button>
+            <button className="join secondary" onClick={onFindClubs}>
+              Find clubs
+            </button>
+          </div>
         </div>
       )}
       {selected && <EventDetail event={selected} j={j} onClose={() => setSelected(null)} />}
@@ -1106,10 +1208,13 @@ function ClubDetail({ club, hosted, clubs, onClose }) {
   );
 }
 
+const CLUBS_PAGE = 40; // clubs shown before "Show more"; there are over a thousand
+
 function ClubsPage({ all, clubList, clubs: membership }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [major, setMajor] = useState("Any major");
+  const [limit, setLimit] = useState(CLUBS_PAGE);
   const [selected, setSelected] = useState(null);
   const categories = ["All", ...[...new Set(clubList.map((c) => c.category))].sort()];
 
@@ -1122,52 +1227,51 @@ function ClubsPage({ all, clubList, clubs: membership }) {
       (!field || c.fields?.includes(field)) &&
       (!q || [c.name, c.handle, c.category, c.about, ...(c.fields ?? [])].some((s) => s?.toLowerCase().includes(q)))
   );
+  const filter = (set) => (value) => {
+    set(value);
+    setLimit(CLUBS_PAGE);
+  };
 
   return (
     <main className="page">
       <h1>Clubs</h1>
-      <div className="club-search">
+      <p className="page-sub">Active student organizations at UW Seattle. Join one to get its events in My Events.</p>
+      <div className="toolbar">
         <input
           type="search"
-          placeholder="Search clubs"
+          className="search"
+          placeholder="Search by name, Instagram, or topic"
           aria-label="Search clubs"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => filter(setQuery)(e.target.value)}
         />
-        <select aria-label="Category" value={category} onChange={(e) => setCategory(e.target.value)}>
-          {categories.map((c) => (
-            <option key={c}>{c}</option>
-          ))}
-        </select>
-        <MajorSelect aria-label="Major" value={major} onChange={setMajor} />
+        <ChipFilter label="Category" options={categories} value={category} onChange={filter(setCategory)} />
+        <MajorSelect aria-label="Major" className="major-select" value={major} onChange={filter(setMajor)} />
       </div>
-      <div className="club-options">
-        <p className="count">
-          {clubs.length} club{clubs.length === 1 ? "" : "s"}
-          {field && (
-            <>
-              {" "}
-              in <FieldTag field={field} />
-            </>
-          )}
-        </p>
-      </div>
+      <p className="count">
+        {clubs.length.toLocaleString()} club{clubs.length === 1 ? "" : "s"}
+        {field && (
+          <>
+            {" "}
+            in <FieldTag field={field} />
+          </>
+        )}
+      </p>
       <ul className="list">
-        {clubs.map((c) => {
+        {clubs.slice(0, limit).map((c) => {
           const upcoming = hostedBy(all, c).length;
           return (
-            <li key={c.name}>
-              <div className="grow">
-                <button className="club-link" onClick={() => setSelected(c)}>
-                  {c.name}
-                  <span className="club-hint"> View details &rarr;</span>
-                </button>{" "}
-                <span className="tag">{c.category}</span>{" "}
-                {c.fields?.map((f) => (
-                  <FieldTag key={f} field={f} />
-                ))}
-                {c.about && <div>{c.about}</div>}
-                <div className="meta">
+            <li key={c.name} className="club-row">
+              <button className="club-main" onClick={() => setSelected(c)}>
+                <span className="club-title">
+                  <span className="club-name">{c.name}</span>
+                  <span className="tag">{c.category}</span>
+                  {c.fields?.map((f) => (
+                    <FieldTag key={f} field={f} />
+                  ))}
+                </span>
+                {c.about && <span className="club-about">{c.about}</span>}
+                <span className="meta">
                   {[
                     c.meets && `Meets ${c.meets}`,
                     c.handle && c.name !== `@${c.handle}` && `@${c.handle}`,
@@ -1175,20 +1279,20 @@ function ClubsPage({ all, clubList, clubs: membership }) {
                     !upcoming && c.last_event && `Last event ${formatWhen({ date: c.last_event })}`,
                   ]
                     .filter(Boolean)
-                    .join(", ")}
-                </div>
-                {c.website && (
-                  <a className="post-link" href={c.website} target="_blank" rel="noreferrer">
-                    Website
-                  </a>
-                )}
-              </div>
+                    .join(" · ")}
+                </span>
+              </button>
               <ClubJoinButton club={c} clubs={membership} />
             </li>
           );
         })}
       </ul>
-      {clubs.length === 0 && <p className="empty">No clubs match "{query}".</p>}
+      {clubs.length > limit && (
+        <button className="show-more" onClick={() => setLimit((n) => n + CLUBS_PAGE * 2)}>
+          Show more clubs ({(clubs.length - limit).toLocaleString()} more)
+        </button>
+      )}
+      {clubs.length === 0 && <p className="empty">No clubs match{q ? ` "${query}"` : ""}.</p>}
 
       {selected && (
         <ClubDetail
@@ -1243,13 +1347,18 @@ function useProfile(user) {
   return { profile, update };
 }
 
-// Morning email reminders, stored on the server (api/). status: "loading" | "on" | "off" |
-// "needs-signin" (signed in before reminders existed, so no server token) | "unavailable".
-function useEmailReminders(user, myEvents) {
+// Email notifications, stored on the server (api/). prefs: enabled (morning reminder),
+// newClubEvents, hourBefore. status: "loading" | "ready" | "needs-signin" (signed in before
+// reminders existed, so no server token) | "unavailable".
+const NO_PREFS = { enabled: false, newClubEvents: false, hourBefore: false };
+
+function useEmailReminders(user, myEvents, myClubs) {
   const session = user?.session;
-  const [state, setState] = useState({ session: null, status: "loading", error: "" });
-  const current = state.session === session ? state : { session, status: "loading", error: "" };
-  const status = !user ? "off" : !session ? "needs-signin" : current.status;
+  const [state, setState] = useState({ session: null, status: "loading", prefs: NO_PREFS, error: "" });
+  const current = state.session === session ? state : { session, status: "loading", prefs: NO_PREFS, error: "" };
+  const status = !user ? "ready" : !session ? "needs-signin" : current.status;
+  const prefs = current.prefs;
+  const anyOn = Object.values(prefs).some(Boolean);
 
   const call = useCallback(
     (method, body) =>
@@ -1261,7 +1370,7 @@ function useEmailReminders(user, myEvents) {
         if (r.status === 401) return { status: "needs-signin" };
         if (!r.ok) return { status: "unavailable" };
         const d = await r.json();
-        return { status: d.enabled ? "on" : "off" };
+        return { status: "ready", prefs: { enabled: !!d.enabled, newClubEvents: !!d.newClubEvents, hourBefore: !!d.hourBefore } };
       }),
     [session]
   );
@@ -1278,29 +1387,30 @@ function useEmailReminders(user, myEvents) {
     };
   }, [session, call]);
 
-  // Only the fields the email needs.
-  const snapshot = JSON.stringify(
-    myEvents.map(({ id, title, date, start, end, where, host, url }) => ({ id, title, date, start, end, where, host, url }))
-  );
+  // Only the fields the emails need: My Events, and the clubs whose new events to email about.
+  const snapshot = JSON.stringify({
+    events: myEvents.map(({ id, title, date, start, end, where, host, url }) => ({ id, title, date, start, end, where, host, url })),
+    clubs: myClubs.map(({ name, handle }) => ({ name, handle })),
+  });
 
-  // Keep the server's copy of My Events up to date while reminders are on.
+  // Keep the server's copy of My Events and your clubs up to date while any email is on.
   useEffect(() => {
-    if (status !== "on") return;
-    const t = setTimeout(() => call("POST", { events: JSON.parse(snapshot) }).catch(() => {}), 800);
+    if (status !== "ready" || !anyOn) return;
+    const t = setTimeout(() => call("POST", JSON.parse(snapshot)).catch(() => {}), 800);
     return () => clearTimeout(t);
-  }, [status, snapshot, call]);
+  }, [status, anyOn, snapshot, call]);
 
-  const setEnabled = (enabled) => {
-    setState({ session, status: "loading", error: "" });
-    call("POST", { enabled, events: JSON.parse(snapshot) })
-      .catch(() => ({ status: enabled ? "off" : "on", error: "Couldn't reach DubHub. Try again." }))
-      .then((s) => setState({ session, error: "", ...s }));
+  const setPref = (name, value) => {
+    setState({ session, status: "loading", prefs: { ...prefs, [name]: value }, error: "" });
+    call("POST", { [name]: value, ...JSON.parse(snapshot) })
+      .catch(() => ({ status: "ready", prefs, error: "Couldn't reach DubHub. Try again." }))
+      .then((s) => setState({ session, error: "", prefs, ...s }));
   };
 
-  return { status, error: current.error, setEnabled };
+  return { status, prefs, error: current.error, setPref };
 }
 
-function ProfilePage({ user, profile, onChange, clubList, clubs, j, email }) {
+function ProfilePage({ user, profile, onChange, clubList, clubs, j, email, onSignOut }) {
   if (!user) {
     return (
       <main className="page">
@@ -1318,10 +1428,13 @@ function ProfilePage({ user, profile, onChange, clubList, clubs, j, email }) {
     <main className="page">
       <div className="profile-head">
         {user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}
-        <div>
+        <div className="grow">
           <h1>{user.name}</h1>
           <div className="meta">{user.email}</div>
         </div>
+        <button className="join secondary" onClick={onSignOut}>
+          Sign out
+        </button>
       </div>
 
       <h2>About you</h2>
@@ -1378,18 +1491,28 @@ function ProfilePage({ user, profile, onChange, clubList, clubs, j, email }) {
 
       <h2>Notifications</h2>
       <div className="profile-form">
-        <label className="check">
-          <input
-            type="checkbox"
-            checked={email.status === "on"}
-            disabled={email.status !== "on" && email.status !== "off"}
-            onChange={(e) => email.setEnabled(e.target.checked)}
-          />
-          Email me reminders for my events
-        </label>
-        <p className="count">
-          A morning email to {user.email} on days you have something in My Events (today and tomorrow).
-        </p>
+        {[
+          ["enabled", "Email me reminders for my events",
+            "A morning email on days you have something in My Events (today and tomorrow)."],
+          ["hourBefore", "Email me when an event is about to start",
+            "About an hour before each event in My Events that has a start time."],
+          ["newClubEvents", "Email me when my clubs post new events",
+            "As soon as DubHub finds a new event from a club you joined."],
+        ].map(([name, label, hint]) => (
+          <div key={name}>
+            <label className="check">
+              <input
+                type="checkbox"
+                checked={email.prefs[name]}
+                disabled={email.status !== "ready"}
+                onChange={(e) => email.setPref(name, e.target.checked)}
+              />
+              {label}
+            </label>
+            <p className="count">{hint}</p>
+          </div>
+        ))}
+        <p className="count">Emails go to {user.email}.</p>
         {email.status === "needs-signin" && (
           <p className="notice">Sign out and sign back in to turn on email reminders.</p>
         )}
@@ -1537,7 +1660,8 @@ export default function DubHub() {
   const j = useJoined(JOINED_KEY);
   const clubs = useJoined(CLUBS_KEY);
   const myEvents = useMemo(() => myEventsFor(all, clubList, j, clubs), [all, clubList, j, clubs]);
-  const email = useEmailReminders(user, myEvents);
+  const myClubs = useMemo(() => clubList.filter((c) => clubs.joined.includes(c.name)), [clubList, clubs]);
+  const email = useEmailReminders(user, myEvents, myClubs);
 
   return (
     <div className="app">
@@ -1554,7 +1678,8 @@ export default function DubHub() {
               className={tab === t ? "tab active" : "tab"}
               onClick={() => setTab(t)}
             >
-              {t}
+              <Icon d={TAB_ICONS[t]} />
+              <span>{t}</span>
             </button>
           ))}
         </nav>
@@ -1562,11 +1687,16 @@ export default function DubHub() {
       </header>
 
       {tab === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} />}
-      {tab === "Events" && (
-        <EventsPage events={f.events} updated={updated} j={j} when={f.when} onWhenChange={f.setWhen} />
-      )}
+      {tab === "Events" && <EventsPage f={f} updated={updated} j={j} />}
       {tab === "My Events" && (
-        <MyEventsPage all={all} clubList={clubList} j={j} clubs={clubs} onBrowse={() => setTab("Events")} />
+        <MyEventsPage
+          all={all}
+          clubList={clubList}
+          j={j}
+          clubs={clubs}
+          onBrowse={() => setTab("Events")}
+          onFindClubs={() => setTab("Clubs")}
+        />
       )}
       {tab === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} />}
       {tab === "About" && <AboutPage />}
@@ -1579,6 +1709,10 @@ export default function DubHub() {
           clubs={clubs}
           j={j}
           email={email}
+          onSignOut={() => {
+            signOut();
+            setTab("Home");
+          }}
         />
       )}
     </div>

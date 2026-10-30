@@ -30,7 +30,6 @@ import requests
 
 from events_common import (
     HUSKYLINK_FILE,
-    POSTS_FILE,
     SITE_CLUBS_FILE,
     SITE_EVENTS_FILE,
     ACTIVE_DAYS,
@@ -102,6 +101,7 @@ HIDDEN_LOCATIONS = re.compile(r"private location|sign in to display|^tbd$|^tba$"
 def clean(text):
     """Unescape HTML, drop tags and squeeze whitespace (keeping line breaks)."""
     text = re.sub(r"<[^>]+>", " ", html.unescape(text or ""))
+    text = re.sub(r"\\r\\n|\\n|\\r", "\n", text)  # some groups typed a literal "\r\n" into HuskyLink
     text = re.sub(r"[ \t\r\f\v]+", " ", text)
     return re.sub(r"\s*\n\s*", "\n", text).strip()
 
@@ -239,9 +239,9 @@ def scrape_past_activity():
 
 def update_site_files():
     """Put the HuskyLink clubs and events on the site, keeping the Instagram ones."""
-    if POSTS_FILE.exists():
+    store = load_store()
+    if store:
         # This computer has the Instagram scraper's memory, so rebuild everything from it.
-        store = load_store()
         write_site_events(store)
         write_site_clubs(store)
         return
