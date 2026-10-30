@@ -103,6 +103,31 @@ function isActive(club) {
   return (club.last_event ?? "") >= cutoff;
 }
 
+// "Data Science Society" -> "DS", "@uwetruck" -> "U".
+function initials(name) {
+  const words = (name || "").replace(/^@/, "").split(/\s+/).filter((w) => /^[A-Za-z0-9]/.test(w));
+  return ((words[0]?.[0] ?? "") + (words[1]?.[0] ?? "")).toUpperCase();
+}
+
+// An event photo or club logo, or (if there isn't one, or it fails to load) a colored tile with initials.
+function Thumb({ src, label, color, className = "" }) {
+  const [failed, setFailed] = useState(false);
+  if (src && !failed) {
+    return (
+      <img className={`thumb ${className}`} src={src} alt="" loading="lazy" decoding="async" onError={() => setFailed(true)} />
+    );
+  }
+  return (
+    <span className={`thumb thumb-fallback ${className}`} style={{ background: color }} aria-hidden="true">
+      {initials(label)}
+    </span>
+  );
+}
+
+function clubColor(club) {
+  return FIELD_COLORS[club.fields?.[0]] ?? "#4b2e83";
+}
+
 function FieldTag({ field }) {
   const color = FIELD_COLORS[field] ?? "#6a5f85";
   return (
@@ -722,6 +747,7 @@ const MAP_COLORS = {
   wetland: "#c5e6b4",
   plaza: "#ece9e4",
   building: "#e5e2dc",
+  buildingOutline: "#b8b1a5",
   school: "#ece8e1",
   road: "#ffffff",
   highway: "#fdfcfa",
@@ -754,12 +780,14 @@ function restyle(style) {
 
   // Icons that clutter the map: bus stops with their long names ("... & NE Pacific Pl - Bay 5"),
   // parking "P" signs, and (zoomed all the way in) info points, restrooms and trash cans.
-  style.layers = style.layers.filter((layer) => layer.id !== "poi_transit");
+  // Also the 3D buildings that pop up when zoomed in; the flat "building" layer still draws them.
+  style.layers = style.layers.filter((layer) => layer.id !== "poi_transit" && layer.type !== "fill-extrusion");
   const hidden = ["bus", "parking", "bicycle_parking", "information", "toilets", "waste_basket"];
   const notBusStop = ["!", ["match", ["get", "class"], hidden, true, false]];
 
   for (const layer of style.layers) {
     if (layer.paint?.["fill-pattern"]) delete layer.paint["fill-pattern"];
+    if (layer.id === "building") delete layer.maxzoom; // it hands off to the (removed) 3D layer at zoom 14
     if (/^poi_/.test(layer.id)) layer.filter = ["all", layer.filter, notBusStop];
     const paint = (layer.paint ??= {});
     if (set[layer.id]) {
@@ -770,6 +798,23 @@ function restyle(style) {
         ? isHighway ? C.highwayCasing : C.casing
         : isHighway ? C.highway : C.road;
     }
+  }
+
+  // Thicker outlines so neighboring buildings stand apart (a fill's own outline is only 1px).
+  const i = style.layers.findIndex((layer) => layer.id === "building");
+  if (i >= 0) {
+    const building = style.layers[i];
+    style.layers.splice(i + 1, 0, {
+      id: "building-outline",
+      type: "line",
+      source: building.source,
+      "source-layer": building["source-layer"],
+      minzoom: building.minzoom,
+      paint: {
+        "line-color": C.buildingOutline,
+        "line-width": ["interpolate", ["linear"], ["zoom"], 14, 0.5, 16, 1, 18, 1.75],
+      },
+    });
   }
   return style;
 }
@@ -924,6 +969,7 @@ function EventDetail({ event, j, onClose }) {
         <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
           &times;
         </button>
+        {event.image && <HeroImage src={event.image} />}
         <h2 id="event-detail-title">{event.title}</h2>
         <p>
           <span className="tag">{event.type}</span>
@@ -946,6 +992,13 @@ function EventDetail({ event, j, onClose }) {
       </div>
     </div>
   );
+}
+
+// The event's flyer at the top of its pop-up, shown whole (flyers often have text on them).
+function HeroImage({ src }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) return null;
+  return <img className="event-hero" src={src} alt="" decoding="async" onError={() => setFailed(true)} />;
 }
 
 // "Today", "Tomorrow", or "Wed, Nov 4" for an event's "2026-11-04" date.
@@ -981,6 +1034,7 @@ function EventList({ events, j, onSelect }) {
                 {e.start ? formatTime(e.start) : "All day"}
                 {e.end && <span>{formatTime(e.end)}</span>}
               </div>
+              <Thumb src={e.image} label={e.title} color={eventColor(e)} className="event-thumb" />
               <div className="grow">
                 <EventTitle event={e} onSelect={onSelect} />
                 <div className="meta">
@@ -1012,7 +1066,7 @@ function TrendingRow({ events, j, onSelect }) {
       <ol className="trending-row">
         {trending(events, j).map((e) => (
           <li key={e.id} className="trending-card">
-            <span className="dot" style={{ background: eventColor(e) }} />
+            <Thumb src={e.image} label={e.title} color={eventColor(e)} className="trending-thumb" />
             <EventTitle event={e} onSelect={onSelect} />
             <div className="meta">{[formatWhen(e), e.where, going(e, j)].filter(Boolean).join(" · ")}</div>
             <JoinButton event={e} j={j} />
@@ -1164,7 +1218,10 @@ function ClubDetail({ club, hosted, clubs, onClose }) {
         <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
           &times;
         </button>
-        <h2 id="club-detail-title">{club.name}</h2>
+        <div className="detail-head">
+          <Thumb src={club.logo} label={club.name} color={clubColor(club)} className="club-avatar large" />
+          <h2 id="club-detail-title">{club.name}</h2>
+        </div>
         <p className="tags">
           <span className="tag">{club.category}</span>
           {club.fields?.map((field) => (
@@ -1261,6 +1318,7 @@ function ClubsPage({ all, clubList, clubs: membership }) {
           const upcoming = hostedBy(all, c).length;
           return (
             <li key={c.name} className="club-row">
+              <Thumb src={c.logo} label={c.name} color={clubColor(c)} className="club-avatar" />
               <button className="club-main" onClick={() => setSelected(c)}>
                 <span className="club-title">
                   <span className="club-name">{c.name}</span>

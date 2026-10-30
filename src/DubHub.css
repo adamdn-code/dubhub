@@ -575,6 +575,73 @@ select:focus-visible {
   vertical-align: middle;
 }
 
+/* Event photos and club logos (or a colored tile with initials when there isn't one) */
+.thumb {
+  flex-shrink: 0;
+  object-fit: cover;
+  background: #ece6f7;
+}
+
+.thumb-fallback {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  opacity: 0.9;
+}
+
+.event-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.trending-thumb {
+  width: calc(100% + 28px);
+  height: 104px;
+  margin: -14px -14px 8px;
+  border-radius: 10px 10px 0 0;
+  font-size: 28px;
+}
+
+.club-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 15px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.club-avatar.large {
+  width: 64px;
+  height: 64px;
+  font-size: 22px;
+}
+
+.detail-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 36px 8px 0;
+}
+
+.club-modal .detail-head h2 {
+  margin: 0;
+}
+
+/* Flyers often have text on them, so show the whole image rather than cropping it. */
+.event-hero {
+  display: block;
+  width: calc(100% + 48px);
+  max-height: 300px;
+  margin: -24px -24px 16px;
+  object-fit: contain;
+  background: #ece6f7;
+  border-radius: 12px 12px 0 0;
+}
+
 /* My Events when it's empty */
 .empty-card {
   margin-top: 16px;
@@ -692,6 +759,7 @@ select:focus-visible {
   border-radius: 10px;
   scroll-snap-align: start;
   line-height: 1.35;
+  overflow: hidden; /* clip the photo to the card's rounded corners */
 }
 
 .trending-card .dot {
@@ -1135,6 +1203,10 @@ select:focus-visible {
   .event-time {
     flex-basis: 60px;
     font-size: 13px;
+  }
+  .event-thumb {
+    width: 44px;
+    height: 44px;
   }
   .filters {
     top: auto;
