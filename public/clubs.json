@@ -28,8 +28,6 @@
    "category": "Academic",
    "about": "We're a coed professional design fraternity.",
    "description": "We're a coed professional design fraternity. We welcome anyone with an interest in creative work or design to develop our professional network between student creatives and designers in relevant fields to create a welcoming design community.",
-   "handle": "alphathetadeltauw",
-   "instagram": "https://www.instagram.com/alphathetadeltauw/",
    "source": "huskylink",
    "last_event": "2026-10-07",
    "fields": [
@@ -42,8 +40,6 @@
    "category": "Social",
    "about": "Work with the American Cancer Society nonprofit to spread cancer awareness to our campus and local community through…",
    "description": "Work with the American Cancer Society nonprofit to spread cancer awareness to our campus and local community through various events and plan the ACS fundraiser, Relay for Life at UW.",
-   "handle": "uwrelayforlife",
-   "instagram": "https://www.instagram.com/uwrelayforlife/",
    "source": "huskylink",
    "last_event": "2026-11-04",
    "fields": [
@@ -199,8 +195,6 @@
    "category": "Arts",
    "about": "The Costume Club will practice creative and technical skills to design and construct costumes.",
    "description": "The Costume Club will practice creative and technical skills to design and construct costumes. We will promote student interest in creation of costumes including high fashion, theater, sewing, props, and cosplay, and share the skills and knowledge.",
-   "handle": "uwcostumeclub",
-   "instagram": "https://www.instagram.com/uwcostumeclub/",
    "source": "huskylink",
    "last_event": "2026-11-06",
    "fields": [
@@ -213,8 +207,6 @@
    "category": "Other",
    "about": "The Disability and Deaf Cultural Center — also known as the D Center — is a physical and virtual community gathering…",
    "description": "The Disability and Deaf Cultural Center — also known as the D Center — is a physical and virtual community gathering space for UW students, staff, and faculty who identify as Disabled, D/deaf, or allies. We are committed to fostering a safe space for folks of all abilities to learn, socialize, and celebrate pride in community with each other.",
-   "handle": "uwdcenter",
-   "instagram": "https://www.instagram.com/uwdcenter/",
    "source": "huskylink",
    "last_event": "2026-10-01",
    "fields": []
@@ -225,8 +217,6 @@
    "category": "Other",
    "about": "The Samuel E.",
    "description": "The Samuel E. Kelly Ethnic Cultural Center of the University of Washington is part of The Office of Minority Affairs & Diversity. The Kelly ECC has a wealth of resources and opportunities available to students including student advising, organizational development, personal growth, and referrals to different departments and programs. The Kelly ECC is an inclusive and affirming space that cultivates a transformative student experience. We serve and empower historically marginalized and underrepresented students by providing educational and cultural opportunities for holistic development.",
-   "handle": "uw_ecc",
-   "instagram": "https://www.instagram.com/uw_ecc/",
    "source": "huskylink",
    "last_event": "2026-10-01",
    "fields": []
@@ -237,8 +227,6 @@
    "category": "Cultural",
    "about": "The mission of the Filipino American Student Association at the University of Washington shall be to foster unity and…",
    "description": "The mission of the Filipino American Student Association at the University of Washington shall be to foster unity and pride among its members and surrounding community through educational, political, cultural and social advancement.",
-   "handle": "fasasauw",
-   "instagram": "https://www.instagram.com/fasasauw/",
    "source": "huskylink",
    "last_event": "2026-10-08",
    "fields": []
@@ -282,8 +270,6 @@
    "category": "Social",
    "about": "We are a casual art club focused on facilitating the visual art and writing skills needed to tell stories and produce…",
    "description": "We are a casual art club focused on facilitating the visual art and writing skills needed to tell stories and produce original works. We welcome artists and writers alike to share to join us in creating art and community bonding.",
-   "handle": "graphicnovelsclub.uw",
-   "instagram": "https://www.instagram.com/graphicnovelsclub.uw/",
    "source": "huskylink",
    "last_event": "2026-12-08",
    "fields": [
@@ -350,8 +336,6 @@
    "category": "Other",
    "about": "The HUB supports the Husky Experience by enhancing UW community, providing a dynamic event center, and fostering…",
    "description": "The HUB supports the Husky Experience by enhancing UW community, providing a dynamic event center, and fostering student engagement.",
-   "handle": "hubatuw",
-   "instagram": "https://www.instagram.com/hubatuw/",
    "source": "huskylink",
    "last_event": "2026-09-28",
    "fields": []
@@ -484,6 +468,19 @@
    ]
   },
   {
+   "name": "Product Space @ UW",
+   "handle": "uwproductspace",
+   "instagram": "https://www.instagram.com/uwproductspace/",
+   "website": "https://www.productspace.org/",
+   "category": "Business",
+   "about": "Cultivates product leaders via competitions and community.",
+   "description": "Product Space connects students interested in product management, offering a nationwide network and hands‑on product challenges. Their flagship Product Games blend case competition strategy with rapid prototyping.",
+   "last_event": "2026-11-07",
+   "fields": [
+    "Business"
+   ]
+  },
+  {
    "name": "Project Sunshine at the University of Washington",
    "website": "https://huskylink.washington.edu/projsun/",
    "category": "Social",
@@ -501,8 +498,6 @@
    "category": "Academic",
    "about": "Involving students from all backgrounds and supporting them.",
    "description": "Involving students from all backgrounds and supporting them. Creating a stimulating and motivating community of physics enthusiasts. Encouraging creativity beyond the classroom to push the boundaries of science and have fun while doing that.",
-   "handle": "sps.uw",
-   "instagram": "https://www.instagram.com/sps.uw/",
    "source": "huskylink",
    "last_event": "2026-10-30",
    "fields": [
@@ -515,8 +510,6 @@
    "category": "Engineering",
    "about": "The SWE at UW section provides a community for students that support diversity within engineering and STEM professions.",
    "description": "The SWE at UW section provides a community for students that support diversity within engineering and STEM professions.\nOur mission is to stimulate women to achieve their full potential in careers as engineers and leaders.",
-   "handle": "uwswe",
-   "instagram": "https://www.instagram.com/uwswe/",
    "source": "huskylink",
    "last_event": "2026-10-07",
    "fields": [
@@ -596,8 +589,6 @@
    "category": "Cultural",
    "about": "The Tzu Chi Collegiate Association at Seattle (Seattle & UW Tzu Ching) is the servicebased collegiate organization…",
    "description": "The Tzu Chi Collegiate Association at Seattle (Seattle & UW Tzu Ching) is the servicebased collegiate organization that carries out the missions of the Tzu Chi Foundation. The Tzu Ching club provides an opportunity for volunteer work in the local area.",
-   "handle": "tzuching_seattle",
-   "instagram": "https://www.instagram.com/tzuching_seattle/",
    "source": "huskylink",
    "last_event": "2026-10-15",
    "fields": []
@@ -641,8 +632,6 @@
    "category": "Cultural",
    "about": "The Vietnamese Student Association serves to promote and preserve the Vietnamese culture at the University of…",
    "description": "The Vietnamese Student Association serves to promote and preserve the Vietnamese culture at the University of Washington and its surrounding communities through cultural, social, and educational events.",
-   "handle": "vsauw",
-   "instagram": "https://www.instagram.com/vsauw/",
    "source": "huskylink",
    "last_event": "2026-10-05",
    "fields": []
@@ -653,8 +642,6 @@
    "category": "Service",
    "about": "WashPIRG is a a nonpartisan, studentrun organization dedicated to making a difference on issues students care about.",
    "description": "WashPIRG is a a nonpartisan, studentrun organization dedicated to making a difference on issues students care about. We give students the skills and opportunities to mobilize and advocate for social change.\nGet involved at washpirgstudents.org!",
-   "handle": "washpirg_uw",
-   "instagram": "https://www.instagram.com/washpirg_uw/",
    "source": "huskylink",
    "last_event": "2026-12-07",
    "fields": [
@@ -677,8 +664,6 @@
    "category": "Service",
    "about": "WECARE works to empower women globally through expanding resources for health, education, and more.",
    "description": "WECARE works to empower women globally through expanding resources for health, education, and more. We aim to create an environment where students from all backgrounds and identities can gain a sense of community together between shared values. Through workshops, outreach, and collaborations with community partners, we aim to close knowledge gaps and reduce stigma surrounding topics that are often overlooked in traditional education. We understand that education is empowerment. WECARE is one of the founding RSOs of the Pregnancy Test Access Project, bringing free pregnancy tests to UW's campus, available for all students! More info on our Instagram @wecareuw.",
-   "handle": "wecareuw",
-   "instagram": "https://www.instagram.com/wecareuw/",
    "source": "huskylink",
    "last_event": "2026-10-27",
    "fields": [
