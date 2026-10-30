@@ -73,9 +73,9 @@
    "category": "Cultural",
    "about": "Learns and practices American Sign Language.",
    "description": "The @uwaslclub meets weekly to teach and practice American Sign Language. Beginners sessions introduce basic signs, while later meetings build fluency.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_608390_uwasl_logojpg_8f3e301d-3af9-4c01-9d15-6ae02ba8ed2c_92622561.jpeg",
    "last_event": "2026-10-26",
-   "fields": [],
-   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_608390_uwasl_logojpg_8f3e301d-3af9-4c01-9d15-6ae02ba8ed2c_92622561.jpeg"
+   "fields": []
   },
   {
    "name": "Applied Mathematics Club",
@@ -544,11 +544,11 @@
    "category": "Business",
    "about": "Cultivates product leaders via competitions and community.",
    "description": "Product Space connects students interested in product management, offering a nationwide network and hands‑on product challenges. Their flagship Product Games blend case competition strategy with rapid prototyping.",
+   "logo": null,
    "last_event": "2026-11-07",
    "fields": [
     "Business"
-   ],
-   "logo": null
+   ]
   },
   {
    "name": "Project Sunshine at the University of Washington",
@@ -728,16 +728,15 @@
    "fields": []
   },
   {
-   "name": "Vietnamese Student Association",
-   "website": "http://www.vsauw.com",
-   "category": "Cultural",
-   "about": "The Vietnamese Student Association serves to promote and preserve the Vietnamese culture at the University of…",
-   "description": "The Vietnamese Student Association serves to promote and preserve the Vietnamese culture at the University of Washington and its surrounding communities through cultural, social, and educational events.",
-   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_609111_Screenshot_20260929_at_113117AM_fd8cbba3-4f45-4073-bfba-650e0844d244_929143245.png",
+   "name": "VSAUW",
    "handle": "vsauw",
    "instagram": "https://www.instagram.com/vsauw/",
-   "source": "huskylink",
-   "last_event": "2026-10-05",
+   "website": "https://linktr.ee/vsauw",
+   "category": "Cultural",
+   "about": "Vietnamese cultural community offering events, networking, and discounts.",
+   "description": "VSAUW brings together Vietnamese students and allies through cultural events, socials, and networking opportunities. They host info nights and general meetings where members can connect and enjoy autumn-themed gatherings. Membership provides a card, shirt and discounts at local Seattle spots.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_609111_Screenshot_20260929_at_113117AM_fd8cbba3-4f45-4073-bfba-650e0844d244_929143245.png",
+   "last_event": "2026-12-01",
    "fields": []
   },
   {

@@ -477,6 +477,20 @@ def not_uw_clubs(store):
     return {p["club"] for p in store.values() if p["source"] != "instagram" and NOT_UW_SIGNS.search(p["caption"])}
 
 
+def drop_duplicate_events(events):
+    """Clubs often post the same event twice (a schedule, then a reminder). Keep one per
+    club, date and title: the copy with the most details (place, map pin, times)."""
+    best = {}
+    for e in events:
+        handle = parse_host(e["host"])[1] or (e["host"] or "").lower()
+        key = (handle, e["date"], re.sub(r"[^a-z0-9]", "", e["title"].lower()))
+        details = sum(e[field] is not None for field in ("where", "pos", "start", "end"))
+        if key not in best or details > best[key][0]:
+            best[key] = (details, e)
+    keep = {id(e) for _, e in best.values()}
+    return [e for e in events if id(e) in keep]
+
+
 def write_site_events(store):
     """Write every upcoming event to public/events.json for the website."""
     not_uw = not_uw_clubs(store)
@@ -502,7 +516,7 @@ def write_site_events(store):
                 # The post's caption, shown when someone opens the event on the site.
                 "description": (post.get("caption") or "").strip() or None,
             })
-    events = merge_huskylink_events(events)
+    events = merge_huskylink_events(drop_duplicate_events(events))
     SITE_EVENTS_FILE.parent.mkdir(exist_ok=True)
     SITE_EVENTS_FILE.write_text(
         json.dumps({"updated": datetime.now().isoformat(timespec="minutes"), "events": events},

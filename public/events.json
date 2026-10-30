@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29T18:27",
+ "updated": "2026-10-29T18:33",
  "events": [
   {
    "id": "hl-375414",
@@ -66,6 +66,23 @@
    "source": "huskylink",
    "description": "Intro to CAD (OnShape) and 3D printing",
    "image": null
+  },
+  {
+   "id": "DeuiLbPDyd5-0",
+   "title": "Info Night #1",
+   "type": "Club",
+   "host": "@vsauw",
+   "where": "SAV 168",
+   "pos": [
+    47.65712,
+    -122.30842
+   ],
+   "date": "2026-11-02",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/DeuiLbPDyd5/",
+   "source": "instagram",
+   "description": "The lights are soft, the spotlight is waiting, and your HK era might be closer than you think. ♡₊˚\n\nEver wondered what Hoa Khoi Lien Truong (HK) is all about? Whether you’re curious about the experience, what being a contestant involves, or what you can gain from participating, come join us for an HK Info Night!\n\nThis opportunity is open to female-identifying members of VSAUW! ♡ Whether you’re considering becoming a contestant or simply want to learn more, come with your questions and a little curiosity. Learn about the show, meet others who are interested, and discover what this experience could look like for you. ✧\n\n✦ INFO NIGHT #1: IN-PERSON\n♡ Date: Monday, November 2nd\n♡ Time: 6:00–7:00 PM\n♡ Location: SAV 168\n\n✦ INFO NIGHT #2: ONLINE\n♡ Date: Friday, November 6th\n♡ Time: 9:00–10:00 PM\n♡ Location: Zoom Link Through LinkTree\n\nBoth sessions will cover the same information, so choose whichever works best for you. However, YOU MUST ATTEND ONE INFO SESSION to qualify for HK.\n\nIf you’ve been curious about HK, consider this your sign to come learn more. Your next chapter might be waiting in the spotlight. ⋆౨ৎ˚⟡˖\n\nWe can’t wait to see you there! ♡\n\nGraphics By: Kaitlyn Liu\n#vsauw"
   },
   {
    "id": "hl-375092",
@@ -194,6 +211,23 @@
    "source": "huskylink",
    "description": "Want to talk about comics, learn how to draw them, or just hang out in a chill and artsy space to draw and make friends? Then this club is for you! Art supplies is available, and we provide free snacks at the first and last meeting of the quarter. :)",
    "image": null
+  },
+  {
+   "id": "DePafArhcs1-0",
+   "title": "General Meeting #2",
+   "type": "Club",
+   "host": "@vsauw",
+   "where": "Denny Room",
+   "pos": [
+    47.65929,
+    -122.30555
+   ],
+   "date": "2026-11-03",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DePafArhcs1/",
+   "source": "instagram",
+   "description": "OPEN UP UR CALENDARS… FALL QUARTER GMS ARE HERE! 🍂\n\nFour GMs. Four chances to pull up, make friends, and stay connected with VSAUW ⋆｡°✩\n\n🗓️ General Meeting #1\nOctober 20th • 6–8 PM\n📍 HUB South Ballroom\n\n🗓️ General Meeting #2\nNovember 3rd • 6–8 PM\n📍 Denny Room\n\n🗓️ General Meeting #3 + ACCE Fam Reveal\nNovember 17th • 6–8 PM\n📍 Denny Room\n\n🗓️ General Meeting #4\nDecember 1st • 6–8 PM\n📍 Denny Room\n\nOpen up your calendars, mark the dates, and we hope to see you there! \n\nGraphic By: Thu Nguyen\n#vsauw"
   },
   {
    "id": "hl-375299",
@@ -352,6 +386,20 @@
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_627845_Screenshot_20261027_at_71235PM_02d3fac1-a068-47b2-b17e-8844b5fbf19e_102722141.png"
   },
   {
+   "id": "DeuiLbPDyd5-1",
+   "title": "Info Night #2",
+   "type": "Club",
+   "host": "@vsauw",
+   "where": "Online",
+   "pos": null,
+   "date": "2026-11-06",
+   "start": "21:00",
+   "end": "22:00",
+   "url": "https://www.instagram.com/p/DeuiLbPDyd5/",
+   "source": "instagram",
+   "description": "The lights are soft, the spotlight is waiting, and your HK era might be closer than you think. ♡₊˚\n\nEver wondered what Hoa Khoi Lien Truong (HK) is all about? Whether you’re curious about the experience, what being a contestant involves, or what you can gain from participating, come join us for an HK Info Night!\n\nThis opportunity is open to female-identifying members of VSAUW! ♡ Whether you’re considering becoming a contestant or simply want to learn more, come with your questions and a little curiosity. Learn about the show, meet others who are interested, and discover what this experience could look like for you. ✧\n\n✦ INFO NIGHT #1: IN-PERSON\n♡ Date: Monday, November 2nd\n♡ Time: 6:00–7:00 PM\n♡ Location: SAV 168\n\n✦ INFO NIGHT #2: ONLINE\n♡ Date: Friday, November 6th\n♡ Time: 9:00–10:00 PM\n♡ Location: Zoom Link Through LinkTree\n\nBoth sessions will cover the same information, so choose whichever works best for you. However, YOU MUST ATTEND ONE INFO SESSION to qualify for HK.\n\nIf you’ve been curious about HK, consider this your sign to come learn more. Your next chapter might be waiting in the spotlight. ⋆౨ৎ˚⟡˖\n\nWe can’t wait to see you there! ♡\n\nGraphics By: Kaitlyn Liu\n#vsauw"
+  },
+  {
    "id": "DeajhNEmhDW-0",
    "title": "Product Games",
    "type": "Club",
@@ -486,6 +534,23 @@
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_633611_nov_social_78ac6f31-27fe-454e-9998-ae76a70b7d79_1027194213.png"
   },
   {
+   "id": "DePafArhcs1-1",
+   "title": "General Meeting #3 + ACCE Fam Reveal",
+   "type": "Club",
+   "host": "@vsauw",
+   "where": "Denny Room",
+   "pos": [
+    47.65929,
+    -122.30555
+   ],
+   "date": "2026-11-17",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DePafArhcs1/",
+   "source": "instagram",
+   "description": "OPEN UP UR CALENDARS… FALL QUARTER GMS ARE HERE! 🍂\n\nFour GMs. Four chances to pull up, make friends, and stay connected with VSAUW ⋆｡°✩\n\n🗓️ General Meeting #1\nOctober 20th • 6–8 PM\n📍 HUB South Ballroom\n\n🗓️ General Meeting #2\nNovember 3rd • 6–8 PM\n📍 Denny Room\n\n🗓️ General Meeting #3 + ACCE Fam Reveal\nNovember 17th • 6–8 PM\n📍 Denny Room\n\n🗓️ General Meeting #4\nDecember 1st • 6–8 PM\n📍 Denny Room\n\nOpen up your calendars, mark the dates, and we hope to see you there! \n\nGraphic By: Thu Nguyen\n#vsauw"
+  },
+  {
    "id": "hl-375297",
    "title": "Barbell Club Group Lift",
    "type": "Hangout",
@@ -535,6 +600,23 @@
    "source": "huskylink",
    "description": "It is nearly the end of the quarter, and it is time to see how strong you have become! Join us at the IMA for a day dedicated to beating personal records. Spotters will be available, and blood will be pumping.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png"
+  },
+  {
+   "id": "DePafArhcs1-2",
+   "title": "General Meeting #4",
+   "type": "Club",
+   "host": "@vsauw",
+   "where": "Denny Room",
+   "pos": [
+    47.65929,
+    -122.30555
+   ],
+   "date": "2026-12-01",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DePafArhcs1/",
+   "source": "instagram",
+   "description": "OPEN UP UR CALENDARS… FALL QUARTER GMS ARE HERE! 🍂\n\nFour GMs. Four chances to pull up, make friends, and stay connected with VSAUW ⋆｡°✩\n\n🗓️ General Meeting #1\nOctober 20th • 6–8 PM\n📍 HUB South Ballroom\n\n🗓️ General Meeting #2\nNovember 3rd • 6–8 PM\n📍 Denny Room\n\n🗓️ General Meeting #3 + ACCE Fam Reveal\nNovember 17th • 6–8 PM\n📍 Denny Room\n\n🗓️ General Meeting #4\nDecember 1st • 6–8 PM\n📍 Denny Room\n\nOpen up your calendars, mark the dates, and we hope to see you there! \n\nGraphic By: Thu Nguyen\n#vsauw"
   }
  ]
 }

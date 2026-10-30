@@ -5699,7 +5699,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Undergraduate Theater Society|The Undergraduate Theater Society creates inclusive and equitable quality learning opportunities for all…"
+"from": "Undergraduate Theater Society|The Undergraduate Theater Society works to support and expand the academic theater community within the UW…"
 },
 "undergraduatewomeninbusinessuwib": {
 "fields": [
@@ -6238,5 +6238,9 @@
 "zetataualpha": {
 "fields": [],
 "from": "Zeta Tau Alpha|We are an organization that strives to promote community service, sisterhood, and education."
+},
+"vsauw": {
+"fields": [],
+"from": "VSAUW|Vietnamese cultural community offering events, networking, and discounts."
 }
 }
