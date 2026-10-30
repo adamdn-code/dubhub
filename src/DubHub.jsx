@@ -1015,7 +1015,7 @@ function dayLabel(date) {
 }
 
 // Events grouped under a heading per day, in date order (undated ones last).
-function EventList({ events, j, onSelect }) {
+function EventList({ events, j, onSelect, columns = 2 }) {
   const days = [];
   for (const e of [...events].sort((a, b) => (a.date ?? "9999").localeCompare(b.date ?? "9999"))) {
     const label = dayLabel(e.date);
@@ -1025,7 +1025,7 @@ function EventList({ events, j, onSelect }) {
   return days.map(({ label, events: list }) => (
     <section key={label} className="day">
       <h3 className="day-label">{label}</h3>
-      <ul className="list cards">
+      <ul className={columns === 3 ? "list cards cards-3" : "list cards"}>
         {list
           .sort((a, b) => (a.start ?? "99").localeCompare(b.start ?? "99"))
           .map((e) => (
@@ -1177,7 +1177,7 @@ function MyEventsPage({ all, clubList, j, clubs, onBrowse, onFindClubs }) {
         </p>
       )}
       {mine.length > 0 ? (
-        <EventList events={mine} j={j} onSelect={setSelected} />
+        <EventList events={mine} j={j} onSelect={setSelected} columns={3} />
       ) : (
         <div className="empty-card">
           <h2>Nothing here yet</h2>

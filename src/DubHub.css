@@ -351,6 +351,35 @@ select:focus-visible {
   }
 }
 
+/* My Events: three cards per row on wide screens. Each card stacks (photo, time and Join on
+   top; title and details below) since a third of the page is too narrow for one line. */
+@media (min-width: 1000px) {
+  .list.cards-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .list.cards-3 > li.event-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "thumb time join"
+      "body body body";
+    align-items: center;
+    gap: 10px 12px;
+  }
+  .cards-3 .event-thumb {
+    grid-area: thumb;
+  }
+  .cards-3 .event-time {
+    grid-area: time;
+  }
+  .cards-3 .grow {
+    grid-area: body;
+  }
+  .cards-3 .join {
+    grid-area: join;
+  }
+}
+
 /* Event names over (or under) the dots when the site first opens: fade in, pulse, then fade away. */
 .intro-anchor {
   pointer-events: none;
