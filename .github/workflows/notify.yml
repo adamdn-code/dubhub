@@ -1,0 +1,26 @@
+# Runs DubHub's hourly email notifications (api/notify.js): new club events and
+# "starting soon" emails. Vercel's free plan only allows once-a-day jobs, so GitHub
+# calls the endpoint instead.
+#
+# Setup: GitHub repo > Settings > Secrets and variables > Actions > New repository secret
+#   CRON_SECRET   the same value as CRON_SECRET in Vercel's environment variables
+# Optional: a repository variable SITE_URL if the site isn't at https://dubhub-test.vercel.app
+name: Hourly notifications
+
+on:
+  schedule:
+    - cron: "5 * * * *" # 5 past every hour (GitHub's busiest minute is :00)
+  workflow_dispatch: # lets you run it by hand from the Actions tab
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Send notifications
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://dubhub-test.vercel.app' }}
+        run: |
+          curl --fail-with-body --silent --show-error --max-time 240 \
+            -H "Authorization: Bearer $CRON_SECRET" "$SITE_URL/api/notify"

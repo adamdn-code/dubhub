@@ -4,6 +4,8 @@ import {
   SITE_URL,
   SUBSCRIBERS,
   db,
+  esc,
+  eventLine,
   getReminders,
   json,
   makeToken,
@@ -12,19 +14,6 @@ import {
   sendMail,
   setReminders,
 } from "./_lib.js";
-
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-
-function time(hhmm) {
-  if (!hhmm) return "";
-  const [h, m] = hhmm.split(":").map(Number);
-  return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "AM" : "PM"}`;
-}
-
-function eventLine(e) {
-  const when = e.start ? `${time(e.start)}${e.end ? `–${time(e.end)}` : ""}` : "Time not listed";
-  return { when, where: e.where || "Location not listed", host: e.host };
-}
 
 export function buildEmail(name, today, tomorrow, unsubscribeUrl) {
   const section = (label, list) => {

@@ -1,6 +1,9 @@
-// GET  /api/reminders: is the signed-in user's email reminder on?
-// POST /api/reminders { enabled?, events? }: turn it on/off and/or update the events to remind about.
-import { cleanEvents, getReminders, json, missingConfig, sessionFrom, setReminders } from "./_lib.js";
+// GET  /api/reminders: which of the signed-in user's emails are on?
+// POST /api/reminders { enabled?, newClubEvents?, hourBefore?, events?, clubs? }: turn emails on/off
+// and/or update the events and clubs to send about.
+import { PREFS, cleanClubs, cleanEvents, getReminders, json, missingConfig, sessionFrom, setReminders } from "./_lib.js";
+
+const prefs = (r) => Object.fromEntries(PREFS.map((p) => [p, !!r[p]]));
 
 export default async function handler(req, res) {
   const missing = missingConfig();
@@ -10,13 +13,14 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     const r = await getReminders(session.email);
-    return json(res, 200, { enabled: !!r.enabled, events: r.events.length });
+    return json(res, 200, { ...prefs(r), events: r.events.length });
   }
   if (req.method !== "POST") return json(res, 405, { error: "Use GET or POST" });
 
   const changes = { name: session.name };
-  if (typeof req.body?.enabled === "boolean") changes.enabled = req.body.enabled;
+  for (const p of PREFS) if (typeof req.body?.[p] === "boolean") changes[p] = req.body[p];
   if (req.body?.events) changes.events = cleanEvents(req.body.events);
+  if (req.body?.clubs) changes.clubs = cleanClubs(req.body.clubs);
   const r = await setReminders(session.email, changes);
-  return json(res, 200, { enabled: !!r.enabled, events: r.events.length });
+  return json(res, 200, { ...prefs(r), events: r.events.length });
 }
