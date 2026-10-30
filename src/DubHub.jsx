@@ -1025,7 +1025,7 @@ function EventList({ events, j, onSelect }) {
   return days.map(({ label, events: list }) => (
     <section key={label} className="day">
       <h3 className="day-label">{label}</h3>
-      <ul className="list">
+      <ul className="list cards">
         {list
           .sort((a, b) => (a.start ?? "99").localeCompare(b.start ?? "99"))
           .map((e) => (
@@ -1313,7 +1313,7 @@ function ClubsPage({ all, clubList, clubs: membership }) {
           </>
         )}
       </p>
-      <ul className="list">
+      <ul className="list cards">
         {clubs.slice(0, limit).map((c) => {
           const upcoming = hostedBy(all, c).length;
           return (

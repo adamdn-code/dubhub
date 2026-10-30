@@ -317,15 +317,38 @@ select:focus-visible {
 }
 
 /* Other tabs */
+/* The page itself is full width so its scrollbar sits at the window's edge; the side padding
+   keeps the content in a centered column up to --page-w wide. */
 .page {
+  --page-w: 1080px;
   flex: 1;
   overflow: auto;
-  max-width: 720px;
   width: 100%;
-  margin: 0 auto;
-  padding: 28px 20px 48px;
+  padding: 28px max(20px, calc((100% - var(--page-w)) / 2)) 48px;
   line-height: 1.5;
   text-align: left;
+}
+
+/* On wide screens, event and club lists become two columns of cards. */
+@media (min-width: 900px) {
+  .list.cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .list.cards > li {
+    padding: 14px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .list.cards > li:hover {
+    border-color: #c9bfdf;
+  }
+  .day-label {
+    margin-top: 28px;
+  }
 }
 
 /* Event names over (or under) the dots when the site first opens: fade in, pulse, then fade away. */
