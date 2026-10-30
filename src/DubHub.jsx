@@ -112,17 +112,16 @@ function FieldTag({ field }) {
   );
 }
 
+// The filters pick a whole field ("Engineering"), since events and clubs are sorted by field, not
+// by single major. The profile page still lets you pick your specific majors.
 function MajorSelect({ value, onChange, ...props }) {
   return (
     <select value={value} onChange={(e) => onChange(e.target.value)} {...props}>
       <option>Any major</option>
-      {Object.entries(MAJOR_GROUPS).map(([group, majors]) => (
-        <optgroup key={group} label={group}>
-          <option value={`field:${group}`}>All {group}</option>
-          {majors.map((m) => (
-            <option key={m}>{m}</option>
-          ))}
-        </optgroup>
+      {MAJOR_FIELDS_ORDER.map((field) => (
+        <option key={field} value={`field:${field}`}>
+          {field}
+        </option>
       ))}
     </select>
   );
