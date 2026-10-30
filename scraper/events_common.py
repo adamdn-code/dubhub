@@ -659,7 +659,7 @@ def load_huskylink():
 def merge_huskylink_events(events):
     """Swap in the latest HuskyLink events (dropping any old ones), sorted by date."""
     today = TODAY.isoformat()
-    events = [e for e in events if e.get("source") != "huskylink"]
+    events = [e for e in events if e.get("source") != "huskylink" and e["date"] >= today]
     events += [e for e in load_huskylink()["events"] if e["date"] >= today]
     events.sort(key=lambda e: (e["date"], e["start"] or "99"))
     return events
@@ -700,6 +700,10 @@ def merge_huskylink_clubs(clubs):
             c[field] = c.get(field) or h.get(field)
         if c.get("category") in (None, "Other"):
             c["category"] = h["category"]
+    for c in clubs:  # some HuskyLink missions have a typed-in "\r\n"; older merges kept it
+        for field in ("about", "description"):
+            if c.get(field):
+                c[field] = re.sub(r"\\r\\n|\\n|\\r", "\n", c[field])
     clubs.sort(key=lambda c: c["name"].lstrip("@").lower())
     return clubs
 
