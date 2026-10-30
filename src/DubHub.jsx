@@ -624,20 +624,27 @@ function MapArea({ area }) {
 
 const escapeHtml = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const labelIcons = new Map(); // reuse icons so re-renders don't restart the fade animation
-function labelIcon(text, dir) {
-  const key = `${dir}|${text}`;
+function labelIcon(club, text, dir) {
+  const key = `${dir}|${club}|${text}`;
   if (!labelIcons.has(key)) {
-    labelIcons.set(key, L.divIcon({ className: "intro-anchor", html: `<span class="intro-label ${dir}">${escapeHtml(text)}</span>`, iconSize: [0, 0] }));
+    const html =
+      `<span class="intro-label ${dir}"><span class="intro-label-club">${escapeHtml(club)}</span>` +
+      `<span class="intro-label-text">${escapeHtml(text)}</span></span>`;
+    labelIcons.set(key, L.divIcon({ className: "intro-anchor", html, iconSize: [0, 0] }));
   }
   return labelIcons.get(key);
 }
 
-// A label's on-screen width: its text in the label font (bold 13px), plus padding and a small gap.
+// A label's on-screen width: the club (semibold 12px) and event name (bold 13px), plus each
+// section's padding and a small gap.
 let measureCtx;
-function labelWidth(text) {
+function labelWidth(club, text) {
   measureCtx ??= document.createElement("canvas").getContext("2d");
-  measureCtx.font = `700 13px ${getComputedStyle(document.body).fontFamily}`;
-  return measureCtx.measureText(text).width + 20 + 8;
+  const font = getComputedStyle(document.body).fontFamily;
+  measureCtx.font = `600 12px ${font}`;
+  const clubW = measureCtx.measureText(club).width;
+  measureCtx.font = `700 13px ${font}`;
+  return clubW + measureCtx.measureText(text).width + 2 * 18 + 8;
 }
 
 // Event names shown over their dots when the site opens. Each label goes above its dot, or below it
@@ -656,7 +663,7 @@ function IntroLabels({ places }) {
   const shown = [];
   for (const place of [...places].sort((a, b) => b.count - a.count)) {
     const pt = map.latLngToContainerPoint(place.pos);
-    const w = labelWidth(place.text);
+    const w = labelWidth(place.club, place.text);
     const h = 28;
     for (const dir of ["above", "below"]) {
       const top = dir === "above" ? pt.y - 12 - h : pt.y + 12;
@@ -670,7 +677,7 @@ function IntroLabels({ places }) {
   }
 
   return shown.map((p) => (
-    <Marker key={p.pos.join()} position={p.pos} icon={labelIcon(p.text, p.dir)} interactive={false} keyboard={false} />
+    <Marker key={p.pos.join()} position={p.pos} icon={labelIcon(p.club, p.text, p.dir)} interactive={false} keyboard={false} />
   ));
 }
 
@@ -882,11 +889,16 @@ function EventMap({ events, area, introLabels, j }) {
   // One intro label per place, so events in the same building don't pile up.
   const byPlace = new Map();
   for (const e of located) byPlace.set(e.pos.join(), [...(byPlace.get(e.pos.join()) ?? []), e]);
-  const places = [...byPlace.values()].map((list) => ({
-    pos: list[0].pos,
-    count: list.length,
-    text: list.length > 1 ? `${list[0].title} +${list.length - 1} more` : list[0].title,
-  }));
+  const places = [...byPlace.values()].map((list) => {
+    const clubs = new Set(list.map(hostName));
+    return {
+      pos: list[0].pos,
+      count: list.length,
+      // Long names would crowd out other labels, so they're shortened here (the pop-up has the full name).
+      club: clubs.size > 1 ? `${clubs.size} clubs` : shortText(hostName(list[0]), 26),
+      text: list.length > 1 ? `${list[0].title} +${list.length - 1} more` : list[0].title,
+    };
+  });
 
   return (
     <MapContainer

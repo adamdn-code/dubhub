@@ -389,16 +389,33 @@ select:focus-visible {
   position: absolute;
   left: 0;
   top: 0;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
   white-space: nowrap;
   transform: translate(-50%, calc(-100% - 12px));
   background: var(--purple);
   color: #fff;
   border-radius: 999px;
-  padding: 4px 10px;
   font-weight: 700;
   font-size: 13px;
   box-shadow: 0 2px 8px rgba(28, 21, 48, 0.35);
   animation: intro-label 4.8s ease-in-out forwards;
+}
+
+/* The host club in its own section, before the event name */
+.intro-label-club {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px 4px 10px;
+  background: var(--gold);
+  color: var(--purple);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.intro-label-text {
+  padding: 4px 10px 4px 8px;
 }
 
 .intro-label.below {
