@@ -364,15 +364,6 @@ function SignIn({ user, onSignIn, onSignOut, onOpenProfile }) {
         setOpen(false);
         const u = { name: p.name, email: p.email, picture: p.picture };
         onSignIn(u);
-        // Also get a DubHub server token (used for email reminders); fine if the server isn't set up.
-        fetch("/api/session", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ credential }),
-        })
-          .then((r) => (r.ok ? r.json() : null))
-          .then((d) => d?.token && onSignIn({ ...u, session: d.token }))
-          .catch(() => {});
       },
     });
     window.google.accounts.id.renderButton(buttonRef.current, {
@@ -803,11 +794,15 @@ function restyle(style) {
   };
 
   // Icons that clutter the map: bus stops with their long names ("... & NE Pacific Pl - Bay 5"),
-  // parking "P" signs, and (zoomed all the way in) info points, restrooms and trash cans.
+  // parking "P" signs, dorm (residence hall) beds, and (zoomed all the way in) info points, restrooms
+  // and trash cans. Hotels share the dorms' "lodging" class, so dorms are hidden by subclass.
   // Also the 3D buildings that pop up when zoomed in; the flat "building" layer still draws them.
   style.layers = style.layers.filter((layer) => layer.id !== "poi_transit" && layer.type !== "fill-extrusion");
   const hidden = ["bus", "parking", "bicycle_parking", "information", "toilets", "waste_basket"];
-  const notBusStop = ["!", ["match", ["get", "class"], hidden, true, false]];
+  const notBusStop = [
+    "!",
+    ["any", ["match", ["get", "class"], hidden, true, false], ["==", ["get", "subclass"], "dormitory"]],
+  ];
 
   for (const layer of style.layers) {
     if (layer.paint?.["fill-pattern"]) delete layer.paint["fill-pattern"];
@@ -1402,10 +1397,10 @@ function ClubsPage({ all, clubList, clubs: membership }) {
   );
 }
 
-// Each signed-in account gets its own profile on this device: { year, majors, phone, sms }.
+// Each signed-in account gets its own profile on this device: { year, majors }.
 const PROFILE_KEY = "dubhub-profile";
 const MAX_MAJORS = 3;
-const EMPTY_PROFILE = { year: "", majors: [], phone: "", sms: false };
+const EMPTY_PROFILE = { year: "", majors: [] };
 
 function loadProfile(email) {
   try {
@@ -1413,13 +1408,6 @@ function loadProfile(email) {
   } catch {
     return EMPTY_PROFILE;
   }
-}
-
-// "(206) 555-0123", "206.555.0123" or "+1 206 555 0123" -> "2065550123"; null if not a US number.
-function phoneDigits(text) {
-  let d = (text || "").replace(/\D/g, "");
-  if (d.length === 11 && d.startsWith("1")) d = d.slice(1);
-  return d.length === 10 ? d : null;
 }
 
 function useProfile(user) {
@@ -1443,70 +1431,7 @@ function useProfile(user) {
   return { profile, update };
 }
 
-// Email notifications, stored on the server (api/). prefs: enabled (morning reminder),
-// newClubEvents, hourBefore. status: "loading" | "ready" | "needs-signin" (signed in before
-// reminders existed, so no server token) | "unavailable".
-const NO_PREFS = { enabled: false, newClubEvents: false, hourBefore: false };
-
-function useEmailReminders(user, myEvents, myClubs) {
-  const session = user?.session;
-  const [state, setState] = useState({ session: null, status: "loading", prefs: NO_PREFS, error: "" });
-  const current = state.session === session ? state : { session, status: "loading", prefs: NO_PREFS, error: "" };
-  const status = !user ? "ready" : !session ? "needs-signin" : current.status;
-  const prefs = current.prefs;
-  const anyOn = Object.values(prefs).some(Boolean);
-
-  const call = useCallback(
-    (method, body) =>
-      fetch("/api/reminders", {
-        method,
-        headers: { Authorization: `Bearer ${session}`, "Content-Type": "application/json" },
-        body: body && JSON.stringify(body),
-      }).then(async (r) => {
-        if (r.status === 401) return { status: "needs-signin" };
-        if (!r.ok) return { status: "unavailable" };
-        const d = await r.json();
-        return { status: "ready", prefs: { enabled: !!d.enabled, newClubEvents: !!d.newClubEvents, hourBefore: !!d.hourBefore } };
-      }),
-    [session]
-  );
-
-  // Ask the server whether reminders are on (they can be turned off from an email's link).
-  useEffect(() => {
-    if (!session) return;
-    let cancelled = false;
-    call("GET")
-      .catch(() => ({ status: "unavailable" }))
-      .then((s) => !cancelled && setState({ session, error: "", ...s }));
-    return () => {
-      cancelled = true;
-    };
-  }, [session, call]);
-
-  // Only the fields the emails need: My Events, and the clubs whose new events to email about.
-  const snapshot = JSON.stringify({
-    events: myEvents.map(({ id, title, date, start, end, where, host, url }) => ({ id, title, date, start, end, where, host, url })),
-    clubs: myClubs.map(({ name, handle }) => ({ name, handle })),
-  });
-
-  // Keep the server's copy of My Events and your clubs up to date while any email is on.
-  useEffect(() => {
-    if (status !== "ready" || !anyOn) return;
-    const t = setTimeout(() => call("POST", JSON.parse(snapshot)).catch(() => {}), 800);
-    return () => clearTimeout(t);
-  }, [status, anyOn, snapshot, call]);
-
-  const setPref = (name, value) => {
-    setState({ session, status: "loading", prefs: { ...prefs, [name]: value }, error: "" });
-    call("POST", { [name]: value, ...JSON.parse(snapshot) })
-      .catch(() => ({ status: "ready", prefs, error: "Couldn't reach DubHub. Try again." }))
-      .then((s) => setState({ session, error: "", prefs, ...s }));
-  };
-
-  return { status, prefs, error: current.error, setPref };
-}
-
-function ProfilePage({ user, profile, onChange, clubList, clubs, j, email, onSignOut }) {
+function ProfilePage({ user, profile, onChange, clubList, clubs, j, onSignOut }) {
   if (!user) {
     return (
       <main className="page">
@@ -1583,70 +1508,6 @@ function ProfilePage({ user, profile, onChange, clubList, clubs, j, email, onSig
           )}
         </div>
         <p className="count">Saved automatically on this device.</p>
-      </div>
-
-      <h2>Notifications</h2>
-      <div className="profile-form">
-        {[
-          ["enabled", "Email me reminders for my events",
-            "A morning email on days you have something in My Events (today and tomorrow)."],
-          ["hourBefore", "Email me when an event is about to start",
-            "About an hour before each event in My Events that has a start time."],
-          ["newClubEvents", "Email me when my clubs post new events",
-            "As soon as DubHub finds a new event from a club you joined."],
-        ].map(([name, label, hint]) => (
-          <div key={name}>
-            <label className="check">
-              <input
-                type="checkbox"
-                checked={email.prefs[name]}
-                disabled={email.status !== "ready"}
-                onChange={(e) => email.setPref(name, e.target.checked)}
-              />
-              {label}
-            </label>
-            <p className="count">{hint}</p>
-          </div>
-        ))}
-        <p className="count">Emails go to {user.email}.</p>
-        {email.status === "needs-signin" && (
-          <p className="notice">Sign out and sign back in to turn on email reminders.</p>
-        )}
-        {email.status === "unavailable" && (
-          <p className="notice">Email reminders aren't set up on the server yet.</p>
-        )}
-        {email.error && <p className="field-error">{email.error}</p>}
-      </div>
-
-      <div className="profile-form">
-        <label>
-          Phone number
-          <input
-            type="tel"
-            inputMode="tel"
-            autoComplete="tel-national"
-            placeholder="(206) 555-0123"
-            value={profile.phone}
-            onChange={(e) => onChange({ phone: e.target.value, ...(phoneDigits(e.target.value) ? {} : { sms: false }) })}
-          />
-        </label>
-        {profile.phone && !phoneDigits(profile.phone) && (
-          <p className="field-error">Enter a 10-digit US phone number.</p>
-        )}
-        <label className="check">
-          <input
-            type="checkbox"
-            checked={profile.sms}
-            disabled={!phoneDigits(profile.phone)}
-            onChange={(e) => onChange({ sms: e.target.checked })}
-          />
-          Text me reminders for events I join
-        </label>
-        <p className="count">
-          By checking this box, you agree to receive text messages from DubHub about events you join. Message
-          frequency varies. Message and data rates may apply. Reply STOP to unsubscribe or HELP for help.
-        </p>
-        <p className="notice">Text reminders are coming soon. We aren't sending texts yet.</p>
       </div>
 
       <h2>Your clubs</h2>
@@ -1755,9 +1616,6 @@ export default function DubHub() {
   const { profile, update: updateProfile } = useProfile(user);
   const j = useJoined(JOINED_KEY);
   const clubs = useJoined(CLUBS_KEY);
-  const myEvents = useMemo(() => myEventsFor(all, clubList, j, clubs), [all, clubList, j, clubs]);
-  const myClubs = useMemo(() => clubList.filter((c) => clubs.joined.includes(c.name)), [clubList, clubs]);
-  const email = useEmailReminders(user, myEvents, myClubs);
 
   return (
     <div className="app">
@@ -1804,7 +1662,6 @@ export default function DubHub() {
           clubList={clubList}
           clubs={clubs}
           j={j}
-          email={email}
           onSignOut={() => {
             signOut();
             setTab("Home");
