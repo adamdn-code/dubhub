@@ -74,7 +74,7 @@
    "about": "Learns and practices American Sign Language.",
    "description": "The @uwaslclub meets weekly to teach and practice American Sign Language. Beginners sessions introduce basic signs, while later meetings build fluency.",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_608390_uwasl_logojpg_8f3e301d-3af9-4c01-9d15-6ae02ba8ed2c_92622561.jpeg",
-   "last_event": "2026-10-26",
+   "last_event": "2026-11-04",
    "fields": []
   },
   {
@@ -127,6 +127,17 @@
    ]
   },
   {
+   "name": "ASUW Gender Equity Commission",
+   "website": "https://huskylink.washington.edu/GEC/",
+   "category": "Service",
+   "about": null,
+   "description": null,
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_599699_610676969_18550244284044918_6504942715189849402_njpg_27460711-9c5f-4ee7-9529-bda88f81a837_93114854.jpeg",
+   "source": "huskylink",
+   "last_event": "2026-11-20",
+   "fields": []
+  },
+  {
    "name": "ASUW Rainy Dawg Radio",
    "website": "https://huskylink.washington.edu/rainydawg/",
    "category": "Service",
@@ -156,7 +167,7 @@
    "description": "AWS Student Builder Group at the University of Washington is a student-led organization that helps students learn cloud computing through hands-on workshops, projects, and community events, regardless of prior experience.",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_637173_Final_Rebrand_Verbose_Logo_Design_Zoomed_out_36b5e5bc-1d05-4a20-a839-904eee4153f6_1012144513.png",
    "source": "huskylink",
-   "last_event": "2026-11-17",
+   "last_event": "2026-11-24",
    "fields": [
     "Computing & Math"
    ]
@@ -384,7 +395,7 @@
    "handle": "hubatuw",
    "instagram": "https://www.instagram.com/hubatuw/",
    "source": "huskylink",
-   "last_event": "2026-09-28",
+   "last_event": "2026-10-29",
    "fields": []
   },
   {
@@ -558,7 +569,7 @@
    "description": "Project Sunshine is an organization that comforts and attempts to normalize inpatient pediatrics lives through the power of play! We also make cards for local hospitals and send Sending Sunshine activity kits to hospitals nationwide.",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_615292_Copy_of_IG_Logojpg_d2b48403-799e-4481-81cc-6812b9230b04_102316410.jpeg",
    "source": "huskylink",
-   "last_event": "2026-10-26",
+   "last_event": "2026-11-06",
    "fields": [
     "Health"
    ]
@@ -618,6 +629,17 @@
    ]
   },
   {
+   "name": "Sumo Union Membership Organization",
+   "website": "https://huskylink.washington.edu/sumounionmembershiporganization/",
+   "category": "Sports",
+   "about": "Huskies who want to watch Japanese Grand Sumo with some friends.",
+   "description": "Huskies who want to watch Japanese Grand Sumo with some friends. Primarily meeting during each of the six yearly tournaments. Join the Discord! https://discord.gg/j2D7s9hrBF Follow the Instagram! https://www.instagram.com/sumo.uw/",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_639840_sumo_48ab8283-e06f-4095-827b-618e60c68858_926215143.png",
+   "source": "huskylink",
+   "last_event": "2026-11-23",
+   "fields": []
+  },
+  {
    "name": "Sustainable Education Initiative",
    "website": "https://huskylink.washington.edu/sustainableeducationinitiative/",
    "category": "Service",
@@ -672,7 +694,7 @@
    "category": "Cultural",
    "about": "The Tzu Chi Collegiate Association at Seattle (Seattle & UW Tzu Ching) is the servicebased collegiate organization…",
    "description": "The Tzu Chi Collegiate Association at Seattle (Seattle & UW Tzu Ching) is the servicebased collegiate organization that carries out the missions of the Tzu Chi Foundation. The Tzu Ching club provides an opportunity for volunteer work in the local area.",
-   "logo": null,
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_636644_Logo_8ac9833a-ce48-4c67-8c83-011dfd309298_11222222.png",
    "handle": "tzuching_seattle",
    "instagram": "https://www.instagram.com/tzuching_seattle/",
    "source": "huskylink",
@@ -703,6 +725,19 @@
    "last_event": "2026-12-09",
    "fields": [
     "Social Sciences"
+   ]
+  },
+  {
+   "name": "@uw_oscmc",
+   "handle": "uw_oscmc",
+   "instagram": "https://www.instagram.com/uw_oscmc/",
+   "website": null,
+   "category": "Business",
+   "about": "Student club focused on supply chain and operations management.",
+   "description": "OSCMC hosts networking events for students interested in supply chain and operations. Their Fall Networking Night offers meaningful conversations and insights into the field. Connect with peers and professionals to expand your knowledge.",
+   "last_event": "2026-11-05",
+   "fields": [
+    "Business"
    ]
   },
   {

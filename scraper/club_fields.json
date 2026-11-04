@@ -6242,5 +6242,11 @@
 "vsauw": {
 "fields": [],
 "from": "VSAUW|Vietnamese cultural community offering events, networking, and discounts."
+},
+"oscmc": {
+"fields": [
+"Business"
+],
+"from": "@uw_oscmc|Student club focused on supply chain and operations management."
 }
 }
