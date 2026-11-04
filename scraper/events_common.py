@@ -67,7 +67,10 @@ CLUB_CATEGORIES = ["Academic", "Tech", "Engineering", "Business", "Cultural", "A
 # Must match the major groups (MAJOR_GROUPS) in the website's Major filter.
 MAJOR_FIELDS = ["Engineering", "Computing & Math", "Sciences", "Health", "Social Sciences",
                 "Arts & Humanities", "Business"]
-ACTIVE_DAYS = 365  # clubs with no event in this long are left out of the site's club list
+ACTIVE_DAYS = 365  # clubs with an event in this long are "active"
+# True: the site lists every club, active ones first. False: only active clubs are listed.
+# After changing it: python events_common.py, then push public/clubs.json.
+SHOW_INACTIVE_CLUBS = True
 
 # Seattle, same box the website's map is limited to.
 SEATTLE_BOUNDS = (47.48, -122.46, 47.74, -122.22)
@@ -834,15 +837,17 @@ Reply with ONLY JSON: {{"clubs": [{{"club": 1, "fields": ["..."]}}]}}
 
 
 def finish_clubs(clubs):
-    """Keep only clubs with an event in the past year (or coming up), and add their latest event
-    date and major fields. Both scrapers call this last. A club reappears once it holds an event."""
+    """Put clubs with an event in the past year (or coming up) first, leave the rest out unless
+    SHOW_INACTIVE_CLUBS is on, and add each club's latest event date and major fields.
+    Both scrapers call this last."""
     activity = _load(CLUB_ACTIVITY_FILE, {})
     cutoff = (TODAY - timedelta(days=ACTIVE_DAYS)).isoformat()
     for c in clubs:
         c["last_event"] = last_event(c, activity)
     total = len(clubs)
-    clubs = [c for c in clubs if (c["last_event"] or "") >= cutoff]
-    print(f"Keeping {len(clubs)} of {total} clubs (an event in the past {ACTIVE_DAYS} days or coming up)")
+    active = [c for c in clubs if (c["last_event"] or "") >= cutoff]
+    clubs = active + [c for c in clubs if (c["last_event"] or "") < cutoff] if SHOW_INACTIVE_CLUBS else active
+    print(f"Keeping {len(clubs)} of {total} clubs ({len(active)} with an event in the past {ACTIVE_DAYS} days or coming up)")
 
     saved = _load(CLUB_FIELDS_FILE, {})
     fingerprint = lambda c: f"{c['name']}|{(c.get('about') or c.get('description') or '')[:160]}"

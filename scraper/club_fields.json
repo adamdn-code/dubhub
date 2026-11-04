@@ -23,7 +23,7 @@
 "fields": [
 "Health"
 ],
-"from": "Academy of General Dentistry ( AGD ) Student Chapter at University of Washington School of Dentistry|The purpose is to serve the needs and represent the interests of\\r\\ndental students, to further their educational…"
+"from": "Academy of General Dentistry ( AGD ) Student Chapter at University of Washington School of Dentistry|The purpose is to serve the needs and represent the interests of"
 },
 "academyofmanagedcarepharmacy": {
 "fields": [
@@ -394,8 +394,10 @@
 "from": "American Water Resources Association UW Student Chapter|To provide University of Washington students a chance for professional growth, learning, and connections in the…"
 },
 "amnestyinternational": {
-"fields": [],
-"from": "Amnesty International UW|We campaign for a world where human rights are enjoyed by all.\\r\\n"
+"fields": [
+"Social Sciences"
+],
+"from": "Amnesty International at UW|We campaign for a world where human rights are enjoyed by all."
 },
 "anakbayanuw": {
 "fields": [],
@@ -444,7 +446,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Anti Cinema Cinema Club|The club 💃🎊🕺 for laughing at 😂🤣 / loving 😍💋 so \"bad 😡👎 that it's good\" 🤗👍 movies 📽️🎬\\r\\n Possibly the only movie…"
+"from": "Anti Cinema Cinema Club|The club 💃🎊🕺 for laughing at 😂🤣 / loving 😍💋 so \"bad 😡👎 that it's good\" 🤗👍 movies 📽️🎬"
 },
 "antiaiaiclub": {
 "fields": [
@@ -477,7 +479,7 @@
 "fields": [
 "Sciences"
 ],
-"from": "Archaeology Club at the University of Washington|To expand interest and experience within archeological fields, including educational and experimental excursions.\\r\\n"
+"from": "Archaeology Club at the University of Washington|To expand interest and experience within archeological fields, including educational and experimental excursions."
 },
 "armenianstudentassociation": {
 "fields": [],
@@ -489,9 +491,10 @@
 },
 "artificialintelligencestudentcollective": {
 "fields": [
-"Computing & Math"
+"Computing & Math",
+"Engineering"
 ],
-"from": "Artificial Intelligence Student Collective @ UW|The AI Collective is a global network of organizations dedicated to providing accessible AI literacy through…"
+"from": "Artificial Intelligence Student Collective @ UW|Student network democratizing AI across all disciplines."
 },
 "artsandcraftsclub": {
 "fields": [
@@ -995,7 +998,7 @@
 },
 "brazilianstudentassociation": {
 "fields": [],
-"from": "Brazilian Student Association at the University of Washington|The Brazilian Student Association at the University of Washington supports Brazilian and Brazilaffiliated students,…"
+"from": "Brazilian Student Association at the University of Washington|The Brazilian Student Association at the University of Washington supports Brazilian and Brazil affiliated students,…"
 },
 "breakfastballgolfclub": {
 "fields": [],
@@ -1287,10 +1290,10 @@
 },
 "claudebuilderclub": {
 "fields": [
-"Engineering",
-"Computing & Math"
+"Computing & Math",
+"Engineering"
 ],
-"from": "Claude Builder Club @ UW|Explores building projects using Claude AI."
+"from": "Claude Builder Club @ UW|Learns and builds projects using Claude AI."
 },
 "climateactionandsustainabilityteamschoolofdentistry": {
 "fields": [
@@ -1421,7 +1424,7 @@
 "fields": [
 "Business"
 ],
-"from": "Corporate Banking Club at the University of Washington|The Corporate Banking Club at the University of Washington is an organization focused on building an environment for…"
+"from": "UW Corporate Banking Club|Links students with corporate banking career resources and opportunities."
 },
 "corporatelawandbusinessassociation": {
 "fields": [
@@ -1437,7 +1440,7 @@
 },
 "crafticians": {
 "fields": [],
-"from": "Crafticians|Crafticians is a club dedicated to providing a supportive space where graduate students can\\r\\ntake time away from…"
+"from": "Crafticians|Crafticians is a club dedicated to providing a supportive space where graduate students can"
 },
 "creatingacompany": {
 "fields": [
@@ -1457,10 +1460,9 @@
 },
 "cseed": {
 "fields": [
-"Business",
-"Computing & Math"
+"Engineering"
 ],
-"from": "cseed|cseed is a tech entrepreneurship organization at UW, on a mission to build an entrepreneurially minded community and…"
+"from": "cseed|Inspires engineering and design students to become innovators."
 },
 "cseeduw": {
 "fields": [],
@@ -1510,7 +1512,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Data Science Society at UW|The Data Science Society at UW is a student organization dedicated to making data science accessible to students from…"
+"from": "Data Science Society at UW|Student group exploring data science concepts and projects."
 },
 "dawgpack": {
 "fields": [],
@@ -1614,7 +1616,7 @@
 "fields": [
 "Health"
 ],
-"from": "Dental Class of 2028 at UW|This organization represents members of the Dental Class of 2028 at the University of Washington.\\r\\n"
+"from": "Dental Class of 2028 at UW|This organization represents members of the Dental Class of 2028 at the University of Washington."
 },
 "dentalclassof2029": {
 "fields": [
@@ -1705,9 +1707,9 @@
 },
 "dubhacksnext": {
 "fields": [
-"Computing & Math"
+"Business"
 ],
-"from": "DubHacks NEXT|Hosts hackathons and tech projects for UW students."
+"from": "DubHacks NEXT|Student‑run startup incubator offering a 16‑week growth program."
 },
 "dubshotphotographyclub": {
 "fields": [],
@@ -1772,7 +1774,7 @@
 "fields": [
 "Health"
 ],
-"from": "Emergency Medicine Interest Group|EMIG is a studentrun organization within UWSOM whose goals are to introduce students to emergency medicine and to…"
+"from": "Emergency Medicine Interest Group|EMIG is a student run organization within UWSOM whose goals are to introduce students to emergency medicine and to…"
 },
 "endoverdose": {
 "fields": [
@@ -1879,7 +1881,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "ETruck|Our goal is to convert a class 7 diesel truck into a batterypowered electric truck."
+"from": "ETruck|Designs and builds an electric truck prototype and related tech."
 },
 "evansstudentorganization": {
 "fields": [],
@@ -1975,7 +1977,7 @@
 },
 "firstlove": {
 "fields": [],
-"from": "First Love at UW|The purpose of the FL@UW includes the following:\\r\\n To give students an opportunity to find Christ in their youth at…"
+"from": "First Love at UW|The purpose of the FL@UW includes the following:"
 },
 "firstnations": {
 "fields": [],
@@ -1985,7 +1987,7 @@
 "fields": [
 "Sciences"
 ],
-"from": "Fish and Turtle Club|Fish & Turtle's main goal at the University of Washington is to promote marine life welfare\\r\\nand build a community…"
+"from": "Fish and Turtle Club|Fish & Turtle's main goal at the University of Washington is to promote marine life welfare"
 },
 "fishingclub": {
 "fields": [],
@@ -2518,7 +2520,7 @@
 "fields": [
 "Social Sciences"
 ],
-"from": "Huskies for Liberty|Huskies for Liberty is a student group promoting the values of free speech and individual rights.\\r\\n"
+"from": "Huskies for Liberty|Huskies for Liberty is a student group promoting the values of free speech and individual rights."
 },
 "huskiesforopportunitiesinprisoneducation": {
 "fields": [
@@ -2562,7 +2564,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Husky Coding Project|To create an internshiplike environment that promotes the growth and development of our club members by providing…"
+"from": "Husky Coding Project|Student group collaborating on coding projects to improve skills."
 },
 "huskycricketclub": {
 "fields": [],
@@ -2674,7 +2676,7 @@
 "Engineering",
 "Computing & Math"
 ],
-"from": "Husky Robotics Team|Husky Robotics Team designs and builds robots to compete in the Rover Challenge Series, including URC and…"
+"from": "Husky Robotics Team|Husky Robotics Team designs and builds robots to compete in the Rover Challenge Series, including URC and CIRC."
 },
 "huskyroundnetclub": {
 "fields": [],
@@ -2776,7 +2778,7 @@
 },
 "huskywushuclub": {
 "fields": [],
-"from": "Husky Wushu Club|The purpose of this organization to provide and develop a community committed to the\\r\\nadvancement of Wushu through…"
+"from": "Husky Wushu Club|The purpose of this organization to provide and develop a community committed to the"
 },
 "huskyadapt": {
 "fields": [
@@ -2904,7 +2906,7 @@
 "Engineering",
 "Computing & Math"
 ],
-"from": "Institute of Electrical and Electronics Engineers slash Eta Kappa Nu|To promote camaraderie between students within the Electrical & Computer Engineering department of the University of…"
+"from": "Institute of Electrical and Electronics Engineers slash Eta Kappa Nu|IEEE student chapter hosting events like design contests for ECE students."
 },
 "instituteofelectricalandelectronicsengineerswomeninengineeringseattle": {
 "fields": [
@@ -2984,7 +2986,7 @@
 "fields": [
 "Business"
 ],
-"from": "Investment Banking Accelerator at the University of Washington|The Investment Banking Accelerator at the University of Washington is a professional development program that combines…"
+"from": "UW Investment Banking Accelerator|Prepares students for careers in investment banking."
 },
 "iqueeries": {
 "fields": [],
@@ -3036,7 +3038,7 @@
 },
 "jewishvoiceforpeacejvp": {
 "fields": [],
-"from": "Jewish Voice for Peace ( JVP UW )|We seek to establish and build the antiimperialist Jewish presence and community\\r\\non campus."
+"from": "Jewish Voice for Peace ( JVP UW )|We seek to establish and build the antiimperialist Jewish presence and community"
 },
 "journalclubatalaskawwami": {
 "fields": [
@@ -3285,7 +3287,7 @@
 "fields": [
 "Health"
 ],
-"from": "Leukemia and Lymphoma Society|Help cure blood cancer and improve quality of life of all patients and their families\\r\\n"
+"from": "Leukemia and Lymphoma Society|Help cure blood cancer and improve quality of life of all patients and their families"
 },
 "lifescienceslawsociety": {
 "fields": [
@@ -3471,7 +3473,7 @@
 "fields": [
 "Health"
 ],
-"from": "Medical Students with Disabilities and Chronic Illnesses and their Allies|Student group focused on disability awareness, advocacy, education, and community.\\r\\n"
+"from": "Medical Students with Disabilities and Chronic Illnesses and their Allies|Student group focused on disability awareness, advocacy, education, and community."
 },
 "medicineinmotionuwsod": {
 "fields": [
@@ -3731,7 +3733,7 @@
 "fields": [
 "Social Sciences"
 ],
-"from": "National Security Law Society|The mission of the National Security Law Society (NSLS) is to connect students who are interested in\\r\\npursuing a…"
+"from": "National Security Law Society|The mission of the National Security Law Society (NSLS) is to connect students who are interested in"
 },
 "nationalsocietyofblackengineers": {
 "fields": [
@@ -4248,7 +4250,7 @@
 "fields": [
 "Health"
 ],
-"from": "PrePhysician Scientist Club at UW|The PrePhysician Scientist Club at UW promotes the career development of UW students interested in\\r\\npursuing careers…"
+"from": "PrePhysician Scientist Club at UW|The PrePhysician Scientist Club at UW promotes the career development of UW students interested in"
 },
 "preveterinarysociety": {
 "fields": [
@@ -4285,11 +4287,11 @@
 "fields": [
 "Sciences"
 ],
-"from": "Program on Climate Change Undergraduate Cohort|The Program on Climate Change Undergraduate Cohort (UCo) is a place for undergraduates\\r\\ninterested in advancing…"
+"from": "Program on Climate Change Undergraduate Cohort|The Program on Climate Change Undergraduate Cohort (UCo) is a place for undergraduates"
 },
 "progressivestudentunion": {
 "fields": [],
-"from": "Progressive Student Union at UW|Fighting to build a progressive student movement!\\r\\n \\r\\nThrough direct action, we fight against US wars and…"
+"from": "Progressive Student Union at UW|Fighting to build a progressive student movement!"
 },
 "projectif": {
 "fields": [
@@ -4580,7 +4582,7 @@
 },
 "saudistudentassociation": {
 "fields": [],
-"from": "Saudi Student Association|The Saudi Student Association (SSA) is an organization committed to uniting the Saudi community of UW and…"
+"from": "Saudi Student Association|The Saudi Student Association (SSA) is an organization committed to uniting the Saudi community of UW and beyond!"
 },
 "scandinavianclub": {
 "fields": [],
@@ -5185,9 +5187,9 @@
 },
 "studentsofcolorinlis": {
 "fields": [
-"Computing & Math"
+"Social Sciences"
 ],
-"from": "Students of Color in LIS at the University of Washington|The purpose of this organization shall be to help support students of color in the Masters of Library\\r\\n\\r\\nand…"
+"from": "Students of Color in LIS at the University of Washington|The purpose of this organization shall be to help support students of color in the Masters of Library"
 },
 "studentscare": {
 "fields": [
@@ -5220,11 +5222,13 @@
 "fields": [
 "Health"
 ],
-"from": "Surgery Interest Group at the UW School of Medicine|The purpose of SIG is to promote student interest in surgery, network with surgeons in various subspecialties and…"
+"from": "Surgery Interest Group at the UW School of Medicine|The purpose of SIG @ UWSOM is to promote student interest in surgery, network with surgeons in various subspecialties…"
 },
 "survivorsandalliesinlaw": {
-"fields": [],
-"from": "Survivors and Allies In Law|We are a law student organization committed to service, advocacy, and community with the goal of supporting…"
+"fields": [
+"Social Sciences"
+],
+"from": "Survivors and Allies In Law|We are a law student organization committed to service, advocacy, and community with the goal of supporting survivors."
 },
 "sustainableeducationinitiative": {
 "fields": [
@@ -5259,11 +5263,11 @@
 },
 "taiwanesegraduatestudentsandprofessionalassociation": {
 "fields": [],
-"from": "Taiwanese Graduate Students and Professional Association|We support Taiwanese international graduate students and alumni by creating a space that\\r\\nfosters belonging and…"
+"from": "Taiwanese Graduate Students and Professional Association|We support Taiwanese international graduate students and alumni by creating a space that"
 },
 "taiwaneseoverseasstudentassociation": {
 "fields": [],
-"from": "Taiwanese Overseas Student Association|Taiwanese Overseas Student Association (TOSA) is a nonprofit, \\r\\nstudentrun organization at the University of…"
+"from": "Taiwanese Overseas Student Association|Taiwanese Overseas Student Association (TOSA) is a nonprofit,"
 },
 "taiwanesestudentassociation": {
 "fields": [],
@@ -5305,7 +5309,7 @@
 },
 "teaclub": {
 "fields": [],
-"from": "Tea Club|We provide a way for experienced tea drinkers or people potentially curious about the world of tea to come together,…"
+"from": "Tea Club|The UW Tea Club is a student organization that creates a safe space for connection, mindfulness, and relaxation…"
 },
 "teambao": {
 "fields": [],
@@ -5461,7 +5465,7 @@
 },
 "germanclub": {
 "fields": [],
-"from": "The German Club at the University of Washington|Through its meetings and special events, the German Club at the University of Washington\\r\\ncreates a welcoming…"
+"from": "The German Club at the University of Washington|Through its meetings and special events, the German Club at the University of Washington"
 },
 "golfclub": {
 "fields": [],
@@ -5578,7 +5582,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "Theta Tau Engineering Fraternity|Theta Tau is a coed professional engineering fraternity that aims to create a balance of community service,…"
+"from": "Theta Tau Engineering Fraternity|Co‑ed engineering fraternity emphasizing service, profession, and brotherhood."
 },
 "thetaxifraternity": {
 "fields": [],
@@ -5624,7 +5628,7 @@
 "fields": [
 "Health"
 ],
-"from": "Timmy Global Health UW Chapter|Mission: Timmy Global Health works to empower communities to address health disparities in a sustainable…"
+"from": "Timmy Global Health UW Chapter|Mission: Timmy Global Health works to empower communities to address health disparities in a sustainable way"
 },
 "tinyheartsassociation": {
 "fields": [
@@ -5750,7 +5754,7 @@
 "fields": [
 "Business"
 ],
-"from": "University of Washington Investment Group|Student‑run group studying investing and finance."
+"from": "Investment Group at the University of Washington|Student club focused on investing and finance."
 },
 "unleashedacappella": {
 "fields": [],
@@ -6248,5 +6252,34 @@
 "Business"
 ],
 "from": "@uw_oscmc|Student club focused on supply chain and operations management."
+},
+"anakbayan": {
+"fields": [
+"Social Sciences"
+],
+"from": "Anakbayan at UW|National democratic mass organization for Filipino youth and students fighting for a genuinely sovereign and…"
+},
+"seattlerepresent": {
+"fields": [],
+"from": "Seattle REPRESENT|"
+},
+"stemoutreachclub": {
+"fields": [
+"Engineering",
+"Computing & Math",
+"Sciences"
+],
+"from": "STEM Outreach Club|Check out our website to learn more and apply!"
+},
+"algorithmictrading": {
+"fields": [
+"Computing & Math",
+"Business"
+],
+"from": "UW Algorithmic Trading|Researches and builds algorithmic trading strategies."
+},
+"recycling": {
+"fields": [],
+"from": "UW Recycling|Promotes recycling, composting, and waste reduction on campus."
 }
 }

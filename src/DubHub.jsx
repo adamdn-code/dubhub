@@ -94,15 +94,6 @@ function fieldOf(choice) {
   return choice.startsWith("field:") ? choice.slice(6) : FIELD_OF_MAJOR[choice];
 }
 
-// Clubs with no event in this long aren't shown. The scraper already leaves them out of clubs.json;
-// this also drops any that age out before the next scrape. Example clubs (no `last_event`) count as active.
-const ACTIVE_DAYS = 365;
-function isActive(club) {
-  if (!("last_event" in club)) return true;
-  const cutoff = new Date(Date.now() - ACTIVE_DAYS * 864e5).toISOString().slice(0, 10);
-  return (club.last_event ?? "") >= cutoff;
-}
-
 // "Data Science Society" -> "DS", "@uwetruck" -> "U".
 function initials(name) {
   const words = (name || "").replace(/^@/, "").split(/\s+/).filter((w) => /^[A-Za-z0-9]/.test(w));
@@ -1312,7 +1303,6 @@ function ClubsPage({ all, clubList, clubs: membership }) {
   const field = major === "Any major" ? null : fieldOf(major);
   const clubs = clubList.filter(
     (c) =>
-      isActive(c) &&
       (category === "All" || c.category === category) &&
       (!field || c.fields?.includes(field)) &&
       (!q || [c.name, c.handle, c.category, c.about, ...(c.fields ?? [])].some((s) => s?.toLowerCase().includes(q)))
@@ -1325,7 +1315,7 @@ function ClubsPage({ all, clubList, clubs: membership }) {
   return (
     <main className="page">
       <h1>Clubs</h1>
-      <p className="page-sub">Active student organizations at UW Seattle. Join one to get its events in My Events.</p>
+      <p className="page-sub">Student organizations at UW Seattle. Join one to get its events in My Events.</p>
       <div className="toolbar">
         <input
           type="search"
