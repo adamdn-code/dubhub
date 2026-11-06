@@ -1440,9 +1440,9 @@ select:focus-visible {
     display: none;
   }
 }
-/* Leaflet's own map pieces (pop-ups, zoom buttons) follow the light/dark colors too. */
+/* Leaflet's pop-ups and zoom buttons follow light/dark mode (the map itself always stays light). */
 .leaflet-container {
-  background: var(--bg);
+  background: #f4f2ee; /* the map's own ground color: the map stays light in dark mode */
 }
 
 .leaflet-popup-content-wrapper,

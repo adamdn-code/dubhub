@@ -816,28 +816,8 @@ const MAP_COLORS = {
   highwayCasing: "#c9c4bb",
 };
 
-// The same map at night: dark ground, muted water and parks, roads a little lighter than
-// the ground so they still read, and light labels with a dark outline.
-const MAP_COLORS_DARK = {
-  background: "#1b1824",
-  water: "#1e3a52",
-  park: "#22382a",
-  wood: "#1f3426",
-  wetland: "#253a2e",
-  plaza: "#24212d",
-  building: "#2c2838",
-  buildingOutline: "#3d374d",
-  school: "#221f2b",
-  road: "#3a3548",
-  highway: "#4a4458",
-  casing: "#262231",
-  highwayCasing: "#2b2736",
-  label: "#cfc8de",
-  labelHalo: "#1b1824",
-};
-
-function restyle(style, dark) {
-  const C = dark ? MAP_COLORS_DARK : MAP_COLORS;
+function restyle(style) {
+  const C = MAP_COLORS;
   const green = { "fill-color": C.park, "fill-opacity": 1 };
   const set = {
     background: { "background-color": C.background },
@@ -875,6 +855,8 @@ function restyle(style, dark) {
     if (layer.id === "building") delete layer.maxzoom; // it hands off to the (removed) 3D layer at zoom 14
     if (/^poi_/.test(layer.id)) layer.filter = ["all", layer.filter, notBusStop];
     const paint = (layer.paint ??= {});
+    // Walkways, sidewalks and park edges as solid lines instead of rows of dots.
+    if (/path_pedestrian|park_outline/.test(layer.id)) delete paint["line-dasharray"];
     if (set[layer.id]) {
       Object.assign(paint, set[layer.id]);
     } else if (layer.type === "line" && /^(road|bridge|tunnel)_/.test(layer.id) && !/rail|path/.test(layer.id)) {
@@ -882,13 +864,6 @@ function restyle(style, dark) {
       paint["line-color"] = layer.id.endsWith("casing")
         ? isHighway ? C.highwayCasing : C.casing
         : isHighway ? C.highway : C.road;
-    } else if (dark && layer.type === "fill") {
-      paint["fill-color"] = C.plaza; // other land types, so no bright patches show at night
-    } else if (dark && layer.type === "line") {
-      paint["line-color"] = C.road; // paths, rail, borders
-    }
-    if (dark && layer.type === "symbol" && layer.layout?.["text-field"]) {
-      Object.assign(paint, { "text-color": C.label, "text-halo-color": C.labelHalo, "text-halo-width": 1.2 });
     }
   }
 
@@ -911,10 +886,9 @@ function restyle(style, dark) {
   return style;
 }
 
-function BaseMap({ dark }) {
+function BaseMap() {
   const map = useMap();
 
-  // Redrawn with the other palette when light/dark mode changes.
   useEffect(() => {
     map.attributionControl?.setPrefix(false); // drop the "Leaflet" credit; only the map data's stays
     let layer;
@@ -923,14 +897,14 @@ function BaseMap({ dark }) {
       .then((r) => r.json())
       .then((style) => {
         if (cancelled) return;
-        layer = L.maplibreGL({ style: restyle(style, dark), attribution: MAP_ATTRIBUTION }).addTo(map);
+        layer = L.maplibreGL({ style: restyle(style), attribution: MAP_ATTRIBUTION }).addTo(map);
       })
       .catch(() => {});
     return () => {
       cancelled = true;
       if (layer) map.removeLayer(layer);
     };
-  }, [map, dark]);
+  }, [map]);
 
   return null;
 }
@@ -954,7 +928,7 @@ const HOVER_POPUP = {
   },
 };
 
-function EventMap({ events, area, introLabels, j, dark }) {
+function EventMap({ events, area, introLabels, j }) {
   const located = events.filter((e) => e.pos);
   // One intro label per place, so events in the same building don't pile up.
   const byPlace = new Map();
@@ -981,7 +955,7 @@ function EventMap({ events, area, introLabels, j, dark }) {
     >
       <ZoomControl position="topright" />
       <MapArea area={area} />
-      <BaseMap dark={dark} />
+      <BaseMap />
       {located.map((e) => (
         <CircleMarker
           key={e.id}
@@ -1037,10 +1011,10 @@ function MapLegend({ events }) {
   );
 }
 
-function Home({ f, area, introLabels, j, dark }) {
+function Home({ f, area, introLabels, j }) {
   return (
     <main className="home">
-      <EventMap events={f.events} area={area} introLabels={introLabels} j={j} dark={dark} />
+      <EventMap events={f.events} area={area} introLabels={introLabels} j={j} />
       <MapLegend events={f.events} />
       <Filters f={f} />
       <div className="tagline">
@@ -1745,7 +1719,7 @@ export default function DubHub() {
         </div>
       </header>
 
-      {tab === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} dark={theme.dark} />}
+      {tab === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} />}
       {tab === "Events" && <EventsPage f={f} updated={updated} j={j} />}
       {tab === "My Events" && (
         <MyEventsPage
