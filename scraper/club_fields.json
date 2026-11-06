@@ -316,7 +316,7 @@
 "fields": [
 "Business"
 ],
-"from": "American Marketing Association|Marketing club connecting students with industry insights."
+"from": "American Marketing Association, UW Chapter|Marketing club connecting students with industry insights."
 },
 "americanmedicalwomensassociationatuwsomgraduate": {
 "fields": [
@@ -524,7 +524,7 @@
 },
 "asianamericanintervarsitychristianfellowship": {
 "fields": [],
-"from": "Asian American Intervarsity Christian Fellowship|Asian American Intervarsity is a Christian student fellowship on campus that seeks to create a safe space to grow,…"
+"from": "Asian American Intervarsity Christian Fellowship|Christian fellowship empowering Asian American students on campus."
 },
 "asianboardgameclub": {
 "fields": [],
@@ -638,7 +638,7 @@
 "fields": [
 "Business"
 ],
-"from": "Association of Latino Professionals for America|ALPFA UW serves to enhance both the personal and professionals development of our members in their journey to becoming…"
+"from": "Association of Latino Professionals for America|Latino professional network empowering future leaders."
 },
 "associationofmedicalspecialties": {
 "fields": [
@@ -795,7 +795,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "AVELA A Vision for Engineering Literacy and Access|An opportunity to gain hands on experience developing and presenting STEM activities to students."
+"from": "AVELA A Vision for Engineering Literacy and Access|Engineering literacy and access workshops and camps."
 },
 "awaaz": {
 "fields": [],
@@ -895,7 +895,7 @@
 "Engineering",
 "Sciences"
 ],
-"from": "BioExplore at UW 🧬|Bioengineering community offering workshops, mentorship, and lab tours."
+"from": "BioExplore at UW|Bioengineering community offering workshops, mentorship, and lab tours."
 },
 "biologystudentsforequity": {
 "fields": [
@@ -1067,7 +1067,7 @@
 "fields": [
 "Business"
 ],
-"from": "Business Impact Group at UW|As the University of Washington's largest undergraduate consulting organization, we consult small businesses to…"
+"from": "Business Impact Group at UW|Undergrad consulting org helping startups, small biz & social groups."
 },
 "businessinformationtechnologysociety": {
 "fields": [
@@ -1124,11 +1124,13 @@
 },
 "catholicnewmancenter": {
 "fields": [],
-"from": "Catholic Newman Center at the UW|To promote and support the Roman Catholic faith among the students, faculty, and staff at the University of Washington."
+"from": "Catholic Newman Center at the UW|Catholic campus ministry providing worship, service, and fellowship."
 },
 "centerforinternationalrelationsandculturalleadershipexchange": {
-"fields": [],
-"from": "Center for International Relations and Cultural Leadership Exchange|No matter where students are from, their exposure to a global society and world class education begins the moment they…"
+"fields": [
+"Social Sciences"
+],
+"from": "Center for International Relations and Cultural Leadership Exchange|UW department encouraging cultural engagement and outdoor adventures."
 },
 "centralasianstudentassociation": {
 "fields": [],
@@ -1241,7 +1243,7 @@
 },
 "chinesestudentassociation": {
 "fields": [],
-"from": "Chinese Student Association at the University of Washington|CSA is a Chinese cultural club that promotes understanding and diversity among not only Chinese but people of all…"
+"from": "Chinese Student Association at the University of Washington|Chinese Student Association hosting cultural events and food gatherings."
 },
 "chinesestudentsandscholarsassociation": {
 "fields": [],
@@ -1273,11 +1275,11 @@
 },
 "christianstudentsassociation": {
 "fields": [],
-"from": "Christian Students Association|The purpose of this club is to promote Christian fellowship and communication on campus."
+"from": "Christian Students Association|Christian student association for worship, Bible study and fellowship."
 },
 "christiansinseattle": {
 "fields": [],
-"from": "Christians in Seattle|Our organization welcomes all UW students who are interested in knowing God."
+"from": "Christians in Seattle|Christian fellowship group offering worship, dinner and community."
 },
 "circlekinternational": {
 "fields": [],
@@ -1385,7 +1387,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Computing Community @ the University of Washington|The purpose of COM² is to connect CSE students with peers, faculty, staff, and industry, and provide students with the…"
+"from": "Computing Community @ the University of Washington|Computing community building a home for Allen School students."
 },
 "computingforenvironmentalandsocialadvocacy": {
 "fields": [
@@ -1419,7 +1421,7 @@
 "fields": [
 "Business"
 ],
-"from": "Consulting Association at UW|We are the&nbsp;premier&nbsp;undergraduate consulting club at the University of Washington,&nbsp;providing students…"
+"from": "Consulting Association at UW|Student consulting club offering case prep, networking, and career resources."
 },
 "corporatebankingclub": {
 "fields": [
@@ -1437,7 +1439,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Costume Club|The Costume Club will practice creative and technical skills to design and construct costumes."
+"from": "Costume Club|Student group for sewing, crafting, and cosplay."
 },
 "crafticians": {
 "fields": [],
@@ -1457,7 +1459,7 @@
 },
 "cru": {
 "fields": [],
-"from": "Cru at UW|We are a Christian RSO that is passionate about connecting people to Jesus Christ."
+"from": "Cru at UW|Multicultural Christian community connecting students to faith."
 },
 "cseed": {
 "fields": [
@@ -1672,7 +1674,7 @@
 },
 "disabilityanddeafculturalcenter": {
 "fields": [],
-"from": "Disability and Deaf Cultural Center|The Disability and Deaf Cultural Center — also known as the D Center — is a physical and virtual community gathering…"
+"from": "Disability and Deaf Cultural Center|Center supporting disability and Deaf culture on campus."
 },
 "diversityinbusiness": {
 "fields": [
@@ -1870,7 +1872,7 @@
 },
 "ethnicculturalcenter": {
 "fields": [],
-"from": "Ethnic Cultural Center|The Samuel E."
+"from": "Ethnic Cultural Center|Campus center fostering kindness, inclusion and multicultural events."
 },
 "ethnomusicologysociety": {
 "fields": [
@@ -1938,7 +1940,7 @@
 },
 "filipinoamericanstudentassociation": {
 "fields": [],
-"from": "Filipino American Student Association|The mission of the Filipino American Student Association at the University of Washington shall be to foster unity and…"
+"from": "Filipino American Student Association|Filipino American student group promoting culture and charitable events."
 },
 "filipinxassociationforhealthcareers": {
 "fields": [
@@ -4282,7 +4284,7 @@
 "fields": [
 "Business"
 ],
-"from": "Product Space @ UW|Develops product leadership skills and hosts product challenges."
+"from": "Product Space|Develops product leadership skills and hosts product challenges."
 },
 "programonclimatechangeundergraduatecohort": {
 "fields": [
@@ -5871,7 +5873,7 @@
 },
 "vietnamesestudentassociation": {
 "fields": [],
-"from": "Vietnamese Student Association|The Vietnamese Student Association serves to promote and preserve the Vietnamese culture at the University of…"
+"from": "Vietnamese Student Association|Vietnamese student association fostering community and culture."
 },
 "virtualbedsideconcerts": {
 "fields": [
@@ -6298,5 +6300,35 @@
 "Engineering"
 ],
 "from": "AVELA UW|Engineering literacy and access workshops and camps."
+},
+"catholicnewmancenterunivofwashington": {
+"fields": [],
+"from": "Catholic Newman Center @ Univ. of Washington|Catholic campus ministry providing worship, service, and fellowship."
+},
+"comcomputingcommunity": {
+"fields": [
+"Computing & Math"
+],
+"from": "COM²: Computing Community at UW|Computing community building a home for Allen School students."
+},
+"csa": {
+"fields": [],
+"from": "CSA UW|Chinese Student Association hosting cultural events and food gatherings."
+},
+"dcenter": {
+"fields": [],
+"from": "D Center|Center supporting disability and Deaf culture on campus."
+},
+"ethnicculturalcenterecc": {
+"fields": [],
+"from": "Ethnic Cultural Center (ECC)|Campus center fostering kindness, inclusion and multicultural events."
+},
+"fasasa": {
+"fields": [],
+"from": "FASA sa UW|Filipino American student group promoting culture and charitable events."
+},
+"circle": {
+"fields": [],
+"from": "UW CIRCLE|UW department encouraging cultural engagement and outdoor adventures."
 }
 }
