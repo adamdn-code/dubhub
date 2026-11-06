@@ -12,6 +12,8 @@
   --accent: #4b2e83; /* purple text and borders on the page background */
   --glass: rgba(255, 255, 255, 0.9); /* panels floating over the map */
   --error: #b3261e;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234b2e83' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --set-bg: #fbf7ea; /* a changed filter */
   color-scheme: light;
   --nav-h: 60px;
   --tabbar-h: 0px; /* the bottom tab bar's height on phones */
@@ -30,6 +32,8 @@
     --accent: #c9b6ff;
     --glass: rgba(30, 25, 41, 0.92);
     --error: #f2b8b5;
+    --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23c9b6ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    --set-bg: #3a3122;
     color-scheme: dark;
   }
 }
@@ -45,6 +49,8 @@
   --accent: #c9b6ff;
   --glass: rgba(30, 25, 41, 0.92);
   --error: #f2b8b5;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23c9b6ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --set-bg: #3a3122;
   color-scheme: dark;
 }
 
@@ -236,10 +242,12 @@ select:focus-visible {
   z-index: 500;
   width: 296px;
   padding: 12px 14px 10px;
-  background: linear-gradient(160deg, var(--purple-mid) 0%, var(--purple) 70%);
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line);
   border-top: 4px solid var(--gold);
   border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(30, 10, 70, 0.35), 0 2px 6px rgba(30, 10, 70, 0.2);
+  box-shadow: 0 10px 30px rgba(30, 10, 70, 0.18), 0 2px 6px rgba(30, 10, 70, 0.1);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -264,7 +272,7 @@ select:focus-visible {
 
 .filters h2 {
   margin: 0;
-  color: #fff;
+  color: var(--text);
   font-size: 16px;
   line-height: 1.2;
 }
@@ -274,18 +282,18 @@ select:focus-visible {
   flex-direction: column;
   gap: 3px;
   min-width: 0;
-  color: #e6dcf7;
+  color: var(--muted);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-/* Bright fields that stand out on the purple; a changed filter gets a gold edge. */
+/* Tinted fields with a purple arrow; a changed filter gets a gold edge. Both follow light/dark. */
 .filters select {
   appearance: none;
-  font: inherit;
   width: 100%;
+  font: inherit;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: normal;
@@ -293,10 +301,8 @@ select:focus-visible {
   padding: 6px 26px 6px 9px;
   border: 2px solid transparent;
   border-radius: 9px;
-  background: #fff
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234b2e83' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
-    no-repeat right 9px center;
-  color: var(--purple);
+  background: var(--tint) var(--select-arrow) no-repeat right 9px center;
+  color: var(--text);
   cursor: pointer;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
@@ -313,17 +319,17 @@ select:focus-visible {
 
 .filters select.set {
   border-color: var(--gold);
-  background-color: #fbf7ea;
+  background-color: var(--set-bg);
 }
 
 .filters .count {
-  color: #d9d0ee;
+  color: var(--muted);
 }
 
 .filters .count:last-child {
   padding-top: 7px;
   font-size: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid var(--line);
   text-align: center;
 }
 
@@ -1566,9 +1572,26 @@ select:focus-visible {
     padding: 10px 12px 8px;
     border-radius: 12px 12px 0 0;
   }
-  /* On phones the panel is a short strip at the bottom: no title, just the dropdowns. */
-  .filters h2 {
+  /* On phones the panel is a short strip at the bottom: just the dropdowns (they say what they
+     are: "This week", "All types", "All years", "Any major"), no title, labels or count. */
+  .filters {
+    padding: 8px 10px;
+    gap: 0;
+  }
+  .filters h2,
+  .filters .count {
     display: none;
+  }
+  .filter-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .filter-grid {
+    gap: 6px;
   }
   .tagline {
     display: none;

@@ -243,9 +243,15 @@ const SAMPLE_CLUBS = [
 // public/team/) is used instead of the GitHub picture when set.
 const TEAM = [
   // No GitHub profile photo yet (GitHub would show a pattern), so initials until a photo is added.
-  { name: "Adam Nguyen", role: "Founder @ DubHub", github: "adamdn-code", githubPhoto: false },
-  { name: "Quentin Nguyen", github: "nitneuqqq" },
-  { name: "Kelan Huynh", github: null, linkedin: "https://www.linkedin.com/in/kelanhuynh", photo: "/team/kelan.jpg" },
+  { name: "Adam Nguyen", role: "Cofounder @ DubHub", github: "adamdn-code", githubPhoto: false },
+  { name: "Quentin Nguyen", role: "Cofounder @ DubHub", github: "nitneuqqq" },
+  {
+    name: "Kelan Huynh",
+    role: "Ambassador, Corporate Banking Club at the University of Washington",
+    github: null,
+    linkedin: "https://www.linkedin.com/in/kelanhuynh",
+    photo: "/team/kelan.jpg",
+  },
   {
     name: "Claude",
     role: "AI Intern @ DubHub",
@@ -719,21 +725,20 @@ function useFilteredEvents(all) {
 }
 
 function Filters({ f }) {
-  const onMap = f.events.filter((e) => e.pos).length;
   return (
     <aside className="filters" aria-label="Event filters">
       <h2>Find something to do</h2>
 
       <div className="filter-grid">
         <label>
-          When
+          <span className="filter-label">When</span>
           <WhenSelect value={f.when} onChange={f.setWhen} className={f.when !== DEFAULT_WHEN ? "set" : undefined} />
         </label>
 
         <label>
-          Event type
+          <span className="filter-label">Event type</span>
           <select value={f.type} onChange={(e) => f.setType(e.target.value)} className={f.type !== "All" ? "set" : undefined}>
-            <option>All</option>
+            <option value="All">All types</option>
             {Object.keys(TYPE_COLORS).map((t) => (
               <option key={t}>{t}</option>
             ))}
@@ -741,9 +746,9 @@ function Filters({ f }) {
         </label>
 
         <label>
-          Class year
+          <span className="filter-label">Class year</span>
           <select value={f.year} onChange={(e) => f.setYear(e.target.value)} className={f.year !== "All" ? "set" : undefined}>
-            <option>All</option>
+            <option value="All">All years</option>
             {YEARS.map((y) => (
               <option key={y}>{y}</option>
             ))}
@@ -751,7 +756,7 @@ function Filters({ f }) {
         </label>
 
         <label>
-          Major
+          <span className="filter-label">Major</span>
           <MajorSelect value={f.major} onChange={f.setMajor} className={f.major !== "Any major" ? "set" : undefined} />
         </label>
       </div>
@@ -761,21 +766,15 @@ function Filters({ f }) {
         </p>
       )}
 
-      <p className="count">
-        {f.events.length === 0 && f.when !== "Any time" ? (
-          <>
-            Nothing {f.when.toLowerCase()} yet.{" "}
-            <button className="link-button" onClick={() => f.setWhen(f.when === "Today" ? "This week" : "Any time")}>
-              Show {f.when === "Today" ? "this week" : "any time"}
-            </button>
-          </>
-        ) : (
-          <>
-            {onMap} event{onMap === 1 ? "" : "s"} on the map
-            {f.events.length > onMap && `, ${f.events.length - onMap} more in Events`}
-          </>
-        )}
-      </p>
+      {/* Only when the filters hide everything: a nudge to look further ahead. */}
+      {f.events.length === 0 && f.when !== "Any time" && (
+        <p className="count">
+          Nothing {f.when.toLowerCase()} yet.{" "}
+          <button className="link-button" onClick={() => f.setWhen(f.when === "Today" ? "This week" : "Any time")}>
+            Show {f.when === "Today" ? "this week" : "any time"}
+          </button>
+        </p>
+      )}
     </aside>
   );
 }
@@ -850,6 +849,9 @@ function labelWidth(club, text) {
   return clubW + measureCtx.measureText(text).width + 2 * 18 + 8;
 }
 
+// At most this many labels when the site opens, the soonest events first, so the map isn't buried.
+const MAX_INTRO_LABELS = 5;
+
 // Event names shown over their dots when the site opens. Each label goes above its dot, or below it
 // if that would overlap a label already placed; if neither fits it's skipped (hover still works).
 function IntroLabels({ places }) {
@@ -864,7 +866,8 @@ function IntroLabels({ places }) {
 
   const taken = [];
   const shown = [];
-  for (const place of [...places].sort((a, b) => b.count - a.count)) {
+  for (const place of [...places].sort((a, b) => a.when.localeCompare(b.when) || b.count - a.count)) {
+    if (shown.length === MAX_INTRO_LABELS) break;
     const pt = map.latLngToContainerPoint(place.pos);
     const w = labelWidth(place.club, place.text);
     const h = 28;
@@ -1161,6 +1164,7 @@ function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, o
     return {
       pos: list[0].pos,
       count: list.length,
+      when: list.map((e) => `${e.date ?? ""}T${e.start ?? "00:00"}`).sort()[0], // its soonest event
       // Long names would crowd out other labels, so they're shortened here (the pop-up has the full name).
       club: clubs.size > 1 ? `${clubs.size} clubs` : shortText(hostName(list[0]), 26),
       text: list.length > 1 ? `${list[0].title} +${list.length - 1} more` : list[0].title,
@@ -1861,6 +1865,10 @@ function useGitHubProfile(login) {
   return profile;
 }
 
+// "Cofounder @dubhub" and "Cofounder @ DubHub" say the same thing (so a GitHub bio that repeats
+// the role isn't shown twice).
+const sameWords = (a, b) => (a || "").toLowerCase().replace(/[^a-z0-9]/g, "") === (b || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+
 function TeamMember({ name, role, note, github, githubPhoto = true, linkedin, photo }) {
   const p = useGitHubProfile(github);
   const [photoFailed, setPhotoFailed] = useState(false);
@@ -1879,7 +1887,7 @@ function TeamMember({ name, role, note, github, githubPhoto = true, linkedin, ph
       )}
       <strong>{name}</strong>
       {role && <div className="member-role">{role}</div>}
-      {(note || p?.bio) && <p className="member-note">{note || p.bio}</p>}
+      {(note || (p?.bio && !sameWords(p.bio, role))) && <p className="member-note">{note || p.bio}</p>}
       {p && (
         <div className="meta">
           {[p.location, `${p.public_repos} public repo${p.public_repos === 1 ? "" : "s"}`].filter(Boolean).join(", ")}
