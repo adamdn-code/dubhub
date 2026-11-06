@@ -21,7 +21,7 @@
 
 /* Dark mode: follows the device unless someone picks Light or Dark in the top bar. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme]) {
     --bg: #14111c;
     --text: #ece8f5;
     --muted: #a99fc0;
@@ -52,6 +52,86 @@
   --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23c9b6ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   --set-bg: #3a3122;
   color-scheme: dark;
+}
+
+/* Rainier: glacier blues and crisp whites. */
+:root[data-theme="rainier"] {
+  --purple: #0b3a5b;
+  --purple-mid: #1d6fa5;
+  --gold: #9fd6f5;
+  --bg: #eef5fa;
+  --text: #0f2433;
+  --muted: #4f6b80;
+  --line: #d3e3ee;
+  --surface: #fff;
+  --tint: #e1eef7;
+  --field-line: #c3d7e5;
+  --accent: #1d6fa5;
+  --glass: rgba(255, 255, 255, 0.92);
+  --error: #b3261e;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231d6fa5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --set-bg: #e6f5ff;
+  color-scheme: light;
+}
+
+/* Cherry Blossom: the Quad in spring, soft pinks. */
+:root[data-theme="blossom"] {
+  --purple: #7a2e4f;
+  --purple-mid: #c2477a;
+  --gold: #f4b6cc;
+  --bg: #fdf3f6;
+  --text: #3a1a28;
+  --muted: #85566b;
+  --line: #f2d7e1;
+  --surface: #fff;
+  --tint: #fbe5ee;
+  --field-line: #ecc6d5;
+  --accent: #b23a6c;
+  --glass: rgba(255, 255, 255, 0.92);
+  --error: #b3261e;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b23a6c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --set-bg: #fff0f6;
+  color-scheme: light;
+}
+
+/* Sunset: warm dusk over Lake Washington. */
+:root[data-theme="sunset"] {
+  --purple: #3a1424;
+  --purple-mid: #d9572f;
+  --gold: #ffb454;
+  --bg: #1c1218;
+  --text: #fbeee6;
+  --muted: #cfa99c;
+  --line: #3a2630;
+  --surface: #271820;
+  --tint: #36222b;
+  --field-line: #54353f;
+  --accent: #ffa36c;
+  --glass: rgba(39, 24, 32, 0.92);
+  --error: #ffb4ab;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23ffa36c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --set-bg: #4a2a1c;
+  color-scheme: dark;
+}
+
+/* Evergreen: Pacific Northwest forest greens. */
+:root[data-theme="evergreen"] {
+  --purple: #173d2c;
+  --purple-mid: #2f7a55;
+  --gold: #d2b048;
+  --bg: #f1f5ef;
+  --text: #142019;
+  --muted: #557060;
+  --line: #d6e2d8;
+  --surface: #fff;
+  --tint: #e3eee5;
+  --field-line: #c4d6c9;
+  --accent: #2f7a55;
+  --glass: rgba(255, 255, 255, 0.92);
+  --error: #b3261e;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%232f7a55' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --set-bg: #f7f5e3;
+  color-scheme: light;
 }
 
 * {
@@ -528,66 +608,57 @@ select:focus-visible {
   position: absolute;
   left: 0;
   top: 0;
-  width: 96px; /* INTRO_CIRCLE in DubHub.jsx */
-  height: 96px;
+  width: 92px; /* INTRO_CIRCLE in DubHub.jsx */
+  height: 92px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  padding: 10px;
+  padding: 8px;
   text-align: center;
   transform: translate(-50%, calc(-100% - 12px));
-  /* Same colors as the filter panel: light or dark with the site, gold edge */
-  background: var(--surface);
+  /* A glossy bubble in the filter panel's colors: a soft shine on top, thin gold ring */
+  background:
+    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 42%),
+    var(--surface);
   color: var(--text);
-  border: 3px solid var(--gold);
+  border: 2px solid var(--gold);
   border-radius: 50%;
-  font-weight: 700;
-  box-shadow: 0 2px 8px rgba(28, 21, 48, 0.35);
+  box-shadow: 0 6px 16px rgba(30, 10, 70, 0.25), inset 0 -6px 12px rgba(30, 10, 70, 0.06);
   animation: intro-label 4.8s ease-in-out forwards;
 }
 
-/* A little gold point from the circle to its dot */
+/* A little gold point from the bubble to its dot */
 .intro-label::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -9px;
+  bottom: -8px;
   transform: translateX(-50%);
-  border: 6px solid transparent;
+  border: 5px solid transparent;
   border-top-color: var(--gold);
   border-bottom: 0;
 }
 
 .intro-label.below::after {
-  top: -9px;
+  top: -8px;
   bottom: auto;
   border-top: 0;
-  border-bottom: 6px solid var(--gold);
+  border-bottom: 5px solid var(--gold);
 }
 
-/* The host club, small, above the event name */
+/* The club's name: up to four lines inside the bubble */
 .intro-label-club {
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: var(--accent);
-  font-size: 10px;
-  font-weight: 700;
-}
-
-/* The event name: up to three lines inside the circle */
-.intro-label-text {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
   overflow: hidden;
-  font-size: 12px;
+  color: var(--text);
+  font-size: 10.5px;
+  font-weight: 800;
   line-height: 1.15;
-  overflow-wrap: anywhere;
+  hyphens: auto; /* long words break with a hyphen, only when they must */
+  overflow-wrap: break-word;
 }
 
 .intro-label.below {
@@ -599,9 +670,9 @@ select:focus-visible {
   0% { opacity: 0; }
   8% { opacity: 1; }
   20% { box-shadow: 0 0 0 6px rgba(183, 165, 122, 0.55); }
-  32% { box-shadow: 0 2px 8px rgba(28, 21, 48, 0.35); }
+  32% { box-shadow: 0 6px 16px rgba(30, 10, 70, 0.25); }
   44% { box-shadow: 0 0 0 6px rgba(183, 165, 122, 0.55); }
-  56% { box-shadow: 0 2px 8px rgba(28, 21, 48, 0.35); }
+  56% { box-shadow: 0 6px 16px rgba(30, 10, 70, 0.25); }
   75% { opacity: 1; }
   100% { opacity: 0; }
 }
@@ -1732,4 +1803,66 @@ select:focus-visible {
 .signin-error {
   color: var(--error);
   font-size: 14px;
+}
+
+/* Theme menu (the palette button in the top bar) */
+.theme-picker {
+  position: relative;
+}
+
+.theme-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 2000;
+  min-width: 200px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(30, 10, 70, 0.25);
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.theme-option:hover {
+  background: var(--tint);
+}
+
+.theme-option.on {
+  background: var(--tint);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+/* Three stripes: top bar, buttons, page */
+.theme-swatch {
+  display: flex;
+  overflow: hidden;
+  width: 30px;
+  height: 18px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+
+.theme-swatch span {
+  flex: 1;
 }

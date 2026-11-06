@@ -264,12 +264,23 @@ const TEAM = [
 const THEME_KEY = "dubhub-theme";
 const darkQuery = () => window.matchMedia("(prefers-color-scheme: dark)");
 
-// Light or dark: follows the device until someone picks one with the top-bar button, then
-// remembers that choice in this browser. Sets <html data-theme>, which DubHub.css reads.
+// The site's themes. Light or dark follows the device until someone picks a theme from the
+// top-bar menu, which is then remembered in this browser. Sets <html data-theme>, which
+// DubHub.css reads; MAP_PALETTES has each theme's map. `swatch`: top bar, buttons, page.
+const THEMES = [
+  { id: "light", name: "Light", swatch: ["#32006e", "#4b2e83", "#f4f2f8"] },
+  { id: "dark", name: "Dark", swatch: ["#32006e", "#c9b6ff", "#14111c"] },
+  { id: "rainier", name: "Rainier", swatch: ["#0b3a5b", "#1d6fa5", "#eef5fa"] },
+  { id: "blossom", name: "Cherry Blossom", swatch: ["#7a2e4f", "#c2477a", "#fdf3f6"] },
+  { id: "sunset", name: "Sunset", swatch: ["#3a1424", "#e0663c", "#1c1218"] },
+  { id: "evergreen", name: "Evergreen", swatch: ["#173d2c", "#2f7a55", "#f1f5ef"] },
+];
+
 function useTheme() {
   const [choice, setChoice] = useState(() => {
     try {
-      return localStorage.getItem(THEME_KEY);
+      const saved = localStorage.getItem(THEME_KEY);
+      return THEMES.some((t) => t.id === saved) ? saved : null;
     } catch {
       return null;
     }
@@ -288,28 +299,73 @@ function useTheme() {
     else delete document.documentElement.dataset.theme;
   }, [choice]);
 
-  const dark = choice ? choice === "dark" : deviceDark;
-  const toggle = () => {
-    const next = dark ? "light" : "dark";
-    setChoice(next);
+  const pick = (id) => {
+    setChoice(id);
     try {
-      localStorage.setItem(THEME_KEY, next);
+      localStorage.setItem(THEME_KEY, id);
     } catch {
       // Private browsing can block storage; the choice still lasts until the page closes.
     }
   };
-  return { dark, toggle };
+  return { theme: choice ?? (deviceDark ? "dark" : "light"), pick };
 }
 
-const SUN = "M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4";
-const MOON = "M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z";
+const PALETTE_ICON =
+  "M12 3a9 9 0 1 0 0 18c1 0 1.5-.8 1.5-1.6 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5c0-4-4-7.4-9-7.4zM7.5 12.5h.01M9.5 8h.01M14.5 8h.01M16.5 12h.01";
 
-function ThemeToggle({ dark, onToggle }) {
-  const label = dark ? "Switch to light mode" : "Switch to dark mode";
+// The top-bar theme button: opens a small menu of themes with color swatches.
+function ThemePicker({ theme, onPick }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e) => !ref.current?.contains(e.target) && setOpen(false);
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
   return (
-    <button className="theme-toggle" onClick={onToggle} aria-label={label} title={label}>
-      <Icon d={dark ? SUN : MOON} />
-    </button>
+    <div className="theme-picker" ref={ref}>
+      <button
+        className="theme-toggle"
+        aria-label="Theme"
+        title="Theme"
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+      >
+        <Icon d={PALETTE_ICON} />
+      </button>
+      {open && (
+        <ul className="theme-menu" aria-label="Themes">
+          {THEMES.map((t) => (
+            <li key={t.id}>
+              <button
+                className={t.id === theme ? "theme-option on" : "theme-option"}
+                aria-pressed={t.id === theme}
+                onClick={() => {
+                  onPick(t.id);
+                  setOpen(false);
+                }}
+              >
+                <span className="theme-swatch" aria-hidden="true">
+                  {t.swatch.map((c) => (
+                    <span key={c} style={{ background: c }} />
+                  ))}
+                </span>
+                {t.name}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 
@@ -827,24 +883,22 @@ function MapArea({ area }) {
 
 const escapeHtml = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const labelIcons = new Map(); // reuse icons so re-renders don't restart the fade animation
-function labelIcon(club, text, dir) {
-  const key = `${dir}|${club}|${text}`;
+function labelIcon(club, dir) {
+  const key = `${dir}|${club}`;
   if (!labelIcons.has(key)) {
-    const html =
-      `<span class="intro-label ${dir}"><span class="intro-label-club">${escapeHtml(club)}</span>` +
-      `<span class="intro-label-text">${escapeHtml(text)}</span></span>`;
+    const html = `<span class="intro-label ${dir}"><span class="intro-label-club">${escapeHtml(club)}</span></span>`;
     labelIcons.set(key, L.divIcon({ className: "intro-anchor", html, iconSize: [0, 0] }));
   }
   return labelIcons.get(key);
 }
 
-// Each label is a circle this many pixels across (it matches .intro-label in DubHub.css).
-const INTRO_CIRCLE = 96;
+// Each label is a bubble this many pixels across (it matches .intro-label in DubHub.css).
+const INTRO_CIRCLE = 92;
 
 // At most this many labels when the site opens, the soonest events first, so the map isn't buried.
 const MAX_INTRO_LABELS = 5;
 
-// Event names shown in circles over their dots when the site opens. Each goes above its dot, or below it
+// Club names shown in bubbles over their dots when the site opens. Each goes above its dot, or below it
 // if that would overlap a label already placed; if neither fits it's skipped (hover still works).
 function IntroLabels({ places }) {
   const map = useMap();
@@ -875,7 +929,7 @@ function IntroLabels({ places }) {
   }
 
   return shown.map((p) => (
-    <Marker key={p.pos.join()} position={p.pos} icon={labelIcon(p.club, p.text, p.dir)} interactive={false} keyboard={false} />
+    <Marker key={p.pos.join()} position={p.pos} icon={labelIcon(p.club, p.dir)} interactive={false} keyboard={false} />
   ));
 }
 
@@ -999,8 +1053,80 @@ const MAP_COLORS = {
   highwayCasing: "#c9c4bb",
 };
 
-function restyle(style) {
-  const C = MAP_COLORS;
+// Each theme's map. Light and dark keep the normal map; the others recolor it.
+const MAP_PALETTES = {
+  light: MAP_COLORS,
+  dark: MAP_COLORS,
+  // Glacier blues: cool water, frosty parks and blue-gray streets.
+  rainier: {
+    background: "#eef3f7",
+    water: "#8cc3e8",
+    park: "#c9e3d2",
+    wood: "#b9d9c4",
+    wetland: "#d4e9dc",
+    plaza: "#e8eef3",
+    building: "#dde6ee",
+    buildingOutline: "#a9b9c8",
+    school: "#e6edf3",
+    road: "#ffffff",
+    highway: "#fdfeff",
+    casing: "#cfdbe5",
+    highwayCasing: "#b9c9d6",
+  },
+  // The Quad in spring: pink parks, blush buildings.
+  blossom: {
+    background: "#fbf3f2",
+    water: "#b8d8f0",
+    park: "#f6cfe0",
+    wood: "#eebfd3",
+    wetland: "#f3d9e5",
+    plaza: "#f6ecec",
+    building: "#efe4e4",
+    buildingOutline: "#cdb5b9",
+    school: "#f5eaea",
+    road: "#ffffff",
+    highway: "#fffafb",
+    casing: "#ecdcdf",
+    highwayCasing: "#dcc6cb",
+  },
+  // Dusk over Lake Washington: a dark map with violet water and warm streets.
+  sunset: {
+    dark: true,
+    background: "#2b1d25",
+    water: "#3b3f6b",
+    park: "#3a3a2c",
+    wood: "#34362a",
+    wetland: "#3c3d31",
+    plaza: "#33242c",
+    building: "#3d2b34",
+    buildingOutline: "#574049",
+    school: "#31232a",
+    road: "#5a3f45",
+    highway: "#7a4b3f",
+    casing: "#2a1c23",
+    highwayCasing: "#2f2026",
+    label: "#f3d8c8",
+    labelHalo: "#2b1d25",
+  },
+  // Pacific Northwest forest: lush greens.
+  evergreen: {
+    background: "#eef2ea",
+    water: "#9cc9d6",
+    park: "#9fd18b",
+    wood: "#86c17a",
+    wetland: "#b6d9a7",
+    plaza: "#e6ebe2",
+    building: "#dee4d8",
+    buildingOutline: "#a8b4a0",
+    school: "#e7ece2",
+    road: "#ffffff",
+    highway: "#fbfdf8",
+    casing: "#d2dacb",
+    highwayCasing: "#bec9b5",
+  },
+};
+
+function restyle(style, C = MAP_COLORS) {
   const green = { "fill-color": C.park, "fill-opacity": 1 };
   const set = {
     background: { "background-color": C.background },
@@ -1047,6 +1173,13 @@ function restyle(style) {
       paint["line-color"] = layer.id.endsWith("casing")
         ? isHighway ? C.highwayCasing : C.casing
         : isHighway ? C.highway : C.road;
+    } else if (C.dark && layer.type === "fill") {
+      paint["fill-color"] = C.plaza; // other land types, so no bright patches on a dark map
+    } else if (C.dark && layer.type === "line") {
+      paint["line-color"] = C.road; // paths, rail, borders
+    }
+    if (C.dark && layer.type === "symbol" && layer.layout?.["text-field"]) {
+      Object.assign(paint, { "text-color": C.label, "text-halo-color": C.labelHalo, "text-halo-width": 1.2 });
     }
   }
 
@@ -1069,9 +1202,10 @@ function restyle(style) {
   return style;
 }
 
-function BaseMap() {
+function BaseMap({ palette }) {
   const map = useMap();
 
+  // Redrawn in the new theme's colors when the theme changes.
   useEffect(() => {
     map.attributionControl?.setPrefix(false); // drop the "Leaflet" credit; only the map data's stays
     let layer;
@@ -1080,14 +1214,14 @@ function BaseMap() {
       .then((r) => r.json())
       .then((style) => {
         if (cancelled) return;
-        layer = L.maplibreGL({ style: restyle(style), attribution: MAP_ATTRIBUTION }).addTo(map);
+        layer = L.maplibreGL({ style: restyle(style, palette), attribution: MAP_ATTRIBUTION }).addTo(map);
       })
       .catch(() => {});
     return () => {
       cancelled = true;
       if (layer) map.removeLayer(layer);
     };
-  }, [map]);
+  }, [map, palette]);
 
   return null;
 }
@@ -1145,7 +1279,7 @@ function isSoon(e) {
   return end >= now && start <= now + INTRO_HOURS * 36e5;
 }
 
-function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, onMapClick }) {
+function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, onMapClick, palette }) {
   const located = events.filter((e) => e.pos);
   // One intro label per place, so events in the same building don't pile up. Only events
   // happening in the next day get one; the rest are still dots you can hover.
@@ -1157,9 +1291,8 @@ function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, o
       pos: list[0].pos,
       count: list.length,
       when: list.map((e) => `${e.date ?? ""}T${e.start ?? "00:00"}`).sort()[0], // its soonest event
-      // Long names would crowd out other labels, so they're shortened here (the pop-up has the full name).
-      club: clubs.size > 1 ? `${clubs.size} clubs` : shortText(hostName(list[0]), 26),
-      text: list.length > 1 ? `${list[0].title} +${list.length - 1} more` : list[0].title,
+      // Just who's hosting: the club's name (it wraps inside the bubble), or "3 clubs".
+      club: clubs.size > 1 ? `${clubs.size} clubs` : hostName(list[0]),
     };
   });
 
@@ -1168,13 +1301,14 @@ function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, o
       center={[47.6553, -122.3035]}
       zoom={15}
       maxBoundsViscosity={1}
+      zoomSnap={0.25} // so UW's campus fits snugly on any screen size, not just at whole zoom steps
       scrollWheelZoom
       zoomControl={false}
       className="map"
     >
       <ZoomControl position="topright" />
       <MapArea area={area} />
-      <BaseMap />
+      <BaseMap palette={palette} />
       {located.map((e) => {
         const on = shown?.id === e.id;
         return (
@@ -1217,7 +1351,7 @@ function MapLegend({ events }) {
   );
 }
 
-function Home({ f, area, introLabels, j }) {
+function Home({ f, area, introLabels, j, palette }) {
   const [shown, setShown] = useState(null); // { event, pinned }
   const hideTimer = useRef();
   const keep = () => clearTimeout(hideTimer.current);
@@ -1247,6 +1381,7 @@ function Home({ f, area, introLabels, j }) {
         onLeave={hideSoon}
         onPin={(e) => show(e, true)}
         onMapClick={close}
+        palette={palette}
       />
       <MapLegend events={f.events} />
       <Filters f={f} />
@@ -1989,12 +2124,12 @@ export default function DubHub() {
           ))}
         </nav>
         <div className="nav-end">
-          <ThemeToggle dark={theme.dark} onToggle={theme.toggle} />
+          <ThemePicker theme={theme.theme} onPick={theme.pick} />
           <Account user={user} onOpenSignIn={() => openSignIn()} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
         </div>
       </header>
 
-      {tab === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} />}
+      {tab === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} palette={MAP_PALETTES[theme.theme]} />}
       {tab === "Events" && <EventsPage f={f} updated={updated} j={j} />}
       {tab === "My Events" && (
         <MyEventsPage
