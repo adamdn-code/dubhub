@@ -532,9 +532,10 @@ def drop_duplicate_events(events):
     counted twice, even when copies come back from earlier runs on other computers."""
     club_day = lambda e: (parse_host(e["host"])[1] or (e["host"] or "").lower(), e["date"])
     tidy = lambda title: re.sub(r"[^a-z0-9]", "", title.lower())
+    generic = lambda e: e.get("generic") or e["title"] == GENERIC_TITLE
     groups = {}
     for e in events:
-        groups.setdefault((*club_day(e), tidy(e["title"])), []).append(e)
+        groups.setdefault((*club_day(e), tidy(GENERIC_TITLE if generic(e) else e["title"])), []).append(e)
     named = {}
     for key in groups:
         if key[2] != tidy(GENERIC_TITLE):
@@ -545,7 +546,7 @@ def drop_duplicate_events(events):
             groups[named[key[:2]][0]] += copies
     keep = set()
     for copies in groups.values():
-        best = max(copies, key=lambda e: (e["title"] != GENERIC_TITLE,
+        best = max(copies, key=lambda e: (not generic(e),
                                           sum(e.get(field) is not None for field in ("where", "pos", "start", "end"))))
         counts = {}
         for e in copies:
@@ -672,6 +673,11 @@ def write_site_events(store):
                 "post_counts": {key: [share(post.get("likes")), share(post.get("comments"))]},
             })
     events = merge_huskylink_events(drop_duplicate_events(events + others_events(site, store, mine)))
+    for e in events:  # an event keywords couldn't name is shown as its club's ("ALPFA UW event")
+        if e["title"] == GENERIC_TITLE:
+            name, handle = parse_host(e["host"])
+            e["title"] = f"{(name or '@' + (handle or 'club')).split(' | ')[0]} event"
+            e["generic"] = True
     drop_unused_post_images(events)
     SITE_EVENTS_FILE.parent.mkdir(exist_ok=True)
     SITE_EVENTS_FILE.write_text(
