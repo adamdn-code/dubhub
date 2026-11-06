@@ -1213,6 +1213,17 @@ function restyle(style, C = MAP_COLORS) {
   return style;
 }
 
+// Street and place names in DubHub's own font (whatever the device shows the site in) instead of
+// the map's Noto Sans. MapLibre can draw labels locally in a CSS font, but by default only does it
+// for Chinese, Japanese and Korean; this tells it to do it for every character. If a MapLibre
+// update renames this internal piece, the labels just stay in Noto Sans.
+function labelsInSiteFont(glMap) {
+  const glyphs = glMap?.style?.glyphManager;
+  if (glyphs && typeof glyphs._doesCharSupportLocalGlyph === "function" && glyphs.localIdeographFontFamily) {
+    glyphs._doesCharSupportLocalGlyph = () => true;
+  }
+}
+
 function BaseMap({ palette }) {
   const map = useMap();
 
@@ -1225,7 +1236,12 @@ function BaseMap({ palette }) {
       .then((r) => r.json())
       .then((style) => {
         if (cancelled) return;
-        layer = L.maplibreGL({ style: restyle(style, palette), attribution: MAP_ATTRIBUTION }).addTo(map);
+        layer = L.maplibreGL({
+          style: restyle(style, palette),
+          attribution: MAP_ATTRIBUTION,
+          localIdeographFontFamily: getComputedStyle(document.body).fontFamily,
+        }).addTo(map);
+        labelsInSiteFont(layer.getMaplibreMap());
       })
       .catch(() => {});
     return () => {
