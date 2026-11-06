@@ -741,8 +741,11 @@ function CalendarLink({ event }) {
 
 // Free vector basemap from OpenFreeMap (no API key), drawn with MapLibre inside Leaflet.
 const MAP_STYLE = "https://tiles.openfreemap.org/styles/liberty";
+// The map data's licenses require this credit on the map, so it's tucked behind a small "©" button.
 const MAP_ATTRIBUTION =
-  '<a href="https://openfreemap.org">OpenFreeMap</a> &copy; <a href="https://www.openmaptiles.org/">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+  '<details class="map-credit"><summary aria-label="Map credits">&copy;</summary>' +
+  '<a href="https://openfreemap.org">OpenFreeMap</a> &copy; <a href="https://www.openmaptiles.org/">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' +
+  "</details>";
 
 // Apple Maps-like palette: white roads with gray edges, soft blue water, light green parks.
 const MAP_COLORS = {
@@ -833,6 +836,7 @@ function BaseMap() {
   const map = useMap();
 
   useEffect(() => {
+    map.attributionControl?.setPrefix(false); // drop the "Leaflet" credit; only the map data's stays
     let layer;
     let cancelled = false;
     fetch(MAP_STYLE)
@@ -1075,25 +1079,52 @@ function EventList({ events, j, onSelect, columns = 2 }) {
   ));
 }
 
-// Most popular first by "going" count. Scraped events have no counts yet,
-// so they rank after counted events, soonest first.
-function trending(events, j, limit = 5) {
-  const count = (e) => (e.going == null ? -1 : e.going + (j.joined.includes(e.id) ? 1 : 0));
+// Trending: how much interest an event has, weighted toward the next few days.
+//   interest = 8 per RSVP + 1 per Instagram like + 3 per comment + 5 per extra post promoting it
+//   score    = (1 + log2(1 + interest)) / (1 + days until it / 3)
+// The log keeps one viral post from swamping everything; the second part halves an event's weight
+// three days out. Only events in the next TRENDING_DAYS count. With no interest data, the soonest win.
+const TRENDING_DAYS = 14;
+
+function interest(e) {
+  const rsvps = e.rsvps ?? e.going ?? 0; // sample events have "going" instead of RSVPs
+  return 8 * rsvps + (e.likes ?? 0) + 3 * (e.comments ?? 0) + 5 * ((e.posts ?? 1) - 1);
+}
+
+function trendScore(e) {
+  const days = e.date ? (Date.parse(e.date) - Date.parse(localDate(0))) / 864e5 : 3; // samples have no date
+  if (days < 0 || days > TRENDING_DAYS) return null;
+  return (1 + Math.log2(1 + interest(e))) / (1 + days / 3);
+}
+
+// Why an event is trending, e.g. "3 RSVPs · 84 likes".
+function trendReason(e) {
+  const n = (count, word) => (count ? `${count} ${word}${count === 1 ? "" : "s"}` : null);
+  return [n(e.rsvps, "RSVP"), n(e.likes, "like"), e.posts > 1 && `Posted ${e.posts}×`].filter(Boolean).join(" · ") || null;
+}
+
+function trending(events, limit = 5) {
   const when = (e) => `${e.date ?? "9999"}T${e.start ?? ""}`;
-  return [...events].sort((a, b) => count(b) - count(a) || when(a).localeCompare(when(b))).slice(0, limit);
+  return events
+    .map((e) => ({ e, score: trendScore(e) }))
+    .filter((x) => x.score != null)
+    .sort((a, b) => b.score - a.score || when(a.e).localeCompare(when(b.e)))
+    .slice(0, limit)
+    .map((x) => x.e);
 }
 
 function TrendingRow({ events, j, onSelect }) {
-  if (events.length === 0) return null;
+  const top = trending(events);
+  if (top.length === 0) return null;
   return (
     <section className="trending" aria-labelledby="trending-title">
       <h2 id="trending-title">Trending</h2>
       <ol className="trending-row">
-        {trending(events, j).map((e) => (
+        {top.map((e) => (
           <li key={e.id} className="trending-card">
             <Thumb src={e.image} label={e.title} color={eventColor(e)} className="trending-thumb" />
             <EventTitle event={e} onSelect={onSelect} />
-            <div className="meta">{[formatWhen(e), e.where, going(e, j)].filter(Boolean).join(" · ")}</div>
+            <div className="meta">{[formatWhen(e), e.where, going(e, j), trendReason(e)].filter(Boolean).join(" · ")}</div>
             <JoinButton event={e} j={j} />
           </li>
         ))}
