@@ -42,7 +42,6 @@ import instaloader
 import requests
 
 import uw_event_scraper
-from instagram_public_scraper import picture_url
 from events_common import (
     LOOKBACK_DAYS,
     STATE_DIR,
@@ -50,6 +49,7 @@ from events_common import (
     found_instagram_handles,
     load_store,
     picture_text,
+    picture_url,
     process_posts,
     redo_keyword_posts,
     save_club_profile,
@@ -78,6 +78,15 @@ def read_clubs():
     if not handles:
         sys.exit("No clubs to check. Add handles to clubs.txt or run find_instagram_handles.py.")
     return list(dict.fromkeys(h.lower() for h in handles))
+
+
+def engagement(post):
+    """(likes, comments) when Instagram sent them with the post, else None. Reads only what's
+    already downloaded: post.likes could fetch the post's full details, one more request each."""
+    n = post._node
+    likes = (n.get("edge_media_preview_like") or n.get("edge_liked_by") or {}).get("count", n.get("like_count"))
+    comments = (n.get("edge_media_to_comment") or {}).get("count", n.get("comment_count"))
+    return likes, comments
 
 
 def load_checked():
@@ -134,6 +143,10 @@ def scrape_instagram(store):
             new = 0
             for post in islice(profile.get_posts(), POSTS_PER_CLUB):
                 pinned = getattr(post, "is_pinned", False)
+                likes, comments = engagement(post)
+                if post.shortcode in store and likes is not None:
+                    # Likes keep coming in after a post goes up; keep Trending current.
+                    store[post.shortcode].update(likes=likes, comments=comments)
                 # Posts come newest first (after pinned ones), so the first old
                 # or already-read post means everything after it is too.
                 if post.date_utc.date() < cutoff or post.shortcode in store:
@@ -150,7 +163,8 @@ def scrape_instagram(store):
                     "source": "instagram",
                     "image_src": picture_url(node),
                     "image_text": picture_text(node.get("accessibility_caption")),
-                    "likes": node.get("like_count") or (node.get("edge_media_preview_like") or {}).get("count"),
+                    "likes": likes,
+                    "comments": comments,
                 })
                 new += 1
             print(f"[{i + 1}/{len(handles)}] {handle}: {new} new post(s)")

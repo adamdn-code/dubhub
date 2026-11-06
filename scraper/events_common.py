@@ -489,9 +489,11 @@ def process_posts(posts, store):
                 "caption": post["caption"][:2000],
                 "events": events,
                 "found_with": mode,
-                # From Instagram, when the scraper saw them: the picture's (expiring) link, the
-                # flyer's text and the like count (for Trending).
-                **{k: post[k] for k in ("image_src", "image_text", "likes") if post.get(k) is not None},
+                "likes": post.get("likes"),
+                "comments": post.get("comments"),
+                # From Instagram, when the scraper saw them: the picture's (expiring) link and the
+                # flyer's text (from Instagram's description of the picture).
+                **{k: post[k] for k in ("image_src", "image_text") if post.get(k)},
             }
         if found and i + AI_BATCH < len(posts) and mode == "ai":
             time.sleep(3)  # stay under Groq's free per-minute limit
@@ -504,7 +506,7 @@ def redo_keyword_posts(store):
     redo = [
         {"key": k, "club": v["club"], "caption": v["caption"], "url": v["url"], "source": v["source"],
          "posted": date.fromisoformat(v["posted"]) if v["posted"] else None,
-         **{f: v[f] for f in ("image_src", "image_text", "likes") if v.get(f) is not None}}
+         **{f: v[f] for f in ("image_src", "image_text", "likes", "comments") if v.get(f) is not None}}
         for k, v in store.items()
         if v.get("found_with") == "keywords" and (v.get("posted") or "9999") >= (TODAY - timedelta(days=LOOKBACK_DAYS)).isoformat()
     ]
@@ -524,34 +526,52 @@ GENERIC_TITLE = "Club Event"  # what keyword matching calls an event it can't na
 def drop_duplicate_events(events):
     """Clubs often post the same event twice (a schedule, then a reminder). Keep one per
     club, date and title: the copy with the most details (place, map pin, times). A keyword-found
-    "Club Event" on a day the same club has a properly named event is that event too. The kept
-    copy takes the picture and like count of the copies it replaces when it has none."""
+    "Club Event" on a day the same club has exactly one properly named event is that event too.
+    The kept copy gets every copy's likes and comments, `posts` (how many posts promoted it), and
+    a picture if it has none. Counts are added up per post (`post_counts`), so a post is never
+    counted twice, even when copies come back from earlier runs on other computers."""
     club_day = lambda e: (parse_host(e["host"])[1] or (e["host"] or "").lower(), e["date"])
-    best = {}
+    tidy = lambda title: re.sub(r"[^a-z0-9]", "", title.lower())
+    groups = {}
     for e in events:
-        key = (*club_day(e), re.sub(r"[^a-z0-9]", "", e["title"].lower()))
-        details = sum(e.get(field) is not None for field in ("where", "pos", "start", "end"))
-        if key not in best or details > best[key][0]:
-            best[key] = (details, e)
-    kept = [e for _, e in best.values()]
+        groups.setdefault((*club_day(e), tidy(e["title"])), []).append(e)
     named = {}
-    for e in kept:
-        if e["title"] != GENERIC_TITLE:
-            named.setdefault(club_day(e), []).append(e)
-    kept = [e for e in kept if not (e["title"] == GENERIC_TITLE and club_day(e) in named)]
-
-    for e in events:  # hand extras from dropped copies to the copy that stays
-        title = re.sub(r"[^a-z0-9]", "", e["title"].lower())
-        if e["title"] == GENERIC_TITLE and len(named.get(club_day(e), [])) == 1:
-            target = named[club_day(e)][0]
-        else:
-            target = best[(*club_day(e), title)][1]
-        if target is not e:
-            for field in ("image", "likes"):
-                if target.get(field) is None and e.get(field) is not None:
-                    target[field] = e[field]
-    keep = {id(e) for e in kept}
+    for key in groups:
+        if key[2] != tidy(GENERIC_TITLE):
+            named.setdefault(key[:2], []).append(key)
+    for key in [k for k in groups if k[2] == tidy(GENERIC_TITLE) and k[:2] in named]:
+        copies = groups.pop(key)
+        if len(named[key[:2]]) == 1:  # with two named events that day, we can't tell which it was
+            groups[named[key[:2]][0]] += copies
+    keep = set()
+    for copies in groups.values():
+        best = max(copies, key=lambda e: (e["title"] != GENERIC_TITLE,
+                                          sum(e.get(field) is not None for field in ("where", "pos", "start", "end"))))
+        counts = {}
+        for e in copies:
+            counts.update(post_counts(e))
+        best["post_counts"] = counts
+        for field, i in (("likes", 0), ("comments", 1)):
+            found = [c[i] for c in counts.values() if c[i] is not None]
+            best[field] = sum(found) if found else None
+        best["posts"] = len(counts)
+        best["image"] = best.get("image") or next((e["image"] for e in copies if e.get("image")), None)
+        keep.add(id(best))
     return [e for e in events if id(e) in keep]
+
+
+PICTURE_WIDTH = 640  # preferred width of saved post pictures
+
+
+def picture_url(node):
+    """The post's picture: the page's thumbnail, or the size closest to PICTURE_WIDTH."""
+    if node.get("display_uri"):
+        return node["display_uri"]
+    sizes = [c for c in (node.get("image_versions2") or {}).get("candidates") or [] if c.get("url")]
+    if not sizes:
+        return node.get("display_url")
+    bigger = [c for c in sizes if (c.get("width") or 0) >= PICTURE_WIDTH]
+    return (min(bigger, key=lambda c: c["width"]) if bigger else max(sizes, key=lambda c: c.get("width") or 0))["url"]
 
 
 def save_post_image(key, post):
@@ -577,25 +597,57 @@ def drop_unused_post_images(events):
             f.unlink()
 
 
-def others_events(store):
-    """Upcoming Instagram/Google events already on the site from posts this computer's scraper
-    has never seen (someone else ran it), so a run here adds to them instead of wiping them."""
+def site_events():
+    """The upcoming Instagram/Google events on the site now, from anyone's runs."""
     try:
         site = json.loads(SITE_EVENTS_FILE.read_text(encoding="utf-8")).get("events", [])
     except (FileNotFoundError, ValueError):
         return []
-    return [e for e in site if e.get("source") in ("instagram", "google") and e.get("date", "") >= TODAY.isoformat()
-            and e["id"].rsplit("-", 1)[0] not in store]
+    return [e for e in site if e.get("source") in ("instagram", "google") and e.get("date", "") >= TODAY.isoformat()]
+
+
+def others_events(site, store, mine):
+    """The site's events to keep alongside this run's: those from posts whose events this run
+    doesn't write itself (`mine`), usually someone else's run. They get this computer's newer
+    like count and saved picture for their posts when it has them."""
+    kept = []
+    for e in site:
+        counts = {k: v for k, v in post_counts(e).items() if k not in mine}
+        if not counts:
+            continue
+        for k in counts:
+            local = store.get(k) or {}
+            if local.get("likes") is not None:  # read here more recently; split like write_site_events does
+                n = max(len(local.get("events") or []), 1)
+                counts[k] = [round(local["likes"] / n), None if local.get("comments") is None else round(local["comments"] / n)]
+        image = e.get("image") or next(filter(None, (save_post_image(k, store[k]) for k in counts if k in store)), None)
+        kept.append({**e, "post_counts": counts, "image": image})
+    return kept
+
+
+def post_counts(event):
+    """{post key: [likes, comments]} of the posts behind an event. Events written before
+    post_counts existed count as one post: the one in their id ("<post key>-<n>")."""
+    return event.get("post_counts") or {event["id"].rsplit("-", 1)[0]: [event.get("likes"), event.get("comments")]}
 
 
 def write_site_events(store):
     """Write every upcoming event to public/events.json for the website."""
     not_uw = not_uw_clubs(store)
+    site = site_events()
+    on_site = {k for e in site for k in post_counts(e)}
+    # This run writes the events of the posts it has, except that a post someone else's run
+    # already put on the site keeps that version when this computer only guessed with keywords
+    # (keywords can't name events, and sometimes miss the date; their runs may have used AI).
+    mine = {k for k, v in store.items() if not (v.get("found_with") == "keywords" and k in on_site)}
     events = []
     for key, post in store.items():
-        if post["club"] in not_uw:
+        if key not in mine or post["club"] in not_uw:
             continue
-        for n, e in enumerate(post.get("events") or []):
+        found = post.get("events") or []
+        # A post listing several events (a quarter's schedule) shares its likes among them.
+        share = lambda count: None if count is None else round(count / len(found))
+        for n, e in enumerate(found):
             if e["date"] < TODAY.isoformat():
                 continue
             events.append({
@@ -613,9 +665,13 @@ def write_site_events(store):
                 # The post's caption, shown when someone opens the event on the site.
                 "description": (post.get("caption") or "").strip() or None,
                 "image": save_post_image(key, post),
-                "likes": post.get("likes"),
+                # Popularity signals for the site's Trending row. post_counts keeps each post's
+                # share apart, so merging copies of an event never counts a post twice.
+                "likes": share(post.get("likes")),
+                "comments": share(post.get("comments")),
+                "post_counts": {key: [share(post.get("likes")), share(post.get("comments"))]},
             })
-    events = merge_huskylink_events(drop_duplicate_events(events + others_events(store)))
+    events = merge_huskylink_events(drop_duplicate_events(events + others_events(site, store, mine)))
     drop_unused_post_images(events)
     SITE_EVENTS_FILE.parent.mkdir(exist_ok=True)
     SITE_EVENTS_FILE.write_text(

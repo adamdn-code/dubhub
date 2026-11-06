@@ -1,6 +1,17 @@
 {
  "clubs": [
   {
+   "name": "Afghanistan Student Union at the University of Washington",
+   "website": "https://huskylink.washington.edu/asuatuwseattle/",
+   "category": "Cultural",
+   "about": "The Afghanistan Student Union(ASU) fosters a vibrant community that celebrates Afghanistan’s culture,heritage,and…",
+   "description": "The Afghanistan Student Union(ASU) fosters a vibrant community that celebrates Afghanistan’s culture,heritage,and leadership. We unite Afghanistan students, inspire collaboration, and empower individuals to honor our roots while shaping a brighter future",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_614919_IMG_6172jpg_f881360f-c32c-4c93-b968-8c98588cdb6a_10532621.jpeg",
+   "source": "huskylink",
+   "last_event": "2026-11-21",
+   "fields": []
+  },
+  {
    "name": "AIESEC in Seattle",
    "website": "http://aiesecus.org",
    "category": "Business",
@@ -713,7 +724,7 @@
    "description": "The Women’s Network is an organization that encourages and promotes the empowerment of women. The mission of the club is to inspire and empower women of all ages, backgrounds and interests to act on their own ambitions.",
    "logo": null,
    "source": "huskylink",
-   "last_event": "2026-10-28",
+   "last_event": "2026-11-10",
    "fields": []
   },
   {

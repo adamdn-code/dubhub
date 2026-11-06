@@ -255,6 +255,21 @@ select:focus-visible {
   background: var(--purple);
   color: #fff;
   border-radius: 12px;
+  /* Shown for 5 seconds, then fades out so it stops covering the map (and stops taking clicks). */
+  animation: tagline-fade 0.6s ease-in 5s forwards;
+}
+
+@keyframes tagline-fade {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tagline {
+    animation-duration: 0.01s;
+  }
 }
 
 .tagline h1 {
@@ -378,6 +393,35 @@ select:focus-visible {
   .cards-3 .join {
     grid-area: join;
   }
+}
+
+/* Map data credit: a small "©" that opens to the full credit line */
+.leaflet-control-attribution.leaflet-control {
+  padding: 0;
+  background: none;
+}
+
+.map-credit {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.map-credit summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 700;
+}
+
+.map-credit summary::-webkit-details-marker {
+  display: none;
+}
+
+.map-credit[open] summary {
+  display: inline;
+  margin-right: 6px;
 }
 
 /* Event names over (or under) the dots when the site first opens: fade in, pulse, then fade away. */

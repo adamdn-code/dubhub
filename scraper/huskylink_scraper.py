@@ -180,11 +180,39 @@ def where_and_pos(item, title, description):
     return (building[0], list(building[1])) if building else (None, None)
 
 
+def scrape_rsvps():
+    """{event id: how many people RSVP'd} for upcoming events, from the list HuskyLink's app uses.
+    The RSS feed doesn't have these counts. Feeds the site's Trending ranking."""
+    rsvps, offset = {}, 0
+    while offset < 1000:
+        try:
+            r = requests.get(f"{BASE}/mobile_ws/v17/mobile_events_list", params={"range": offset},
+                             headers=HEADERS, timeout=60)
+            r.raise_for_status()
+        except requests.RequestException as e:
+            print(f"Couldn't read RSVP counts ({str(e)[:100]}); Trending uses the other signals.", file=sys.stderr)
+            break
+        page = [x for x in r.json() if x.get("listingSeparator") != "true" and x.get("p3")]
+        if not page:
+            break
+        fields = page[0]["fields"].split(",")
+        if "eventAttendees" not in fields:
+            break
+        col = f"p{fields.index('eventAttendees')}"
+        for x in page:
+            if str(x.get(col) or "").isdigit():
+                rsvps[f"hl-{x['p1']}"] = int(x[col])
+        offset += 20
+        time.sleep(1)
+    return rsvps
+
+
 def scrape_events():
     print("Downloading HuskyLink's event feed...", flush=True)
     r = requests.get(f"{BASE}/rss_events", headers=HEADERS, timeout=90)
     r.raise_for_status()
     last_day = (TODAY + timedelta(days=DAYS_AHEAD)).isoformat()
+    rsvps = scrape_rsvps()
 
     events, seen, activity = [], set(), []
     items = ET.fromstring(r.content).findall(".//item")
@@ -219,8 +247,10 @@ def scrape_events():
             "source": "huskylink",
             "description": description or None,
             "image": image_url(item.findtext("eventPhotoFullUrl") or item.findtext("eventPhoto")),
+            "rsvps": rsvps.get(f"hl-{item.findtext('eventId')}"),
         })
-    print(f"Found {len(events)} upcoming events in the next {DAYS_AHEAD} days")
+    print(f"Found {len(events)} upcoming events in the next {DAYS_AHEAD} days "
+          f"({sum(1 for e in events if e['rsvps'])} with RSVPs)")
     return events, activity
 
 

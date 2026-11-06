@@ -57,6 +57,7 @@ from events_common import (
     instagram_post_date,
     load_store,
     picture_text,
+    picture_url,
     process_posts,
     read_club_handles,
     redo_keyword_posts,
@@ -72,7 +73,6 @@ CLUBS_PER_RUN = 40
 MIN_WAIT, MAX_WAIT = 10, 20     # seconds between clubs
 DETAILS_PER_RUN = 15            # single-post lookups per run (likes, filling in Google snippets)
 PICTURE_MAX_AGE_DAYS = 14       # re-download a club's profile picture this often
-PICTURE_WIDTH = 640             # preferred width of saved post pictures
 
 
 class SlowDown(Exception):
@@ -119,17 +119,6 @@ def club_page(L, handle):
     return user, [e.get("node") or {} for e in timeline.get("edges") or []]
 
 
-def picture_url(node):
-    """The post's picture: the page's thumbnail, or the size closest to PICTURE_WIDTH."""
-    if node.get("display_uri"):
-        return node["display_uri"]
-    sizes = [c for c in (node.get("image_versions2") or {}).get("candidates") or [] if c.get("url")]
-    if not sizes:
-        return node.get("display_url")
-    bigger = [c for c in sizes if (c.get("width") or 0) >= PICTURE_WIDTH]
-    return (min(bigger, key=lambda c: c["width"]) if bigger else max(sizes, key=lambda c: c.get("width") or 0))["url"]
-
-
 def caption_of(node):
     caption = node.get("caption")
     return (caption.get("text") if isinstance(caption, dict) else caption) or ""
@@ -148,6 +137,7 @@ def post_from_node(node, club):
         "image_src": picture_url(node),
         "image_text": picture_text(node.get("accessibility_caption")),
         "likes": node.get("like_count"),
+        "comments": node.get("comment_count"),
     }
 
 
@@ -270,7 +260,7 @@ def add_details(L, store, new_posts):
             post = post_from_node({**node, "code": code}, club)
             refetched.append({**post, "source": "google", "url": store[code]["url"]})
         elif node.get("like_count") is not None:
-            store[code]["likes"] = node["like_count"]
+            store[code].update(likes=node["like_count"], comments=node.get("comment_count"))
     if refetched:
         print(f"Finding events again in {len(refetched)} post(s) with their full captions...", flush=True)
         process_posts(refetched, store)
