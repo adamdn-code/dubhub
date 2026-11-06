@@ -316,7 +316,7 @@
 "fields": [
 "Business"
 ],
-"from": "American Marketing Association, UW Chapter|To unleash the potential of students by providing them with marketingrelated resources to develop a future…"
+"from": "American Marketing Association|Marketing club connecting students with industry insights."
 },
 "americanmedicalwomensassociationatuwsomgraduate": {
 "fields": [
@@ -348,7 +348,7 @@
 },
 "americansignlanguageclub": {
 "fields": [],
-"from": "American Sign Language Club at University of Washington|Learns and practices American Sign Language."
+"from": "American Sign Language Club at University of Washington|Student group for learning and practicing American Sign Language."
 },
 "americansocietyformicrobiology": {
 "fields": [
@@ -360,7 +360,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "American Society of Civil Engineers UW Student Chapter|As the American Society of Civil Engineers (ASCE) student chapter at the UW, our purpose is to enhance the personal…"
+"from": "American Society of Civil Engineers UW Student Chapter|Civil engineering student chapter with industry talks."
 },
 "americansocietyofhealthsystempharmacists": {
 "fields": [
@@ -491,10 +491,10 @@
 },
 "artificialintelligencestudentcollective": {
 "fields": [
-"Computing & Math",
-"Engineering"
+"Engineering",
+"Computing & Math"
 ],
-"from": "Artificial Intelligence Student Collective @ UW|Student network democratizing AI across all disciplines."
+"from": "Artificial Intelligence Student Collective @ UW|Student network offering AI workshops and interdisciplinary projects."
 },
 "artsandcraftsclub": {
 "fields": [
@@ -608,7 +608,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Association for Computing Education|Club for students interested in computing education and outreach."
+"from": "Association for Computing Education|Club for students interested in computing education."
 },
 "associationforresearchonracialjustice": {
 "fields": [
@@ -892,9 +892,10 @@
 },
 "bioexplore": {
 "fields": [
+"Engineering",
 "Sciences"
 ],
-"from": "BioExplore at UW|BioExplore is an organization aimed at connecting undergraduate students to research in STEM fields, with a focus on…"
+"from": "BioExplore at UW 🧬|Bioengineering community offering workshops, mentorship, and lab tours."
 },
 "biologystudentsforequity": {
 "fields": [
@@ -1293,7 +1294,7 @@
 "Engineering",
 "Computing & Math"
 ],
-"from": "Claude Builder Club @ UW|Club learning to build projects using Claude AI coding assistant."
+"from": "Claude Builder Club @ UW|Learns to build AI‑powered applications using Claude."
 },
 "climateactionandsustainabilityteamschoolofdentistry": {
 "fields": [
@@ -1462,7 +1463,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "cseed|Inspires engineering and design students to become innovators."
+"from": "cseed|Inspires engineering and design students through projects and events."
 },
 "cseeduw": {
 "fields": [],
@@ -4281,7 +4282,7 @@
 "fields": [
 "Business"
 ],
-"from": "Product Space @ UW|Cultivates product leaders via competitions and community."
+"from": "Product Space @ UW|Develops product leadership skills and hosts product challenges."
 },
 "programonclimatechangeundergraduatecohort": {
 "fields": [
@@ -6245,7 +6246,7 @@
 },
 "vsauw": {
 "fields": [],
-"from": "VSAUW|Vietnamese cultural community offering events, networking, and discounts."
+"from": "VSAUW|Vietnamese student association fostering community and culture."
 },
 "oscmc": {
 "fields": [
@@ -6281,5 +6282,21 @@
 "recycling": {
 "fields": [],
 "from": "UW Recycling|Promotes recycling, composting, and waste reduction on campus."
+},
+"aaivasianamericanintervarsity": {
+"fields": [],
+"from": "AAIV UW | Asian American InterVarsity|Christian fellowship empowering Asian American students on campus."
+},
+"alpfa": {
+"fields": [
+"Business"
+],
+"from": "ALPFA UW|Latino professional network empowering future leaders."
+},
+"avela": {
+"fields": [
+"Engineering"
+],
+"from": "AVELA UW|Engineering literacy and access workshops and camps."
 }
 }

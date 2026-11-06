@@ -5,11 +5,11 @@
    "handle": "aaivuw",
    "instagram": "https://www.instagram.com/aaivuw/",
    "website": "https://linktr.ee/aaivuw",
-   "category": "Cultural",
-   "about": "A Christian fellowship at the Univeristy of Washington. We seek to empower Asian Americans to further God’s Kingdom on C",
-   "description": "A Christian fellowship at the Univeristy of Washington. We seek to empower Asian Americans to further God’s Kingdom on Campus.\n⤹ Get Connected! ♡",
+   "category": "Service",
+   "about": "Christian fellowship empowering Asian American students on campus.",
+   "description": "AAIV UW is a Christian fellowship that brings together Asian American students to grow in faith and build community on campus. They host events like Fall Con and leadership introductions, encouraging friendships across the Pacific Northwest.",
    "logo": "/ig/clubs/aaivuw.jpg",
-   "last_event": "2026-11-06",
+   "last_event": "2026-11-08",
    "fields": []
   },
   {
@@ -53,11 +53,13 @@
    "instagram": "https://www.instagram.com/alpfauw/",
    "website": "https://linktr.ee/alpfauw",
    "category": "Business",
-   "about": "Association of Latino Professional for America",
-   "description": "Association of Latino Professional for America\nUniversity of Washington- Seattle \nEmpowering future leaders\nAll majors, All backgrounds, All welcome💜",
+   "about": "Latino professional network empowering future leaders.",
+   "description": "ALPFA UW connects Latino and Latinx students with professional development opportunities and cultural celebrations. Events include Día de Muertos ofrendas and collaborations with other student groups, creating a welcoming space for all majors.",
    "logo": "/ig/clubs/alpfauw.jpg",
    "last_event": "2026-11-13",
-   "fields": []
+   "fields": [
+    "Business"
+   ]
   },
   {
    "name": "Alpha Theta Delta",
@@ -95,8 +97,8 @@
    "instagram": "https://www.instagram.com/uw_ama/",
    "website": "https://linktr.ee/uw.ama",
    "category": "Business",
-   "about": "People POWER Marketing! 💚🧡",
-   "description": "People POWER Marketing! 💚🧡\nTop 10 Chapter of the Year for two consecutive years!! \n@uofwa | @uwfosterschool",
+   "about": "Marketing club connecting students with industry insights.",
+   "description": "The American Marketing Association at UW brings together students passionate about marketing through fundraisers, trend talks, and industry‑focused networking events. Their programs highlight real‑world insights and the power of people‑centric marketing.",
    "logo": "/ig/clubs/uw_ama.jpg",
    "last_event": "2026-11-20",
    "fields": [
@@ -120,8 +122,8 @@
    "instagram": "https://www.instagram.com/uwaslclub/",
    "website": "https://asllclub.wixsite.com/uwaslclub",
    "category": "Cultural",
-   "about": "Learns and practices American Sign Language.",
-   "description": "The @uwaslclub meets weekly to teach and practice American Sign Language. Beginners sessions introduce basic signs, while later meetings build fluency.",
+   "about": "Student group for learning and practicing American Sign Language.",
+   "description": "The American Sign Language Club at the University of Washington exists to promote the use of ASL in the UW community, enhance the linguistic skills of students who use ASL, and promote outreach with the Seattle Deaf Community.",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_608390_uwasl_logojpg_8f3e301d-3af9-4c01-9d15-6ae02ba8ed2c_92622561.jpeg",
    "last_event": "2026-11-04",
    "fields": []
@@ -132,8 +134,8 @@
    "instagram": "https://www.instagram.com/uw_asce/",
    "website": "https://urldefense.com/v3/__https://forms.cloud.microsoft/r/9d30Ueviw9__;!!K-Hz7m0Vt54!g9RG40RM2jzWnncCDqtrZo7N2JzrVn6FPj896BOkL0z07jk_3l1RUzTr1PLpclT0h7oyyVPNPHYS5_-YjSp4NdjAWMSc$",
    "category": "Engineering",
-   "about": "American Society of Civil Engineers Student Chapter at the University of Washington",
-   "description": "American Society of Civil Engineers Student Chapter at the University of Washington\n@uwconcretecanoe 🛶\n@uwsteelbridge 🔩\n@uwtimber 🪵",
+   "about": "Civil engineering student chapter with industry talks.",
+   "description": "UW’s ASCE student chapter links civil engineering students with industry professionals via lunch‑and‑learn sessions and project showcases. Partners like Delve Underground, CPL, and HDR share insights on transportation, seismic, and water engineering.",
    "logo": "/ig/clubs/uw_asce.jpg",
    "last_event": "2026-11-12",
    "fields": [
@@ -169,14 +171,14 @@
    "handle": "aic.uw",
    "instagram": "https://www.instagram.com/aic.uw/",
    "website": "http://linktr.ee/aiscuw",
-   "category": "Engineering",
-   "about": "Global nonprofit student network democratizing AI across all disciplines with project cycles, workshops & high-impact ev",
-   "description": "Global nonprofit student network democratizing AI across all disciplines with project cycles, workshops & high-impact events.",
+   "category": "Tech",
+   "about": "Student network offering AI workshops and interdisciplinary projects.",
+   "description": "AI Collective is a student‑run nonprofit that makes AI accessible across disciplines via project cycles, workshops, and events. It connects members with industry professionals, like the recent panel on AI in marketing, to explore real‑world applications.",
    "logo": "/ig/clubs/aic.uw.jpg",
    "last_event": "2026-11-09",
    "fields": [
-    "Computing & Math",
-    "Engineering"
+    "Engineering",
+    "Computing & Math"
    ]
   },
   {
@@ -196,8 +198,8 @@
    "instagram": "https://www.instagram.com/ace_uw/",
    "website": "https://linktr.ee/ACE_UW",
    "category": "Academic",
-   "about": "Club for students interested in computing education and outreach.",
-   "description": "The Association for Computing Education (ACE) supports students passionate about computing education through events like the Computing Bee and monthly TA socials. Join for games, snacks, and community building around teaching and learning computing.",
+   "about": "Club for students interested in computing education.",
+   "description": "ACE is a student group for anyone interested in computing education. They host fun events such as a Computing Bee and monthly TA socials with games and snacks, fostering a supportive community for learning and networking.",
    "logo": "/ig/clubs/ace_uw.jpg",
    "last_event": "2026-12-01",
    "fields": [
@@ -257,11 +259,13 @@
    "instagram": "https://www.instagram.com/avela_uw/",
    "website": "https://linktr.ee/avelauw",
    "category": "Engineering",
-   "about": "📚: A Vision for Engineering Literacy and Access",
-   "description": "📚: A Vision for Engineering Literacy and Access\n🗣: Passionate about bridging the opportunity gap\n🧠: Leading workshops, camps, panels \nConnect below 👇",
+   "about": "Engineering literacy and access workshops and camps.",
+   "description": "AVELA UW works to close the engineering opportunity gap through workshops, camps, and panels that promote engineering literacy. Recent activities include resume reviews with Boeing professionals and a pumpkin‑carving community event.",
    "logo": "/ig/clubs/avela_uw.jpg",
    "last_event": "2026-11-06",
-   "fields": []
+   "fields": [
+    "Engineering"
+   ]
   },
   {
    "name": "AWS Cloud Club at the University of Washington",
@@ -307,11 +311,12 @@
    "instagram": "https://www.instagram.com/uw_bioexplore/",
    "website": "https://linktr.ee/UWBioExplore",
    "category": "Engineering",
-   "about": "Empowering students interested in bioengineering-related fields 🔬🧪✨",
-   "description": "Empowering students interested in bioengineering-related fields 🔬🧪✨\n———\nWorkshops 🔍 | Mentorship 👥 | Lab Tours 🦠 | Panels 🥼🥽 | & More !!!",
+   "about": "Bioengineering community offering workshops, mentorship, and lab tours.",
+   "description": "BioExplore supports students interested in bioengineering with workshops, mentorship, lab tours, and panels. They also offer resume help and opportunities to connect with peers and faculty in the field.",
    "logo": "/ig/clubs/uw_bioexplore.jpg",
    "last_event": "2026-11-09",
    "fields": [
+    "Engineering",
     "Sciences"
    ]
   },
@@ -345,8 +350,8 @@
    "instagram": "https://www.instagram.com/claude.uofwa/",
    "website": "https://discord.gg/ggZrNu55F",
    "category": "Tech",
-   "about": "Club learning to build projects using Claude AI coding assistant.",
-   "description": "Claude Builder Club teaches members how to use Claude, an AI coding assistant, to develop projects. Partnering with groups like NSBE, SHPE, and ColorStack, the club offers workshops and hands‑on sessions.",
+   "about": "Learns to build AI‑powered applications using Claude.",
+   "description": "Claude Builder Club teaches students how to develop AI‑powered code using Claude’s coding agent. Collaborative workshops with groups like NSBE and ColorStack let participants build projects alongside the AI assistant.",
    "logo": "/ig/clubs/claude.uofwa.jpg",
    "last_event": "2026-11-09",
    "fields": [
@@ -374,9 +379,9 @@
    "handle": "cseeduw",
    "instagram": "https://www.instagram.com/cseeduw/",
    "website": "http://cseed.co",
-   "category": "Business",
-   "about": "on a mission to inspire engineering & design students at @uofwa to be innovators 💫",
-   "description": "on a mission to inspire engineering & design students at @uofwa to be innovators 💫\nlearn about our programs! (luma link for events below) ⬇️",
+   "category": "Engineering",
+   "about": "Inspires engineering and design students through projects and events.",
+   "description": "cseed empowers engineering and design students at UW through hands‑on programs, demo days, and creator series events. Members build hardware, software, and design projects while connecting with alumni entrepreneurs.",
    "logo": "/ig/clubs/cseeduw.jpg",
    "last_event": "2026-11-17",
    "fields": [
@@ -700,8 +705,8 @@
    "instagram": "https://www.instagram.com/uwproductspace/",
    "website": "https://www.productspace.org/",
    "category": "Business",
-   "about": "Cultivates product leaders via competitions and community.",
-   "description": "Product Space connects students interested in product management, offering a nationwide network and hands‑on product challenges. Their flagship Product Games blend case competition strategy with rapid prototyping.",
+   "about": "Develops product leadership skills and hosts product challenges.",
+   "description": "Product Space cultivates future product leaders by linking students nationwide and hosting product competitions with real‑world challenges, prizes, and networking opportunities.",
    "logo": "/ig/clubs/uwproductspace.jpg",
    "last_event": "2026-11-07",
    "fields": [
@@ -917,8 +922,8 @@
    "instagram": "https://www.instagram.com/vsauw/",
    "website": "https://linktr.ee/vsauw",
    "category": "Cultural",
-   "about": "Vietnamese cultural community offering events, networking, and discounts.",
-   "description": "VSAUW brings together Vietnamese students and allies through cultural events, socials, and networking opportunities. They host info nights and general meetings where members can connect and enjoy autumn-themed gatherings. Membership provides a card, shirt and discounts at local Seattle spots.",
+   "about": "Vietnamese student association fostering community and culture.",
+   "description": "VSAUW is the Vietnamese Student Association at UW, offering cultural events, info nights, and community gatherings. Members celebrate Vietnamese heritage, connect with peers, and enjoy activities throughout the semester.",
    "logo": "/ig/clubs/vsauw.jpg",
    "last_event": "2026-12-01",
    "fields": []
