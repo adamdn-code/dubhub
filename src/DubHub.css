@@ -608,57 +608,33 @@ select:focus-visible {
   position: absolute;
   left: 0;
   top: 0;
-  width: 92px; /* INTRO_CIRCLE in DubHub.jsx */
-  height: 92px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  text-align: center;
+  align-items: stretch;
+  overflow: hidden;
+  white-space: nowrap;
   transform: translate(-50%, calc(-100% - 12px));
-  /* A glossy bubble in the filter panel's colors: a soft shine on top, thin gold ring */
-  background:
-    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 42%),
-    var(--surface);
-  color: var(--text);
-  border: 2px solid var(--gold);
-  border-radius: 50%;
-  box-shadow: 0 6px 16px rgba(30, 10, 70, 0.25), inset 0 -6px 12px rgba(30, 10, 70, 0.06);
+  background: var(--purple);
+  color: #fff;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(28, 21, 48, 0.35);
   animation: intro-label 4.8s ease-in-out forwards;
 }
 
-/* A little gold point from the bubble to its dot */
-.intro-label::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -8px;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-top-color: var(--gold);
-  border-bottom: 0;
-}
-
-.intro-label.below::after {
-  top: -8px;
-  bottom: auto;
-  border-top: 0;
-  border-bottom: 5px solid var(--gold);
-}
-
-/* The club's name: up to four lines inside the bubble */
+/* The host club in its own section, before the event name */
 .intro-label-club {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  overflow: hidden;
-  color: var(--text);
-  font-size: 10.5px;
-  font-weight: 800;
-  line-height: 1.15;
-  hyphens: auto; /* long words break with a hyphen, only when they must */
-  overflow-wrap: break-word;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px 4px 10px;
+  background: var(--gold);
+  color: var(--purple);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.intro-label-text {
+  padding: 4px 10px 4px 8px;
 }
 
 .intro-label.below {
@@ -670,9 +646,9 @@ select:focus-visible {
   0% { opacity: 0; }
   8% { opacity: 1; }
   20% { box-shadow: 0 0 0 6px rgba(183, 165, 122, 0.55); }
-  32% { box-shadow: 0 6px 16px rgba(30, 10, 70, 0.25); }
+  32% { box-shadow: 0 2px 8px rgba(28, 21, 48, 0.35); }
   44% { box-shadow: 0 0 0 6px rgba(183, 165, 122, 0.55); }
-  56% { box-shadow: 0 6px 16px rgba(30, 10, 70, 0.25); }
+  56% { box-shadow: 0 2px 8px rgba(28, 21, 48, 0.35); }
   75% { opacity: 1; }
   100% { opacity: 0; }
 }

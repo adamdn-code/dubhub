@@ -883,22 +883,33 @@ function MapArea({ area }) {
 
 const escapeHtml = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const labelIcons = new Map(); // reuse icons so re-renders don't restart the fade animation
-function labelIcon(club, dir) {
-  const key = `${dir}|${club}`;
+function labelIcon(club, text, dir) {
+  const key = `${dir}|${club}|${text}`;
   if (!labelIcons.has(key)) {
-    const html = `<span class="intro-label ${dir}"><span class="intro-label-club">${escapeHtml(club)}</span></span>`;
+    const html =
+      `<span class="intro-label ${dir}"><span class="intro-label-club">${escapeHtml(club)}</span>` +
+      `<span class="intro-label-text">${escapeHtml(text)}</span></span>`;
     labelIcons.set(key, L.divIcon({ className: "intro-anchor", html, iconSize: [0, 0] }));
   }
   return labelIcons.get(key);
 }
 
-// Each label is a bubble this many pixels across (it matches .intro-label in DubHub.css).
-const INTRO_CIRCLE = 92;
+// A label's on-screen width: the club (semibold 12px) and event name (bold 13px), plus each
+// section's padding and a small gap.
+let measureCtx;
+function labelWidth(club, text) {
+  measureCtx ??= document.createElement("canvas").getContext("2d");
+  const font = getComputedStyle(document.body).fontFamily;
+  measureCtx.font = `600 12px ${font}`;
+  const clubW = measureCtx.measureText(club).width;
+  measureCtx.font = `700 13px ${font}`;
+  return clubW + measureCtx.measureText(text).width + 2 * 18 + 8;
+}
 
 // At most this many labels when the site opens, the soonest events first, so the map isn't buried.
 const MAX_INTRO_LABELS = 5;
 
-// Club names shown in bubbles over their dots when the site opens. Each goes above its dot, or below it
+// Event names shown over their dots when the site opens. Each label goes above its dot, or below it
 // if that would overlap a label already placed; if neither fits it's skipped (hover still works).
 function IntroLabels({ places }) {
   const map = useMap();
@@ -915,8 +926,8 @@ function IntroLabels({ places }) {
   for (const place of [...places].sort((a, b) => a.when.localeCompare(b.when) || b.count - a.count)) {
     if (shown.length === MAX_INTRO_LABELS) break;
     const pt = map.latLngToContainerPoint(place.pos);
-    const w = INTRO_CIRCLE + 8; // a little space between neighboring circles
-    const h = INTRO_CIRCLE;
+    const w = labelWidth(place.club, place.text);
+    const h = 28;
     for (const dir of ["above", "below"]) {
       const top = dir === "above" ? pt.y - 12 - h : pt.y + 12;
       const box = { l: pt.x - w / 2, r: pt.x + w / 2, t: top, b: top + h };
@@ -929,7 +940,7 @@ function IntroLabels({ places }) {
   }
 
   return shown.map((p) => (
-    <Marker key={p.pos.join()} position={p.pos} icon={labelIcon(p.club, p.dir)} interactive={false} keyboard={false} />
+    <Marker key={p.pos.join()} position={p.pos} icon={labelIcon(p.club, p.text, p.dir)} interactive={false} keyboard={false} />
   ));
 }
 
@@ -1291,8 +1302,9 @@ function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, o
       pos: list[0].pos,
       count: list.length,
       when: list.map((e) => `${e.date ?? ""}T${e.start ?? "00:00"}`).sort()[0], // its soonest event
-      // Just who's hosting: the club's name (it wraps inside the bubble), or "3 clubs".
-      club: clubs.size > 1 ? `${clubs.size} clubs` : hostName(list[0]),
+      // Long names would crowd out other labels, so they're shortened here (the pop-up has the full name).
+      club: clubs.size > 1 ? `${clubs.size} clubs` : shortText(hostName(list[0]), 26),
+      text: list.length > 1 ? `${list[0].title} +${list.length - 1} more` : list[0].title,
     };
   });
 
