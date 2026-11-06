@@ -1311,6 +1311,16 @@ select:focus-visible {
 }
 
 /* Captions keep their own line breaks. */
+/* Who's going, in an event's detail pop-up */
+.going-list {
+  margin: 0 0 12px;
+  color: var(--text);
+}
+
+.going-list strong {
+  color: var(--accent);
+}
+
 .event-description {
   white-space: pre-line;
   overflow-wrap: anywhere;
