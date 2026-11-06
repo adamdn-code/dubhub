@@ -765,9 +765,9 @@
   "checked": "2026-10-24"
  },
  "Baha’i Club at UW": {
-  "handle": "bahaisofseattle",
-  "from": "website",
-  "checked": "2026-10-24"
+  "handle": null,
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Barbell Club at the University of Washington": {
   "handle": null,
@@ -1805,9 +1805,9 @@
   "checked": "2026-10-24"
  },
  "FCA Huddle": {
-  "handle": "greaterseattlefca",
-  "from": "website",
-  "checked": "2026-10-24"
+  "handle": null,
+  "from": "not-uw",
+  "checked": "2026-11-05"
  },
  "Figure Skating at UW": {
   "handle": "uwfigureskating",
@@ -2795,9 +2795,9 @@
   "checked": "2026-10-24"
  },
  "International Student Ministry": {
-  "handle": "ism.seattle",
-  "from": "website",
-  "checked": "2026-10-24"
+  "handle": null,
+  "from": "not-uw",
+  "checked": "2026-11-05"
  },
  "International Student Success Program": {
   "handle": null,
@@ -5835,9 +5835,9 @@
   "checked": "2026-10-24"
  },
  "Young Life College": {
-  "handle": "northseattleyl",
-  "from": "website",
-  "checked": "2026-10-24"
+  "handle": null,
+  "from": "not-uw",
+  "checked": "2026-11-05"
  },
  "Young Professionals International Network": {
   "handle": null,
