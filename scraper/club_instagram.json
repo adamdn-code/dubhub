@@ -125,9 +125,9 @@
   "checked": "2026-10-24"
  },
  "AIESEC in Seattle": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "lcseattleuw",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Alan’s Disciples": {
   "handle": null,
@@ -325,9 +325,9 @@
   "checked": "2026-10-24"
  },
  "American Sign Language Club at University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwaslclub",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "American Society for Microbiology UW Chapter": {
   "handle": null,
@@ -480,9 +480,9 @@
   "checked": "2026-10-24"
  },
  "Asian American Christian Fellowship": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwaacf",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Asian American Intervarsity Christian Fellowship": {
   "handle": "aaivuw",
@@ -610,9 +610,9 @@
   "checked": "2026-10-24"
  },
  "Astronomy Undergraduate Engineering Group": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwaueg",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "ASUW American Indian Student Commission": {
   "handle": null,
@@ -650,9 +650,9 @@
   "checked": "2026-10-24"
  },
  "ASUW Gender Equity Commission": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "asuwgec",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "ASUW Latine Student Commission": {
   "handle": null,
@@ -695,9 +695,9 @@
   "checked": "2026-10-24"
  },
  "ASUW Rainy Dawg Radio": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "rainydawgradio",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "ASUW Sexual Assault and Relationship Violence Activists": {
   "handle": null,
@@ -750,9 +750,9 @@
   "checked": "2026-10-24"
  },
  "AWS Cloud Club at the University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwawscloud",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "AYUDH UW Chapter": {
   "handle": null,
@@ -770,9 +770,9 @@
   "checked": "2026-11-05"
  },
  "Barbell Club at the University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "barbellclubuw",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Bartering Club at UW": {
   "handle": null,
@@ -835,9 +835,9 @@
   "checked": "2026-10-24"
  },
  "Bioengineers Without Borders": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_bwb",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "BioExplore at UW": {
   "handle": "uw_bioexplore",
@@ -2000,8 +2000,8 @@
   "checked": "2026-10-24"
  },
  "Gaming Association at UW": {
-  "handle": null,
-  "from": "guess-none",
+  "handle": "wgauw",
+  "from": "manual",
   "checked": "2026-11-05"
  },
  "Gamma Alpha Omega Sorority, Incorporated": {
@@ -2260,9 +2260,9 @@
   "checked": "2026-10-24"
  },
  "Hip Hop Student Association": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwhhsa",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Hispanic slash Latinx Organization for Nursing Students": {
   "handle": null,
@@ -2365,9 +2365,9 @@
   "checked": "2026-10-24"
  },
  "Huskies for Opportunities in Prison Education": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "hope.uw",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Huskies for Preborn Lives": {
   "handle": null,
@@ -2445,9 +2445,9 @@
   "checked": "2026-10-24"
  },
  "Husky Furry Club": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "hfclub.uw",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Husky Gaming Nation": {
   "handle": null,
@@ -2620,9 +2620,9 @@
   "checked": "2026-10-24"
  },
  "Husky Winter Sports": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "huskywintersports",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Husky Wrestling Club": {
   "handle": null,
@@ -3195,9 +3195,9 @@
   "checked": "2026-10-24"
  },
  "Makers at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "makers_uw",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Malaysian Student Association at the University of Washington": {
   "handle": null,
@@ -3695,9 +3695,9 @@
   "checked": "2026-10-24"
  },
  "Organic Steps": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "ostepsuw",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Organization of Hua Classmates": {
   "handle": "uwclassmates",
@@ -3900,9 +3900,9 @@
   "checked": "2026-10-24"
  },
  "Philosophy of Medicine": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "medphilosophyuw",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Physical Medicine and Rehabilitation Interest Group": {
   "handle": null,
@@ -4045,9 +4045,9 @@
   "checked": "2026-10-24"
  },
  "Product Space": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwproductspace",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Program on Climate Change Undergraduate Cohort": {
   "handle": null,
@@ -4740,9 +4740,9 @@
   "checked": "2026-10-24"
  },
  "Student Activities Office": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_sao",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Student Advocates for Immigrant Justice": {
   "handle": null,
@@ -5250,9 +5250,9 @@
   "checked": "2026-10-24"
  },
  "The Women’s Network at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "thewomensnetwork_uw",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "The Xochimeh of the North": {
   "handle": null,
@@ -5380,9 +5380,9 @@
   "checked": "2026-10-24"
  },
  "Undergraduate Theater Society": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_uts",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Undergraduate Women in Business ( UWiB )": {
   "handle": "uw_uwib",
@@ -5415,9 +5415,9 @@
   "checked": "2026-10-24"
  },
  "United Nations Association University of Washington Chapter": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "una.uwchapter",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "University District Street Medicine": {
   "handle": null,
@@ -5490,9 +5490,9 @@
   "checked": "2026-10-24"
  },
  "Viable Veganism at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "viableveganismuw",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Vietnam Health Clinic": {
   "handle": null,
@@ -5795,14 +5795,14 @@
   "checked": "2026-10-24"
  },
  "Woof3D": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "woof3d",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "Writers in Progress": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "writersinprogressuw",
+  "from": "manual",
+  "checked": "2026-11-05"
  },
  "xpress Dance Crew": {
   "handle": null,
