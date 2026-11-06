@@ -189,6 +189,15 @@ body {
   font-size: 14px;
 }
 
+.signin-pop .link-button {
+  color: var(--accent);
+}
+
+.signin-pop .signin-reason {
+  font-weight: 700;
+  color: var(--accent);
+}
+
 .signin-pop .signin-error {
   margin: 12px 0 0;
   color: var(--error);
@@ -1293,6 +1302,12 @@ select:focus-visible {
 }
 
 .member img,
+.member-role {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+}
+
 .member .avatar {
   width: 64px;
   height: 64px;
