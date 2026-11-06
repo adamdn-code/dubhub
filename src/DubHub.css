@@ -259,50 +259,89 @@ select:focus-visible {
   position: absolute;
   top: 16px;
   left: 16px;
-  text-align: center;
   z-index: 500;
-  width: 240px;
-  padding: 16px;
-  background: var(--purple);
-  border-radius: 12px;
-  box-shadow: 0 4px 18px rgba(30, 10, 70, 0.25);
+  width: 252px;
+  padding: 18px 18px 16px;
+  background: linear-gradient(160deg, var(--purple-mid) 0%, var(--purple) 70%);
+  border-top: 4px solid var(--gold);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(30, 10, 70, 0.35), 0 2px 6px rgba(30, 10, 70, 0.2);
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
+/* Small gold "Filters" above the title */
+.filters-eyebrow {
+  margin: 0 0 -8px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .filters h2 {
   margin: 0;
-  font-size: 16px;
+  color: #fff;
+  font-size: 19px;
+  line-height: 1.2;
 }
 
 .filters label {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  font-size: 13px;
-  font-weight: 600;
+  gap: 5px;
+  color: #e6dcf7;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
+/* Bright fields that stand out on the purple; a changed filter gets a gold edge. */
 .filters select {
+  appearance: none;
   font: inherit;
-  padding: 7px;
-  border: 1px solid var(--field-line);
-  border-radius: 8px;
-  background: var(--purple);
-  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  padding: 8px 32px 8px 11px;
+  border: 2px solid transparent;
+  border-radius: 9px;
+  background: #fff
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234b2e83' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    no-repeat right 11px center;
+  color: var(--purple);
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-.filters label {
-  color: var(--gold);
+.filters select:hover {
+  box-shadow: 0 0 0 3px rgba(183, 165, 122, 0.45);
 }
 
-.filters h2 {
-  color: #fff;
+.filters select:focus-visible {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(183, 165, 122, 0.55);
+}
+
+.filters select.set {
+  border-color: var(--gold);
+  background-color: #fbf7ea;
 }
 
 .filters .count {
   color: #d9d0ee;
+}
+
+.filters .count:last-child {
+  margin-top: 2px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: center;
 }
 
 .count {

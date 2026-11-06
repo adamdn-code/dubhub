@@ -539,6 +539,7 @@ function useEvents() {
 
 // "When" choices: how many days after today each one reaches (rolling, so "This week" is always 7 days).
 const WHEN_DAYS = { Today: 0, "This week": 6, "This month": 30, "Any time": null };
+const DEFAULT_WHEN = "This week";
 
 // "YYYY-MM-DD" for today plus `days`, in the viewer's own time zone.
 function localDate(days = 0) {
@@ -596,7 +597,7 @@ function eventColor(e) {
 // Scraped events have no class year, so they're open to every year. A major (or field) choice
 // shows events in that major's field, e.g. Mechanical Engineering -> Engineering.
 function useFilteredEvents(all) {
-  const [when, setWhen] = useState("This week");
+  const [when, setWhen] = useState(DEFAULT_WHEN);
   const [type, setType] = useState("All");
   const [year, setYear] = useState("All");
   const [major, setMajor] = useState("Any major");
@@ -619,16 +620,17 @@ function Filters({ f }) {
   const onMap = f.events.filter((e) => e.pos).length;
   return (
     <aside className="filters" aria-label="Event filters">
+      <p className="filters-eyebrow">Filters</p>
       <h2>Find something to do</h2>
 
       <label>
         When
-        <WhenSelect value={f.when} onChange={f.setWhen} />
+        <WhenSelect value={f.when} onChange={f.setWhen} className={f.when !== DEFAULT_WHEN ? "set" : undefined} />
       </label>
 
       <label>
         Event type
-        <select value={f.type} onChange={(e) => f.setType(e.target.value)}>
+        <select value={f.type} onChange={(e) => f.setType(e.target.value)} className={f.type !== "All" ? "set" : undefined}>
           <option>All</option>
           {Object.keys(TYPE_COLORS).map((t) => (
             <option key={t}>{t}</option>
@@ -638,7 +640,7 @@ function Filters({ f }) {
 
       <label>
         Class year
-        <select value={f.year} onChange={(e) => f.setYear(e.target.value)}>
+        <select value={f.year} onChange={(e) => f.setYear(e.target.value)} className={f.year !== "All" ? "set" : undefined}>
           <option>All</option>
           {YEARS.map((y) => (
             <option key={y}>{y}</option>
@@ -648,7 +650,7 @@ function Filters({ f }) {
 
       <label>
         Major
-        <MajorSelect value={f.major} onChange={f.setMajor} />
+        <MajorSelect value={f.major} onChange={f.setMajor} className={f.major !== "Any major" ? "set" : undefined} />
       </label>
       {f.major !== "Any major" && (
         <p className="count">
