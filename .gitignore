@@ -27,3 +27,6 @@ dist-ssr
 scraper/state/
 __pycache__/
 scraper/.env
+
+.vercel
+.env*
