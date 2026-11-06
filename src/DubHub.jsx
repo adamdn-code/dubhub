@@ -263,16 +263,12 @@ const TEAM = [
 const THEME_KEY = "dubhub-theme";
 const darkQuery = () => window.matchMedia("(prefers-color-scheme: dark)");
 
-// Light, dark or party: follows the device (light or dark) until someone picks one with the
-// top-bar button, then remembers that choice in this browser. Sets <html data-theme>, which
-// DubHub.css reads.
-const THEMES = ["light", "dark", "party"];
-
+// Light or dark: follows the device until someone picks one with the top-bar button, then
+// remembers that choice in this browser. Sets <html data-theme>, which DubHub.css reads.
 function useTheme() {
   const [choice, setChoice] = useState(() => {
     try {
-      const saved = localStorage.getItem(THEME_KEY);
-      return THEMES.includes(saved) ? saved : null;
+      return localStorage.getItem(THEME_KEY);
     } catch {
       return null;
     }
@@ -291,9 +287,9 @@ function useTheme() {
     else delete document.documentElement.dataset.theme;
   }, [choice]);
 
-  const theme = choice ?? (deviceDark ? "dark" : "light");
-  const next = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length];
-  const cycle = () => {
+  const dark = choice ? choice === "dark" : deviceDark;
+  const toggle = () => {
+    const next = dark ? "light" : "dark";
     setChoice(next);
     try {
       localStorage.setItem(THEME_KEY, next);
@@ -301,24 +297,17 @@ function useTheme() {
       // Private browsing can block storage; the choice still lasts until the page closes.
     }
   };
-  return { theme, next, cycle };
+  return { dark, toggle };
 }
 
 const SUN = "M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4";
 const MOON = "M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z";
-const SPARKLES = "M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 15l.6 1.4L7 17l-1.4.6L5 19l-.6-1.4L3 17l1.4-.6z";
-const THEME_BUTTON = {
-  light: { icon: SUN, name: "light mode" },
-  dark: { icon: MOON, name: "dark mode" },
-  party: { icon: SPARKLES, name: "party mode" },
-};
 
-// Shows what the next click switches to: light -> dark -> party -> light.
-function ThemeToggle({ next, onCycle }) {
-  const label = `Switch to ${THEME_BUTTON[next].name}`;
+function ThemeToggle({ dark, onToggle }) {
+  const label = dark ? "Switch to light mode" : "Switch to dark mode";
   return (
-    <button className="theme-toggle" onClick={onCycle} aria-label={label} title={label}>
-      <Icon d={THEME_BUTTON[next].icon} />
+    <button className="theme-toggle" onClick={onToggle} aria-label={label} title={label}>
+      <Icon d={dark ? SUN : MOON} />
     </button>
   );
 }
@@ -2008,7 +1997,7 @@ export default function DubHub() {
           ))}
         </nav>
         <div className="nav-end">
-          <ThemeToggle next={theme.next} onCycle={theme.cycle} />
+          <ThemeToggle dark={theme.dark} onToggle={theme.toggle} />
           <Account user={user} onOpenSignIn={() => openSignIn()} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
         </div>
       </header>
