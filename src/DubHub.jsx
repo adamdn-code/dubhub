@@ -679,7 +679,7 @@ function JoinButton({ event, j }) {
 
 // "12 going", or null for scraped events, which have no real attendance numbers.
 function going(event, j) {
-  if (event.going == null) return null;
+  if (event.going == null) return event.likes ? `${event.likes} likes` : null; // Instagram events: post likes
   return `${event.going + (j.joined.includes(event.id) ? 1 : 0)} going`;
 }
 
@@ -1075,10 +1075,10 @@ function EventList({ events, j, onSelect, columns = 2 }) {
   ));
 }
 
-// Most popular first by "going" count. Scraped events have no counts yet,
-// so they rank after counted events, soonest first.
+// Most popular first: by "going" count, or for Instagram events by how many liked the post.
+// Events with neither (HuskyLink's) rank after them, soonest first.
 function trending(events, j, limit = 5) {
-  const count = (e) => (e.going == null ? -1 : e.going + (j.joined.includes(e.id) ? 1 : 0));
+  const count = (e) => (e.going == null ? e.likes ?? -1 : e.going + (j.joined.includes(e.id) ? 1 : 0));
   const when = (e) => `${e.date ?? "9999"}T${e.start ?? ""}`;
   return [...events].sort((a, b) => count(b) - count(a) || when(a).localeCompare(when(b))).slice(0, limit);
 }

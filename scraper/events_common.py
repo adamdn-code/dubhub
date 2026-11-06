@@ -39,6 +39,9 @@ CLUB_FIELDS_FILE = HERE / "club_fields.json"      # AI-sorted major fields per c
 CLUB_ALIASES_FILE = HERE / "club_aliases.txt"     # Instagram handle -> HuskyLink club name, by hand
 HUSKYLINK_FILE = HERE / "huskylink.json"  # huskylink_scraper.py output; on GitHub so every scraper sees it
 CLUB_INSTAGRAM_FILE = HERE / "club_instagram.json"  # find_instagram_handles.py output: club name -> handle
+# Instagram's picture links expire after a few days, so the site serves its own copies (on GitHub).
+IG_POST_IMAGES = HERE.parent / "public" / "ig" / "posts"  # <post code>.jpg, only posts with upcoming events
+IG_CLUB_IMAGES = HERE.parent / "public" / "ig" / "clubs"  # <handle>.jpg, each club's profile picture
 
 
 def _load_env_file():
@@ -159,6 +162,33 @@ def parse_posted(text):
         return None
 
 
+INSTAGRAM_EPOCH_MS = 1314220021721  # the moment Instagram's media IDs count from (Aug 24, 2011)
+
+
+def instagram_post_date(media_id):
+    """An Instagram post's ID -> the Seattle date it was posted. The ID's top bits are the
+    milliseconds since INSTAGRAM_EPOCH_MS, so no extra request is needed."""
+    try:
+        ms = (int(str(media_id).split("_")[0]) >> 23) + INSTAGRAM_EPOCH_MS
+    except (TypeError, ValueError):
+        return None
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.fromtimestamp(ms / 1000, ZoneInfo("America/Los_Angeles")).date()
+    except Exception:
+        return datetime.fromtimestamp(ms / 1000).date()
+
+
+def picture_text(alt):
+    """Instagram's description of a post's picture, minus its 'Photo by X on <date>.' opener
+    (that's when it was posted, not the event date). Often keeps a flyer's text:
+    "May be an image of text that says 'GENERAL MEETING THURS 7PM HUB 145'"."""
+    text = re.sub(r"^(Photo|Video|Reel)( shared)? by .*? on \w+ \d{1,2}, \d{4}( tagging [^.]*)?\.?\s*", "",
+                  (alt or "").strip())
+    # Only worth keeping when it quotes the picture's text; "May be a graphic of poster and text" isn't.
+    return text if "says" in text else None
+
+
 def next_weekday(day_string, after):
     """'Friday' / 'this Fri' -> the first such day on or after `after`."""
     m = re.search(WEEKDAYS, day_string, re.I)
@@ -215,7 +245,8 @@ def looks_like_uw_seattle(post):
 
 def keyword_extract(post):
     """Best-effort event from a caption without AI: one event, needs a date."""
-    caption = post["caption"]
+    # A flyer's text (from Instagram's picture description) often has the date and place.
+    caption = "\n".join(filter(None, [post["caption"], post.get("image_text")]))
     if post["source"] != "instagram" and not looks_like_uw_seattle(post):
         return []
     if not EVENT_WORDS.search(caption) and not extract_days(caption):
@@ -283,6 +314,7 @@ def ai_prompt(batch):
         f"Known UW club: {'yes' if p['source'] == 'instagram' else 'no, check'}\n"
         f"Posted: {p['posted'].strftime('%A, %B %d, %Y') if p['posted'] else 'unknown'}\n"
         f"Caption: {p['caption'][:1500]}"
+        + (f"\nText in the picture: {p['image_text'][:500]}" if p.get("image_text") else "")
         for i, p in enumerate(batch)
     )
     return f"""Today is {TODAY:%A, %B %d, %Y}. Below are Instagram posts from University of Washington clubs.
@@ -296,6 +328,8 @@ Rules:
   Husky in the club name or handle, a UW building, or Seattle). UW Seattle uses quarters, so a
   post about a "semester" is from another school.
 - Some captions are cut-off Google search snippets; only use what's actually written.
+- "Text in the picture" is the text on the post's flyer (from Instagram's picture description);
+  use it together with the caption, since the date, time or room is often only on the flyer.
 - Only real events people attend (meetings, socials, workshops, games, performances...).
 - Skip application/form deadlines, recruiting forms, giveaways, and recaps of past events.
 - Work out relative dates ("this Friday", "tomorrow") from the post's Posted date.
@@ -455,6 +489,9 @@ def process_posts(posts, store):
                 "caption": post["caption"][:2000],
                 "events": events,
                 "found_with": mode,
+                # From Instagram, when the scraper saw them: the picture's (expiring) link, the
+                # flyer's text and the like count (for Trending).
+                **{k: post[k] for k in ("image_src", "image_text", "likes") if post.get(k) is not None},
             }
         if found and i + AI_BATCH < len(posts) and mode == "ai":
             time.sleep(3)  # stay under Groq's free per-minute limit
@@ -466,7 +503,8 @@ def redo_keyword_posts(store):
         return
     redo = [
         {"key": k, "club": v["club"], "caption": v["caption"], "url": v["url"], "source": v["source"],
-         "posted": date.fromisoformat(v["posted"]) if v["posted"] else None}
+         "posted": date.fromisoformat(v["posted"]) if v["posted"] else None,
+         **{f: v[f] for f in ("image_src", "image_text", "likes") if v.get(f) is not None}}
         for k, v in store.items()
         if v.get("found_with") == "keywords" and (v.get("posted") or "9999") >= (TODAY - timedelta(days=LOOKBACK_DAYS)).isoformat()
     ]
@@ -480,18 +518,74 @@ def not_uw_clubs(store):
     return {p["club"] for p in store.values() if p["source"] != "instagram" and NOT_UW_SIGNS.search(p["caption"])}
 
 
+GENERIC_TITLE = "Club Event"  # what keyword matching calls an event it can't name (see TITLE_KEYWORDS)
+
+
 def drop_duplicate_events(events):
     """Clubs often post the same event twice (a schedule, then a reminder). Keep one per
-    club, date and title: the copy with the most details (place, map pin, times)."""
+    club, date and title: the copy with the most details (place, map pin, times). A keyword-found
+    "Club Event" on a day the same club has a properly named event is that event too. The kept
+    copy takes the picture and like count of the copies it replaces when it has none."""
+    club_day = lambda e: (parse_host(e["host"])[1] or (e["host"] or "").lower(), e["date"])
     best = {}
     for e in events:
-        handle = parse_host(e["host"])[1] or (e["host"] or "").lower()
-        key = (handle, e["date"], re.sub(r"[^a-z0-9]", "", e["title"].lower()))
-        details = sum(e[field] is not None for field in ("where", "pos", "start", "end"))
+        key = (*club_day(e), re.sub(r"[^a-z0-9]", "", e["title"].lower()))
+        details = sum(e.get(field) is not None for field in ("where", "pos", "start", "end"))
         if key not in best or details > best[key][0]:
             best[key] = (details, e)
-    keep = {id(e) for _, e in best.values()}
+    kept = [e for _, e in best.values()]
+    named = {}
+    for e in kept:
+        if e["title"] != GENERIC_TITLE:
+            named.setdefault(club_day(e), []).append(e)
+    kept = [e for e in kept if not (e["title"] == GENERIC_TITLE and club_day(e) in named)]
+
+    for e in events:  # hand extras from dropped copies to the copy that stays
+        title = re.sub(r"[^a-z0-9]", "", e["title"].lower())
+        if e["title"] == GENERIC_TITLE and len(named.get(club_day(e), [])) == 1:
+            target = named[club_day(e)][0]
+        else:
+            target = best[(*club_day(e), title)][1]
+        if target is not e:
+            for field in ("image", "likes"):
+                if target.get(field) is None and e.get(field) is not None:
+                    target[field] = e[field]
+    keep = {id(e) for e in kept}
     return [e for e in events if id(e) in keep]
+
+
+def save_post_image(key, post):
+    """Keep the site's own copy of a post's picture (Instagram's links expire within days).
+    Returns its path on the site, or None."""
+    path = IG_POST_IMAGES / f"{key}.jpg"
+    if not path.exists() and post.get("image_src") and re.fullmatch(r"[\w-]+", key):
+        try:
+            r = requests.get(post["image_src"], headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
+            if r.ok and r.headers.get("content-type", "").startswith("image/"):
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(r.content)
+        except requests.RequestException:
+            pass  # the event just shows without a picture
+    return f"/ig/{path.parent.name}/{path.name}" if path.exists() else None
+
+
+def drop_unused_post_images(events):
+    """Delete saved post pictures whose events have all passed."""
+    used = {e["image"].rsplit("/", 1)[-1] for e in events if (e.get("image") or "").startswith("/ig/posts/")}
+    for f in IG_POST_IMAGES.glob("*.jpg"):
+        if f.name not in used:
+            f.unlink()
+
+
+def others_events(store):
+    """Upcoming Instagram/Google events already on the site from posts this computer's scraper
+    has never seen (someone else ran it), so a run here adds to them instead of wiping them."""
+    try:
+        site = json.loads(SITE_EVENTS_FILE.read_text(encoding="utf-8")).get("events", [])
+    except (FileNotFoundError, ValueError):
+        return []
+    return [e for e in site if e.get("source") in ("instagram", "google") and e.get("date", "") >= TODAY.isoformat()
+            and e["id"].rsplit("-", 1)[0] not in store]
 
 
 def write_site_events(store):
@@ -518,8 +612,11 @@ def write_site_events(store):
                 "source": post["source"],
                 # The post's caption, shown when someone opens the event on the site.
                 "description": (post.get("caption") or "").strip() or None,
+                "image": save_post_image(key, post),
+                "likes": post.get("likes"),
             })
-    events = merge_huskylink_events(drop_duplicate_events(events))
+    events = merge_huskylink_events(drop_duplicate_events(events + others_events(store)))
+    drop_unused_post_images(events)
     SITE_EVENTS_FILE.parent.mkdir(exist_ok=True)
     SITE_EVENTS_FILE.write_text(
         json.dumps({"updated": datetime.now().isoformat(timespec="minutes"), "events": events},
@@ -627,14 +724,24 @@ def write_site_clubs(store):
         if post["caption"]:
             posts.setdefault(handle, []).append(post["caption"])
 
+    # What the site already says about each club. Someone else's run may have added clubs (and
+    # summarized them) that this computer's scraper has never seen; keep those instead of
+    # dropping or renaming them. Joined clubs are remembered by name, so names must stay put.
+    try:
+        site = {c.get("handle"): c for c in json.loads(SITE_CLUBS_FILE.read_text(encoding="utf-8"))["clubs"]}
+    except (FileNotFoundError, ValueError, KeyError):
+        site = {}
+    on_site = sorted(h for h, c in site.items() if h and c.get("source") != "huskylink")
+
     found = {parse_host(p["club"])[1] for p in store.values() if p.get("events") and p["club"] not in not_uw}
-    handles = list(dict.fromkeys(read_club_handles() + sorted(h for h in found if h)))
+    handles = list(dict.fromkeys(read_club_handles() + sorted(h for h in found if h) + on_site))
 
     clubs = []
     for h in handles:
-        prof = profiles.get(h, {})
-        clubs.append({"handle": h, "name": prof.get("name") or names.get(h) or f"@{h}",
-                      "bio": prof.get("bio"), "website": prof.get("website"), "posts": posts.get(h, [])[:3]})
+        prof, old = profiles.get(h, {}), site.get(h, {})
+        name = prof.get("name") or names.get(h) or (old.get("name") if h in on_site else None) or f"@{h}"
+        clubs.append({"handle": h, "name": name, "bio": prof.get("bio"),
+                      "website": prof.get("website") or old.get("website"), "posts": posts.get(h, [])[:3]})
 
     # Only ask the AI about clubs whose name/bio/posts changed since last time, and skip clubs
     # we know nothing about yet (just a handle), so it can't guess from the letters.
@@ -658,7 +765,8 @@ def write_site_clubs(store):
 
     out = []
     for c in clubs:
-        i = info.get(c["handle"], {})
+        i = info.get(c["handle"]) or {k: v for k, v in site.get(c["handle"], {}).items()
+                                      if k in ("category", "about", "description") and v}
         out.append({
             "name": c["name"],
             "handle": c["handle"],
@@ -666,8 +774,9 @@ def write_site_clubs(store):
             "website": c["website"],
             "category": i.get("category") or "Other",
             "about": i.get("about") or (c["bio"] or "").split("\n")[0][:120] or None,
-            # A longer description only when there's a real bio or posts behind it, not just a name.
-            "description": (i.get("description") or c["bio"]) if (c["bio"] or c["posts"]) else None,
+            # A summary (only ever written from a real bio or posts, never just a name), else the bio.
+            "description": i.get("description") or c["bio"] or None,
+            "logo": club_picture(c["handle"]),
         })
     record_activity((p["club"], e["date"]) for p in store.values() if p["club"] not in not_uw
                     for e in p.get("events") or [])
@@ -713,6 +822,12 @@ def read_club_aliases():
     return aliases
 
 
+def club_picture(handle):
+    """The site path of a club's saved Instagram profile picture, or None."""
+    path = IG_CLUB_IMAGES / f"{handle}.jpg"
+    return f"/ig/clubs/{path.name}" if handle and path.exists() else None
+
+
 def found_instagram_handles():
     """HuskyLink club name -> Instagram handle, for clubs find_instagram_handles.py found one for."""
     return {name: v["handle"] for name, v in _load(CLUB_INSTAGRAM_FILE, {}).items() if v.get("handle")}
@@ -732,7 +847,8 @@ def merge_huskylink_clubs(clubs):
     for h in load_huskylink()["clubs"]:
         handle = handles.get(h["name"])
         if handle:
-            h = {**h, "handle": handle, "instagram": f"https://www.instagram.com/{handle}/"}
+            h = {**h, "handle": handle, "instagram": f"https://www.instagram.com/{handle}/",
+                 "logo": h.get("logo") or club_picture(handle)}
         c = by_handle.get(handle) or by_name.get(club_key(h["name"]))
         if c is None:
             clubs.append({**h, "source": "huskylink"})

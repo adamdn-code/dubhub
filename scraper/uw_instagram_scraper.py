@@ -42,12 +42,14 @@ import instaloader
 import requests
 
 import uw_event_scraper
+from instagram_public_scraper import picture_url
 from events_common import (
     LOOKBACK_DAYS,
     STATE_DIR,
     TODAY,
     found_instagram_handles,
     load_store,
+    picture_text,
     process_posts,
     redo_keyword_posts,
     save_club_profile,
@@ -138,6 +140,7 @@ def scrape_instagram(store):
                     if pinned:
                         continue
                     break
+                node = post._node  # read straight from what's loaded; some properties cost a request
                 posts.append({
                     "key": post.shortcode,
                     "club": club,
@@ -145,6 +148,9 @@ def scrape_instagram(store):
                     "posted": post.date_utc.date(),
                     "url": f"https://www.instagram.com/p/{post.shortcode}/",
                     "source": "instagram",
+                    "image_src": picture_url(node),
+                    "image_text": picture_text(node.get("accessibility_caption")),
+                    "likes": node.get("like_count") or (node.get("edge_media_preview_like") or {}).get("count"),
                 })
                 new += 1
             print(f"[{i + 1}/{len(handles)}] {handle}: {new} new post(s)")
