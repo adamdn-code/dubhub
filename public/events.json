@@ -1,81 +1,6 @@
 {
- "updated": "2026-11-04T07:15",
+ "updated": "2026-11-05T17:08",
  "events": [
-  {
-   "id": "hl-375053",
-   "title": "UNA UW Chapter Meeting",
-   "type": "Club",
-   "host": "United Nations Association University of Washington Chapter",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-04",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/unauw/rsvp?id=375053",
-   "source": "huskylink",
-   "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!",
-   "image": null
-  },
-  {
-   "id": "hl-375242",
-   "title": "Commander Night at the Hub!",
-   "type": "Game night",
-   "host": "WGA Magic: The Gathering",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-04",
-   "start": "18:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375242",
-   "source": "huskylink",
-   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_Magic_The_Gathering_Commander_2015_logojpg_a7d6e719-41a9-4aa8-9637-b06d03cff3d9_1092025.jpeg"
-  },
-  {
-   "id": "hl-375422",
-   "title": "American Cancer Society General Meeting - Trivia",
-   "type": "Club",
-   "host": "American Cancer Society On Campus",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-04",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/acsuw/rsvp?id=375422",
-   "source": "huskylink",
-   "description": "Come join ACS (also commonly known as Relay for Life) for our November general meeting! You'll get the opportunity to learn about our club and our committees, play some fun trivia for a prize, and meet new people. Anyone is welcome to come!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_638304_race160643social382x200bL07xMjpg_1f431820-1749-462b-bd40-58e770571ae0_102220535.jpeg"
-  },
-  {
-   "id": "hl-375370",
-   "title": "Large Group",
-   "type": "Club",
-   "host": "Asian American Christian Fellowship",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-04",
-   "start": "19:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375370",
-   "source": "huskylink",
-   "description": "Weekly gathering that brings together the entire community of AACF for worship, teaching, and community-building activities.\nCheck our Instagram @uwaacf for details! Locations may be subject to change each week.",
-   "image": null
-  },
-  {
-   "id": "hl-375469",
-   "title": "ASL Trivia and Game Night",
-   "type": "Game night",
-   "host": "American Sign Language Club at University of Washington",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-04",
-   "start": "19:00",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/aslcub/rsvp?id=375469",
-   "source": "huskylink",
-   "description": "Join us for a night of Deaf Culture trivia, board games, and card games!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_608390_4E3D1DC3851A486BB6D826F8E33864F2_4_5005_cjpg_427fa51b-6bc1-40ca-8f0e-71d2480ec7f5_111154722.jpeg"
-  },
   {
    "id": "hl-375337",
    "title": "RSO Drop-In Advising",
@@ -237,6 +162,23 @@
    "url": "https://www.instagram.com/p/DeajhNEmhDW/",
    "source": "instagram",
    "description": "Get ready for THE PRODUCT GAMES! 🚀🎯🏹\n\nRegistration is now OPEN for The Product Games, a one-day product competition combining the strategy of a case competition with the rapid building of a hackathon! \n\nWork in teams of 4 to tackle a real-world product challenge, build an innovative solution, and pitch your ideas to industry judges! Plus, enjoy free food, swag, mentorship, networking opportunities, and a chance to win prizes! 🏆\n\nEvent Details:\n📅 Date: Saturday, November 7 | 9 AM – 5:30 PM\n📍 Location: Founders Hall, UW\n👥 Eligibility: Open to all UW students, regardless of major or experience\n🔗 Applications are OPEN NOW, and close October 26 at 11:59 PM\n\nSpots are limited, so don’t miss your chance! Apply through the link in our bio or scan the QR code to register!"
+  },
+  {
+   "id": "DfSb8hrA9hc-0",
+   "title": "Intro to Claude Code",
+   "type": "Club",
+   "host": "Claude Builder Club @ UW (@claude.uofwa)",
+   "where": "HSEB 101",
+   "pos": [
+    47.65164,
+    -122.31052
+   ],
+   "date": "2026-11-09",
+   "start": "17:30",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/DfSb8hrA9hc/",
+   "source": "instagram",
+   "description": "‼️RSVP on all sides is closed, we received 150 sign up in 24 hours we do not have any more space‼️\n\n🧡 Intro to Claude Code 🧡\n\nCBC, NSBE, SHPE, and ColorStack are teaming up to show you how to build with Claude Code, an AI coding agent that works right alongside you.\n\nWhat’s happening:\n\n→ Learn what Claude Code can do\n→ See live demos\n→ Get hands-on and build with it yourself\n\n🎁 Free Claude Pro + Uber One for attendees\n☕ Food and drinks from Starbucks and Uber Eats\n\n📅 Monday, Nov. 9\n⏰ 5:30–7:00 PM\n📍 HSEB 101 or Health Science Education Building\n\n⚡ Priority RSVP by 9 AM on 11/5. This will be a popular event, so depending on demand we might have to cap attendance! Link in bio!\n\nNo coding experience needed. Bring a laptop and a friend. 💻\n\n#ClaudeCode #NSBE #SHPE #colorstack"
   },
   {
    "id": "hl-375142",
@@ -517,6 +459,23 @@
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png"
   },
   {
+   "id": "DfAs_UYMODt-0",
+   "title": "TA Social",
+   "type": "Hangout",
+   "host": "Association for Computing Education (@ace_uw)",
+   "where": "CSE1 305 (Allen)",
+   "pos": [
+    47.65323,
+    -122.3059
+   ],
+   "date": "2026-11-19",
+   "start": "15:00",
+   "end": "16:00",
+   "url": "https://www.instagram.com/p/DfAs_UYMODt/",
+   "source": "instagram",
+   "description": "Join us for the Association for Computing Education (ACE) monthly TA Social: November edition!\n\nCome take a break and join us for plenty of snacks, a huge selection of board games and playing cards (like Jenga, Scrabble, UNO, and Monopoly) and our creative activities of the month: rhinestoning, loom bracelet making, painting, fuse beading, and other arts and crafts! This is the perfect time to make friends, bond, and enjoy some great company.\n\nWhether you are a TA, are considering becoming one, or simply want to mingle with the computing education community, the ACE team welcomes you! This event is open to everyone.\n\n📅 Date: Thursday, November 19th\n🕔 Time: 3:00 PM - 4:00 PM\n📍 Location: CSE1 305 (Allen)\n*Please remember to RSVP at the link in our bio!*\n\n- ACE Officers\n\nIf you have any questions or concerns, please don’t hesitate to contact us at ace-officers@cs.washington.edu. ACE is committed to providing access, equal opportunity, and reasonable accommodation for our events, programs, activities, and education for individuals with disabilities (with advance notice). Please reach out to Linda Taing, Senior Student Leadership Development Specialist, directly at lindavt@cs.washington.edu if you have any questions or requests.\n\nImage Description:\nFlyer for the Association for Computing Education’s November TA Social event. The flyer contains photos from a previous event, including: members in a classroom engaged in their activities with a man standing up with his arms spread out; a bowl of plastic beads; friendship bracelets; a bedazzled tin of mints; and fuse bead creations such as a sword with a heart and a butterfly. The text around the flyer reads: TA Social November Edition; take a break from work, join us in our monthly TA social!;board games, arts & crafts; open to everyone!; Thursday, November 19th; CSE1 (Allen) 305; 3-4 PM."
+  },
+  {
    "id": "hl-375478",
    "title": "Trans Day of Remembrance Vigil",
    "type": "Club",
@@ -581,6 +540,23 @@
    "source": "huskylink",
    "description": "It is nearly the end of the quarter, and it is time to see how strong you have become! Join us at the IMA for a day dedicated to beating personal records. Spotters will be available, and blood will be pumping.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png"
+  },
+  {
+   "id": "DfA85MuhM0V-0",
+   "title": "Computing Bee",
+   "type": "Club",
+   "host": "Association for Computing Education (@ace_uw)",
+   "where": "Gates Common (CSE1 691)",
+   "pos": [
+    47.65323,
+    -122.3059
+   ],
+   "date": "2026-12-01",
+   "start": "16:00",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/DfA85MuhM0V/",
+   "source": "instagram",
+   "description": "Think you can spell out the perfect end to your quarter? The Association for Computing Education (ACE) is wrapping up the quarter with our first-ever Computing Bee.\n\nTo unwind right before dead week, we are putting together a fun computing education twist on the classic spelling bee. You and a group will team up to compete in a thrilling series of computing-themed games, earning points along the way to win some awesome prizes. Prizes will range from squish toys and goodie bags, all the way up to the ultimate prize: getting to pie our ACE President, Nichole!\n\nSo whether you are yearning for the title of first place, want to participate in some fun games, or simply want to destress from exams, come take a break and join us for plenty of snacks, drinks, prizes, and fun! Everyone is welcome!\n\n📅 Date: Tuesday, December 1st\n🕔 Time: 4:00 PM to 6:30 PM\n📍 Location: Gates Common (CSE1 691)\n*Please remember to RSVP at the link in our bio!*\n\n- ACE Officers\n\nIf you have any questions or concerns, please don’t hesitate to contact us at ace-officers@cs.washington.edu. ACE is committed to providing access, equal opportunity, and reasonable accommodation for our events, programs, activities, and education for individuals with disabilities (with advance notice). Please reach out to Linda Taing, Senior Student Leadership Development Specialist, directly at lindavt@cs.washington.edu if you have any questions or requests.\n\nImage description: \nFlyer for the Association for Computing Education's Computing Bee Event. The flyer contains ASCII depiction of a cartoon bee head and its stinger. The title \"Computing Bee\" is stylized to resemble a JSX object. There is a message in binary that reads \"Buzz\" and a few lines of Python code initializing variables for the event's date and time. The text around the flyer reads: Press the buzzer when you know the answer; Computing Bee; Team up and compete in our end-of-quarter computing related games to win prizes and pie our president; Tuesday, December"
   },
   {
    "id": "DePafArhcs1-2",

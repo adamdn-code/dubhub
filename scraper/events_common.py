@@ -70,7 +70,7 @@ MAJOR_FIELDS = ["Engineering", "Computing & Math", "Sciences", "Health", "Social
 ACTIVE_DAYS = 365  # clubs with an event in this long are "active"
 # True: the site lists every club, active ones first. False: only active clubs are listed.
 # After changing it: python events_common.py, then push public/clubs.json.
-SHOW_INACTIVE_CLUBS = True
+SHOW_INACTIVE_CLUBS = False
 
 # Seattle, same box the website's map is limited to.
 SEATTLE_BOUNDS = (47.48, -122.46, 47.74, -122.22)

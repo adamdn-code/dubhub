@@ -39,6 +39,7 @@ from datetime import datetime, timedelta
 from itertools import islice
 
 import instaloader
+import requests
 
 import uw_event_scraper
 from events_common import (
@@ -187,9 +188,12 @@ def main():
     if blocked:
         if uw_event_scraper.SERPAPI_KEY:
             print("Trying Google search instead...")
-            google_posts = uw_event_scraper.collect(set(store) | {p["key"] for p in posts})
-            print(f"Google: {len(google_posts)} new post(s).")
-            posts += google_posts
+            try:
+                google_posts = uw_event_scraper.collect(set(store) | {p["key"] for p in posts})
+                print(f"Google: {len(google_posts)} new post(s).")
+                posts += google_posts
+            except requests.RequestException as e:  # e.g. no internet: still save what Instagram gave us
+                print(f"Google search failed ({str(e)[:120]}).")
         else:
             print("(Set SERPAPI_KEY to automatically use Google search when this happens.)")
 
