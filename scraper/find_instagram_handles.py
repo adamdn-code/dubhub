@@ -63,7 +63,17 @@ def name_match(handle, name):
         (len(acronym) >= 3 and acronym in flat) * 2
 
 
-UW_HANDLE = re.compile(r"uw|husk|dub|dawg|seattle|washington", re.I)
+UW_HANDLE = re.compile(r"uw|husk|dub|dawg|washington", re.I)
+# Other Seattle schools: Seattle University, Seattle Pacific, Seattle Central and the city colleges.
+OTHER_SCHOOL = re.compile(r"seattleu|seattlepacific|\bspu|spu\b|seattlecentral|seattlecolleges", re.I)
+
+
+def uw_sounding(handle, name):
+    """Whether a handle found on a club's website sounds like the UW club's own: "uw", "husky"
+    and so on, or "seattle" plus the club's name (plain "seattle" is often a city-wide group)."""
+    if OTHER_SCHOOL.search(handle):
+        return False
+    return bool(UW_HANDLE.search(handle)) or ("seattle" in handle.lower() and name_match(handle, name) > 0)
 
 
 def score(handle, name):
@@ -88,7 +98,7 @@ def from_website(club):
     if not r.ok:
         return None
     # Websites often link a national organization's account too; only a UW-sounding handle is the club's.
-    return best_handle([h for h in IG_LINK.findall(r.text) if UW_HANDLE.search(h)], club["name"])
+    return best_handle([h for h in IG_LINK.findall(r.text) if uw_sounding(h, club["name"])], club["name"])
 
 
 def find(club):
