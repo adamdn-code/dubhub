@@ -327,6 +327,49 @@ function useJoined(key) {
   return { joined, toggle };
 }
 
+// Your joined events (kept on this device, as before) plus who's going to each event. Signed in,
+// Join also adds your name to the event on the server, so everyone can see you're going.
+function useGoing(user, events) {
+  const local = useJoined(JOINED_KEY);
+  const [names, setNames] = useState({});
+  const ids = useMemo(() => events.map((e) => e.id).join(","), [events]);
+
+  useEffect(() => {
+    let cancelled = false;
+    const list = ids ? ids.split(",") : [];
+    for (let i = 0; i < list.length; i += 100) {
+      fetch(`/api/going?ids=${encodeURIComponent(list.slice(i, i + 100).join(","))}`)
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => !cancelled && d?.going && setNames((n) => ({ ...n, ...d.going })))
+        .catch(() => {});
+    }
+    return () => {
+      cancelled = true;
+    };
+  }, [ids]);
+
+  const { joined, toggle: toggleLocal } = local;
+  const token = user?.token;
+  const toggle = useCallback(
+    (id) => {
+      const joining = !joined.includes(id);
+      toggleLocal(id);
+      if (!token) return;
+      fetch("/api/going", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ eventId: String(id), going: joining }),
+      })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => d && setNames((n) => ({ ...n, [id]: d.going })))
+        .catch(() => {});
+    },
+    [joined, toggleLocal, token]
+  );
+
+  return { joined, toggle, names, shared: Boolean(token) };
+}
+
 // Sign-in uses Google, limited to UW's Google accounts (@uw.edu).
 // Set VITE_GOOGLE_CLIENT_ID in .env.local. This check runs in the browser only,
 // so a backend must verify the ID token before trusting it for anything important.
@@ -407,6 +450,16 @@ function SignIn({ user, onSignIn, onSignOut, onOpenProfile }) {
         setOpen(false);
         const u = { name: p.name, email: p.email, picture: p.picture };
         onSignIn(u);
+        // The server checks the sign-in and returns a token for RSVPs (shown names on events).
+        // Without it (server not set up, offline), joins just stay on this device.
+        fetch("/api/session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ credential }),
+        })
+          .then((r) => (r.ok ? r.json() : null))
+          .then((d) => d?.token && onSignIn({ ...u, token: d.token }))
+          .catch(() => {});
       },
     });
     window.google.accounts.id.renderButton(buttonRef.current, {
@@ -729,10 +782,30 @@ function JoinButton({ event, j }) {
   );
 }
 
-// "12 going", or null for scraped events, which have no real attendance numbers.
+// Names of the DubHub users going (signed in when they joined).
+function whoGoing(event, j) {
+  return j.names?.[event.id] ?? [];
+}
+
+// "Going: Adam N., Kelan H. + 3 on HuskyLink". Nothing when nobody's going.
+function GoingList({ event, j }) {
+  const names = whoGoing(event, j);
+  const others = event.rsvps ?? 0;
+  if (names.length === 0 && others === 0) return null;
+  return (
+    <p className="going-list">
+      <strong>Going:</strong> {names.join(", ")}
+      {others > 0 && `${names.length ? " + " : ""}${others} on HuskyLink`}
+    </p>
+  );
+}
+
+// "12 going": RSVPs on HuskyLink (sample events have `going`), DubHub users who joined, and you.
+// Signed in, your Join is already among the names. Nothing at all when nobody's going.
 function going(event, j) {
-  if (event.going == null) return null;
-  return `${event.going + (j.joined.includes(event.id) ? 1 : 0)} going`;
+  const you = j.joined.includes(event.id) && !j.shared ? 1 : 0;
+  const count = (event.rsvps ?? event.going ?? 0) + whoGoing(event, j).length + you;
+  return count > 0 ? `${count} going` : null;
 }
 
 function formatTime(hhmm) {
@@ -960,7 +1033,7 @@ function EventMap({ events, area, introLabels, j }) {
         <CircleMarker
           key={e.id}
           center={e.pos}
-          radius={9 + Math.min((e.going ?? 0) / 6, 8)}
+          radius={9 + Math.min((e.rsvps ?? e.going ?? 0) / 6, 8)}
           pathOptions={{ color: "#fff", weight: 2, fillColor: eventColor(e), fillOpacity: 0.95 }}
           eventHandlers={HOVER_POPUP}
         >
@@ -1066,6 +1139,7 @@ function EventDetail({ event, j, onClose }) {
               </span>
             ))}
         </p>
+        <GoingList event={event} j={j} />
         <p className="event-description">{event.description || "No description yet."}</p>
         <p className="club-links">
           <CalendarLink event={event} />
@@ -1151,10 +1225,10 @@ function trendScore(e) {
   return (1 + Math.log2(1 + interest(e))) / (1 + days / 3);
 }
 
-// Why an event is trending, e.g. "3 RSVPs · 84 likes".
+// Why an event is trending besides its RSVPs (which "N going" already shows), e.g. "84 likes".
 function trendReason(e) {
-  const n = (count, word) => (count ? `${count} ${word}${count === 1 ? "" : "s"}` : null);
-  return [n(e.rsvps, "RSVP"), n(e.likes, "like"), e.posts > 1 && `Posted ${e.posts}×`].filter(Boolean).join(" · ") || null;
+  const likes = e.likes ? `${e.likes} like${e.likes === 1 ? "" : "s"}` : null;
+  return [likes, e.posts > 1 && `Posted ${e.posts}×`].filter(Boolean).join(" · ") || null;
 }
 
 function trending(events, limit = 5) {
@@ -1689,7 +1763,7 @@ export default function DubHub() {
   const mapArea = useMemo(() => mapAreaFor(all), [all]);
   const { user, signIn, signOut } = useUser();
   const { profile, update: updateProfile } = useProfile(user);
-  const j = useJoined(JOINED_KEY);
+  const j = useGoing(user, all);
   const clubs = useJoined(CLUBS_KEY);
   const theme = useTheme();
 
