@@ -843,6 +843,14 @@ def write_site_clubs(store):
     record_activity((p["club"], e["date"]) for p in store.values() if p["club"] not in not_uw
                     for e in p.get("events") or [])
     out = finish_clubs(merge_huskylink_clubs(out))
+    # A club keeps the name the site already shows it under. Joined clubs are remembered by name,
+    # so a rename (an Instagram display name changing, or the club being matched to its HuskyLink
+    # listing) would quietly drop everyone who joined it. New clubs get HuskyLink's official name.
+    for c in out:
+        shown = site.get(c["handle"], {}).get("name") if c.get("handle") else None
+        if shown and not shown.startswith("@"):
+            c["name"] = shown
+    out.sort(key=lambda c: c["name"].lstrip("@").lower())
     SITE_CLUBS_FILE.write_text(json.dumps({"clubs": out}, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote {len(out)} clubs to {SITE_CLUBS_FILE}")
     return out
@@ -916,8 +924,7 @@ def merge_huskylink_clubs(clubs):
             clubs.append({**h, "source": "huskylink"})
             by_name[club_key(h["name"])] = clubs[-1]
             continue
-        if c["name"].startswith("@") or c.get("handle") in aliases:
-            c["name"] = h["name"]  # use HuskyLink's official name
+        c["name"] = h["name"]  # HuskyLink's official name (write_site_clubs keeps any name already shown)
         for field in ("website", "about", "description", "handle", "instagram", "logo"):
             c[field] = c.get(field) or h.get(field)
         if c.get("category") in (None, "Other"):

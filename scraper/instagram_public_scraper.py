@@ -23,7 +23,7 @@ Setup (one time):
     pip install --pre -U instaloader requests
 
 Every run (from this folder):
-    python instagram_public_scraper.py            # 40 clubs, the ones checked longest ago first
+    python instagram_public_scraper.py            # 80 clubs, the ones checked longest ago first
     python instagram_public_scraper.py --limit 10 # fewer clubs
 Then push the website: public/events.json, public/clubs.json and the pictures in public/ig/.
 
@@ -69,7 +69,7 @@ from events_common import (
 from uw_event_scraper import format_club
 
 CHECKED_FILE = STATE_DIR / "instagram_public_checked.json"  # handle -> when it was last checked
-CLUBS_PER_RUN = 40
+CLUBS_PER_RUN = 80  # about 20-25 minutes; it still stops the moment Instagram objects
 MIN_WAIT, MAX_WAIT = 10, 20     # seconds between clubs
 DETAILS_PER_RUN = 15            # single-post lookups per run (likes, filling in Google snippets)
 PICTURE_MAX_AGE_DAYS = 14       # re-download a club's profile picture this often
