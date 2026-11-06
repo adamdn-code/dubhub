@@ -6,8 +6,46 @@
   --text: #1c1530;
   --muted: #6a5f85;
   --line: #ddd6ec;
+  --surface: #fff; /* cards, inputs, pop-ups */
+  --tint: #ece6f7; /* chips, tags, hover backgrounds */
+  --field-line: #cfc8e0; /* input and card borders */
+  --accent: #4b2e83; /* purple text and borders on the page background */
+  --glass: rgba(255, 255, 255, 0.9); /* panels floating over the map */
+  --error: #b3261e;
+  color-scheme: light;
   --nav-h: 60px;
   --tabbar-h: 0px; /* the bottom tab bar's height on phones */
+}
+
+/* Dark mode: follows the device unless someone picks Light or Dark in the top bar. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14111c;
+    --text: #ece8f5;
+    --muted: #a99fc0;
+    --line: #2e2740;
+    --surface: #1e1929;
+    --tint: #2b2339;
+    --field-line: #463c5c;
+    --accent: #c9b6ff;
+    --glass: rgba(30, 25, 41, 0.92);
+    --error: #f2b8b5;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #14111c;
+  --text: #ece8f5;
+  --muted: #a99fc0;
+  --line: #2e2740;
+  --surface: #1e1929;
+  --tint: #2b2339;
+  --field-line: #463c5c;
+  --accent: #c9b6ff;
+  --glass: rgba(30, 25, 41, 0.92);
+  --error: #f2b8b5;
+  color-scheme: dark;
 }
 
 * {
@@ -105,13 +143,42 @@ body {
   position: relative;
 }
 
+.nav-end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Light/dark mode button, next to sign-in */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: inherit;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle .icon {
+  width: 20px;
+  height: 20px;
+}
+
 .signin-pop {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
   width: 280px;
   padding: 16px;
-  background: #fff;
+  background: var(--surface);
   color: var(--text);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(28, 21, 48, 0.25);
@@ -124,7 +191,7 @@ body {
 
 .signin-pop .signin-error {
   margin: 12px 0 0;
-  color: #b3261e;
+  color: var(--error);
 }
 
 .user {
@@ -196,7 +263,7 @@ select:focus-visible {
   z-index: 500;
   width: 240px;
   padding: 16px;
-  background: #32006e;
+  background: var(--purple);
   border-radius: 12px;
   box-shadow: 0 4px 18px rgba(30, 10, 70, 0.25);
   display: flex;
@@ -220,9 +287,9 @@ select:focus-visible {
 .filters select {
   font: inherit;
   padding: 7px;
-  border: 1px solid #cfc8e0;
+  border: 1px solid var(--field-line);
   border-radius: 8px;
-  background: #32006e;
+  background: var(--purple);
   color: #fff;
 }
 
@@ -241,7 +308,7 @@ select:focus-visible {
 .count {
   margin: 0;
   font-size: 13px;
-  color: #6a5f85;
+  color: var(--muted);
 }
 
 .tagline {
@@ -304,13 +371,13 @@ select:focus-visible {
 }
 
 .join.secondary {
-  background: #fff;
-  color: var(--purple-mid);
+  background: var(--surface);
+  color: var(--accent);
   box-shadow: inset 0 0 0 1.5px var(--line);
 }
 
 .join.secondary:hover {
-  box-shadow: inset 0 0 0 1.5px var(--purple-mid);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
 }
 
 .club-links {
@@ -322,13 +389,13 @@ select:focus-visible {
 .post-link {
   font-size: 14px;
   font-weight: 600;
-  color: var(--purple-mid);
+  color: var(--accent);
 }
 
 .join.joined {
-  background: #ece6f7;
-  color: var(--purple-mid);
-  box-shadow: inset 0 0 0 1.5px var(--purple-mid);
+  background: var(--tint);
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
 }
 
 /* Other tabs */
@@ -354,12 +421,12 @@ select:focus-visible {
   }
   .list.cards > li {
     padding: 14px;
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 12px;
   }
   .list.cards > li:hover {
-    border-color: #c9bfdf;
+    border-color: var(--field-line);
   }
   .day-label {
     margin-top: 28px;
@@ -404,7 +471,7 @@ select:focus-visible {
 .map-credit {
   padding: 2px 8px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--glass);
   font-size: 11px;
   color: var(--muted);
 }
@@ -497,7 +564,7 @@ select:focus-visible {
   list-style: none;
   margin: 0;
   padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--glass);
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(28, 21, 48, 0.15);
   font-size: 12px;
@@ -541,9 +608,9 @@ select:focus-visible {
 .page-head select {
   font: inherit;
   padding: 8px 10px;
-  border: 1px solid #cfc8e0;
+  border: 1px solid var(--field-line);
   border-radius: 8px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .page h1 {
@@ -579,9 +646,9 @@ select:focus-visible {
   width: 100%;
   font: inherit;
   padding: 10px 14px;
-  border: 1px solid #cfc8e0;
+  border: 1px solid var(--field-line);
   border-radius: 10px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .major-select {
@@ -589,13 +656,13 @@ select:focus-visible {
   font: inherit;
   font-size: 14px;
   padding: 7px 10px;
-  border: 1px solid #cfc8e0;
+  border: 1px solid var(--field-line);
   border-radius: 10px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .search:focus-visible {
-  outline: 3px solid var(--purple-mid);
+  outline: 3px solid var(--accent);
   outline-offset: 1px;
 }
 
@@ -615,7 +682,7 @@ select:focus-visible {
   padding: 6px 12px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: #fff;
+  background: var(--surface);
   color: var(--text);
   font: inherit;
   font-size: 14px;
@@ -624,12 +691,12 @@ select:focus-visible {
 }
 
 .chip-btn:hover {
-  border-color: var(--purple-mid);
+  border-color: var(--accent);
 }
 
 .chip-btn.on {
   background: var(--purple-mid);
-  border-color: var(--purple-mid);
+  border-color: var(--accent);
   color: #fff;
 }
 
@@ -643,7 +710,7 @@ select:focus-visible {
 .club-main:focus-visible,
 .show-more:focus-visible,
 .join:focus-visible {
-  outline: 3px solid var(--purple-mid);
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -659,7 +726,7 @@ select:focus-visible {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--purple-mid);
+  color: var(--accent);
   border-bottom: 2px solid var(--line);
 }
 
@@ -692,7 +759,7 @@ select:focus-visible {
 .thumb {
   flex-shrink: 0;
   object-fit: cover;
-  background: #ece6f7;
+  background: var(--tint);
 }
 
 .thumb-fallback {
@@ -740,7 +807,7 @@ select:focus-visible {
 }
 
 .map-popup-club-name {
-  color: var(--purple-mid);
+  color: var(--accent);
   font-weight: 700;
   overflow-wrap: anywhere;
 }
@@ -820,7 +887,7 @@ select:focus-visible {
   max-height: 300px;
   margin: -24px -24px 16px;
   object-fit: contain;
-  background: #ece6f7;
+  background: var(--tint);
   border-radius: 12px 12px 0 0;
 }
 
@@ -828,7 +895,7 @@ select:focus-visible {
 .empty-card {
   margin-top: 16px;
   padding: 24px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 12px;
 }
@@ -871,7 +938,7 @@ select:focus-visible {
 }
 
 .club-main:hover {
-  background: #ebe6f5;
+  background: var(--tint);
 }
 
 .club-title {
@@ -901,15 +968,15 @@ select:focus-visible {
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: #fff;
-  color: var(--purple-mid);
+  background: var(--surface);
+  color: var(--accent);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
 }
 
 .show-more:hover {
-  border-color: var(--purple-mid);
+  border-color: var(--accent);
 }
 
 /* Events: horizontal "Trending" row */
@@ -936,8 +1003,8 @@ select:focus-visible {
   align-items: flex-start;
   gap: 4px;
   padding: 14px;
-  background: #fff;
-  border: 1px solid #ddd6ec;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 10px;
   scroll-snap-align: start;
   line-height: 1.35;
@@ -963,7 +1030,7 @@ select:focus-visible {
 }
 
 .empty {
-  color: #6a5f85;
+  color: var(--muted);
 }
 
 .profile-head {
@@ -1001,9 +1068,9 @@ select:focus-visible {
   font: inherit;
   font-weight: 400;
   padding: 8px 10px;
-  border: 1px solid #cfc8e0;
+  border: 1px solid var(--field-line);
   border-radius: 8px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .profile-form .count {
@@ -1025,8 +1092,8 @@ select:focus-visible {
   gap: 6px;
   padding: 4px 12px;
   border-radius: 999px;
-  background: #ece6f7;
-  color: var(--purple-mid);
+  background: var(--tint);
+  color: var(--accent);
   font-size: 14px;
   font-weight: 600;
 }
@@ -1081,9 +1148,9 @@ select:focus-visible {
 .club-search select {
   font: inherit;
   padding: 8px 10px;
-  border: 1px solid #cfc8e0;
+  border: 1px solid var(--field-line);
   border-radius: 8px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .club-search input {
@@ -1101,8 +1168,8 @@ select:focus-visible {
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 999px;
-  background: #ece6f7;
-  color: var(--purple-mid);
+  background: var(--tint);
+  color: var(--accent);
 }
 
 .team {
@@ -1119,7 +1186,7 @@ select:focus-visible {
   gap: 14px;
   align-items: flex-start;
   padding: 16px;
-  background: #fff;
+  background: var(--surface);
   border-radius: 12px;
 }
 
@@ -1141,7 +1208,7 @@ select:focus-visible {
 }
 
 .member a {
-  color: var(--purple-mid);
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -1156,7 +1223,7 @@ select:focus-visible {
   gap: 12px;
   align-items: flex-start;
   padding: 12px 0;
-  border-bottom: 1px solid #ddd6ec;
+  border-bottom: 1px solid var(--line);
 }
 
 .dot {
@@ -1169,7 +1236,7 @@ select:focus-visible {
 
 .meta {
   font-size: 14px;
-  color: #6a5f85;
+  color: var(--muted);
 }
 
 /* Clubs: clickable name + detail window */
@@ -1189,7 +1256,7 @@ select:focus-visible {
 }
 
 .club-link:focus-visible {
-  outline: 3px solid var(--purple-mid);
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -1197,7 +1264,7 @@ select:focus-visible {
   margin-left: 6px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--purple-mid);
+  color: var(--accent);
 }
 
 .club-backdrop {
@@ -1218,7 +1285,7 @@ select:focus-visible {
   max-height: calc(100vh - 32px);
   overflow: auto;
   padding: 24px;
-  background: #fff;
+  background: var(--surface);
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(30, 10, 70, 0.35);
   line-height: 1.5;
@@ -1261,18 +1328,18 @@ select:focus-visible {
   border: none;
   border-radius: 50%;
   background: transparent;
-  color: var(--purple-mid);
+  color: var(--accent);
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
 }
 
 .club-modal .club-close:hover {
-  background: #ece6f7;
+  background: var(--tint);
 }
 
 .club-modal .club-close:focus-visible {
-  outline: 3px solid var(--purple-mid);
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -1284,7 +1351,7 @@ select:focus-visible {
 
 .club-events li {
   padding: 8px 0;
-  border-bottom: 1px solid #ddd6ec;
+  border-bottom: 1px solid var(--line);
 }
 
 /* Mobile: tabs become a bottom tab bar; the top bar keeps the logo and sign-in. */
@@ -1372,4 +1439,25 @@ select:focus-visible {
   .tagline {
     display: none;
   }
+}
+/* Leaflet's own map pieces (pop-ups, zoom buttons) follow the light/dark colors too. */
+.leaflet-container {
+  background: var(--bg);
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: var(--muted);
+}
+
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  background: var(--surface);
+  color: var(--text);
+  border-bottom-color: var(--line);
 }

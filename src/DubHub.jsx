@@ -247,6 +247,58 @@ const TEAM = [
   { name: "Kelan Huynh", github: null, linkedin: "https://www.linkedin.com/in/kelanhuynh", photo: "/team/kelan.jpg" },
 ];
 
+const THEME_KEY = "dubhub-theme";
+const darkQuery = () => window.matchMedia("(prefers-color-scheme: dark)");
+
+// Light or dark: follows the device until someone picks one with the top-bar button, then
+// remembers that choice in this browser. Sets <html data-theme>, which DubHub.css reads.
+function useTheme() {
+  const [choice, setChoice] = useState(() => {
+    try {
+      return localStorage.getItem(THEME_KEY);
+    } catch {
+      return null;
+    }
+  });
+  const [deviceDark, setDeviceDark] = useState(() => darkQuery().matches);
+
+  useEffect(() => {
+    const q = darkQuery();
+    const onChange = (e) => setDeviceDark(e.matches);
+    q.addEventListener("change", onChange);
+    return () => q.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (choice) document.documentElement.dataset.theme = choice;
+    else delete document.documentElement.dataset.theme;
+  }, [choice]);
+
+  const dark = choice ? choice === "dark" : deviceDark;
+  const toggle = () => {
+    const next = dark ? "light" : "dark";
+    setChoice(next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch {
+      // Private browsing can block storage; the choice still lasts until the page closes.
+    }
+  };
+  return { dark, toggle };
+}
+
+const SUN = "M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4";
+const MOON = "M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z";
+
+function ThemeToggle({ dark, onToggle }) {
+  const label = dark ? "Switch to light mode" : "Switch to dark mode";
+  return (
+    <button className="theme-toggle" onClick={onToggle} aria-label={label} title={label}>
+      <Icon d={dark ? SUN : MOON} />
+    </button>
+  );
+}
+
 const JOINED_KEY = "dubhub-joined";
 const CLUBS_KEY = "dubhub-clubs";
 
@@ -764,8 +816,28 @@ const MAP_COLORS = {
   highwayCasing: "#c9c4bb",
 };
 
-function restyle(style) {
-  const C = MAP_COLORS;
+// The same map at night: dark ground, muted water and parks, roads a little lighter than
+// the ground so they still read, and light labels with a dark outline.
+const MAP_COLORS_DARK = {
+  background: "#1b1824",
+  water: "#1e3a52",
+  park: "#22382a",
+  wood: "#1f3426",
+  wetland: "#253a2e",
+  plaza: "#24212d",
+  building: "#2c2838",
+  buildingOutline: "#3d374d",
+  school: "#221f2b",
+  road: "#3a3548",
+  highway: "#4a4458",
+  casing: "#262231",
+  highwayCasing: "#2b2736",
+  label: "#cfc8de",
+  labelHalo: "#1b1824",
+};
+
+function restyle(style, dark) {
+  const C = dark ? MAP_COLORS_DARK : MAP_COLORS;
   const green = { "fill-color": C.park, "fill-opacity": 1 };
   const set = {
     background: { "background-color": C.background },
@@ -810,6 +882,13 @@ function restyle(style) {
       paint["line-color"] = layer.id.endsWith("casing")
         ? isHighway ? C.highwayCasing : C.casing
         : isHighway ? C.highway : C.road;
+    } else if (dark && layer.type === "fill") {
+      paint["fill-color"] = C.plaza; // other land types, so no bright patches show at night
+    } else if (dark && layer.type === "line") {
+      paint["line-color"] = C.road; // paths, rail, borders
+    }
+    if (dark && layer.type === "symbol" && layer.layout?.["text-field"]) {
+      Object.assign(paint, { "text-color": C.label, "text-halo-color": C.labelHalo, "text-halo-width": 1.2 });
     }
   }
 
@@ -832,9 +911,10 @@ function restyle(style) {
   return style;
 }
 
-function BaseMap() {
+function BaseMap({ dark }) {
   const map = useMap();
 
+  // Redrawn with the other palette when light/dark mode changes.
   useEffect(() => {
     map.attributionControl?.setPrefix(false); // drop the "Leaflet" credit; only the map data's stays
     let layer;
@@ -843,14 +923,14 @@ function BaseMap() {
       .then((r) => r.json())
       .then((style) => {
         if (cancelled) return;
-        layer = L.maplibreGL({ style: restyle(style), attribution: MAP_ATTRIBUTION }).addTo(map);
+        layer = L.maplibreGL({ style: restyle(style, dark), attribution: MAP_ATTRIBUTION }).addTo(map);
       })
       .catch(() => {});
     return () => {
       cancelled = true;
       if (layer) map.removeLayer(layer);
     };
-  }, [map]);
+  }, [map, dark]);
 
   return null;
 }
@@ -874,7 +954,7 @@ const HOVER_POPUP = {
   },
 };
 
-function EventMap({ events, area, introLabels, j }) {
+function EventMap({ events, area, introLabels, j, dark }) {
   const located = events.filter((e) => e.pos);
   // One intro label per place, so events in the same building don't pile up.
   const byPlace = new Map();
@@ -901,7 +981,7 @@ function EventMap({ events, area, introLabels, j }) {
     >
       <ZoomControl position="topright" />
       <MapArea area={area} />
-      <BaseMap />
+      <BaseMap dark={dark} />
       {located.map((e) => (
         <CircleMarker
           key={e.id}
@@ -957,10 +1037,10 @@ function MapLegend({ events }) {
   );
 }
 
-function Home({ f, area, introLabels, j }) {
+function Home({ f, area, introLabels, j, dark }) {
   return (
     <main className="home">
-      <EventMap events={f.events} area={area} introLabels={introLabels} j={j} />
+      <EventMap events={f.events} area={area} introLabels={introLabels} j={j} dark={dark} />
       <MapLegend events={f.events} />
       <Filters f={f} />
       <div className="tagline">
@@ -1637,6 +1717,7 @@ export default function DubHub() {
   const { profile, update: updateProfile } = useProfile(user);
   const j = useJoined(JOINED_KEY);
   const clubs = useJoined(CLUBS_KEY);
+  const theme = useTheme();
 
   return (
     <div className="app">
@@ -1658,10 +1739,13 @@ export default function DubHub() {
             </button>
           ))}
         </nav>
-        <SignIn user={user} onSignIn={signIn} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
+        <div className="nav-end">
+          <ThemeToggle dark={theme.dark} onToggle={theme.toggle} />
+          <SignIn user={user} onSignIn={signIn} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
+        </div>
       </header>
 
-      {tab === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} />}
+      {tab === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} dark={theme.dark} />}
       {tab === "Events" && <EventsPage f={f} updated={updated} j={j} />}
       {tab === "My Events" && (
         <MyEventsPage
