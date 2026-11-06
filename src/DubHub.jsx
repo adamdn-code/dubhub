@@ -257,6 +257,7 @@ const TEAM = [
     role: "AI Intern @ DubHub",
     note: "Wrote a suspicious amount of this website. Paid entirely in tokens. Has never been to Red Square.",
     github: null,
+    secret: true, // invisible until you hover over (or tap) its spot
   },
 ];
 
@@ -837,22 +838,13 @@ function labelIcon(club, text, dir) {
   return labelIcons.get(key);
 }
 
-// A label's on-screen width: the club (semibold 12px) and event name (bold 13px), plus each
-// section's padding and a small gap.
-let measureCtx;
-function labelWidth(club, text) {
-  measureCtx ??= document.createElement("canvas").getContext("2d");
-  const font = getComputedStyle(document.body).fontFamily;
-  measureCtx.font = `600 12px ${font}`;
-  const clubW = measureCtx.measureText(club).width;
-  measureCtx.font = `700 13px ${font}`;
-  return clubW + measureCtx.measureText(text).width + 2 * 18 + 8;
-}
+// Each label is a circle this many pixels across (it matches .intro-label in DubHub.css).
+const INTRO_CIRCLE = 96;
 
 // At most this many labels when the site opens, the soonest events first, so the map isn't buried.
 const MAX_INTRO_LABELS = 5;
 
-// Event names shown over their dots when the site opens. Each label goes above its dot, or below it
+// Event names shown in circles over their dots when the site opens. Each goes above its dot, or below it
 // if that would overlap a label already placed; if neither fits it's skipped (hover still works).
 function IntroLabels({ places }) {
   const map = useMap();
@@ -869,8 +861,8 @@ function IntroLabels({ places }) {
   for (const place of [...places].sort((a, b) => a.when.localeCompare(b.when) || b.count - a.count)) {
     if (shown.length === MAX_INTRO_LABELS) break;
     const pt = map.latLngToContainerPoint(place.pos);
-    const w = labelWidth(place.club, place.text);
-    const h = 28;
+    const w = INTRO_CIRCLE + 8; // a little space between neighboring circles
+    const h = INTRO_CIRCLE;
     for (const dir of ["above", "below"]) {
       const top = dir === "above" ? pt.y - 12 - h : pt.y + 12;
       const box = { l: pt.x - w / 2, r: pt.x + w / 2, t: top, b: top + h };
@@ -1869,7 +1861,7 @@ function useGitHubProfile(login) {
 // the role isn't shown twice).
 const sameWords = (a, b) => (a || "").toLowerCase().replace(/[^a-z0-9]/g, "") === (b || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 
-function TeamMember({ name, role, note, github, githubPhoto = true, linkedin, photo }) {
+function TeamMember({ name, role, note, github, githubPhoto = true, linkedin, photo, secret }) {
   const p = useGitHubProfile(github);
   const [photoFailed, setPhotoFailed] = useState(false);
   const initials = name
@@ -1879,7 +1871,7 @@ function TeamMember({ name, role, note, github, githubPhoto = true, linkedin, ph
   const picture = photo || (github && githubPhoto && `https://github.com/${github}.png?size=192`);
 
   return (
-    <li className="member">
+    <li className={secret ? "member member-secret" : "member"} tabIndex={secret ? 0 : undefined}>
       {picture && !photoFailed ? (
         <img src={picture} alt="" onError={() => setPhotoFailed(true)} />
       ) : (

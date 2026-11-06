@@ -528,33 +528,66 @@ select:focus-visible {
   position: absolute;
   left: 0;
   top: 0;
+  width: 96px; /* INTRO_CIRCLE in DubHub.jsx */
+  height: 96px;
   display: flex;
-  align-items: stretch;
-  overflow: hidden;
-  white-space: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px;
+  text-align: center;
   transform: translate(-50%, calc(-100% - 12px));
-  background: var(--purple);
-  color: #fff;
-  border-radius: 999px;
+  /* Same colors as the filter panel: light or dark with the site, gold edge */
+  background: var(--surface);
+  color: var(--text);
+  border: 3px solid var(--gold);
+  border-radius: 50%;
   font-weight: 700;
-  font-size: 13px;
   box-shadow: 0 2px 8px rgba(28, 21, 48, 0.35);
   animation: intro-label 4.8s ease-in-out forwards;
 }
 
-/* The host club in its own section, before the event name */
-.intro-label-club {
-  display: flex;
-  align-items: center;
-  padding: 4px 8px 4px 10px;
-  background: var(--gold);
-  color: var(--purple);
-  font-size: 12px;
-  font-weight: 600;
+/* A little gold point from the circle to its dot */
+.intro-label::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--gold);
+  border-bottom: 0;
 }
 
+.intro-label.below::after {
+  top: -9px;
+  bottom: auto;
+  border-top: 0;
+  border-bottom: 6px solid var(--gold);
+}
+
+/* The host club, small, above the event name */
+.intro-label-club {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* The event name: up to three lines inside the circle */
 .intro-label-text {
-  padding: 4px 10px 4px 8px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 .intro-label.below {
@@ -1339,6 +1372,19 @@ select:focus-visible {
   font-weight: 600;
 }
 
+/* Claude's card: invisible until someone hovers over (or taps) its spot */
+.member-secret {
+  opacity: 0;
+  transition: opacity 0.3s;
+  cursor: default;
+}
+
+.member-secret:hover,
+.member-secret:focus {
+  opacity: 1;
+  outline: none;
+}
+
 .list {
   list-style: none;
   padding: 0;
@@ -1572,13 +1618,25 @@ select:focus-visible {
     padding: 10px 12px 8px;
     border-radius: 12px 12px 0 0;
   }
-  /* On phones the panel is a short strip at the bottom: just the dropdowns (they say what they
-     are: "This week", "All types", "All years", "Any major"), no title, labels or count. */
+  /* On phones the panel is a bottom sheet: a grab handle, a small title and the four dropdowns
+     (they say what they are: "This week", "All types", "All years", "Any major"); no labels or count. */
   .filters {
-    padding: 8px 10px;
-    gap: 0;
+    padding: 8px 14px 14px;
+    gap: 8px;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -8px 24px rgba(30, 10, 70, 0.18);
   }
-  .filters h2,
+  .filters::before {
+    content: "";
+    align-self: center;
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--field-line);
+  }
+  .filters h2 {
+    font-size: 14px;
+  }
   .filters .count {
     display: none;
   }
@@ -1591,7 +1649,12 @@ select:focus-visible {
     white-space: nowrap;
   }
   .filter-grid {
-    gap: 6px;
+    gap: 8px;
+  }
+  .filters select {
+    padding: 10px 30px 10px 12px;
+    font-size: 14px;
+    border-radius: 11px;
   }
   .tagline {
     display: none;
