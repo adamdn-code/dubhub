@@ -242,9 +242,16 @@ const SAMPLE_CLUBS = [
 // Team shown on the About page; details load from each GitHub profile. `photo` (a file in
 // public/team/) is used instead of the GitHub picture when set.
 const TEAM = [
-  { name: "Adam Nguyen", role: "Founder @ DubHub", github: "adamxlegend" },
+  // No GitHub profile photo yet (GitHub would show a pattern), so initials until a photo is added.
+  { name: "Adam Nguyen", role: "Founder @ DubHub", github: "adamdn-code", githubPhoto: false },
   { name: "Quentin Nguyen", github: "nitneuqqq" },
   { name: "Kelan Huynh", github: null, linkedin: "https://www.linkedin.com/in/kelanhuynh", photo: "/team/kelan.jpg" },
+  {
+    name: "Claude",
+    role: "AI Intern @ DubHub",
+    note: "Wrote a suspicious amount of this website. Paid entirely in tokens. Has never been to Red Square.",
+    github: null,
+  },
 ];
 
 const THEME_KEY = "dubhub-theme";
@@ -299,11 +306,21 @@ function ThemeToggle({ dark, onToggle }) {
   );
 }
 
-const JOINED_KEY = "dubhub-joined";
-const SIGNIN_NEEDED = "dubhub:signin-needed"; // asks the sign-in box to open
+const OLD_JOINED_KEY = "dubhub-joined"; // Joins from before sign-in was required (moved to the server)
+
+// Reads and clears that old list.
+function readOldJoins() {
+  try {
+    const old = JSON.parse(localStorage.getItem(OLD_JOINED_KEY)) ?? [];
+    localStorage.removeItem(OLD_JOINED_KEY);
+    return Array.isArray(old) ? old : [];
+  } catch {
+    return [];
+  }
+}
 const CLUBS_KEY = "dubhub-clubs";
 
-// A saved list of IDs: event IDs under JOINED_KEY, club names under CLUBS_KEY.
+// A saved list of IDs (club names under CLUBS_KEY).
 function useJoined(key) {
   const [joined, setJoined] = useState(() => {
     try {
@@ -328,11 +345,14 @@ function useJoined(key) {
   return { joined, toggle };
 }
 
-// Your joined events (kept on this device, as before) plus who's going to each event. Signed in,
-// Join also adds your name to the event on the server, so everyone can see you're going.
-function useGoing(user, events) {
-  const local = useJoined(JOINED_KEY);
+// Who's going to each event, and which events you joined. Joining needs a UW sign-in: your Joins
+// are saved on the server under your account (so they follow you to any device), and signed out,
+// Join doesn't change anything; it sends you to the sign-in page instead (`onNeedSignIn`).
+function useGoing(user, events, onNeedSignIn) {
   const [names, setNames] = useState({});
+  // Your joined event ids, tagged with the login they belong to, so a different account (or
+  // signing out) never shows someone else's.
+  const [mine, setMine] = useState({ token: null, ids: [] });
   const ids = useMemo(() => events.map((e) => e.id).join(","), [events]);
 
   useEffect(() => {
@@ -349,59 +369,77 @@ function useGoing(user, events) {
     };
   }, [ids]);
 
-  const { joined, toggle: toggleLocal } = local;
-  // A token the server turned down (expired) counts as no token until the next sign-in.
+  // A token the server turned down (expired) counts as signed out until the next sign-in.
   const [rejected, setRejected] = useState(null);
   const token = user?.token && user.token !== rejected ? user.token : null;
+  const auth = useMemo(() => ({ Authorization: `Bearer ${token}` }), [token]);
 
-  // A Join others can't see yet (signed out, or signed in from before RSVPs existed) opens the
-  // sign-in box, once per visit. The Join itself is kept on this device either way.
-  const asked = useRef(false);
-  const askToSignIn = useCallback(() => {
-    if (asked.current) return;
-    asked.current = true;
-    window.dispatchEvent(new Event(SIGNIN_NEEDED));
-  }, []);
+  // Your joined events, from the server.
+  useEffect(() => {
+    if (!token) return;
+    let cancelled = false;
+    fetch("/api/going?mine=1", { headers: auth })
+      .then((r) => {
+        if (r.status === 401) setRejected(token);
+        return r.ok ? r.json() : null;
+      })
+      // Merged with any Join made while this was loading (it's on its way to the server).
+      .then((d) => !cancelled && d?.ids && setMine((m) => ({ token, ids: [...new Set([...d.ids, ...(m.token === token ? m.ids : [])])] })))
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [token, auth]);
 
-  const send = useCallback(
-    (id, going) =>
+  // Joins saved in this browser before sign-in was required: add the upcoming ones to your
+  // account once, then forget the old list.
+  useEffect(() => {
+    if (!token || !ids) return;
+    const old = readOldJoins();
+    const upcoming = new Set(ids.split(","));
+    for (const id of old.filter((x) => upcoming.has(String(x)))) {
       fetch("/api/going", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        headers: { "Content-Type": "application/json", ...auth },
+        body: JSON.stringify({ eventId: String(id), going: true }),
+      })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => {
+          if (!d) return;
+          setNames((n) => ({ ...n, [id]: d.going }));
+          setMine((m) => ({ token, ids: [...new Set([...(m.token === token ? m.ids : []), String(id)])] }));
+        })
+        .catch(() => {});
+    }
+  }, [token, ids, auth]);
+
+  const setGoing = useCallback(
+    (id, going) => {
+      if (!token) return onNeedSignIn(going ? id : null);
+      const update = (list) => (going ? [...new Set([...list, String(id)])] : list.filter((x) => x !== String(id)));
+      setMine((m) => ({ token, ids: update(m.token === token ? m.ids : []) }));
+      fetch("/api/going", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...auth },
         body: JSON.stringify({ eventId: String(id), going }),
       })
         .then((r) => {
           if (r.status === 401) {
-            setRejected(token); // the login expired: count this Join on the device instead
-            askToSignIn();
+            setRejected(token); // the login expired: undo, and sign in again
+            setMine((m) => ({ ...m, ids: m.ids.filter((x) => x !== String(id)) }));
+            onNeedSignIn(going ? id : null);
           }
           return r.ok ? r.json() : null;
         })
         .then((d) => d && setNames((n) => ({ ...n, [id]: d.going })))
-        .catch(() => {}),
-    [token, askToSignIn]
-  );
-
-  const toggle = useCallback(
-    (id) => {
-      const joining = !joined.includes(id);
-      toggleLocal(id);
-      if (token) send(id, joining);
-      else if (joining) askToSignIn();
+        .catch(() => {});
     },
-    [joined, toggleLocal, token, send, askToSignIn]
+    [token, auth, onNeedSignIn]
   );
 
-  // Right after signing in, share the upcoming events already joined on this device.
-  const synced = useRef(null);
-  useEffect(() => {
-    if (!token || synced.current === token || !ids) return;
-    synced.current = token;
-    const upcoming = new Set(ids.split(","));
-    for (const id of joined) if (upcoming.has(String(id))) send(id, true);
-  }, [token, ids, joined, send]);
-
-  return { joined, toggle, names, shared: Boolean(token) };
+  const joined = useMemo(() => (token && mine.token === token ? mine.ids : []), [token, mine]);
+  const toggle = useCallback((id) => setGoing(id, !joined.includes(String(id))), [setGoing, joined]);
+  return { joined, toggle, join: (id) => setGoing(id, true), names, signedIn: Boolean(token) };
 }
 
 // Sign-in uses Google, limited to UW's Google accounts (@uw.edu).
@@ -463,25 +501,16 @@ function useGoogleScript(enabled) {
   return ready;
 }
 
-function SignIn({ user, onSignIn, onSignOut, onOpenProfile }) {
-  const [open, setOpen] = useState(false);
+// The UW Google sign-in button. On success it checks the sign-in with DubHub's server, which
+// returns a token for RSVPs, and calls onSignIn with the user (token included).
+function GoogleSignIn({ onSignIn }) {
   const [error, setError] = useState("");
-  const [reason, setReason] = useState("");
+  const [busy, setBusy] = useState(false);
   const buttonRef = useRef(null);
-  const ready = useGoogleScript(open && Boolean(GOOGLE_CLIENT_ID));
-
-  // Joining an event while signed out (or signed in from before RSVPs) opens this box.
-  useEffect(() => {
-    const onNeeded = () => {
-      setReason("Sign in with your UW account so others can see you're going.");
-      setOpen(true);
-    };
-    window.addEventListener(SIGNIN_NEEDED, onNeeded);
-    return () => window.removeEventListener(SIGNIN_NEEDED, onNeeded);
-  }, []);
+  const ready = useGoogleScript(Boolean(GOOGLE_CLIENT_ID));
 
   useEffect(() => {
-    if (!open || !ready || !buttonRef.current) return;
+    if (!ready || !buttonRef.current) return;
     window.google.accounts.id.initialize({
       client_id: GOOGLE_CLIENT_ID,
       hd: UW_DOMAIN,
@@ -492,19 +521,19 @@ function SignIn({ user, onSignIn, onSignOut, onOpenProfile }) {
           return;
         }
         setError("");
-        setOpen(false);
-        const u = { name: p.name, email: p.email, picture: p.picture };
-        onSignIn(u);
-        // The server checks the sign-in and returns a token for RSVPs (shown names on events).
-        // Without it (server not set up, offline), joins just stay on this device.
+        setBusy(true);
         fetch("/api/session", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ credential }),
         })
           .then((r) => (r.ok ? r.json() : null))
-          .then((d) => d?.token && onSignIn({ ...u, token: d.token }))
-          .catch(() => {});
+          .then((d) => {
+            if (!d?.token) throw new Error("no token");
+            onSignIn({ name: p.name, email: p.email, picture: p.picture, token: d.token });
+          })
+          .catch(() => setError("Couldn't finish signing in. Please try again in a moment."))
+          .finally(() => setBusy(false));
       },
     });
     window.google.accounts.id.renderButton(buttonRef.current, {
@@ -512,58 +541,70 @@ function SignIn({ user, onSignIn, onSignOut, onOpenProfile }) {
       size: "large",
       shape: "pill",
       text: "signin_with",
+      width: 280,
     });
-  }, [open, ready, onSignIn]);
+  }, [ready, onSignIn]);
 
-  const pop = open && (
-    <div className="signin-pop" role="dialog" aria-label="Sign in">
-      {reason && <p className="signin-reason">{reason}</p>}
-      {GOOGLE_CLIENT_ID ? (
-        <>
-          <p>Use your UW Google account (NetID@uw.edu).</p>
-          <div ref={buttonRef} />
-        </>
-      ) : (
-        <p>Sign-in isn't set up yet: add VITE_GOOGLE_CLIENT_ID to .env.local.</p>
-      )}
-      {error && <p className="signin-error">{error}</p>}
-      {reason && (
-        <button className="link-button" onClick={() => setOpen(false)}>
-          Not now
-        </button>
-      )}
-    </div>
-  );
-
-  if (user) {
-    return (
-      <div className="user signin-wrap">
-        <button className="user-button" onClick={onOpenProfile} title="Your profile">
-          {user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}
-          <span className="wide-only">{user.name}</span>
-        </button>
-        <button className="signout wide-only" onClick={onSignOut}>
-          Sign out
-        </button>
-        {pop}
-      </div>
-    );
-  }
-
+  if (!GOOGLE_CLIENT_ID) return <p className="signin-error">Sign-in isn't set up yet: add VITE_GOOGLE_CLIENT_ID to .env.local.</p>;
   return (
-    <div className="signin-wrap">
-      <button
-        className="signin"
-        aria-expanded={open}
-        onClick={() => {
-          setReason("");
-          setOpen((o) => !o);
-        }}
-      >
+    <>
+      <div ref={buttonRef} className="google-button" />
+      {busy && <p className="meta">Signing you in…</p>}
+      {error && <p className="signin-error">{error}</p>}
+    </>
+  );
+}
+
+// Top-right corner: "Sign in" (opens the sign-in page), or your name and Sign out.
+function Account({ user, onOpenSignIn, onSignOut, onOpenProfile }) {
+  if (!user) {
+    return (
+      <button className="signin" onClick={onOpenSignIn}>
         Sign in<span className="wide-only"> with UW ID</span>
       </button>
-      {pop}
+    );
+  }
+  return (
+    <div className="user">
+      <button className="user-button" onClick={onOpenProfile} title="Your profile">
+        {user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}
+        <span className="wide-only">{user.name}</span>
+      </button>
+      <button className="signout wide-only" onClick={onSignOut}>
+        Sign out
+      </button>
     </div>
+  );
+}
+
+// The sign-in page. Join sends signed-out visitors here; after signing in they go back to where
+// they were, and the event they tried to join is joined.
+function SignInPage({ user, pendingEvent, onSignIn, onBack }) {
+  const stale = user && !user.token; // signed in before RSVPs existed, or the login expired
+  return (
+    <main className="page signin-page">
+      <div className="signin-card">
+        <p className="filters-eyebrow">DubHub</p>
+        <h1>{stale ? "Sign in again" : "Sign in to DubHub"}</h1>
+        {pendingEvent ? (
+          <p className="signin-reason">
+            Sign in to join <strong>{pendingEvent.title}</strong>.
+          </p>
+        ) : (
+          <p className="signin-reason">Sign in to join events and see who's going.</p>
+        )}
+        <ul className="signin-perks">
+          <li>Join events and get them in My Events</li>
+          <li>Friends see you're going (as first name and last initial)</li>
+          <li>Your events follow you to any device</li>
+        </ul>
+        <GoogleSignIn onSignIn={onSignIn} />
+        <p className="meta">UW accounts only (NetID@uw.edu).</p>
+        <button className="link-button" onClick={onBack}>
+          ← Back
+        </button>
+      </div>
+    </main>
   );
 }
 
@@ -681,38 +722,39 @@ function Filters({ f }) {
   const onMap = f.events.filter((e) => e.pos).length;
   return (
     <aside className="filters" aria-label="Event filters">
-      <p className="filters-eyebrow">Filters</p>
       <h2>Find something to do</h2>
 
-      <label>
-        When
-        <WhenSelect value={f.when} onChange={f.setWhen} className={f.when !== DEFAULT_WHEN ? "set" : undefined} />
-      </label>
+      <div className="filter-grid">
+        <label>
+          When
+          <WhenSelect value={f.when} onChange={f.setWhen} className={f.when !== DEFAULT_WHEN ? "set" : undefined} />
+        </label>
 
-      <label>
-        Event type
-        <select value={f.type} onChange={(e) => f.setType(e.target.value)} className={f.type !== "All" ? "set" : undefined}>
-          <option>All</option>
-          {Object.keys(TYPE_COLORS).map((t) => (
-            <option key={t}>{t}</option>
-          ))}
-        </select>
-      </label>
+        <label>
+          Event type
+          <select value={f.type} onChange={(e) => f.setType(e.target.value)} className={f.type !== "All" ? "set" : undefined}>
+            <option>All</option>
+            {Object.keys(TYPE_COLORS).map((t) => (
+              <option key={t}>{t}</option>
+            ))}
+          </select>
+        </label>
 
-      <label>
-        Class year
-        <select value={f.year} onChange={(e) => f.setYear(e.target.value)} className={f.year !== "All" ? "set" : undefined}>
-          <option>All</option>
-          {YEARS.map((y) => (
-            <option key={y}>{y}</option>
-          ))}
-        </select>
-      </label>
+        <label>
+          Class year
+          <select value={f.year} onChange={(e) => f.setYear(e.target.value)} className={f.year !== "All" ? "set" : undefined}>
+            <option>All</option>
+            {YEARS.map((y) => (
+              <option key={y}>{y}</option>
+            ))}
+          </select>
+        </label>
 
-      <label>
-        Major
-        <MajorSelect value={f.major} onChange={f.setMajor} className={f.major !== "Any major" ? "set" : undefined} />
-      </label>
+        <label>
+          Major
+          <MajorSelect value={f.major} onChange={f.setMajor} className={f.major !== "Any major" ? "set" : undefined} />
+        </label>
+      </div>
       {f.major !== "Any major" && (
         <p className="count">
           Showing <FieldTag field={fieldOf(f.major)} /> events
@@ -753,10 +795,21 @@ function mapAreaFor(events) {
   return MAP_AREAS.find((a) => spots.every((p) => inside(p, a.bounds))) ?? MAP_AREAS.at(-1);
 }
 
-// Leave room for the filter panel on wide screens.
-const panelPadding = (map) => (map.getSize().x > 700 ? [260, 0] : [0, 0]);
+// UW's main campus (15th Ave NE to Montlake Blvd, the Ave's north end to the Cut): where the
+// map opens, whatever else is on it.
+const UW_CAMPUS = [[47.6500, -122.3135], [47.6605, -122.3005]];
 
-// Fits the map to its area and keeps it there (it can't be zoomed out or panned past it).
+// Space the filter panel covers: its left side on wide screens, its bottom on phones.
+function panelPadding(map) {
+  const panel = map.getContainer().parentElement?.querySelector(".filters");
+  if (!panel) return {};
+  return map.getSize().x > 700
+    ? { paddingTopLeft: [panel.offsetWidth + 24, 0] }
+    : { paddingBottomRight: [0, panel.offsetHeight + 8] };
+}
+
+// Opens the map on UW's campus. You can zoom out and pan as far as the area that holds every
+// event, but not past it.
 function MapArea({ area }) {
   const map = useMap();
 
@@ -766,7 +819,7 @@ function MapArea({ area }) {
     map.setMinZoom(0);
     map.setMinZoom(map.getBoundsZoom(bounds));
     map.setMaxBounds(bounds.pad(0.05));
-    map.fitBounds(bounds, { paddingTopLeft: panelPadding(map) });
+    map.fitBounds(UW_CAMPUS, panelPadding(map));
   }, [map, area]);
 
   return null;
@@ -832,12 +885,12 @@ function IntroLabels({ places }) {
 }
 
 function JoinButton({ event, j }) {
-  const isJoined = j.joined.includes(event.id);
+  const isJoined = j.joined.includes(String(event.id));
   return (
     <button
       className={isJoined ? "join joined" : "join"}
       aria-pressed={isJoined}
-      title={isJoined ? "Click to leave this event" : undefined}
+      title={isJoined ? "Click to leave this event" : j.signedIn ? undefined : "Sign in to join"}
       onClick={() => j.toggle(event.id)}
     >
       {isJoined ? "Joined ✓" : "Join"}
@@ -863,11 +916,10 @@ function GoingList({ event, j }) {
   );
 }
 
-// "12 going": RSVPs on HuskyLink (sample events have `going`), DubHub users who joined, and you.
-// Signed in, your Join is already among the names. Nothing at all when nobody's going.
+// "12 going": RSVPs on HuskyLink (sample events have `going`) plus DubHub users who joined, you
+// included. Nothing at all when nobody's going.
 function going(event, j) {
-  const you = j.joined.includes(event.id) && !j.shared ? 1 : 0;
-  const count = (event.rsvps ?? event.going ?? 0) + whoGoing(event, j).length + you;
+  const count = (event.rsvps ?? event.going ?? 0) + whoGoing(event, j).length;
   return count > 0 ? `${count} going` : null;
 }
 
@@ -1459,7 +1511,7 @@ function hostedBy(all, club) {
 // Events you joined plus every event hosted by a club you're in.
 function myEventsFor(all, clubList, j, clubs) {
   const myClubs = clubList.filter((c) => clubs.joined.includes(c.name));
-  return all.filter((e) => j.joined.includes(e.id) || myClubs.some((c) => isHostedBy(e, c)));
+  return all.filter((e) => j.joined.includes(String(e.id)) || myClubs.some((c) => isHostedBy(e, c)));
 }
 
 function MyEventsPage({ all, clubList, j, clubs, onBrowse, onFindClubs }) {
@@ -1809,24 +1861,31 @@ function useGitHubProfile(login) {
   return profile;
 }
 
-function TeamMember({ name, role, github, linkedin, photo }) {
+function TeamMember({ name, role, note, github, githubPhoto = true, linkedin, photo }) {
   const p = useGitHubProfile(github);
+  const [photoFailed, setPhotoFailed] = useState(false);
   const initials = name
     .split(" ")
     .map((w) => w[0])
     .join("");
-  const picture = photo || (github && `https://github.com/${github}.png?size=160`);
+  const picture = photo || (github && githubPhoto && `https://github.com/${github}.png?size=192`);
 
   return (
     <li className="member">
-      {picture ? <img src={picture} alt="" /> : <span className="avatar">{initials}</span>}
-      <div>
-        <strong>{name}</strong>
-        {role && <div className="member-role">{role}</div>}
-        {p?.bio && <div>{p.bio}</div>}
+      {picture && !photoFailed ? (
+        <img src={picture} alt="" onError={() => setPhotoFailed(true)} />
+      ) : (
+        <span className={name === "Claude" ? "avatar claude" : "avatar"}>{initials}</span>
+      )}
+      <strong>{name}</strong>
+      {role && <div className="member-role">{role}</div>}
+      {(note || p?.bio) && <p className="member-note">{note || p.bio}</p>}
+      {p && (
         <div className="meta">
-          {[p?.location, p && `${p.public_repos} public repo${p.public_repos === 1 ? "" : "s"}`].filter(Boolean).join(", ")}
+          {[p.location, `${p.public_repos} public repo${p.public_repos === 1 ? "" : "s"}`].filter(Boolean).join(", ")}
         </div>
+      )}
+      <div className="member-links">
         {github && (
           <a href={`https://github.com/${github}`} target="_blank" rel="noreferrer">
             @{github} on GitHub
@@ -1877,7 +1936,35 @@ export default function DubHub() {
   const mapArea = useMemo(() => mapAreaFor(all), [all]);
   const { user, signIn, signOut } = useUser();
   const { profile, update: updateProfile } = useProfile(user);
-  const j = useGoing(user, all);
+
+  // The sign-in page remembers where you came from and the event you tried to join.
+  const [signInFrom, setSignInFrom] = useState({ tab: "Home", eventId: null });
+  const pendingJoin = useRef(null);
+  const openSignIn = useCallback(
+    (eventId = null) => {
+      setSignInFrom({ tab: tab === "Sign in" ? signInFrom.tab : tab, eventId });
+      pendingJoin.current = eventId;
+      setTab("Sign in");
+    },
+    [tab, signInFrom.tab]
+  );
+  const j = useGoing(user, all, openSignIn);
+  const pendingEvent = all.find((e) => String(e.id) === String(signInFrom.eventId));
+  const finishSignIn = useCallback(
+    (u) => {
+      signIn(u);
+      setTab(signInFrom.tab);
+    },
+    [signIn, signInFrom.tab]
+  );
+  // Once signed in, join the event that sent you to the sign-in page.
+  const { join } = j;
+  useEffect(() => {
+    if (user?.token && pendingJoin.current != null) {
+      join(pendingJoin.current);
+      pendingJoin.current = null;
+    }
+  }, [user?.token, join]);
   const clubs = useJoined(CLUBS_KEY);
   const theme = useTheme();
 
@@ -1903,7 +1990,7 @@ export default function DubHub() {
         </nav>
         <div className="nav-end">
           <ThemeToggle dark={theme.dark} onToggle={theme.toggle} />
-          <SignIn user={user} onSignIn={signIn} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
+          <Account user={user} onOpenSignIn={() => openSignIn()} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
         </div>
       </header>
 
@@ -1921,6 +2008,9 @@ export default function DubHub() {
       )}
       {tab === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} />}
       {tab === "About" && <AboutPage />}
+      {tab === "Sign in" && (
+        <SignInPage user={user} pendingEvent={pendingEvent} onSignIn={finishSignIn} onBack={() => setTab(signInFrom.tab)} />
+      )}
       {tab === "Profile" && (
         <ProfilePage
           user={user}

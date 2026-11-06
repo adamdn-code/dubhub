@@ -139,10 +139,6 @@ body {
   cursor: pointer;
 }
 
-.signin-wrap {
-  position: relative;
-}
-
 .nav-end {
   display: flex;
   align-items: center;
@@ -170,37 +166,6 @@ body {
 .theme-toggle .icon {
   width: 20px;
   height: 20px;
-}
-
-.signin-pop {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  width: 280px;
-  padding: 16px;
-  background: var(--surface);
-  color: var(--text);
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(28, 21, 48, 0.25);
-}
-
-.signin-pop p {
-  margin: 0 0 12px;
-  font-size: 14px;
-}
-
-.signin-pop .link-button {
-  color: var(--accent);
-}
-
-.signin-pop .signin-reason {
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.signin-pop .signin-error {
-  margin: 12px 0 0;
-  color: var(--error);
 }
 
 .user {
@@ -269,18 +234,25 @@ select:focus-visible {
   top: 16px;
   left: 16px;
   z-index: 500;
-  width: 252px;
-  padding: 18px 18px 16px;
+  width: 296px;
+  padding: 12px 14px 10px;
   background: linear-gradient(160deg, var(--purple-mid) 0%, var(--purple) 70%);
   border-top: 4px solid var(--gold);
   border-radius: 14px;
   box-shadow: 0 10px 30px rgba(30, 10, 70, 0.35), 0 2px 6px rgba(30, 10, 70, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
-/* Small gold "Filters" above the title */
+/* The four dropdowns, two by two, so the panel stays short and more map shows */
+.filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 10px;
+}
+
+/* Small gold label above a title (sign-in page) */
 .filters-eyebrow {
   margin: 0 0 -8px;
   color: var(--gold);
@@ -293,16 +265,17 @@ select:focus-visible {
 .filters h2 {
   margin: 0;
   color: #fff;
-  font-size: 19px;
+  font-size: 16px;
   line-height: 1.2;
 }
 
 .filters label {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
+  min-width: 0;
   color: #e6dcf7;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -312,16 +285,17 @@ select:focus-visible {
 .filters select {
   appearance: none;
   font: inherit;
-  font-size: 14px;
+  width: 100%;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: normal;
   text-transform: none;
-  padding: 8px 32px 8px 11px;
+  padding: 6px 26px 6px 9px;
   border: 2px solid transparent;
   border-radius: 9px;
   background: #fff
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234b2e83' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
-    no-repeat right 11px center;
+    no-repeat right 9px center;
   color: var(--purple);
   cursor: pointer;
   transition: border-color 0.15s, box-shadow 0.15s;
@@ -347,8 +321,8 @@ select:focus-visible {
 }
 
 .filters .count:last-child {
-  margin-top: 2px;
-  padding-top: 12px;
+  padding-top: 7px;
+  font-size: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   text-align: center;
 }
@@ -1288,31 +1262,32 @@ select:focus-visible {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   gap: 16px;
 }
 
+/* One team member: round photo on top, then name, role and links, all centered */
 .member {
   display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  padding: 16px;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 22px 16px 18px;
+  text-align: center;
   background: var(--surface);
-  border-radius: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
 }
 
 .member img,
-.member-role {
-  color: var(--accent);
-  font-weight: 700;
-  font-size: 14px;
-}
-
 .member .avatar {
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 8px;
   border-radius: 50%;
+  object-fit: cover;
   flex-shrink: 0;
+  box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--gold);
 }
 
 .member .avatar {
@@ -1320,8 +1295,37 @@ select:focus-visible {
   place-items: center;
   background: var(--purple-mid);
   color: #fff;
+  font-weight: 800;
+  font-size: 34px;
+}
+
+.member .avatar.claude {
+  background: var(--gold);
+  color: var(--purple);
+}
+
+.member strong {
+  font-size: 17px;
+}
+
+.member-role {
+  color: var(--accent);
   font-weight: 700;
-  font-size: 22px;
+  font-size: 14px;
+}
+
+.member-note {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.member-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 6px;
 }
 
 .member a {
@@ -1559,17 +1563,12 @@ select:focus-visible {
     left: 0;
     right: 0;
     width: auto;
+    padding: 10px 12px 8px;
     border-radius: 12px 12px 0 0;
-    flex-direction: row;
-    flex-wrap: wrap;
   }
-  .filters h2,
-  .count {
-    width: 100%;
-  }
-  .filters label {
-    flex: 1;
-    min-width: 90px;
+  /* On phones the panel is a short strip at the bottom: no title, just the dropdowns. */
+  .filters h2 {
+    display: none;
   }
   .tagline {
     display: none;
@@ -1595,4 +1594,56 @@ select:focus-visible {
   background: var(--surface);
   color: var(--text);
   border-bottom-color: var(--line);
+}
+
+/* Sign-in page */
+.signin-page {
+  display: grid;
+  place-items: center;
+}
+
+.signin-card {
+  width: min(440px, 100%);
+  margin: 24px auto;
+  padding: 28px 28px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--gold);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(30, 10, 70, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.signin-card h1 {
+  margin: -4px 0 0;
+  font-size: 26px;
+}
+
+.signin-card .signin-reason {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.signin-perks {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.signin-card .google-button {
+  min-height: 44px;
+}
+
+.signin-card .link-button {
+  align-self: flex-start;
+  color: var(--accent);
+}
+
+.signin-error {
+  color: var(--error);
+  font-size: 14px;
 }
