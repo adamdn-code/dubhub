@@ -1,7 +1,5 @@
-/* Base reset. DubHub's own look lives in DubHub.css; the site is always light, so form
-   controls and scrollbars shouldn't switch to dark mode on their own. */
+/* Base reset. DubHub's own look, including its light and dark colors, lives in DubHub.css. */
 :root {
-  color-scheme: light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

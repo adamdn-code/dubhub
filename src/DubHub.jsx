@@ -247,6 +247,58 @@ const TEAM = [
   { name: "Kelan Huynh", github: null, linkedin: "https://www.linkedin.com/in/kelanhuynh", photo: "/team/kelan.jpg" },
 ];
 
+const THEME_KEY = "dubhub-theme";
+const darkQuery = () => window.matchMedia("(prefers-color-scheme: dark)");
+
+// Light or dark: follows the device until someone picks one with the top-bar button, then
+// remembers that choice in this browser. Sets <html data-theme>, which DubHub.css reads.
+function useTheme() {
+  const [choice, setChoice] = useState(() => {
+    try {
+      return localStorage.getItem(THEME_KEY);
+    } catch {
+      return null;
+    }
+  });
+  const [deviceDark, setDeviceDark] = useState(() => darkQuery().matches);
+
+  useEffect(() => {
+    const q = darkQuery();
+    const onChange = (e) => setDeviceDark(e.matches);
+    q.addEventListener("change", onChange);
+    return () => q.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (choice) document.documentElement.dataset.theme = choice;
+    else delete document.documentElement.dataset.theme;
+  }, [choice]);
+
+  const dark = choice ? choice === "dark" : deviceDark;
+  const toggle = () => {
+    const next = dark ? "light" : "dark";
+    setChoice(next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch {
+      // Private browsing can block storage; the choice still lasts until the page closes.
+    }
+  };
+  return { dark, toggle };
+}
+
+const SUN = "M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4";
+const MOON = "M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z";
+
+function ThemeToggle({ dark, onToggle }) {
+  const label = dark ? "Switch to light mode" : "Switch to dark mode";
+  return (
+    <button className="theme-toggle" onClick={onToggle} aria-label={label} title={label}>
+      <Icon d={dark ? SUN : MOON} />
+    </button>
+  );
+}
+
 const JOINED_KEY = "dubhub-joined";
 const CLUBS_KEY = "dubhub-clubs";
 
@@ -803,6 +855,8 @@ function restyle(style) {
     if (layer.id === "building") delete layer.maxzoom; // it hands off to the (removed) 3D layer at zoom 14
     if (/^poi_/.test(layer.id)) layer.filter = ["all", layer.filter, notBusStop];
     const paint = (layer.paint ??= {});
+    // Walkways, sidewalks and park edges as solid lines instead of rows of dots.
+    if (/path_pedestrian|park_outline/.test(layer.id)) delete paint["line-dasharray"];
     if (set[layer.id]) {
       Object.assign(paint, set[layer.id]);
     } else if (layer.type === "line" && /^(road|bridge|tunnel)_/.test(layer.id) && !/rail|path/.test(layer.id)) {
@@ -1637,6 +1691,7 @@ export default function DubHub() {
   const { profile, update: updateProfile } = useProfile(user);
   const j = useJoined(JOINED_KEY);
   const clubs = useJoined(CLUBS_KEY);
+  const theme = useTheme();
 
   return (
     <div className="app">
@@ -1658,7 +1713,10 @@ export default function DubHub() {
             </button>
           ))}
         </nav>
-        <SignIn user={user} onSignIn={signIn} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
+        <div className="nav-end">
+          <ThemeToggle dark={theme.dark} onToggle={theme.toggle} />
+          <SignIn user={user} onSignIn={signIn} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
+        </div>
       </header>
 
       {tab === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} />}
