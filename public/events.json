@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T17:17",
+ "updated": "2026-11-05T18:23",
  "events": [
   {
    "id": "hl-375462",
@@ -32,7 +32,14 @@
    "description": "OSCMC's Fall Networking Night! Join us on Thursday for an evening full of meaningful conversations and supply chain insights",
    "likes": null,
    "comments": null,
-   "posts": 1
+   "posts": 1,
+   "post_counts": {
+    "DfNbvpfku6s": [
+     null,
+     null
+    ]
+   },
+   "image": null
   },
   {
    "id": "hl-375470",
@@ -92,6 +99,37 @@
    "rsvps": 0
   },
   {
+   "id": "DfS-mRPBfOd-0",
+   "title": "Workshop",
+   "type": "Food",
+   "host": "AVELA UW (@avela_uw)",
+   "where": "Loew Hall",
+   "pos": [
+    47.65434,
+    -122.30452
+   ],
+   "date": "2026-11-06",
+   "start": "17:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/DfS-mRPBfOd/",
+   "source": "instagram",
+   "description": "Resume review workshop! 📋👀\nDon’t miss your chance to get your resume reviewed by Boeing professionals and to enjoy some food 🤩 Make sure to bring your resume printed!\n⏰: 4:00-5:00 PM\n📍: Loew Hall 215\n🗓️: Friday, Nov 6",
+   "image": "/ig/posts/DfS-mRPBfOd.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfS-mRPBfOd": [
+     null,
+     null
+    ],
+    "DfSo_Cogcni": [
+     null,
+     null
+    ]
+   },
+   "posts": 2
+  },
+  {
    "id": "hl-375452",
    "title": "UTS Town Hall",
    "type": "Club",
@@ -136,9 +174,66 @@
    "url": "https://www.instagram.com/p/DeuiLbPDyd5/",
    "source": "instagram",
    "description": "The lights are soft, the spotlight is waiting, and your HK era might be closer than you think. ♡₊˚\n\nEver wondered what Hoa Khoi Lien Truong (HK) is all about? Whether you’re curious about the experience, what being a contestant involves, or what you can gain from participating, come join us for an HK Info Night!\n\nThis opportunity is open to female-identifying members of VSAUW! ♡ Whether you’re considering becoming a contestant or simply want to learn more, come with your questions and a little curiosity. Learn about the show, meet others who are interested, and discover what this experience could look like for you. ✧\n\n✦ INFO NIGHT #1: IN-PERSON\n♡ Date: Monday, November 2nd\n♡ Time: 6:00–7:00 PM\n♡ Location: SAV 168\n\n✦ INFO NIGHT #2: ONLINE\n♡ Date: Friday, November 6th\n♡ Time: 9:00–10:00 PM\n♡ Location: Zoom Link Through LinkTree\n\nBoth sessions will cover the same information, so choose whichever works best for you. However, YOU MUST ATTEND ONE INFO SESSION to qualify for HK.\n\nIf you’ve been curious about HK, consider this your sign to come learn more. Your next chapter might be waiting in the spotlight. ⋆౨ৎ˚⟡˖\n\nWe can’t wait to see you there! ♡\n\nGraphics By: Kaitlyn Liu\n#vsauw",
-   "likes": null,
+   "likes": 90,
    "comments": null,
-   "posts": 1
+   "posts": 1,
+   "post_counts": {
+    "DeuiLbPDyd5": [
+     90,
+     null
+    ]
+   },
+   "image": "/ig/posts/DeuiLbPDyd5.jpg"
+  },
+  {
+   "id": "DfBH6acPTtW-0",
+   "title": "ALPFA UW event",
+   "type": "Food",
+   "host": "ALPFA UW (@alpfauw)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-06",
+   "start": "22:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/DfBH6acPTtW/",
+   "source": "instagram",
+   "description": "Join ALPFA UW in collaboration with Agua Verde Café for a Día de los Muertos celebration! 🕯️🌼\n\nCome celebrate with us as we honor loved ones, embrace our traditions, and bring our community together for an evening of remembrance and connection. \n\n📅 November 6 ⏰ 8:00–10:00 PM 📍 Agua Verde Café | 1303 NE Boat St, Seattle, WA\n\n*Free food and drinks provided!\n\nWe hope to see you there! | RSVP THROUGH THE LINKTREE IN OUR BIO!",
+   "image": "/ig/posts/DfBH6acPTtW.jpg",
+   "likes": 99,
+   "comments": null,
+   "post_counts": {
+    "DfBH6acPTtW": [
+     99,
+     null
+    ]
+   },
+   "posts": 1,
+   "generic": true
+  },
+  {
+   "id": "DexdxKwjyOf-0",
+   "title": "AAIV UW event",
+   "type": "Club",
+   "host": "AAIV UW | Asian American InterVarsity (@aaivuw)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-06",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DexdxKwjyOf/",
+   "source": "instagram",
+   "description": "Hi AAIV! 🐟💙\n\nFall Con is coming up!! Join us November 6–8 for a weekend away from school to grow deeper in faith exploring the book of Peter, worship together and build meaningful friendships with students across the PNW and within our COMMUNITY! 🫶\n\nREGISTER BY TOMORROW (10/22) TO GET A FREE FALL CON SHIRT!! 👕✨\n\n📍Black Lake Bible Camp (Olympia, WA)\n\n💸 $185 ($40 deposit to secure your spot)\n\n🎟️ 50% OFF Discount Codes:\n- Freshmen: FIRSTYEAR50OFF\n- Non-Christians: OPENTOLEARN26\n\n💌 Scholarships are available if needed!\n\nDon’t miss out on this opportunity to rest, connect with community and see what God has in store for you! Registration closes October 29th, so sign up soon! 🫶\n\nSo see you at Retreat?\n\n- AAIV \n\n🖌️ Graphic made by Reuel Alejo",
+   "image": "/ig/posts/DexdxKwjyOf.jpg",
+   "likes": 57,
+   "comments": null,
+   "post_counts": {
+    "DexdxKwjyOf": [
+     57,
+     null
+    ]
+   },
+   "posts": 1,
+   "generic": true
   },
   {
    "id": "DeajhNEmhDW-0",
@@ -156,9 +251,68 @@
    "url": "https://www.instagram.com/p/DeajhNEmhDW/",
    "source": "instagram",
    "description": "Get ready for THE PRODUCT GAMES! 🚀🎯🏹\n\nRegistration is now OPEN for The Product Games, a one-day product competition combining the strategy of a case competition with the rapid building of a hackathon! \n\nWork in teams of 4 to tackle a real-world product challenge, build an innovative solution, and pitch your ideas to industry judges! Plus, enjoy free food, swag, mentorship, networking opportunities, and a chance to win prizes! 🏆\n\nEvent Details:\n📅 Date: Saturday, November 7 | 9 AM – 5:30 PM\n📍 Location: Founders Hall, UW\n👥 Eligibility: Open to all UW students, regardless of major or experience\n🔗 Applications are OPEN NOW, and close October 26 at 11:59 PM\n\nSpots are limited, so don’t miss your chance! Apply through the link in our bio or scan the QR code to register!",
-   "likes": null,
+   "likes": 56,
    "comments": null,
-   "posts": 2
+   "posts": 2,
+   "post_counts": {
+    "DeajhNEmhDW": [
+     null,
+     null
+    ],
+    "Dest2ueIkPI": [
+     56,
+     null
+    ]
+   },
+   "image": "/ig/posts/Dest2ueIkPI.jpg"
+  },
+  {
+   "id": "DfX4snDyXlm-0",
+   "title": "Performance",
+   "type": "Club",
+   "host": "American Marketing Association (@uw_ama)",
+   "where": "Online",
+   "pos": null,
+   "date": "2026-11-08",
+   "start": "20:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/DfX4snDyXlm/",
+   "source": "instagram",
+   "description": "Chipotle Fundraiser! 🌯🌶️\n\nJoin us for our Chipotle Fundraiser on Sunday, November 8th to support AMA! Stop by the U District location from 4 - 8 PM to grab a bowl or burrito. Make sure to show our flyer or mention AMA at checkout as well! For online orders, use code: M6ZCPMC 📲\n\nSee you there! 🗓️🙌",
+   "image": "/ig/posts/DfX4snDyXlm.jpg",
+   "likes": 29,
+   "comments": null,
+   "post_counts": {
+    "DfX4snDyXlm": [
+     29,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DesAIzMhUL7-0",
+   "title": "Social",
+   "type": "Hangout",
+   "host": "@vsauw",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-08",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DesAIzMhUL7/",
+   "source": "instagram",
+   "description": "Looking for your people? Your ACCE fam might be just around the corner! 🫂\n\nACCE, or Anh Chi Chanh Em, is a VSAUW program that connects members in smaller groups so you can build friendships, hang out outside of General Meetings, and make memories together! From spending time with your fam to competing against other fams for the ultimate bragging rights, there’s so much to look forward to.\n\nINTEREST FORM ARE OPEN!\n✦ Opens: October 20th\n✦ Closes: November 8th at 11:59 PM\n\nReady to find your people? Fill out the ACCE Fam Interest Form through the Linktree in our bio!♡\n\nGet excited, because your next favorite people might just be waiting for you!\n\nGraphics by: Thao Vo\n\n#vsauw",
+   "image": "/ig/posts/DesAIzMhUL7.jpg",
+   "likes": 112,
+   "comments": null,
+   "post_counts": {
+    "DesAIzMhUL7": [
+     112,
+     null
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "hl-375483",
@@ -192,9 +346,16 @@
    "url": "https://www.instagram.com/p/DfSb8hrA9hc/",
    "source": "instagram",
    "description": "‼️RSVP on all sides is closed, we received 150 sign up in 24 hours we do not have any more space‼️\n\n🧡 Intro to Claude Code 🧡\n\nCBC, NSBE, SHPE, and ColorStack are teaming up to show you how to build with Claude Code, an AI coding agent that works right alongside you.\n\nWhat’s happening:\n\n→ Learn what Claude Code can do\n→ See live demos\n→ Get hands-on and build with it yourself\n\n🎁 Free Claude Pro + Uber One for attendees\n☕ Food and drinks from Starbucks and Uber Eats\n\n📅 Monday, Nov. 9\n⏰ 5:30–7:00 PM\n📍 HSEB 101 or Health Science Education Building\n\n⚡ Priority RSVP by 9 AM on 11/5. This will be a popular event, so depending on demand we might have to cap attendance! Link in bio!\n\nNo coding experience needed. Bring a laptop and a friend. 💻\n\n#ClaudeCode #NSBE #SHPE #colorstack",
-   "likes": null,
+   "likes": 122,
    "comments": null,
-   "posts": 1
+   "posts": 1,
+   "post_counts": {
+    "DfSb8hrA9hc": [
+     122,
+     null
+    ]
+   },
+   "image": "/ig/posts/DfSb8hrA9hc.jpg"
   },
   {
    "id": "hl-375142",
@@ -264,6 +425,33 @@
    "rsvps": 0
   },
   {
+   "id": "DfVeqKTyly9-0",
+   "title": "Panel",
+   "type": "Club",
+   "host": "AI Collective @ UW (@aic.uw)",
+   "where": "PACCAR Hall",
+   "pos": [
+    47.65909,
+    -122.30867
+   ],
+   "date": "2026-11-09",
+   "start": "19:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/DfVeqKTyly9/",
+   "source": "instagram",
+   "description": "Want to learn how enterprise tech and marketing intersect? Join ABSA and AISC for an interactive panel featuring professionals from SAP as they share their academic and career journeys, daily responsibilities, and how AI is transforming marketing. Our speakers will dive into real-world AI applications, key skills to build while in college, and how to keep content authentic while leveraging AI. Stick around for an interactive Q&A session and direct networking with SAP industry leaders!\n\nDate: Monday, November 9, 2026\nTime: 6:00-7:00pm\nLocation: PCAR 190\nAttire: Business Casual\n\nQuestions? Email absa@uw.edu",
+   "image": "/ig/posts/DfVeqKTyly9.jpg",
+   "likes": 36,
+   "comments": null,
+   "post_counts": {
+    "DfVeqKTyly9": [
+     36,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "hl-375124",
    "title": "Writers in Progress Meeting",
    "type": "Club",
@@ -278,6 +466,57 @@
    "description": "A meeting usually includes an icebreaker, a short freewrite, and a feedback session.\nRegistration not required :) Feel free to drop in and say hi",
    "image": null,
    "rsvps": 0
+  },
+  {
+   "id": "De5hKvmGiiR-0",
+   "title": "Tabling",
+   "type": "Food",
+   "host": "@vsauw",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-09",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/De5hKvmGiiR/",
+   "source": "instagram",
+   "description": "Membership is officially open!! 🏮 Grab your card and shirt at Red Square from 11/9 to 11/25 🎟️✨\n\n✦ Standard (card + shirt): $20\n✦ Bundle (card + shirt + crewneck): $35\n✦ Crewneck: $25\n\nWith your membership, you’ll unlock 30% off all VSAUW events and 22 exclusive discounts from spots around Seattle! Swipe to see all 22 sponsor discounts.\n\nPre-orders are available in our linktree! 🔗\n\n*Note: Crewnecks will be available to pick up at GM #4 NOT Tabling Dates #BundleUp\n\nMembership Design by: Thao Vo\nGraphics by: Ricky Tran\n\nMembership is officially open!! 🏮 Grab your card, shirt, and crewneck at Red Square from 11/9 to 11/25 🎟️✨\n\n✦ Standard (card + shirt): $20\n✦ Bundle (card + shirt + crewneck): $35\n✦ Crewneck: $25\n\nWith your membership, you’ll unlock 30% off all VSAUW events and 22 exclusive discounts from spots around Seattle! Swipe to see all 22 sponsor discounts.\n\nPre-orders are available in our linktree! 🔗\n\nMembership Design by: Thao Vo\nGraphics by: Ricky Tran\n\nSponsors & Discounts:\n\n✦ 30% off all VSAUW events\n\nCostas Restaurant: 10% off\nEgg Street: 10% off\nCedars Restaurant: 10% off\nBoiling Point: 10% off\nTea Republik: 10% off\nU:Don: 10% off\nSweet Alchemy: 10% off\nBoba Up: 10% off\nPhong Pham Photography: 15% off\nSeattle Best Tea: 10% off\nGolmok Market Bar: 10% off\nYan Tea: 10% off\nShake & Stack Burgers: 10% off\nTime Bistro: 10% off\nSeattle Records: 10% off\nInnervisions: 10% off\nElixir: 10% off\nMidnight Bagels: 10% off\n911 Driving School: call to apply discount\nCafe Happy: 10% off\nCollege Inn Pub: 10% off\nLittle Thai: 10% off\n\n*Show your membership card to redeem",
+   "image": "/ig/posts/De5hKvmGiiR.jpg",
+   "likes": 94,
+   "comments": null,
+   "post_counts": {
+    "De5hKvmGiiR": [
+     94,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfWZKzipjB0-0",
+   "title": "Workshop",
+   "type": "Club",
+   "host": "BioExplore at UW 🧬 (@uw_bioexplore)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-09",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfWZKzipjB0/",
+   "source": "instagram",
+   "description": "Join us on Monday, November 9th, for our interactive resume workshop! We will also be sharing info about the two upcoming lab tours we have this month. No prior resume or research experience is needed. Excited to see you there! 📄👩‍🔬🧪",
+   "image": "/ig/posts/DfWZKzipjB0.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfWZKzipjB0": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "hl-375404",
@@ -433,6 +672,34 @@
    "rsvps": 0
   },
   {
+   "id": "DexYu0MRZo8-0",
+   "title": "@uw_asce event",
+   "type": "Club",
+   "host": "@uw_asce",
+   "where": "Mechanical Engineering",
+   "pos": [
+    47.65369,
+    -122.30476
+   ],
+   "date": "2026-11-12",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DexYu0MRZo8/",
+   "source": "instagram",
+   "description": "Looking to fine tune your interviewing skills? Join us for interview prep night! Industry professionals join us to teach you some of their skills. NOVEMBER 12th, 6pm-8pm, in MEB 103!!! See you there!!",
+   "image": "/ig/posts/DexYu0MRZo8.jpg",
+   "likes": 3,
+   "comments": null,
+   "post_counts": {
+    "DexYu0MRZo8": [
+     3,
+     null
+    ]
+   },
+   "posts": 1,
+   "generic": true
+  },
+  {
    "id": "hl-375477",
    "title": "Trans Day of Remembrance Panel",
    "type": "Study",
@@ -447,6 +714,31 @@
    "description": "During this event, we will be recognizing the higher rates of violence and inequality that trans-folk face; sharing information about your rights, advocacy and access to resources on UW campus and within Seattle. The event will also include an open Q&A portion.\nPanelist from:\nQ Center\nSchool of Social Work\nTRANSITION",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615660_OID_approved_version_74113d72-80bc-411e-a131-678df7a7a1d3_112173549.png",
    "rsvps": 0
+  },
+  {
+   "id": "DexO1bdSDsF-0",
+   "title": "ALPFA UW event",
+   "type": "Club",
+   "host": "ALPFA UW (@alpfauw)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-13",
+   "start": "10:00",
+   "end": "12:00",
+   "url": "https://www.instagram.com/p/DexO1bdSDsF/",
+   "source": "instagram",
+   "description": "We’re heading to Parametric on November 13th!🏙️ \n\nJoin us for a company visit to their downtown Seattle office and get a closer look at what they do.\n\n**Juniors & seniors prioritized!** Sophomores with junior standing are also welcome.\n\nNovember 13 | 10 AM-12 PM\nScan the QR code to RSVP!",
+   "image": "/ig/posts/DexO1bdSDsF.jpg",
+   "likes": 31,
+   "comments": null,
+   "post_counts": {
+    "DexO1bdSDsF": [
+     31,
+     null
+    ]
+   },
+   "posts": 1,
+   "generic": true
   },
   {
    "id": "hl-375474",
@@ -555,7 +847,14 @@
    "description": "OPEN UP UR CALENDARS… FALL QUARTER GMS ARE HERE! 🍂\n\nFour GMs. Four chances to pull up, make friends, and stay connected with VSAUW ⋆｡°✩\n\n🗓️ General Meeting #1\nOctober 20th • 6–8 PM\n📍 HUB South Ballroom\n\n🗓️ General Meeting #2\nNovember 3rd • 6–8 PM\n📍 Denny Room\n\n🗓️ General Meeting #3 + ACCE Fam Reveal\nNovember 17th • 6–8 PM\n📍 Denny Room\n\n🗓️ General Meeting #4\nDecember 1st • 6–8 PM\n📍 Denny Room\n\nOpen up your calendars, mark the dates, and we hope to see you there! \n\nGraphic By: Thu Nguyen\n#vsauw",
    "likes": null,
    "comments": null,
-   "posts": 1
+   "posts": 1,
+   "post_counts": {
+    "DePafArhcs1": [
+     null,
+     null
+    ]
+   },
+   "image": null
   },
   {
    "id": "hl-375297",
@@ -575,6 +874,30 @@
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png",
    "rsvps": 0
+  },
+  {
+   "id": "DfT69kvG4fn-0",
+   "title": "Performance",
+   "type": "Food",
+   "host": "cseed (@cseeduw)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-17",
+   "start": "19:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/DfT69kvG4fn/",
+   "source": "instagram",
+   "description": "🚀 CSEED BUILDSPACE DEMO DAY IS HERE 🚀\n\nOver the past 5 weeks, our Cohort 6 builders have poured their passion into creating some incredible projects across hardware, software, design, and creator tracks! Now it’s time to show them off 🔥\n\nCome celebrate the dedication of our builders, get inspired, and learn more about CSEED! \n\n📅 November 17th, 5:30-7:30 pm at ZILLOW COMMONS\n🥪 FREE dinner, snacks, and drinks provided!\n📍RSVP: https://tinyurl.com/cseed2026demoday \n\nFor accommodations, questions, or concerns, please reach out to questions@cseed.co",
+   "image": "/ig/posts/DfT69kvG4fn.jpg",
+   "likes": 55,
+   "comments": null,
+   "post_counts": {
+    "DfT69kvG4fn": [
+     55,
+     null
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "hl-375372",
@@ -608,9 +931,16 @@
    "url": "https://www.instagram.com/p/DfAs_UYMODt/",
    "source": "instagram",
    "description": "Join us for the Association for Computing Education (ACE) monthly TA Social: November edition!\n\nCome take a break and join us for plenty of snacks, a huge selection of board games and playing cards (like Jenga, Scrabble, UNO, and Monopoly) and our creative activities of the month: rhinestoning, loom bracelet making, painting, fuse beading, and other arts and crafts! This is the perfect time to make friends, bond, and enjoy some great company.\n\nWhether you are a TA, are considering becoming one, or simply want to mingle with the computing education community, the ACE team welcomes you! This event is open to everyone.\n\n📅 Date: Thursday, November 19th\n🕔 Time: 3:00 PM - 4:00 PM\n📍 Location: CSE1 305 (Allen)\n*Please remember to RSVP at the link in our bio!*\n\n- ACE Officers\n\nIf you have any questions or concerns, please don’t hesitate to contact us at ace-officers@cs.washington.edu. ACE is committed to providing access, equal opportunity, and reasonable accommodation for our events, programs, activities, and education for individuals with disabilities (with advance notice). Please reach out to Linda Taing, Senior Student Leadership Development Specialist, directly at lindavt@cs.washington.edu if you have any questions or requests.\n\nImage Description:\nFlyer for the Association for Computing Education’s November TA Social event. The flyer contains photos from a previous event, including: members in a classroom engaged in their activities with a man standing up with his arms spread out; a bowl of plastic beads; friendship bracelets; a bedazzled tin of mints; and fuse bead creations such as a sword with a heart and a butterfly. The text around the flyer reads: TA Social November Edition; take a break from work, join us in our monthly TA social!;board games, arts & crafts; open to everyone!; Thursday, November 19th; CSE1 (Allen) 305; 3-4 PM.",
-   "likes": null,
+   "likes": 12,
    "comments": null,
-   "posts": 1
+   "posts": 1,
+   "post_counts": {
+    "DfAs_UYMODt": [
+     12,
+     null
+    ]
+   },
+   "image": "/ig/posts/DfAs_UYMODt.jpg"
   },
   {
    "id": "hl-375478",
@@ -630,6 +960,37 @@
    "description": "Join us as we honor the lives of Transgender and gender-diverse people who have been lost to anti-trans violence during Trans Day of Remembrance.\nWe will be walking to Drumheller Fountain with your choosing of real/battery powered tea-lights.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615660_option_b__cb92a180-f25f-4a9b-8900-ec674338a2a0_11217332.png",
    "rsvps": 0
+  },
+  {
+   "id": "DfQf192GaeW-0",
+   "title": "Social",
+   "type": "Hangout",
+   "host": "American Marketing Association (@uw_ama)",
+   "where": "Dempsey Hall",
+   "pos": [
+    47.65911,
+    -122.30781
+   ],
+   "date": "2026-11-20",
+   "start": "20:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/DfQf192GaeW/",
+   "source": "instagram",
+   "description": "M&M Monday: Industry Professionals Round 2 💼🙌\n\nAMA is excited to introduce our next round of professionals attending our 14th annual Marketing & Mocktails event! Their insights will be directly connected to this year’s M&M theme of “Connection Powers People,” so bring your questions and curiosity to the event 🤝\n\n🖼️ Kat Bryant Flaherty, Director of Marketing & Communications at Seattle Art Museum\n\n👗 Tanya Nguyen, Brand PR Specialist at Nordstrom\n\n⚽️ Kelley Myers, Director of Social Media at Seattle Reign\n\n📲 Samriddhi Simlai, Marketing Manager at Contact.One\n\n📌Buy your ticket:\nFriday, November 20th\n6:00 - 8:00 PM\nAnthony’s Forum, Dempsey Hall\n\n*Purchase tickets at the link in our bio!",
+   "image": "/ig/posts/DfQf192GaeW.jpg",
+   "likes": 113,
+   "comments": null,
+   "post_counts": {
+    "DfQf192GaeW": [
+     42,
+     null
+    ],
+    "De9_2kFgYaZ": [
+     71,
+     null
+    ]
+   },
+   "posts": 2
   },
   {
    "id": "hl-375485",
@@ -714,9 +1075,20 @@
    "url": "https://www.instagram.com/p/DfA85MuhM0V/",
    "source": "instagram",
    "description": "Think you can spell out the perfect end to your quarter? The Association for Computing Education (ACE) is wrapping up the quarter with our first-ever Computing Bee.\n\nTo unwind right before dead week, we are putting together a fun computing education twist on the classic spelling bee. You and a group will team up to compete in a thrilling series of computing-themed games, earning points along the way to win some awesome prizes. Prizes will range from squish toys and goodie bags, all the way up to the ultimate prize: getting to pie our ACE President, Nichole!\n\nSo whether you are yearning for the title of first place, want to participate in some fun games, or simply want to destress from exams, come take a break and join us for plenty of snacks, drinks, prizes, and fun! Everyone is welcome!\n\n📅 Date: Tuesday, December 1st\n🕔 Time: 4:00 PM to 6:30 PM\n📍 Location: Gates Common (CSE1 691)\n*Please remember to RSVP at the link in our bio!*\n\n- ACE Officers\n\nIf you have any questions or concerns, please don’t hesitate to contact us at ace-officers@cs.washington.edu. ACE is committed to providing access, equal opportunity, and reasonable accommodation for our events, programs, activities, and education for individuals with disabilities (with advance notice). Please reach out to Linda Taing, Senior Student Leadership Development Specialist, directly at lindavt@cs.washington.edu if you have any questions or requests.\n\nImage description: \nFlyer for the Association for Computing Education's Computing Bee Event. The flyer contains ASCII depiction of a cartoon bee head and its stinger. The title \"Computing Bee\" is stylized to resemble a JSX object. There is a message in binary that reads \"Buzz\" and a few lines of Python code initializing variables for the event's date and time. The text around the flyer reads: Press the buzzer when you know the answer; Computing Bee; Team up and compete in our end-of-quarter computing related games to win prizes and pie our president; Tuesday, December",
-   "likes": null,
+   "likes": 33,
    "comments": null,
-   "posts": 1
+   "posts": 2,
+   "post_counts": {
+    "DfA85MuhM0V": [
+     16,
+     null
+    ],
+    "DfVLDgfTAiN": [
+     17,
+     null
+    ]
+   },
+   "image": "/ig/posts/DfA85MuhM0V.jpg"
   },
   {
    "id": "DePafArhcs1-2",
@@ -736,7 +1108,14 @@
    "description": "OPEN UP UR CALENDARS… FALL QUARTER GMS ARE HERE! 🍂\n\nFour GMs. Four chances to pull up, make friends, and stay connected with VSAUW ⋆｡°✩\n\n🗓️ General Meeting #1\nOctober 20th • 6–8 PM\n📍 HUB South Ballroom\n\n🗓️ General Meeting #2\nNovember 3rd • 6–8 PM\n📍 Denny Room\n\n🗓️ General Meeting #3 + ACCE Fam Reveal\nNovember 17th • 6–8 PM\n📍 Denny Room\n\n🗓️ General Meeting #4\nDecember 1st • 6–8 PM\n📍 Denny Room\n\nOpen up your calendars, mark the dates, and we hope to see you there! \n\nGraphic By: Thu Nguyen\n#vsauw",
    "likes": null,
    "comments": null,
-   "posts": 1
+   "posts": 1,
+   "post_counts": {
+    "DePafArhcs1": [
+     null,
+     null
+    ]
+   },
+   "image": null
   },
   {
    "id": "hl-375302",
