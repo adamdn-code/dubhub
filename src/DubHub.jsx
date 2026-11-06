@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, CircleMarker, Marker, Popup, ZoomControl, useMap } from "react-leaflet";
+import { MapContainer, CircleMarker, Marker, ZoomControl, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -986,24 +986,47 @@ function BaseMap() {
 
 // Hovering a dot opens its pop-up (same as clicking). It stays open while the mouse is on the dot
 // or the pop-up, so its buttons can still be clicked, and closes shortly after the mouse leaves.
-let popupCloseTimer;
-const closeSoon = (layer) => {
-  popupCloseTimer = setTimeout(() => layer.closePopup(), 300);
-};
-const HOVER_POPUP = {
-  mouseover: (ev) => {
-    clearTimeout(popupCloseTimer);
-    ev.target.openPopup();
-  },
-  mouseout: (ev) => closeSoon(ev.target),
-  popupopen: (ev) => {
-    const el = ev.popup.getElement();
-    el.onmouseenter = () => clearTimeout(popupCloseTimer);
-    el.onmouseleave = () => closeSoon(ev.target);
-  },
-};
+// The hovered (or tapped) dot's event, shown in a panel docked in the map's corner instead of a
+// pop-up above the dot, so it's never cut off at the map's edge.
+function MapEventCard({ event, j, onEnter, onLeave, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
 
-function EventMap({ events, area, introLabels, j }) {
+  const e = event;
+  return (
+    <aside className="map-card" aria-label={`${e.title}, hosted by ${hostName(e)}`} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+      <button className="map-card-close" aria-label="Close" onClick={onClose}>
+        &times;
+      </button>
+      <div className="map-popup">
+        <div className="map-popup-club">
+          <Thumb src={e.club?.logo} label={hostName(e)} color={eventColor(e)} className="map-popup-logo" />
+          <span className="map-popup-club-label">Hosted by</span>
+          <span className="map-popup-club-name">{hostName(e)}</span>
+        </div>
+        <div className="map-popup-main">
+          <strong>{e.title}</strong>
+          {[formatWhen(e), e.where, going(e, j)].filter(Boolean).map((line) => (
+            <div key={line}>{line}</div>
+          ))}
+          {shortText(e.description) && <p className="map-popup-desc">{shortText(e.description)}</p>}
+          <JoinButton event={e} j={j} /> <PostLink event={e} />
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+// Clicking the map itself (not a dot) closes the panel.
+function MapClicks({ onClick }) {
+  useMapEvents({ click: onClick });
+  return null;
+}
+
+function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, onMapClick }) {
   const located = events.filter((e) => e.pos);
   // One intro label per place, so events in the same building don't pile up.
   const byPlace = new Map();
@@ -1031,33 +1054,20 @@ function EventMap({ events, area, introLabels, j }) {
       <ZoomControl position="topright" />
       <MapArea area={area} />
       <BaseMap />
-      {located.map((e) => (
-        <CircleMarker
-          key={e.id}
-          center={e.pos}
-          radius={9 + Math.min((e.rsvps ?? e.going ?? 0) / 6, 8)}
-          pathOptions={{ color: "#fff", weight: 2, fillColor: eventColor(e), fillOpacity: 0.95 }}
-          eventHandlers={HOVER_POPUP}
-        >
-          <Popup autoPan={false} maxWidth={380} minWidth={300}>
-            <div className="map-popup">
-              <div className="map-popup-club">
-                <Thumb src={e.club?.logo} label={hostName(e)} color={eventColor(e)} className="map-popup-logo" />
-                <span className="map-popup-club-label">Hosted by</span>
-                <span className="map-popup-club-name">{hostName(e)}</span>
-              </div>
-              <div className="map-popup-main">
-                <strong>{e.title}</strong>
-                {[formatWhen(e), e.where, going(e, j)].filter(Boolean).map((line) => (
-                  <div key={line}>{line}</div>
-                ))}
-                {shortText(e.description) && <p className="map-popup-desc">{shortText(e.description)}</p>}
-                <JoinButton event={e} j={j} /> <PostLink event={e} />
-              </div>
-            </div>
-          </Popup>
-        </CircleMarker>
-      ))}
+      {located.map((e) => {
+        const on = shown?.id === e.id;
+        return (
+          <CircleMarker
+            key={e.id}
+            center={e.pos}
+            radius={9 + Math.min((e.rsvps ?? e.going ?? 0) / 6, 8) + (on ? 3 : 0)}
+            pathOptions={{ color: on ? "#b7a57a" : "#fff", weight: on ? 4 : 2, fillColor: eventColor(e), fillOpacity: 0.95 }}
+            bubblingMouseEvents={false}
+            eventHandlers={{ mouseover: () => onHover(e), mouseout: onLeave, click: () => onPin(e) }}
+          />
+        );
+      })}
+      <MapClicks onClick={onMapClick} />
       {introLabels && <IntroLabels places={places} />}
     </MapContainer>
   );
@@ -1087,15 +1097,43 @@ function MapLegend({ events }) {
 }
 
 function Home({ f, area, introLabels, j }) {
+  const [shown, setShown] = useState(null); // { event, pinned }
+  const hideTimer = useRef();
+  const keep = () => clearTimeout(hideTimer.current);
+  const show = (event, pinned = false) => {
+    keep();
+    setShown((s) => ({ event, pinned: pinned || (s?.pinned && s.event.id === event.id) }));
+  };
+  const hideSoon = () => {
+    keep();
+    hideTimer.current = setTimeout(() => setShown((s) => (s?.pinned ? s : null)), 300);
+  };
+  const close = useCallback(() => {
+    keep();
+    setShown(null);
+  }, []);
+  // If filters remove the shown event from the map, drop the panel too.
+  const event = shown && f.events.find((e) => e.id === shown.event.id);
+
   return (
     <main className="home">
-      <EventMap events={f.events} area={area} introLabels={introLabels} j={j} />
+      <EventMap
+        events={f.events}
+        area={area}
+        introLabels={introLabels}
+        shown={event}
+        onHover={show}
+        onLeave={hideSoon}
+        onPin={(e) => show(e, true)}
+        onMapClick={close}
+      />
       <MapLegend events={f.events} />
       <Filters f={f} />
       <div className="tagline">
         <h1>See what's happening at UW, right now.</h1>
         <p>Study sessions, club meetings, game nights, and dinner plans, all on one map.</p>
       </div>
+      {event && <MapEventCard event={event} j={j} onEnter={keep} onLeave={hideSoon} onClose={close} />}
     </main>
   );
 }

@@ -810,7 +810,70 @@ select:focus-visible {
   opacity: 0.9;
 }
 
-/* Map dot pop-up: the host club in its own column, next to the event's details */
+/* The hovered or tapped dot's event, docked in the map's top-right corner (under the zoom
+   buttons) instead of a pop-up over the dot, so it never runs off the map. */
+.map-card {
+  position: absolute;
+  top: 92px;
+  right: 12px;
+  z-index: 600;
+  width: min(380px, calc(100% - 24px));
+  max-height: calc(100% - 140px);
+  overflow: auto;
+  padding: 14px 14px 12px;
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(28, 21, 48, 0.28);
+  animation: map-card-in 120ms ease-out;
+}
+
+@keyframes map-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+.map-card .map-popup {
+  padding-right: 22px; /* room for the close button */
+}
+
+.map-card-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.map-card-close:hover {
+  background: var(--line);
+  color: var(--text);
+}
+
+.map-card-close:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-card {
+    animation: none;
+  }
+}
+
+/* Map event details: the host club in its own column, next to the event's details */
 .map-popup {
   display: grid;
   grid-template-columns: 92px 1fr;
@@ -1407,6 +1470,14 @@ select:focus-visible {
 @media (max-width: 700px) {
   .map-legend {
     display: none;
+  }
+  .map-card {
+    /* across the top of the map, clear of the zoom buttons (the filters sit at the bottom) */
+    top: 10px;
+    left: 10px;
+    right: 56px;
+    width: auto;
+    max-height: calc(100% - 260px);
   }
   :root {
     --nav-h: 52px;
