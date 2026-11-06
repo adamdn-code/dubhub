@@ -78,6 +78,15 @@ def read_clubs():
     return list(dict.fromkeys(h.lower() for h in handles))
 
 
+def engagement(post):
+    """(likes, comments) when Instagram sent them with the post, else None. Reads only what's
+    already downloaded: post.likes could fetch the post's full details, one more request each."""
+    n = post._node
+    likes = (n.get("edge_media_preview_like") or n.get("edge_liked_by") or {}).get("count", n.get("like_count"))
+    comments = (n.get("edge_media_to_comment") or {}).get("count", n.get("comment_count"))
+    return likes, comments
+
+
 def load_checked():
     try:
         return json.loads(CHECKED_FILE.read_text(encoding="utf-8"))
@@ -132,6 +141,10 @@ def scrape_instagram(store):
             new = 0
             for post in islice(profile.get_posts(), POSTS_PER_CLUB):
                 pinned = getattr(post, "is_pinned", False)
+                likes, comments = engagement(post)
+                if post.shortcode in store and likes is not None:
+                    # Likes keep coming in after a post goes up; keep Trending current.
+                    store[post.shortcode].update(likes=likes, comments=comments)
                 # Posts come newest first (after pinned ones), so the first old
                 # or already-read post means everything after it is too.
                 if post.date_utc.date() < cutoff or post.shortcode in store:
@@ -145,6 +158,8 @@ def scrape_instagram(store):
                     "posted": post.date_utc.date(),
                     "url": f"https://www.instagram.com/p/{post.shortcode}/",
                     "source": "instagram",
+                    "likes": likes,
+                    "comments": comments,
                 })
                 new += 1
             print(f"[{i + 1}/{len(handles)}] {handle}: {new} new post(s)")

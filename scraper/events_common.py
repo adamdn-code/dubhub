@@ -455,6 +455,8 @@ def process_posts(posts, store):
                 "caption": post["caption"][:2000],
                 "events": events,
                 "found_with": mode,
+                "likes": post.get("likes"),
+                "comments": post.get("comments"),
             }
         if found and i + AI_BATCH < len(posts) and mode == "ai":
             time.sleep(3)  # stay under Groq's free per-minute limit
@@ -482,15 +484,20 @@ def not_uw_clubs(store):
 
 def drop_duplicate_events(events):
     """Clubs often post the same event twice (a schedule, then a reminder). Keep one per
-    club, date and title: the copy with the most details (place, map pin, times)."""
-    best = {}
+    club, date and title: the copy with the most details (place, map pin, times). The kept
+    copy gets every copy's likes and comments, and `posts`, how many posts promoted it."""
+    groups = {}
     for e in events:
         handle = parse_host(e["host"])[1] or (e["host"] or "").lower()
-        key = (handle, e["date"], re.sub(r"[^a-z0-9]", "", e["title"].lower()))
-        details = sum(e[field] is not None for field in ("where", "pos", "start", "end"))
-        if key not in best or details > best[key][0]:
-            best[key] = (details, e)
-    keep = {id(e) for _, e in best.values()}
+        groups.setdefault((handle, e["date"], re.sub(r"[^a-z0-9]", "", e["title"].lower())), []).append(e)
+    keep = set()
+    for copies in groups.values():
+        best = max(copies, key=lambda e: sum(e[field] is not None for field in ("where", "pos", "start", "end")))
+        for field in ("likes", "comments"):
+            counts = [e[field] for e in copies if e.get(field) is not None]
+            best[field] = sum(counts) if counts else None
+        best["posts"] = len(copies)
+        keep.add(id(best))
     return [e for e in events if id(e) in keep]
 
 
@@ -501,7 +508,10 @@ def write_site_events(store):
     for key, post in store.items():
         if post["club"] in not_uw:
             continue
-        for n, e in enumerate(post.get("events") or []):
+        found = post.get("events") or []
+        # A post listing several events (a quarter's schedule) shares its likes among them.
+        share = lambda count: None if count is None else round(count / len(found))
+        for n, e in enumerate(found):
             if e["date"] < TODAY.isoformat():
                 continue
             events.append({
@@ -518,6 +528,9 @@ def write_site_events(store):
                 "source": post["source"],
                 # The post's caption, shown when someone opens the event on the site.
                 "description": (post.get("caption") or "").strip() or None,
+                # Popularity signals for the site's Trending row.
+                "likes": share(post.get("likes")),
+                "comments": share(post.get("comments")),
             })
     events = merge_huskylink_events(drop_duplicate_events(events))
     SITE_EVENTS_FILE.parent.mkdir(exist_ok=True)

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T07:15",
+ "updated": "2026-11-05T17:17",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -877,8 +877,8 @@
    "name": "Associated Students at the College of Education",
    "website": "https://huskylink.washington.edu/ascecoe/",
    "category": "Academic",
-   "about": "The Associated Students at the College of Education act on behalf of the student body of the College of Education…",
-   "description": "The Associated Students at the College of Education act on behalf of the student body of the College of Education (COE) in three chief ways. First, we aim to create a positive culture and atmosphere in the COE for all student",
+   "about": "The Associated Students of the College of Education (ASCE) serve to support, connect, and advocate for the students of…",
+   "description": "The Associated Students of the College of Education (ASCE) serve to support, connect, and advocate for the students of the College of Education at the University of Washington’s Seattle Campus. We seek to build a positive culture in the College of Education by building community across programs, with faculty and staff, and between students within the College of Education. We aim to offer students professional development and networking opportunities, and help students build meaningful relationships that lead to greater personal, academic, and professional success. We advocate on behalf of the needs of students in the College of Education to faculty and staff of the College of Education, to student government organizations, and to the university as a whole.",
    "logo": null
   },
   {
@@ -7613,8 +7613,8 @@
    "name": "Strawberries and Sudoku at UW",
    "website": "https://huskylink.washington.edu/strawberriesandsudoku/",
    "category": "Sports",
-   "about": "Strawberries &amp; Sudoku is a club for enthusiasts of all things strawberries and lovers of sudoku!",
-   "description": "Strawberries &amp; Sudoku is a club for enthusiasts of all things strawberries and lovers of sudoku! We host sudokusolving competitions on the first Monday of every month where participants compete for strawberryrelated prizes.",
+   "about": "Strawberries & Sudoku is a club for enthusiasts of all things strawberries and lovers of sudoku!",
+   "description": "Strawberries & Sudoku is a club for enthusiasts of all things strawberries and lovers of sudoku! We host sudokusolving competitions on the first Monday of every month where participants compete for strawberryrelated prizes.",
    "logo": null
   },
   {
@@ -9436,99 +9436,6 @@
  ],
  "events": [
   {
-   "id": "hl-375053",
-   "title": "UNA UW Chapter Meeting",
-   "type": "Club",
-   "host": "United Nations Association University of Washington Chapter",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-04",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/unauw/rsvp?id=375053",
-   "source": "huskylink",
-   "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!",
-   "image": null
-  },
-  {
-   "id": "hl-375242",
-   "title": "Commander Night at the Hub!",
-   "type": "Game night",
-   "host": "WGA Magic: The Gathering",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-04",
-   "start": "18:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375242",
-   "source": "huskylink",
-   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_Magic_The_Gathering_Commander_2015_logojpg_a7d6e719-41a9-4aa8-9637-b06d03cff3d9_1092025.jpeg"
-  },
-  {
-   "id": "hl-375422",
-   "title": "American Cancer Society General Meeting - Trivia",
-   "type": "Club",
-   "host": "American Cancer Society On Campus",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-04",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/acsuw/rsvp?id=375422",
-   "source": "huskylink",
-   "description": "Come join ACS (also commonly known as Relay for Life) for our November general meeting! You'll get the opportunity to learn about our club and our committees, play some fun trivia for a prize, and meet new people. Anyone is welcome to come!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_638304_race160643social382x200bL07xMjpg_1f431820-1749-462b-bd40-58e770571ae0_102220535.jpeg"
-  },
-  {
-   "id": "hl-375370",
-   "title": "Large Group",
-   "type": "Club",
-   "host": "Asian American Christian Fellowship",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-04",
-   "start": "19:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375370",
-   "source": "huskylink",
-   "description": "Weekly gathering that brings together the entire community of AACF for worship, teaching, and community-building activities.\nCheck our Instagram @uwaacf for details! Locations may be subject to change each week.",
-   "image": null
-  },
-  {
-   "id": "hl-375469",
-   "title": "ASL Trivia and Game Night",
-   "type": "Game night",
-   "host": "American Sign Language Club at University of Washington",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-04",
-   "start": "19:00",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/aslcub/rsvp?id=375469",
-   "source": "huskylink",
-   "description": "Join us for a night of Deaf Culture trivia, board games, and card games!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_608390_4E3D1DC3851A486BB6D826F8E33864F2_4_5005_cjpg_427fa51b-6bc1-40ca-8f0e-71d2480ec7f5_111154722.jpeg"
-  },
-  {
-   "id": "hl-375337",
-   "title": "RSO Drop-In Advising",
-   "type": "Study",
-   "host": "Student Activities Office",
-   "where": "HUB",
-   "pos": [
-    47.65537,
-    -122.3051
-   ],
-   "date": "2026-11-05",
-   "start": "13:00",
-   "end": "16:00",
-   "url": "https://huskylink.washington.edu/SAO/rsvp?id=375337",
-   "source": "huskylink",
-   "description": "The Student Activities Office (SAO) offers RSO Drop-In Advising hours in HUB 111B, located within the RSO Resource Center. These drop-in hours provide RSOs with an opportunity to connect with an SAO Advisor, ask questions, and receive guidance and support on a variety of topics.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_599699_RSO_DropIn_Advising_760_x_380_px_2658fc33-3cfa-474a-9df2-4b99c30a1a5b_101413143.png"
-  },
-  {
    "id": "hl-375462",
    "title": "RSO Listening Session",
    "type": "Study",
@@ -9541,7 +9448,8 @@
    "url": "https://huskylink.washington.edu/SAO/rsvp?id=375462",
    "source": "huskylink",
    "description": "You're invited to a listening session on the proposed changes to the student code of conduct as they relate to RSOs. University Administrators will explain the proposed changes and collect feedback from student leaders.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_599699_Screenshot_20261028_153810_a0e2a590-223a-4de4-8195-9d88928657be_1028183833.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_599699_Screenshot_20261028_153810_a0e2a590-223a-4de4-8195-9d88928657be_1028183833.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375470",
@@ -9559,7 +9467,8 @@
    "url": "https://huskylink.washington.edu/projsun/rsvp?id=375470",
    "source": "huskylink",
    "description": "Friday, November 6th from 9:30-2pm we will be having a donut fundraiser in Red Square! Come stop by to buy a donut and learn about what we do! In the addition to buying a donut you can join the raffle for a $50 Little Thai Restaurant gift certificate! Hope to see you there!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615292_Donut_Sales_48063b11-f800-4c8c-81fe-784ea6b96334_111222257.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615292_Donut_Sales_48063b11-f800-4c8c-81fe-784ea6b96334_111222257.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375433",
@@ -9577,7 +9486,8 @@
    "url": "https://huskylink.washington.edu/chinesetranslationclub/rsvp?id=375433",
    "source": "huskylink",
    "description": "Meet at Fridays at 3pm in the Asian Languages & Literature Department Lounge (M218) of Gowen Hall. All are welcome!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_quillauchina2542574_1920jpg_97356529-b868-49c1-9194-fb50579f127b_1016184932.jpeg"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_quillauchina2542574_1920jpg_97356529-b868-49c1-9194-fb50579f127b_1016184932.jpeg",
+   "rsvps": 0
   },
   {
    "id": "hl-375344",
@@ -9595,7 +9505,8 @@
    "url": "https://huskylink.washington.edu/costume/rsvp?id=375344",
    "source": "huskylink",
    "description": "Ever thought about entering a cosplay contest? Now is your chance! Show off your cosplay, get feedback from masters-level judges, and meet fellow cosplayers. Cosplays do NOT have to be handmade! Prizes to be announced soon.\nPlease register for the competition using the google form attached.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_602988_Xfinity_Run_It_Back_Cosplay_Contest_2_a4849af5-f582-4bec-ab6f-229b6b97b38a_1014172957.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_602988_Xfinity_Run_It_Back_Cosplay_Contest_2_a4849af5-f582-4bec-ab6f-229b6b97b38a_1014172957.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375452",
@@ -9610,7 +9521,8 @@
    "url": "https://huskylink.washington.edu/uwuts/rsvp?id=375452",
    "source": "huskylink",
    "description": "All UTS members are welcome to attend UTS's first Town Hall! This event will be an insight into the functions and ongoings of the UTS Board and an opportunity for community members to voice any concerns for the club's future and ask questions to the Board directly.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_627845_Screenshot_20261027_at_71235PM_02d3fac1-a068-47b2-b17e-8844b5fbf19e_102722141.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_627845_Screenshot_20261027_at_71235PM_02d3fac1-a068-47b2-b17e-8844b5fbf19e_102722141.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375453",
@@ -9625,7 +9537,24 @@
    "url": "https://huskylink.washington.edu/uwuts/rsvp?id=375453",
    "source": "huskylink",
    "description": "All members of the drama community are welcome to attend UTS's fun and low-stakes acting opportunity Ghostlight! Attendees can bring their favorite scenes from movies and shows they've been wanting to perform, or use scenes that we provide. We'll take turns performing with partners and random groups and cheer our fellow actors on. And, be sure to attend our first Town Hall meeting right before Ghostlight at 6pm to hear about more fun events in the future!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_627845_Screenshot_20261027_at_71235PM_02d3fac1-a068-47b2-b17e-8844b5fbf19e_102722141.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_627845_Screenshot_20261027_at_71235PM_02d3fac1-a068-47b2-b17e-8844b5fbf19e_102722141.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375483",
+   "title": "The Link- Up",
+   "type": "Club",
+   "host": "Afghanistan Student Union at the University of Washington",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-09",
+   "start": "16:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/asuatuwseattle/rsvp?id=375483",
+   "source": "huskylink",
+   "description": "Welcome our new officers and kick off the new academic year. Afghan food will be provided.",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_614919_Image_04868185-c0b4-4889-bfe6-212d85ecfaca_11532312.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375142",
@@ -9640,7 +9569,24 @@
    "url": "https://huskylink.washington.edu/woof3d/rsvp?id=375142",
    "source": "huskylink",
    "description": "Intro to CAD (OnShape) and 3D printing",
-   "image": null
+   "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375243",
+   "title": "Commander Night at the Hub!",
+   "type": "Game night",
+   "host": "WGA Magic: The Gathering",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-09",
+   "start": "18:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375243",
+   "source": "huskylink",
+   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_Magic_The_Gathering_Commander_2015_logojpg_a7d6e719-41a9-4aa8-9637-b06d03cff3d9_1092025.jpeg",
+   "rsvps": 0
   },
   {
    "id": "hl-375443",
@@ -9655,7 +9601,8 @@
    "url": "https://huskylink.washington.edu/medconnect/rsvp?id=375443",
    "source": "huskylink",
    "description": "Interested in healthcare? We can connect you!\nOur mission is to break down barriers to healthcare experiences at UW by connecting students with meaningful opportunities and equipping them with the skills to succeed in empathetic, compassionate healthcare.\nWhether you’re pre-med, pre-nursing, pre-PA, pre-pharmacy, or simply interested in getting involved in healthcare, we’re here to help guide you toward your goals.\nCome meet fellow students, learn about upcoming clinical, volunteering, shadowing, and research opportunities, and discover how MedConnect can help you take the next step in your healthcare journey!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_601449_medconnect_15e58cb6-04f9-49b7-9718-e0f3c8577367_102610374.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_601449_medconnect_15e58cb6-04f9-49b7-9718-e0f3c8577367_102610374.png",
+   "rsvps": 2
   },
   {
    "id": "hl-375005",
@@ -9673,7 +9620,8 @@
    "url": "https://huskylink.washington.edu/washpirg/rsvp?id=375005",
    "source": "huskylink",
    "description": "Come hang out with WashPIRG on Mondays, 6:30pm-8:00pm in MEB 238! We're a student advocacy group focused on environmental and social justice causes! At CORE meetings, we discuss upcoming events, plans, and ideas. These weekly meetings give space for our different campaigns to work on their goals throughout the quarter.",
-   "image": null
+   "image": null,
+   "rsvps": 0
   },
   {
    "id": "hl-375124",
@@ -9688,7 +9636,8 @@
    "url": "https://huskylink.washington.edu/writersinprogressuw/rsvp?id=375124",
    "source": "huskylink",
    "description": "A meeting usually includes an icebreaker, a short freewrite, and a feedback session.\nRegistration not required :) Feel free to drop in and say hi",
-   "image": null
+   "image": null,
+   "rsvps": 0
   },
   {
    "id": "hl-375404",
@@ -9703,7 +9652,8 @@
    "url": "https://huskylink.washington.edu/NSTP/rsvp?id=375404",
    "source": "huskylink",
    "description": "Get your game on with the CTC!\nMario Kart\nSuper Smash Bros\nJust Dance\nAnd free popcorn!\nWe play every Tuesday from 2-4PM!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_653212_CTC_Logo_2024_1_340a4878-48de-404e-b908-fc1c4763a198_102017247.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_653212_CTC_Logo_2024_1_340a4878-48de-404e-b908-fc1c4763a198_102017247.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375160",
@@ -9718,7 +9668,24 @@
    "url": "https://huskylink.washington.edu/gnc/rsvp?id=375160",
    "source": "huskylink",
    "description": "Want to talk about comics, learn how to draw them, or just hang out in a chill and artsy space to draw and make friends? Then this club is for you! Art supplies is available, and we provide free snacks at the first and last meeting of the quarter. :)",
-   "image": null
+   "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375054",
+   "title": "UNA UW Chapter Meeting",
+   "type": "Club",
+   "host": "United Nations Association University of Washington Chapter",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-10",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/unauw/rsvp?id=375054",
+   "source": "huskylink",
+   "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!",
+   "image": null,
+   "rsvps": 0
   },
   {
    "id": "hl-375101",
@@ -9733,7 +9700,8 @@
    "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375101",
    "source": "huskylink",
    "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_643287_Screenshot_20260928_182241_06deb2ab-c655-430a-bc8a-e2e8bf3041cc_928212314.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_643287_Screenshot_20260928_182241_06deb2ab-c655-430a-bc8a-e2e8bf3041cc_928212314.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375300",
@@ -9751,7 +9719,24 @@
    "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375300",
    "source": "huskylink",
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375486",
+   "title": "DEI: First-Generation Speaker Event",
+   "type": "Study",
+   "host": "The Women's Network at UW",
+   "where": "Deloitte Commons",
+   "pos": null,
+   "date": "2026-11-10",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/thewomensnetwork/rsvp?id=375486",
+   "source": "huskylink",
+   "description": "Join TWN for our First-Generation Speaker Panel, where we’ll celebrate first-gen experiences, hear from inspiring voices, and explore the different journeys that shape our communities.\nCome listen, connect, and be part of the conversation!\nBusiness casual clothing is encouraged but not required!\nWe hope to see you there!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_608695_DEI_Event_Post_TWN_2026_Fall_5594b25f-bbdb-4ba1-8737-742112862590_115181253.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375455",
@@ -9766,7 +9751,8 @@
    "url": "https://huskylink.washington.edu/mensclubbasketball/rsvp?id=375455",
    "source": "huskylink",
    "description": "Pull up to Gym A to meet each other and play casual pickup basketball",
-   "image": null
+   "image": null,
+   "rsvps": 0
   },
   {
    "id": "hl-375371",
@@ -9784,7 +9770,27 @@
    "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375371",
    "source": "huskylink",
    "description": "Come join us for a worship night gathering at the Red Square!\nCheck our Instagram @uwaacf for details!",
-   "image": null
+   "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375338",
+   "title": "RSO Drop-In Advising",
+   "type": "Study",
+   "host": "Student Activities Office",
+   "where": "HUB",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-12",
+   "start": "13:00",
+   "end": "16:00",
+   "url": "https://huskylink.washington.edu/SAO/rsvp?id=375338",
+   "source": "huskylink",
+   "description": "The Student Activities Office (SAO) offers RSO Drop-In Advising hours in HUB 111B, located within the RSO Resource Center. These drop-in hours provide RSOs with an opportunity to connect with an SAO Advisor, ask questions, and receive guidance and support on a variety of topics.",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_599699_RSO_DropIn_Advising_760_x_380_px_2658fc33-3cfa-474a-9df2-4b99c30a1a5b_101413143.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375477",
@@ -9799,7 +9805,8 @@
    "url": "https://huskylink.washington.edu/GEC/rsvp?id=375477",
    "source": "huskylink",
    "description": "During this event, we will be recognizing the higher rates of violence and inequality that trans-folk face; sharing information about your rights, advocacy and access to resources on UW campus and within Seattle. The event will also include an open Q&A portion.\nPanelist from:\nQ Center\nSchool of Social Work\nTRANSITION",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615660_OID_approved_version_74113d72-80bc-411e-a131-678df7a7a1d3_112173549.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615660_OID_approved_version_74113d72-80bc-411e-a131-678df7a7a1d3_112173549.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375474",
@@ -9817,7 +9824,8 @@
    "url": "https://huskylink.washington.edu/sumounionmembershiporganization/rsvp?id=375474",
    "source": "huskylink",
    "description": "Watch real Japanese Grand Sumo with us in the HUB!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png",
+   "rsvps": 3
   },
   {
    "id": "hl-375343",
@@ -9835,7 +9843,24 @@
    "url": "https://huskylink.washington.edu/wgauw/rsvp?id=375343",
    "source": "huskylink",
    "description": "Join the Washington Gaming Association’s annual Trading Card Game event at the University of Washington featuring the MTG Club and Pokémon Trainers club. Featuring vendors, artists, give aways, and open play, this event brings together students, collectors, and TCG enthusiasts for a full day of gaming and community in the Husky Union Building.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_611982_eventpreviewphoto_9b0fdba0-2398-43b3-af96-d7170569e004_101416752.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_611982_eventpreviewphoto_9b0fdba0-2398-43b3-af96-d7170569e004_101416752.png",
+   "rsvps": 2
+  },
+  {
+   "id": "hl-375484",
+   "title": "Academic Workshop For Freshmen",
+   "type": "Study",
+   "host": "Afghanistan Student Union at the University of Washington",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-16",
+   "start": "12:00",
+   "end": "14:00",
+   "url": "https://huskylink.washington.edu/asuatuwseattle/rsvp?id=375484",
+   "source": "huskylink",
+   "description": "The purpose of this workshop is to guide UW students through all academic matters and to provide an opportunity to hear directly from current seniors about their experiences at UW.",
+   "image": null,
+   "rsvps": 0
   },
   {
    "id": "hl-375385",
@@ -9853,7 +9878,8 @@
    "url": "https://huskylink.washington.edu/viableveganismuw/rsvp?id=375385",
    "source": "huskylink",
    "description": "Come watch the screening for the powerful documentary Sentient, which explores animal experimentation, ahead of its release along with a Q&A with Dr. Lisa Jones-Engel!\nWhen/where: HUB 334 on November 16th from 6:30-8:30PM\nEveryone is welcome, regardless of diet, lifestyle, or familiarity with animal rights! Free vegan pizza and snacks will be provided.\nFree admission, please RSVP! https://luma.com/5bcotf0s",
-   "image": null
+   "image": null,
+   "rsvps": 2
   },
   {
    "id": "hl-375450",
@@ -9868,7 +9894,8 @@
    "url": "https://huskylink.washington.edu/awscloudclubatuw/rsvp?id=375450",
    "source": "huskylink",
    "description": "Seconds are encouraged. There's always room at the table.\nWe’re back with our second event of the quarter. Join us for Food & Friends, an AWS SBG fall social with Friendsgiving vibes. Bring your favorite food, drinks, and games to share, and come hang out with us!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637173_final_version_4c092978-770c-46f7-a64c-064ab72c5354_10311903.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637173_final_version_4c092978-770c-46f7-a64c-064ab72c5354_10311903.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375297",
@@ -9886,7 +9913,24 @@
    "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375297",
    "source": "huskylink",
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375372",
+   "title": "Large Group",
+   "type": "Club",
+   "host": "Asian American Christian Fellowship",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-18",
+   "start": "19:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375372",
+   "source": "huskylink",
+   "description": "Weekly gathering that brings together the entire community of AACF for worship, teaching, and community-building activities.\nCheck our Instagram @uwaacf for details! Locations may be subject to change each week.",
+   "image": null,
+   "rsvps": 0
   },
   {
    "id": "hl-375478",
@@ -9904,7 +9948,24 @@
    "url": "https://huskylink.washington.edu/GEC/rsvp?id=375478",
    "source": "huskylink",
    "description": "Join us as we honor the lives of Transgender and gender-diverse people who have been lost to anti-trans violence during Trans Day of Remembrance.\nWe will be walking to Drumheller Fountain with your choosing of real/battery powered tea-lights.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615660_option_b__cb92a180-f25f-4a9b-8900-ec674338a2a0_11217332.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615660_option_b__cb92a180-f25f-4a9b-8900-ec674338a2a0_11217332.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375485",
+   "title": "Cultural Fest Collaboration with MSA",
+   "type": "Club",
+   "host": "Afghanistan Student Union at the University of Washington",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-21",
+   "start": "16:30",
+   "end": "20:00",
+   "url": "https://huskylink.washington.edu/asuatuwseattle/rsvp?id=375485",
+   "source": "huskylink",
+   "description": "Cultural Fest Collaboration with MSA. We will have a table at the cultural fest representing Afghanistan.",
+   "image": null,
+   "rsvps": 0
   },
   {
    "id": "hl-375479",
@@ -9919,7 +9980,8 @@
    "url": "https://huskylink.washington.edu/awscloudclubatuw/rsvp?id=375479",
    "source": "huskylink",
    "description": "Join us for a hands-on session led by Lucas Swanson, Developer Advocate @ AWS, as we explore Kiro Crew and bring an app to life.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_633611_workshop_final_80860309-30a4-4c63-83de-a96753279cec_112233244.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_633611_workshop_final_80860309-30a4-4c63-83de-a96753279cec_112233244.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375103",
@@ -9934,7 +9996,8 @@
    "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375103",
    "source": "huskylink",
    "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_643287_Screenshot_20260928_182241_06deb2ab-c655-430a-bc8a-e2e8bf3041cc_928212314.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_643287_Screenshot_20260928_182241_06deb2ab-c655-430a-bc8a-e2e8bf3041cc_928212314.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375301",
@@ -9952,7 +10015,8 @@
    "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375301",
    "source": "huskylink",
    "description": "It is nearly the end of the quarter, and it is time to see how strong you have become! Join us at the IMA for a day dedicated to beating personal records. Spotters will be available, and blood will be pumping.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png",
+   "rsvps": 0
   },
   {
    "id": "hl-375302",
@@ -9970,7 +10034,27 @@
    "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375302",
    "source": "huskylink",
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png"
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375468",
+   "title": "Emerald City Card Show by WGA - UW Seattle",
+   "type": "Club",
+   "host": "Gaming Association at UW",
+   "where": "HUB Ballroom",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-12-05",
+   "start": "10:00",
+   "end": "17:00",
+   "url": "https://huskylink.washington.edu/wgauw/rsvp?id=375468",
+   "source": "huskylink",
+   "description": "Emerald City Card Show – UW Seattle presented by the Washington Gaming Association at UW is bringing the ultimate collector experience to the heart of campus! Join us at the UW Husky Union Building (HUB) Ballrooms (2nd Floor) for a full day of buying, selling, trading, and connecting with the PNW community. This is a show built by collectors, for collectors.\nBrowse 145+ vendor tables featuring Pokémon, Magic: The Gathering, sports cards, Riftbound, custom art, handcrafted items, sealed products, slabs, accessories, and more. Whether you’re a student hobbyist, a seasoned collector, or brand new to the game, there’s something for everyone.\nWhat to expect:\nMassive Variety: A wide selection of trusted vendors, local artists, and exclusive finds.\nTrade-Friendly Environment: Bring your trade binders and find your next grail!\nVIP Early Entry: Get in at 10:00 AM — two hours before general admission—to get first dibs on the best inventory and be entered into our raffle for dozens of prizes!\nAccessible Location: Located right in the heart of campus in the spacious 2nd Floor Ballrooms.\nLocation: UW Husky Union Building (HUB)\nRoom: Ballrooms, 2nd Floor East Stevens Way Northeast, Seattle, WA",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_611982_posters1788672548435_5c6dc5a1-8d97-48c8-9b24-126db60ac986_11113250.png",
+   "rsvps": 0
   }
  ]
 }
