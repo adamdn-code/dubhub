@@ -3824,7 +3824,7 @@
 },
 "newstudentandtransferprograms": {
 "fields": [],
-"from": "New Student and Transfer Programs|"
+"from": "New Student and Transfer Programs|Supporting first-year student transitions to the UW!"
 },
 "nikkeistudentunion": {
 "fields": [],
@@ -4002,7 +4002,7 @@
 },
 "peaksandprofessors": {
 "fields": [],
-"from": "Peaks and Professors at UW|Peaks & Professors cultivates unique experiences between students and faculty by organizing hikes to provide an avenue…"
+"from": "Peaks and Professors at UW|Connecting UW's students & top professors in the great Pacific Northwest since 2019! 🌲 🍁 🥾 "
 },
 "pediatricinterestgroup": {
 "fields": [
@@ -4288,7 +4288,7 @@
 "fields": [
 "Sciences"
 ],
-"from": "Program on Climate Change Undergraduate Cohort|The Program on Climate Change Undergraduate Cohort (UCo) is a place for undergraduates"
+"from": "Program on Climate Change Undergraduate Cohort|UW Program on Climate Change (PCC) "
 },
 "progressivestudentunion": {
 "fields": [],
@@ -5308,7 +5308,7 @@
 },
 "teaclub": {
 "fields": [],
-"from": "Tea Club|Hosts tea‑tasting gatherings and social events for the UW community."
+"from": "Tea Club|A student group that shares and enjoys tea together."
 },
 "teambao": {
 "fields": [],
@@ -6328,5 +6328,9 @@
 "circle": {
 "fields": [],
 "from": "UW CIRCLE|UW department encouraging cultural engagement and outdoor adventures."
+},
+"huskysnowclub": {
+"fields": [],
+"from": "Husky Snow Club|UW's Raddest Mountain Community 🤙🏽  "
 }
 }

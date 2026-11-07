@@ -428,7 +428,7 @@
    "about": "UW department encouraging cultural engagement and outdoor adventures.",
    "description": "UW CIRCLE creates opportunities for cultural exchange, from Diwali henna nights to hiking trips with professors. Join to make friends, explore traditions and enjoy the outdoors.",
    "logo": "/ig/clubs/uwcircle.jpg",
-   "last_event": "2026-11-08",
+   "last_event": "2026-11-10",
    "fields": [
     "Social Sciences"
    ]
@@ -558,7 +558,7 @@
    "about": "Student group for sewing, crafting, and cosplay.",
    "description": "The Costume Club meets Thursdays in the HUT costume shop for sewing, crafting, and chatting. Members celebrate milestones, learn costume‑making skills, and collaborate on cosplay meetups with nearby universities.",
    "logo": "/ig/clubs/uwcostumeclub.jpg",
-   "last_event": "2026-11-13",
+   "last_event": "2027-02-13",
    "fields": [
     "Arts & Humanities"
    ]
@@ -572,7 +572,7 @@
    "about": "Multicultural Christian community connecting students to faith.",
    "description": "Cru at UW is a multicultural Christian community focused on faith, friendship, and service. They organize conferences, weekly talks like Cru Connect, and retreats that help students grow together.",
    "logo": "/ig/clubs/uwcru.jpg",
-   "last_event": "2026-11-05",
+   "last_event": "2026-11-12",
    "fields": []
   },
   {
@@ -885,6 +885,18 @@
    "fields": []
   },
   {
+   "name": "Husky Snow Club",
+   "handle": "huskysnowclub",
+   "instagram": "https://www.instagram.com/huskysnowclub/",
+   "website": "https://account.venmo.com/u/huskysnowclub",
+   "category": "Other",
+   "about": "UW's Raddest Mountain Community 🤙🏽  ",
+   "description": "UW's Raddest Mountain Community 🤙🏽  \nYour favorite (un)registered student organization",
+   "logo": "/ig/clubs/huskysnowclub.jpg",
+   "last_event": "2026-11-21",
+   "fields": []
+  },
+  {
    "name": "Husky Union Building",
    "handle": "hubatuw",
    "instagram": "https://www.instagram.com/hubatuw/",
@@ -1101,12 +1113,13 @@
   },
   {
    "name": "New Student and Transfer Programs",
-   "website": "https://nstp.uw.edu/",
+   "handle": "uwnstp",
+   "instagram": "https://www.instagram.com/uwnstp/",
+   "website": "http://linktr.ee/uwfyp",
    "category": "Other",
-   "about": null,
-   "description": null,
-   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_649314_NSTP_Square_dd5dd2a3-fa0e-47c0-bf93-3d0068bef1ce_10816710.png",
-   "source": "huskylink",
+   "about": "Supporting first-year student transitions to the UW!",
+   "description": "Supporting first-year student transitions to the UW!\n@uwdawgdaze for Dawg Daze events 🐾",
+   "logo": "/ig/clubs/uwnstp.jpg",
    "last_event": "2026-12-08",
    "fields": []
   },
@@ -1189,6 +1202,18 @@
    "fields": []
   },
   {
+   "name": "Peaks and Professors at UW",
+   "handle": "peaksandprofessorsuw",
+   "instagram": "https://www.instagram.com/peaksandprofessorsuw/",
+   "website": "https://linktr.ee/peaksandprofessorsuw",
+   "category": "Sports",
+   "about": "Connecting UW's students & top professors in the great Pacific Northwest since 2019! 🌲 🍁 🥾 ",
+   "description": "Connecting UW's students & top professors in the great Pacific Northwest since 2019! 🌲 🍁 🥾 \n…\nJoin our mailing list!! ⤵️",
+   "logo": "/ig/clubs/peaksandprofessorsuw.jpg",
+   "last_event": "2026-11-21",
+   "fields": []
+  },
+  {
    "name": "Persian Circle",
    "handle": "uwpersiancircle",
    "instagram": "https://www.instagram.com/uwpersiancircle/",
@@ -1255,6 +1280,20 @@
    "last_event": "2026-11-07",
    "fields": [
     "Business"
+   ]
+  },
+  {
+   "name": "Program on Climate Change Undergraduate Cohort",
+   "handle": "uwpccuco",
+   "instagram": "https://www.instagram.com/uwpccuco/",
+   "website": "http://linktr.ee/uwpccuco",
+   "category": "Service",
+   "about": "UW Program on Climate Change (PCC) ",
+   "description": "UW Program on Climate Change (PCC) \nUndergraduate Cohort (UCo)\nA place for undergrads to connect with a climate science community 🌎🌿",
+   "logo": "/ig/clubs/uwpccuco.jpg",
+   "last_event": "2026-11-09",
+   "fields": [
+    "Sciences"
    ]
   },
   {
@@ -1506,9 +1545,9 @@
    "handle": "teaclubuw",
    "instagram": "https://www.instagram.com/teaclubuw/",
    "website": "https://linktr.ee/teaclubuw",
-   "category": "Social",
-   "about": "Hosts tea‑tasting gatherings and social events for the UW community.",
-   "description": "The Tea Club welcomes anyone interested in sharing and learning about tea. They partner with studios for brewing events, host themed meet‑ups like Scary Sipping, and keep members connected through Discord.",
+   "category": "Cultural",
+   "about": "A student group that shares and enjoys tea together.",
+   "description": "The official Tea Club at UW brings together anyone who loves tea. Members meet for tastings, collaborations with studios, and themed events like Scary Sipping. Join their Discord for the latest meet‑up info.",
    "logo": "/ig/clubs/teaclubuw.jpg",
    "last_event": "2026-11-19",
    "fields": []
@@ -1580,7 +1619,7 @@
   {
    "name": "Tzu Chi Collegiate Association Seattle Chapter",
    "website": "https://tzuchinguw.wixsite.com/uwtc",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The Tzu Chi Collegiate Association at Seattle (Seattle & UW Tzu Ching) is the servicebased collegiate organization…",
    "description": "The Tzu Chi Collegiate Association at Seattle (Seattle & UW Tzu Ching) is the servicebased collegiate organization that carries out the missions of the Tzu Chi Foundation. The Tzu Ching club provides an opportunity for volunteer work in the local area.",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_636644_Logo_8ac9833a-ce48-4c67-8c83-011dfd309298_11222222.png",
