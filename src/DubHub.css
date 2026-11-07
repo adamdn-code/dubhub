@@ -1215,6 +1215,15 @@ select:focus-visible {
   gap: 6px;
 }
 
+/* My Events: applications from the clubs you joined, above your events */
+.my-apps {
+  margin: 8px 0 24px;
+}
+
+.my-apps h2 {
+  margin: 0 0 10px;
+}
+
 .apply-club {
   display: flex;
   align-items: center;

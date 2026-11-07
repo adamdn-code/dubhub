@@ -1841,9 +1841,14 @@ function myEventsFor(all, clubList, j, clubs) {
   return all.filter((e) => j.joined.includes(String(e.id)) || myClubs.some((c) => isHostedBy(e, c)));
 }
 
-function MyEventsPage({ all, clubList, j, clubs, onBrowse, onFindClubs }) {
+function MyEventsPage({ all, clubList, j, clubs, applications, onBrowse, onFindClubs }) {
   const mine = myEventsFor(all, clubList, j, clubs);
   const [selected, setSelected] = useState(null);
+  // Open applications from the clubs you joined, soonest deadline first.
+  const myApps = useMemo(
+    () => openApplications(applications, clubList).filter((a) => a.club && clubs.joined.includes(a.club.name)),
+    [applications, clubList, clubs.joined]
+  );
   return (
     <main className="page">
       <h1>My Events</h1>
@@ -1852,13 +1857,30 @@ function MyEventsPage({ all, clubList, j, clubs, onBrowse, onFindClubs }) {
           Events you joined, plus everything from {clubs.joined.length === 1 ? clubs.joined[0] : `your ${clubs.joined.length} clubs`}
         </p>
       )}
+      {myApps.length > 0 && (
+        <section className="my-apps" aria-labelledby="my-apps-title">
+          <h2 id="my-apps-title">Applications from your clubs</h2>
+          <ul className="apply-grid">
+            {myApps.map((a) => (
+              <li key={a.id}>
+                <ApplicationCard app={a} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {clubs.joined.length > 0 && myApps.length === 0 && (
+        <p className="count">None of your clubs are taking applications right now. When one opens, it shows up here.</p>
+      )}
+      {mine.length > 0 && myApps.length > 0 && <h2>Your events</h2>}
       {mine.length > 0 ? (
         <EventList events={mine} j={j} onSelect={setSelected} columns={3} />
       ) : (
         <div className="empty-card">
           <h2>Nothing here yet</h2>
           <p>
-            Join an event to save it here, or join a club and every event it posts shows up here on its own.
+            Join an event to save it here, or join a club and every event it posts, and any application it opens, shows up
+            here on its own.
           </p>
           <div className="empty-actions">
             <button className="join" onClick={onBrowse}>
@@ -2013,7 +2035,7 @@ function ApplicationCard({ app, onSelectClub }) {
     <article className="apply-card">
       <span className="apply-club">
         <Thumb src={app.club?.logo ?? app.logo} label={hostName(app)} color={app.club ? clubColor(app.club) : NO_FIELD_COLOR} className="apply-logo" />
-        {app.club ? (
+        {app.club && onSelectClub ? (
           <button className="club-link apply-club-name" onClick={() => onSelectClub(app.club)}>
             {hostName(app)}
           </button>
@@ -2508,6 +2530,7 @@ export default function DubHub() {
           clubList={clubList}
           j={j}
           clubs={clubs}
+          applications={applications}
           onBrowse={() => setTab("Events")}
           onFindClubs={() => setTab("Clubs")}
         />
