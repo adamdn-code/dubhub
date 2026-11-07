@@ -289,33 +289,66 @@ def keyword_extract(post):
 
 # --------------------------------------------------------------- AI (Groq) ---
 _model = {}
+_used_up = set()  # models whose free daily limit ran out during this run
 ai_used = False
+MAX_AI_WAIT = 90  # seconds; Groq asks for longer waits when a model's daily free limit is used up
 
 
 def pick_model():
-    if "name" in _model:
-        return _model["name"]
-    name = PREFERRED_MODELS[0]
-    try:
-        r = requests.get(
-            "https://api.groq.com/openai/v1/models",
-            headers={"Authorization": f"Bearer {GROQ_KEY}"},
-            timeout=30,
-        )
-        if r.status_code == 200:
-            ids = [m["id"] for m in r.json().get("data", [])]
-            name = next((m for m in PREFERRED_MODELS if m in ids), name)
-        elif r.status_code == 401:
-            print("Your GROQ_API_KEY was rejected (expired or deleted?). Using keyword mode.", file=sys.stderr)
-            name = None
-        else:
-            print(f"Could not list Groq models ({r.status_code}): {r.text[:200]}", file=sys.stderr)
-    except Exception as e:
-        print(f"Could not reach Groq ({e})", file=sys.stderr)
-    _model["name"] = name
-    if name:
+    """The Groq model to use: the first preferred one this account has whose free limit hasn't run
+    out this run, or None (no key, the key was rejected, or every model's limit is used up)."""
+    if "ids" not in _model:
+        _model["ids"] = []  # couldn't list them: try the preferred ones in order
+        try:
+            r = requests.get(
+                "https://api.groq.com/openai/v1/models",
+                headers={"Authorization": f"Bearer {GROQ_KEY}"},
+                timeout=30,
+            )
+            if r.status_code == 200:
+                _model["ids"] = [m["id"] for m in r.json().get("data", [])]
+            elif r.status_code == 401:
+                print("Your GROQ_API_KEY was rejected (expired or deleted?). Using keyword mode.", file=sys.stderr)
+                _model["ids"] = None
+            else:
+                print(f"Could not list Groq models ({r.status_code}): {r.text[:200]}", file=sys.stderr)
+        except Exception as e:
+            print(f"Could not reach Groq ({e})", file=sys.stderr)
+    ids = _model["ids"]
+    name = None if ids is None else next(
+        (m for m in PREFERRED_MODELS if (not ids or m in ids) and m not in _used_up), None)
+    if name and name != _model.get("name"):
         print(f"Using Groq model: {name}")
+    _model["name"] = name
     return name
+
+
+def groq_wait(r):
+    """How many seconds Groq asks to wait after a 429 ("try again in 15m9.5s")."""
+    m = re.search(r"try again in (?:(\d+)h)?(?:(\d+)m)?([\d.]+)s", r.text)
+    if m:
+        return int(m.group(1) or 0) * 3600 + int(m.group(2) or 0) * 60 + float(m.group(3))
+    return float(r.headers.get("retry-after", 20))
+
+
+def handle_rate_limit(r):
+    """After Groq says 429: wait out a per-minute limit, or move on to the next model when this
+    one's daily limit is used up. Returns False when no model is left to try this run (callers then
+    carry on without AI: keyword events, applications checked next run)."""
+    wait = groq_wait(r)
+    if wait <= MAX_AI_WAIT:
+        print(f"Groq's free limit reached; waiting {wait:.0f}s...", flush=True)
+        time.sleep(wait + 2)
+        return True
+    used = _model.get("name")
+    _used_up.add(used)
+    nxt = pick_model()
+    if nxt:
+        print(f"Groq's daily free limit for {used} is used up; switching to {nxt}.", flush=True)
+        return True
+    print(f"Groq's daily free limits are used up (about {wait / 3600:.1f} h until {used} resets); "
+          "carrying on without AI for now.", flush=True)
+    return False
 
 
 def ai_prompt(batch):
@@ -400,11 +433,8 @@ def ai_extract(batch):
             print(f"Groq request failed ({e}); using keyword mode for these posts.", file=sys.stderr)
             return None
         if r.status_code == 429 and attempt < 4:
-            # The free tier allows ~8000 tokens/minute; Groq says how long to wait.
-            m = re.search(r"try again in ([\d.]+)s", r.text)
-            wait = float(m.group(1)) if m else float(r.headers.get("retry-after", 20))
-            print(f"Groq's free limit reached; waiting {wait:.0f}s...")
-            time.sleep(wait + 2)
+            if not handle_rate_limit(r):
+                return None
             continue
         if r.status_code != 200:
             print(f"Groq error {r.status_code}: {r.text[:300]}", file=sys.stderr)
@@ -766,8 +796,8 @@ Reply with ONLY JSON: {{"clubs": [{{"club": 1, "category": "...", "about": "..."
             print(f"Groq request failed ({e}); clubs get basic info for now.", file=sys.stderr)
             return None
         if r.status_code == 429 and attempt < 4:
-            m = re.search(r"try again in ([\d.]+)s", r.text)
-            time.sleep((float(m.group(1)) if m else 20) + 2)
+            if not handle_rate_limit(r):
+                return None
             continue
         if r.status_code != 200:
             print(f"Groq error {r.status_code}: {r.text[:300]}", file=sys.stderr)
@@ -1040,14 +1070,8 @@ Reply with ONLY JSON: {{"clubs": [{{"club": 1, "fields": ["..."]}}]}}
             print(f"  Groq request failed ({e}).", flush=True)
             return None
         if r.status_code == 429:
-            m = re.search(r"try again in (?:(\d+)h)?(?:(\d+)m)?([\d.]+)s", r.text)
-            wait = (int(m.group(1) or 0) * 3600 + int(m.group(2) or 0) * 60 + float(m.group(3))) if m else 30
-            if wait > 600:
-                print(f"  Groq's daily free limit is used up (resets in {wait / 3600:.1f} h). Run again later; "
-                      "finished clubs are saved.", flush=True)
-                return None
-            print(f"  Groq's free limit reached; waiting {wait:.0f}s...", flush=True)
-            time.sleep(wait + 2)
+            if not handle_rate_limit(r):
+                return None  # finished clubs are saved; the rest are sorted next run
             continue
         if r.status_code == 400 and "json_validate_failed" in r.text:
             continue  # the model's JSON came out malformed; just ask again
@@ -1207,10 +1231,8 @@ def ai_applications(batch):
             print(f"Groq request failed ({e}); checking these posts for applications next run.", file=sys.stderr)
             return None
         if r.status_code == 429 and attempt < 4:
-            m = re.search(r"try again in ([\d.]+)s", r.text)
-            wait = float(m.group(1)) if m else float(r.headers.get("retry-after", 20))
-            print(f"Groq's free limit reached; waiting {wait:.0f}s...")
-            time.sleep(wait + 2)
+            if not handle_rate_limit(r):
+                return None
             continue
         if r.status_code != 200:
             print(f"Groq error {r.status_code}: {r.text[:300]}", file=sys.stderr)

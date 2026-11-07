@@ -151,6 +151,20 @@ def restore():
     git("checkout", "--", "public/ig")  # pictures this run deleted come back; new ones are harmless
 
 
+def lock_holder_running():
+    """Whether the run that left the lock file is still going. A run that was stopped or crashed
+    (or a computer that restarted) leaves its lock behind, which shouldn't block later runs."""
+    try:
+        pid = int(LOCK.read_text().strip())
+    except (OSError, ValueError):
+        return False
+    if os.name != "nt":
+        return True  # can't check cheaply here; the lock expires after 3 hours anyway
+    out = subprocess.run(["tasklist", "/FI", f"PID eq {pid}", "/NH"], capture_output=True, text=True,
+                         creationflags=NO_WINDOW).stdout
+    return str(pid) in out
+
+
 def get_latest_main(dry=False):
     """Fast-forward to GitHub's main. Returns why it can't, or None when it's up to date.
     A dry run only fetches and reports."""
@@ -219,7 +233,7 @@ def main():
     for old in sorted(LOGS.glob("*.log"))[:-KEEP_LOGS]:
         old.unlink(missing_ok=True)
 
-    if LOCK.exists() and time.time() - LOCK.stat().st_mtime < 3 * 3600:
+    if LOCK.exists() and time.time() - LOCK.stat().st_mtime < 3 * 3600 and lock_holder_running():
         log("Another scheduled run is still going; skipping this one.")
         return
     LOCK.write_text(str(os.getpid()))
