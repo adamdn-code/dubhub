@@ -5,6 +5,7 @@ import "@maplibre/maplibre-gl-leaflet";
 import "leaflet/dist/leaflet.css";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./DubHub.css";
+import { APPLY_YEARS, FILE_ACCEPT, FILE_LIMITS, JOBS, SAMPLE_JOBS } from "./jobs.js";
 
 const TABS = ["Home", "Events", "My Events", "Clubs", "About"];
 
@@ -261,7 +262,7 @@ const TEAM = [
   },
   {
     name: "Jenny Vong",
-    role: "Ambassador, Foster School of Business at the University of Washington",
+    role: "Ambassador, Informatics at the University of Washington",
     github: null,
     linkedin: "https://www.linkedin.com/in/jenny-vong-2597553b2",
     photo: "/team/jenny.jpg",
@@ -663,25 +664,37 @@ function Account({ user, onOpenSignIn, onSignOut, onOpenProfile }) {
 
 // The sign-in page. Join sends signed-out visitors here; after signing in they go back to where
 // they were, and the event they tried to join is joined.
-function SignInPage({ user, pendingEvent, onSignIn, onBack }) {
+function SignInPage({ user, pendingEvent, pendingJob, onSignIn, onBack }) {
   const stale = user && !user.token; // signed in before RSVPs existed, or the login expired
   return (
     <main className="page signin-page">
       <div className="signin-card">
         <p className="filters-eyebrow">DubHub</p>
         <h1>{stale ? "Sign in again" : "Sign in to DubHub"}</h1>
-        {pendingEvent ? (
+        {pendingJob ? (
+          <p className="signin-reason">
+            Sign in to apply for <strong>{pendingJob.title}</strong>.
+          </p>
+        ) : pendingEvent ? (
           <p className="signin-reason">
             Sign in to join <strong>{pendingEvent.title}</strong>.
           </p>
         ) : (
           <p className="signin-reason">Sign in to join events and see who's going.</p>
         )}
-        <ul className="signin-perks">
-          <li>Join events and get them in My Events</li>
-          <li>Friends see you're going (as first name and last initial)</li>
-          <li>Your events follow you to any device</li>
-        </ul>
+        {pendingJob ? (
+          <ul className="signin-perks">
+            <li>Apply with your UW account, no new password</li>
+            <li>See which roles you've applied for</li>
+            <li>We'll reply to your UW email</li>
+          </ul>
+        ) : (
+          <ul className="signin-perks">
+            <li>Join events and get them in My Events</li>
+            <li>Friends see you're going (as first name and last initial)</li>
+            <li>Your events follow you to any device</li>
+          </ul>
+        )}
         <GoogleSignIn onSignIn={onSignIn} />
         <p className="meta">UW accounts only (NetID@uw.edu).</p>
         <button className="link-button" onClick={onBack}>
@@ -786,10 +799,47 @@ function shortText(text, max = 150) {
   return flat.length <= max ? flat : `${flat.slice(0, max).replace(/\s+\S*$/, "")}…`;
 }
 
-// Dots are colored by the event's (first) major field; general-interest events are gray.
+// Dots are colored by what kind of club is hosting (its HuskyLink category), in 8 groups plus gray
+// for anything else. More than 8 colors blur together on a map, where any two dots can sit side by
+// side. Each group has a color for the light maps and one for the dark ones, and both sets were
+// checked with the dataviz palette validator for every pair (normal vision, and red-green
+// colorblindness with the hover cards naming the group).
 const NO_FIELD_COLOR = "#8a8398";
-function eventColor(e) {
-  return FIELD_COLORS[e.fields?.[0]] ?? NO_FIELD_COLOR;
+const CATEGORY_GROUPS = [
+  { name: "Tech & Engineering", categories: ["Tech", "Engineering"], light: "#2785f7", dark: "#3250d4" },
+  { name: "Cultural", categories: ["Cultural"], light: "#e34a4b", dark: "#db313a" },
+  { name: "Arts", categories: ["Arts"], light: "#cc5eca", dark: "#ca3fa6" },
+  { name: "Service", categories: ["Service"], light: "#18ba86", dark: "#04a67e" },
+  { name: "Sports & Outdoors", categories: ["Sports", "Outdoors"], light: "#298805", dark: "#267a08" },
+  { name: "Academic & Business", categories: ["Academic", "Business"], light: "#17c2f9", dark: "#228dca" },
+  { name: "Faith & Spirituality", categories: ["Faith & Spirituality"], light: "#7647c7", dark: "#9361ef" },
+  { name: "Social & Greek Life", categories: ["Social", "Gaming", "Greek Life"], light: "#d1900b", dark: "#c97f2e" },
+];
+const OTHER_GROUP = { name: "Other", light: NO_FIELD_COLOR, dark: "#c4c0cc" };
+const GROUP_OF_CATEGORY = Object.fromEntries(CATEGORY_GROUPS.flatMap((g) => g.categories.map((c) => [c, g])));
+// An event whose host has no category goes by its majors' field instead (the sample events).
+const GROUP_OF_FIELD = {
+  Engineering: "Tech & Engineering",
+  "Computing & Math": "Tech & Engineering",
+  "Arts & Humanities": "Arts",
+  Business: "Academic & Business",
+  Sciences: "Academic & Business",
+  Health: "Academic & Business",
+  "Social Sciences": "Academic & Business",
+};
+
+function eventGroup(e) {
+  return (
+    GROUP_OF_CATEGORY[e.club?.category] ??
+    CATEGORY_GROUPS.find((g) => g.name === GROUP_OF_FIELD[e.fields?.[0]]) ??
+    OTHER_GROUP
+  );
+}
+
+// `dark`: the color for a dark map (MAP_PALETTES' `dark`).
+function eventColor(e, dark = false) {
+  const g = eventGroup(e);
+  return dark ? g.dark : g.light;
 }
 
 // "Club type" choices: the categories of clubs hosting events, Greek Life first (fraternity and
@@ -939,19 +989,23 @@ function MapArea({ area }) {
 }
 
 // How big a callout card is on screen (see .callout in DubHub.css): the picture tile and padding,
-// plus the text, which is at most 250px wide (past that the event's name wraps to a second line).
+// plus the text (the group's name above the event's, then the line under it), which is at most
+// 250px wide (past that the event's name wraps to a second line).
 const CALLOUT_MAX = 250;
 const CALLOUT_CHROME = 9 + 34 + 10 + 14; // left padding, tile, gap, right padding
+const CARD_H = 68; // a card's height with a one-line name (two lines add 17px)
 let measureCtx;
-function calloutSize(title, sub) {
+function calloutSize(title, sub, group) {
   measureCtx ??= document.createElement("canvas").getContext("2d");
   const font = getComputedStyle(document.body).fontFamily;
   measureCtx.font = `700 14px ${font}`;
   const titleW = measureCtx.measureText(title).width;
   measureCtx.font = `12px ${font}`;
   const subW = measureCtx.measureText(sub).width;
+  measureCtx.font = `700 10.5px ${font}`;
+  const groupW = measureCtx.measureText(group.toUpperCase()).width + group.length * 0.6 + 13; // spacing, dot
   const wraps = CALLOUT_CHROME + titleW > CALLOUT_MAX;
-  return { w: Math.min(CALLOUT_MAX, CALLOUT_CHROME + Math.max(titleW, subW)), h: wraps ? 71 : 54 };
+  return { w: Math.min(CALLOUT_MAX, CALLOUT_CHROME + Math.max(titleW, subW, groupW)), h: wraps ? CARD_H + 17 : CARD_H };
 }
 
 // What sits on top of the map (the filters, the welcome box, the dot colors, the zoom buttons), in
@@ -974,7 +1028,7 @@ const MAX_INTRO_LABELS = 5;
 // The cards over the dots when the site opens (then they fade away). Each goes above its dot, or
 // below it if that would cover another card, a labeled dot, or the filters, or run off the map; if
 // neither fits it's skipped (hovering the dot still shows its card).
-function IntroLabels({ places }) {
+function IntroLabels({ places, dark }) {
   const map = useMap();
   const [, redraw] = useState(0);
 
@@ -993,7 +1047,7 @@ function IntroLabels({ places }) {
   for (const place of [...places].sort((a, b) => a.when.localeCompare(b.when) || b.count - a.count)) {
     if (shown.length === MAX_INTRO_LABELS) break;
     const pt = map.latLngToContainerPoint(place.pos);
-    const { w, h } = calloutSize(place.title, place.sub);
+    const { w, h } = calloutSize(place.title, place.sub, eventGroup(place.event).name);
     const radius = place.lift - STEM;
     for (const dir of ["above", "below"]) {
       const up = dir === "above";
@@ -1019,7 +1073,7 @@ function IntroLabels({ places }) {
         opacity={1}
         className="event-callout intro-callout"
       >
-        <EventCallout event={p.event} title={p.title} sub={p.sub} />
+        <EventCallout event={p.event} title={p.title} sub={p.sub} dark={dark} />
       </Tooltip>
     </CircleMarker>
   ));
@@ -1465,21 +1519,21 @@ function EventMap({ events, area, introLabels, shown, onPin, onMapClick, palette
             key={e.id}
             center={e.pos}
             radius={radius}
-            pathOptions={{ color: on ? "#b7a57a" : "#fff", weight: on ? 4 : 2, fillColor: eventColor(e), fillOpacity: 0.95 }}
+            pathOptions={{ color: on ? "#b7a57a" : "#fff", weight: on ? 4 : 2, fillColor: eventColor(e, palette?.dark), fillOpacity: 0.95 }}
             bubblingMouseEvents={false}
             eventHandlers={{ click: () => onPin(e) }}
           >
             {/* Hover: a small card above the dot. Click: the detailed panel (with Join). */}
             {!on && (
               <Tooltip direction="top" offset={[0, -(radius + STEM)]} opacity={1} className="event-callout">
-                <EventCallout event={e} />
+                <EventCallout event={e} dark={palette?.dark} />
               </Tooltip>
             )}
           </CircleMarker>
         );
       })}
       <MapClicks onClick={onMapClick} />
-      {introLabels && <IntroLabels places={places} />}
+      {introLabels && <IntroLabels places={places} dark={palette?.dark} />}
     </MapContainer>
   );
 }
@@ -1500,8 +1554,9 @@ const brokenLogos = new Set();
 // A card on the map, as in DubHub's cover art: the club's picture (or, if it has none, an icon for
 // the kind of event on white), the event's name, and a line under it, with a stem to the dot.
 // Hovering a dot shows one (with where it is); so do the soonest events when the site opens.
-function EventCallout({ event, title = event.title, sub = event.where ?? hostName(event) }) {
+function EventCallout({ event, title = event.title, sub = event.where ?? hostName(event), dark }) {
   const [, setBroken] = useState(false);
+  const group = eventGroup(event);
   const logo = event.club?.logo;
   const picture = logo && !brokenLogos.has(logo);
   return (
@@ -1522,6 +1577,11 @@ function EventCallout({ event, title = event.title, sub = event.where ?? hostNam
         )}
       </span>
       <span className="callout-text">
+        {/* What the dot's color means, so it never rests on color alone */}
+        <span className="callout-group">
+          <i style={{ background: dark ? group.dark : group.light }} />
+          {group.name}
+        </span>
         <strong>{title}</strong>
         <span>{sub}</span>
       </span>
@@ -1529,25 +1589,19 @@ function EventCallout({ event, title = event.title, sub = event.where ?? hostNam
   );
 }
 
-function MapLegend({ events }) {
-  const located = events.filter((e) => e.pos);
-  const fields = MAJOR_FIELDS_ORDER.filter((field) => located.some((e) => e.fields[0] === field));
-  const general = located.some((e) => !e.fields.length);
-  if (!fields.length && !general) return null;
+// What the dot colors mean: the groups on the map right now, always in the same order.
+function MapLegend({ events, dark }) {
+  const shown = new Set(events.filter((e) => e.pos).map(eventGroup));
+  const groups = [...CATEGORY_GROUPS, OTHER_GROUP].filter((g) => shown.has(g));
+  if (!groups.length) return null;
   return (
     <ul className="map-legend" aria-label="Dot colors">
-      {fields.map((field) => (
-        <li key={field}>
-          <span className="dot" style={{ background: FIELD_COLORS[field] }} />
-          {field}
+      {groups.map((g) => (
+        <li key={g.name}>
+          <span className="dot" style={{ background: dark ? g.dark : g.light }} />
+          {g.name}
         </li>
       ))}
-      {general && (
-        <li>
-          <span className="dot" style={{ background: NO_FIELD_COLOR }} />
-          General interest
-        </li>
-      )}
     </ul>
   );
 }
@@ -1582,7 +1636,7 @@ function Home({ f, area, introLabels, j, palette }) {
         onMapClick={close}
         palette={palette}
       />
-      <MapLegend events={f.events} />
+      <MapLegend events={f.events} dark={palette?.dark} />
       <Filters f={f} />
       <div className="tagline">
         <h1>See what's happening at UW, right now.</h1>
@@ -2491,7 +2545,477 @@ function TeamMember({ name, role, note, github, githubPhoto = true, linkedin, ph
   );
 }
 
-function AboutPage() {
+// ------------------------------------------------------------ careers ---
+// The Careers section of the About page: DubHub's roles (src/jobs.js), an application form for each
+// (its questions, a resume, and an optional cover letter), and, for DubHub's team, the applications
+// people sent. Applying takes a UW sign-in; api/apply.js checks and stores everything.
+
+const FILE_ICON = "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h5";
+const CHECK_ICON = "M20 6 9 17l-5-5";
+
+const authHeader = (user) => ({ Authorization: `Bearer ${user.token}` });
+
+function fileSize(bytes) {
+  return bytes < 1024 * 1024 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+
+function readBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",")[1] ?? "");
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+}
+
+// The roles you've applied for, so their cards say so (kept per sign-in, like Joins).
+function useMyApplications(user) {
+  const token = user?.token;
+  const [mine, setMine] = useState({ token: null, jobs: [], admin: false });
+  useEffect(() => {
+    if (!token) return;
+    let cancelled = false;
+    fetch("/api/apply?mine=1", { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then(
+        (d) =>
+          !cancelled &&
+          d?.jobs &&
+          setMine((m) => ({ token, jobs: [...new Set([...d.jobs, ...(m.token === token ? m.jobs : [])])], admin: d.admin === true }))
+      )
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [token]);
+  const markApplied = useCallback(
+    (jobId) => setMine((m) => ({ ...m, token, jobs: [...new Set([...(m.token === token ? m.jobs : []), jobId])] })),
+    [token]
+  );
+  const current = mine.token === token;
+  return [current ? mine.jobs : [], markApplied, current && mine.admin];
+}
+
+// Every application, for DubHub's team (null for everyone else; the server checks too).
+function useAllApplications(user, admin) {
+  const token = user?.token;
+  const [all, setAll] = useState({ token: null, list: null });
+  useEffect(() => {
+    if (!token || !admin) return;
+    let cancelled = false;
+    fetch("/api/apply?all=1", { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => !cancelled && setAll({ token, list: d?.applications ?? null }))
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [token, admin]);
+  return admin && all.token === token ? all.list : null;
+}
+
+// A file picker you can also drop a file on: a PDF or Word document up to `limit` bytes.
+function FilePicker({ label, hint, file, limit, onChange }) {
+  const [error, setError] = useState(null);
+  const [over, setOver] = useState(false);
+  const pick = (f) => {
+    if (!f) return;
+    if (!/\.(pdf|docx?)$/i.test(f.name)) return setError("Use a PDF or Word document.");
+    if (f.size > limit) return setError(`That file is ${fileSize(f.size)}. The limit is ${fileSize(limit)}.`);
+    setError(null);
+    onChange(f);
+  };
+  return (
+    <div className="file-field">
+      <span className="field-label">{label}</span>
+      {file ? (
+        <div className="file-chosen">
+          <span className="file-icon">
+            <Icon d={FILE_ICON} />
+          </span>
+          <span className="file-name">{file.name}</span>
+          <span className="meta">{fileSize(file.size)}</span>
+          <button type="button" className="link-button" onClick={() => onChange(null)}>
+            Remove
+          </button>
+        </div>
+      ) : (
+        <label
+          className={over ? "file-drop over" : "file-drop"}
+          onDragOver={(e) => {
+            e.preventDefault();
+            setOver(true);
+          }}
+          onDragLeave={() => setOver(false)}
+          onDrop={(e) => {
+            e.preventDefault();
+            setOver(false);
+            pick(e.dataTransfer.files[0]);
+          }}
+        >
+          <input type="file" accept={FILE_ACCEPT} aria-label={label} onChange={(e) => pick(e.target.files[0])} />
+          <span>
+            <strong>Choose a file</strong> or drop it here
+          </span>
+          <span className="meta">{hint}</span>
+        </label>
+      )}
+      {error && (
+        <p className="form-error" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function ApplicationForm({ job, user, onApplied, onNeedSignIn }) {
+  const [form, setForm] = useState({ name: user.name ?? "", phone: "", year: "", major: "", links: "" });
+  const [answers, setAnswers] = useState({});
+  const [resume, setResume] = useState(null);
+  const [extra, setExtra] = useState(null);
+  const [status, setStatus] = useState({ sending: false, error: null, done: null });
+  const field = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
+
+  async function submit(e) {
+    e.preventDefault();
+    if (!resume) return setStatus({ sending: false, error: "Attach your resume (a PDF or Word document).", done: null });
+    setStatus({ sending: true, error: null, done: null });
+    try {
+      const body = {
+        jobId: job.id,
+        ...form,
+        answers,
+        resume: { name: resume.name, data: await readBase64(resume) },
+        extra: extra ? { name: extra.name, data: await readBase64(extra) } : null,
+      };
+      const r = await fetch("/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...authHeader(user) },
+        body: JSON.stringify(body),
+      });
+      const d = await r.json().catch(() => ({}));
+      if (r.status === 401) return onNeedSignIn(job.id); // the sign-in expired
+      if (r.ok || r.status === 409) {
+        onApplied(job.id);
+        return setStatus({ sending: false, error: null, done: r.ok ? "sent" : "already" });
+      }
+      setStatus({ sending: false, error: d.error || "Something went wrong. Try again in a minute.", done: null });
+    } catch {
+      setStatus({ sending: false, error: "Couldn't send your application. Check your connection and try again.", done: null });
+    }
+  }
+
+  if (status.done) {
+    return (
+      <div className="apply-done" role="status">
+        <span className="apply-done-icon">
+          <Icon d={CHECK_ICON} />
+        </span>
+        <h3>{status.done === "sent" ? "Application sent!" : "You've already applied"}</h3>
+        <p>
+          {status.done === "sent"
+            ? `Thanks for applying to be our ${job.title}. We'll be in touch at ${user.email}.`
+            : `We already have your application for ${job.title}.`}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form className="apply-form" onSubmit={submit}>
+      <div className="apply-row">
+        <label>
+          <span className="field-label">Full name</span>
+          <input value={form.name} onChange={field("name")} required maxLength={100} autoComplete="name" />
+        </label>
+        <label>
+          <span className="field-label">Phone (optional)</span>
+          <input type="tel" value={form.phone} onChange={field("phone")} maxLength={30} autoComplete="tel" />
+        </label>
+      </div>
+      <p className="meta apply-email">
+        We'll reply to <strong>{user.email}</strong>.
+      </p>
+      <div className="apply-row">
+        <label>
+          <span className="field-label">Class year</span>
+          <select value={form.year} onChange={field("year")} required>
+            <option value="">Choose one</option>
+            {APPLY_YEARS.map((y) => (
+              <option key={y}>{y}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span className="field-label">Major</span>
+          <input value={form.major} onChange={field("major")} maxLength={100} placeholder="e.g. Informatics" />
+        </label>
+      </div>
+      <label>
+        <span className="field-label">LinkedIn, portfolio, or GitHub (optional)</span>
+        <input value={form.links} onChange={field("links")} maxLength={300} inputMode="url" placeholder="https://" />
+      </label>
+      {job.questions.map((q) => (
+        <label key={q.id}>
+          <span className="field-label">
+            {q.label}
+            {!q.required && " (optional)"}
+          </span>
+          <textarea
+            value={answers[q.id] ?? ""}
+            onChange={(e) => setAnswers((a) => ({ ...a, [q.id]: e.target.value }))}
+            required={q.required}
+            maxLength={q.max}
+            rows={4}
+          />
+          <span className="char-count">
+            {(answers[q.id] ?? "").length}/{q.max}
+          </span>
+        </label>
+      ))}
+      <FilePicker
+        label="Resume"
+        hint="PDF or Word, up to 2 MB"
+        file={resume}
+        limit={FILE_LIMITS.resume}
+        onChange={(f) => {
+          setResume(f);
+          setStatus((st) => ({ ...st, error: null }));
+        }}
+      />
+      <FilePicker
+        label="Cover letter or portfolio (optional)"
+        hint="PDF or Word, up to 1 MB"
+        file={extra}
+        limit={FILE_LIMITS.extra}
+        onChange={setExtra}
+      />
+      {status.error && (
+        <p className="form-error" role="alert">
+          {status.error}
+        </p>
+      )}
+      <button className="join apply-submit" disabled={status.sending}>
+        {status.sending ? "Sending…" : "Submit application"}
+      </button>
+    </form>
+  );
+}
+
+function JobDialog({ job, user, applied, startOnForm, onApplied, onNeedSignIn, onClose }) {
+  const signedIn = Boolean(user?.token);
+  const [applying, setApplying] = useState(startOnForm && signedIn && !applied);
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div className="club-backdrop" onClick={onClose}>
+      <div
+        className="club-modal job-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="job-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
+          &times;
+        </button>
+        <span className="job-team">{job.team}</span>
+        <h2 id="job-title">{job.title}</h2>
+        <p className="meta">
+          {job.location} · {job.type}
+        </p>
+        {applying ? (
+          <ApplicationForm job={job} user={user} onApplied={onApplied} onNeedSignIn={onNeedSignIn} />
+        ) : (
+          <>
+            <p>{job.about}</p>
+            <h3>What you'll do</h3>
+            <ul>
+              {job.youWill.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
+            <h3>You might be a fit if</h3>
+            <ul>
+              {job.fit.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
+            {applied ? (
+              <p className="applied-note">
+                <Icon d={CHECK_ICON} /> You've applied for this role.
+              </p>
+            ) : (
+              <button className="join apply-submit" onClick={() => (signedIn ? setApplying(true) : onNeedSignIn(job.id))}>
+                {signedIn ? "Apply" : "Sign in to apply"}
+              </button>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// What each question asked, for showing answers to the team (roles may have changed since).
+function questionLabel(jobId, questionId) {
+  return JOBS.find((j) => j.id === jobId)?.questions.find((q) => q.id === questionId)?.label ?? questionId;
+}
+
+function ApplicationsAdmin({ applications, user }) {
+  const [role, setRole] = useState("");
+  const [error, setError] = useState(null);
+  const shown = applications.filter((a) => !role || a.jobId === role);
+
+  async function download(app, kind) {
+    setError(null);
+    try {
+      const r = await fetch(`/api/apply?file=${encodeURIComponent(app.id)}&kind=${kind}`, { headers: authHeader(user) });
+      if (!r.ok) throw new Error(r.status);
+      const url = URL.createObjectURL(await r.blob());
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = app.files[kind].name;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 30000);
+    } catch {
+      setError("Couldn't download that file. Try again.");
+    }
+  }
+
+  return (
+    <div className="apps-admin">
+      <div className="apps-head">
+        <h3>Applications ({applications.length})</h3>
+        <span className="meta">Only DubHub's team can see this.</span>
+        <select value={role} onChange={(e) => setRole(e.target.value)} aria-label="Show applications for">
+          <option value="">All roles</option>
+          {JOBS.map((j) => (
+            <option key={j.id} value={j.id}>
+              {j.title}
+            </option>
+          ))}
+        </select>
+      </div>
+      {error && <p className="form-error">{error}</p>}
+      {shown.length === 0 ? (
+        <p className="meta">No applications yet.</p>
+      ) : (
+        <ul className="apps-list">
+          {shown.map((a) => (
+            <li key={a.id}>
+              <details>
+                <summary>
+                  <strong>{a.name}</strong>
+                  <span>{a.jobTitle}</span>
+                  <span className="meta">
+                    {new Date(a.at).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}
+                  </span>
+                </summary>
+                <div className="app-body">
+                  <p className="meta">
+                    <a href={`mailto:${a.email}`}>{a.email}</a>
+                    {[a.phone, a.year, a.major].filter(Boolean).map((x) => ` · ${x}`)}
+                  </p>
+                  {a.links &&
+                    (/^https?:\/\/\S+$/i.test(a.links) ? (
+                      <p>
+                        <a href={a.links} target="_blank" rel="noreferrer noopener">
+                          {a.links}
+                        </a>
+                      </p>
+                    ) : (
+                      <p>{a.links}</p>
+                    ))}
+                  <dl>
+                    {Object.entries(a.answers || {}).map(([q, answer]) => (
+                      <div key={q}>
+                        <dt>{questionLabel(a.jobId, q)}</dt>
+                        <dd>{answer}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <div className="app-files">
+                    {["resume", "extra"].map(
+                      (kind) =>
+                        a.files?.[kind] && (
+                          <button key={kind} className="join" onClick={() => download(a, kind)}>
+                            {kind === "resume" ? "Resume" : "Cover letter / portfolio"} ({fileSize(a.files[kind].size)})
+                          </button>
+                        )
+                    )}
+                  </div>
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+function Careers({ user, onNeedSignIn, reopenJobId, onReopened }) {
+  const [applied, markApplied, admin] = useMyApplications(user);
+  const applications = useAllApplications(user, admin);
+  // A role you signed in to apply for opens again, right on its form.
+  const [open, setOpen] = useState(() => (reopenJobId ? { id: reopenJobId, form: true } : null));
+  useEffect(() => {
+    if (reopenJobId) onReopened();
+  }, [reopenJobId, onReopened]);
+  const close = useCallback(() => setOpen(null), []);
+  const job = JOBS.find((j) => j.id === open?.id);
+
+  return (
+    <section className="careers">
+      <h2 id="careers">Careers</h2>
+      <p>DubHub is built by UW students, for UW students. Want to help? Pick a role and apply with your UW account.</p>
+      {SAMPLE_JOBS && <p className="careers-note">These are sample roles while we set up hiring. Real ones are coming soon.</p>}
+      <ul className="jobs">
+        {JOBS.map((j) => (
+          <li key={j.id} className="job-card">
+            <span className="job-team">{j.team}</span>
+            <strong className="job-title">{j.title}</strong>
+            <span className="meta">
+              {j.location} · {j.type}
+            </span>
+            <p>{j.summary}</p>
+            <div className="job-foot">
+              <button className="join" onClick={() => setOpen({ id: j.id, form: false })}>
+                {applied.includes(j.id) ? "View role" : "View & apply"}
+              </button>
+              {applied.includes(j.id) && (
+                <span className="applied-tag">
+                  <Icon d={CHECK_ICON} /> Applied
+                </span>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+      {applications && <ApplicationsAdmin applications={applications} user={user} />}
+      {job && (
+        <JobDialog
+          key={job.id}
+          job={job}
+          user={user}
+          applied={applied.includes(job.id)}
+          startOnForm={open.form}
+          onApplied={markApplied}
+          onNeedSignIn={onNeedSignIn}
+          onClose={close}
+        />
+      )}
+    </section>
+  );
+}
+
+function AboutPage({ user, onNeedSignIn, reopenJobId, onReopened }) {
   return (
     <main className="page">
       <h1>About DubHub</h1>
@@ -2500,12 +3024,22 @@ function AboutPage() {
         join one to get added to its group chat.
       </p>
       <p>Sign in with your UW ID so everyone on the map is a real student.</p>
+      <p>
+        Want to help build it?{" "}
+        <button
+          className="link-button"
+          onClick={() => document.getElementById("careers")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+        >
+          See open roles
+        </button>
+      </p>
       <h2>Made by</h2>
       <ul className="team">
         {TEAM.map((m) => (
           <TeamMember key={m.name} {...m} />
         ))}
       </ul>
+      <Careers user={user} onNeedSignIn={onNeedSignIn} reopenJobId={reopenJobId} onReopened={onReopened} />
     </main>
   );
 }
@@ -2528,18 +3062,21 @@ export default function DubHub() {
   const { user, signIn, signOut } = useUser();
   const { profile, update: updateProfile } = useProfile(user);
 
-  // The sign-in page remembers where you came from and the event you tried to join.
-  const [signInFrom, setSignInFrom] = useState({ tab: "Home", eventId: null });
+  // The sign-in page remembers where you came from and the event you tried to join (or the role
+  // you tried to apply for, whose form opens again once you're signed in).
+  const [signInFrom, setSignInFrom] = useState({ tab: "Home", eventId: null, jobId: null });
   const pendingJoin = useRef(null);
   const openSignIn = useCallback(
-    (eventId = null) => {
-      setSignInFrom({ tab: tab === "Sign in" ? signInFrom.tab : tab, eventId });
+    (eventId = null, jobId = null) => {
+      setSignInFrom({ tab: tab === "Sign in" ? signInFrom.tab : tab, eventId, jobId });
       pendingJoin.current = eventId;
       setTab("Sign in");
     },
     [tab, signInFrom.tab]
   );
   const j = useGoing(user, all, openSignIn);
+  const applyFor = useCallback((jobId) => openSignIn(null, jobId), [openSignIn]);
+  const reopened = useCallback(() => setSignInFrom((s) => (s.jobId ? { ...s, jobId: null } : s)), []);
   const pendingEvent = all.find((e) => String(e.id) === String(signInFrom.eventId));
   const finishSignIn = useCallback(
     (u) => {
@@ -2599,9 +3136,22 @@ export default function DubHub() {
         />
       )}
       {tab === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} applications={applications} />}
-      {tab === "About" && <AboutPage />}
+      {tab === "About" && (
+        <AboutPage
+          user={user}
+          onNeedSignIn={applyFor}
+          reopenJobId={user?.token ? signInFrom.jobId : null}
+          onReopened={reopened}
+        />
+      )}
       {tab === "Sign in" && (
-        <SignInPage user={user} pendingEvent={pendingEvent} onSignIn={finishSignIn} onBack={() => setTab(signInFrom.tab)} />
+        <SignInPage
+          user={user}
+          pendingEvent={pendingEvent}
+          pendingJob={JOBS.find((x) => x.id === signInFrom.jobId)}
+          onSignIn={finishSignIn}
+          onBack={() => setTab(signInFrom.tab)}
+        />
       )}
       {tab === "Profile" && (
         <ProfilePage

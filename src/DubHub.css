@@ -2179,7 +2179,27 @@ select:focus-visible {
   text-overflow: ellipsis;
   color: var(--muted);
   font-size: 12px;
-  line-height: 18px; /* with the name's 1.25, cards are 54px tall (71 with two lines): see calloutSize */
+  line-height: 18px; /* with the group line and the name's 1.25, cards are 68px tall: see CARD_H */
+}
+
+/* The dot's group above the event's name: a dot in its color, then its name in small caps */
+.callout-text .callout-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.callout-group i {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.5px #fff; /* like the dots on the map */
 }
 
 /* Dark mode: the cover's purple card, with a white tile and stem */
@@ -2244,4 +2264,382 @@ select:focus-visible {
     0%, 75% { opacity: 1; }
     100% { opacity: 0; }
   }
+}
+
+/* ------------------------------------------------ Careers (bottom of the About page) --- */
+.careers {
+  margin-top: 40px;
+  padding-top: 4px;
+  border-top: 1px solid var(--line);
+}
+
+.careers-note {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--tint);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.jobs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.job-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.job-card:hover {
+  box-shadow: 0 6px 20px rgba(30, 10, 70, 0.12);
+  transform: translateY(-1px);
+}
+
+.job-team {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.job-title {
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.job-card p {
+  flex: 1;
+  margin: 6px 0 4px;
+}
+
+.job-foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.applied-tag,
+.applied-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.applied-tag .icon,
+.applied-note .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.applied-note {
+  margin: 18px 0 0;
+}
+
+/* A role's details and its application form, in the same pop-up as an event's */
+.job-modal {
+  max-width: 620px;
+}
+
+.job-modal h2 {
+  margin: 2px 0 2px;
+  padding-right: 32px; /* clear of the close button */
+  line-height: 1.25;
+}
+
+.job-modal h3 {
+  margin: 18px 0 6px;
+  font-size: 15px;
+}
+
+.job-modal ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.apply-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.apply-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 520px) {
+  .apply-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.apply-form label,
+.file-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field-label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.apply-form input,
+.apply-form select,
+.apply-form textarea {
+  width: 100%;
+  font: inherit;
+  padding: 9px 11px;
+  border: 1px solid var(--field-line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.apply-form textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.apply-form input:focus-visible,
+.apply-form select:focus-visible,
+.apply-form textarea:focus-visible,
+.file-drop:focus-within {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.apply-email {
+  margin: -6px 0 0;
+}
+
+.char-count {
+  align-self: flex-end;
+  margin-top: -2px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.apply-form .file-drop {
+  position: relative;
+  align-items: center;
+  gap: 2px;
+  padding: 18px 14px;
+  border: 2px dashed var(--field-line);
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.file-drop strong {
+  color: var(--accent);
+}
+
+.file-drop:hover,
+.file-drop.over {
+  border-color: var(--accent);
+  background: var(--tint);
+}
+
+/* The real file input, invisible but still reachable with the keyboard */
+.apply-form .file-drop input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-chosen {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--tint);
+}
+
+.file-chosen .file-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.file-icon {
+  display: grid;
+  color: var(--accent);
+}
+
+.file-icon .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.file-chosen .link-button {
+  color: var(--accent);
+}
+
+.form-error {
+  margin: 0;
+  color: var(--error);
+  font-size: 14px;
+}
+
+.apply-submit {
+  align-self: flex-start;
+  min-height: 42px;
+  margin-top: 16px;
+  padding: 8px 22px;
+  font-size: 15px;
+}
+
+.apply-form .apply-submit {
+  margin-top: 4px;
+}
+
+.apply-submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.apply-done {
+  padding: 22px 8px 6px;
+  text-align: center;
+}
+
+.apply-done h3 {
+  margin: 12px 0 4px;
+  font-size: 18px;
+}
+
+.apply-done p {
+  margin: 0;
+}
+
+.apply-done-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--tint);
+  color: var(--accent);
+}
+
+.apply-done-icon .icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* For DubHub's team only: the applications people sent */
+.apps-admin {
+  margin-top: 28px;
+  padding: 18px;
+  border: 1px dashed var(--field-line);
+  border-radius: 12px;
+}
+
+.apps-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+}
+
+.apps-head h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.apps-head select {
+  margin-left: auto;
+  font: inherit;
+  padding: 6px 10px;
+  border: 1px solid var(--field-line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.apps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.apps-list details {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.apps-list summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.app-body {
+  padding: 0 14px 14px;
+}
+
+.app-body .meta {
+  margin: 0 0 6px;
+}
+
+.app-body dl {
+  margin: 0;
+}
+
+.app-body dt {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.app-body dd {
+  margin: 2px 0 0;
+  white-space: pre-wrap;
+}
+
+.app-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
 }
