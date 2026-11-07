@@ -6,6 +6,7 @@ import "leaflet/dist/leaflet.css";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./DubHub.css";
 import { APPLY_YEARS, FILE_ACCEPT, FILE_LIMITS, JOBS, SAMPLE_JOBS } from "./jobs.js";
+import { CATEGORY_GROUPS, NO_FIELD_COLOR, OTHER_GROUP, groupFor, isHostedBy } from "./eventGroups.js";
 
 const TABS = ["Home", "Events", "My Events", "Clubs", "About"];
 
@@ -16,6 +17,7 @@ const TAB_ICONS = {
   "My Events": "M6 3h12v18l-6-4-6 4z",
   Clubs: "M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21v-1a7 7 0 0 1 14 0v1M16 3.5a4 4 0 0 1 0 7.5M18 14a6 6 0 0 1 4 6v1",
   About: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 16v-5M12 8h.01",
+  Stats: "M4 20V11M10 20V5M16 20v-6M2 20h20",
 };
 
 function Icon({ d }) {
@@ -540,6 +542,25 @@ function decodeJwt(token) {
   return JSON.parse(new TextDecoder().decode(bytes));
 }
 
+// Whether you're one of DubHub's moderators (MODERATOR_EMAILS on the server), who see the Stats
+// tab and job applications. Asked once per sign-in.
+function useModerator(user) {
+  const token = user?.token;
+  const [state, setState] = useState({ token: null, moderator: false });
+  useEffect(() => {
+    if (!token) return;
+    let cancelled = false;
+    fetch("/api/session", { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => !cancelled && setState({ token, moderator: d?.moderator === true }))
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [token]);
+  return Boolean(token) && state.token === token && state.moderator;
+}
+
 function useUser() {
   const [user, setUser] = useState(() => {
     try {
@@ -799,41 +820,9 @@ function shortText(text, max = 150) {
   return flat.length <= max ? flat : `${flat.slice(0, max).replace(/\s+\S*$/, "")}…`;
 }
 
-// Dots are colored by what kind of club is hosting (its HuskyLink category), in 8 groups plus gray
-// for anything else. More than 8 colors blur together on a map, where any two dots can sit side by
-// side. Each group has a color for the light maps and one for the dark ones, and both sets were
-// checked with the dataviz palette validator for every pair (normal vision, and red-green
-// colorblindness with the hover cards naming the group).
-const NO_FIELD_COLOR = "#8a8398";
-const CATEGORY_GROUPS = [
-  { name: "Tech & Engineering", categories: ["Tech", "Engineering"], light: "#2785f7", dark: "#3250d4" },
-  { name: "Cultural", categories: ["Cultural"], light: "#e34a4b", dark: "#db313a" },
-  { name: "Arts", categories: ["Arts"], light: "#cc5eca", dark: "#ca3fa6" },
-  { name: "Service", categories: ["Service"], light: "#18ba86", dark: "#04a67e" },
-  { name: "Sports & Outdoors", categories: ["Sports", "Outdoors"], light: "#298805", dark: "#267a08" },
-  { name: "Academic & Business", categories: ["Academic", "Business"], light: "#17c2f9", dark: "#228dca" },
-  { name: "Faith & Spirituality", categories: ["Faith & Spirituality"], light: "#7647c7", dark: "#9361ef" },
-  { name: "Social & Greek Life", categories: ["Social", "Gaming", "Greek Life"], light: "#d1900b", dark: "#c97f2e" },
-];
-const OTHER_GROUP = { name: "Other", light: NO_FIELD_COLOR, dark: "#c4c0cc" };
-const GROUP_OF_CATEGORY = Object.fromEntries(CATEGORY_GROUPS.flatMap((g) => g.categories.map((c) => [c, g])));
-// An event whose host has no category goes by its majors' field instead (the sample events).
-const GROUP_OF_FIELD = {
-  Engineering: "Tech & Engineering",
-  "Computing & Math": "Tech & Engineering",
-  "Arts & Humanities": "Arts",
-  Business: "Academic & Business",
-  Sciences: "Academic & Business",
-  Health: "Academic & Business",
-  "Social Sciences": "Academic & Business",
-};
-
+// Dots are colored by the host club's group (src/eventGroups.js has the groups and their colors).
 function eventGroup(e) {
-  return (
-    GROUP_OF_CATEGORY[e.club?.category] ??
-    CATEGORY_GROUPS.find((g) => g.name === GROUP_OF_FIELD[e.fields?.[0]]) ??
-    OTHER_GROUP
-  );
+  return groupFor(e.club?.category, e.fields?.[0]);
 }
 
 // `dark`: the color for a dark map (MAP_PALETTES' `dark`).
@@ -1892,12 +1881,6 @@ function ClubJoinButton({ club, clubs }) {
   );
 }
 
-// Scraped events name the host "Club Name (@handle)" or "@handle"; match by handle when we have one.
-function isHostedBy(event, club) {
-  const host = event.host.toLowerCase();
-  if (club.handle && (host === `@${club.handle}` || host.endsWith(`(@${club.handle})`))) return true;
-  return event.host === club.name || event.host.startsWith(`${club.name} (@`);
-}
 
 function hostedBy(all, club) {
   return all.filter((e) => isHostedBy(e, club));
@@ -2571,37 +2554,31 @@ function readBase64(file) {
 // The roles you've applied for, so their cards say so (kept per sign-in, like Joins).
 function useMyApplications(user) {
   const token = user?.token;
-  const [mine, setMine] = useState({ token: null, jobs: [], admin: false });
+  const [mine, setMine] = useState({ token: null, jobs: [] });
   useEffect(() => {
     if (!token) return;
     let cancelled = false;
     fetch("/api/apply?mine=1", { headers: { Authorization: `Bearer ${token}` } })
       .then((r) => (r.ok ? r.json() : null))
-      .then(
-        (d) =>
-          !cancelled &&
-          d?.jobs &&
-          setMine((m) => ({ token, jobs: [...new Set([...d.jobs, ...(m.token === token ? m.jobs : [])])], admin: d.admin === true }))
-      )
+      .then((d) => !cancelled && d?.jobs && setMine((m) => ({ token, jobs: [...new Set([...d.jobs, ...(m.token === token ? m.jobs : [])])] })))
       .catch(() => {});
     return () => {
       cancelled = true;
     };
   }, [token]);
   const markApplied = useCallback(
-    (jobId) => setMine((m) => ({ ...m, token, jobs: [...new Set([...(m.token === token ? m.jobs : []), jobId])] })),
+    (jobId) => setMine((m) => ({ token, jobs: [...new Set([...(m.token === token ? m.jobs : []), jobId])] })),
     [token]
   );
-  const current = mine.token === token;
-  return [current ? mine.jobs : [], markApplied, current && mine.admin];
+  return [mine.token === token ? mine.jobs : [], markApplied];
 }
 
-// Every application, for DubHub's team (null for everyone else; the server checks too).
-function useAllApplications(user, admin) {
+// Every application, for DubHub's moderators (null for everyone else; the server checks too).
+function useAllApplications(user, moderator) {
   const token = user?.token;
   const [all, setAll] = useState({ token: null, list: null });
   useEffect(() => {
-    if (!token || !admin) return;
+    if (!token || !moderator) return;
     let cancelled = false;
     fetch("/api/apply?all=1", { headers: { Authorization: `Bearer ${token}` } })
       .then((r) => (r.ok ? r.json() : null))
@@ -2610,8 +2587,8 @@ function useAllApplications(user, admin) {
     return () => {
       cancelled = true;
     };
-  }, [token, admin]);
-  return admin && all.token === token ? all.list : null;
+  }, [token, moderator]);
+  return moderator && all.token === token ? all.list : null;
 }
 
 // A file picker you can also drop a file on: a PDF or Word document up to `limit` bytes.
@@ -2892,7 +2869,7 @@ function ApplicationsAdmin({ applications, user }) {
     <div className="apps-admin">
       <div className="apps-head">
         <h3>Applications ({applications.length})</h3>
-        <span className="meta">Only DubHub's team can see this.</span>
+        <span className="meta">Only moderators can see this.</span>
         <select value={role} onChange={(e) => setRole(e.target.value)} aria-label="Show applications for">
           <option value="">All roles</option>
           {JOBS.map((j) => (
@@ -2960,9 +2937,9 @@ function ApplicationsAdmin({ applications, user }) {
   );
 }
 
-function Careers({ user, onNeedSignIn, reopenJobId, onReopened }) {
-  const [applied, markApplied, admin] = useMyApplications(user);
-  const applications = useAllApplications(user, admin);
+function Careers({ user, moderator, onNeedSignIn, reopenJobId, onReopened }) {
+  const [applied, markApplied] = useMyApplications(user);
+  const applications = useAllApplications(user, moderator);
   // A role you signed in to apply for opens again, right on its form.
   const [open, setOpen] = useState(() => (reopenJobId ? { id: reopenJobId, form: true } : null));
   useEffect(() => {
@@ -3015,7 +2992,443 @@ function Careers({ user, onNeedSignIn, reopenJobId, onReopened }) {
   );
 }
 
-function AboutPage({ user, onNeedSignIn, reopenJobId, onReopened }) {
+// ---------------------------------------------------------------- stats ---
+// The Stats page, for moderators only: how DubHub is doing over time, with a point for every
+// update that goes live (each change and each scrape; see scripts/record-stats.mjs), and right
+// now. The charts follow the dataviz skill: thin marks on hairline grids, a legend for two or
+// more series, values on hover and keyboard focus, and every chart's numbers in a table too.
+
+const TREND_SERIES = [
+  { key: "upcoming", name: "Upcoming events", color: "var(--chart-1)" },
+  { key: "clubs", name: "Clubs", color: "var(--chart-2)" },
+];
+
+const fmt = (n) => (n == null ? "–" : Number(n).toLocaleString());
+const shortDate = (t) => new Date(t).toLocaleDateString([], { month: "short", day: "numeric" });
+const dateTime = (t) =>
+  new Date(t).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+
+function useStats(user) {
+  const token = user?.token;
+  const [state, setState] = useState({ token: null, data: null, error: false });
+  useEffect(() => {
+    if (!token) return;
+    let cancelled = false;
+    fetch("/api/stats", { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((data) => !cancelled && setState({ token, data, error: false }))
+      .catch(() => !cancelled && setState({ token, data: null, error: true }));
+    return () => {
+      cancelled = true;
+    };
+  }, [token]);
+  return state.token === token ? state : { data: null, error: false };
+}
+
+// How wide a chart can draw, kept up to date as the window changes.
+function useWidth() {
+  const ref = useRef(null);
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new ResizeObserver(([entry]) => setWidth(Math.round(entry.contentRect.width)));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return [ref, width];
+}
+
+// Round axis steps (1, 2, or 5 times a power of ten) from 0 to just past `max`.
+function niceTicks(max, count = 4) {
+  if (!(max > 0)) return [0, 1];
+  const raw = max / count;
+  const magnitude = 10 ** Math.floor(Math.log10(raw));
+  const step = [1, 2, 5, 10].map((m) => m * magnitude).find((st) => st >= raw);
+  return Array.from({ length: Math.ceil(max / step) + 1 }, (_, i) => i * step);
+}
+
+// A column with a rounded top and a square bottom (on the baseline).
+function columnPath(x, y, w, h) {
+  if (h <= 0) return "";
+  const r = Math.min(4, h, w / 2);
+  return `M${x},${y + h}V${y + r}Q${x},${y} ${x + r},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h}Z`;
+}
+
+// Lines over time, one point per update. A crosshair finds the nearest update under the pointer
+// (or with the arrow keys) and the tooltip lists every series there.
+function TrendChart({ points, series }) {
+  const [box, width] = useWidth();
+  const [active, setActive] = useState(null);
+  const W = Math.max(width, 280);
+  const H = 240;
+  const pad = { l: 40, r: 12, t: 12, b: 28 };
+  const times = points.map((pt) => Date.parse(pt.at));
+  const [t0, t1] = [times[0], times.at(-1)];
+  const ticks = niceTicks(Math.max(...points.flatMap((pt) => series.map((ser) => pt[ser.key] ?? 0))));
+  const top = ticks.at(-1);
+  const x = (t) => pad.l + ((t - t0) / (t1 - t0 || 1)) * (W - pad.l - pad.r);
+  const y = (v) => pad.t + (1 - v / top) * (H - pad.t - pad.b);
+  const dayTicks = [];
+  const every = Math.max(1, Math.ceil(((t1 - t0) / 864e5) / Math.max(1, Math.floor((W - pad.l - pad.r) / 90))));
+  for (let t = new Date(new Date(t0).toDateString()).getTime() + 864e5; t <= t1; t += every * 864e5) dayTicks.push(t);
+  const nearest = (px) => times.reduce((best, t, i) => (Math.abs(x(t) - px) < Math.abs(x(times[best]) - px) ? i : best), 0);
+  const onMove = (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    setActive(nearest(((e.clientX - r.left) / r.width) * W));
+  };
+  const onKey = (e) => {
+    if (e.key === "ArrowLeft") setActive((a) => Math.max(0, (a ?? points.length) - 1));
+    else if (e.key === "ArrowRight") setActive((a) => Math.min(points.length - 1, (a ?? -1) + 1));
+    else return;
+    e.preventDefault();
+  };
+  const pt = active == null ? null : points[active];
+  const tipLeft = active == null ? 0 : x(times[active]);
+  // A blank value (not comparable) breaks the line instead of dropping it to zero.
+  const linePath = (key) => {
+    let d = "";
+    let drawing = false;
+    points.forEach((p2, i) => {
+      if (p2[key] == null) return void (drawing = false);
+      d += `${drawing ? "L" : "M"}${x(times[i]).toFixed(1)},${y(p2[key]).toFixed(1)}`;
+      drawing = true;
+    });
+    return d;
+  };
+
+  return (
+    <div className="chart" ref={box}>
+      <ul className="chart-legend">
+        {series.map((ser) => (
+          <li key={ser.key}>
+            <span className="key" style={{ background: ser.color }} />
+            {ser.name} <strong>{fmt(points.at(-1)?.[ser.key])}</strong>
+          </li>
+        ))}
+      </ul>
+      {width > 0 && (
+        <svg
+          width={W}
+          height={H}
+          viewBox={`0 0 ${W} ${H}`}
+          role="img"
+          aria-label={`${series.map((ser) => ser.name).join(" and ")} at each update. Use the arrow keys to step through them.`}
+          tabIndex={0}
+          onPointerMove={onMove}
+          onPointerLeave={() => setActive(null)}
+          onFocus={() => setActive(points.length - 1)}
+          onBlur={() => setActive(null)}
+          onKeyDown={onKey}
+        >
+          {ticks.map((t) => (
+            <g key={t}>
+              <line className="grid" x1={pad.l} x2={W - pad.r} y1={y(t)} y2={y(t)} />
+              <text className="tick" x={pad.l - 8} y={y(t)} dy="0.32em" textAnchor="end">
+                {fmt(t)}
+              </text>
+            </g>
+          ))}
+          {dayTicks.map((t) => (
+            <text key={t} className="tick" x={x(t)} y={H - 8} textAnchor="middle">
+              {shortDate(t)}
+            </text>
+          ))}
+          {series.map((ser) => (
+            <path key={ser.key} className="line" stroke={ser.color} d={linePath(ser.key)} />
+          ))}
+          {pt && <line className="crosshair" x1={tipLeft} x2={tipLeft} y1={pad.t} y2={H - pad.b} />}
+          {series.map((ser) => {
+            const i = active ?? points.length - 1;
+            const v = points[i][ser.key];
+            return v == null ? null : <circle key={ser.key} className="dot" cx={x(times[i])} cy={y(v)} r={4} fill={ser.color} />;
+          })}
+        </svg>
+      )}
+      {pt && (
+        <div className={tipLeft > W * 0.6 ? "chart-tip left" : "chart-tip"} style={{ left: tipLeft }}>
+          <span className="tip-when">
+            {dateTime(pt.at)} · {pt.kind === "scrape" ? "Scrape" : "Change"}
+          </span>
+          {pt.message && <span className="tip-what">{pt.message}</span>}
+          {series.map((ser) => (
+            <span key={ser.key} className="tip-row">
+              <span className="key" style={{ background: ser.color }} />
+              <strong>{fmt(pt[ser.key])}</strong> {ser.name.toLowerCase()}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// One column per day; the busiest day is labeled, and every column shows its count on hover or focus.
+function DayColumns({ days }) {
+  const [box, width] = useWidth();
+  const [active, setActive] = useState(null);
+  const W = Math.max(width, 260);
+  const H = 190;
+  const pad = { l: 30, r: 4, t: 18, b: 26 };
+  const ticks = niceTicks(Math.max(...days.map((d) => d.count)), 3);
+  const top = ticks.at(-1);
+  const band = (W - pad.l - pad.r) / days.length;
+  const bar = Math.min(24, band * 0.62);
+  const y = (v) => pad.t + (1 - v / top) * (H - pad.t - pad.b);
+  const busiest = days.reduce((m, d, i) => (d.count > days[m].count ? i : m), 0);
+  const labelEvery = band < 34 ? 2 : 1;
+  const shown = active ?? busiest;
+
+  return (
+    <div className="chart" ref={box}>
+      {width > 0 && (
+        <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} onPointerLeave={() => setActive(null)}>
+          {ticks.map((t) => (
+            <g key={t}>
+              <line className="grid" x1={pad.l} x2={W - pad.r} y1={y(t)} y2={y(t)} />
+              <text className="tick" x={pad.l - 6} y={y(t)} dy="0.32em" textAnchor="end">
+                {fmt(t)}
+              </text>
+            </g>
+          ))}
+          {days.map((d, i) => {
+            const cx = pad.l + band * i + band / 2;
+            const day = new Date(`${d.date}T12:00`);
+            const label = `${day.toLocaleDateString([], { weekday: "short" })} ${day.getDate()}`;
+            return (
+              <g
+                key={d.date}
+                className={i === active ? "column on" : "column"}
+                tabIndex={0}
+                aria-label={`${label}: ${d.count} events`}
+                onPointerEnter={() => setActive(i)}
+                onFocus={() => setActive(i)}
+                onBlur={() => setActive(null)}
+              >
+                <rect className="hit" x={cx - band / 2} y={pad.t} width={band} height={H - pad.t - pad.b} />
+                <path d={columnPath(cx - bar / 2, y(d.count), bar, y(0) - y(d.count))} fill="var(--chart-1)" />
+                {i === shown && d.count > 0 && (
+                  <text className="cap" x={cx} y={y(d.count) - 6} textAnchor="middle">
+                    {d.count}
+                  </text>
+                )}
+                {i % labelEvery === 0 && (
+                  <text className="tick" x={cx} y={H - 8} textAnchor="middle">
+                    {label}
+                  </text>
+                )}
+              </g>
+            );
+          })}
+        </svg>
+      )}
+    </div>
+  );
+}
+
+// Ranked bars (largest first), each with its value at the tip. `swatch` ties a row to the map's colors.
+function BarList({ rows }) {
+  const max = Math.max(1, ...rows.map((r) => r.value));
+  return (
+    <ul className="bar-list">
+      {rows.map((r) => (
+        <li key={r.label}>
+          <span className="bar-label">
+            {r.swatch && <i style={{ background: r.swatch }} />}
+            <span>{r.label}</span>
+          </span>
+          <span className="bar-track">
+            <span className="bar" style={{ "--share": r.value / max }} />
+            <span className="bar-value">{fmt(r.value)}</span>
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// Every chart's numbers, for reading without the chart.
+function ChartTable({ head, rows }) {
+  return (
+    <details className="chart-table">
+      <summary>Show as a table</summary>
+      <div className="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              {head.map((h) => (
+                <th key={h}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r, i) => (
+              <tr key={i}>
+                {r.map((c, j) => (
+                  <td key={j}>{c}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </details>
+  );
+}
+
+function StatTile({ label, value, delta, note }) {
+  return (
+    <div className="stat-tile">
+      <span className="stat-label">{label}</span>
+      <strong className="stat-value">{fmt(value)}</strong>
+      {delta != null ? (
+        <span className={delta > 0 ? "stat-delta up" : "stat-delta"}>
+          {delta > 0 ? "▲" : delta < 0 ? "▼" : "–"} {fmt(Math.abs(delta))} {note}
+        </span>
+      ) : (
+        note && <span className="stat-delta">{note}</span>
+      )}
+    </div>
+  );
+}
+
+const counted = (obj) =>
+  Object.entries(obj)
+    .map(([label, value]) => ({ label, value }))
+    .sort((a, b) => b.value - a.value);
+const signed = (n) => (n > 0 ? `+${n}` : n < 0 ? `${n}` : "");
+
+function StatsPage({ user, events, clubs, dark }) {
+  const { data, error } = useStats(user);
+  const snapshots = data?.snapshots ?? [];
+  const live = data?.live;
+
+  // Right now, from what the site has loaded (the same counting as the snapshots).
+  const onMap = events.filter((e) => e.pos).length;
+  const byGroup = {};
+  const bySource = {};
+  for (const e of events) {
+    const g = eventGroup(e).name;
+    byGroup[g] = (byGroup[g] ?? 0) + 1;
+    const src = { instagram: "Instagram", huskylink: "HuskyLink" }[e.source] ?? "Other";
+    bySource[src] = (bySource[src] ?? 0) + 1;
+  }
+  const groupRows = [...CATEGORY_GROUPS, OTHER_GROUP]
+    .map((g) => ({ label: g.name, value: byGroup[g.name] ?? 0, swatch: dark ? g.dark : g.light }))
+    .filter((r) => r.value > 0)
+    .sort((a, b) => b.value - a.value);
+  const days = Array.from({ length: 14 }, (_, i) => {
+    const date = localDate(i);
+    return { date, count: events.filter((e) => e.date === date).length };
+  });
+
+  // Compared with the latest update at least a week before the newest one.
+  const latest = snapshots.at(-1);
+  const weekAgo = latest && [...snapshots].reverse().find((sn) => Date.parse(sn.at) <= Date.parse(latest.at) - 7 * 864e5);
+  const delta = (key, now) => (weekAgo?.[key] != null ? now - weekAgo[key] : null);
+  const scrapes = snapshots.filter((sn) => sn.kind === "scrape").length;
+
+  const joined = (live?.topJoined ?? [])
+    .map((t) => ({ label: events.find((e) => String(e.id) === t.id)?.title, value: t.count }))
+    .filter((r) => r.label);
+  const roles = JOBS.map((job) => ({ label: job.title, value: live?.byRole?.[job.id] ?? 0 })).sort((a, b) => b.value - a.value);
+  const recent = snapshots.slice(-12).reverse();
+
+  return (
+    <main className="page stats-page">
+      <div className="stats-head">
+        <h1>Stats</h1>
+        <span className="meta">Only moderators can see this page. It gets a new point every time a change or a scrape goes live.</span>
+      </div>
+      {error && (
+        <p className="form-error">Couldn't load the history and live counts. The charts below use what this page has loaded.</p>
+      )}
+
+      <div className="stat-row">
+        <StatTile label="Upcoming events" value={events.length} delta={delta("upcoming", events.length)} note="vs a week ago" />
+        <StatTile label="On the map" value={onMap} delta={delta("onMap", onMap)} note="vs a week ago" />
+        <StatTile label="Clubs" value={clubs.length} delta={delta("clubs", clubs.length)} note="vs a week ago" />
+        <StatTile label="People who joined events" value={live?.joiners} note={live ? `${fmt(live.joins)} joins in all` : null} />
+        <StatTile label="Job applications" value={live?.applications} />
+      </div>
+
+      {snapshots.length > 1 && (
+        <section className="chart-card wide">
+          <h2>Upcoming events and clubs over time</h2>
+          <p className="chart-sub">
+            One point per update: {fmt(scrapes)} scrapes and {fmt(snapshots.length - scrapes)} changes since{" "}
+            {shortDate(snapshots[0].at)}. Upcoming events drop as events pass.
+          </p>
+          <TrendChart points={snapshots} series={TREND_SERIES} />
+          <ChartTable
+            head={["When", "Update", "Upcoming events", "Clubs"]}
+            rows={[...snapshots].reverse().map((sn) => [dateTime(sn.at), sn.message || sn.kind, fmt(sn.upcoming), fmt(sn.clubs)])}
+          />
+        </section>
+      )}
+
+      <div className="stats-grid two">
+        <section className="chart-card">
+          <h2>Upcoming events by club type</h2>
+          <p className="chart-sub">The same groups and colors as the map.</p>
+          <BarList rows={groupRows} />
+          <ChartTable head={["Club type", "Events"]} rows={groupRows.map((r) => [r.label, fmt(r.value)])} />
+        </section>
+        <section className="chart-card">
+          <h2>Events in the next two weeks</h2>
+          <p className="chart-sub">Events per day, starting today.</p>
+          <DayColumns days={days} />
+          <ChartTable head={["Day", "Events"]} rows={days.map((d) => [d.date, fmt(d.count)])} />
+        </section>
+      </div>
+      <div className="stats-grid">
+        <section className="chart-card">
+          <h2>Where events come from</h2>
+          <p className="chart-sub">Upcoming events by the site they were found on.</p>
+          <BarList rows={counted(bySource)} />
+        </section>
+        <section className="chart-card">
+          <h2>Most-joined events</h2>
+          <p className="chart-sub">Upcoming events with the most people going.</p>
+          {joined.length ? <BarList rows={joined} /> : <p className="meta">{live ? "No one has joined an upcoming event yet." : "–"}</p>}
+        </section>
+        <section className="chart-card">
+          <h2>Job applications by role</h2>
+          <p className="chart-sub">From the Careers section on the About page.</p>
+          <BarList rows={roles} />
+        </section>
+      </div>
+      {recent.length > 0 && (
+        <section className="chart-card wide">
+          <h2>Recent updates</h2>
+          <p className="chart-sub">What went live, and how the counts moved.</p>
+          <ul className="update-list">
+            {recent.map((sn, i) => {
+              const before = snapshots[snapshots.length - 2 - i];
+              const moved = (key) => (before && sn[key] != null && before[key] != null ? sn[key] - before[key] : 0);
+              return (
+                <li key={sn.sha}>
+                  <span className={sn.kind === "scrape" ? "update-kind scrape" : "update-kind"}>
+                    {sn.kind === "scrape" ? "Scrape" : "Change"}
+                  </span>
+                  <span className="update-what">{sn.message || "–"}</span>
+                  <span className="meta">
+                    {dateTime(sn.at)}
+                    {moved("upcoming") || moved("clubs")
+                      ? ` · events ${signed(moved("upcoming")) || "±0"}, clubs ${signed(moved("clubs")) || "±0"}`
+                      : ""}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
+    </main>
+  );
+}
+
+function AboutPage({ user, moderator, onNeedSignIn, reopenJobId, onReopened }) {
   return (
     <main className="page">
       <h1>About DubHub</h1>
@@ -3039,7 +3452,7 @@ function AboutPage({ user, onNeedSignIn, reopenJobId, onReopened }) {
           <TeamMember key={m.name} {...m} />
         ))}
       </ul>
-      <Careers user={user} onNeedSignIn={onNeedSignIn} reopenJobId={reopenJobId} onReopened={onReopened} />
+      <Careers user={user} moderator={moderator} onNeedSignIn={onNeedSignIn} reopenJobId={reopenJobId} onReopened={onReopened} />
     </main>
   );
 }
@@ -3060,6 +3473,9 @@ export default function DubHub() {
   // Based on every event, not just the filtered ones, so the map doesn't jump around while filtering.
   const mapArea = useMemo(() => mapAreaFor(all), [all]);
   const { user, signIn, signOut } = useUser();
+  const moderator = useModerator(user);
+  const tabs = moderator ? [...TABS, "Stats"] : TABS;
+  const view = tab === "Stats" && !moderator ? "Home" : tab; // Stats is for moderators only
   const { profile, update: updateProfile } = useProfile(user);
 
   // The sign-in page remembers where you came from and the event you tried to join (or the role
@@ -3103,12 +3519,12 @@ export default function DubHub() {
           DubHub
         </button>
         <nav className="tabs" role="tablist">
-          {TABS.map((t) => (
+          {tabs.map((t) => (
             <button
               key={t}
               role="tab"
-              aria-selected={tab === t}
-              className={tab === t ? "tab active" : "tab"}
+              aria-selected={view === t}
+              className={view === t ? "tab active" : "tab"}
               onClick={() => setTab(t)}
             >
               <Icon d={TAB_ICONS[t]} />
@@ -3122,9 +3538,9 @@ export default function DubHub() {
         </div>
       </header>
 
-      {tab === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} palette={MAP_PALETTES[theme.theme]} />}
-      {tab === "Events" && <EventsPage f={f} updated={updated} j={j} />}
-      {tab === "My Events" && (
+      {view === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} palette={MAP_PALETTES[theme.theme]} />}
+      {view === "Events" && <EventsPage f={f} updated={updated} j={j} />}
+      {view === "My Events" && (
         <MyEventsPage
           all={all}
           clubList={clubList}
@@ -3135,16 +3551,18 @@ export default function DubHub() {
           onFindClubs={() => setTab("Clubs")}
         />
       )}
-      {tab === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} applications={applications} />}
-      {tab === "About" && (
+      {view === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} applications={applications} />}
+      {view === "About" && (
         <AboutPage
           user={user}
+          moderator={moderator}
           onNeedSignIn={applyFor}
           reopenJobId={user?.token ? signInFrom.jobId : null}
           onReopened={reopened}
         />
       )}
-      {tab === "Sign in" && (
+      {view === "Stats" && <StatsPage user={user} events={all} clubs={clubList} dark={MAP_PALETTES[theme.theme]?.dark} />}
+      {view === "Sign in" && (
         <SignInPage
           user={user}
           pendingEvent={pendingEvent}
@@ -3153,7 +3571,7 @@ export default function DubHub() {
           onBack={() => setTab(signInFrom.tab)}
         />
       )}
-      {tab === "Profile" && (
+      {view === "Profile" && (
         <ProfilePage
           user={user}
           profile={profile}

@@ -5,6 +5,8 @@
 //   KV_REST_API_URL / KV_REST_API_TOKEN   added automatically when you connect Upstash Redis
 //                             (Vercel > Project > Storage > Upstash Redis)
 //   SESSION_SECRET            any long random string; signs DubHub's own login tokens
+//   MODERATOR_EMAILS          the UW accounts that moderate DubHub (see job applications and the
+//                             Stats page), separated by commas
 
 import crypto from "node:crypto";
 import { Redis } from "@upstash/redis";
@@ -58,6 +60,24 @@ export function readToken(token) {
   } catch {
     return null;
   }
+}
+
+// Whether a signed-in account is one of DubHub's moderators.
+export function isModerator(session) {
+  const moderators = (env.MODERATOR_EMAILS || "").toLowerCase().split(/[\s,]+/).filter(Boolean);
+  return Boolean(session && moderators.includes(session.email));
+}
+
+// Every key in Redis matching `pattern` (e.g. "going:*"), a page at a time.
+export async function scanKeys(redis, pattern) {
+  const keys = [];
+  let cursor = "0";
+  do {
+    const [next, page] = await redis.scan(cursor, { match: pattern, count: 500 });
+    keys.push(...page);
+    cursor = String(next);
+  } while (cursor !== "0");
+  return keys;
 }
 
 export function sessionFrom(req) {

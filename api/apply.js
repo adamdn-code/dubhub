@@ -4,18 +4,17 @@
 //        -> { ok: true }                                      (signed in with a UW account)
 //      resume / extra: { name, data } with data the file in base64. A resume is required; extra
 //      (a cover letter or portfolio) is optional. PDF or Word, up to the sizes in src/jobs.js.
-// GET  /api/apply?mine=1               -> { jobs: [ids of roles you applied to], admin }  (signed in)
-// GET  /api/apply?all=1                -> { applications: [...] }  (admins only, no files)
-// GET  /api/apply?file=<id>&kind=resume|extra  -> the file itself  (admins only)
+// GET  /api/apply?mine=1               -> { jobs: [ids of roles you applied to] }  (signed in)
+// GET  /api/apply?all=1                -> { applications: [...] }  (moderators only, no files)
+// GET  /api/apply?file=<id>&kind=resume|extra  -> the file itself  (moderators only)
 //
-// Admins are the accounts listed in the ADMIN_EMAILS setting (Vercel > Settings > Environment
-// Variables), separated by commas.
+// Moderators are the accounts in the MODERATOR_EMAILS setting (see _lib.js).
 //
 // Stored in Redis: application:<id> = the application (without files), applications = a list of
 // ids (newest first), applied:<email> = the set of roles you applied to (one application per role),
 // and appfile:<id>:<kind>:<n> = each file in base64, in pieces small enough for one request each.
 import crypto from "node:crypto";
-import { db, json, missingConfig, sessionFrom } from "./_lib.js";
+import { db, isModerator, json, missingConfig, sessionFrom } from "./_lib.js";
 import { FILE_LIMITS, JOBS } from "../src/jobs.js";
 
 const MAX_APPLICATIONS = 1000; // keeps the database from filling up if something goes wrong
@@ -25,11 +24,6 @@ const ID = /^[a-z0-9-]{6,40}$/;
 const appKey = (id) => `application:${id}`;
 const appliedKey = (email) => `applied:${email}`;
 const pieceKey = (id, kind, n) => `appfile:${id}:${kind}:${n}`;
-
-function isAdmin(session) {
-  const admins = (process.env.ADMIN_EMAILS || "").toLowerCase().split(/[\s,]+/).filter(Boolean);
-  return Boolean(session && admins.includes(session.email));
-}
 
 const text = (value, max) => (typeof value === "string" ? value.trim().slice(0, max) : "");
 
@@ -146,11 +140,8 @@ export default async function handler(req, res) {
   if (req.method === "POST") return submit(req, res, session);
   if (req.method !== "GET") return json(res, 405, { error: "Use GET or POST" });
 
-  if (req.query.mine) {
-    const jobs = (await db().smembers(appliedKey(session.email))) || [];
-    return json(res, 200, { jobs, admin: isAdmin(session) }); // admin: whether to show the applications
-  }
-  if (!isAdmin(session)) return json(res, 403, { error: "Only DubHub's team can see applications" });
+  if (req.query.mine) return json(res, 200, { jobs: (await db().smembers(appliedKey(session.email))) || [] });
+  if (!isModerator(session)) return json(res, 403, { error: "Only DubHub's moderators can see applications" });
   if (req.query.file) return sendFile(req, res);
 
   const ids = (await db().lrange("applications", 0, MAX_APPLICATIONS - 1)) || [];
