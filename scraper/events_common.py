@@ -39,6 +39,8 @@ CLUB_FIELDS_FILE = HERE / "club_fields.json"      # AI-sorted major fields per c
 CLUB_ALIASES_FILE = HERE / "club_aliases.txt"     # Instagram handle -> HuskyLink club name, by hand
 HUSKYLINK_FILE = HERE / "huskylink.json"  # huskylink_scraper.py output; on GitHub so every scraper sees it
 CLUB_INSTAGRAM_FILE = HERE / "club_instagram.json"  # find_instagram_handles.py output: club name -> handle
+CLUB_DISCORD_FILE = HERE / "club_discord.json"      # find_discord_servers.py output: club -> Discord server
+DISCORD_EVENTS_FILE = HERE / "discord.json"         # discord_events.py output: events from club servers
 # Instagram's picture links expire after a few days, so the site serves its own copies (on GitHub).
 IG_POST_IMAGES = HERE.parent / "public" / "ig" / "posts"  # <post code>.jpg, only posts with upcoming events
 IG_CLUB_IMAGES = HERE.parent / "public" / "ig" / "clubs"  # <handle>.jpg, each club's profile picture
@@ -354,7 +356,7 @@ def handle_rate_limit(r):
 def ai_prompt(batch):
     posts = "\n\n".join(
         f"POST {i + 1}\nClub: {p['club']}\n"
-        f"Known UW club: {'yes' if p['source'] == 'instagram' else 'no, check'}\n"
+        f"Known UW club: {'yes' if p['source'] in ('instagram', 'discord') else 'no, check'}\n"
         f"Posted: {p['posted'].strftime('%A, %B %d, %Y') if p['posted'] else 'unknown'}\n"
         f"Caption: {p['caption'][:1500]}"
         + (f"\nText in the picture: {p['image_text'][:500]}" if p.get("image_text") else "")
@@ -557,7 +559,8 @@ def redo_keyword_posts(store):
 
 def not_uw_clubs(store):
     """A Google-found account with any post mentioning a semester, another campus, etc. isn't UW Seattle."""
-    return {p["club"] for p in store.values() if p["source"] != "instagram" and NOT_UW_SIGNS.search(p["caption"])}
+    return {p["club"] for p in store.values()
+            if p["source"] not in ("instagram", "discord") and NOT_UW_SIGNS.search(p["caption"])}
 
 
 GENERIC_TITLE = "Club Event"  # what keyword matching calls an event it can't name (see TITLE_KEYWORDS)
@@ -712,7 +715,7 @@ def write_site_events(store):
                 "comments": share(post.get("comments")),
                 "post_counts": {key: [share(post.get("likes")), share(post.get("comments"))]},
             })
-    events = merge_huskylink_events(drop_duplicate_events(events + others_events(site, store, mine)))
+    events = merge_discord_events(merge_huskylink_events(drop_duplicate_events(events + others_events(site, store, mine))))
     for e in events:  # an event keywords couldn't name is shown as its club's ("ALPFA UW event")
         if e["title"] == GENERIC_TITLE:
             name, handle = parse_host(e["host"])
@@ -901,6 +904,19 @@ def load_huskylink():
     return _load(HUSKYLINK_FILE, {"clubs": [], "events": []})
 
 
+def merge_discord_events(events):
+    """Swap in the latest scheduled events from club Discord servers (discord_events.py writes
+    discord.json; without it, the site's earlier ones stay)."""
+    data = _load(DISCORD_EVENTS_FILE, None)
+    if data is None:
+        return events
+    today = TODAY.isoformat()
+    events = [e for e in events if not str(e["id"]).startswith("dc-")]
+    events += [e for e in data.get("events", []) if e["date"] >= today]
+    events.sort(key=lambda e: (e["date"], e["start"] or "99"))
+    return events
+
+
 def merge_huskylink_events(events):
     """Swap in the latest HuskyLink events (dropping any old ones), sorted by date. A club's
     Instagram post of an event that's also on HuskyLink (same day, and same title or start time)
@@ -1008,6 +1024,14 @@ def merge_huskylink_clubs(clubs):
     for c in clubs:
         if c["name"] not in on_huskylink and GREEK_NAME.search(c["name"]) and not NOT_SOCIAL_GREEK.search(c["name"]):
             c["category"] = "Greek Life"
+    # Each club's Discord server (find_discord_servers.py), by HuskyLink name or, for clubs only
+    # on Instagram, "@handle".
+    discord = _load(CLUB_DISCORD_FILE, {})
+    for c in clubs:
+        d = discord.get(c["name"]) or (discord.get(f"@{c['handle']}") if c.get("handle") else None) or {}
+        if d.get("invite"):
+            c["discord"] = d["invite"]
+            c["discord_server"] = d.get("server")
     for c in clubs:  # some HuskyLink missions have a typed-in "\r\n"; older merges kept it
         for field in ("about", "description"):
             if c.get(field):

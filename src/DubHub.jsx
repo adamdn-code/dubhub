@@ -1133,7 +1133,7 @@ function PostLink({ event }) {
   if (!event.url) return null;
   return (
     <a className="post-link" href={event.url} target="_blank" rel="noreferrer">
-      {event.source === "huskylink" ? "View on HuskyLink" : "View post"}
+      {event.source === "huskylink" ? "View on HuskyLink" : event.source === "discord" ? "View on Discord" : "View post"}
     </a>
   );
 }
@@ -2036,9 +2036,9 @@ function ClubDetail({ club, hosted, apps = [], clubs, onClose }) {
         </p>
         <p>{club.description || club.about || (club.instagram ? "No description yet. Check their Instagram for more." : "No description yet.")}</p>
         {club.meets && <p className="meta">Meets {club.meets}</p>}
-        {(club.website || club.instagram) && (
+        {(club.website || club.instagram || club.discord) && (
           <p className="club-links">
-            {club.website && (
+            {club.website && !(club.discord && /discord(app)?\.(gg|com)\//i.test(club.website)) && (
               <a className="post-link" href={club.website} target="_blank" rel="noreferrer">
                 Website
               </a>
@@ -2046,6 +2046,11 @@ function ClubDetail({ club, hosted, apps = [], clubs, onClose }) {
             {club.instagram && (
               <a className="post-link" href={club.instagram} target="_blank" rel="noreferrer">
                 @{club.handle} on Instagram
+              </a>
+            )}
+            {club.discord && (
+              <a className="post-link" href={club.discord} target="_blank" rel="noreferrer">
+                Join the Discord
               </a>
             )}
           </p>

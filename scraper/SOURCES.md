@@ -37,3 +37,30 @@ the club's **profile picture** (its logo on the Clubs page).
    the flyer's text, then saves the event pictures in `public/ig/` for the site.
 3. For posts that announce events, a single-post lookup (the instagram-media-scraper method)
    adds the like count, which the site's Trending row ranks by.
+
+
+# Discord sources
+
+`find_discord_servers.py` and `discord_events.py` are DubHub's own code, modeled on how the
+projects below work (we compared them in November 2026; no code was copied).
+
+## What DubHub needs from Discord
+
+Which server is each club's (so the Clubs page can link it), and the events clubs post there:
+the server's scheduled **Events** (name, time, place, description, cover picture, how many are
+interested) and **announcement posts** that mention events or applications.
+
+## How we combined them
+
+| Project | What we took from it |
+| --- | --- |
+| Discord's public invite lookup (`GET /api/v10/invites/{code}?with_counts=true`), the endpoint invite checkers like [Discord Invite Parser](https://apify.com/rixin/discord-invite-parser) and [Discord Server Metadata Lookup](https://apify.com/devilscrapes/discord-server-scraper.md) wrap | Turning an invite link from a club's page into the server's name, icon and member count, with no login. `find_discord_servers.py` collects invites from clubs' HuskyLink details, Instagram bios, Linktree-style link pages and websites, and checks each one this way. |
+| [DiscordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter) (bot-token mode) and [discord-fetch](https://pypi.org/project/discord-fetch/) | Reading a server's channels with a **bot** token through Discord's API: list the channels, then each channel's recent messages. `discord_events.py` does this for announcement channels only, then hands the posts to the same AI event finder the Instagram scraper uses. |
+| Discord's scheduled-events API (`GET /guilds/{id}/scheduled-events`), which any bot in a server can read ([example](https://www.rapidevelopers.com/api-automations/how-to-automate-discord-event-reminders-using-the-api)) | Events already have a name, time and place, so they go on the site without the AI. |
+
+## What we don't do
+
+Most Discord scrapers on GitHub log in with a person's account (a user token, a "self-bot") to
+read any server that account is in. Discord's terms forbid self-bots and scraping, and it bans
+accounts for it ([Discord: protecting your data](https://support.discord.com/hc/en-us/articles/360039598252)).
+DubHub only reads servers whose admins added the DubHub bot.
