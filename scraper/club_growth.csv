@@ -1,0 +1,30 @@
+commit,when,clubs_on_page,instagram_known,events_listed,huskylink_clubs,applications_open,note
+c1c3686,2026-10-24 18:53,17,0,2,0,0,Build the Clubs page from the scraper's real club list
+9c7fa72,2026-10-24 19:27,,0,31,1178,0,Add a HuskyLink scraper for every UW Seattle club and its events
+0ab6814,2026-10-24 19:51,61,0,31,1178,0,"Only list active clubs, sorted into colored major fields"
+c2ec8b9,2026-10-24 20:08,,208,31,1178,0,Find club Instagram accounts and scrape them in rotation
+9e8ac23,2026-10-24 20:31,61,208,31,1178,0,"Hide info, restroom and trash can icons on the map"
+c3a6f46,2026-10-29 18:05,,208,32,1178,0,Add the Instagram API scraper and refresh club and event data
+0371eae,2026-10-29 18:10,61,208,32,1178,0,Merge branch 'huskylink-scraper' into main
+de46630,2026-10-29 18:21,62,208,33,1178,0,Add Product Space's Product Games from the Instagram scraper
+7fe2e2a,2026-10-29 18:32,64,208,33,1178,0,Save event photo and club logo links from HuskyLink
+0575678,2026-10-29 18:33,64,208,38,1178,0,Add VSA's fall events and drop duplicate event posts
+fe2bdb8,2026-11-04 07:15,67,208,38,1179,0,Refresh clubs and events from HuskyLink and Google
+69f07c4,2026-11-04 08:06,,208,38,1179,0,"List every club on the Clubs page, active ones first"
+c8a145b,2026-11-05 17:08,69,208,36,1179,0,"Go back to listing only active clubs, and add new Instagram events"
+b6b5348,2026-11-05 18:07,70,208,44,1179,0,"Rank Trending by RSVPs, likes and buzz, weighted toward the next few days"
+3f00b72,2026-11-05 18:16,70,206,44,1179,0,Stop matching other Seattle schools' Instagram accounts to UW clubs
+8bda871,2026-11-05 18:19,70,202,44,1179,0,"Clear Instagram matches that are city-wide groups, not UW clubs"
+d26e1c0,2026-11-05 18:23,78,202,56,1179,0,"Add today's Instagram events, event pictures and club logos"
+65c3ce2,2026-11-05 18:40,78,202,56,1179,0,Re-read today's Instagram posts with AI
+3819700,2026-11-05 19:39,87,202,92,1179,0,Add events from a second no-login Instagram run
+3b73a6c,2026-11-05 19:49,87,202,92,1179,0,Add a finder that guesses club Instagram accounts
+b06a47b,2026-11-05 19:58,87,227,92,1179,0,Add 25 club Instagram accounts from the missing-Instagram checklist
+ff0b8a5,2026-11-05 20:01,87,227,92,1179,0,Link the newly found Instagram accounts on the Clubs page
+d11dd15,2026-11-06 18:59,102,237,112,1179,0,"Scrape again: 112 events and 15 more clubs, and stop listing events twice"
+8f7aa8e,2026-11-06 21:11,114,269,131,1179,0,Scrape more clubs: 114 clubs and 131 events
+d6b119a,2026-11-07 02:23,121,379,125,1179,0,"Scrape on a schedule, and find many more clubs' Instagram accounts"
+e409930,2026-11-07 02:57,142,379,163,1179,0,Read the newly found clubs' Instagram: 142 clubs and 163 events
+6357217,2026-11-07 03:16,142,389,163,1179,0,Link 10 more clubs' Instagram accounts found on their websites
+8664fd7,2026-11-07 13:59,145,389,178,1179,0,"Scheduled scrape: 178 events, 145 clubs"
+e7d5288,2026-11-07 14:47,147,389,183,1179,20,"Scrape: 183 events, 147 clubs"
