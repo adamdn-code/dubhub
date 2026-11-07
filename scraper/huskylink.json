@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T17:17",
+ "updated": "2026-11-06T18:06",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -9436,79 +9436,6 @@
  ],
  "events": [
   {
-   "id": "hl-375462",
-   "title": "RSO Listening Session",
-   "type": "Study",
-   "host": "Student Activities Office",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-05",
-   "start": "17:00",
-   "end": "18:00",
-   "url": "https://huskylink.washington.edu/SAO/rsvp?id=375462",
-   "source": "huskylink",
-   "description": "You're invited to a listening session on the proposed changes to the student code of conduct as they relate to RSOs. University Administrators will explain the proposed changes and collect feedback from student leaders.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_599699_Screenshot_20261028_153810_a0e2a590-223a-4de4-8195-9d88928657be_1028183833.png",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375470",
-   "title": "Krispy Kreme Donut Fundraiser!",
-   "type": "Club",
-   "host": "Project Sunshine at the University of Washington",
-   "where": "Red Square",
-   "pos": [
-    47.65603,
-    -122.30944
-   ],
-   "date": "2026-11-06",
-   "start": "09:30",
-   "end": "14:00",
-   "url": "https://huskylink.washington.edu/projsun/rsvp?id=375470",
-   "source": "huskylink",
-   "description": "Friday, November 6th from 9:30-2pm we will be having a donut fundraiser in Red Square! Come stop by to buy a donut and learn about what we do! In the addition to buying a donut you can join the raffle for a $50 Little Thai Restaurant gift certificate! Hope to see you there!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615292_Donut_Sales_48063b11-f800-4c8c-81fe-784ea6b96334_111222257.png",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375433",
-   "title": "Chinese Translation Club Meeting",
-   "type": "Club",
-   "host": "Chinese Translation Club @ UW",
-   "where": "Gowen Hall",
-   "pos": [
-    47.65633,
-    -122.3077
-   ],
-   "date": "2026-11-06",
-   "start": "15:00",
-   "end": "16:00",
-   "url": "https://huskylink.washington.edu/chinesetranslationclub/rsvp?id=375433",
-   "source": "huskylink",
-   "description": "Meet at Fridays at 3pm in the Asian Languages & Literature Department Lounge (M218) of Gowen Hall. All are welcome!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_quillauchina2542574_1920jpg_97356529-b868-49c1-9194-fb50579f127b_1016184932.jpeg",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375344",
-   "title": "Xfinity Run It Back Cosplay Contest",
-   "type": "Game night",
-   "host": "Costume Club",
-   "where": "Husky Union Building (HUB)",
-   "pos": [
-    47.65537,
-    -122.3051
-   ],
-   "date": "2026-11-06",
-   "start": "16:15",
-   "end": "17:00",
-   "url": "https://huskylink.washington.edu/costume/rsvp?id=375344",
-   "source": "huskylink",
-   "description": "Ever thought about entering a cosplay contest? Now is your chance! Show off your cosplay, get feedback from masters-level judges, and meet fellow cosplayers. Cosplays do NOT have to be handmade! Prizes to be announced soon.\nPlease register for the competition using the google form attached.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_602988_Xfinity_Run_It_Back_Cosplay_Contest_2_a4849af5-f582-4bec-ab6f-229b6b97b38a_1014172957.png",
-   "rsvps": 0
-  },
-  {
    "id": "hl-375452",
    "title": "UTS Town Hall",
    "type": "Club",
@@ -9602,7 +9529,7 @@
    "source": "huskylink",
    "description": "Interested in healthcare? We can connect you!\nOur mission is to break down barriers to healthcare experiences at UW by connecting students with meaningful opportunities and equipping them with the skills to succeed in empathetic, compassionate healthcare.\nWhether you’re pre-med, pre-nursing, pre-PA, pre-pharmacy, or simply interested in getting involved in healthcare, we’re here to help guide you toward your goals.\nCome meet fellow students, learn about upcoming clinical, volunteering, shadowing, and research opportunities, and discover how MedConnect can help you take the next step in your healthcare journey!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_601449_medconnect_15e58cb6-04f9-49b7-9718-e0f3c8577367_102610374.png",
-   "rsvps": 2
+   "rsvps": 3
   },
   {
    "id": "hl-375005",
@@ -9809,6 +9736,44 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375434",
+   "title": "Chinese Translation Club Meeting",
+   "type": "Club",
+   "host": "Chinese Translation Club @ UW",
+   "where": "Gowen Hall",
+   "pos": [
+    47.65633,
+    -122.3077
+   ],
+   "date": "2026-11-13",
+   "start": "15:00",
+   "end": "16:00",
+   "url": "https://huskylink.washington.edu/chinesetranslationclub/rsvp?id=375434",
+   "source": "huskylink",
+   "description": "Meet at Fridays at 3pm in the Asian Languages & Literature Department Lounge (M218) of Gowen Hall. All are welcome!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_quillauchina2542574_1920jpg_97356529-b868-49c1-9194-fb50579f127b_1016184932.jpeg",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375487",
+   "title": "Let's Talk: Mandarin",
+   "type": "Club",
+   "host": "The Foundation for International Understanding Through Students (FIUTS) Student Board",
+   "where": "Ethnic Cultural Center",
+   "pos": [
+    47.65509,
+    -122.31484
+   ],
+   "date": "2026-11-13",
+   "start": "17:00",
+   "end": "18:00",
+   "url": "https://huskylink.washington.edu/fiutssb/rsvp?id=375487",
+   "source": "huskylink",
+   "description": "A space to invite people to practice, learn, and meet other Mandarin speakers!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_641444_Lets_Talk_All_Posters_e3c8cd83-be99-4e0f-8d04-c3f8f2fc087c_116123443.png",
+   "rsvps": 0
+  },
+  {
    "id": "hl-375474",
    "title": "Sumo Usual Match Observation",
    "type": "Hangout",
@@ -9825,7 +9790,7 @@
    "source": "huskylink",
    "description": "Watch real Japanese Grand Sumo with us in the HUB!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png",
-   "rsvps": 3
+   "rsvps": 5
   },
   {
    "id": "hl-375343",

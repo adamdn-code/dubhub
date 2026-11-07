@@ -25,6 +25,7 @@ Setup (one time):
 Every run (from this folder):
     python instagram_public_scraper.py            # 80 clubs, the ones checked longest ago first
     python instagram_public_scraper.py --limit 10 # fewer clubs
+    python instagram_public_scraper.py --only uwasa,uwpct  # just these accounts, now
 Then push the website: public/events.json, public/clubs.json and the pictures in public/ig/.
 
 To stay polite (and not get this computer's internet address blocked): one page per club, a
@@ -156,11 +157,14 @@ def save_club_picture(handle, url):
         path.write_bytes(r.content)
 
 
-def scrape_clubs(L, store, limit):
-    """Read this run's clubs. Returns (new posts, stopped early?)."""
+def scrape_clubs(L, store, limit, only=None):
+    """Read this run's clubs (or just the accounts in `only`). Returns (new posts, stopped early?)."""
     every = read_clubs()
     checked = load_checked()
-    handles = sorted(every, key=lambda h: checked.get(h, ""))[:limit]
+    if only:
+        handles = [h for h in only if h in every][:limit]
+    else:
+        handles = sorted(every, key=lambda h: checked.get(h, ""))[:limit]
     print(f"Checking {len(handles)} of {len(every)} clubs this run, without logging in; "
           "the rest get their turn on later runs.", flush=True)
 
@@ -270,6 +274,10 @@ def main():
     limit = CLUBS_PER_RUN
     if "--limit" in sys.argv:
         limit = int(sys.argv[sys.argv.index("--limit") + 1])
+    # --only a,b,c checks just those accounts now (say, ones just added to club_instagram.json).
+    only = None
+    if "--only" in sys.argv:
+        only = [h.strip().lstrip("@").lower() for h in sys.argv[sys.argv.index("--only") + 1].split(",") if h.strip()]
     L = instaloader.Instaloader(
         quiet=True, max_connection_attempts=1, request_timeout=30,
         download_pictures=False, download_videos=False, download_video_thumbnails=False,
@@ -277,7 +285,7 @@ def main():
         rate_controller=lambda context: StopOnTooManyRequests(context),
     )
     store = load_store()
-    posts, stopped = scrape_clubs(L, store, limit)
+    posts, stopped = scrape_clubs(L, store, limit, only)
     print(f"Instagram: {len(posts)} new post(s).", flush=True)
     process_posts(posts, store)
     redo_keyword_posts(store)

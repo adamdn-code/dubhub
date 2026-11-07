@@ -862,10 +862,45 @@ def load_huskylink():
 
 
 def merge_huskylink_events(events):
-    """Swap in the latest HuskyLink events (dropping any old ones), sorted by date."""
+    """Swap in the latest HuskyLink events (dropping any old ones), sorted by date. A club's
+    Instagram post of an event that's also on HuskyLink (same day, and same title or start time)
+    is folded into the HuskyLink copy, which keeps its RSVP link and gets the post's likes,
+    comments and picture (and its place, when HuskyLink doesn't say), so it isn't listed twice."""
     today = TODAY.isoformat()
+    before = {e["id"]: e for e in events if e.get("source") == "huskylink"}
     events = [e for e in events if e.get("source") != "huskylink" and e["date"] >= today]
-    events += [e for e in load_huskylink()["events"] if e["date"] >= today]
+    handles = {name: handle for handle, name in read_club_aliases().items()}
+    handles.update(found_instagram_handles())  # HuskyLink club name -> Instagram handle
+    tidy = lambda title: re.sub(r"[^a-z0-9]", "", (title or "").lower())
+    folded, huskylink = set(), []
+    for h in load_huskylink()["events"]:
+        if h["date"] < today:
+            continue
+        old = before.get(h["id"]) or {}
+        # Posts folded in by an earlier run (maybe on another computer) still count.
+        counts = {k: v for k, v in (old.get("post_counts") or {}).items() if k != "hl"}
+        image = old.get("image")
+        place = (old["where"], old["pos"]) if old.get("pos") else None
+        handle = handles.get(h["host"])
+        for e in events:
+            if (handle and parse_host(e["host"])[1] == handle and e["date"] == h["date"]
+                    and (tidy(e["title"]) == tidy(h["title"]) or (e["start"] and e["start"] == h["start"]))):
+                counts.update(post_counts(e))
+                image = e.get("image") or image
+                place = (e["where"], e["pos"]) if e.get("pos") else place
+                folded.add(id(e))
+        h = dict(h)
+        if not h.get("pos") and place:
+            h["where"], h["pos"] = place
+        if counts:
+            h["post_counts"] = counts
+            for field, i in (("likes", 0), ("comments", 1)):
+                found = [c[i] for c in counts.values() if c[i] is not None]
+                h[field] = sum(found) if found else None
+            h["posts"] = len(counts)
+        h["image"] = h.get("image") or image
+        huskylink.append(h)
+    events = [e for e in events if id(e) not in folded] + huskylink
     events.sort(key=lambda e: (e["date"], e["start"] or "99"))
     return events
 

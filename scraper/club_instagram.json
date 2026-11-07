@@ -1025,9 +1025,9 @@
   "checked": "2026-10-24"
  },
  "Camp Kesem at UW Seattle": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "kesem_uw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "CannaClub at UW": {
   "handle": "cannaclub.uw",
@@ -1280,9 +1280,9 @@
   "checked": "2026-10-24"
  },
  "Community Engagement and Leadership Education Center": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwcelecenter",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Community for Neuroethics, Computation, and Technology": {
   "handle": null,
@@ -2105,9 +2105,9 @@
   "checked": "2026-10-24"
  },
  "Graduate and Professional Student Senate of the University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "gpssuw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Graduate Christian Fellowship": {
   "handle": "uw.gcf",
@@ -2520,9 +2520,9 @@
   "checked": "2026-10-24"
  },
  "Husky Roundnet Club": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "huskyroundnetclub",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Husky Rugby Club": {
   "handle": "huskyrugbyclub",
@@ -3040,9 +3040,9 @@
   "checked": "2026-10-24"
  },
  "Lao Student Association": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "laosa.uw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Latine Student Union at the University of Washington": {
   "handle": null,
@@ -3100,9 +3100,9 @@
   "checked": "2026-10-24"
  },
  "League of Legends @ UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwpcm",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "League of United Latin American Citizens at University of Washington": {
   "handle": null,
@@ -3665,9 +3665,9 @@
   "checked": "2026-10-24"
  },
  "Office of Fraternity and Sorority Life": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwgreeklife",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Omega Delta Phi Fraternity, Inc. Lambda Chapter": {
   "handle": null,
@@ -4850,9 +4850,9 @@
   "checked": "2026-10-24"
  },
  "Student Veteran Life": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwvetlife",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Students Demand Action UW Chapter": {
   "handle": null,
@@ -5040,9 +5040,9 @@
   "checked": "2026-10-24"
  },
  "TEDx at UofW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "tedxuofw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Thai Student Association at University of Washington": {
   "handle": "thaisauw",
@@ -5450,9 +5450,9 @@
   "checked": "2026-10-24"
  },
  "UW Recreation": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwrecreation",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "UX @ UW": {
   "handle": "uxuw.club",
