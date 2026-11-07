@@ -253,6 +253,13 @@ const TEAM = [
     photo: "/team/kelan.jpg",
   },
   {
+    name: "Jenny Vong",
+    role: "Ambassador, Foster School of Business at the University of Washington",
+    github: null,
+    linkedin: "https://www.linkedin.com/in/jenny-vong-2597553b2",
+    photo: "/team/jenny.jpg",
+  },
+  {
     name: "Claude",
     role: "AI Intern @ DubHub",
     note: "Wrote a suspicious amount of this website. Paid entirely in tokens. Has never been to Red Square.",
