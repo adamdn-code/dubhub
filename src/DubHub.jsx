@@ -277,6 +277,13 @@ const TEAM = [
     photo: "/team/vincent.jpg",
   },
   {
+    // No photo yet, so his initials show; add public/team/leonardo.jpg and a `photo` line for one.
+    name: "Leonardo Escobar",
+    role: "Ambassador, University of Nevada, Las Vegas",
+    github: null,
+    linkedin: "https://www.linkedin.com/in/leonardo-nanez-escobar-628ba3449/",
+  },
+  {
     name: "Claude",
     role: "AI Intern @ DubHub",
     note: "Wrote a suspicious amount of this website. Paid entirely in tokens. Has never been to Red Square.",
