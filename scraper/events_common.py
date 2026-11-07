@@ -1114,6 +1114,22 @@ APPLICATION_BATCH = 8           # posts per Groq request
 APPLY_WORDS = re.compile(
     r"\b(appl(y|ying|ications?)|recruit\w*|rush|interest forms?|sign[- ]?up forms?|forms?\b.{0,20}\b(open|due)|"
     r"hiring|positions?|officers?|board members?|auditions?|try-?outs?|join our (team|board|cast)|deadline)\b", re.I)
+# What an application is for, so the site can filter them. KIND_WORDS is the fallback when the AI
+# didn't say: the first group whose words appear in the "for" text wins.
+APPLICATION_KINDS = ["Membership", "Officer & board", "Team & staff", "Auditions & tryouts", "Programs", "Other"]
+KIND_WORDS = [
+    ("Auditions & tryouts", r"audition|try-?outs?|cast|perform"),
+    ("Officer & board", r"officer|board|lead|chair|president|director|committee|exec"),
+    ("Programs", r"mentor|program|fellow|cohort|intern|scholar"),
+    ("Membership", r"member|join|interest|recruit|sorority|fraternity|rush|\bfam\b"),
+    ("Team & staff", r"team|staff|writer|\bdj|volunteer|submission|crew|position|editor|photographer"),
+]
+
+
+def application_kind(text):
+    return next((kind for kind, words in KIND_WORDS if re.search(words, text or "", re.I)), "Other")
+
+
 URL_IN_TEXT = re.compile(r"(?:https?://)?(?:[\w-]+\.)+(?:com|org|net|edu|io|gle|ly|ee|co|me|gl|app)(?:/[^\s)\]}>\"']*)?", re.I)
 
 
@@ -1141,9 +1157,14 @@ Rules:
 - "link": a web address written in the caption for applying (forms.gle/..., bit.ly/..., linktr.ee/...),
   copied exactly, else null.
 - "link_in_bio": true if the post says the form or link is in the bio.
+- "kind": exactly one of {APPLICATION_KINDS}: "Membership" for joining the club (interest forms,
+  general members, fraternity/sorority recruitment); "Officer & board" for officer, board, chair
+  and committee roles; "Team & staff" for project or research teams, staff, writers, DJs and
+  volunteers; "Auditions & tryouts" for auditions, tryouts and performer sign-ups; "Programs" for
+  mentorship programs, internships and fellowships; "Other" for anything else.
 
 Reply with ONLY JSON in this shape:
-{{"posts": [{{"post": 1, "application": null}}, {{"post": 2, "application": {{"for": "...", "deadline": null, "link": null, "link_in_bio": false}}}}]}}
+{{"posts": [{{"post": 1, "application": null}}, {{"post": 2, "application": {{"for": "...", "kind": "Membership", "deadline": null, "link": null, "link_in_bio": false}}}}]}}
 Include every post, with "application": null when it has none.
 
 {posts}"""
@@ -1163,8 +1184,9 @@ def clean_application(a, caption):
         link = None  # made up, or not a web address
     elif not link.lower().startswith("http"):
         link = f"https://{link}"
-    return {"for": str(a["for"]).strip()[:80], "deadline": deadline, "link": link,
-            "link_in_bio": bool(a.get("link_in_bio"))}
+    what = str(a["for"]).strip()[:80]
+    kind = a.get("kind") if a.get("kind") in APPLICATION_KINDS else application_kind(what)
+    return {"for": what, "kind": kind, "deadline": deadline, "link": link, "link_in_bio": bool(a.get("link_in_bio"))}
 
 
 def ai_applications(batch):
@@ -1244,6 +1266,11 @@ def write_site_applications(store):
     other people's runs (posts this computer doesn't have) are kept while they're open."""
     profiles = _load(CLUB_PROFILES_FILE, {})
     not_uw = not_uw_clubs(store)
+    # Each club's category (for the site's Club type filter), also for clubs not on the Clubs page:
+    # the one it picked on HuskyLink, else the AI's guess from its Instagram.
+    huskylink_category = {h["name"]: h["category"] for h in load_huskylink()["clubs"]}
+    category_of = {handle: huskylink_category.get(name) for name, handle in found_instagram_handles().items()}
+    club_info = _load(CLUB_INFO_FILE, {})
     apps = []
     for key, p in store.items():
         a = p.get("application")
@@ -1255,6 +1282,7 @@ def write_site_applications(store):
             "id": key,
             "host": p["club"],
             "for": a["for"],
+            "kind": a.get("kind") or application_kind(a["for"]),
             "deadline": a.get("deadline"),
             # Where the Apply button goes: the caption's own link, else the bio link when the post
             # points there; with neither, the site sends people to the post itself.
@@ -1262,6 +1290,7 @@ def write_site_applications(store):
             "post": p["url"],
             "posted": p.get("posted"),
             "logo": club_picture(handle),  # for clubs not on the Clubs page yet
+            "category": category_of.get(handle) or (club_info.get(handle) or {}).get("category"),
         })
     try:
         site = json.loads(SITE_APPLICATIONS_FILE.read_text(encoding="utf-8")).get("applications", [])

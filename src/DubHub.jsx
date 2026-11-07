@@ -1990,45 +1990,115 @@ function ApplyLinks({ app }) {
   );
 }
 
-// Clubs taking applications (members, officers, project teams, recruitment), soonest deadline first.
-function ApplicationsRow({ apps, onSelectClub }) {
-  if (apps.length === 0) return null;
+// What an application is for. The scraper's AI says so for new ones ("kind"); older ones are sorted
+// by the words in what they're for (the same words as scraper/events_common.py's KIND_WORDS).
+const APPLICATION_KINDS = ["Membership", "Officer & board", "Team & staff", "Auditions & tryouts", "Programs", "Other"];
+const KIND_WORDS = [
+  ["Auditions & tryouts", /audition|try-?outs?|cast|perform/i],
+  ["Officer & board", /officer|board|lead|chair|president|director|committee|exec/i],
+  ["Programs", /mentor|program|fellow|cohort|intern|scholar/i],
+  ["Membership", /member|join|interest|recruit|sorority|fraternity|rush|\bfam\b/i],
+  ["Team & staff", /team|staff|writer|\bdj|volunteer|submission|crew|position|editor|photographer/i],
+];
+function kindOf(app) {
+  if (APPLICATION_KINDS.includes(app.kind)) return app.kind;
+  return KIND_WORDS.find(([, words]) => words.test(app.for))?.[0] ?? "Other";
+}
+
+// A club's category, for clubs on the Clubs page or (from the scraper) ones that aren't yet.
+const appCategory = (app) => app.club?.category ?? app.category;
+
+function ApplicationCard({ app, onSelectClub }) {
   return (
-    <section className="trending applications" aria-labelledby="applications-title">
-      <h2 id="applications-title">Open applications</h2>
-      <ol className="trending-row">
-        {apps.map((a) => (
-          <li key={a.id} className="trending-card apply-card">
-            <span className="apply-club">
-              <Thumb src={a.club?.logo ?? a.logo} label={hostName(a)} color={a.club ? clubColor(a.club) : NO_FIELD_COLOR} className="apply-logo" />
-              {a.club ? (
-                <button className="club-link apply-club-name" onClick={() => onSelectClub(a.club)}>
-                  {hostName(a)}
-                </button>
-              ) : (
-                <span className="apply-club-name">{hostName(a)}</span>
-              )}
-            </span>
-            <strong className="apply-for">{a.for}</strong>
-            <span className={a.due.soon ? "meta apply-due soon" : "meta apply-due"}>
-              {a.due.soon ? (
-                <>
-                  <span className="tag tag-soon">{a.due.left}</span>
-                  Due {a.due.day}
-                </>
-              ) : (
-                a.due.text
-              )}
-            </span>
-            <ApplyLinks app={a} />
-          </li>
-        ))}
-      </ol>
-    </section>
+    <article className="apply-card">
+      <span className="apply-club">
+        <Thumb src={app.club?.logo ?? app.logo} label={hostName(app)} color={app.club ? clubColor(app.club) : NO_FIELD_COLOR} className="apply-logo" />
+        {app.club ? (
+          <button className="club-link apply-club-name" onClick={() => onSelectClub(app.club)}>
+            {hostName(app)}
+          </button>
+        ) : (
+          <span className="apply-club-name">{hostName(app)}</span>
+        )}
+      </span>
+      <strong className="apply-for">{app.for}</strong>
+      <span className="apply-tags">
+        <span className="tag">{kindOf(app)}</span>
+        {appCategory(app) === "Greek Life" && <span className="tag tag-greek">Greek Life</span>}
+      </span>
+      <span className={app.due.soon ? "meta apply-due soon" : "meta apply-due"}>
+        {app.due.soon ? (
+          <>
+            <span className="tag tag-soon">{app.due.left}</span>
+            Due {app.due.day}
+          </>
+        ) : (
+          app.due.text
+        )}
+      </span>
+      <ApplyLinks app={app} />
+    </article>
+  );
+}
+
+const ANY_KIND = "All kinds";
+const DEADLINES = ["Any deadline", "Due this week", "No deadline"];
+
+// The Applications view of the Clubs tab: every open application, soonest deadline first, with
+// filters for what it's for, when it's due and the kind of club.
+function ApplicationsView({ open, onSelectClub }) {
+  const [query, setQuery] = useState("");
+  const [kind, setKind] = useState(ANY_KIND);
+  const [deadline, setDeadline] = useState(DEADLINES[0]);
+  const [clubType, setClubType] = useState(ALL_CLUBS);
+  const kinds = [ANY_KIND, ...APPLICATION_KINDS.filter((k) => open.some((a) => kindOf(a) === k))];
+  const clubTypes = [ALL_CLUBS, ...[...new Set(open.map(appCategory).filter(Boolean))].sort()];
+
+  const q = query.trim().toLowerCase();
+  const shown = open.filter(
+    (a) =>
+      (kind === ANY_KIND || kindOf(a) === kind) &&
+      (deadline === DEADLINES[0] || (deadline === "Due this week" ? a.due.days <= 7 : !a.deadline)) &&
+      (clubType === ALL_CLUBS || appCategory(a) === clubType) &&
+      (!q || [hostName(a), a.for, kindOf(a)].some((s) => s?.toLowerCase().includes(q)))
+  );
+
+  return (
+    <>
+      <p className="page-sub">Clubs taking applications right now, found in their Instagram posts. Soonest deadline first.</p>
+      <div className="toolbar">
+        <input
+          type="search"
+          className="search"
+          placeholder="Search applications or clubs"
+          aria-label="Search applications"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <ChipFilter label="Kind" options={kinds} value={kind} onChange={setKind} />
+        <ChipFilter label="Deadline" options={DEADLINES} value={deadline} onChange={setDeadline} />
+        {clubTypes.length > 2 && <ChipFilter label="Club type" options={clubTypes} value={clubType} onChange={setClubType} />}
+      </div>
+      <p className="count">
+        {shown.length} open application{shown.length === 1 ? "" : "s"}
+      </p>
+      {shown.length > 0 ? (
+        <ul className="apply-grid">
+          {shown.map((a) => (
+            <li key={a.id}>
+              <ApplicationCard app={a} onSelectClub={onSelectClub} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="empty">{open.length ? "No applications match these filters." : "No open applications right now. Check back soon."}</p>
+      )}
+    </>
   );
 }
 
 function ClubsPage({ all, clubList, clubs: membership, applications }) {
+  const [view, setView] = useState("Clubs");
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [major, setMajor] = useState("Any major");
@@ -2049,17 +2119,23 @@ function ClubsPage({ all, clubList, clubs: membership, applications }) {
     setLimit(CLUBS_PAGE);
   };
   const open = useMemo(() => openApplications(applications, clubList), [applications, clubList]);
-  const visibleApps = open.filter(
-    (a) =>
-      (category === "All" || a.club?.category === category) &&
-      (!field || a.club?.fields?.includes(field)) &&
-      (!q || [hostName(a), a.for].some((s) => s?.toLowerCase().includes(q)))
-  );
   const applying = new Set(open.map((a) => a.club?.name).filter(Boolean));
 
   return (
     <main className="page">
       <h1>Clubs</h1>
+      <div className="view-switch" role="tablist" aria-label="Show clubs or open applications">
+        {["Clubs", "Applications"].map((v) => (
+          <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}>
+            {v}
+            {v === "Applications" && open.length > 0 && <span className="count-badge">{open.length}</span>}
+          </button>
+        ))}
+      </div>
+      {view === "Applications" ? (
+        <ApplicationsView open={open} onSelectClub={setSelected} />
+      ) : (
+        <>
       <p className="page-sub">Student organizations at UW Seattle. Join one to get its events in My Events.</p>
       <div className="toolbar">
         <input
@@ -2073,7 +2149,6 @@ function ClubsPage({ all, clubList, clubs: membership, applications }) {
         <ChipFilter label="Category" options={categories} value={category} onChange={filter(setCategory)} />
         <MajorSelect aria-label="Major" className="major-select" value={major} onChange={filter(setMajor)} />
       </div>
-      <ApplicationsRow apps={visibleApps} onSelectClub={setSelected} />
       <p className="count">
         {clubs.length.toLocaleString()} club{clubs.length === 1 ? "" : "s"}
         {field && (
@@ -2121,6 +2196,8 @@ function ClubsPage({ all, clubList, clubs: membership, applications }) {
         </button>
       )}
       {clubs.length === 0 && <p className="empty">No clubs match{q ? ` "${query}"` : ""}.</p>}
+        </>
+      )}
 
       {selected && (
         <ClubDetail

@@ -1134,13 +1134,84 @@ select:focus-visible {
   margin-top: auto;
 }
 
-/* Open applications on the Clubs page: Trending's row, with compact club cards */
-.applications {
-  margin-top: 8px;
+/* Clubs | Applications switch at the top of the Clubs tab */
+.view-switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin: 2px 0 10px;
+  background: var(--tint);
+  border-radius: 12px;
+}
+
+.view-switch button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.view-switch button[aria-selected="true"] {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(28, 21, 48, 0.15);
+}
+
+.view-switch button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.count-badge {
+  min-width: 20px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--purple-mid);
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Open applications: a grid of cards, soonest deadline first */
+.apply-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 12px;
+}
+
+.apply-grid > li {
+  display: flex;
+  min-width: 0;
 }
 
 .apply-card {
-  flex-basis: 230px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  line-height: 1.35;
+}
+
+.apply-tags {
+  display: flex;
+  flex-wrap: wrap;
   gap: 6px;
 }
 
