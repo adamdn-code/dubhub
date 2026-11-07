@@ -696,6 +696,18 @@
    "fields": []
   },
   {
+   "name": "Hui Hoaloha ’Ulana Hawai’i Club",
+   "handle": "hawaiiclubatuw",
+   "instagram": "https://www.instagram.com/hawaiiclubatuw/",
+   "website": "https://linktr.ee/hawaiiclubatuw",
+   "category": "Cultural",
+   "about": "Celebrates Hawaiian culture through events and gatherings.",
+   "description": "Hui Hoaloha Ulana brings the spirit of Hawai‘i to campus with tailgate parties, scavenger‑hunt adventures around Seattle, and fun fundraisers like Chipotle drives. Members gather to share food, explore the city, and celebrate Hawaiian culture together.",
+   "logo": "/ig/clubs/hawaiiclubatuw.jpg",
+   "last_event": "2026-11-07",
+   "fields": []
+  },
+  {
    "name": "Huskies for Kids",
    "website": "https://huskylink.washington.edu/huskids/",
    "category": "Academic",
@@ -785,6 +797,18 @@
    "fields": []
   },
   {
+   "name": "Indian Student Association at University of Washington",
+   "handle": "uwisa",
+   "instagram": "https://www.instagram.com/uwisa/",
+   "website": "https://linktr.ee/UWISA",
+   "category": "Cultural",
+   "about": "Celebrates Indian culture with music, dance, and social events.",
+   "description": "Indian Student Association organizes vibrant evenings of music, dance, and DJ performances that showcase Indian culture and student talent. Events feature ticketed parties, dance nights, and opportunities to connect with peers.",
+   "logo": "/ig/clubs/uwisa.jpg",
+   "last_event": "2026-11-13",
+   "fields": []
+  },
+  {
    "name": "INFORMS Student Chapter at the University of Washington",
    "website": "https://huskylink.washington.edu/informs/",
    "category": "Academic",
@@ -834,6 +858,18 @@
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_649905_Jsongs_club_logo_74e46019-8872-4e04-bd29-03cdff9502dc_1014215.png",
    "source": "huskylink",
    "last_event": "2026-10-02",
+   "fields": []
+  },
+  {
+   "name": "Khmer Student Association",
+   "handle": "khsauw",
+   "instagram": "https://www.instagram.com/khsauw/",
+   "website": "https://linktr.ee/khsauw",
+   "category": "Cultural",
+   "about": "Promotes Khmer culture and community at UW.",
+   "description": "Khmer Student Association creates a welcoming space for Khmer students through game nights, creative workshops like pumpkin painting, and planning the annual Khmer New Year Show. Join to meet fellow students, share traditions, and get involved in cultural performances.",
+   "logo": "/ig/clubs/khsauw.jpg",
+   "last_event": "2026-11-09",
    "fields": []
   },
   {
@@ -964,6 +1000,18 @@
    "fields": []
   },
   {
+   "name": "Pakistani Students Association at the UW",
+   "handle": "psauws",
+   "instagram": "https://www.instagram.com/psauws/",
+   "website": "https://linktr.ee/psauw",
+   "category": "Cultural",
+   "about": "Connects Pakistani students through social events and cultural activities.",
+   "description": "The Pakistani Students Association hosts social gatherings such as charity basketball tournaments, Friendsgiving potlucks, and other community events that highlight Pakistani culture and fellowship. It's a place to connect, have fun, and celebrate together.",
+   "logo": "/ig/clubs/psauws.jpg",
+   "last_event": "2026-11-19",
+   "fields": []
+  },
+  {
    "name": "Persian Circle",
    "handle": "uwpersiancircle",
    "instagram": "https://www.instagram.com/uwpersiancircle/",
@@ -995,7 +1043,7 @@
    "category": "Academic",
    "about": "To provide discussion of medical philosophy to prehealth professionals.",
    "description": "To provide discussion of medical philosophy to prehealth professionals. Here, we will try to answer “what is medicine” using a core of philosophy and approaches to modern dilemmas in medicine.",
-   "logo": null,
+   "logo": "/ig/clubs/medphilosophyuw.jpg",
    "handle": "medphilosophyuw",
    "instagram": "https://www.instagram.com/medphilosophyuw/",
    "source": "huskylink",
@@ -1032,12 +1080,63 @@
    ]
   },
   {
+   "name": "Q Center",
+   "handle": "uwqcenter",
+   "instagram": "https://www.instagram.com/uwqcenter/",
+   "website": "https://linktr.ee/uwqcenter1",
+   "category": "Service",
+   "about": "Affirming space and resources for queer, trans, and allied students.",
+   "description": "The UW Q Center offers a safe, celebratory environment with services like a menstruation station, mentorship programs, and discussion groups. Drop by HUB 315 Mon‑Thu 11 am‑4 pm to get involved and find support.",
+   "logo": "/ig/clubs/uwqcenter.jpg",
+   "last_event": "2026-11-19",
+   "fields": []
+  },
+  {
+   "name": "Q plus plus",
+   "handle": "uw_qpp",
+   "instagram": "https://www.instagram.com/uw_qpp/",
+   "website": "https://qppatuw.github.io/links",
+   "category": "Social",
+   "about": "LGBTQ+ community events for Allen School students.",
+   "description": "Q++ creates a welcoming space for LGBTQ+ and allied students in the Allen School through craft nights, meals, and community building activities. Come share creativity and make connections in CSE1 305.",
+   "logo": "/ig/clubs/uw_qpp.jpg",
+   "last_event": "2026-11-18",
+   "fields": []
+  },
+  {
+   "name": "Queer Cinema History at the University of Washington",
+   "handle": "queercinemaclubuw",
+   "instagram": "https://www.instagram.com/queercinemaclubuw/",
+   "website": "https://www.instagram.com/queercinemaclubuw/",
+   "category": "Arts",
+   "about": "Weekly queer film screenings for all majors and allies.",
+   "description": "The Queer Cinema Club hosts regular movie nights showcasing LGBTQ+ stories, from classics to new releases. Join the relaxed gatherings on Wednesdays in SAV 138 to watch, discuss, and connect with fellow film lovers.",
+   "logo": "/ig/clubs/queercinemaclubuw.jpg",
+   "last_event": "2026-11-10",
+   "fields": []
+  },
+  {
+   "name": "Society of Asian Scientists and Engineers",
+   "handle": "saseuw",
+   "instagram": "https://www.instagram.com/saseuw/",
+   "website": "https://linktr.ee/saseuw",
+   "category": "Engineering",
+   "about": "Professional network for Asian scientists and engineers at UW.",
+   "description": "SASE UW brings together Asian students in science and engineering for workshops, networking, and industry talks. Participate in events like networking skill sessions and lunch‑and‑learns with firms such as ARUP.",
+   "logo": "/ig/clubs/saseuw.jpg",
+   "last_event": "2026-11-10",
+   "fields": [
+    "Engineering",
+    "Sciences"
+   ]
+  },
+  {
    "name": "Society of Physics Students",
    "website": "https://linktr.ee/uwsps",
    "category": "Academic",
    "about": "Involving students from all backgrounds and supporting them.",
    "description": "Involving students from all backgrounds and supporting them. Creating a stimulating and motivating community of physics enthusiasts. Encouraging creativity beyond the classroom to push the boundaries of science and have fun while doing that.",
-   "logo": null,
+   "logo": "/ig/clubs/sps.uw.jpg",
    "handle": "sps.uw",
    "instagram": "https://www.instagram.com/sps.uw/",
    "source": "huskylink",
@@ -1060,6 +1159,30 @@
    "fields": [
     "Engineering"
    ]
+  },
+  {
+   "name": "Somali Student Association",
+   "handle": "uw_ssa",
+   "instagram": "https://www.instagram.com/uw_ssa/",
+   "website": "https://www.uwssa.org/",
+   "category": "Cultural",
+   "about": "Supports Somali students and showcases Somali culture.",
+   "description": "Somali Student Association provides a hub for Somali students to celebrate culture, host creative talks, and engage in civic activities such as voter‑education events. Activities include poetry launches, board opportunities, and community discussions.",
+   "logo": "/ig/clubs/uw_ssa.jpg",
+   "last_event": "2026-11-13",
+   "fields": []
+  },
+  {
+   "name": "South Asian Student Association at UW",
+   "handle": "sasauw",
+   "instagram": "https://www.instagram.com/sasauw/",
+   "website": "https://linktr.ee/sasauw",
+   "category": "Cultural",
+   "about": "Fosters South Asian community and culture at UW.",
+   "description": "South Asian Student Association unites students from South Asian backgrounds with events like pie‑the‑member socials and leadership introductions. The group offers cultural programming and a supportive community for students across majors.",
+   "logo": "/ig/clubs/sasauw.jpg",
+   "last_event": "2026-11-06",
+   "fields": []
   },
   {
    "name": "Student Activities Office",
@@ -1134,6 +1257,18 @@
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_635234_taiko_kai_logo_text_red_54d412d9-7892-4857-b3ba-e92214684ae4_92722229.png",
    "source": "huskylink",
    "last_event": "2026-10-10",
+   "fields": []
+  },
+  {
+   "name": "Taiwanese Student Association",
+   "handle": "tsauw",
+   "instagram": "https://www.instagram.com/tsauw/",
+   "website": "https://docs.google.com/forms/d/e/1FAIpQLScg226J8Mcuby8PDAFlkr5_oakCIJJd2iUMPS-DAlbNly8dTA/viewform?usp=dialog",
+   "category": "Cultural",
+   "about": "Shares Taiwanese culture via events, food, and community.",
+   "description": "Taiwanese Student Association shares Taiwanese culture through night markets, trivia evenings, and snack‑filled gatherings, plus offers digital membership perks. Members enjoy games, food, and opportunities to learn about Taiwan.",
+   "logo": "/ig/clubs/tsauw.jpg",
+   "last_event": "2026-11-06",
    "fields": []
   },
   {
@@ -1306,6 +1441,18 @@
    "fields": [
     "Health"
    ]
+  },
+  {
+   "name": "Women’s Rugby at UW",
+   "handle": "uwwomxnsrugby",
+   "instagram": "https://www.instagram.com/uwwomxnsrugby/",
+   "website": "http://linktr.ee/uwwomxnsrugby",
+   "category": "Sports",
+   "about": "UW women's rugby team open to all interested players.",
+   "description": "Womxn’s Husky Rugby Club fields a competitive women’s rugby team open to all interested players. The club posts game updates, practices, and fun team activities like themed costume practices.",
+   "logo": "/ig/clubs/uwwomxnsrugby.jpg",
+   "last_event": "2026-11-10",
+   "fields": []
   },
   {
    "name": "Woof3D",

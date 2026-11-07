@@ -2472,7 +2472,7 @@
 },
 "huihoalohaulanahawaiiclub": {
 "fields": [],
-"from": "Hui Hoaloha ’Ulana Hawai’i Club|Hui Hoaloha 'Ulana seeks to unite students who show exceptional interest in Hawai'i and its unique culture."
+"from": "Hui Hoaloha ’Ulana Hawai’i Club|Celebrates Hawaiian culture through events and gatherings."
 },
 "humancentereddesignandengineeringstudentassociationforundergraduates": {
 "fields": [
@@ -2843,7 +2843,7 @@
 },
 "indianstudentassociation": {
 "fields": [],
-"from": "Indian Student Association at University of Washington|The Indian Student Association at University of Washington strives to spread awareness about the diversity of Indian…"
+"from": "Indian Student Association at University of Washington|Celebrates Indian culture with music, dance, and social events."
 },
 "indigenousstudentsoflatinamerica": {
 "fields": [],
@@ -3136,7 +3136,7 @@
 },
 "khmerstudentassociation": {
 "fields": [],
-"from": "Khmer Student Association|Khmer Student Association (KhSA) at the UW strives to advocate, promote, and preserve our unique culture through…"
+"from": "Khmer Student Association|Promotes Khmer culture and community at UW."
 },
 "kinspire": {
 "fields": [],
@@ -3983,7 +3983,7 @@
 },
 "pakistanistudentsassociation": {
 "fields": [],
-"from": "Pakistani Students Association at the UW|The purpose of the Pakistani Students Association is to provide a space for cultural understanding, celebration and…"
+"from": "Pakistani Students Association at the UW|Connects Pakistani students through social events and cultural activities."
 },
 "panhellenicassociation": {
 "fields": [],
@@ -4402,11 +4402,11 @@
 },
 "qcenter": {
 "fields": [],
-"from": "Q Center|The Q Center has proudly served LGBTQ+ and allied students, staff, and faculty for almost 20 years."
+"from": "Q Center|Affirming space and resources for queer, trans, and allied students."
 },
 "qplusplus": {
 "fields": [],
-"from": "Q plus plus|Q++ promotes engagement for the LGBTQ+ community within the Paul G."
+"from": "Q plus plus|LGBTQ+ community events for Allen School students."
 },
 "quantumcomputingclub": {
 "fields": [
@@ -4422,10 +4422,8 @@
 "from": "Quantum Understanding and Architecture Club|Inspired by Vikram Prakash’s Arch 498 Seminar, Quantum Mechanics and Architectural Thinking."
 },
 "queercinemahistory": {
-"fields": [
-"Arts & Humanities"
-],
-"from": "Queer Cinema History at the University of Washington|Watching and discussing movies that have significancy in the history of queer cinema worldwide."
+"fields": [],
+"from": "Queer Cinema History at the University of Washington|Weekly queer film screenings for all majors and allies."
 },
 "queertranssportsclub": {
 "fields": [],
@@ -4845,10 +4843,9 @@
 "societyofasianscientistsandengineers": {
 "fields": [
 "Engineering",
-"Computing & Math",
 "Sciences"
 ],
-"from": "Society of Asian Scientists and Engineers|SASE's mission is to prepare STEMpursuing students for success in the professional industry, to celebrate diversity on…"
+"from": "Society of Asian Scientists and Engineers|Professional network for Asian scientists and engineers at UW."
 },
 "societyofhispanicprofessionalengineers": {
 "fields": [
@@ -4911,7 +4908,7 @@
 },
 "somalistudentassociation": {
 "fields": [],
-"from": "Somali Student Association|Our mission is to provide a unique experience of history, traditions, and heritage by portraying a clear and concise…"
+"from": "Somali Student Association|Supports Somali students and showcases Somali culture."
 },
 "sonmentorship": {
 "fields": [
@@ -4927,7 +4924,7 @@
 },
 "southasianstudentassociation": {
 "fields": [],
-"from": "South Asian Student Association at UW|SASA aims to spread awareness about the diverse culture of South Asia to the UW community and the greater Seattle area."
+"from": "South Asian Student Association at UW|Fosters South Asian community and culture at UW."
 },
 "spanishclub": {
 "fields": [],
@@ -5273,7 +5270,7 @@
 },
 "taiwanesestudentassociation": {
 "fields": [],
-"from": "Taiwanese Student Association|The Taiwanese Student Association at UW is dedicated to promoting Taiwan's rich culture and heritage at the University…"
+"from": "Taiwanese Student Association|Shares Taiwanese culture via events, food, and community."
 },
 "taiwaneseyouthallianceofpacificnorthwest": {
 "fields": [],
@@ -6162,7 +6159,7 @@
 },
 "womensrugby": {
 "fields": [],
-"from": "Women’s Rugby at UW|It shall be the purpose of this organization to play and promote the game of rugby."
+"from": "Women’s Rugby at UW|UW women's rugby team open to all interested players."
 },
 "womensrunclub": {
 "fields": [],

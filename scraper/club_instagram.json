@@ -95,9 +95,9 @@
   "checked": "2026-10-24"
  },
  "African Caribbean Student Association": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "acsa_uw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "African Youth Research Program": {
   "handle": null,
@@ -895,9 +895,9 @@
   "checked": "2026-10-24"
  },
  "Black Student Union": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwseattlebsu",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Blockchain Society at the University of Washington": {
   "handle": "uwblockchain",
@@ -1645,9 +1645,9 @@
   "checked": "2026-10-24"
  },
  "East African Student Association at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uweasa",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Eat Together": {
   "handle": null,
@@ -2315,9 +2315,9 @@
   "checked": "2026-10-24"
  },
  "Hui Hoaloha ’Ulana Hawai’i Club": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "hawaiiclubatuw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Human Centered Design and Engineering Student Association for Undergraduates": {
   "handle": "hcdeuw",
@@ -2435,9 +2435,9 @@
   "checked": "2026-10-24"
  },
  "Husky Flying Club": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "huskyflying",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Husky Free and Open Source Software and Linux users group": {
   "handle": "huskyfoss",
@@ -2500,9 +2500,9 @@
   "checked": "2026-10-24"
  },
  "Husky Pickleball Club": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "huskypickleballclub",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Husky Poker Club": {
   "handle": null,
@@ -2530,14 +2530,14 @@
   "checked": "2026-10-24"
  },
  "Husky Running Club": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "huskyrunningclub",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Husky Sailing Team": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "huskysailingteam",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Husky Sales Club": {
   "handle": "huskysalesclub",
@@ -2560,9 +2560,9 @@
   "checked": "2026-10-24"
  },
  "Husky Ski Team": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "huskyskiteam",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Husky Splatoon League": {
   "handle": null,
@@ -2625,9 +2625,9 @@
   "checked": "2026-11-05"
  },
  "Husky Wrestling Club": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "huskywrestlingclub",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Husky Wushu Club": {
   "handle": "uwwushu",
@@ -2680,9 +2680,9 @@
   "checked": "2026-10-24"
  },
  "Indian Student Association at University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwisa",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Indigenous Students of Latin America": {
   "handle": null,
@@ -2690,9 +2690,9 @@
   "checked": "2026-10-24"
  },
  "Indonesian Student Association at the University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "isauwhuskies",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Industrial Designers Society of America, UW Chapter": {
   "handle": null,
@@ -2855,9 +2855,9 @@
   "checked": "2026-10-24"
  },
  "Japanese Student Association at the University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "jsauw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Jewish Law Students Association": {
   "handle": null,
@@ -2890,9 +2890,9 @@
   "checked": "2026-10-24"
  },
  "Junoon at University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwjunoon",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "JUST ELITES Basketball Club": {
   "handle": null,
@@ -2970,9 +2970,9 @@
   "checked": "2026-10-24"
  },
  "Khmer Student Association": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "khsauw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Kinspire UW": {
   "handle": null,
@@ -3045,9 +3045,9 @@
   "checked": "2026-11-06"
  },
  "Latine Student Union at the University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwlsu",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Latines United for Community Health Advancement at the University of Washington": {
   "handle": null,
@@ -3325,14 +3325,14 @@
   "checked": "2026-10-24"
  },
  "Men’s Soccer Club at the University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwclubsoccer",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Men’s Volleyball Club at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwmensvball",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "MESH": {
   "handle": null,
@@ -3620,9 +3620,9 @@
   "checked": "2026-10-24"
  },
  "Nikkei Student Union at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "nsu_uw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "NMDP UW": {
   "handle": null,
@@ -3765,9 +3765,9 @@
   "checked": "2026-10-24"
  },
  "Pakistani Students Association at the UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "psauws",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Panhellenic Association": {
   "handle": "uwpanhellenic",
@@ -3985,14 +3985,14 @@
   "checked": "2026-10-24"
  },
  "Pokemon Trainer Club at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwpkmn",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Polynesian Student Alliance": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "psa_uw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Portraits of Humanity": {
   "handle": "uw.poh",
@@ -4485,9 +4485,9 @@
   "checked": "2026-10-24"
  },
  "Sikh Student Association": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "ssa_uw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Singapore Student Association": {
   "handle": null,
@@ -4510,9 +4510,9 @@
   "checked": "2026-10-24"
  },
  "Smash Club": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwsmash",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "snowbee snowboarding club": {
   "handle": null,
@@ -4630,9 +4630,9 @@
   "checked": "2026-10-24"
  },
  "Somali Student Association": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_ssa",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "SoN Mentorship at UW": {
   "handle": null,
@@ -4645,9 +4645,9 @@
   "checked": "2026-10-24"
  },
  "South Asian Student Association at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "sasauw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Spanish Club": {
   "handle": null,
@@ -4720,9 +4720,9 @@
   "checked": "2026-10-24"
  },
  "StepUp Dance Crew": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_step_up",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Stop the Bleed at WWAMI Alaska": {
   "handle": null,
@@ -4935,9 +4935,9 @@
   "checked": "2026-10-24"
  },
  "Swim Club at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwswimclub",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Swing Kids at UW": {
   "handle": null,
@@ -4970,9 +4970,9 @@
   "checked": "2026-10-24"
  },
  "Taiwanese Student Association": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "tsauw",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Taiwanese Youth Alliance of Pacific Northwest": {
   "handle": null,
@@ -5340,9 +5340,9 @@
   "checked": "2026-10-24"
  },
  "Turkish Student Association at the University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_tsa",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Tutoring Elementary English Abroad": {
   "handle": null,
@@ -5585,9 +5585,9 @@
   "checked": "2026-10-24"
  },
  "Washington Men’s Ultimate Frisbee": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "sundodgers",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Washington Public Interest Research Group": {
   "handle": "washpirg_uw",
@@ -5780,9 +5780,9 @@
   "checked": "2026-10-24"
  },
  "Women’s Rugby at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwwomxnsrugby",
+  "from": "manual",
+  "checked": "2026-11-06"
  },
  "Women’s Run Club @UW": {
   "handle": null,
