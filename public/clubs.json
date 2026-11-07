@@ -64,6 +64,30 @@
    ]
   },
   {
+   "name": "Alpha Phi Alpha Fraternity Incorporated",
+   "handle": "uwalphas",
+   "instagram": "https://www.instagram.com/uwalphas/",
+   "website": "http://www.apa1906.net/",
+   "category": "Service",
+   "about": "Fraternity focused on leadership, service, and brotherhood at UW.",
+   "description": "Alpha Xi Chapter of Alpha Phi Alpha fosters brotherhood through service projects, leadership retreats, and campus events. Members celebrate achievements and host activities such as Alpha Week to engage the UW community.",
+   "logo": "/ig/clubs/uwalphas.jpg",
+   "last_event": "2026-11-16",
+   "fields": []
+  },
+  {
+   "name": "Alpha Phi Omega Gamma Alpha",
+   "handle": "apoga",
+   "instagram": "https://www.instagram.com/apoga/",
+   "website": "http://linktr.ee/uwapoga",
+   "category": "Service",
+   "about": "Co‑ed service fraternity promoting volunteerism and community impact.",
+   "description": "Alpha Phi Omega at UW is a national co‑ed service fraternity that connects members with volunteer opportunities. They organize events like blood drives and service fairs, offering freebies and community fellowship. Join to give back and meet fellow Huskies.",
+   "logo": "/ig/clubs/apoga.jpg",
+   "last_event": "2026-11-20",
+   "fields": []
+  },
+  {
    "name": "Alpha Theta Delta",
    "website": "http://alphathetadelta.org",
    "category": "Academic",
@@ -143,6 +167,18 @@
    "fields": [
     "Engineering"
    ]
+  },
+  {
+   "name": "Anime Nation at the University of Washington",
+   "handle": "animenationuw",
+   "instagram": "https://www.instagram.com/animenationuw/",
+   "website": "http://linktr.ee/anuw",
+   "category": "Gaming",
+   "about": "Anime Nation UW unites the campus anime, manga, and gaming community.",
+   "description": "Anime Nation UW brings together fans of anime, manga, and games through events like scavenger hunts and cosplay gatherings. The group hosts meet‑ups and gaming sessions across campus.",
+   "logo": "/ig/clubs/animenationuw.jpg",
+   "last_event": "2026-11-14",
+   "fields": []
   },
   {
    "name": "Applied Mathematics Club",
@@ -235,6 +271,18 @@
    "description": "The Gender Equity Commission works to create an inclusive, affirming environment for all UW community members. It hosts educational panels, remembrance events, and collaborates on awareness campaigns such as breast cancer support.",
    "logo": "/ig/clubs/asuwgec.jpg",
    "last_event": "2026-11-20",
+   "fields": []
+  },
+  {
+   "name": "ASUW Office of Inclusive Design",
+   "handle": "asuwoid",
+   "instagram": "https://www.instagram.com/asuwoid/",
+   "website": "https://linktr.ee/ASUWOID",
+   "category": "Service",
+   "about": "Campus office assisting students with inclusive event design and accessibility.",
+   "description": "The ASUW Office of Inclusive Design helps students make events and materials accessible. They hold weekly office hours in HUB 131J and offer Zoom meetings for easy access. The office also shares funding resources and hires students for inclusive projects.",
+   "logo": "/ig/clubs/asuwoid.jpg",
+   "last_event": "2026-11-14",
    "fields": []
   },
   {
@@ -435,6 +483,18 @@
    "fields": []
   },
   {
+   "name": "Circle K International at the University of Washington",
+   "handle": "uwcki",
+   "instagram": "https://www.instagram.com/uwcki/",
+   "website": "https://linktr.ee/circlkuw",
+   "category": "Service",
+   "about": "Student‑led volunteer club serving UW and Seattle community",
+   "description": "Circle K International at UW brings students together to volunteer for local causes. Members meet weekly and organize projects like paper snowflake drives for Ronald McDonald House and park clean‑ups. The club also hosts fundraisers such as a Halloween jack‑o‑lantern event.",
+   "logo": "/ig/clubs/uwcki.jpg",
+   "last_event": "2026-11-09",
+   "fields": []
+  },
+  {
    "name": "Claude Builder Club @ UW",
    "handle": "claude.uofwa",
    "instagram": "https://www.instagram.com/claude.uofwa/",
@@ -530,6 +590,18 @@
    ]
   },
   {
+   "name": "Dance Student Association",
+   "handle": "uw.dsa",
+   "instagram": "https://www.instagram.com/uw.dsa/",
+   "website": "https://linktr.ee/uwdsa",
+   "category": "Arts",
+   "about": "Student dance club offering performances and choreography workshops.",
+   "description": "UW’s Dance Student Association brings together dancers for rehearsals and showcases. Their INFLUX 2026 concert features works by multiple choreographers and is open to all campus audiences.",
+   "logo": "/ig/clubs/uw.dsa.jpg",
+   "last_event": "2026-11-22",
+   "fields": []
+  },
+  {
    "name": "Data Science Society at UW",
    "handle": "data_science_society_uw",
    "instagram": "https://www.instagram.com/data_science_society_uw/",
@@ -554,6 +626,21 @@
    "logo": "/ig/clubs/uwdcenter.jpg",
    "last_event": "2026-11-13",
    "fields": []
+  },
+  {
+   "name": "DubsTech",
+   "handle": "dubstechuw",
+   "instagram": "https://www.instagram.com/dubstechuw/",
+   "website": "https://linktr.ee/dubstech",
+   "category": "Tech",
+   "about": "Student tech community hosting workshops, hackathons, and talks on design & engineering.",
+   "description": "Dubstech is UW’s largest tech community, offering workshops, hackathons, and speaker series on design, data science, and software engineering. Recent events include a Women in Tech panel featuring UX researchers and product managers. It’s a great place to learn and network with fellow tech enthusiasts.",
+   "logo": "/ig/clubs/dubstechuw.jpg",
+   "last_event": "2026-11-13",
+   "fields": [
+    "Engineering",
+    "Computing & Math"
+   ]
   },
   {
    "name": "Ethnic Cultural Center",
@@ -748,6 +835,18 @@
    ]
   },
   {
+   "name": "Husky Culinary Club",
+   "handle": "huskyculinaryclub",
+   "instagram": "https://www.instagram.com/huskyculinaryclub/",
+   "website": "https://linktr.ee/huskyculinaryclub",
+   "category": "Arts",
+   "about": "Student culinary club offering cooking demos, food games, and waste‑reduction tips.",
+   "description": "Husky Culinary Club (HCCUW) shares cooking experiences through demos, food‑guessing games, and market stalls. Recent activities include a farmers‑market cooking demo focused on food waste reduction and a spanakopita workshop. Join to learn new recipes and meet fellow food lovers.",
+   "logo": "/ig/clubs/huskyculinaryclub.jpg",
+   "last_event": "2026-11-07",
+   "fields": []
+  },
+  {
    "name": "Husky Furry Club",
    "website": "https://huskyfurryclub.com",
    "category": "Social",
@@ -808,6 +907,18 @@
    "instagram": "https://www.instagram.com/huskywintersports/",
    "source": "huskylink",
    "last_event": "2026-11-02",
+   "fields": []
+  },
+  {
+   "name": "Ice Hockey Club at the UW",
+   "handle": "uw_icehockey",
+   "instagram": "https://www.instagram.com/uw_icehockey/",
+   "website": "https://www.tickettailor.com/events/washingtonicehockey",
+   "category": "Sports",
+   "about": "Men’s ice hockey team sharing game updates, tickets, and fan gear.",
+   "description": "Washington Ice Hockey posts game results, travel schedules, and live streams for fans. The account also promotes ticket sales and a jersey store for supporters.",
+   "logo": "/ig/clubs/uw_icehockey.jpg",
+   "last_event": "2026-11-13",
    "fields": []
   },
   {
@@ -875,6 +986,18 @@
    "fields": []
   },
   {
+   "name": "Kappa Alpha Psi Inc. Gamma Eta Chapter",
+   "handle": "gh_nupes",
+   "instagram": "https://www.instagram.com/gh_nupes/",
+   "website": "https://fundraising.stjude.org/site/TR/TAEvents/Events?px=7192659&pg=personal&fr_id=158992",
+   "category": "Social",
+   "about": "Kappa Alpha Psi fraternity chapter fostering brotherhood and leadership.",
+   "description": "The University of Washington Nupes is the Gamma Eta chapter of Kappa Alpha Psi fraternity, known as the Rainy Nupes. They host social gatherings such as the Red Square event. Membership focuses on brotherhood, leadership, and community presence.",
+   "logo": "/ig/clubs/gh_nupes.jpg",
+   "last_event": "2026-11-17",
+   "fields": []
+  },
+  {
    "name": "Khmer Student Association",
    "handle": "khsauw",
    "instagram": "https://www.instagram.com/khsauw/",
@@ -939,6 +1062,20 @@
    "fields": []
   },
   {
+   "name": "Minorities in Tech",
+   "handle": "minoritiesintech",
+   "instagram": "https://www.instagram.com/minoritiesintech/",
+   "website": "http://linktr.ee/minoritiesintech",
+   "category": "Tech",
+   "about": "Community promoting diverse participation in tech through panels and events.",
+   "description": "Minorities In Tech at UW creates a supportive space for underrepresented students in technology. They host panels with industry professionals, such as a Microsoft‑led discussion, and regularly introduce new officers. The group aims to build community and career connections.",
+   "logo": "/ig/clubs/minoritiesintech.jpg",
+   "last_event": "2026-11-17",
+   "fields": [
+    "Computing & Math"
+   ]
+  },
+  {
    "name": "Muslim Students Association at the University of Washington",
    "handle": "msauw",
    "instagram": "https://www.instagram.com/msauw/",
@@ -987,6 +1124,18 @@
    ]
   },
   {
+   "name": "Omega Delta Phi Fraternity, Inc. Lambda Chapter",
+   "handle": "uwknights",
+   "instagram": "https://www.instagram.com/uwknights/",
+   "website": "https://forms.gle/mr7RaGKZRq2vkxwC8",
+   "category": "Social",
+   "about": "Greek fraternity focused on brotherhood, leadership, and service",
+   "description": "Omega Delta Phi’s Lambda Chapter at UW fosters a close‑knit brotherhood while emphasizing professionalism and community service. The executive board shares their goals for the year, highlighting leadership development and giving back to the campus. Members are encouraged to grow academically and socially together.",
+   "logo": "/ig/clubs/uwknights.jpg",
+   "last_event": "2026-11-07",
+   "fields": []
+  },
+  {
    "name": "Organic Steps",
    "website": "https://huskylink.washington.edu/organicsteps/",
    "category": "Academic",
@@ -1014,6 +1163,20 @@
    "fields": []
   },
   {
+   "name": "Origami Club",
+   "handle": "uw_origamiclub",
+   "instagram": "https://www.instagram.com/uw_origamiclub/",
+   "website": "https://linktr.ee/origami_club_at_uw",
+   "category": "Arts",
+   "about": "Creates origami art and hosts folding sessions for all skill levels.",
+   "description": "The UW Origami Club welcomes students of any experience to fold paper creations together. Activities include themed sessions like cat origami, movie nights, and regular meet‑ups across campus.",
+   "logo": "/ig/clubs/uw_origamiclub.jpg",
+   "last_event": "2026-11-08",
+   "fields": [
+    "Arts & Humanities"
+   ]
+  },
+  {
    "name": "Pakistani Students Association at the UW",
    "handle": "psauws",
    "instagram": "https://www.instagram.com/psauws/",
@@ -1036,6 +1199,20 @@
    "logo": "/ig/clubs/uwpersiancircle.jpg",
    "last_event": "2026-11-10",
    "fields": []
+  },
+  {
+   "name": "Personal Finance at UW",
+   "handle": "personalfinanceuw",
+   "instagram": "https://www.instagram.com/personalfinanceuw/",
+   "website": "https://linktr.ee/uwpersonalfinance",
+   "category": "Business",
+   "about": "Student group providing personal finance education and wealth‑management guidance.",
+   "description": "Personal Finance UW empowers students with financial literacy through workshops and site visits. Events have included a beginner investing workshop and a day‑in‑the‑life tour at Edward Jones. The club also offers leadership contacts for ongoing finance questions.",
+   "logo": "/ig/clubs/personalfinanceuw.jpg",
+   "last_event": "2026-11-13",
+   "fields": [
+    "Business"
+   ]
   },
   {
    "name": "Phi Chi Theta",
@@ -1126,6 +1303,30 @@
    "about": "Weekly queer film screenings for all majors and allies.",
    "description": "The Queer Cinema Club hosts regular movie nights showcasing LGBTQ+ stories, from classics to new releases. Join the relaxed gatherings on Wednesdays in SAV 138 to watch, discuss, and connect with fellow film lovers.",
    "logo": "/ig/clubs/queercinemaclubuw.jpg",
+   "last_event": "2026-11-10",
+   "fields": []
+  },
+  {
+   "name": "Salsa Club at UW",
+   "handle": "uwsalsa",
+   "instagram": "https://www.instagram.com/uwsalsa/",
+   "website": "https://linktr.ee/uwsalsaclub",
+   "category": "Cultural",
+   "about": "Weekly salsa and bachata lessons for all skill levels",
+   "description": "The UW Salsa Club offers fun, inclusive dance nights where anyone can learn salsa or bachata without a partner. Classes feature guest instructors and bilingual announcements, making it a vibrant cultural hub on campus. Join the Thursday sessions to practice moves and enjoy the rhythm.",
+   "logo": "/ig/clubs/uwsalsa.jpg",
+   "last_event": "2026-11-19",
+   "fields": []
+  },
+  {
+   "name": "SherePunjab Society at University of Washington",
+   "handle": "spsuw",
+   "instagram": "https://www.instagram.com/spsuw/",
+   "website": "https://linktr.ee/sherepunjab?utm_source=linktree_admin_share",
+   "category": "Cultural",
+   "about": "Celebrates Punjabi culture with food socials and fun gatherings.",
+   "description": "The Sher‑E‑Punjab Society promotes Punjabi heritage on campus through cultural events. Members enjoy traditions like mango lassi socials, gol gappa contests, and game nights that bring the community together.",
+   "logo": "/ig/clubs/spsuw.jpg",
    "last_event": "2026-11-10",
    "fields": []
   },
@@ -1301,6 +1502,34 @@
    "fields": []
   },
   {
+   "name": "Tea Club",
+   "handle": "teaclubuw",
+   "instagram": "https://www.instagram.com/teaclubuw/",
+   "website": "https://linktr.ee/teaclubuw",
+   "category": "Social",
+   "about": "Hosts tea‑tasting gatherings and social events for the UW community.",
+   "description": "The Tea Club welcomes anyone interested in sharing and learning about tea. They partner with studios for brewing events, host themed meet‑ups like Scary Sipping, and keep members connected through Discord.",
+   "logo": "/ig/clubs/teaclubuw.jpg",
+   "last_event": "2026-11-19",
+   "fields": []
+  },
+  {
+   "name": "Technology and Business Association",
+   "handle": "tbauw",
+   "instagram": "https://www.instagram.com/tbauw/",
+   "website": "https://docs.google.com/forms/d/e/1FAIpQLSfcJVEHQNmG3LAZYN-rLNIO_23GMHVjYGPk5nMpwqQ7Tc1dVw/viewform?usp=publish-editor",
+   "category": "Tech",
+   "about": "Explores tech and business topics via panels and interactive talks.",
+   "description": "TBA @ UW connects students with professionals to discuss technology, entrepreneurship, and the future of mobility. Their interactive panel talks let members hear diverse perspectives and vote on hot topics.",
+   "logo": "/ig/clubs/tbauw.jpg",
+   "last_event": "2026-11-12",
+   "fields": [
+    "Engineering",
+    "Computing & Math",
+    "Business"
+   ]
+  },
+  {
    "name": "Thai Student Association at University of Washington",
    "handle": "thaisauw",
    "instagram": "https://www.instagram.com/thaisauw/",
@@ -1321,6 +1550,18 @@
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_641444_Logojpg_584ca912-6a02-4197-910e-e01307c82ae2_1015143824.jpeg",
    "source": "huskylink",
    "last_event": "2026-11-13",
+   "fields": []
+  },
+  {
+   "name": "The Hiking Club at UW",
+   "handle": "hikingclubuw",
+   "instagram": "https://www.instagram.com/hikingclubuw/",
+   "website": "https://discord.com/invite/q2YJhRwxPQ",
+   "category": "Outdoors",
+   "about": "Student hiking club organizing year‑round trail outings across Washington.",
+   "description": "The UW Hiking Club brings students together for trail adventures throughout Washington, from waterfalls to mountain peaks. Members stay updated via Discord, where they share trip details and organize collaborations like the Snow Club cold‑plunge. All skill levels are welcome to explore the outdoors.",
+   "logo": "/ig/clubs/hikingclubuw.jpg",
+   "last_event": "2026-11-08",
    "fields": []
   },
   {
@@ -1538,6 +1779,20 @@
    ]
   },
   {
+   "name": "Women in Computing",
+   "handle": "uw.wic",
+   "instagram": "https://www.instagram.com/uw.wic/",
+   "website": "https://linktr.ee/uw.wic",
+   "category": "Academic",
+   "about": "Supports women and non‑binary CSE students with mentorship and tech events.",
+   "description": "Women in Computing creates a supportive space for women and non‑binary students in computer science. They host mentorship panels, social gatherings like Friendsgiving, and events that highlight diverse tech career paths.",
+   "logo": "/ig/clubs/uw.wic.jpg",
+   "last_event": "2026-11-17",
+   "fields": [
+    "Computing & Math"
+   ]
+  },
+  {
    "name": "Women’s Rugby at UW",
    "handle": "uwwomxnsrugby",
    "instagram": "https://www.instagram.com/uwwomxnsrugby/",
@@ -1547,6 +1802,18 @@
    "description": "Womxn’s Husky Rugby Club fields a competitive women’s rugby team open to all interested players. The club posts game updates, practices, and fun team activities like themed costume practices.",
    "logo": "/ig/clubs/uwwomxnsrugby.jpg",
    "last_event": "2026-11-10",
+   "fields": []
+  },
+  {
+   "name": "Women’s Water Polo Club at University of Washington",
+   "handle": "uwwaterpolo",
+   "instagram": "https://www.instagram.com/uwwaterpolo/",
+   "website": "https://together.uw.edu/Campaign/uw-womens-water-polo",
+   "category": "Sports",
+   "about": "University women’s water polo team competing in Northwest Division",
+   "description": "UW Women’s Water Polo fields a competitive team that has won multiple division titles, most recently from 2023‑2026. The club streams games like the upcoming Aztec Invitational, keeping fans updated throughout the weekend. Players train hard and represent the Dawgs in regional tournaments.",
+   "logo": "/ig/clubs/uwwaterpolo.jpg",
+   "last_event": "2026-11-07",
    "fields": []
   },
   {

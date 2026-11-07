@@ -235,11 +235,11 @@
 },
 "alphaphialphafraternityincorporated": {
 "fields": [],
-"from": "Alpha Phi Alpha Fraternity Incorporated|ALPHA PHI ALPHA FRATERNITY, INC."
+"from": "Alpha Phi Alpha Fraternity Incorporated|Fraternity focused on leadership, service, and brotherhood at UW."
 },
 "alphaphiomegagammaalpha": {
 "fields": [],
-"from": "Alpha Phi Omega Gamma Alpha|The UW Chapter of Alpha Phi Omega (a national coed service fraternity) is dedicated to fostering leadership,…"
+"from": "Alpha Phi Omega Gamma Alpha|Co‑ed service fraternity promoting volunteerism and community impact."
 },
 "alphasigmaphi": {
 "fields": [],
@@ -440,7 +440,7 @@
 },
 "animenation": {
 "fields": [],
-"from": "Anime Nation at the University of Washington|Anime Nation is an inclusive, friendly community dedicated to creating and promoting spaces for people who enjoy or…"
+"from": "Anime Nation at the University of Washington|Anime Nation UW unites the campus anime, manga, and gaming community."
 },
 "anticinemacinemaclub": {
 "fields": [
@@ -718,10 +718,8 @@
 "from": "ASUW Office of Government Relations|"
 },
 "asuwofficeofinclusivedesign": {
-"fields": [
-"Engineering"
-],
-"from": "ASUW Office of Inclusive Design|"
+"fields": [],
+"from": "ASUW Office of Inclusive Design|Campus office assisting students with inclusive event design and accessibility."
 },
 "asuwofficeofinternationalstudentadvocacy": {
 "fields": [],
@@ -1283,7 +1281,7 @@
 },
 "circlekinternational": {
 "fields": [],
-"from": "Circle K International at the University of Washington|Internationally recognized studentled volunteer organization, sponsored by Kiwanis."
+"from": "Circle K International at the University of Washington|Student‑led volunteer club serving UW and Seattle community"
 },
 "civillibertiesclub": {
 "fields": [
@@ -1509,7 +1507,7 @@
 },
 "dancestudentassociation": {
 "fields": [],
-"from": "Dance Student Association|The Dance Student Association (DSA) is an RSO with the mission to promote and facilitate community within the UW…"
+"from": "Dance Student Association|Student dance club offering performances and choreography workshops."
 },
 "datasciencesociety": {
 "fields": [
@@ -1720,9 +1718,10 @@
 },
 "dubstech": {
 "fields": [
+"Engineering",
 "Computing & Math"
 ],
-"from": "DubsTech|DubsTech is the largest tech community at UW."
+"from": "DubsTech|Student tech community hosting workshops, hackathons, and talks on design & engineering."
 },
 "dubsartclub": {
 "fields": [
@@ -2575,7 +2574,7 @@
 },
 "huskyculinaryclub": {
 "fields": [],
-"from": "Husky Culinary Club|In the Husky Culinary Club, we learn ways to further our interests in the culinary world!"
+"from": "Husky Culinary Club|Student culinary club offering cooking demos, food games, and waste‑reduction tips."
 },
 "huskycyclingclub": {
 "fields": [],
@@ -2791,7 +2790,7 @@
 },
 "icehockeyclub": {
 "fields": [],
-"from": "Ice Hockey Club at the UW|Our purpose is to provide a competitive and fun environment for those who wish to play the sport of ice hockey."
+"from": "Ice Hockey Club at the UW|Men’s ice hockey team sharing game updates, tickets, and fan gear."
 },
 "ieee": {
 "fields": [
@@ -3086,7 +3085,7 @@
 },
 "kappaalphapsiincgammaeta": {
 "fields": [],
-"from": "Kappa Alpha Psi Inc. Gamma Eta Chapter|Kappa Alpha Psi is a college Fraternity comprised of functioning Undergraduate and Alumni Chapters on major campuses…"
+"from": "Kappa Alpha Psi Inc. Gamma Eta Chapter|Kappa Alpha Psi fraternity chapter fostering brotherhood and leadership."
 },
 "kappaalphatheta": {
 "fields": [],
@@ -3553,7 +3552,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Minorities in Tech|Minorities in Tech’s mission is to act as a forum to build and foster an inclusive, multicultural environment for…"
+"from": "Minorities in Tech|Community promoting diverse participation in tech through panels and events."
 },
 "minorityassociationofpremedicalstudents": {
 "fields": [
@@ -3883,7 +3882,7 @@
 },
 "omegadeltaphifraternityinclambda": {
 "fields": [],
-"from": "Omega Delta Phi Fraternity, Inc. Lambda Chapter|The purpose of this Brotherhood, a Service/Social Fraternity dedicated to the needs and concerns of the community, is…"
+"from": "Omega Delta Phi Fraternity, Inc. Lambda Chapter|Greek fraternity focused on brotherhood, leadership, and service"
 },
 "omegapsiphifraternityinccampus": {
 "fields": [],
@@ -3931,7 +3930,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Origami Club|Welcome to Origami Club!"
+"from": "Origami Club|Creates origami art and hosts folding sessions for all skill levels."
 },
 "originslifeinuniverse": {
 "fields": [
@@ -4049,7 +4048,7 @@
 "fields": [
 "Business"
 ],
-"from": "Personal Finance at UW|Personal Finance at UW is a Foster RSO That aims to develop student financial literacy through speaker events,…"
+"from": "Personal Finance at UW|Student group providing personal finance education and wealth‑management guidance."
 },
 "pharmacistsforreproductiveeducationandsexualhealth": {
 "fields": [
@@ -4562,7 +4561,7 @@
 },
 "salsaclub": {
 "fields": [],
-"from": "Salsa Club at UW|Salsa Club fosters community through learning and practicing Latin social dance, particularly Salsa and Bachata."
+"from": "Salsa Club at UW|Weekly salsa and bachata lessons for all skill levels"
 },
 "sandsharkmusic": {
 "fields": [
@@ -4713,7 +4712,7 @@
 },
 "sherepunjabsociety": {
 "fields": [],
-"from": "SherePunjab Society at University of Washington|SherePunjab Society UW strives to spread awareness of Punjabi culture."
+"from": "SherePunjab Society at University of Washington|Celebrates Punjabi culture with food socials and fun gatherings."
 },
 "shifastudenthealthinitiativeforaccess": {
 "fields": [
@@ -5309,7 +5308,7 @@
 },
 "teaclub": {
 "fields": [],
-"from": "Tea Club|The UW Tea Club is a student organization that creates a safe space for connection, mindfulness, and relaxation…"
+"from": "Tea Club|Hosts tea‑tasting gatherings and social events for the UW community."
 },
 "teambao": {
 "fields": [],
@@ -5323,9 +5322,11 @@
 },
 "technologyandbusinessassociation": {
 "fields": [
+"Engineering",
+"Computing & Math",
 "Business"
 ],
-"from": "Technology and Business Association|Through organizing events and producing original content, we aim to provide a platform to connect students with…"
+"from": "Technology and Business Association|Explores tech and business topics via panels and interactive talks."
 },
 "technologyconsultingassociation": {
 "fields": [
@@ -5473,7 +5474,7 @@
 },
 "hikingclub": {
 "fields": [],
-"from": "The Hiking Club at UW|The Hiking Club is an organization focused on getting our community outside."
+"from": "The Hiking Club at UW|Student hiking club organizing year‑round trail outings across Washington."
 },
 "historicalreview": {
 "fields": [
@@ -6090,7 +6091,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Women in Computing|Women in Computing (WiC) at the University of Washington is a group of students in the Paul G."
+"from": "Women in Computing|Supports women and non‑binary CSE students with mentorship and tech events."
 },
 "womeninconsultingatwashington": {
 "fields": [
@@ -6168,7 +6169,7 @@
 },
 "womenswaterpoloclub": {
 "fields": [],
-"from": "Women’s Water Polo Club at University of Washington|Organize a team of women interested in learning, playing and competing in water polo."
+"from": "Women’s Water Polo Club at University of Washington|University women’s water polo team competing in Northwest Division"
 },
 "woof3d": {
 "fields": [
