@@ -260,11 +260,11 @@ const TEAM = [
     photo: "/team/jenny.jpg",
   },
   {
-    // No photo yet, so his initials show; add public/team/vincent.jpg and a `photo` line for one.
     name: "Vincent Le",
-    role: "Brand Ambassador @ DubHub",
+    role: "Ambassador, Foster School of Business at the University of Washington",
     github: null,
     linkedin: "https://www.linkedin.com/in/vincenthoanvinhle/",
+    photo: "/team/vincent.jpg",
   },
   {
     name: "Claude",
