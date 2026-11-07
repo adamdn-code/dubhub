@@ -62,15 +62,15 @@ CATEGORY_MAP = {
     "Graduate/Professional": "Academic",
     "Health Sciences": "Academic",
     "Honorary Society": "Academic",
-    "IFC/Panhellenic Association Greeks": "Social",
-    "Independent Fraternity or Sorority": "Social",
+    "IFC/Panhellenic Association Greeks": "Greek Life",
+    "Independent Fraternity or Sorority": "Greek Life",
     "Law": "Academic",
     "Medical/Dental/Nursing/Pharmacy": "Academic",
-    "Multicultural Greek Council": "Social",
-    "National Pan-Hellenic Council": "Social",
+    "Multicultural Greek Council": "Greek Life",
+    "National Pan-Hellenic Council": "Greek Life",
     "Performing Arts": "Arts",
     "Political/Social Action": "Service",
-    "Religious/Spiritual": "Cultural",
+    "Religious/Spiritual": "Faith & Spirituality",
     "Sciences": "Academic",
     "Special Interest": "Social",
     "Sports/Recreation": "Sports",
@@ -79,7 +79,7 @@ CATEGORY_MAP = {
 }
 # Used when a group has no category, by its group type.
 GROUP_TYPE_MAP = {
-    "Fraternity & Sorority Life": "Social",
+    "Fraternity & Sorority Life": "Greek Life",
     "Student Government": "Service",
     "Rec Clubs": "Sports",
 }
@@ -125,6 +125,18 @@ def image_url(path):
 
 
 # ------------------------------------------------------------------- clubs ---
+def club_category(group_type, category):
+    """The site's category for a HuskyLink group. Fraternities and sororities (UW's Fraternity &
+    Sorority Life office) are Greek Life whatever else they're listed under; a group listed in
+    several categories ("Special Interest, Sports/Recreation") takes the first the site knows."""
+    if group_type == "Fraternity & Sorority Life":
+        return "Greek Life"
+    for part in category.split(","):
+        if part.strip() in CATEGORY_MAP:
+            return CATEGORY_MAP[part.strip()]
+    return GROUP_TYPE_MAP.get(group_type) or "Other"
+
+
 def scrape_clubs():
     print("Downloading the HuskyLink club directory (about 30 seconds)...", flush=True)
     r = requests.get(f"{BASE}/club_signup", params={"view": "all"}, headers=HEADERS, timeout=180)
@@ -144,7 +156,7 @@ def scrape_clubs():
         clubs.append({
             "name": clean(name.group(1)),
             "website": url.group(1) if url else None,
-            "category": CATEGORY_MAP.get(category.strip()) or GROUP_TYPE_MAP.get(group_type.strip()) or "Other",
+            "category": club_category(group_type.strip(), category),
             "about": first_sentence(mission) if mission else None,
             "description": mission[:1000] or None,
             "logo": image_url(logo.group(1)) if logo and "listing-default" not in logo.group(1) else None,

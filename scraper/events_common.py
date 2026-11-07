@@ -66,7 +66,17 @@ FORGET_AFTER_DAYS = 120  # drop remembered posts older than this
 # Must match the event types (and colors) the website knows about.
 EVENT_TYPES = ["Study", "Club", "Food", "Hangout", "Game night"]
 CLUB_CATEGORIES = ["Academic", "Tech", "Engineering", "Business", "Cultural", "Arts",
-                   "Outdoors", "Sports", "Gaming", "Service", "Social"]
+                   "Outdoors", "Sports", "Gaming", "Service", "Social", "Greek Life", "Faith & Spirituality"]
+# Categories that say what a club is rather than what it does: the one a club picked on HuskyLink
+# wins over the AI's guess from its Instagram.
+IDENTITY_CATEGORIES = {"Greek Life", "Faith & Spirituality"}
+# A fraternity or sorority only on Instagram ("UW Alpha Omicron Pi"): two Greek letters in a row,
+# and not a professional, honor or service fraternity (those keep their own category).
+GREEK_LETTERS = ("alpha|beta|gamma|delta|epsilon|zeta|eta|theta|iota|kappa|lambda|mu|nu|xi|omicron|"
+                 "pi|rho|sigma|tau|upsilon|phi|chi|psi|omega")
+GREEK_NAME = re.compile(rf"\b(?:{GREEK_LETTERS})[\s-]+(?:{GREEK_LETTERS})\b", re.I)
+NOT_SOCIAL_GREEK = re.compile(r"business|pre-?law|pre-?med|pharma|medic|engineer|honou?r|service|chemi|"
+                              r"professional|accounting|journalism|music|technology|leadership|scholar|research", re.I)
 # Must match the major groups (MAJOR_GROUPS) in the website's Major filter.
 MAJOR_FIELDS = ["Engineering", "Computing & Math", "Sciences", "Health", "Social Sciences",
                 "Arts & Humanities", "Business"]
@@ -962,8 +972,12 @@ def merge_huskylink_clubs(clubs):
         c["name"] = h["name"]  # HuskyLink's official name (write_site_clubs keeps any name already shown)
         for field in ("website", "about", "description", "handle", "instagram", "logo"):
             c[field] = c.get(field) or h.get(field)
-        if c.get("category") in (None, "Other"):
+        if c.get("category") in (None, "Other") or h["category"] in IDENTITY_CATEGORIES:
             c["category"] = h["category"]
+    on_huskylink = {h["name"] for h in load_huskylink()["clubs"]}
+    for c in clubs:
+        if c["name"] not in on_huskylink and GREEK_NAME.search(c["name"]) and not NOT_SOCIAL_GREEK.search(c["name"]):
+            c["category"] = "Greek Life"
     for c in clubs:  # some HuskyLink missions have a typed-in "\r\n"; older merges kept it
         for field in ("about", "description"):
             if c.get(field):

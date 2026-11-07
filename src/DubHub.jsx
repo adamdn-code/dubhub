@@ -759,6 +759,17 @@ function eventColor(e) {
   return FIELD_COLORS[e.fields?.[0]] ?? NO_FIELD_COLOR;
 }
 
+// "Club type" choices: the categories of clubs hosting events, Greek Life first (fraternity and
+// sorority events are a big part of campus life), then the rest by how many events they have.
+const ALL_CLUBS = "All clubs";
+function clubTypesOf(events) {
+  const counts = {};
+  for (const e of events) if (e.club?.category) counts[e.club.category] = (counts[e.club.category] ?? 0) + 1;
+  return Object.keys(counts).sort(
+    (a, b) => (b === "Greek Life") - (a === "Greek Life") || counts[b] - counts[a] || a.localeCompare(b)
+  );
+}
+
 // Scraped events have no class year, so they're open to every year. A major (or field) choice
 // shows events in that major's field, e.g. Mechanical Engineering -> Engineering.
 function useFilteredEvents(all) {
@@ -766,6 +777,8 @@ function useFilteredEvents(all) {
   const [type, setType] = useState("All");
   const [year, setYear] = useState("All");
   const [major, setMajor] = useState("Any major");
+  const [club, setClub] = useState(ALL_CLUBS);
+  const clubTypes = useMemo(() => clubTypesOf(all), [all]);
 
   const events = useMemo(() => {
     const field = major === "Any major" ? null : fieldOf(major);
@@ -774,11 +787,12 @@ function useFilteredEvents(all) {
         inWhen(e, when) &&
         (type === "All" || e.type === type) &&
         (year === "All" || !e.years || e.years.includes(year)) &&
-        (!field || e.fields.includes(field))
+        (!field || e.fields.includes(field)) &&
+        (club === ALL_CLUBS || e.club?.category === club)
     );
-  }, [all, when, type, year, major]);
+  }, [all, when, type, year, major, club]);
 
-  return { events, when, setWhen, type, setType, year, setYear, major, setMajor };
+  return { events, when, setWhen, type, setType, year, setYear, major, setMajor, club, setClub, clubTypes };
 }
 
 function Filters({ f }) {
@@ -815,6 +829,16 @@ function Filters({ f }) {
         <label>
           <span className="filter-label">Major</span>
           <MajorSelect value={f.major} onChange={f.setMajor} className={f.major !== "Any major" ? "set" : undefined} />
+        </label>
+
+        <label className="filter-wide">
+          <span className="filter-label">Club type</span>
+          <select value={f.club} onChange={(e) => f.setClub(e.target.value)} className={f.club !== ALL_CLUBS ? "set" : undefined}>
+            <option>{ALL_CLUBS}</option>
+            {f.clubTypes.map((c) => (
+              <option key={c}>{c}</option>
+            ))}
+          </select>
         </label>
       </div>
       {f.major !== "Any major" && (
@@ -1275,6 +1299,7 @@ function MapEventCard({ event, j, onEnter, onLeave, onClose }) {
           <Thumb src={e.club?.logo} label={hostName(e)} color={eventColor(e)} className="map-popup-logo" />
           <span className="map-popup-club-label">Hosted by</span>
           <span className="map-popup-club-name">{hostName(e)}</span>
+          <GreekTag event={e} />
         </div>
         <div className="map-popup-main">
           <strong>{e.title}</strong>
@@ -1451,8 +1476,9 @@ function EventDetail({ event, j, onClose }) {
         </button>
         {event.image && <HeroImage src={event.image} />}
         <h2 id="event-detail-title">{event.title}</h2>
-        <p>
+        <p className="detail-tags">
           <span className="tag">{event.type}</span>
+          <GreekTag event={event} />
         </p>
         <p className="meta">
           {[formatWhen(event), event.where ?? "Location not listed", `Hosted by ${event.host}`, going(event, j)]
@@ -1520,6 +1546,7 @@ function EventList({ events, j, onSelect, columns = 2 }) {
                 <EventTitle event={e} onSelect={onSelect} />
                 <div className="meta">
                   <span className="dot" style={{ background: eventColor(e) }} />
+                  <GreekTag event={e} />
                   {[e.type, e.where, e.host, going(e, j)].filter(Boolean).join(" · ")}
                 </div>
               </div>
@@ -1576,7 +1603,10 @@ function TrendingRow({ events, j, onSelect }) {
           <li key={e.id} className="trending-card">
             <Thumb src={e.image} label={e.title} color={eventColor(e)} className="trending-thumb" />
             <EventTitle event={e} onSelect={onSelect} />
-            <div className="meta">{[formatWhen(e), e.where, going(e, j), trendReason(e)].filter(Boolean).join(" · ")}</div>
+            <div className="meta">
+              <GreekTag event={e} />
+              {[formatWhen(e), e.where, going(e, j), trendReason(e)].filter(Boolean).join(" · ")}
+            </div>
             <JoinButton event={e} j={j} />
           </li>
         ))}
@@ -1586,6 +1616,11 @@ function TrendingRow({ events, j, onSelect }) {
 }
 
 // Pill buttons for picking one option (filters shared with the map use these too).
+// Fraternity and sorority events get a Greek Life label so they're easy to spot.
+function GreekTag({ event }) {
+  return event.club?.category === "Greek Life" ? <span className="tag tag-greek">Greek Life</span> : null;
+}
+
 function ChipFilter({ label, options, value, onChange }) {
   return (
     <div className="chip-row" role="group" aria-label={label}>
@@ -1628,6 +1663,7 @@ function EventsPage({ f, updated, j }) {
           onChange={(e) => setQuery(e.target.value)}
         />
         <ChipFilter label="Event type" options={["All", ...Object.keys(TYPE_COLORS)]} value={f.type} onChange={f.setType} />
+        <ChipFilter label="Club type" options={[ALL_CLUBS, ...f.clubTypes]} value={f.club} onChange={f.setClub} />
       </div>
       {!q && <TrendingRow events={events} j={j} onSelect={setSelected} />}
       <h2>{q ? `${events.length} result${events.length === 1 ? "" : "s"}` : "All events"}</h2>
@@ -1731,7 +1767,7 @@ function ClubDetail({ club, hosted, clubs, onClose }) {
           <h2 id="club-detail-title">{club.name}</h2>
         </div>
         <p className="tags">
-          <span className="tag">{club.category}</span>
+          <span className={club.category === "Greek Life" ? "tag tag-greek" : "tag"}>{club.category}</span>
           {club.fields?.map((field) => (
             <FieldTag key={field} field={field} />
           ))}
@@ -1829,7 +1865,7 @@ function ClubsPage({ all, clubList, clubs: membership }) {
               <button className="club-main" onClick={() => setSelected(c)}>
                 <span className="club-title">
                   <span className="club-name">{c.name}</span>
-                  <span className="tag">{c.category}</span>
+                  <span className={c.category === "Greek Life" ? "tag tag-greek" : "tag"}>{c.category}</span>
                   {c.fields?.map((f) => (
                     <FieldTag key={f} field={f} />
                   ))}

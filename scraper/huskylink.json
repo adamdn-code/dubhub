@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T01:34",
+ "updated": "2026-11-07T13:29",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -100,7 +100,7 @@
   {
    "name": "Acts2Fellowship",
    "website": "https://seattle.a2fklesis.org/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "College is better together.",
    "description": "College is better together. We're a Christian student group passionate about growing in faith, building deep friendships, and living out the gospel on campus.",
    "logo": null
@@ -116,7 +116,7 @@
   {
    "name": "Adelpos",
    "website": "http://downtown.hyungjae.org/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "To promote the faith of Christianity among young adults by encouraging the members to meditate on the word of God and…",
    "description": "To promote the faith of Christianity among young adults by encouraging the members to meditate on the word of God and have fellowship in Christ.",
    "logo": null
@@ -140,7 +140,7 @@
   {
    "name": "Adventist Christian Fellowship at University of Washington",
    "website": "https://volunteerparksda.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "To provide students with opportunities to engage in weekly spiritual fellowship and in robust conversation at the…",
    "description": "To provide students with opportunities to engage in weekly spiritual fellowship and in robust conversation at the intersection of life and faith within an Adventist framework.",
    "logo": null
@@ -212,7 +212,7 @@
   {
    "name": "Alan’s Disciples",
    "website": "https://huskylink.washington.edu/ADD/",
-   "category": "Other",
+   "category": "Social",
    "about": "we love alan, yes we do!",
    "description": "we love alan, yes we do! We LOVE Alan, How About YOu!!!",
    "logo": null
@@ -268,7 +268,7 @@
   {
    "name": "Alpha Chi Omega",
    "website": "http://www.axouw.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The Alpha Chi Omega Fraternity is devoted to enriching the lives of members through lifetime opportunities of…",
    "description": "The Alpha Chi Omega Fraternity is devoted to enriching the lives of members through lifetime opportunities of friendship, leadership, learning and service.",
    "logo": null
@@ -276,7 +276,7 @@
   {
    "name": "Alpha Delta Phi Fraternity",
    "website": "http://www.alphadelt.org",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The objectives of THE ALPHA DELTA PHI are the cultivation of character, learning, and enduring friendships.",
    "description": "The objectives of THE ALPHA DELTA PHI are the cultivation of character, learning, and enduring friendships.",
    "logo": null
@@ -284,7 +284,7 @@
   {
    "name": "Alpha Delta Pi",
    "website": "https://www.uwadpi.com/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Alpha Delta Pi is the first sorority for women, dedicated to empowering members and providing a wellrounded college…",
    "description": "Alpha Delta Pi is the first sorority for women, dedicated to empowering members and providing a wellrounded college experience.",
    "logo": null
@@ -300,7 +300,7 @@
   {
    "name": "Alpha Epsilon Pi Chi Deuteron Chapter",
    "website": "https://aepi.org/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "To provide a Fraternity experience for young Jewish men on campus, an experience of both academic and social balance,…",
    "description": "To provide a Fraternity experience for young Jewish men on campus, an experience of both academic and social balance, in hopes of developing the next leaders of tomorrow.",
    "logo": null
@@ -308,7 +308,7 @@
   {
    "name": "Alpha Gamma Delta",
    "website": "http://www.uwalphagammadelta.com/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Alpha Gamma Delta is an international women's fraternity that promotes academic excellence, philanthropic giving,…",
    "description": "Alpha Gamma Delta is an international women's fraternity that promotes academic excellence, philanthropic giving, ongoing leadership and personal development and above all, a spirit of loving sisterhood. Guided by our Purpose",
    "logo": null
@@ -316,7 +316,7 @@
   {
    "name": "Alpha Kappa Alpha Sorority, Incorporated Beta Theta Chapter",
    "website": "http://AKA1908.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "To cultivate and encourage high scholastic and ethical standards, promote unity and friendship , study and help…",
    "description": "To cultivate and encourage high scholastic and ethical standards, promote unity and friendship , study and help alleviate problems concerning girls and women in order to improve their social stature and be of service to all mankind.",
    "logo": null
@@ -324,7 +324,7 @@
   {
    "name": "alpha Kappa Delta Phi at University of Washington",
    "website": "http://uwakdphi.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Our mission is to provide sisterhood among women, while promoting scholarship, leadership and Asian awareness in the…",
    "description": "Our mission is to provide sisterhood among women, while promoting scholarship, leadership and Asian awareness in the university and community.",
    "logo": null
@@ -348,7 +348,7 @@
   {
    "name": "Alpha Omicron Chapter of Delta Sigma Theta Sorority, Inc.",
    "website": "https://www.deltasigmatheta.org/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Delta Sigma Theta Sorority, Incorporated is a historicallyBlack sorority of college educated women committed to the…",
    "description": "Delta Sigma Theta Sorority, Incorporated is a historicallyBlack sorority of college educated women committed to the constructive development of its members and to public service.",
    "logo": null
@@ -356,7 +356,7 @@
   {
    "name": "Alpha Phi",
    "website": "http://www.uwalphaphi.org",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Alpha Phi is an organization dedicated to promoting sisterhood, cultivating leadership, encouraging intellectual…",
    "description": "Alpha Phi is an organization dedicated to promoting sisterhood, cultivating leadership, encouraging intellectual curiosity, and advocating service among its members.",
    "logo": null
@@ -364,7 +364,7 @@
   {
    "name": "Alpha Phi Alpha Fraternity Incorporated",
    "website": "http://www.apa1906.net/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "ALPHA PHI ALPHA FRATERNITY, INC.",
    "description": "ALPHA PHI ALPHA FRATERNITY, INC. DEVELOPS LEADERS, PROMOTES BROTHERHOOD AND ACADEMIC EXCELLENCE, WHILE PROVIDING SERVICE AND ADVOCACY FOR OUR COMMUNITIES.",
    "logo": null
@@ -380,7 +380,7 @@
   {
    "name": "Alpha Sigma Phi",
    "website": "http://www.alphasigmaphi.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "On Saturday, December 6, 1845, three young men sat down in a small room at Yale College and created a fraternal…",
    "description": "On Saturday, December 6, 1845, three young men sat down in a small room at Yale College and created a fraternal society based on high moral values and centered on the concept of brotherhood. To Better the Man!",
    "logo": null
@@ -772,7 +772,7 @@
   {
    "name": "Asian American Christian Fellowship",
    "website": "https://uw.aacf.org/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "To reach into the collegiate communityprimarily Asian Pacific Americanswith the lifechanging message of Jesus Christ…",
    "description": "To reach into the collegiate communityprimarily Asian Pacific Americanswith the lifechanging message of Jesus Christ and give students a safe place to feel accepted and to belong to.",
    "logo": null
@@ -780,7 +780,7 @@
   {
    "name": "Asian American Intervarsity Christian Fellowship",
    "website": "http://www.aaivuw.com",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Asian American Intervarsity is a Christian student fellowship on campus that seeks to create a safe space to grow,…",
    "description": "Asian American Intervarsity is a Christian student fellowship on campus that seeks to create a safe space to grow, learn and live out faith through weekly bible studies, gatherings and community events.",
    "logo": null
@@ -1228,7 +1228,7 @@
   {
    "name": "Baha’i Club at UW",
    "website": "https://www.seattlebahai.org/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The Baha'i club at UW aims to promote the principles and teachings of the Baha'i Faith through its campus activities.",
    "description": "The Baha'i club at UW aims to promote the principles and teachings of the Baha'i Faith through its campus activities. Our activities center around the oneness of humanity, the harmony of science and religion, and the basic oneness of humanity.",
    "logo": null
@@ -1308,7 +1308,7 @@
   {
    "name": "Beta Theta Pi",
    "website": "http://students.washington.edu/betas",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Beta Theta Pi is a fraternity dedicated to building Men of Principle through a focus on academic excellence,…",
    "description": "Beta Theta Pi is a fraternity dedicated to building Men of Principle through a focus on academic excellence, athletics, brotherhood, and social excellence.",
    "logo": null
@@ -1540,7 +1540,7 @@
   {
    "name": "Bridges International at the University of Washington",
    "website": "https://www.bridgesinternational.com/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "We provide services for the international students and visiting scholars in the form of welcome meetings, social…",
    "description": "We provide services for the international students and visiting scholars in the form of welcome meetings, social events, and conversation partners. We have discussion groups for those interested in learning about Christian",
    "logo": null
@@ -1596,7 +1596,7 @@
   {
    "name": "Buddhism to Thrive in Daily Life",
    "website": "https://huskylink.washington.edu/buddhismtothrive/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "This is just a nice community, and you can learn about different religions from people who attend (and a little…",
    "description": "This is just a nice community, and you can learn about different religions from people who attend (and a little Buddhism).",
    "logo": null
@@ -1700,7 +1700,7 @@
   {
    "name": "Catholic Newman Center at the UW",
    "website": "https://uwnewman.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "To promote and support the Roman Catholic faith among the students, faculty, and staff at the University of Washington.",
    "description": "To promote and support the Roman Catholic faith among the students, faculty, and staff at the University of Washington.",
    "logo": null
@@ -1740,7 +1740,7 @@
   {
    "name": "Chabad Jewish Student Group",
    "website": "https://www.jewishuw.com/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Chabad is a warm, nonjudgmental, fun, exciting, and lively place that practices the Jewish faith.",
    "description": "Chabad is a warm, nonjudgmental, fun, exciting, and lively place that practices the Jewish faith. All are welcome to come, learn and worship with us!",
    "logo": null
@@ -1812,7 +1812,7 @@
   {
    "name": "Chi Omega",
    "website": "https://www.uwchiomega.com/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "A sisterhood providing a lifelong network of friends, committed to personal integrity, excellence in academic…",
    "description": "A sisterhood providing a lifelong network of friends, committed to personal integrity, excellence in academic pursuits, intergenerational participation, philanthropy, and community and social enrichment.",
    "logo": null
@@ -1820,7 +1820,7 @@
   {
    "name": "Chi Psi Fraternity",
    "website": "https://huskylink.washington.edu/chipsi/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "A Fraternity of Gentlemen in the pursuit of advancement in our members' intellectual, moral, and social lives.",
    "description": "A Fraternity of Gentlemen in the pursuit of advancement in our members' intellectual, moral, and social lives.",
    "logo": null
@@ -1828,7 +1828,7 @@
   {
    "name": "Chi Sigma Alpha National Sorority, Inc.",
    "website": "http://www.uwchisigmaalpha.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Our purpose is to increase AsianAmerican awareness through service and sisterhood.",
    "description": "Our purpose is to increase AsianAmerican awareness through service and sisterhood. To bring together diverse women to build strong character, leadership skills, and confidence.",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_610805_10569090_911209015567193_6758096430446032068_n_e7653ca3-ba72-42c1-965f-ff1ecae38294_1012191451.png"
@@ -1876,7 +1876,7 @@
   {
    "name": "Chinese Covenant at the University of Washington",
    "website": "https://uwchinesecov.com/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Chinese Covenant is the student fellowship that meets every Friday on UW Seattle Campus (SAV 156) at 6 pm.",
    "description": "Chinese Covenant is the student fellowship that meets every Friday on UW Seattle Campus (SAV 156) at 6 pm. We provide support to each other and do bible studies. Transportation will be provided. Everyone is very welcome: ) [Email uwccinfo@uw.edu]",
    "logo": null
@@ -1924,7 +1924,7 @@
   {
    "name": "Christian Business Leaders",
    "website": "https://linktr.ee/cbltree",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Our mission is to help students navigate their faith and profession by building community with business professionals…",
    "description": "Our mission is to help students navigate their faith and profession by building community with business professionals and providing opportunities for service, learning, and growth.",
    "logo": null
@@ -1932,7 +1932,7 @@
   {
    "name": "Christian Students Association",
    "website": "http://christianstudentsuw.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The purpose of this club is to promote Christian fellowship and communication on campus.",
    "description": "The purpose of this club is to promote Christian fellowship and communication on campus.",
    "logo": null
@@ -1940,7 +1940,7 @@
   {
    "name": "Christians in Seattle",
    "website": "https://christiansinseattle.org/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Our organization welcomes all UW students who are interested in knowing God.",
    "description": "Our organization welcomes all UW students who are interested in knowing God. Our unique focus is to bring UW students into a mature, full, and subjective knowledge of who God is.",
    "logo": null
@@ -2036,7 +2036,7 @@
   {
    "name": "Common Ground Fellowship",
    "website": "https://linktr.ee/cg.ecc",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "CG a Christian fellowship focused on God's truth, striving to provide students a community that encourages each other…",
    "description": "CG a Christian fellowship focused on God's truth, striving to provide students a community that encourages each other in our spiritual walks. CG is a college ministry of Evangelical Chinese Church. All are welcome! (1 Corinthians 9:22b23 NLT)",
    "logo": null
@@ -2204,7 +2204,7 @@
   {
    "name": "Cru at UW",
    "website": "http://cru.org/washington",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "We are a Christian RSO that is passionate about connecting people to Jesus Christ.",
    "description": "We are a Christian RSO that is passionate about connecting people to Jesus Christ. Cru is a place to get your questions answered or grow deeper in your relationship with God!",
    "logo": null
@@ -2348,7 +2348,7 @@
   {
    "name": "Delta Chi Fraternity at the University of Washington",
    "website": "https://www.deltachi.org/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The members of the Delta Chi Fraternity believe that great advantages are derived through brotherhood; by promoting…",
    "description": "The members of the Delta Chi Fraternity believe that great advantages are derived through brotherhood; by promoting friendship, developing character, advancing justice, and assisting in education, we inspire our members daily to be men of action.",
    "logo": null
@@ -2356,7 +2356,7 @@
   {
    "name": "Delta Delta Delta",
    "website": "https://washington.tridelta.org",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The purpose of Delta Delta Delta shall be to establish a perpetual bond of friendship among its members, to develop a…",
    "description": "The purpose of Delta Delta Delta shall be to establish a perpetual bond of friendship among its members, to develop a stronger and more womanly character, to broaden the moral and intellectual life, and to assist its members in every possible way.",
    "logo": null
@@ -2380,7 +2380,7 @@
   {
    "name": "Delta Gamma Sorority",
    "website": "https://www.uwdeltagamma.com/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The objects of this Fraternity shall be to foster high ideals of friendship among women, to promote their educational…",
    "description": "The objects of this Fraternity shall be to foster high ideals of friendship among women, to promote their educational and cultural interests, to create in them a true sense of social responsibility and to develop in them the best qualities of character.",
    "logo": null
@@ -2388,7 +2388,7 @@
   {
    "name": "Delta Kappa Delta Sorority, Inc.",
    "website": "http://dkduw.weebly.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Delta Kappa Delta Sorority, Inc.",
    "description": "Delta Kappa Delta Sorority, Inc. is the first and only South Asian interest service sorority. Our pillars include sisterhood, education, culture, community service, and indomitable spirit.",
    "logo": null
@@ -2396,7 +2396,7 @@
   {
    "name": "Delta Kappa Epsilon",
    "website": "http://www.dke.org",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The Kappa Epsilon chapter of Delta Kappa Epsilon (DKE) started in 1910 as thirteenth fraternity at the University of…",
    "description": "The Kappa Epsilon chapter of Delta Kappa Epsilon (DKE) started in 1910 as thirteenth fraternity at the University of Washington.",
    "logo": null
@@ -2404,7 +2404,7 @@
   {
    "name": "Delta Lambda Phi",
    "website": "http://www.dlp.org/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Delta Lambda Phi provides a welcoming alternative to Greek life on campus for Queer (LGBT2QIA+) students.",
    "description": "Delta Lambda Phi provides a welcoming alternative to Greek life on campus for Queer (LGBT2QIA+) students. Psi Chapter works to create a space for Queer people and allies to meet, form bonds, and become leaders while making change on campus and locally.",
    "logo": null
@@ -2412,7 +2412,7 @@
   {
    "name": "Delta Pi Zeta",
    "website": "https://huskylink.washington.edu/dpz/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Delta Pi Zeta is an Asian interest (not Asian exclusive) fraternity that promotes leadership, community service, as…",
    "description": "Delta Pi Zeta is an Asian interest (not Asian exclusive) fraternity that promotes leadership, community service, as well as providing a sense of brotherhood among their peers.",
    "logo": null
@@ -2428,7 +2428,7 @@
   {
    "name": "Delta Tau Delta",
    "website": "https://www.uwdelts.com/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "We focus on building lifetime friendships, and positively impacting the community.",
    "description": "We focus on building lifetime friendships, and positively impacting the community. We achieve this by providing resources for personal and academic success, as well as hosting and attending social and philanthropic events.",
    "logo": null
@@ -2436,7 +2436,7 @@
   {
    "name": "Delta Upsilon",
    "website": "http://deltau.org",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Delta Upsilon, or DU, is a nonsecret, nonhazing men's fraternity founded at Williams College in 1834.",
    "description": "Delta Upsilon, or DU, is a nonsecret, nonhazing men's fraternity founded at Williams College in 1834. Delta Upsilon's mission is &quot;building better men,&quot; and was founded on the principles of friendship, character, culture, and justice.",
    "logo": null
@@ -2444,7 +2444,7 @@
   {
    "name": "Delta Zeta Sorority",
    "website": "http://uwdeltazeta.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Our organization's purpose is to unite women in the bonds of sincere and lasting friendship, support the pursuit of…",
    "description": "Our organization's purpose is to unite women in the bonds of sincere and lasting friendship, support the pursuit of knowledge, promote the moral and social culture of its members, and develop plans for guidance and unity in action.",
    "logo": null
@@ -2676,7 +2676,7 @@
   {
    "name": "Elohim Club",
    "website": "https://huskylink.washington.edu/iuba/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Elohim promotes academic study of the Bible by examining the intersection between Bible prophecies, human history, and…",
    "description": "Elohim promotes academic study of the Bible by examining the intersection between Bible prophecies, human history, and scientific discovery, by investigating the reasons for observing God's commandments, and by exploring religious reformation in this age",
    "logo": null
@@ -2804,7 +2804,7 @@
   {
    "name": "Ethiopian Orthodox Tewahedo Church ( EOTC ) Mahibere Kidusan Campus Ministry at the University of Washington",
    "website": "https://huskylink.washington.edu/etocmkcampusminstry/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The Ethiopian Orthodox Tewahido Church (EOTC) Mahibere Kidusan Campus Ministry at UW is dedicated to spreading the…",
    "description": "The Ethiopian Orthodox Tewahido Church (EOTC) Mahibere Kidusan Campus Ministry at UW is dedicated to spreading the teachings of Jesus Christ, fostering faith, and promoting spiritual and professional growth among students.",
    "logo": null
@@ -2868,7 +2868,7 @@
   {
    "name": "Faces of Afro Muslims",
    "website": "https://huskylink.washington.edu/fam/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Faces of Afro Muslims at UW builds community, celebrates identity, and amplifies the voices of Afro Muslims through…",
    "description": "Faces of Afro Muslims at UW builds community, celebrates identity, and amplifies the voices of Afro Muslims through culture, faith, education, and connection.",
    "logo": null
@@ -2892,7 +2892,7 @@
   {
    "name": "FCA Huddle",
    "website": "http://fcaseattle.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "We are the Fellowship of Christian Athletes aiming to lead every coach and athlete at UW into a growing relationship…",
    "description": "We are the Fellowship of Christian Athletes aiming to lead every coach and athlete at UW into a growing relationship with Jesus Christ and His church.",
    "logo": null
@@ -2972,7 +2972,7 @@
   {
    "name": "First Love at UW",
    "website": "https://huskylink.washington.edu/fluw/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The purpose of the FL@UW includes the following:",
    "description": "The purpose of the FL@UW includes the following:\nTo give students an opportunity to find Christ in their youth at the University of Washington.\nTo offer a platform for training students to serve Christ at the",
    "logo": null
@@ -3212,7 +3212,7 @@
   {
    "name": "Gamma Alpha Omega Sorority, Incorporated",
    "website": "http://uwgamma.wixsite.com/genuinegammas",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "We are a multicultural organization that exists to increase the number of women with a college education and to…",
    "description": "We are a multicultural organization that exists to increase the number of women with a college education and to enhance the individual leader in each member. Volunteerism, both short and longterm, is a cornerstone of our organization.\n​",
    "logo": null
@@ -3220,7 +3220,7 @@
   {
    "name": "Gamma Phi Beta, Lambda Chapter",
    "website": "https://www.uwgammaphi.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "To inspire the highest type of womanhood.",
    "description": "To inspire the highest type of womanhood.",
    "logo": null
@@ -3324,7 +3324,7 @@
   {
    "name": "Global Medical Missions Alliance UW Chapter",
    "website": "http://www.gmma7.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "We are a Christian prehealth club aimed at developing the skill of caring for the physical and spiritual wellbeing of…",
    "description": "We are a Christian prehealth club aimed at developing the skill of caring for the physical and spiritual wellbeing of all those we meet. We will provide students with mentormentee relationships with healthcare professional",
    "logo": null
@@ -3404,7 +3404,7 @@
   {
    "name": "Greek Pride at The University of Washington",
    "website": "https://linktr.ee/greekprideuw",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Greek Pride at UW is a studentrun RSO that fosters a supportive environment for LGBTQIA+ members and allies in the…",
    "description": "Greek Pride at UW is a studentrun RSO that fosters a supportive environment for LGBTQIA+ members and allies in the Greek community.",
    "logo": null
@@ -3412,7 +3412,7 @@
   {
    "name": "Greeks Take Action",
    "website": "https://huskylink.washington.edu/gtauw/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Greeks Take Action is a collaborative effort between the UW Interfraternity Council, Panhellenic Council,…",
    "description": "Greeks Take Action is a collaborative effort between the UW Interfraternity Council, Panhellenic Council, Multicultural Greek Council, ASUW Sexual Assault and Relationship Violence Activists, and Peer Health Educators.",
    "logo": null
@@ -3428,7 +3428,7 @@
   {
    "name": "Green Pastures College Fellowship",
    "website": "https://huskylink.washington.edu/greenpastures/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Green Pastures College Fellowship is a nondenominational Christian fellowship for students to learn and know more…",
    "description": "Green Pastures College Fellowship is a nondenominational Christian fellowship for students to learn and know more about Christianity. We support international students who speak multiple languages including but not exclusive to Cantonese and Mandarin.",
    "logo": null
@@ -3612,7 +3612,7 @@
   {
    "name": "Hillel at the UW: Jewish Center for Campus Life",
    "website": "https://www.hilleluw.org/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Our vibrant undergraduate program offers a wide range of programs including Shabbat, holiday, educational, cultural,…",
    "description": "Our vibrant undergraduate program offers a wide range of programs including Shabbat, holiday, educational, cultural, social justice, social and Israelrelated offerings.",
    "logo": null
@@ -3620,7 +3620,7 @@
   {
    "name": "Hindu YUVA at the University of Washington",
    "website": "https://hinduyuva.org/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Hindu YUVA aims to provide a platform to preserve, practice, promote, and protect Dharma by bringing together college…",
    "description": "Hindu YUVA aims to provide a platform to preserve, practice, promote, and protect Dharma by bringing together college students and working professionals across North America.",
    "logo": null
@@ -3756,7 +3756,7 @@
   {
    "name": "Humility, Kindness and Love",
    "website": "http://hkl.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The HKL Chapter at UW inspires students to live with Humility, Kindness & Love through community action and thoughtful…",
    "description": "The HKL Chapter at UW inspires students to live with Humility, Kindness & Love through community action and thoughtful discourse with one another, thereby awakening these virtues in ourselves and creating ripples of positive change on campus and beyond!",
    "logo": null
@@ -4452,7 +4452,7 @@
   {
    "name": "Interfraternity Council at the University of Washington",
    "website": "http://uwifc.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Governing body of fraternities at the University of Washington.",
    "description": "Governing body of fraternities at the University of Washington.",
    "logo": null
@@ -4484,7 +4484,7 @@
   {
    "name": "International Student Ministry",
    "website": "http://www.iusmuw.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The purpose of this organization is to promote Christian fellowship among international students at the University of…",
    "description": "The purpose of this organization is to promote Christian fellowship among international students at the University of Washington.",
    "logo": null
@@ -4500,7 +4500,7 @@
   {
    "name": "InterVarsity Undergraduate Christian Fellowship",
    "website": "https://uwintervarsity.org/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "We are a multiethnic, Christcentered witnessing community of students growing in love for God, God's Word, God's…",
    "description": "We are a multiethnic, Christcentered witnessing community of students growing in love for God, God's Word, God's people of every ethnicity and culture, and God's purposes in the world.",
    "logo": null
@@ -4676,7 +4676,7 @@
   {
    "name": "Kappa Alpha Psi Inc. Gamma Eta Chapter",
    "website": "http://www.kappaalphapsi1911.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Kappa Alpha Psi is a college Fraternity comprised of functioning Undergraduate and Alumni Chapters on major campuses…",
    "description": "Kappa Alpha Psi is a college Fraternity comprised of functioning Undergraduate and Alumni Chapters on major campuses and cities throughout the country. It was founded by ten distinguished founders on the campus of Indiana University January 5, 1911.",
    "logo": null
@@ -4684,7 +4684,7 @@
   {
    "name": "Kappa Alpha Theta",
    "website": "https://huskylink.washington.edu/uwtheta/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Kappa Alpha Theta creates a strong sense of sisterhood, fostering dear friendships that last a lifetime.",
    "description": "Kappa Alpha Theta creates a strong sense of sisterhood, fostering dear friendships that last a lifetime. Being a Theta leads women into a life of friends, experiences, and goals that she might not have had otherwise. Being a",
    "logo": null
@@ -4692,7 +4692,7 @@
   {
    "name": "Kappa Delta",
    "website": "http://washington.kappadelta.org/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "To promote true friendship among the college girls of our country by inculcating into their hearts and lives those…",
    "description": "To promote true friendship among the college girls of our country by inculcating into their hearts and lives those principles of truth, honor, and duty.",
    "logo": null
@@ -4700,7 +4700,7 @@
   {
    "name": "Kappa Delta Chi",
    "website": "http://uwkdchi.wix.com/alphapi",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "To promote the values of Unity, Honesty, Integrity, and Leadership.",
    "description": "To promote the values of Unity, Honesty, Integrity, and Leadership. An organization dedicated to service for the university and the minority community with special emphasis on supporting the hispanic population.",
    "logo": null
@@ -4708,7 +4708,7 @@
   {
    "name": "Kappa Kappa Gamma",
    "website": "https://huskylink.washington.edu/kappa/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Kappa Kappa Gamma seeks for every member bonds of friendship, opportunities for self growth, and an understanding of…",
    "description": "Kappa Kappa Gamma seeks for every member bonds of friendship, opportunities for self growth, and an understanding of and allegiance to positive ethical principles.",
    "logo": null
@@ -4732,7 +4732,7 @@
   {
    "name": "Kappa Sigma Fraternity",
    "website": "https://www.kappasigmauw.com/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The Beta Psi Chapter of the Kappa Sigma Fraternity strives to achieve the continual improvement of its members…",
    "description": "The Beta Psi Chapter of the Kappa Sigma Fraternity strives to achieve the continual improvement of its members throughout life.",
    "logo": null
@@ -4860,7 +4860,7 @@
   {
    "name": "Lambda Theta Alpha Latin Sorority, Incorporated.",
    "website": "https://huskylink.washington.edu/uwlta/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "To provide a Sisterhood based on Unity, Love, and Respect.",
    "description": "To provide a Sisterhood based on Unity, Love, and Respect. To develop leaders who will provide political/social/cultural/educational activities. Latin by tradition, not by definition.",
    "logo": null
@@ -4868,7 +4868,7 @@
   {
    "name": "Lambda Theta Phi Latin Fraternity, Inc. Delta Mu Chapter",
    "website": "http://www.thelambdas.org",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Lambda Theta Phi Latin Fraternity Inc, Delta Mu chapter was founded on April 19th, 2014.",
    "description": "Lambda Theta Phi Latin Fraternity Inc, Delta Mu chapter was founded on April 19th, 2014. We are an organization committed to academic excellence, community service, cultural awareness, professionalism, and leadership.",
    "logo": null
@@ -4924,7 +4924,7 @@
   {
    "name": "Latterday Saint Student Association",
    "website": "https://huskylink.washington.edu/ldssa/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Provides religious education, social opportunities and resources for Latterday Saint students as well as others.",
    "description": "Provides religious education, social opportunities and resources for Latterday Saint students as well as others.",
    "logo": null
@@ -5060,7 +5060,7 @@
   {
    "name": "Living Water Fellowship",
    "website": "https://huskylink.washington.edu/livingwaterf/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Christian student organization dedicated to Bible study and serving both local communities and fellow students through…",
    "description": "Christian student organization dedicated to Bible study and serving both local communities and fellow students through various forms of outreach and direct assistance, encouraging spiritual growth and meaningful connections.",
    "logo": null
@@ -5084,7 +5084,7 @@
   {
    "name": "Lutheran Campus Ministry @ UW",
    "website": "https://www.uwlutherans.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Lutheran Campus Ministry @ UW is a progressive, inclusive, welcoming, gracefilled, justiceoriented community of faith…",
    "description": "Lutheran Campus Ministry @ UW is a progressive, inclusive, welcoming, gracefilled, justiceoriented community of faith for the University of Washington community.",
    "logo": null
@@ -5508,7 +5508,7 @@
   {
    "name": "Multicultural Greek Council",
    "website": "http://www.uwmgc.com/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "To promote unity among multicultural and underrepresented Greek organizations at the University of Washington.",
    "description": "To promote unity among multicultural and underrepresented Greek organizations at the University of Washington.",
    "logo": null
@@ -5596,7 +5596,7 @@
   {
    "name": "Muslim Students Association at the University of Washington",
    "website": "http://msauw.org/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "MSA is all about building an inclusive atmosphere of brotherhood/sisterhood, empowering Muslim students, strengthening…",
    "description": "MSA is all about building an inclusive atmosphere of brotherhood/sisterhood, empowering Muslim students, strengthening our faith, engaging in community service and leadership, and reaching out to spread understanding and acceptance.",
    "logo": null
@@ -5660,7 +5660,7 @@
   {
    "name": "National Pan-Hellenic Council, Inc.",
    "website": "http://uwnphc.wordpress.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The National Pan-Hellenic Council at the University of Washington is comprised of six out of nine active historically…",
    "description": "The National Pan-Hellenic Council at the University of Washington is comprised of six out of nine active historically Black Greekletter Fraternities and Sororities.",
    "logo": null
@@ -5828,7 +5828,7 @@
   {
    "name": "Nu Chapter of Alpha Xi Delta",
    "website": "http://washington.alphaxidelta.org",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Alpha Xi Delta is a progressive organization dedicated to the personal growth of women.",
    "description": "Alpha Xi Delta is a progressive organization dedicated to the personal growth of women. Through membership in Alpha Xi Delta, Sisters are inspired to realize their potential through the ideals our Founders instilled in our Fraternity.",
    "logo": null
@@ -5876,7 +5876,7 @@
   {
    "name": "Office of Fraternity and Sorority Life",
    "website": "https://www.washington.edu/ofsl/",
-   "category": "Other",
+   "category": "Greek Life",
    "about": "The Office of Fraternity and Sorority Life supports a vibrant community of students committed to academic excellence,…",
    "description": "The Office of Fraternity and Sorority Life supports a vibrant community of students committed to academic excellence, leadership development, and civic engagement. Through intentional programming and organizational involvement, fraternity and sorority members contribute meaningfully to community service and philanthropy while cultivating skills, values, and relationships that enhance their educational experience and prepare them for lifelong success.",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_599699_334569277_719939429830526_6121303119745850178_njpg_c12a1c35-b27e-4f3c-abf3-538a1aab3942_72112852.jpeg"
@@ -5884,7 +5884,7 @@
   {
    "name": "Omega Delta Phi Fraternity, Inc. Lambda Chapter",
    "website": "https://odphiuw.wixsite.com/odphiuw",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The purpose of this Brotherhood, a Service/Social Fraternity dedicated to the needs and concerns of the community, is…",
    "description": "The purpose of this Brotherhood, a Service/Social Fraternity dedicated to the needs and concerns of the community, is and shall be to promote and maintain the traditional values of Unity, Honesty, Integrity and Leadership.",
    "logo": null
@@ -5892,7 +5892,7 @@
   {
    "name": "Omega Psi Phi Fraternity, Inc. UW Campus",
    "website": "https://oppf.org/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "We align with the National Pan-Hellenic Council to encourage scholarship and social action, through friendship and…",
    "description": "We align with the National Pan-Hellenic Council to encourage scholarship and social action, through friendship and community service. We aim to promote various educational, economic, and cultural service functions, to serve the UW community.",
    "logo": null
@@ -5948,7 +5948,7 @@
   {
    "name": "Oriental Orthodox Christian Student Assocation",
    "website": "https://huskylink.washington.edu/ocsa/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The Oriental Orthodox Christian Student Association (OCSA) serves Oriental Orthodox students from Ethiopian, Syrian,…",
    "description": "The Oriental Orthodox Christian Student Association (OCSA) serves Oriental Orthodox students from Ethiopian, Syrian, Indian, Coptic, Eritrean, and Armenian traditions, fostering faith, fellowship, and cultural connection.",
    "logo": null
@@ -5980,7 +5980,7 @@
   {
    "name": "Orthodox Christian Fellowship at the University of Washington",
    "website": "https://huskylink.washington.edu/ocf/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "OCF provides a space for college students to discuss the Orthodox Christian faith and build friendships with others.",
    "description": "OCF provides a space for college students to discuss the Orthodox Christian faith and build friendships with others. We host events that relate to our 4 pillars, which are Fellowship, Education, Worship, and Service.",
    "logo": null
@@ -6044,7 +6044,7 @@
   {
    "name": "Panhellenic Association",
    "website": "http://www.uwpanhellenic.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "We exist to enhance the academic purpose of the UW fraternity women and to unify the interests of fraternity and…",
    "description": "We exist to enhance the academic purpose of the UW fraternity women and to unify the interests of fraternity and nonfraternity women.",
    "logo": null
@@ -6164,7 +6164,7 @@
   {
    "name": "Phi Beta Sigma Fraternity, Incorporated Kappa Lambda Chapter",
    "website": "http://pbskl.org",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "We are a historically Black Greek Fraternity dedicated to serving undeserved populations.",
    "description": "We are a historically Black Greek Fraternity dedicated to serving undeserved populations. We work to promote scholarship and service around campus and provide a brotherhood for students on campus. Our motto is culture for service, service for humanity.",
    "logo": null
@@ -6188,7 +6188,7 @@
   {
    "name": "Phi Delta Theta",
    "website": "https://www.uwphidelts.org/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "We are a diverse group of UW men who strive for the ideals of friendship, sound learning, and moral rectitude through…",
    "description": "We are a diverse group of UW men who strive for the ideals of friendship, sound learning, and moral rectitude through active participation within our own chapter and the greater UW community.",
    "logo": null
@@ -6196,7 +6196,7 @@
   {
    "name": "Phi Gamma Delta",
    "website": "https://www.huskyfiji.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "To promote the values of friendship, scholarship, and social service among our brothers.",
    "description": "To promote the values of friendship, scholarship, and social service among our brothers.",
    "logo": null
@@ -6204,7 +6204,7 @@
   {
    "name": "Phi Kappa Psi",
    "website": "http://uwphipsi.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Commitment to each other and to our community",
    "description": "Commitment to each other and to our community",
    "logo": null
@@ -6212,7 +6212,7 @@
   {
    "name": "Phi Kappa Sigma",
    "website": "http://uwphikaps.org/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The Objects of Phi Kappa Sigma Fraternity shall be the promotion of good fellowship and the cultivation of the social…",
    "description": "The Objects of Phi Kappa Sigma Fraternity shall be the promotion of good fellowship and the cultivation of the social virtues among our members.",
    "logo": null
@@ -6228,7 +6228,7 @@
   {
    "name": "Phi Mu Eta Beta Chapter",
    "website": "https://www.phimuwashington.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Founded in 1852, Phi Mu is a women's organization which provides personal and academic development, service to others,…",
    "description": "Founded in 1852, Phi Mu is a women's organization which provides personal and academic development, service to others, commitment to excellence, and lifelong friendships through a shared tradition.",
    "logo": null
@@ -6236,7 +6236,7 @@
   {
    "name": "Phi Sigma Rho",
    "website": "http://uwphisigmarho.com/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Phi Sigma Rho is a social sorority centered around forging a strong community for women, genderqueer, and nonbinary…",
    "description": "Phi Sigma Rho is a social sorority centered around forging a strong community for women, genderqueer, and nonbinary students pursuing engineering. Our motto is \"Sisterhood through Fortitude\"",
    "logo": null
@@ -6292,7 +6292,7 @@
   {
    "name": "Pi Beta Phi Fraternity for Women",
    "website": "http://pibetaphi.org",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The mission of Pi Beta Phi Fraternity for Women is to promote friendship, develop women of intellect and integrity,…",
    "description": "The mission of Pi Beta Phi Fraternity for Women is to promote friendship, develop women of intellect and integrity, cultivate leadership potential and enrich lives through community service. The vision of Pi Beta Phi Fraterni",
    "logo": null
@@ -6300,7 +6300,7 @@
   {
    "name": "Pi Kappa Alpha",
    "website": "https://huskylink.washington.edu/pikes/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Pi Kappa Alpha is dedicated to developing men of integrity, intellect, and high moral character and to fostering a…",
    "description": "Pi Kappa Alpha is dedicated to developing men of integrity, intellect, and high moral character and to fostering a truly lifelong fraternal experience.",
    "logo": null
@@ -6308,7 +6308,7 @@
   {
    "name": "Pi Kappa Phi",
    "website": "http://uwpikappaphi.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "At Pi Kappa Phi, you will find a balanced life unparalled to that of any other chapter.",
    "description": "At Pi Kappa Phi, you will find a balanced life unparalled to that of any other chapter.",
    "logo": null
@@ -6556,7 +6556,7 @@
   {
    "name": "Psi Upsilon",
    "website": "http://students.washington.edu/psiu",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Psi Upsilon looks to promote the highest moral, intellectual, social excellence and educational standards throughout…",
    "description": "Psi Upsilon looks to promote the highest moral, intellectual, social excellence and educational standards throughout brotherhood.",
    "logo": null
@@ -6756,7 +6756,7 @@
   {
    "name": "Reformed University Fellowship",
    "website": "http://www.uw.ruf.org/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "RUF is a group of students on the campus of the University of Washington that long to know and love Christ, be changed…",
    "description": "RUF is a group of students on the campus of the University of Washington that long to know and love Christ, be changed by him through community, live for a cause greater than themselves, and learn how the gospel impacts every aspect of the culture at UW.",
    "logo": null
@@ -6804,7 +6804,7 @@
   {
    "name": "Resonate Church Community",
    "website": "http://resonate.net/seattle",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "We desire to connect students to life changing community and world changing purpose all because of Jesus.",
    "description": "We desire to connect students to life changing community and world changing purpose all because of Jesus.",
    "logo": null
@@ -6868,7 +6868,7 @@
   {
    "name": "Rooted plus Restored",
    "website": "https://huskylink.washington.edu/rootedrestored/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Our dream is to reestablish faith as a tool that catapults an individual to fulfillment, restoration, and hope.",
    "description": "Our dream is to reestablish faith as a tool that catapults an individual to fulfillment, restoration, and hope. We will provide a space where believers and unbelievers can come together to break bread, foster community, and create lines of support.",
    "logo": null
@@ -6876,7 +6876,7 @@
   {
    "name": "Rooted Campus Ministries",
    "website": "https://seattleicc.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "As, which represents being rooted and built up in Christ, we intend to create a community that is full of faith,…",
    "description": "As, which represents being rooted and built up in Christ, we intend to create a community that is full of faith, focus, fun, and family. Since, society isn't always this way, we intend to build each other up through establishing strong roots in Christ..",
    "logo": null
@@ -7076,7 +7076,7 @@
   {
    "name": "Seattle REPRESENT",
    "website": "https://www.seattlerepresent.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": null,
    "description": null,
    "logo": null
@@ -7156,7 +7156,7 @@
   {
    "name": "Sigma Alpha Epsilon Fraternity Washington Alpha Chapter",
    "website": "http://saewa.org",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The purpose of the Sigma Alpha Epsilon Fraternity is advancing the highest standards of friendship, scholarship,…",
    "description": "The purpose of the Sigma Alpha Epsilon Fraternity is advancing the highest standards of friendship, scholarship, leadership and service for our members throughout life.",
    "logo": null
@@ -7164,7 +7164,7 @@
   {
    "name": "Sigma Kappa",
    "website": "http://washington.sigmakappa.org",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Sigma Kappa fosters lifelong connection in sisterhood while being true to our founding as an intellectual and social…",
    "description": "Sigma Kappa fosters lifelong connection in sisterhood while being true to our founding as an intellectual and social women’s sorority. Through mutual support and respect, we inspire all members to lead a life of purpose.",
    "logo": null
@@ -7172,7 +7172,7 @@
   {
    "name": "Sigma Lambda Beta International Fraternity Inc. Phi Beta Chapter",
    "website": "https://huskylink.washington.edu/slb/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "We strongly believe in fairness, opportunity, and equality for all men, no matter what race, culture, or ethnicity.",
    "description": "We strongly believe in fairness, opportunity, and equality for all men, no matter what race, culture, or ethnicity. We closely adhere to our four principles of Brotherhood, Scholarship, Community Service, and Cultural Awareness.",
    "logo": null
@@ -7180,7 +7180,7 @@
   {
    "name": "Sigma Lambda Gamma National Sorority, Inc.",
    "website": "http://uwgammas.com/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Through excellence in the organization’s five founding principles, Sigma Lambda Gamma National Sorority, Incorporated.",
    "description": "Through excellence in the organization’s five founding principles, Sigma Lambda Gamma National Sorority, Incorporated. provides opportunities for lifelong empowerment to its members, thereby positively influencing the global community.",
    "logo": null
@@ -7188,7 +7188,7 @@
   {
    "name": "Sigma Nu",
    "website": "http://www.uwsigmanu.com/home",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "We believe in academic excellence, an active social life, support for athletics, campus leadership, community service…",
    "description": "We believe in academic excellence, an active social life, support for athletics, campus leadership, community service and philanthropic values.",
    "logo": null
@@ -7196,7 +7196,7 @@
   {
    "name": "Sigma Phi Epsilon",
    "website": "http://sigepuw.com/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Sigma Phi Epsilon Washington Beta Chapter is a valuesbased fraternity committed to Virtue, Diligence, and Brotherly…",
    "description": "Sigma Phi Epsilon Washington Beta Chapter is a valuesbased fraternity committed to Virtue, Diligence, and Brotherly Love. We foster lifelong friendships, promote academic excellence, and strong, sound leadership.",
    "logo": null
@@ -7204,7 +7204,7 @@
   {
    "name": "Sigma Psi Zeta",
    "website": "http://uwsyz.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Sigma Psi Zeta is a progressive, multicultural Greek Organization that provides a means to success and support for…",
    "description": "Sigma Psi Zeta is a progressive, multicultural Greek Organization that provides a means to success and support for womxn, particularly womxn of color, and builds on the unity of strong and independent leaders to affect change in our community.",
    "logo": null
@@ -7244,7 +7244,7 @@
   {
    "name": "Small Church at UW",
    "website": "https://www.beaconhillchurch.com/uw/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The purpose of this organization is to go and make disciples by reaching out to notyet believers and to educate and…",
    "description": "The purpose of this organization is to go and make disciples by reaching out to notyet believers and to educate and equip students in biblical foundations via the small church model.",
    "logo": null
@@ -7412,7 +7412,7 @@
   {
    "name": "Sojourn Campus Ministry",
    "website": "http://www.sojournuw.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "It will be the purpose of this organization to make the University of Washington a better place by empowering students…",
    "description": "It will be the purpose of this organization to make the University of Washington a better place by empowering students to follow Jesus.",
    "logo": null
@@ -7692,7 +7692,7 @@
   {
    "name": "Student for Christ",
    "website": "http://sfcnorthwest.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The objective of SFC Northwest is to glorify God through the adherence to the SFC Principles.",
    "description": "The objective of SFC Northwest is to glorify God through the adherence to the SFC Principles.",
    "logo": null
@@ -8188,7 +8188,7 @@
   {
    "name": "The Brotherhood of Chi Theta Psi",
    "website": "https://huskylink.washington.edu/chithetapsi/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The Brotherhood of Chi Theta Psi is an inclusive Filipino and Asian interest fraternity whose purpose is to fortify…",
    "description": "The Brotherhood of Chi Theta Psi is an inclusive Filipino and Asian interest fraternity whose purpose is to fortify the members experience on campus through their pillars while providing a platform for members to grow and support surrounding communities.",
    "logo": null
@@ -8228,7 +8228,7 @@
   {
    "name": "The Dwelling Place",
    "website": "https://huskylink.washington.edu/dwellingplace/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "We are a dwelling place for God a family who loves Jesus and makes disciples of all nations.",
    "description": "We are a dwelling place for God a family who loves Jesus and makes disciples of all nations. We are a prayer and discipleship group focused on growing and walking in community, who gathers to encounter God's heart for the nations and for UW.",
    "logo": null
@@ -8332,7 +8332,7 @@
   {
    "name": "The Lovely Sisterhood of Chi Delta Sigma Sorority, Incorporated ( Inc. )",
    "website": "https://chideltasigmainc.wixsite.com/home",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The first and only AAPIinterest sorority at the University of Washington seeking to promote awareness of our…",
    "description": "The first and only AAPIinterest sorority at the University of Washington seeking to promote awareness of our philanthropies, AAPI experiences, empowerment of womxn leaders, and supporting academic aspirations.",
    "logo": null
@@ -8372,7 +8372,7 @@
   {
    "name": "The Pursuit NW Young Adults",
    "website": "https://www.thepursuitnw.com",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The Pursuit College Groups exist to glorify Jesus and in doing so, bring college students into an encounter with the…",
    "description": "The Pursuit College Groups exist to glorify Jesus and in doing so, bring college students into an encounter with the presence of God.",
    "logo": null
@@ -8396,7 +8396,7 @@
   {
    "name": "The Thomistic Institute at the University of Washington",
    "website": "https://huskylink.washington.edu/thomistic/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The Thomistic Institute at UW exists to promote the thought of St.",
    "description": "The Thomistic Institute at UW exists to promote the thought of St. Thomas Aquinas, a 13th century theologian and philosopher. The TI brings nationally renowned speakers to campus on any topic related to Thomistic philosophy or theology.",
    "logo": null
@@ -8452,7 +8452,7 @@
   {
    "name": "Theta Chi Fraternity Alpha Rho",
    "website": "https://www.thetachi.org/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "To bind by closer bonds the members to each other, and the mutual benefit and improvement of all members.",
    "description": "To bind by closer bonds the members to each other, and the mutual benefit and improvement of all members. To create and improve ties of each member to their community of which they reside by selfless service.",
    "logo": null
@@ -8460,7 +8460,7 @@
   {
    "name": "Theta Delta Chi",
    "website": "https://thetadeltachi.com/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Through scholarship, leadership, and a responsible social life, the Brothers of Theta Delta Chi prepare each other to…",
    "description": "Through scholarship, leadership, and a responsible social life, the Brothers of Theta Delta Chi prepare each other to thrive in a changing world!",
    "logo": null
@@ -8476,7 +8476,7 @@
   {
    "name": "Theta Xi Fraternity",
    "website": "https://uwthetaxi.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "A fraternity dedicated to helping college men succeed and grow in a friendly environment.",
    "description": "A fraternity dedicated to helping college men succeed and grow in a friendly environment.",
    "logo": null
@@ -8572,7 +8572,7 @@
   {
    "name": "Triangle Fraternity",
    "website": "https://triangleuw.com",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "The purpose of Triangle UW is to create and maintain a fraternity of engineers, architects, and scientists at the…",
    "description": "The purpose of Triangle UW is to create and maintain a fraternity of engineers, architects, and scientists at the University of Washington.",
    "logo": null
@@ -8596,7 +8596,7 @@
   {
    "name": "Tzu Chi Collegiate Association Seattle Chapter",
    "website": "https://tzuchinguw.wixsite.com/uwtc",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "The Tzu Chi Collegiate Association at Seattle (Seattle & UW Tzu Ching) is the servicebased collegiate organization…",
    "description": "The Tzu Chi Collegiate Association at Seattle (Seattle & UW Tzu Ching) is the servicebased collegiate organization that carries out the missions of the Tzu Chi Foundation. The Tzu Ching club provides an opportunity for volunteer work in the local area.",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_636644_Logo_8ac9833a-ce48-4c67-8c83-011dfd309298_11222222.png"
@@ -8908,7 +8908,7 @@
   {
    "name": "Washington Disciples For Christ",
    "website": "https://huskylink.washington.edu/wdfc/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "WDFC (Washington Disciples For Christ) is an evangelical, international student mission organization dedicated to…",
    "description": "WDFC (Washington Disciples For Christ) is an evangelical, international student mission organization dedicated to continuous witnessing for Christ, building them up, and sending them to all nations to fulfill the Great Commission",
    "logo": null
@@ -9100,7 +9100,7 @@
   {
    "name": "Wesley Club",
    "website": "https://huskylink.washington.edu/weslyclb/",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Wesley Club is an open, inclusive LGBTQ+ affirming Methodist campus ministry.",
    "description": "Wesley Club is an open, inclusive LGBTQ+ affirming Methodist campus ministry. We provide a space where everyone is welcome to come connect and be in community, explore faith in their own way, and pursue justice. Come join our table; you are welcome here!",
    "logo": null
@@ -9372,7 +9372,7 @@
   {
    "name": "Young Life College",
    "website": "https://northseattle.younglife.org",
-   "category": "Cultural",
+   "category": "Faith & Spirituality",
    "about": "Our purpose is to provide a place where students can come and enjoy fellowship in a safe welcoming community while…",
    "description": "Our purpose is to provide a place where students can come and enjoy fellowship in a safe welcoming community while learning what it means to live out our faith while enjoying college.",
    "logo": null
@@ -9412,7 +9412,7 @@
   {
    "name": "Zeta Phi Beta Sorority, Incorporated Kappa Nu Chapter",
    "website": "https://huskylink.washington.edu/kappanu/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "To foster the ideals of service, charity, scholarship, civic and cultural endeavors, sisterhood, and finer womanhood.",
    "description": "To foster the ideals of service, charity, scholarship, civic and cultural endeavors, sisterhood, and finer womanhood.",
    "logo": null
@@ -9420,7 +9420,7 @@
   {
    "name": "Zeta Psi",
    "website": "https://zetapsiuw.org/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "Zeta Psi exists to develop gentlemen, foster excellence, and provide its members with the tools, relationships, and…",
    "description": "Zeta Psi exists to develop gentlemen, foster excellence, and provide its members with the tools, relationships, and knowledge that allow us to succeed.",
    "logo": null
@@ -9428,7 +9428,7 @@
   {
    "name": "Zeta Tau Alpha",
    "website": "http://washington.zetataualpha.org/",
-   "category": "Social",
+   "category": "Greek Life",
    "about": "We are an organization that strives to promote community service, sisterhood, and education.",
    "description": "We are an organization that strives to promote community service, sisterhood, and education. These things allow us to create well rounded members that can positively affect the UW community at large and their various other communities.",
    "logo": null

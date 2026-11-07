@@ -343,6 +343,11 @@ select:focus-visible {
   gap: 8px 10px;
 }
 
+/* The fifth dropdown (club type) spans both columns */
+.filter-grid .filter-wide {
+  grid-column: 1 / -1;
+}
+
 /* Small gold label above a title (sign-in page) */
 .filters-eyebrow {
   margin: 0 0 -8px;
@@ -1344,6 +1349,23 @@ select:focus-visible {
   border-radius: 999px;
   background: var(--tint);
   color: var(--accent);
+}
+
+/* Greek Life: a pill in the theme's gold, so fraternity and sorority events stand out */
+.tag-greek {
+  background: color-mix(in srgb, var(--gold) 30%, transparent);
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.meta .tag-greek {
+  margin-right: 6px;
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .team {
