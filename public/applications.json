@@ -1,10 +1,10 @@
 {
- "updated": "2026-11-07T14:02",
+ "updated": "2026-11-07T14:45",
  "applications": [
   {
    "id": "DesAIzMhUL7",
    "host": "@vsauw",
-   "for": "ACCE fam interest",
+   "for": "ACCE Fam Interest Form",
    "deadline": "2026-11-08",
    "link": "https://linktr.ee/vsauw",
    "post": "https://www.instagram.com/p/DesAIzMhUL7/",
@@ -14,7 +14,7 @@
   {
    "id": "De9jfVIm6Yn",
    "host": "Rainy Dawg Radio (@rainydawgradio)",
-   "for": "Student radio DJ",
+   "for": "Student Radio DJ",
    "deadline": "2026-11-09",
    "link": "http://linktr.ee/rainydawg",
    "post": "https://www.instagram.com/p/De9jfVIm6Yn/",
@@ -46,9 +46,9 @@
    "host": "@vsauw",
    "for": "Club membership",
    "deadline": "2026-11-25",
-   "link": null,
+   "link": "https://linktr.ee/vsauw",
    "post": "https://www.instagram.com/p/De5hKvmGiiR/",
-   "posted": "2026-10-24",
+   "posted": "2026-10-25",
    "logo": "/ig/clubs/vsauw.jpg"
   },
   {
@@ -58,7 +58,7 @@
    "deadline": "2026-12-31",
    "link": "http://linktr.ee/bricolageuw",
    "post": "https://www.instagram.com/p/DeiQCYesjVY/",
-   "posted": "2026-10-15",
+   "posted": "2026-10-16",
    "logo": "/ig/clubs/bricolageuw.jpg"
   },
   {
@@ -70,16 +70,6 @@
    "post": "https://www.instagram.com/p/DemnPH5GPFL/",
    "posted": "2026-10-17",
    "logo": "/ig/clubs/uwimprov.jpg"
-  },
-  {
-   "id": "Der1GjVGb1k",
-   "host": "Rainy Dawg Radio (@rainydawgradio)",
-   "for": "DJ positions",
-   "deadline": null,
-   "link": null,
-   "post": "https://www.instagram.com/p/Der1GjVGb1k/",
-   "posted": "2026-10-19",
-   "logo": "/ig/clubs/rainydawgradio.jpg"
   },
   {
    "id": "Der8aVrD-ta",
@@ -104,7 +94,7 @@
   {
    "id": "De0GH4WhdBq",
    "host": "UW Recycling (@uwrecycling)",
-   "for": "Student Volunteer",
+   "for": "Husky Goods Free Store volunteer",
    "deadline": null,
    "link": "http://linktr.ee/uwrecycling",
    "post": "https://www.instagram.com/p/De0GH4WhdBq/",
@@ -154,7 +144,7 @@
   {
    "id": "De-urQeg-8Z",
    "host": "ASUW Latine Student Commission (@asuwlsc)",
-   "for": "Intern positions",
+   "for": "Latine Student Commission intern spots",
    "deadline": null,
    "link": "https://forms.cloud.microsoft/r/EbDzSFBCf1",
    "post": "https://www.instagram.com/p/De-urQeg-8Z/",
@@ -190,6 +180,16 @@
    "post": "https://www.instagram.com/p/DfI0NsIj4S6/",
    "posted": "2026-10-30",
    "logo": "/ig/clubs/uwkdchi.jpg"
+  },
+  {
+   "id": "DfQf5ZxvCv3",
+   "host": "University of Washington Army ROTC (@uwarmyrotc)",
+   "for": "ROTC scholarships",
+   "deadline": null,
+   "link": "https://www.goarmy.com/careers-and-jobs/find-your-path/army-officers/rotc/scholarships",
+   "post": "https://www.instagram.com/p/DfQf5ZxvCv3/",
+   "posted": "2026-11-02",
+   "logo": "/ig/clubs/uwarmyrotc.jpg"
   },
   {
    "id": "DfQDO3iBmaP",
