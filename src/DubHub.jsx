@@ -246,6 +246,13 @@ const TEAM = [
   { name: "Adam Nguyen", role: "Cofounder @ DubHub", github: "adamdn-code", githubPhoto: false },
   { name: "Quentin Nguyen", role: "Cofounder @ DubHub", github: "nitneuqqq" },
   {
+    name: "Abdulsemed Abdulsemed",
+    role: "Head of Engineering, Information School at the University of Washington",
+    github: null,
+    linkedin: "https://www.linkedin.com/in/abdulsemedabdulsemed/",
+    photo: "/team/abdulsemed.jpg",
+  },
+  {
     name: "Kelan Huynh",
     role: "Ambassador, Corporate Banking Club at the University of Washington",
     github: null,
