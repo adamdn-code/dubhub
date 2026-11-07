@@ -43,6 +43,7 @@ DAILY_STAMP = STATE / "scheduled_daily.txt"
 SNAPSHOT = STATE / "before_scheduled_run"
 BRANCH = "main"
 KEEP_LOGS = 60
+FETCH_TRIES, FETCH_WAIT = 10, 30  # up to ~5 minutes for the internet to come back after waking
 
 # Files the scrapers write. GENERATED ones are rebuilt every run, so leftovers can be thrown away
 # when they'd block getting the latest main; club_instagram.json is partly typed by hand, so it's
@@ -156,7 +157,15 @@ def get_latest_main(dry=False):
     code, branch = git("rev-parse", "--abbrev-ref", "HEAD")
     if code or branch != BRANCH:
         return f"the repo is on branch {branch!r}, not {BRANCH}"
-    code, out = git("fetch", "--quiet", "origin", BRANCH)
+    # Right after the computer wakes up (when a missed run starts) the internet can take a minute
+    # or two to come back, so try for a few minutes before giving up.
+    for attempt in range(1, FETCH_TRIES + 1):
+        code, out = git("fetch", "--quiet", "origin", BRANCH)
+        if code == 0:
+            break
+        if attempt < FETCH_TRIES:
+            log(f"Couldn't reach GitHub yet ({out[:120]}); trying again in {FETCH_WAIT} seconds.")
+            time.sleep(FETCH_WAIT)
     if code:
         return f"couldn't reach GitHub ({out[:200]})"
     _, ahead = git("rev-list", "--count", f"origin/{BRANCH}..HEAD")
