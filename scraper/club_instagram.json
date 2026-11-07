@@ -10,12 +10,9 @@
   "checked": "2026-10-24"
  },
  "Ability": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "ability_cse"
-  ]
+  "handle": "ability_cse",
+  "from": "website-checked",
+  "checked": "2026-11-07"
  },
  "Academic and Recreational Graduate Oceanographers": {
   "handle": null,
@@ -189,11 +186,8 @@
  },
  "Alpha Epsilon Pi Chi Deuteron Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "alphaepsilonpi"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Alpha Gamma Delta": {
   "handle": "uwalphagam",
@@ -202,11 +196,8 @@
  },
  "Alpha Kappa Alpha Sorority, Incorporated Beta Theta Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "akasorority1908"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "alpha Kappa Delta Phi at University of Washington": {
   "handle": "uw_akdphi",
@@ -275,11 +266,8 @@
  },
  "American Constitution Society": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "americanconstitutionsociety"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "American Fisheries Society University of Washington Student Chapter": {
   "handle": null,
@@ -328,11 +316,8 @@
  },
  "American Pharmacists Association: University of Washington Student Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "aphapharmacists"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "American Red Cross at UW": {
   "handle": null,
@@ -380,9 +365,9 @@
   "checked": "2026-10-24"
  },
  "Amnesty International at UW": {
-  "maybe": [
-   "amnestyusa"
-  ]
+  "handle": null,
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Amnesty International UW": {
   "handle": null,
@@ -541,11 +526,8 @@
  },
  "Asian Pacific American Medical Student Association": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "nationalapamsa"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Asian Pacific Student Dental Association at UW": {
   "handle": null,
@@ -779,11 +761,8 @@
  },
  "AYUDH UW Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "ayudhamericas"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Azerbaijani Student Association": {
   "handle": null,
@@ -827,11 +806,8 @@
  },
  "Best Buddies": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "bestbuddies"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Beta Alpha Psi": {
   "handle": null,
@@ -874,12 +850,9 @@
   "checked": "2026-10-24"
  },
  "Biology Students for Equity": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "biologystudentsforequity"
-  ]
+  "handle": "biologystudentsforequity",
+  "from": "website-checked",
+  "checked": "2026-11-07"
  },
  "Biomedical Science: Regulatory and Clinical Affairs Society": {
   "handle": null,
@@ -958,11 +931,8 @@
  },
  "Bracelets of Hopes": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "braceletsofhopes"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Brain Exercise Initiative at the University of Washington": {
   "handle": "uw_bei",
@@ -996,11 +966,8 @@
  },
  "Bridges International at the University of Washington": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "bridgesinternational"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Bridges to Health": {
   "handle": null,
@@ -1209,11 +1176,8 @@
  },
  "Chinese Covenant at the University of Washington": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "chinesecovenant"
-  ]
+  "from": "manual",
+  "checked": "2026-11-07"
  },
  "Chinese Student Association at the University of Washington": {
   "handle": "csauw",
@@ -1367,11 +1331,8 @@
  },
  "Concussion Alliance UW Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "concussionalliance"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Conlang Club at UW": {
   "handle": null,
@@ -1510,11 +1471,8 @@
  },
  "Delta Chi Fraternity at the University of Washington": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "deltachihq"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Delta Delta Delta": {
   "handle": "uwtridelta",
@@ -1527,12 +1485,9 @@
   "checked": "2026-10-24"
  },
  "Delta Epsilon Mu, Inc. Alpha Kappa Chapter": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "dem_alphakappa"
-  ]
+  "handle": "dem_alphakappa",
+  "from": "website-checked",
+  "checked": "2026-11-07"
  },
  "Delta Gamma Sorority": {
   "handle": "uwdeltagamma",
@@ -1546,19 +1501,13 @@
  },
  "Delta Kappa Epsilon": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "dkehq"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Delta Lambda Phi": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "deltalambdaphi"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Delta Pi Zeta": {
   "handle": null,
@@ -1657,11 +1606,8 @@
  },
  "Doctors for America at University of Washington": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "drsforamerica"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Dub Club Baseball": {
   "handle": "uwclubbaseball",
@@ -1694,12 +1640,9 @@
   "checked": "2026-10-24"
  },
  "Early Entrance Drama Society": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "eedramasociety"
-  ]
+  "handle": "eedramasociety",
+  "from": "website-checked",
+  "checked": "2026-11-07"
  },
  "Earthquake Engineering Research Institute at UW": {
   "handle": null,
@@ -1743,11 +1686,8 @@
  },
  "End Overdose": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "end.overdose"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Engineering Horizons Club At UW": {
   "handle": null,
@@ -1761,11 +1701,8 @@
  },
  "Engineers In Action University of Washington Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "engineersinaction"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Engineers of Art": {
   "handle": null,
@@ -1984,11 +1921,8 @@
  },
  "Foster Evening MBA Association": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "fosterevemba"
-  ]
+  "from": "manual",
+  "checked": "2026-11-07"
  },
  "Foster Level Up! Interactive Entertainment Association": {
   "handle": null,
@@ -2117,11 +2051,8 @@
  },
  "Girls Who Code College Loops UW Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "girlswhocode"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Girlz Gone Wild Womxn’s Outdoors Collective": {
   "handle": null,
@@ -2224,12 +2155,9 @@
   "checked": "2026-10-24"
  },
  "Grey Matters Journal": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "greymattersjournal"
-  ]
+  "handle": "greymattersjournal",
+  "from": "website-checked",
+  "checked": "2026-11-07"
  },
  "GRIT LIFT Bodybuilding Club @UW": {
   "handle": null,
@@ -2333,11 +2261,8 @@
  },
  "Hindu YUVA at the University of Washington": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "hinduyuvausa"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Hip Hop Student Association": {
   "handle": "uwhhsa",
@@ -2421,11 +2346,8 @@
  },
  "Humility, Kindness and Love": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "hklglobal"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Huskies Discuss": {
   "handle": null,
@@ -2739,11 +2661,8 @@
  },
  "Immigrant Rights are Human Rights: Students for La Resistencia": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "laresistencianw"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "implement at UW": {
   "handle": null,
@@ -3042,11 +2961,8 @@
  },
  "Kappa Theta Pi": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "ktpnational"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Kathakaars": {
   "handle": null,
@@ -3115,11 +3031,8 @@
  },
  "Kyokushin Karate Washington Club": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "kyokushinkarateny"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Lambda Theta Alpha Latin Sorority, Incorporated.": {
   "handle": "lta_gammaomicron",
@@ -3128,11 +3041,8 @@
  },
  "Lambda Theta Phi Latin Fraternity, Inc. Delta Mu Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "lambdas1975"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Lao Student Association": {
   "handle": "laosa.uw",
@@ -3606,11 +3516,8 @@
  },
  "Narcare, University of Washington Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "narcare_national"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "National Community Pharmacists Association, UW Student Chapter": {
   "handle": null,
@@ -3664,11 +3571,8 @@
  },
  "NCODA UW Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "ncodaorg"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Nepali Student Association at University of Washington": {
   "handle": null,
@@ -3716,12 +3620,9 @@
   "checked": "2026-10-24"
  },
  "New Student and Transfer Programs": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "uwnstp"
-  ]
+  "handle": "uwnstp",
+  "from": "website-checked",
+  "checked": "2026-11-07"
  },
  "Nikkei Student Union at UW": {
   "handle": "nsu_uw",
@@ -3730,11 +3631,8 @@
  },
  "NMDP UW": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "nmdp_org"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "North African Student Association": {
   "handle": null,
@@ -3923,11 +3821,8 @@
  },
  "Perfect Pair": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "perfectpairorg"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Periodontics Dental Student Interest Group": {
   "handle": null,
@@ -3991,11 +3886,8 @@
  },
  "Phi Lambda Sigma Pharmacy Leadership Society": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "philambdasigma"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Phi Mu Eta Beta Chapter": {
   "handle": "uwphimu",
@@ -4069,11 +3961,8 @@
  },
  "Plant Futures UW Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "plantfuturesofficial"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Plastic and Reconstructive Surgery Interest Group": {
   "handle": null,
@@ -4087,11 +3976,8 @@
  },
  "Plus One Foundation UW Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "plusonefoundation"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "PM Association": {
   "handle": "uwpma",
@@ -4169,12 +4055,9 @@
   "checked": "2026-11-05"
  },
  "Program on Climate Change Undergraduate Cohort": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "uwpccuco"
-  ]
+  "handle": "uwpccuco",
+  "from": "website-checked",
+  "checked": "2026-11-07"
  },
  "Progressive Student Union at UW": {
   "handle": "uw_psu",
@@ -4262,12 +4145,9 @@
   "checked": "2026-11-07"
  },
  "Pup Support": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "pupsupport"
-  ]
+  "handle": "pupsupport",
+  "from": "website-checked",
+  "checked": "2026-11-07"
  },
  "Purple Ambassadors at UW": {
   "handle": null,
@@ -4336,11 +4216,8 @@
  },
  "REACH": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "reachnatl"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Reformed University Fellowship": {
   "handle": "ruf_uw",
@@ -4349,12 +4226,8 @@
  },
  "Regeneration Field Institute UW Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "regenerationfieldinstitute",
-   "rfi_ucsd"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Registered Student Organization Accounts": {
   "handle": null,
@@ -4368,11 +4241,8 @@
  },
  "Resonate Church Community": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "resonatechurch"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Responsible AI": {
   "handle": null,
@@ -4661,11 +4531,8 @@
  },
  "Socialist Alternative at UW": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "socialist_alternative"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Society for Advanced Rocket Propulsion": {
   "handle": "uwsarp",
@@ -4853,9 +4720,9 @@
   "checked": "2026-10-24"
  },
  "STEM Outreach Club": {
-  "maybe": [
-   "stembookclubs"
-  ]
+  "handle": null,
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "STEM Pals": {
   "handle": null,
@@ -4999,11 +4866,8 @@
  },
  "Students Demand Action UW Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "studentsdemand"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Students for a National Health Program at the University of Washington": {
   "handle": null,
@@ -5122,19 +4986,13 @@
  },
  "Taiwanese Youth Alliance of Pacific Northwest": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "tyapntaiwan"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "TAMID UW": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "tamidgroup"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Tango Club at University of Washington": {
   "handle": null,
@@ -5288,19 +5146,13 @@
  },
  "The Foundation for International Understanding Through Students ( FIUTS ) Student Board": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "fiuts_nw"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "The Gaia Project at University of Washington": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "tgp_thegaiaproject"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "The Garden of Ideas": {
   "handle": "gardenofideasuw",
@@ -5344,11 +5196,8 @@
  },
  "The Lovely Sisterhood of Chi Delta Sigma Sorority, Incorporated ( Inc. )": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "chideltasigma"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "The Museum Society at UW": {
   "handle": null,
@@ -5372,11 +5221,8 @@
  },
  "The Pursuit NW Young Adults": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "thepursuitnw"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "The Songwriters Circle at UW": {
   "handle": null,
@@ -5404,12 +5250,9 @@
   "checked": "2026-10-24"
  },
  "The Washington Journal of Social and Environmental Justice": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "w.j.s.e.j"
-  ]
+  "handle": "w.j.s.e.j",
+  "from": "website-checked",
+  "checked": "2026-11-07"
  },
  "The Wildlife Society UW Student Chapter": {
   "handle": null,
@@ -5502,12 +5345,9 @@
   "checked": "2026-10-24"
  },
  "Triangle Fraternity": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "uw_triangle"
-  ]
+  "handle": "uw_triangle",
+  "from": "website-checked",
+  "checked": "2026-11-07"
  },
  "Turkish Student Association at the University of Washington": {
   "handle": "uw_tsa",
@@ -5591,11 +5431,8 @@
  },
  "University District Street Medicine": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "udstreetmed"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Unleashed! A Cappella": {
   "handle": null,
@@ -5669,11 +5506,8 @@
  },
  "Vietnam Health Clinic": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "vietnamhealthclinic"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "Vietnamese International Student Association at the University of Washington": {
   "handle": null,
@@ -5867,11 +5701,8 @@
  },
  "WiCyS UW Chapter": {
   "handle": null,
-  "from": null,
-  "checked": "2026-10-24",
-  "maybe": [
-   "wicysorg"
-  ]
+  "from": "guess-none",
+  "checked": "2026-11-07"
  },
  "WiUX: Women in User Experience": {
   "handle": "womeninux_uw",

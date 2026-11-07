@@ -52,6 +52,10 @@ SMALL_WORDS = {"the", "of", "at", "and", "for", "in", "a", "an", "to", "on", "&"
 WEAK_WORDS = GENERIC_WORDS | {"american", "international", "national", "global", "community", "united",
                               "world", "northwest", "pacific", "seattle", "group", "team", "organization"}
 UW_SIGN = re.compile(r"\buw\b|university of washington|\bhusk(y|ies)\b|\bseattle\b|uofwa|\budub\b|\bdawgs?\b", re.I)
+# "Seattle" alone also fits city-wide groups ("Seattle Chinese Covenant Church"), so it only counts
+# when the username itself sounds like UW.
+STRONG_UW_SIGN = re.compile(r"\buw\b|university of washington|\bhusk(y|ies)\b|uofwa|\budub\b|\bdawgs?\b", re.I)
+UW_USERNAME = re.compile(r"uw|husk|dub|dawg", re.I)
 OTHER_SCHOOL = re.compile(
     r"wisconsin|madison|milwaukee|eau claire|la ?crosse|oshkosh|whitewater|stevens point|green bay|"
     r"platteville|river falls|parkside|waterloo|tacoma|bothell|seattle ?u\b|seattle university|"
@@ -100,6 +104,8 @@ def is_the_club(user, name):
         return False, "names another school"
     if not UW_SIGN.search(text):
         return False, "doesn't say UW"
+    if not STRONG_UW_SIGN.search(text) and not UW_USERNAME.search(user.get("username") or ""):
+        return False, "only says Seattle"
     own = [w for w in re.findall(r"[a-z0-9]+", base_name(name).lower()) if len(w) >= 4 and w not in WEAK_WORDS]
     about = " ".join(filter(None, [user.get("full_name"), user.get("biography")])).lower()
     if own:
