@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, CircleMarker, Marker, ZoomControl, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
@@ -1253,40 +1253,100 @@ function BaseMap({ palette }) {
   return null;
 }
 
-// Hovering a dot opens its pop-up (same as clicking). It stays open while the mouse is on the dot
-// or the pop-up, so its buttons can still be clicked, and closes shortly after the mouse leaves.
-// The hovered (or tapped) dot's event, shown in a panel docked in the map's corner instead of a
-// pop-up above the dot, so it's never cut off at the map's edge.
-function MapEventCard({ event, j, onEnter, onLeave, onClose }) {
+// How big an event's dot is drawn: bigger the more people are going, and when it's the one shown.
+const dotRadius = (e, on) => 9 + Math.min((e.rsvps ?? e.going ?? 0) / 6, 8) + (on ? 3 : 0);
+
+const CARD_GAP = 16; // space between the dot and the card
+const CARD_EDGE = 12; // the card stays at least this far inside the map's edges
+
+// Where the card goes, in pixels from the map's top left: right of the dot, or left of it when
+// there's more room there, level with the dot but moved up or down to stay inside the map.
+// `arrow` is how far down the card the dot is, for the little pointer at it (null when the map is
+// too narrow for the card to fit beside the dot and it has to cover it).
+function placeBeside(map, event, card) {
+  const size = map.getSize();
+  const dot = map.latLngToContainerPoint(event.pos);
+  const reach = dotRadius(event, true) + CARD_GAP;
+  const w = card.offsetWidth;
+  const h = card.offsetHeight;
+  const roomRight = size.x - CARD_EDGE - (dot.x + reach);
+  const roomLeft = dot.x - reach - CARD_EDGE;
+  const side = roomRight >= w || roomRight >= roomLeft ? "right" : "left";
+  const want = side === "right" ? dot.x + reach : dot.x - reach - w;
+  const left = Math.max(CARD_EDGE, Math.min(want, size.x - CARD_EDGE - w));
+  const top = Math.max(CARD_EDGE, Math.min(dot.y - h / 2, size.y - CARD_EDGE - h));
+  const beside = Math.abs(left - want) < 1;
+  return { left, top, side, arrow: beside ? Math.max(18, Math.min(dot.y - top, h - 18)) : null };
+}
+
+// The hovered (or tapped) dot's event, in a card right next to the dot. It's kept inside the map
+// (flipping to the dot's other side near the right edge), follows the dot when the map moves, and
+// stays open while the mouse is on the dot or the card, so its buttons can be clicked. On phones
+// it's docked across the top of the map instead (see DubHub.css), since there's no room beside a dot.
+function MapEventCard({ event, map, j, onEnter, onLeave, onClose }) {
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  const ref = useRef();
+  const [place, setPlace] = useState(null);
+  useLayoutEffect(() => {
+    const card = ref.current;
+    if (!map || !event.pos || !card) return;
+    const update = () => setPlace(placeBeside(map, event, card));
+    update();
+    map.on("move zoom resize", update);
+    const resized = new ResizeObserver(update); // e.g. the club's logo loading in
+    resized.observe(card);
+    return () => {
+      map.off("move zoom resize", update);
+      resized.disconnect();
+    };
+  }, [map, event]);
+
   const e = event;
+  const style = place && { "--card-x": `${place.left}px`, "--card-y": `${place.top}px`, "--arrow-y": `${place.arrow ?? 0}px` };
+  const where = place ? ` beside on-${place.side}${place.arrow != null ? " pointed" : ""}` : "";
   return (
-    <aside className="map-card" aria-label={`${e.title}, hosted by ${hostName(e)}`} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+    <aside
+      ref={ref}
+      className={`map-card${where}`}
+      style={style || undefined}
+      aria-label={`${e.title}, hosted by ${hostName(e)}`}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
       <button className="map-card-close" aria-label="Close" onClick={onClose}>
         &times;
       </button>
-      <div className="map-popup">
-        <div className="map-popup-club">
-          <Thumb src={e.club?.logo} label={hostName(e)} color={eventColor(e)} className="map-popup-logo" />
-          <span className="map-popup-club-label">Hosted by</span>
-          <span className="map-popup-club-name">{hostName(e)}</span>
-        </div>
-        <div className="map-popup-main">
-          <strong>{e.title}</strong>
-          {[formatWhen(e), e.where, going(e, j)].filter(Boolean).map((line) => (
-            <div key={line}>{line}</div>
-          ))}
-          {shortText(e.description) && <p className="map-popup-desc">{shortText(e.description)}</p>}
-          <JoinButton event={e} j={j} /> <PostLink event={e} />
+      <div className="map-card-body">
+        <div className="map-popup">
+          <div className="map-popup-club">
+            <Thumb src={e.club?.logo} label={hostName(e)} color={eventColor(e)} className="map-popup-logo" />
+            <span className="map-popup-club-label">Hosted by</span>
+            <span className="map-popup-club-name">{hostName(e)}</span>
+          </div>
+          <div className="map-popup-main">
+            <strong>{e.title}</strong>
+            {[formatWhen(e), e.where, going(e, j)].filter(Boolean).map((line) => (
+              <div key={line}>{line}</div>
+            ))}
+            {shortText(e.description) && <p className="map-popup-desc">{shortText(e.description)}</p>}
+            <JoinButton event={e} j={j} /> <PostLink event={e} />
+          </div>
         </div>
       </div>
     </aside>
   );
+}
+
+// Hands the Leaflet map up to Home, so the event card can find where a dot is on screen.
+function MapReady({ onReady }) {
+  const map = useMap();
+  useEffect(() => onReady(map), [map, onReady]);
+  return null;
 }
 
 // Clicking the map itself (not a dot) closes the panel.
@@ -1306,7 +1366,7 @@ function isSoon(e) {
   return end >= now && start <= now + INTRO_HOURS * 36e5;
 }
 
-function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, onMapClick, palette }) {
+function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, onMapClick, onMap, palette }) {
   const located = events.filter((e) => e.pos);
   // One intro label per place, so events in the same building don't pile up. Only events
   // happening in the next day get one; the rest are still dots you can hover.
@@ -1343,7 +1403,7 @@ function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, o
           <CircleMarker
             key={e.id}
             center={e.pos}
-            radius={9 + Math.min((e.rsvps ?? e.going ?? 0) / 6, 8) + (on ? 3 : 0)}
+            radius={dotRadius(e, on)}
             pathOptions={{ color: on ? "#b7a57a" : "#fff", weight: on ? 4 : 2, fillColor: eventColor(e), fillOpacity: 0.95 }}
             bubblingMouseEvents={false}
             eventHandlers={{ mouseover: () => onHover(e), mouseout: onLeave, click: () => onPin(e) }}
@@ -1351,6 +1411,7 @@ function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, o
         );
       })}
       <MapClicks onClick={onMapClick} />
+      <MapReady onReady={onMap} />
       {introLabels && <IntroLabels places={places} />}
     </MapContainer>
   );
@@ -1381,6 +1442,7 @@ function MapLegend({ events }) {
 
 function Home({ f, area, introLabels, j, palette }) {
   const [shown, setShown] = useState(null); // { event, pinned }
+  const [map, setMap] = useState(null);
   const hideTimer = useRef();
   const keep = () => clearTimeout(hideTimer.current);
   const show = (event, pinned = false) => {
@@ -1409,6 +1471,7 @@ function Home({ f, area, introLabels, j, palette }) {
         onLeave={hideSoon}
         onPin={(e) => show(e, true)}
         onMapClick={close}
+        onMap={setMap}
         palette={palette}
       />
       <MapLegend events={f.events} />
@@ -1417,7 +1480,9 @@ function Home({ f, area, introLabels, j, palette }) {
         <h1>See what's happening at UW, right now.</h1>
         <p>Study sessions, club meetings, game nights, and dinner plans, all on one map.</p>
       </div>
-      {event && <MapEventCard event={event} j={j} onEnter={keep} onLeave={hideSoon} onClose={close} />}
+      {event && (
+        <MapEventCard key={event.id} event={event} map={map} j={j} onEnter={keep} onLeave={hideSoon} onClose={close} />
+      )}
     </main>
   );
 }
