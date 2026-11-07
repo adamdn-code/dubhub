@@ -4,15 +4,22 @@
 //        -> { ok: true }                                      (signed in with a UW account)
 //      resume / extra: { name, data } with data the file in base64. A resume is required; extra
 //      (a cover letter or portfolio) is optional. PDF or Word, up to the sizes in src/jobs.js.
-// GET  /api/apply?mine=1               -> { jobs: [ids of roles you applied to] }  (signed in)
+// GET  /api/apply?mine=1               -> { jobs: [ids of roles you applied to],
+//                                           applications: [your applications: status, interview,
+//                                           and the team's messages to you] }   (signed in)
 // GET  /api/apply?all=1                -> { applications: [...] }  (moderators only, no files)
 // GET  /api/apply?file=<id>&kind=resume|extra  -> the file itself  (moderators only)
+// PATCH /api/apply { id, status?, message?: { text, internal }, interview?: { start, minutes,
+//        where, note } | null }        -> { application }  (moderators only: answer an applicant,
+//        leave a private note, set the status, or schedule, change, or cancel an interview)
 //
 // Moderators are the accounts in the MODERATOR_EMAILS setting (see _lib.js).
 //
-// Stored in Redis: application:<id> = the application (without files), applications = a list of
-// ids (newest first), applied:<email> = the set of roles you applied to (one application per role),
-// and appfile:<id>:<kind>:<n> = each file in base64, in pieces small enough for one request each.
+// Stored in Redis: application:<id> = the application (without files, with its status, interview,
+// and thread of messages and changes), applications = a list of ids (newest first),
+// applied:<email> = the set of roles you applied to (one application per role), myapps:<email> =
+// { role: application id }, and appfile:<id>:<kind>:<n> = each file in base64, in pieces small
+// enough for one request each.
 import crypto from "node:crypto";
 import { db, isModerator, json, missingConfig, sessionFrom } from "./_lib.js";
 import { FILE_LIMITS, JOBS } from "../src/jobs.js";
@@ -23,6 +30,9 @@ const ID = /^[a-z0-9-]{6,40}$/;
 
 const appKey = (id) => `application:${id}`;
 const appliedKey = (email) => `applied:${email}`;
+const myAppsKey = (email) => `myapps:${email}`;
+const STATUSES = ["new", "reviewing", "interview", "offer", "declined"];
+const INTERVIEW_MINUTES = [15, 20, 30, 45, 60, 90];
 const pieceKey = (id, kind, n) => `appfile:${id}:${kind}:${n}`;
 
 const text = (value, max) => (typeof value === "string" ? value.trim().slice(0, max) : "");
@@ -104,13 +114,99 @@ async function submit(req, res, session) {
       answers,
       files: { resume: info(files.resume), extra: info(files.extra) },
       at: new Date().toISOString(),
+      status: "new",
+      thread: [],
     });
     await db().lpush("applications", id);
+    await db().hset(myAppsKey(session.email), { [job.id]: id });
   } catch (err) {
     await db().srem(appliedKey(session.email), job.id); // so you can try again
     throw err;
   }
   return json(res, 200, { ok: true });
+}
+
+// What an applicant sees of their own application: no private notes, and no one's email address.
+function applicantView(app) {
+  return {
+    id: app.id,
+    jobId: app.jobId,
+    jobTitle: app.jobTitle,
+    at: app.at,
+    status: app.status ?? "new",
+    interview: app.interview ? { start: app.interview.start, minutes: app.interview.minutes, where: app.interview.where, note: app.interview.note } : null,
+    messages: (app.thread ?? []).filter((t) => t.kind === "message" && !t.internal).map(({ at, by, text: body }) => ({ at, by, text: body })),
+  };
+}
+
+async function mine(res, session) {
+  const jobs = (await db().smembers(appliedKey(session.email))) || [];
+  const ids = (await db().hgetall(myAppsKey(session.email))) || {};
+  if (jobs.some((job) => !ids[job])) {
+    // Sent before applications were listed per person: find them in the full list, once.
+    const all = (await db().lrange("applications", 0, MAX_APPLICATIONS - 1)) || [];
+    const pipe = db().pipeline();
+    for (const id of all) pipe.get(appKey(id));
+    const found = all.length ? await pipe.exec() : [];
+    for (const app of found) if (app?.email === session.email) ids[app.jobId] = app.id;
+    if (Object.keys(ids).length) await db().hset(myAppsKey(session.email), ids);
+  }
+  const list = Object.values(ids).filter((id) => ID.test(id));
+  const pipe = db().pipeline();
+  for (const id of list) pipe.get(appKey(id));
+  const apps = list.length ? (await pipe.exec()).filter((app) => app?.email === session.email) : [];
+  return json(res, 200, { jobs, applications: apps.map(applicantView) });
+}
+
+// A moderator answers an application: a message (to the applicant, or a private note), a new
+// status, and/or an interview (null cancels it). Each change is added to the application's thread.
+async function update(req, res, session) {
+  const body = req.body || {};
+  const id = String(body.id || "");
+  const app = ID.test(id) ? await db().get(appKey(id)) : null;
+  if (!app) return json(res, 404, { error: "That application isn't there anymore" });
+  const by = session.name || session.email;
+  const at = new Date().toISOString();
+  const thread = app.thread ?? [];
+  let status = body.status;
+  let statusFromInterview = false; // scheduling an interview moves it along without a separate entry
+
+  if (body.interview === null) {
+    if (app.interview) thread.push({ kind: "interview-cancelled", by, at });
+    app.interview = null;
+  } else if (body.interview) {
+    const start = Date.parse(body.interview.start);
+    const minutes = Number(body.interview.minutes);
+    const where = text(body.interview.where, 200);
+    if (!Number.isFinite(start) || start < Date.now() - 864e5 || start > Date.now() + 366 * 864e5) {
+      return json(res, 400, { error: "Pick a date and time for the interview" });
+    }
+    if (!INTERVIEW_MINUTES.includes(minutes)) return json(res, 400, { error: "Pick how long the interview is" });
+    if (!where) return json(res, 400, { error: "Say where the interview is: a room, or a video call link" });
+    app.interview = { start: new Date(start).toISOString(), minutes, where, note: text(body.interview.note, 500), by, at };
+    thread.push({ kind: "interview", by, at, interview: app.interview });
+    if (status === undefined) {
+      status = "interview";
+      statusFromInterview = true;
+    }
+  }
+
+  if (body.message) {
+    const message = text(body.message.text, 2000);
+    if (!message) return json(res, 400, { error: "Write something first" });
+    thread.push({ kind: "message", by, at, text: message, internal: body.message.internal === true });
+  }
+
+  if (status !== undefined) {
+    if (!STATUSES.includes(status)) return json(res, 400, { error: "That isn't a status" });
+    if (status !== (app.status ?? "new") && !statusFromInterview) thread.push({ kind: "status", by, at, status });
+    app.status = status;
+  }
+
+  app.thread = thread;
+  app.updatedAt = at;
+  await db().set(appKey(id), app);
+  return json(res, 200, { application: app });
 }
 
 async function sendFile(req, res) {
@@ -138,9 +234,13 @@ export default async function handler(req, res) {
   if (!session) return json(res, 401, { error: "Sign in with your UW account to apply" });
 
   if (req.method === "POST") return submit(req, res, session);
-  if (req.method !== "GET") return json(res, 405, { error: "Use GET or POST" });
+  if (req.method === "PATCH") {
+    if (!isModerator(session)) return json(res, 403, { error: "Only DubHub's moderators can answer applications" });
+    return update(req, res, session);
+  }
+  if (req.method !== "GET") return json(res, 405, { error: "Use GET, POST, or PATCH" });
 
-  if (req.query.mine) return json(res, 200, { jobs: (await db().smembers(appliedKey(session.email))) || [] });
+  if (req.query.mine) return mine(res, session);
   if (!isModerator(session)) return json(res, 403, { error: "Only DubHub's moderators can see applications" });
   if (req.query.file) return sendFile(req, res);
 

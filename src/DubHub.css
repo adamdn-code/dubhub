@@ -3034,3 +3034,411 @@ select:focus-visible {
   color: var(--text);
   font-weight: 600;
 }
+
+/* ---------------------------------------------- Hiring (moderators only) --- */
+.hiring {
+  display: grid;
+  grid-template-columns: minmax(250px, 320px) 1fr;
+  align-items: start;
+  gap: 16px;
+}
+
+.hiring-list,
+.hiring-detail,
+.hiring-empty {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.hiring-list {
+  position: sticky; /* stays in view while you read a long application */
+  top: 0;
+  padding: 12px;
+}
+
+.hiring-list ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 70vh;
+  margin: 10px 0 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+}
+
+.hiring-filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.hiring-filters select,
+.status-pick select,
+.status-after select {
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid var(--field-line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+}
+
+.hiring-none {
+  margin: 14px 4px 4px;
+}
+
+.hiring-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.hiring-row:hover {
+  background: var(--tint);
+}
+
+.hiring-row.on {
+  background: var(--tint);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.hiring-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.status-chip {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--tint);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-chip.new {
+  background: color-mix(in srgb, var(--chart-1) 20%, transparent);
+  color: var(--text);
+}
+
+.status-chip.interview {
+  background: color-mix(in srgb, var(--chart-2) 28%, transparent);
+  color: var(--text);
+}
+
+.status-chip.offer {
+  background: color-mix(in srgb, var(--good) 22%, transparent);
+  color: var(--text);
+}
+
+.status-chip.declined {
+  background: var(--line);
+  color: var(--muted);
+}
+
+.hiring-empty {
+  padding: 48px 20px;
+  text-align: center;
+}
+
+.hiring-detail {
+  padding: 18px 20px 22px;
+}
+
+.page .hiring-detail h2 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.hiring-detail h3 {
+  margin: 24px 0 8px;
+  font-size: 15px;
+}
+
+.hiring-detail .meta {
+  margin: 2px 0 6px;
+}
+
+.detail-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.status-pick {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hiring-back {
+  display: none;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+.answers dt {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.answers dd {
+  margin: 2px 0 0;
+  white-space: pre-wrap;
+}
+
+.interview-card {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--tint);
+  border-radius: 10px;
+}
+
+.interview-card > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.interview-card p {
+  margin: 4px 0 0;
+  white-space: pre-wrap;
+}
+
+.interview-card .meta {
+  margin: 0;
+}
+
+.interview-icon {
+  display: grid;
+  color: var(--accent);
+}
+
+.interview-icon .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.interview-links,
+.interview-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.interview-links a,
+.thread-email {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.interview-card .link-button,
+.form-buttons .link-button {
+  color: var(--accent);
+  font-size: 13px;
+}
+
+.interview-form {
+  margin-top: 0;
+}
+
+.form-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.form-buttons .join {
+  margin-top: 0;
+}
+
+.thread {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.thread-item {
+  padding: 10px 12px;
+  background: var(--tint);
+  border-radius: 10px;
+}
+
+.thread-item.note {
+  background: color-mix(in srgb, var(--chart-2) 16%, transparent);
+}
+
+.thread-item.event {
+  padding: 2px 12px;
+  background: none;
+  border-left: 2px solid var(--line);
+  border-radius: 0;
+  font-size: 14px;
+}
+
+.thread-item p {
+  margin: 4px 0 0;
+  white-space: pre-wrap;
+}
+
+.thread-item.event p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.thread-head {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.thread-head strong {
+  color: var(--text);
+}
+
+.note-tag {
+  margin-left: 8px;
+  padding: 0 7px;
+  background: var(--surface);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.thread-email {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.composer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.composer textarea {
+  min-height: 120px;
+  padding: 9px 11px;
+  background: var(--surface);
+  border: 1px solid var(--field-line);
+  border-radius: 8px;
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+}
+
+.composer textarea:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.templates {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.templates .chip-btn {
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+.composer-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+}
+
+.composer-foot .join {
+  margin: 0 0 0 auto;
+}
+
+.check,
+.status-after {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.composer-hint {
+  margin: 0;
+  font-size: 12px;
+}
+
+.my-application {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.job-modal .my-application h3 {
+  margin: 0 0 2px;
+}
+
+.my-application > .meta {
+  margin: 0 0 10px;
+}
+
+.job-modal .thread {
+  padding: 0; /* not the role's bulleted lists */
+}
+
+.my-application .interview-card + .thread {
+  margin-top: 10px;
+}
+
+.mod-note {
+  margin-top: 16px;
+}
+
+.mod-note .link-button {
+  color: var(--accent);
+}
+
+/* Phones: the list, then one application at a time */
+@media (max-width: 760px) {
+  .hiring {
+    grid-template-columns: 1fr;
+  }
+  .hiring-page.reading .hiring-list,
+  .hiring-page:not(.reading) .hiring-empty {
+    display: none;
+  }
+  .hiring-back {
+    display: inline;
+  }
+}

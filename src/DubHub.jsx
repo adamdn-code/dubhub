@@ -18,6 +18,7 @@ const TAB_ICONS = {
   Clubs: "M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21v-1a7 7 0 0 1 14 0v1M16 3.5a4 4 0 0 1 0 7.5M18 14a6 6 0 0 1 4 6v1",
   About: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 16v-5M12 8h.01",
   Stats: "M4 20V11M10 20V5M16 20v-6M2 20h20",
+  Hiring: "M3 7h18v13H3zM8 7V4h8v3M3 12h18",
 };
 
 function Icon({ d }) {
@@ -2561,41 +2562,77 @@ function readBase64(file) {
 // The roles you've applied for, so their cards say so (kept per sign-in, like Joins).
 function useMyApplications(user) {
   const token = user?.token;
-  const [mine, setMine] = useState({ token: null, jobs: [] });
+  const [mine, setMine] = useState({ token: null, jobs: [], apps: [] });
   useEffect(() => {
     if (!token) return;
     let cancelled = false;
     fetch("/api/apply?mine=1", { headers: { Authorization: `Bearer ${token}` } })
       .then((r) => (r.ok ? r.json() : null))
-      .then((d) => !cancelled && d?.jobs && setMine((m) => ({ token, jobs: [...new Set([...d.jobs, ...(m.token === token ? m.jobs : [])])] })))
+      .then(
+        (d) =>
+          !cancelled &&
+          d?.jobs &&
+          setMine((m) => ({
+            token,
+            jobs: [...new Set([...d.jobs, ...(m.token === token ? m.jobs : [])])],
+            apps: d.applications ?? [],
+          }))
+      )
       .catch(() => {});
     return () => {
       cancelled = true;
     };
   }, [token]);
   const markApplied = useCallback(
-    (jobId) => setMine((m) => ({ token, jobs: [...new Set([...(m.token === token ? m.jobs : []), jobId])] })),
+    (jobId) =>
+      setMine((m) => ({
+        token,
+        jobs: [...new Set([...(m.token === token ? m.jobs : []), jobId])],
+        apps: m.token === token ? m.apps : [],
+      })),
     [token]
   );
-  return [mine.token === token ? mine.jobs : [], markApplied];
+  const current = mine.token === token;
+  // Your roles, a way to mark a new one, and your applications (status, interview, messages).
+  return [current ? mine.jobs : [], markApplied, current ? mine.apps : []];
 }
 
-// Every application, for DubHub's moderators (null for everyone else; the server checks too).
-function useAllApplications(user, moderator) {
+// Every application, for DubHub's moderators, and `update` to answer one (the server checks too).
+function useHiring(user, moderator) {
   const token = user?.token;
-  const [all, setAll] = useState({ token: null, list: null });
+  const [all, setAll] = useState({ token: null, list: null, error: false });
   useEffect(() => {
     if (!token || !moderator) return;
     let cancelled = false;
     fetch("/api/apply?all=1", { headers: { Authorization: `Bearer ${token}` } })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => !cancelled && setAll({ token, list: d?.applications ?? null }))
-      .catch(() => {});
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((d) => !cancelled && setAll({ token, list: d.applications ?? [], error: false }))
+      .catch(() => !cancelled && setAll({ token, list: null, error: true }));
     return () => {
       cancelled = true;
     };
   }, [token, moderator]);
-  return moderator && all.token === token ? all.list : null;
+  // Saves a change to one application. Resolves to an error message, or null when it worked.
+  const update = useCallback(
+    async (id, change) => {
+      try {
+        const r = await fetch("/api/apply", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ id, ...change }),
+        });
+        const d = await r.json().catch(() => ({}));
+        if (!r.ok) return d.error || "Couldn't save that. Try again.";
+        setAll((a) => ({ ...a, list: a.list?.map((x) => (x.id === id ? d.application : x)) ?? null }));
+        return null;
+      } catch {
+        return "Couldn't reach DubHub. Check your connection and try again.";
+      }
+    },
+    [token]
+  );
+  const current = moderator && all.token === token;
+  return { list: current ? all.list : null, error: current && all.error, update };
 }
 
 // A file picker you can also drop a file on: a PDF or Word document up to `limit` bytes.
@@ -2787,7 +2824,7 @@ function ApplicationForm({ job, user, onApplied, onNeedSignIn }) {
   );
 }
 
-function JobDialog({ job, user, applied, startOnForm, onApplied, onNeedSignIn, onClose }) {
+function JobDialog({ job, user, applied, myApp, startOnForm, onApplied, onNeedSignIn, onClose }) {
   const signedIn = Boolean(user?.token);
   const [applying, setApplying] = useState(startOnForm && signedIn && !applied);
   useEffect(() => {
@@ -2831,9 +2868,13 @@ function JobDialog({ job, user, applied, startOnForm, onApplied, onNeedSignIn, o
               ))}
             </ul>
             {applied ? (
-              <p className="applied-note">
-                <Icon d={CHECK_ICON} /> You've applied for this role.
-              </p>
+              myApp ? (
+                <MyApplication app={myApp} job={job} />
+              ) : (
+                <p className="applied-note">
+                  <Icon d={CHECK_ICON} /> You've applied for this role.
+                </p>
+              )
             ) : (
               <button className="join apply-submit" onClick={() => (signedIn ? setApplying(true) : onNeedSignIn(job.id))}>
                 {signedIn ? "Apply" : "Sign in to apply"}
@@ -2851,102 +2892,9 @@ function questionLabel(jobId, questionId) {
   return JOBS.find((j) => j.id === jobId)?.questions.find((q) => q.id === questionId)?.label ?? questionId;
 }
 
-function ApplicationsAdmin({ applications, user }) {
-  const [role, setRole] = useState("");
-  const [error, setError] = useState(null);
-  const shown = applications.filter((a) => !role || a.jobId === role);
-
-  async function download(app, kind) {
-    setError(null);
-    try {
-      const r = await fetch(`/api/apply?file=${encodeURIComponent(app.id)}&kind=${kind}`, { headers: authHeader(user) });
-      if (!r.ok) throw new Error(r.status);
-      const url = URL.createObjectURL(await r.blob());
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = app.files[kind].name;
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 30000);
-    } catch {
-      setError("Couldn't download that file. Try again.");
-    }
-  }
-
-  return (
-    <div className="apps-admin">
-      <div className="apps-head">
-        <h3>Applications ({applications.length})</h3>
-        <span className="meta">Only moderators can see this.</span>
-        <select value={role} onChange={(e) => setRole(e.target.value)} aria-label="Show applications for">
-          <option value="">All roles</option>
-          {JOBS.map((j) => (
-            <option key={j.id} value={j.id}>
-              {j.title}
-            </option>
-          ))}
-        </select>
-      </div>
-      {error && <p className="form-error">{error}</p>}
-      {shown.length === 0 ? (
-        <p className="meta">No applications yet.</p>
-      ) : (
-        <ul className="apps-list">
-          {shown.map((a) => (
-            <li key={a.id}>
-              <details>
-                <summary>
-                  <strong>{a.name}</strong>
-                  <span>{a.jobTitle}</span>
-                  <span className="meta">
-                    {new Date(a.at).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}
-                  </span>
-                </summary>
-                <div className="app-body">
-                  <p className="meta">
-                    <a href={`mailto:${a.email}`}>{a.email}</a>
-                    {[a.phone, a.year, a.major].filter(Boolean).map((x) => ` · ${x}`)}
-                  </p>
-                  {a.links &&
-                    (/^https?:\/\/\S+$/i.test(a.links) ? (
-                      <p>
-                        <a href={a.links} target="_blank" rel="noreferrer noopener">
-                          {a.links}
-                        </a>
-                      </p>
-                    ) : (
-                      <p>{a.links}</p>
-                    ))}
-                  <dl>
-                    {Object.entries(a.answers || {}).map(([q, answer]) => (
-                      <div key={q}>
-                        <dt>{questionLabel(a.jobId, q)}</dt>
-                        <dd>{answer}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                  <div className="app-files">
-                    {["resume", "extra"].map(
-                      (kind) =>
-                        a.files?.[kind] && (
-                          <button key={kind} className="join" onClick={() => download(a, kind)}>
-                            {kind === "resume" ? "Resume" : "Cover letter / portfolio"} ({fileSize(a.files[kind].size)})
-                          </button>
-                        )
-                    )}
-                  </div>
-                </div>
-              </details>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-
-function Careers({ user, moderator, onNeedSignIn, reopenJobId, onReopened }) {
-  const [applied, markApplied] = useMyApplications(user);
-  const applications = useAllApplications(user, moderator);
+function Careers({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, onReopened }) {
+  const [applied, markApplied, myApps] = useMyApplications(user);
+  const myApp = (jobId) => myApps.find((a) => a.jobId === jobId);
   // A role you signed in to apply for opens again, right on its form.
   const [open, setOpen] = useState(() => (reopenJobId ? { id: reopenJobId, form: true } : null));
   useEffect(() => {
@@ -2975,20 +2923,29 @@ function Careers({ user, moderator, onNeedSignIn, reopenJobId, onReopened }) {
               </button>
               {applied.includes(j.id) && (
                 <span className="applied-tag">
-                  <Icon d={CHECK_ICON} /> Applied
+                  <Icon d={CHECK_ICON} /> {APPLICANT_STATUS[myApp(j.id)?.status] ?? "Applied"}
                 </span>
               )}
             </div>
           </li>
         ))}
       </ul>
-      {applications && <ApplicationsAdmin applications={applications} user={user} />}
+      {moderator && (
+        <p className="careers-note mod-note">
+          Moderators: read and answer applications in the{" "}
+          <button className="link-button" onClick={onOpenHiring}>
+            Hiring
+          </button>{" "}
+          tab.
+        </p>
+      )}
       {job && (
         <JobDialog
           key={job.id}
           job={job}
           user={user}
           applied={applied.includes(job.id)}
+          myApp={myApp(job.id)}
           startOnForm={open.form}
           onApplied={markApplied}
           onNeedSignIn={onNeedSignIn}
@@ -2996,6 +2953,523 @@ function Careers({ user, moderator, onNeedSignIn, reopenJobId, onReopened }) {
         />
       )}
     </section>
+  );
+}
+
+// ---------------------------------------------------------------- hiring ---
+// The Hiring tab, for moderators: read every application, set where it stands, schedule an
+// interview (with a Google Calendar invite for the applicant), and write back. Applicants see the
+// status, the interview, and the responses (never the private notes) on their application in the
+// Careers section; each response can also go out by email.
+
+const STATUS_LABELS = { new: "New", reviewing: "Reviewing", interview: "Interview", offer: "Offer", declined: "Not moving forward" };
+// What applicants see for each status.
+const APPLICANT_STATUS = { new: "Applied", reviewing: "Applied", interview: "Interview", offer: "Offer", declined: "Closed" };
+const CALENDAR_ICON = "M4 6h16v15H4zM4 10h16M8 3v4M16 3v4";
+const firstName = (name) => (name || "").trim().split(/\s+/)[0] || "there";
+
+// Ready-made responses: each fills in the message and the status it moves the application to.
+const RESPONSE_TEMPLATES = [
+  {
+    label: "Invite to interview",
+    status: "interview",
+    text: (app, me) =>
+      `Hi ${firstName(app.name)},\n\nThanks for applying to be DubHub's ${app.jobTitle}! We'd love to meet you for a short interview. You'll find the time and place on your application in the Careers section of DubHub's About page. If it doesn't work for you, just reply and we'll find another time.\n\n${firstName(me)}`,
+  },
+  {
+    label: "Still reviewing",
+    status: "reviewing",
+    text: (app, me) =>
+      `Hi ${firstName(app.name)},\n\nThanks for applying to be DubHub's ${app.jobTitle}. We're reading every application carefully and will get back to you soon.\n\n${firstName(me)}`,
+  },
+  {
+    label: "Make an offer",
+    status: "offer",
+    text: (app, me) =>
+      `Hi ${firstName(app.name)},\n\nWe loved meeting you, and we'd like to offer you the ${app.jobTitle} role at DubHub! Let us know if you're in, and we'll set up a time to get you started.\n\n${firstName(me)}`,
+  },
+  {
+    label: "Not moving forward",
+    status: "declined",
+    text: (app, me) =>
+      `Hi ${firstName(app.name)},\n\nThank you for applying to be DubHub's ${app.jobTitle}, and for the thought you put into your answers. We've decided not to move forward this time, but we hope you'll keep using DubHub and apply again in the future.\n\n${firstName(me)}`,
+  },
+];
+
+const calStamp = (t) => new Date(t).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+
+function interviewWhen(interview) {
+  const start = new Date(interview.start);
+  const end = new Date(start.getTime() + interview.minutes * 60000);
+  const time = (d) => d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  return `${start.toLocaleDateString([], { weekday: "short", month: "short", day: "numeric" })}, ${time(start)} – ${time(end)}`;
+}
+
+// A Google Calendar event, filled in. `guests` get the invite from Google when it's saved.
+function interviewCalendarUrl({ title, start, minutes, where, details, guests }) {
+  const q = new URLSearchParams({
+    action: "TEMPLATE",
+    text: title,
+    dates: `${calStamp(start)}/${calStamp(Date.parse(start) + minutes * 60000)}`,
+    location: where,
+    details: details || "",
+  });
+  if (guests) q.set("add", guests);
+  return `https://calendar.google.com/calendar/render?${q}`;
+}
+
+// The same event as an .ics file, for any other calendar app.
+function downloadIcs({ title, start, minutes, where, details }) {
+  const esc = (t) => String(t ?? "").replace(/[\\;,]/g, (c) => `\\${c}`).replace(/\n/g, "\\n");
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//DubHub//Hiring//EN",
+    "BEGIN:VEVENT",
+    `UID:${calStamp(start)}-${Math.random().toString(36).slice(2)}@dubhub`,
+    `DTSTAMP:${calStamp(Date.now())}`,
+    `DTSTART:${calStamp(start)}`,
+    `DTEND:${calStamp(Date.parse(start) + minutes * 60000)}`,
+    `SUMMARY:${esc(title)}`,
+    `LOCATION:${esc(where)}`,
+    `DESCRIPTION:${esc(details)}`,
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ];
+  const url = URL.createObjectURL(new Blob([lines.join("\r\n")], { type: "text/calendar" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "dubhub-interview.ics";
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
+}
+
+async function downloadApplicationFile(user, app, kind) {
+  const r = await fetch(`/api/apply?file=${encodeURIComponent(app.id)}&kind=${kind}`, { headers: authHeader(user) });
+  if (!r.ok) throw new Error(String(r.status));
+  const url = URL.createObjectURL(await r.blob());
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = app.files[kind].name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
+}
+
+const mailtoFor = (app, body) =>
+  `mailto:${app.email}?subject=${encodeURIComponent(`Your DubHub application: ${app.jobTitle}`)}&body=${encodeURIComponent(body)}`;
+
+// An interview's time and place, with ways to put it on a calendar. With `guest`, the Google
+// Calendar link also invites them, so Google emails them the invite once it's saved.
+function InterviewCard({ interview, title, guest, details, children }) {
+  const cal = { title, start: interview.start, minutes: interview.minutes, where: interview.where, details: details ?? interview.note ?? "" };
+  return (
+    <div className="interview-card">
+      <span className="interview-icon">
+        <Icon d={CALENDAR_ICON} />
+      </span>
+      <div>
+        <strong>{interviewWhen(interview)}</strong>
+        <span className="meta">
+          {/^https?:\/\/\S+$/i.test(interview.where) ? (
+            <a href={interview.where} target="_blank" rel="noreferrer noopener">
+              Video call link
+            </a>
+          ) : (
+            interview.where
+          )}
+        </span>
+        {interview.note && <p>{interview.note}</p>}
+        <div className="interview-links">
+          <a href={interviewCalendarUrl({ ...cal, guests: guest })} target="_blank" rel="noreferrer noopener">
+            {guest ? "Add to Google Calendar and invite them" : "Add to Google Calendar"}
+          </a>
+          <button type="button" className="link-button" onClick={() => downloadIcs(cal)}>
+            Download for another calendar
+          </button>
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+// An applicant's own application, inside its role: where it stands, the interview, and messages.
+function MyApplication({ app, job }) {
+  return (
+    <div className="my-application">
+      <h3>Your application</h3>
+      <p className="meta">
+        Sent {shortDate(app.at)} · <strong>{APPLICANT_STATUS[app.status] ?? "Applied"}</strong>
+      </p>
+      {app.interview && (
+        <InterviewCard
+          interview={app.interview}
+          title={`DubHub interview: ${job.title}`}
+          details={`Your interview for DubHub's ${job.title}.${app.interview.note ? `\n\n${app.interview.note}` : ""}`}
+        />
+      )}
+      {app.messages.length > 0 ? (
+        <ul className="thread">
+          {app.messages.map((m, i) => (
+            <li key={i} className="thread-item">
+              <span className="thread-head">
+                <strong>{m.by}</strong> from DubHub · {dateTime(m.at)}
+              </span>
+              <p>{m.text}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        !app.interview && <p className="meta">We'll reply here, and at your UW email.</p>
+      )}
+    </div>
+  );
+}
+
+function StatusChip({ status }) {
+  return <span className={`status-chip ${status ?? "new"}`}>{STATUS_LABELS[status ?? "new"]}</span>;
+}
+
+function InterviewForm({ initial, busy, onSave, onCancel }) {
+  const start = initial ? new Date(initial.start) : null;
+  const [date, setDate] = useState(start ? start.toLocaleDateString("en-CA") : localDate(1));
+  const [time, setTime] = useState(start ? start.toTimeString().slice(0, 5) : "15:00");
+  const [minutes, setMinutes] = useState(initial?.minutes ?? 30);
+  const [where, setWhere] = useState(initial?.where ?? "");
+  const [note, setNote] = useState(initial?.note ?? "");
+  const submit = (e) => {
+    e.preventDefault();
+    onSave({ start: new Date(`${date}T${time}`).toISOString(), minutes: Number(minutes), where, note });
+  };
+  return (
+    <form className="apply-form interview-form" onSubmit={submit}>
+      <div className="apply-row">
+        <label>
+          <span className="field-label">Date</span>
+          <input type="date" value={date} min={localDate(0)} onChange={(e) => setDate(e.target.value)} required />
+        </label>
+        <label>
+          <span className="field-label">Time</span>
+          <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required />
+        </label>
+      </div>
+      <div className="apply-row">
+        <label>
+          <span className="field-label">Length</span>
+          <select value={minutes} onChange={(e) => setMinutes(e.target.value)}>
+            {[15, 20, 30, 45, 60, 90].map((m) => (
+              <option key={m} value={m}>
+                {m} minutes
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span className="field-label">Where</span>
+          <input
+            value={where}
+            onChange={(e) => setWhere(e.target.value)}
+            placeholder="HUB 250, or a Zoom or Meet link"
+            maxLength={200}
+            required
+          />
+        </label>
+      </div>
+      <label>
+        <span className="field-label">Note for them (optional)</span>
+        <textarea value={note} onChange={(e) => setNote(e.target.value)} maxLength={500} rows={2} />
+      </label>
+      <div className="form-buttons">
+        <button className="join" disabled={busy}>
+          {initial ? "Save the new time" : "Schedule"}
+        </button>
+        <button type="button" className="link-button" onClick={onCancel}>
+          Cancel
+        </button>
+      </div>
+    </form>
+  );
+}
+
+// Everything that happened on an application: responses, private notes, interviews, and status changes.
+function Thread({ app }) {
+  const items = app.thread ?? [];
+  if (!items.length) return <p className="meta">No responses yet.</p>;
+  return (
+    <ul className="thread">
+      {items.map((t, i) => (
+        <li key={i} className={t.kind !== "message" ? "thread-item event" : t.internal ? "thread-item note" : "thread-item"}>
+          <span className="thread-head">
+            <strong>{t.by}</strong> · {dateTime(t.at)}
+            {t.internal && <span className="note-tag">Private note</span>}
+          </span>
+          {t.kind === "message" && <p>{t.text}</p>}
+          {t.kind === "message" && !t.internal && (
+            <a className="thread-email" href={mailtoFor(app, t.text)}>
+              Email it to {firstName(app.name)}
+            </a>
+          )}
+          {t.kind === "interview" && (
+            <p>
+              Scheduled an interview: {interviewWhen(t.interview)}, {t.interview.where}
+            </p>
+          )}
+          {t.kind === "interview-cancelled" && <p>Cancelled the interview</p>}
+          {t.kind === "status" && <p>Set the status to {STATUS_LABELS[t.status]}</p>}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ResponseComposer({ app, user, busy, onSend }) {
+  const [text, setText] = useState("");
+  const [internal, setInternal] = useState(false);
+  const [status, setStatus] = useState(""); // "" keeps the status as it is
+  const applyTemplate = (t) => {
+    setText(t.text(app, user.name));
+    setStatus(t.status);
+    setInternal(false);
+  };
+  const submit = async (e) => {
+    e.preventDefault();
+    if (await onSend({ message: { text, internal }, ...(status ? { status } : {}) })) {
+      setText("");
+      setStatus("");
+      setInternal(false);
+    }
+  };
+  return (
+    <form className="composer" onSubmit={submit}>
+      <div className="templates">
+        <span className="meta">Start from:</span>
+        {RESPONSE_TEMPLATES.map((t) => (
+          <button key={t.label} type="button" className="chip-btn" onClick={() => applyTemplate(t)}>
+            {t.label}
+          </button>
+        ))}
+      </div>
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        rows={6}
+        maxLength={2000}
+        placeholder={internal ? "A note for the other moderators" : `Write to ${firstName(app.name)}`}
+        aria-label={internal ? "Private note" : `Response to ${app.name}`}
+      />
+      <div className="composer-foot">
+        <label className="check">
+          <input type="checkbox" checked={internal} onChange={(e) => setInternal(e.target.checked)} />
+          Private note (only moderators see it)
+        </label>
+        <label className="status-after">
+          <span>Then set the status to</span>
+          <select value={status} onChange={(e) => setStatus(e.target.value)}>
+            <option value="">{STATUS_LABELS[app.status ?? "new"]} (no change)</option>
+            {Object.entries(STATUS_LABELS).map(([key, label]) => (
+              <option key={key} value={key}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button className="join" disabled={busy || !text.trim()}>
+          {internal ? "Save note" : "Send response"}
+        </button>
+      </div>
+      {!internal && <p className="meta composer-hint">They'll see it on their application. Use “Email it” to send it to their inbox too.</p>}
+    </form>
+  );
+}
+
+function ApplicationDetail({ app, user, onUpdate, onBack }) {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState(null);
+  const [scheduling, setScheduling] = useState(false);
+  const save = async (change) => {
+    setBusy(true);
+    setError(null);
+    const err = await onUpdate(app.id, change);
+    setBusy(false);
+    setError(err);
+    return !err;
+  };
+  const download = (kind) => downloadApplicationFile(user, app, kind).catch(() => setError("Couldn't download that file. Try again."));
+
+  return (
+    <article className="hiring-detail">
+      <button className="link-button hiring-back" onClick={onBack}>
+        ← All applications
+      </button>
+      <div className="detail-top">
+        <div>
+          <h2>{app.name}</h2>
+          <p className="meta">
+            {app.jobTitle} · applied {dateTime(app.at)}
+          </p>
+        </div>
+        <label className="status-pick">
+          <span className="field-label">Status</span>
+          <select value={app.status ?? "new"} disabled={busy} onChange={(e) => save({ status: e.target.value })}>
+            {Object.entries(STATUS_LABELS).map(([key, label]) => (
+              <option key={key} value={key}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <p className="meta">
+        <a href={`mailto:${app.email}`}>{app.email}</a>
+        {[app.phone, app.year, app.major].filter(Boolean).map((x) => ` · ${x}`)}
+      </p>
+      {app.links &&
+        (/^https?:\/\/\S+$/i.test(app.links) ? (
+          <p>
+            <a href={app.links} target="_blank" rel="noreferrer noopener">
+              {app.links}
+            </a>
+          </p>
+        ) : (
+          <p>{app.links}</p>
+        ))}
+      <div className="app-files">
+        {["resume", "extra"].map(
+          (kind) =>
+            app.files?.[kind] && (
+              <button key={kind} className="join" onClick={() => download(kind)}>
+                {kind === "resume" ? "Resume" : "Cover letter / portfolio"} ({fileSize(app.files[kind].size)})
+              </button>
+            )
+        )}
+      </div>
+      <dl className="answers">
+        {Object.entries(app.answers || {}).map(([q, answer]) => (
+          <div key={q}>
+            <dt>{questionLabel(app.jobId, q)}</dt>
+            <dd>{answer}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <h3>Interview</h3>
+      {scheduling ? (
+        <InterviewForm
+          initial={app.interview}
+          busy={busy}
+          onCancel={() => setScheduling(false)}
+          onSave={async (interview) => {
+            if (await save({ interview })) setScheduling(false);
+          }}
+        />
+      ) : app.interview ? (
+        <InterviewCard
+          interview={app.interview}
+          title={`DubHub interview: ${app.name} (${app.jobTitle})`}
+          guest={app.email}
+          details={`Interview with ${app.name} for DubHub's ${app.jobTitle}.${app.interview.note ? `\n\n${app.interview.note}` : ""}`}
+        >
+          <div className="interview-actions">
+            <button className="link-button" onClick={() => setScheduling(true)}>
+              Change the time
+            </button>
+            <button className="link-button" disabled={busy} onClick={() => save({ interview: null })}>
+              Cancel the interview
+            </button>
+          </div>
+        </InterviewCard>
+      ) : (
+        <button className="join" onClick={() => setScheduling(true)}>
+          Schedule an interview
+        </button>
+      )}
+
+      <h3>Responses</h3>
+      <Thread app={app} />
+      <ResponseComposer app={app} user={user} busy={busy} onSend={save} />
+      {error && (
+        <p className="form-error" role="alert">
+          {error}
+        </p>
+      )}
+    </article>
+  );
+}
+
+function HiringPage({ user }) {
+  const { list, error, update } = useHiring(user, true);
+  const [role, setRole] = useState("");
+  const [status, setStatus] = useState("");
+  const [openId, setOpenId] = useState(null);
+  const apps = list ?? [];
+  const shown = apps.filter((a) => (!role || a.jobId === role) && (!status || (a.status ?? "new") === status));
+  const open = apps.find((a) => a.id === openId);
+  const counts = {};
+  for (const a of apps) counts[a.status ?? "new"] = (counts[a.status ?? "new"] ?? 0) + 1;
+
+  return (
+    <main className={open ? "page hiring-page reading" : "page hiring-page"}>
+      <div className="stats-head">
+        <h1>Hiring</h1>
+        <span className="meta">
+          Only moderators can see this page. Applicants see your responses and interview times (not private notes) on their
+          application.
+        </span>
+      </div>
+      {error && <p className="form-error">Couldn't load the applications. Try reloading the page.</p>}
+      {!list && !error && <p className="meta">Loading applications…</p>}
+      {list && (
+        <div className="hiring">
+          <div className="hiring-list">
+            <div className="hiring-filters">
+              <select value={role} onChange={(e) => setRole(e.target.value)} aria-label="Role">
+                <option value="">All roles</option>
+                {JOBS.map((j) => (
+                  <option key={j.id} value={j.id}>
+                    {j.title}
+                  </option>
+                ))}
+              </select>
+              <select value={status} onChange={(e) => setStatus(e.target.value)} aria-label="Status">
+                <option value="">Any status ({apps.length})</option>
+                {Object.entries(STATUS_LABELS).map(([key, label]) => (
+                  <option key={key} value={key}>
+                    {label} ({counts[key] ?? 0})
+                  </option>
+                ))}
+              </select>
+            </div>
+            {shown.length === 0 ? (
+              <p className="meta hiring-none">
+                {apps.length ? "No applications match." : "No applications yet. They'll show up here as people apply."}
+              </p>
+            ) : (
+              <ul>
+                {shown.map((a) => (
+                  <li key={a.id}>
+                    <button className={a.id === openId ? "hiring-row on" : "hiring-row"} onClick={() => setOpenId(a.id)}>
+                      <span className="hiring-row-top">
+                        <strong>{a.name}</strong>
+                        <StatusChip status={a.status} />
+                      </span>
+                      <span className="meta">
+                        {a.jobTitle} · {shortDate(a.at)}
+                      </span>
+                      {a.interview && <span className="meta">Interview {interviewWhen(a.interview)}</span>}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          {open ? (
+            <ApplicationDetail key={open.id} app={open} user={user} onUpdate={update} onBack={() => setOpenId(null)} />
+          ) : (
+            <div className="hiring-empty meta">Pick an application to read it.</div>
+          )}
+        </div>
+      )}
+    </main>
   );
 }
 
@@ -3092,7 +3566,8 @@ function TrendChart({ points, series }) {
   };
   const pt = active == null ? null : points[active];
   const tipLeft = active == null ? 0 : x(times[active]);
-  // A blank value (not comparable) breaks the line instead of dropping it to zero.
+  // A value that's still blank breaks the line instead of dropping it to zero (fillGaps fills
+  // the known gaps first).
   const linePath = (key) => {
     let d = "";
     let drawing = false;
@@ -3305,9 +3780,33 @@ const counted = (obj) =>
     .sort((a, b) => b.value - a.value);
 const signed = (n) => (n > 0 ? `+${n}` : n < 0 ? `${n}` : "");
 
+// The few updates with a blank count (when the Clubs page briefly listed all ~1,180 HuskyLink
+// clubs; see siteStats in src/eventGroups.js) take the last known count, so the lines run straight
+// through instead of spiking or breaking.
+function fillGaps(snapshots, keys = ["upcoming", "onMap", "clubs", "clubsOnInstagram"]) {
+  const last = {};
+  const filled = snapshots.map((sn) => {
+    const copy = { ...sn };
+    for (const key of keys) {
+      if (copy[key] == null) copy[key] = last[key] ?? null;
+      else last[key] = copy[key];
+    }
+    return copy;
+  });
+  for (const key of keys) {
+    // Blanks at the very start take the first known count.
+    const first = filled.find((sn) => sn[key] != null)?.[key] ?? null;
+    for (const sn of filled) {
+      if (sn[key] != null) break;
+      sn[key] = first;
+    }
+  }
+  return filled;
+}
+
 function StatsPage({ user, events, clubs, dark }) {
   const { data, error } = useStats(user);
-  const snapshots = data?.snapshots ?? [];
+  const snapshots = useMemo(() => fillGaps(data?.snapshots ?? []), [data]);
   const live = data?.live;
 
   // Right now, from what the site has loaded (the same counting as the snapshots).
@@ -3435,7 +3934,7 @@ function StatsPage({ user, events, clubs, dark }) {
   );
 }
 
-function AboutPage({ user, moderator, onNeedSignIn, reopenJobId, onReopened }) {
+function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, onReopened }) {
   return (
     <main className="page">
       <h1>About DubHub</h1>
@@ -3459,7 +3958,14 @@ function AboutPage({ user, moderator, onNeedSignIn, reopenJobId, onReopened }) {
           <TeamMember key={m.name} {...m} />
         ))}
       </ul>
-      <Careers user={user} moderator={moderator} onNeedSignIn={onNeedSignIn} reopenJobId={reopenJobId} onReopened={onReopened} />
+      <Careers
+        user={user}
+        moderator={moderator}
+        onNeedSignIn={onNeedSignIn}
+        onOpenHiring={onOpenHiring}
+        reopenJobId={reopenJobId}
+        onReopened={onReopened}
+      />
     </main>
   );
 }
@@ -3481,8 +3987,9 @@ export default function DubHub() {
   const mapArea = useMemo(() => mapAreaFor(all), [all]);
   const { user, signIn, signOut } = useUser();
   const moderator = useModerator(user);
-  const tabs = moderator ? [...TABS, "Stats"] : TABS;
-  const view = tab === "Stats" && !moderator ? "Home" : tab; // Stats is for moderators only
+  const tabs = moderator ? [...TABS, "Stats", "Hiring"] : TABS;
+  // Stats and Hiring are for moderators only.
+  const view = (tab === "Stats" || tab === "Hiring") && !moderator ? "Home" : tab;
   const { profile, update: updateProfile } = useProfile(user);
 
   // The sign-in page remembers where you came from and the event you tried to join (or the role
@@ -3563,12 +4070,14 @@ export default function DubHub() {
         <AboutPage
           user={user}
           moderator={moderator}
+          onOpenHiring={() => setTab("Hiring")}
           onNeedSignIn={applyFor}
           reopenJobId={user?.token ? signInFrom.jobId : null}
           onReopened={reopened}
         />
       )}
       {view === "Stats" && <StatsPage user={user} events={all} clubs={clubList} dark={MAP_PALETTES[theme.theme]?.dark} />}
+      {view === "Hiring" && <HiringPage user={user} />}
       {view === "Sign in" && (
         <SignInPage
           user={user}
