@@ -1103,8 +1103,188 @@ def finish_clubs(clubs):
     return clubs
 
 
+# ------------------------------------------------------------- applications ---
+# Clubs post when applications open ("Applications for our 2026-27 team are OPEN, link in bio!").
+# The site lists the open ones on its Clubs page.
+SITE_APPLICATIONS_FILE = HERE.parent / "public" / "applications.json"
+APPLICATION_LOOKBACK_DAYS = 45  # posts older than this aren't checked for applications
+APPLICATION_SHOW_DAYS = 30      # an application with no deadline is shown this long after its post
+APPLICATION_BATCH = 8           # posts per Groq request
+# Only posts mentioning one of these are worth asking the AI about.
+APPLY_WORDS = re.compile(
+    r"\b(appl(y|ying|ications?)|recruit\w*|rush|interest forms?|sign[- ]?up forms?|forms?\b.{0,20}\b(open|due)|"
+    r"hiring|positions?|officers?|board members?|auditions?|try-?outs?|join our (team|board|cast)|deadline)\b", re.I)
+URL_IN_TEXT = re.compile(r"(?:https?://)?(?:[\w-]+\.)+(?:com|org|net|edu|io|gle|ly|ee|co|me|gl|app)(?:/[^\s)\]}>\"']*)?", re.I)
+
+
+def application_prompt(batch):
+    posts = "\n\n".join(
+        f"POST {i + 1}\nClub: {p['club']}\nPosted: {p['posted'] or 'unknown'}\n"
+        f"Caption: {p['caption'][:1500]}"
+        + (f"\nText in the picture: {p['image_text'][:500]}" if p.get("image_text") else "")
+        for i, p in enumerate(batch)
+    )
+    return f"""Today is {TODAY:%A, %B %d, %Y}. Below are Instagram posts from University of Washington clubs.
+
+For each post, say whether it invites people to APPLY or SIGN UP for something that is still open:
+club membership, an officer or board position, a project or research team, a committee, auditions
+or tryouts, a mentorship or other program, or fraternity/sorority recruitment.
+Rules:
+- Only applications that are open now (or opening soon) and not past their deadline.
+- NOT: thank-yous or recaps ("thanks to everyone who applied"), welcoming new members, stories
+  about past recruitment, events people simply show up to, RSVPs or registration to attend an
+  event, talk, workshop, retreat or trip, reminders for clubs to register with the university,
+  giveaways or raffles, surveys or feedback forms, or job ads from companies.
+- "for": what people apply for, 2-8 words in the post's words, e.g. "General membership",
+  "Officer positions", "2026-27 research team", "Spring recruitment", "Show performers".
+- "deadline": YYYY-MM-DD if a deadline is given (work out "this Friday" from the Posted date), else null.
+- "link": a web address written in the caption for applying (forms.gle/..., bit.ly/..., linktr.ee/...),
+  copied exactly, else null.
+- "link_in_bio": true if the post says the form or link is in the bio.
+
+Reply with ONLY JSON in this shape:
+{{"posts": [{{"post": 1, "application": null}}, {{"post": 2, "application": {{"for": "...", "deadline": null, "link": null, "link_in_bio": false}}}}]}}
+Include every post, with "application": null when it has none.
+
+{posts}"""
+
+
+def clean_application(a, caption):
+    """The AI's answer for one post, checked: a real deadline date, and a link only if the caption has it."""
+    if not isinstance(a, dict) or not str(a.get("for") or "").strip():
+        return None
+    try:
+        deadline = datetime.strptime(str(a.get("deadline")), "%Y-%m-%d").date().isoformat()
+    except ValueError:
+        deadline = None
+    link = str(a.get("link") or "").strip().rstrip(".,!)")
+    bare = re.sub(r"^https?://", "", link, flags=re.I)
+    if not bare or bare.lower() not in caption.lower() or not URL_IN_TEXT.fullmatch(link):
+        link = None  # made up, or not a web address
+    elif not link.lower().startswith("http"):
+        link = f"https://{link}"
+    return {"for": str(a["for"]).strip()[:80], "deadline": deadline, "link": link,
+            "link_in_bio": bool(a.get("link_in_bio"))}
+
+
+def ai_applications(batch):
+    """Ask Groq which posts in a batch announce open applications. One answer (or None) per post,
+    or None if the AI couldn't be reached."""
+    if not GROQ_KEY or not pick_model():
+        return None
+    for attempt in range(5):
+        try:
+            r = requests.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={"Authorization": f"Bearer {GROQ_KEY}"},
+                json={"model": pick_model(), "temperature": 0, "response_format": {"type": "json_object"},
+                      "messages": [{"role": "user", "content": application_prompt(batch)}]},
+                timeout=90,
+            )
+        except Exception as e:
+            print(f"Groq request failed ({e}); checking these posts for applications next run.", file=sys.stderr)
+            return None
+        if r.status_code == 429 and attempt < 4:
+            m = re.search(r"try again in ([\d.]+)s", r.text)
+            wait = float(m.group(1)) if m else float(r.headers.get("retry-after", 20))
+            print(f"Groq's free limit reached; waiting {wait:.0f}s...")
+            time.sleep(wait + 2)
+            continue
+        if r.status_code != 200:
+            print(f"Groq error {r.status_code}: {r.text[:300]}", file=sys.stderr)
+            return None
+        try:
+            data = json.loads(r.json()["choices"][0]["message"]["content"])
+            by_post = {int(p["post"]): p.get("application") for p in data.get("posts", [])}
+        except (KeyError, TypeError, ValueError) as e:
+            print(f"Groq reply wasn't usable ({e}); checking these posts next run.", file=sys.stderr)
+            return None
+        return [clean_application(by_post.get(i + 1), p["caption"] + " " + (p.get("image_text") or ""))
+                for i, p in enumerate(batch)]
+    return None
+
+
+def find_applications(store):
+    """Check recent posts for open applications (once per post). Posts that don't mention applying,
+    forms or recruiting are settled without asking the AI."""
+    since = (TODAY - timedelta(days=APPLICATION_LOOKBACK_DAYS)).isoformat()
+    todo = []
+    for key, p in store.items():
+        if "application" in p or (p.get("posted") or "") < since:
+            continue
+        if APPLY_WORDS.search(p.get("caption") or "") or APPLY_WORDS.search(p.get("image_text") or ""):
+            todo.append((key, p))
+        else:
+            p["application"] = None
+    if not todo or not GROQ_KEY:
+        return
+    print(f"Checking {len(todo)} post(s) for open applications...", flush=True)
+    found = 0
+    for i in range(0, len(todo), APPLICATION_BATCH):
+        batch = todo[i:i + APPLICATION_BATCH]
+        answers = ai_applications([p for _, p in batch])
+        if answers is None:
+            break  # tried again next run
+        for (key, p), a in zip(batch, answers):
+            p["application"] = a
+            found += a is not None
+        if i + APPLICATION_BATCH < len(todo):
+            time.sleep(3)  # stay under Groq's free per-minute limit
+    print(f"Found {found} open application(s).")
+
+
+def application_is_open(app, posted):
+    if app.get("deadline"):
+        return app["deadline"] >= TODAY.isoformat()
+    return (posted or "") >= (TODAY - timedelta(days=APPLICATION_SHOW_DAYS)).isoformat()
+
+
+def write_site_applications(store):
+    """Write the open applications to public/applications.json for the site's Clubs page. Ones from
+    other people's runs (posts this computer doesn't have) are kept while they're open."""
+    profiles = _load(CLUB_PROFILES_FILE, {})
+    not_uw = not_uw_clubs(store)
+    apps = []
+    for key, p in store.items():
+        a = p.get("application")
+        if not a or p["club"] in not_uw or not application_is_open(a, p.get("posted")):
+            continue
+        handle = parse_host(p["club"])[1]
+        bio_link = (profiles.get(handle) or {}).get("website") if handle else None
+        apps.append({
+            "id": key,
+            "host": p["club"],
+            "for": a["for"],
+            "deadline": a.get("deadline"),
+            # Where the Apply button goes: the caption's own link, else the bio link when the post
+            # points there; with neither, the site sends people to the post itself.
+            "link": a.get("link") or (bio_link if a.get("link_in_bio") else None),
+            "post": p["url"],
+            "posted": p.get("posted"),
+            "logo": club_picture(handle),  # for clubs not on the Clubs page yet
+        })
+    try:
+        site = json.loads(SITE_APPLICATIONS_FILE.read_text(encoding="utf-8")).get("applications", [])
+    except (FileNotFoundError, ValueError):
+        site = []
+    apps += [a for a in site if a["id"] not in store and application_is_open(a, a.get("posted"))]
+    # A club often posts the same application twice (the opening, then a reminder): keep the newest.
+    newest = {}
+    for a in sorted(apps, key=lambda a: a.get("posted") or ""):
+        newest[(parse_host(a["host"])[1] or a["host"], re.sub(r"[^a-z0-9]", "", a["for"].lower()))] = a
+    apps = sorted(newest.values(), key=lambda a: (a["deadline"] or "9999", a.get("posted") or ""))
+    SITE_APPLICATIONS_FILE.write_text(
+        json.dumps({"updated": datetime.now().isoformat(timespec="minutes"), "applications": apps},
+                   indent=1, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    print(f"Wrote {len(apps)} open application(s) to {SITE_APPLICATIONS_FILE}")
+    return apps
+
+
 if __name__ == "__main__":
     # Rebuild the site files from what's already saved, without scraping anything new.
     saved = load_store()
     write_site_events(saved)
     write_site_clubs(saved)
+    write_site_applications(saved)

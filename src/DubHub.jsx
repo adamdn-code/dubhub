@@ -685,6 +685,18 @@ function useClubs() {
   return clubs;
 }
 
+// Open club applications the scraper found in Instagram posts (scraper/events_common.py).
+function useApplications() {
+  const [apps, setApps] = useState([]);
+  useEffect(() => {
+    fetch("/applications.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null)
+      .then((d) => setApps(d?.applications ?? []));
+  }, []);
+  return apps;
+}
+
 // Loads the scraped events; falls back to the samples if there aren't any yet.
 function useEvents() {
   const [data, setData] = useState({ events: [], updated: null });
@@ -1856,7 +1868,7 @@ function MyEventsPage({ all, clubList, j, clubs, onBrowse, onFindClubs }) {
   );
 }
 
-function ClubDetail({ club, hosted, clubs, onClose }) {
+function ClubDetail({ club, hosted, apps = [], clubs, onClose }) {
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
@@ -1903,6 +1915,21 @@ function ClubDetail({ club, hosted, clubs, onClose }) {
         )}
         <ClubJoinButton club={club} clubs={clubs} />
 
+        {apps.length > 0 && (
+          <>
+            <h3>Applications open</h3>
+            <ul className="club-events">
+              {apps.map((a) => (
+                <li key={a.id}>
+                  <strong>{a.for}</strong>
+                  <div className="meta">{a.due.text}</div>
+                  <ApplyLinks app={a} />
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
         <h3>Upcoming events</h3>
         {hosted.length === 0 ? (
           <p className="empty">No upcoming events listed yet.</p>
@@ -1923,7 +1950,78 @@ function ClubDetail({ club, hosted, clubs, onClose }) {
 
 const CLUBS_PAGE = 40; // clubs shown before "Show more"; there are over a thousand
 
-function ClubsPage({ all, clubList, clubs: membership }) {
+// "Due Fri, Nov 14 · 5 days left"; deadlines within 3 days count as closing soon.
+function deadlineOf(app) {
+  if (!app.deadline) return { text: "No deadline listed", soon: false, days: Infinity };
+  const due = new Date(`${app.deadline}T00:00`);
+  const days = Math.round((due - new Date(new Date().toDateString())) / 864e5);
+  const day = due.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+  const left = days === 0 ? "Last day" : days === 1 ? "1 day left" : `${days} days left`;
+  return { text: `Due ${day} · ${left.toLowerCase()}`, day, left, soon: days <= 3, days };
+}
+
+// Applications still open today (the file only refreshes when the scraper runs).
+function openApplications(apps, clubList) {
+  return apps
+    .map((a) => ({ ...a, club: clubList.find((c) => isHostedBy(a, c)), due: deadlineOf(a) }))
+    .filter((a) => a.due.days >= 0)
+    .sort((a, b) => a.due.days - b.due.days || (b.posted ?? "").localeCompare(a.posted ?? ""));
+}
+
+function ApplyLinks({ app }) {
+  return (
+    <span className="apply-actions">
+      <a className="join" href={app.link || app.post} target="_blank" rel="noreferrer">
+        {app.link ? "Apply" : "How to apply"}
+      </a>
+      {app.link && (
+        <a className="post-link" href={app.post} target="_blank" rel="noreferrer">
+          See post
+        </a>
+      )}
+    </span>
+  );
+}
+
+// Clubs taking applications (members, officers, project teams, recruitment), soonest deadline first.
+function ApplicationsRow({ apps, onSelectClub }) {
+  if (apps.length === 0) return null;
+  return (
+    <section className="trending applications" aria-labelledby="applications-title">
+      <h2 id="applications-title">Open applications</h2>
+      <ol className="trending-row">
+        {apps.map((a) => (
+          <li key={a.id} className="trending-card apply-card">
+            <span className="apply-club">
+              <Thumb src={a.club?.logo ?? a.logo} label={hostName(a)} color={a.club ? clubColor(a.club) : NO_FIELD_COLOR} className="apply-logo" />
+              {a.club ? (
+                <button className="club-link apply-club-name" onClick={() => onSelectClub(a.club)}>
+                  {hostName(a)}
+                </button>
+              ) : (
+                <span className="apply-club-name">{hostName(a)}</span>
+              )}
+            </span>
+            <strong className="apply-for">{a.for}</strong>
+            <span className={a.due.soon ? "meta apply-due soon" : "meta apply-due"}>
+              {a.due.soon ? (
+                <>
+                  <span className="tag tag-soon">{a.due.left}</span>
+                  Due {a.due.day}
+                </>
+              ) : (
+                a.due.text
+              )}
+            </span>
+            <ApplyLinks app={a} />
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+function ClubsPage({ all, clubList, clubs: membership, applications }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [major, setMajor] = useState("Any major");
@@ -1943,6 +2041,14 @@ function ClubsPage({ all, clubList, clubs: membership }) {
     set(value);
     setLimit(CLUBS_PAGE);
   };
+  const open = useMemo(() => openApplications(applications, clubList), [applications, clubList]);
+  const visibleApps = open.filter(
+    (a) =>
+      (category === "All" || a.club?.category === category) &&
+      (!field || a.club?.fields?.includes(field)) &&
+      (!q || [hostName(a), a.for].some((s) => s?.toLowerCase().includes(q)))
+  );
+  const applying = new Set(open.map((a) => a.club?.name).filter(Boolean));
 
   return (
     <main className="page">
@@ -1960,6 +2066,7 @@ function ClubsPage({ all, clubList, clubs: membership }) {
         <ChipFilter label="Category" options={categories} value={category} onChange={filter(setCategory)} />
         <MajorSelect aria-label="Major" className="major-select" value={major} onChange={filter(setMajor)} />
       </div>
+      <ApplicationsRow apps={visibleApps} onSelectClub={setSelected} />
       <p className="count">
         {clubs.length.toLocaleString()} club{clubs.length === 1 ? "" : "s"}
         {field && (
@@ -1979,6 +2086,7 @@ function ClubsPage({ all, clubList, clubs: membership }) {
                 <span className="club-title">
                   <span className="club-name">{c.name}</span>
                   <span className={c.category === "Greek Life" ? "tag tag-greek" : "tag"}>{c.category}</span>
+                  {applying.has(c.name) && <span className="tag tag-apply">Applications open</span>}
                   {c.fields?.map((f) => (
                     <FieldTag key={f} field={f} />
                   ))}
@@ -2011,6 +2119,7 @@ function ClubsPage({ all, clubList, clubs: membership }) {
         <ClubDetail
           club={selected}
           hosted={hostedBy(all, selected)}
+          apps={open.filter((a) => a.club?.name === selected.name)}
           clubs={membership}
           onClose={() => setSelected(null)}
         />
@@ -2236,6 +2345,7 @@ export default function DubHub() {
   const [tab, setTab] = useState("Home");
   const { events: loaded, updated } = useEvents();
   const clubList = useClubs();
+  const applications = useApplications();
   const all = useMemo(() => withFields(loaded, clubList), [loaded, clubList]);
   const f = useFilteredEvents(all);
   // Event names flash over their dots for a few seconds when the site first opens.
@@ -2318,7 +2428,7 @@ export default function DubHub() {
           onFindClubs={() => setTab("Clubs")}
         />
       )}
-      {tab === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} />}
+      {tab === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} applications={applications} />}
       {tab === "About" && <AboutPage />}
       {tab === "Sign in" && (
         <SignInPage user={user} pendingEvent={pendingEvent} onSignIn={finishSignIn} onBack={() => setTab(signInFrom.tab)} />

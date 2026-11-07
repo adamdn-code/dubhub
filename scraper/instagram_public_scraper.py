@@ -56,6 +56,7 @@ from events_common import (
     TODAY,
     found_instagram_handles,
     instagram_post_date,
+    find_applications,
     load_store,
     picture_text,
     picture_url,
@@ -64,6 +65,7 @@ from events_common import (
     redo_keyword_posts,
     save_club_profile,
     save_store,
+    write_site_applications,
     write_site_clubs,
     write_site_events,
 )
@@ -289,10 +291,12 @@ def main():
     print(f"Instagram: {len(posts)} new post(s).", flush=True)
     process_posts(posts, store)
     redo_keyword_posts(store)
+    find_applications(store)
     if not stopped:
         add_details(L, store, posts)
     save_store(store)
     write_site_events(store)
+    write_site_applications(store)
     write_site_clubs(store)
 
 

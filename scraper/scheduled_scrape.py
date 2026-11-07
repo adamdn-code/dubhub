@@ -48,8 +48,8 @@ FETCH_TRIES, FETCH_WAIT = 10, 30  # up to ~5 minutes for the internet to come ba
 # Files the scrapers write. GENERATED ones are rebuilt every run, so leftovers can be thrown away
 # when they'd block getting the latest main; club_instagram.json is partly typed by hand, so it's
 # never thrown away.
-GENERATED = ["public/events.json", "public/clubs.json", "public/ig", "scraper/club_activity.json",
-             "scraper/club_fields.json", "scraper/huskylink.json"]
+GENERATED = ["public/events.json", "public/clubs.json", "public/applications.json", "public/ig",
+             "scraper/club_activity.json", "scraper/club_fields.json", "scraper/huskylink.json"]
 DATA = GENERATED + ["scraper/club_instagram.json"]
 SNAPSHOT_FILES = [p for p in DATA if p.endswith(".json")]
 
