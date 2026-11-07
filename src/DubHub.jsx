@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, CircleMarker, Marker, ZoomControl, useMap, useMapEvents } from "react-leaflet";
+import { MapContainer, CircleMarker, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -905,36 +905,42 @@ function MapArea({ area }) {
   return null;
 }
 
-const escapeHtml = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-const labelIcons = new Map(); // reuse icons so re-renders don't restart the fade animation
-function labelIcon(club, text, dir) {
-  const key = `${dir}|${club}|${text}`;
-  if (!labelIcons.has(key)) {
-    const html =
-      `<span class="intro-label ${dir}"><span class="intro-label-club">${escapeHtml(club)}</span>` +
-      `<span class="intro-label-text">${escapeHtml(text)}</span></span>`;
-    labelIcons.set(key, L.divIcon({ className: "intro-anchor", html, iconSize: [0, 0] }));
-  }
-  return labelIcons.get(key);
-}
-
-// A label's on-screen width: the club (semibold 12px) and event name (bold 13px), plus each
-// section's padding and a small gap.
+// How big a callout card is on screen (see .callout in DubHub.css): the picture tile and padding,
+// plus the text, which is at most 250px wide (past that the event's name wraps to a second line).
+const CALLOUT_MAX = 250;
+const CALLOUT_CHROME = 9 + 34 + 10 + 14; // left padding, tile, gap, right padding
 let measureCtx;
-function labelWidth(club, text) {
+function calloutSize(title, sub) {
   measureCtx ??= document.createElement("canvas").getContext("2d");
   const font = getComputedStyle(document.body).fontFamily;
-  measureCtx.font = `600 12px ${font}`;
-  const clubW = measureCtx.measureText(club).width;
-  measureCtx.font = `700 13px ${font}`;
-  return clubW + measureCtx.measureText(text).width + 2 * 18 + 8;
+  measureCtx.font = `700 14px ${font}`;
+  const titleW = measureCtx.measureText(title).width;
+  measureCtx.font = `12px ${font}`;
+  const subW = measureCtx.measureText(sub).width;
+  const wraps = CALLOUT_CHROME + titleW > CALLOUT_MAX;
+  return { w: Math.min(CALLOUT_MAX, CALLOUT_CHROME + Math.max(titleW, subW)), h: wraps ? 71 : 54 };
 }
 
-// At most this many labels when the site opens, the soonest events first, so the map isn't buried.
+// What sits on top of the map (the filters, the welcome box, the dot colors, the zoom buttons), in
+// the map's own coordinates, so cards aren't hidden behind them.
+function mapOverlays(map) {
+  const box = map.getContainer().getBoundingClientRect();
+  const els = map.getContainer().parentElement?.querySelectorAll(".filters, .tagline, .map-legend, .leaflet-control-zoom");
+  return [...(els ?? [])]
+    .map((el) => el.getBoundingClientRect())
+    .filter((r) => r.width && r.height) // ones hidden on this screen size
+    .map((r) => ({ l: r.left - box.left, r: r.right - box.left, t: r.top - box.top, b: r.bottom - box.top }));
+}
+
+// Space kept between cards (and between a card and anything else it shouldn't cover).
+const CARD_GAP = 6;
+
+// At most this many cards when the site opens, the soonest events first, so the map isn't buried.
 const MAX_INTRO_LABELS = 5;
 
-// Event names shown over their dots when the site opens. Each label goes above its dot, or below it
-// if that would overlap a label already placed; if neither fits it's skipped (hover still works).
+// The cards over the dots when the site opens (then they fade away). Each goes above its dot, or
+// below it if that would cover another card, a labeled dot, or the filters, or run off the map; if
+// neither fits it's skipped (hovering the dot still shows its card).
 function IntroLabels({ places }) {
   const map = useMap();
   const [, redraw] = useState(0);
@@ -945,26 +951,44 @@ function IntroLabels({ places }) {
     return () => map.off("zoomend moveend", update);
   }, [map]);
 
-  const taken = [];
+  const size = map.getSize();
+  const taken = mapOverlays(map);
+  const fits = (b) =>
+    b.l >= 0 && b.t >= 0 && b.r <= size.x && b.b <= size.y && // all on screen
+    taken.every((o) => b.r + CARD_GAP <= o.l || b.l - CARD_GAP >= o.r || b.b + CARD_GAP <= o.t || b.t - CARD_GAP >= o.b);
   const shown = [];
   for (const place of [...places].sort((a, b) => a.when.localeCompare(b.when) || b.count - a.count)) {
     if (shown.length === MAX_INTRO_LABELS) break;
     const pt = map.latLngToContainerPoint(place.pos);
-    const w = labelWidth(place.club, place.text);
-    const h = 28;
+    const { w, h } = calloutSize(place.title, place.sub);
+    const radius = place.lift - STEM;
     for (const dir of ["above", "below"]) {
-      const top = dir === "above" ? pt.y - 12 - h : pt.y + 12;
-      const box = { l: pt.x - w / 2, r: pt.x + w / 2, t: top, b: top + h };
-      if (taken.every((o) => box.r < o.l || box.l > o.r || box.b < o.t || box.t > o.b)) {
-        taken.push(box);
+      const up = dir === "above";
+      const top = up ? pt.y - place.lift - h : pt.y + place.lift;
+      const card = { l: pt.x - w / 2, r: pt.x + w / 2, t: top, b: top + h };
+      // Its stem and dot, which no other card should cover either.
+      const dot = { l: pt.x - radius, r: pt.x + radius, t: up ? card.b : pt.y - radius, b: up ? pt.y + radius : card.t };
+      if (fits(card) && fits(dot)) {
+        taken.push(card, dot);
         shown.push({ ...place, dir });
         break;
       }
     }
   }
 
+  // Each card hangs off an invisible point on its dot, since a dot holds just one card (its hover one).
   return shown.map((p) => (
-    <Marker key={p.pos.join()} position={p.pos} icon={labelIcon(p.club, p.text, p.dir)} interactive={false} keyboard={false} />
+    <CircleMarker key={`${p.pos.join()}|${p.dir}`} center={p.pos} radius={0} stroke={false} fill={false} interactive={false}>
+      <Tooltip
+        permanent
+        direction={p.dir === "above" ? "top" : "bottom"}
+        offset={[0, p.dir === "above" ? -p.lift : p.lift]}
+        opacity={1}
+        className="event-callout intro-callout"
+      >
+        <EventCallout event={p.event} title={p.title} sub={p.sub} />
+      </Tooltip>
+    </CircleMarker>
   ));
 }
 
@@ -1088,10 +1112,35 @@ const MAP_COLORS = {
   highwayCasing: "#c9c4bb",
 };
 
-// Each theme's map. Light and dark keep the normal map; the others recolor it.
+// Apple Maps' dark mode: charcoal ground with borderless streets a step lighter (big streets
+// lighter still), muted gold freeways, deep green parks, and slate-blue water with blue names.
+const APPLE_DARK_MAP = {
+  dark: true,
+  background: "#232325",
+  water: "#1d3145",
+  park: "#20392a",
+  wood: "#1e3527",
+  wetland: "#22382c",
+  plaza: "#29292c",
+  building: "#2b2b2e", // close to the ground, so neighborhoods stay calm zoomed out
+  buildingOutline: "#333337",
+  school: "#28282b",
+  road: "#3b3b40",
+  major: "#4f4f56", // main streets
+  highway: "#8a7448", // freeways only (main streets are `major`)
+  path: "#303034", // walking paths, fainter than streets
+  casing: "#232325",
+  highwayCasing: "#5a4c31",
+  label: "#d4d4d9",
+  labelHalo: "#1c1c1e",
+  waterLabel: "#7ea6cc",
+};
+
+// Each theme's map. Light keeps the normal (Apple Maps-like) map, Dark is Apple Maps' dark
+// mode, and the other themes recolor it.
 const MAP_PALETTES = {
   light: MAP_COLORS,
-  dark: MAP_COLORS,
+  dark: APPLE_DARK_MAP,
   // Glacier blues: cool water, frosty parks and blue-gray streets.
   rainier: {
     background: "#eef3f7",
@@ -1204,17 +1253,21 @@ function restyle(style, C = MAP_COLORS) {
     if (set[layer.id]) {
       Object.assign(paint, set[layer.id]);
     } else if (layer.type === "line" && /^(road|bridge|tunnel)_/.test(layer.id) && !/rail|path/.test(layer.id)) {
-      const isHighway = /motorway|trunk/.test(layer.id);
+      const isHighway = (C.major ? /motorway/ : /motorway|trunk/).test(layer.id);
+      const isMajor = C.major && !isHighway && /trunk|primary|secondary|tertiary/.test(layer.id);
       paint["line-color"] = layer.id.endsWith("casing")
         ? isHighway ? C.highwayCasing : C.casing
-        : isHighway ? C.highway : C.road;
+        : isHighway ? C.highway : isMajor ? C.major : C.road;
     } else if (C.dark && layer.type === "fill") {
       paint["fill-color"] = C.plaza; // other land types, so no bright patches on a dark map
     } else if (C.dark && layer.type === "line") {
-      paint["line-color"] = C.road; // paths, rail, borders
+      paint["line-color"] = /path/.test(layer.id) ? (C.path ?? C.road) : C.road; // paths, rail, borders
     }
-    if (C.dark && layer.type === "symbol" && layer.layout?.["text-field"]) {
-      Object.assign(paint, { "text-color": C.label, "text-halo-color": C.labelHalo, "text-halo-width": 1.2 });
+    // Light names on a dark map (water names in blue). Highway shields keep their dark numbers,
+    // since they sit on white shield signs.
+    if (C.dark && layer.type === "symbol" && layer.layout?.["text-field"] && !/shield/.test(layer.id)) {
+      const water = /water/.test(layer.id) && C.waterLabel;
+      Object.assign(paint, { "text-color": water || C.label, "text-halo-color": C.labelHalo, "text-halo-width": 1.2 });
     }
   }
 
@@ -1331,7 +1384,15 @@ function isSoon(e) {
   return end >= now && start <= now + INTRO_HOURS * 36e5;
 }
 
-function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, onMapClick, palette }) {
+// A dot's size: bigger the more people are going.
+function dotRadius(e) {
+  return 9 + Math.min((e.rsvps ?? e.going ?? 0) / 6, 8);
+}
+
+// How long a callout card's stem is (it matches .callout::after in DubHub.css).
+const STEM = 10;
+
+function EventMap({ events, area, introLabels, shown, onPin, onMapClick, palette }) {
   const located = events.filter((e) => e.pos);
   // One intro label per place, so events in the same building don't pile up. Only events
   // happening in the next day get one; the rest are still dots you can hover.
@@ -1343,9 +1404,10 @@ function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, o
       pos: list[0].pos,
       count: list.length,
       when: list.map((e) => `${e.date ?? ""}T${e.start ?? "00:00"}`).sort()[0], // its soonest event
-      // Long names would crowd out other labels, so they're shortened here (the pop-up has the full name).
-      club: clubs.size > 1 ? `${clubs.size} clubs` : shortText(hostName(list[0]), 26),
-      text: list.length > 1 ? `${list[0].title} +${list.length - 1} more` : list[0].title,
+      event: list[0], // whose club picture the card shows
+      title: list.length > 1 ? `${list[0].title} +${list.length - 1} more` : list[0].title,
+      sub: clubs.size > 1 ? `${clubs.size} clubs` : hostName(list[0]),
+      lift: Math.max(...list.map(dotRadius)) + STEM, // from the dot's center to the card
     };
   });
 
@@ -1364,20 +1426,73 @@ function EventMap({ events, area, introLabels, shown, onHover, onLeave, onPin, o
       <BaseMap palette={palette} />
       {located.map((e) => {
         const on = shown?.id === e.id;
+        const radius = dotRadius(e) + (on ? 3 : 0);
         return (
           <CircleMarker
             key={e.id}
             center={e.pos}
-            radius={9 + Math.min((e.rsvps ?? e.going ?? 0) / 6, 8) + (on ? 3 : 0)}
+            radius={radius}
             pathOptions={{ color: on ? "#b7a57a" : "#fff", weight: on ? 4 : 2, fillColor: eventColor(e), fillOpacity: 0.95 }}
             bubblingMouseEvents={false}
-            eventHandlers={{ mouseover: () => onHover(e), mouseout: onLeave, click: () => onPin(e) }}
-          />
+            eventHandlers={{ click: () => onPin(e) }}
+          >
+            {/* Hover: a small card above the dot. Click: the detailed panel (with Join). */}
+            {!on && (
+              <Tooltip direction="top" offset={[0, -(radius + STEM)]} opacity={1} className="event-callout">
+                <EventCallout event={e} />
+              </Tooltip>
+            )}
+          </CircleMarker>
         );
       })}
       <MapClicks onClick={onMapClick} />
       {introLabels && <IntroLabels places={places} />}
     </MapContainer>
+  );
+}
+
+// Line icons for each event type (the callout's icon tile).
+const TYPE_ICONS = {
+  Study: "M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20",
+  Club: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8",
+  Food: "M3 2v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6a2 2 0 0 0 2 2h3zm0 0v7",
+  Hangout: "M17 8h1a4 4 0 1 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4zM6 2v2M10 2v2M14 2v2",
+  "Game night": "M6 11h4M8 9v4M15 12h.01M18 10h.01M17.3 5H6.7a4 4 0 0 0-4 3.6C2.6 9.4 2 14.5 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.4-1.4a2 2 0 0 1 1.4-.6h4.4a2 2 0 0 1 1.4.6L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.5-.6-6.6-.7-7.3a4 4 0 0 0-4-3.7z",
+};
+const PIN_ICON = "M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z";
+
+// Club pictures that didn't load, so the cards don't keep asking for them.
+const brokenLogos = new Set();
+
+// A card on the map, as in DubHub's cover art: the club's picture (or, if it has none, an icon for
+// the kind of event on white), the event's name, and a line under it, with a stem to the dot.
+// Hovering a dot shows one (with where it is); so do the soonest events when the site opens.
+function EventCallout({ event, title = event.title, sub = event.where ?? hostName(event) }) {
+  const [, setBroken] = useState(false);
+  const logo = event.club?.logo;
+  const picture = logo && !brokenLogos.has(logo);
+  return (
+    <div className="callout">
+      <span className="callout-icon">
+        {picture ? (
+          <img
+            src={logo}
+            alt=""
+            decoding="async"
+            onError={() => {
+              brokenLogos.add(logo);
+              setBroken(true);
+            }}
+          />
+        ) : (
+          <Icon d={TYPE_ICONS[event.type] ?? PIN_ICON} />
+        )}
+      </span>
+      <span className="callout-text">
+        <strong>{title}</strong>
+        <span>{sub}</span>
+      </span>
+    </div>
   );
 }
 
@@ -1430,8 +1545,6 @@ function Home({ f, area, introLabels, j, palette }) {
         area={area}
         introLabels={introLabels}
         shown={event}
-        onHover={show}
-        onLeave={hideSoon}
         onPin={(e) => show(e, true)}
         onMapClick={close}
         palette={palette}
