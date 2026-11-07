@@ -1215,6 +1215,109 @@ select:focus-visible {
   gap: 6px;
 }
 
+/* My Events: the clubs you joined, as small cards that open the club */
+.my-clubs {
+  margin: 8px 0 20px;
+}
+
+.my-clubs h2 {
+  margin: 0 0 10px;
+}
+
+.my-club-row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.my-club {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 270px;
+  max-width: 100%;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.my-club:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.my-club:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.my-club:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.my-club-logo {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.my-club-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.my-club-name {
+  font-size: 14px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.my-club-text .tag {
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.my-club-text .meta {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* cards in a row share one height */
+.my-club-row > li {
+  display: flex;
+}
+
+/* On phones the clubs scroll sideways so your events stay near the top */
+@media (max-width: 700px) {
+  .my-club-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .my-club-row > li {
+    flex: 0 0 auto;
+  }
+  .my-club {
+    width: 240px;
+  }
+}
+
 /* My Events: applications from the clubs you joined, above your events */
 .my-apps {
   margin: 8px 0 24px;

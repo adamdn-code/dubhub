@@ -1844,17 +1844,57 @@ function myEventsFor(all, clubList, j, clubs) {
 function MyEventsPage({ all, clubList, j, clubs, applications, onBrowse, onFindClubs }) {
   const mine = myEventsFor(all, clubList, j, clubs);
   const [selected, setSelected] = useState(null);
+  const [openClub, setOpenClub] = useState(null);
   // Open applications from the clubs you joined, soonest deadline first.
-  const myApps = useMemo(
-    () => openApplications(applications, clubList).filter((a) => a.club && clubs.joined.includes(a.club.name)),
-    [applications, clubList, clubs.joined]
-  );
+  const open = useMemo(() => openApplications(applications, clubList), [applications, clubList]);
+  const myApps = open.filter((a) => a.club && clubs.joined.includes(a.club.name));
+  // The clubs you joined, in the order you joined them. One that's left the Clubs page (no events
+  // in a year) still shows by name once the club list has loaded.
+  const myClubs = clubList.length
+    ? clubs.joined.map((name) => clubList.find((c) => c.name === name) ?? { name, gone: true })
+    : [];
   return (
     <main className="page">
       <h1>My Events</h1>
       {clubs.joined.length > 0 && (
         <p className="page-sub">
           Events you joined, plus everything from {clubs.joined.length === 1 ? clubs.joined[0] : `your ${clubs.joined.length} clubs`}
+        </p>
+      )}
+      {myClubs.length > 0 && (
+        <section className="my-clubs" aria-labelledby="my-clubs-title">
+          <h2 id="my-clubs-title">Your clubs</h2>
+          <ul className="my-club-row">
+            {myClubs.map((c) => {
+              const upcoming = c.gone ? 0 : hostedBy(all, c).length;
+              return (
+                <li key={c.name}>
+                  <button className="my-club" onClick={() => !c.gone && setOpenClub(c)} disabled={c.gone}>
+                    <Thumb src={c.logo} label={c.name} color={c.gone ? NO_FIELD_COLOR : clubColor(c)} className="my-club-logo" />
+                    <span className="my-club-text">
+                      <span className="my-club-name">{c.name}</span>
+                      <span className="meta">
+                        {c.gone
+                          ? "No recent events"
+                          : [c.category, upcoming ? `${upcoming} upcoming event${upcoming === 1 ? "" : "s"}` : "No upcoming events"]
+                              .filter(Boolean)
+                              .join(" · ")}
+                      </span>
+                      {myApps.some((a) => a.club?.name === c.name) && <span className="tag tag-apply">Applications open</span>}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
+      {clubs.joined.length === 0 && mine.length > 0 && (
+        <p className="count">
+          Join clubs to see all their events and applications here.{" "}
+          <button className="link-button" onClick={onFindClubs}>
+            Find clubs
+          </button>
         </p>
       )}
       {myApps.length > 0 && (
@@ -1872,7 +1912,7 @@ function MyEventsPage({ all, clubList, j, clubs, applications, onBrowse, onFindC
       {clubs.joined.length > 0 && myApps.length === 0 && (
         <p className="count">None of your clubs are taking applications right now. When one opens, it shows up here.</p>
       )}
-      {mine.length > 0 && myApps.length > 0 && <h2>Your events</h2>}
+      {mine.length > 0 && (myApps.length > 0 || myClubs.length > 0) && <h2>Your events</h2>}
       {mine.length > 0 ? (
         <EventList events={mine} j={j} onSelect={setSelected} columns={3} />
       ) : (
@@ -1893,6 +1933,15 @@ function MyEventsPage({ all, clubList, j, clubs, applications, onBrowse, onFindC
         </div>
       )}
       {selected && <EventDetail event={selected} j={j} onClose={() => setSelected(null)} />}
+      {openClub && (
+        <ClubDetail
+          club={openClub}
+          hosted={hostedBy(all, openClub)}
+          apps={open.filter((a) => a.club?.name === openClub.name)}
+          clubs={clubs}
+          onClose={() => setOpenClub(null)}
+        />
+      )}
     </main>
   );
 }
