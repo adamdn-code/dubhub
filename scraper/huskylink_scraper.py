@@ -8,6 +8,8 @@ Setup (one time):
 
 Every run (from this folder):
   python huskylink_scraper.py
+  python huskylink_scraper.py --skip-past   # skip past events (HuskyLink's robots.txt asks
+                                            # bots to stay off /mobile_ws/, which that step uses)
 
 It saves what it found to huskylink.json (kept on GitHub, so the other
 scrapers include it too) and updates public/clubs.json and public/events.json.
@@ -309,7 +311,7 @@ def main():
     try:
         clubs = scrape_clubs()
         events, upcoming = scrape_events()
-        past = scrape_past_activity()
+        past = [] if "--skip-past" in sys.argv else scrape_past_activity()
     except requests.RequestException as e:
         sys.exit(f"Couldn't reach HuskyLink ({e}). Nothing was changed.")
     if not clubs:

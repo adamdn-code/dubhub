@@ -18,3 +18,13 @@ uw_investmentgroup
 atc.uw
 claude.uofwa
 vsauw
+# UW groups not registered on HuskyLink (found by web search, Nov 2026)
+uw.aoii  # Alpha Omicron Pi
+uwlambdachi  # Lambda Chi Alpha
+uwaephi  # Alpha Epsilon Phi
+phikapsuw  # Phi Kappa Theta
+cic_uw  # Changemakers in Computing
+uwlambdas  # Lambda Phi Epsilon
+uwphikappatau  # Phi Kappa Tau
+huskypowerliftingclub  # Husky Powerlifting Club (mentioned by Barbell Club; not on HuskyLink)
+huskysnowclub  # Husky Snow Club (ski and snowboard trips; not on HuskyLink)

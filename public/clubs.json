@@ -99,8 +99,8 @@
    "instagram": "https://www.instagram.com/uw_ama/",
    "website": "https://linktr.ee/uw.ama",
    "category": "Business",
-   "about": "Marketing club connecting students with industry insights.",
-   "description": "The American Marketing Association at UW brings together students passionate about marketing through fundraisers, trend talks, and industry‑focused networking events. Their programs highlight real‑world insights and the power of people‑centric marketing.",
+   "about": "Student chapter focused on marketing education, projects, and industry trends.",
+   "description": "American Marketing Association’s UW chapter focuses on marketing skills and industry insights. They host agency kickoffs, fundraisers like the Chipotle event, and weekly Trend Talk sessions discussing current market topics.",
    "logo": "/ig/clubs/uw_ama.jpg",
    "last_event": "2026-11-20",
    "fields": [
@@ -527,6 +527,20 @@
    "last_event": "2026-11-17",
    "fields": [
     "Engineering"
+   ]
+  },
+  {
+   "name": "Data Science Society at UW",
+   "handle": "data_science_society_uw",
+   "instagram": "https://www.instagram.com/data_science_society_uw/",
+   "website": "https://data-science-society-at-uw.github.io/club-website/",
+   "category": "Tech",
+   "about": "Student group exploring data science, AI, and LLM research.",
+   "description": "The Data Science Society brings together undergrad and graduate students interested in data science, AI, and large‑language‑model research. They host talks on how AI impacts learning and run collaborative projects across applied math, statistics, informatics, and more.",
+   "logo": "/ig/clubs/data_science_society_uw.jpg",
+   "last_event": "2026-11-09",
+   "fields": [
+    "Computing & Math"
    ]
   },
   {
@@ -1147,17 +1161,32 @@
   },
   {
    "name": "Society of Women Engineers at UW",
-   "website": "http://www.sweuw.org",
-   "category": "Engineering",
-   "about": "The SWE at UW section provides a community for students that support diversity within engineering and STEM professions.",
-   "description": "The SWE at UW section provides a community for students that support diversity within engineering and STEM professions.\nOur mission is to stimulate women to achieve their full potential in careers as engineers and leaders.",
-   "logo": null,
    "handle": "uwswe",
    "instagram": "https://www.instagram.com/uwswe/",
-   "source": "huskylink",
-   "last_event": "2026-10-07",
+   "website": "https://linktr.ee/sweuw",
+   "category": "Engineering",
+   "about": "Supports women and nonbinary students in engineering and tech through events.",
+   "description": "Society of Women Engineers at UW supports women and nonbinary students in engineering and tech through social events, networking, and creative activities like gingerbread house decorating and campus treat booths.",
+   "logo": "/ig/clubs/uwswe.jpg",
+   "last_event": "2026-11-12",
    "fields": [
-    "Engineering"
+    "Engineering",
+    "Computing & Math"
+   ]
+  },
+  {
+   "name": "Software Engineering Career Club",
+   "handle": "swecc.uw",
+   "instagram": "https://www.instagram.com/swecc.uw/",
+   "website": "https://discord.com/invite/Pbk4sCEWDY",
+   "category": "Tech",
+   "about": "Provides career resources and workshops for aspiring software engineers.",
+   "description": "SWE Career Club connects UW students pursuing software engineering with industry professionals through panels, tech showcases, and hands‑on workshops. Recent events include an Accenture career panel and a session with the OpenAI Student Collective on building AI application agents.",
+   "logo": "/ig/clubs/swecc.uw.jpg",
+   "last_event": "2026-11-09",
+   "fields": [
+    "Engineering",
+    "Computing & Math"
    ]
   },
   {
@@ -1272,6 +1301,18 @@
    "fields": []
   },
   {
+   "name": "Thai Student Association at University of Washington",
+   "handle": "thaisauw",
+   "instagram": "https://www.instagram.com/thaisauw/",
+   "website": "https://docs.google.com/forms/d/1fVHNHJI_xMgubMMWT6MeE1EWPEVz0_c9pc-iJcR909A/edit",
+   "category": "Cultural",
+   "about": "Thai Student Association promoting Thai culture and community events.",
+   "description": "ThaiSA UW is the Thai Student Association at UW, sharing Thai culture and community events. They organize an annual Sports Day with games, team competitions, and collaborations with other Asian student groups.",
+   "logo": "/ig/clubs/thaisauw.jpg",
+   "last_event": "2026-11-08",
+   "fields": []
+  },
+  {
    "name": "The Foundation for International Understanding Through Students ( FIUTS ) Student Board",
    "website": "https://www.fiuts.org/",
    "category": "Cultural",
@@ -1288,7 +1329,7 @@
    "category": "Social",
    "about": "The Women’s Network is an organization that encourages and promotes the empowerment of women.",
    "description": "The Women’s Network is an organization that encourages and promotes the empowerment of women. The mission of the club is to inspire and empower women of all ages, backgrounds and interests to act on their own ambitions.",
-   "logo": null,
+   "logo": "/ig/clubs/thewomensnetwork_uw.jpg",
    "handle": "thewomensnetwork_uw",
    "instagram": "https://www.instagram.com/thewomensnetwork_uw/",
    "source": "huskylink",
@@ -1309,16 +1350,29 @@
    "fields": []
   },
   {
+   "name": "Undergraduate Business Council",
+   "handle": "ubc.uw",
+   "instagram": "https://www.instagram.com/ubc.uw/",
+   "website": "https://linktr.ee/uwubc",
+   "category": "Business",
+   "about": "Fosters leadership, collaboration, and mentorship among UW business students.",
+   "description": "The Undergraduate Business Council cultivates leadership and networking for business students. Activities include mentorship pairings, fireside chats with first‑generation professionals, and informal meet‑ups with snacks and peer support.",
+   "logo": "/ig/clubs/ubc.uw.jpg",
+   "last_event": "2026-11-09",
+   "fields": [
+    "Business"
+   ]
+  },
+  {
    "name": "Undergraduate Theater Society",
-   "website": "https://undergraduatetheatersociety.wordpress.com/",
-   "category": "Arts",
-   "about": "The Undergraduate Theater Society works to support and expand the academic theater community within the UW…",
-   "description": "The Undergraduate Theater Society works to support and expand the academic theater community within the UW undergraduate community and the UW School of Drama. We strive to offer rich artistic and practical opportunities to the undergraduate theater community at the University of Washington by providing human, financial, and technical resources. By producing engaging theatre, we strive to explore the lived experiences of our diverse world.",
-   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_627845_Generic_UTS_Cover_Photojpg_c669de04-075c-44b9-a4db-cf476dcfa567_102722730.jpeg",
    "handle": "uw_uts",
    "instagram": "https://www.instagram.com/uw_uts/",
-   "source": "huskylink",
-   "last_event": "2026-11-06",
+   "website": "http://linktr.ee/uwuts/",
+   "category": "Arts",
+   "about": "Creates inclusive theatre productions and learning opportunities for undergrads.",
+   "description": "The Undergraduate Theatre Society offers inclusive, student‑run theatre productions and learning experiences. They hold events such as town halls, rehearsals for shows like Trouble in Mind, and themed gatherings like Ghostlight.",
+   "logo": "/ig/clubs/uw_uts.jpg",
+   "last_event": "2026-11-18",
    "fields": [
     "Arts & Humanities"
    ]
@@ -1329,7 +1383,7 @@
    "category": "Service",
    "about": "We are dedicated to educating, inspiring, and mobilizing students to support the principles and vital work of the UN…",
    "description": "We are dedicated to educating, inspiring, and mobilizing students to support the principles and vital work of the UN and strengthen the UN system. We advocate for the UN, stand up for human rights, and learn how to meet UN sustainability goals.",
-   "logo": null,
+   "logo": "/ig/clubs/una.uwchapter.jpg",
    "handle": "una.uwchapter",
    "instagram": "https://www.instagram.com/una.uwchapter/",
    "source": "huskylink",
@@ -1402,12 +1456,24 @@
    "fields": []
   },
   {
+   "name": "Washington Men’s Gymnastics",
+   "handle": "washingtonmensgymnastics",
+   "instagram": "https://www.instagram.com/washingtonmensgymnastics/",
+   "website": "http://wagives.org/organization/wmgf",
+   "category": "Sports",
+   "about": "Men's gymnastics team representing UW in competitions and community clinics.",
+   "description": "Washington Men’s Gymnastics showcases the university’s gymnastics talent, sharing training highlights and hosting holiday clinics for the community.",
+   "logo": "/ig/clubs/washingtonmensgymnastics.jpg",
+   "last_event": "2026-12-31",
+   "fields": []
+  },
+  {
    "name": "Washington Public Interest Research Group",
    "website": "http://www.washpirgstudents.org",
    "category": "Service",
    "about": "WashPIRG is a a nonpartisan, studentrun organization dedicated to making a difference on issues students care about.",
    "description": "WashPIRG is a a nonpartisan, studentrun organization dedicated to making a difference on issues students care about. We give students the skills and opportunities to mobilize and advocate for social change.\nGet involved at washpirgstudents.org!",
-   "logo": null,
+   "logo": "/ig/clubs/washpirg_uw.jpg",
    "handle": "washpirg_uw",
    "instagram": "https://www.instagram.com/washpirg_uw/",
    "source": "huskylink",
@@ -1428,18 +1494,47 @@
    "fields": []
   },
   {
+   "name": "WiUX: Women in User Experience",
+   "handle": "womeninux_uw",
+   "instagram": "https://www.instagram.com/womeninux_uw/",
+   "website": "https://womeninux.framer.website",
+   "category": "Tech",
+   "about": "Connects and empowers women in UX and related fields via workshops and networking.",
+   "description": "Women in User Experience creates a network for women interested in UX at UW. They offer virtual workshops on portfolio planning, personal branding, and design skills, and host regular events to share tips and support each other.",
+   "logo": "/ig/clubs/womeninux_uw.jpg",
+   "last_event": "2026-11-13",
+   "fields": [
+    "Computing & Math"
+   ]
+  },
+  {
    "name": "Women Empowerment through Collaborations, Awareness, and Resources for Education",
    "website": "https://www.instagram.com/wecareuw/",
    "category": "Service",
    "about": "WECARE works to empower women globally through expanding resources for health, education, and more.",
    "description": "WECARE works to empower women globally through expanding resources for health, education, and more. We aim to create an environment where students from all backgrounds and identities can gain a sense of community together between shared values. Through workshops, outreach, and collaborations with community partners, we aim to close knowledge gaps and reduce stigma surrounding topics that are often overlooked in traditional education. We understand that education is empowerment. WECARE is one of the founding RSOs of the Pregnancy Test Access Project, bringing free pregnancy tests to UW's campus, available for all students! More info on our Instagram @wecareuw.",
-   "logo": null,
+   "logo": "/ig/clubs/wecareuw.jpg",
    "handle": "wecareuw",
    "instagram": "https://www.instagram.com/wecareuw/",
    "source": "huskylink",
    "last_event": "2026-10-27",
    "fields": [
     "Health"
+   ]
+  },
+  {
+   "name": "Women in Chemical Engineering at the University of Washington",
+   "handle": "wcheuw",
+   "instagram": "https://www.instagram.com/wcheuw/",
+   "website": "https://linktr.ee/WChEUW",
+   "category": "Engineering",
+   "about": "Supports and mentors women in chemical engineering through community events and professional development.",
+   "description": "Women in Chemical Engineering builds a supportive community for female chemE students at UW. They host mentorship events, professional‑development workshops, and an annual industry speaker series featuring alumni like Jamie Clark and Denise.",
+   "logo": "/ig/clubs/wcheuw.jpg",
+   "last_event": "2026-11-18",
+   "fields": [
+    "Engineering",
+    "Sciences"
    ]
   },
   {
@@ -1476,7 +1571,7 @@
    "category": "Social",
    "about": "Interested in creative writing?",
    "description": "Interested in creative writing? We create a positive, casual space where people interested in a variety of forms of creative writing can meet and provide each other with support and feedback. Bring something to share or just come to chat! :)",
-   "logo": null,
+   "logo": "/ig/clubs/writersinprogressuw.jpg",
    "handle": "writersinprogressuw",
    "instagram": "https://www.instagram.com/writersinprogressuw/",
    "source": "huskylink",

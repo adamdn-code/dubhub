@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06T18:06",
+ "updated": "2026-11-07T01:34",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -9436,38 +9436,6 @@
  ],
  "events": [
   {
-   "id": "hl-375452",
-   "title": "UTS Town Hall",
-   "type": "Club",
-   "host": "Undergraduate Theater Society",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-06",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/uwuts/rsvp?id=375452",
-   "source": "huskylink",
-   "description": "All UTS members are welcome to attend UTS's first Town Hall! This event will be an insight into the functions and ongoings of the UTS Board and an opportunity for community members to voice any concerns for the club's future and ask questions to the Board directly.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_627845_Screenshot_20261027_at_71235PM_02d3fac1-a068-47b2-b17e-8844b5fbf19e_102722141.png",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375453",
-   "title": "Ghostlight",
-   "type": "Hangout",
-   "host": "Undergraduate Theater Society",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-06",
-   "start": "19:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/uwuts/rsvp?id=375453",
-   "source": "huskylink",
-   "description": "All members of the drama community are welcome to attend UTS's fun and low-stakes acting opportunity Ghostlight! Attendees can bring their favorite scenes from movies and shows they've been wanting to perform, or use scenes that we provide. We'll take turns performing with partners and random groups and cheer our fellow actors on. And, be sure to attend our first Town Hall meeting right before Ghostlight at 6pm to hear about more fun events in the future!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_627845_Screenshot_20261027_at_71235PM_02d3fac1-a068-47b2-b17e-8844b5fbf19e_102722141.png",
-   "rsvps": 0
-  },
-  {
    "id": "hl-375483",
    "title": "The Link- Up",
    "type": "Club",
@@ -9529,7 +9497,7 @@
    "source": "huskylink",
    "description": "Interested in healthcare? We can connect you!\nOur mission is to break down barriers to healthcare experiences at UW by connecting students with meaningful opportunities and equipping them with the skills to succeed in empathetic, compassionate healthcare.\nWhether you’re pre-med, pre-nursing, pre-PA, pre-pharmacy, or simply interested in getting involved in healthcare, we’re here to help guide you toward your goals.\nCome meet fellow students, learn about upcoming clinical, volunteering, shadowing, and research opportunities, and discover how MedConnect can help you take the next step in your healthcare journey!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_601449_medconnect_15e58cb6-04f9-49b7-9718-e0f3c8577367_102610374.png",
-   "rsvps": 3
+   "rsvps": 4
   },
   {
    "id": "hl-375005",

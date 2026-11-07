@@ -316,7 +316,7 @@
 "fields": [
 "Business"
 ],
-"from": "American Marketing Association, UW Chapter|Marketing club connecting students with industry insights."
+"from": "American Marketing Association, UW Chapter|Student chapter focused on marketing education, projects, and industry trends."
 },
 "americanmedicalwomensassociationatuwsomgraduate": {
 "fields": [
@@ -4873,16 +4873,17 @@
 },
 "societyofwomenengineers": {
 "fields": [
-"Engineering"
+"Engineering",
+"Computing & Math"
 ],
-"from": "Society of Women Engineers at UW|The SWE at UW section provides a community for students that support diversity within engineering and STEM professions."
+"from": "Society of Women Engineers at UW|Supports women and nonbinary students in engineering and tech through events."
 },
 "softwareengineeringcareerclub": {
 "fields": [
-"Computing & Math",
-"Engineering"
+"Engineering",
+"Computing & Math"
 ],
-"from": "Software Engineering Career Club|The goal of the club is to be a space for people that want to pursue SWE as a career."
+"from": "Software Engineering Career Club|Provides career resources and workshops for aspiring software engineers."
 },
 "sojourncampusministry": {
 "fields": [],
@@ -5345,7 +5346,7 @@
 },
 "thaistudentassociation": {
 "fields": [],
-"from": "Thai Student Association at University of Washington|ThaiSA is established to promote knowledge of Thai culture, traditions, and to foster ties between Thai students at…"
+"from": "Thai Student Association at University of Washington|Thai Student Association promoting Thai culture and community events."
 },
 "actuaryclub": {
 "fields": [
@@ -5684,7 +5685,7 @@
 "fields": [
 "Business"
 ],
-"from": "Undergraduate Business Council|To foster our community by building unity, collaboration, and leadership amongst Foster RSOs by providing…"
+"from": "Undergraduate Business Council|Fosters leadership, collaboration, and mentorship among UW business students."
 },
 "undergraduatelinguisticssociety": {
 "fields": [
@@ -5702,7 +5703,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Undergraduate Theater Society|The Undergraduate Theater Society works to support and expand the academic theater community within the UW…"
+"from": "Undergraduate Theater Society|Creates inclusive theatre productions and learning opportunities for undergrads."
 },
 "undergraduatewomeninbusinessuwib": {
 "fields": [
@@ -5954,7 +5955,7 @@
 },
 "washingtonmensgymnastics": {
 "fields": [],
-"from": "Washington Men’s Gymnastics|"
+"from": "Washington Men’s Gymnastics|Men's gymnastics team representing UW in competitions and community clinics."
 },
 "washingtonmensultimatefrisbee": {
 "fields": [],
@@ -6070,7 +6071,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "WiUX: Women in User Experience|Our mission is to empower and connect women at the University of Washington and aid their endeavors in User Experience…"
+"from": "WiUX: Women in User Experience|Connects and empowers women in UX and related fields via workshops and networking."
 },
 "womenempowermentthroughcollaborationsawarenessandresourcesforeducation": {
 "fields": [
@@ -6083,7 +6084,7 @@
 "Engineering",
 "Sciences"
 ],
-"from": "Women in Chemical Engineering at the University of Washington|The primary purpose of this organization is to educate, empower, and advocate for women in chemical engineering, and…"
+"from": "Women in Chemical Engineering at the University of Washington|Supports and mentors women in chemical engineering through community events and professional development."
 },
 "womenincomputing": {
 "fields": [

@@ -18,7 +18,10 @@ being scraped), also set its "from" to "manual" so --refresh never changes it.
 A handle found on a website only counts if it sounds like UW (has "uw", "husky",
 "dub", "dawg", "seattle" or "washington" in it), and a handle several clubs
 share is dropped, since that's usually UW's, a department's or a national
-organization's account rather than the club's own.
+organization's account rather than the club's own. Other handles on the site
+that look like the club's name ("udstreetmed" for University District Street
+Medicine) are kept as "maybe": guess_instagram_handles.py checks each one's
+profile and keeps it only if it says UW and names the club.
 """
 
 import json
@@ -87,31 +90,42 @@ def best_handle(handles, name):
 
 
 def from_website(club):
+    """(the club's handle, other handles worth a profile check) from the club's website."""
     url = club["website"] or ""
     host = urllib.parse.urlparse(url).netloc.lower().removeprefix("www.")
     if not url.startswith("http") or any(host.endswith(s) for s in SKIP_HOSTS):
-        return None
+        return None, []
     try:
         r = requests.get(url, headers=HEADERS, timeout=15)
     except requests.RequestException:
-        return None
+        return None, []
     if not r.ok:
-        return None
+        return None, []
+    handles = [h for h in map(clean_handle, IG_LINK.findall(r.text)) if h]
     # Websites often link a national organization's account too; only a UW-sounding handle is the club's.
-    return best_handle([h for h in IG_LINK.findall(r.text) if uw_sounding(h, club["name"])], club["name"])
+    handle = best_handle([h for h in handles if uw_sounding(h, club["name"])], club["name"])
+    return handle, ([] if handle else maybe_handles(handles, club["name"]))
+
+
+def maybe_handles(handles, name, limit=2):
+    """Handles that look like the club's name but don't say UW, best first: "chideltasigma" may be
+    the UW chapter's or the national sorority's, which only its profile can tell."""
+    looks = [h for h in dict.fromkeys(handles) if name_match(h, name) >= 2 and not OTHER_SCHOOL.search(h)]
+    return sorted(looks, key=lambda h: -name_match(h, name))[:limit]
 
 
 def find(club):
+    """(handle, where it was found, handles worth a profile check) for a club."""
     website = club["website"] or ""
     if "instagram.com/" in website:
         m = IG_LINK.search(website)
         if m and clean_handle(m.group(1)):
-            return clean_handle(m.group(1)), "huskylink"
+            return clean_handle(m.group(1)), "huskylink", []
     handle = best_handle(AT_HANDLE.findall(club["description"] or ""), club["name"])
     if handle:
-        return handle, "mission"
-    handle = from_website(club)
-    return (handle, "website") if handle else (None, None)
+        return handle, "mission", []
+    handle, maybe = from_website(club)
+    return (handle, "website", []) if handle else (None, None, maybe)
 
 
 def drop_shared(found):
@@ -144,8 +158,10 @@ def main():
     todo = [c for c in clubs if c["name"] not in found]
     print(f"Looking for the Instagram of {len(todo)} clubs (checking their websites takes a few minutes)...")
     with ThreadPoolExecutor(max_workers=8) as pool:
-        for n, (club, (handle, source)) in enumerate(zip(todo, pool.map(find, todo)), 1):
+        for n, (club, (handle, source, maybe)) in enumerate(zip(todo, pool.map(find, todo)), 1):
             found[club["name"]] = {"handle": handle, "from": source, "checked": date.today().isoformat()}
+            if maybe:
+                found[club["name"]]["maybe"] = maybe
             if n % 100 == 0:
                 print(f"  {n}/{len(todo)}...", flush=True)
     drop_shared(found)

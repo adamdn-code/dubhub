@@ -8,12 +8,16 @@ the account clearly is that UW club:
   - its name or bio has the club's own words ("Afghanistan", "Armenian"...), so the Arab
     Student Association's @uwasa isn't taken for the Armenian Student Association.
 
+Accounts the website finder saw on a club's site but couldn't confirm ("maybe" in
+club_instagram.json) are tried first, before any guessed username.
+
 It goes through the clubs that had events most recently first, so active clubs come first.
 
 Every run (from this folder), after huskylink_scraper.py:
     python guess_instagram_handles.py               # up to 60 clubs
     python guess_instagram_handles.py --limit 20
     python guess_instagram_handles.py --dry-run     # show what it would keep, save nothing
+    python guess_instagram_handles.py --maybe-only  # only check accounts seen on club websites
 Results go into club_instagram.json ("from": "guess"); a club tried with no match is marked
 "guess-none" and tried again after GUESS_AGAIN_DAYS. To fix a wrong one by hand, set its
 "from" to "manual", as with the website finder.
@@ -106,8 +110,9 @@ def is_the_club(user, name):
     return (True, "same name") if same else (False, "name doesn't match")
 
 
-def clubs_to_try(saved):
-    """HuskyLink clubs with no Instagram yet that weren't ruled out, most recently active first."""
+def clubs_to_try(saved, maybe_only=False):
+    """HuskyLink clubs with no Instagram yet that weren't ruled out: those with accounts from their
+    website to check first, then the most recently active."""
     clubs = json.loads(HUSKYLINK_FILE.read_text(encoding="utf-8"))["clubs"]
     try:
         activity = json.loads(CLUB_ACTIVITY_FILE.read_text(encoding="utf-8"))
@@ -119,18 +124,23 @@ def clubs_to_try(saved):
         v = saved.get(c["name"]) or {}
         if v.get("handle") or v.get("from") in ("manual", "not-uw", "shared"):
             continue
-        if v.get("from") == "guess-none" and v.get("checked", "") > again:
+        if v.get("maybe"):
+            todo.append(c)
+            continue
+        if maybe_only or (v.get("from") == "guess-none" and v.get("checked", "") > again):
             continue
         todo.append(c)
-    return sorted(todo, key=lambda c: activity.get(club_key(c["name"]), ""), reverse=True)
+    return sorted(todo, key=lambda c: (bool((saved.get(c["name"]) or {}).get("maybe")),
+                                       activity.get(club_key(c["name"]), "")), reverse=True)
 
 
 def main():
     limit = int(sys.argv[sys.argv.index("--limit") + 1]) if "--limit" in sys.argv else CLUBS_PER_RUN
     dry = "--dry-run" in sys.argv
+    maybe_only = "--maybe-only" in sys.argv
     saved = json.loads(CLUB_INSTAGRAM_FILE.read_text(encoding="utf-8"))
     taken = {v["handle"] for v in saved.values() if v.get("handle")}
-    todo = clubs_to_try(saved)[:limit]
+    todo = clubs_to_try(saved, maybe_only)[:limit]
     print(f"Guessing the Instagram of {len(todo)} clubs{' (dry run: nothing saved)' if dry else ''}...", flush=True)
 
     L = instaloader.Instaloader(quiet=True, max_connection_attempts=1, request_timeout=30,
@@ -139,7 +149,9 @@ def main():
     try:
         for i, club in enumerate(todo, 1):
             match = None
-            for handle in [h for h in guesses(club["name"]) if h not in taken][:GUESSES_PER_CLUB]:
+            maybe = (saved.get(club["name"]) or {}).get("maybe") or []
+            tries = maybe + ([] if maybe_only else guesses(club["name"]))
+            for handle in [h for h in dict.fromkeys(tries) if h not in taken][:GUESSES_PER_CLUB]:
                 if pages:
                     time.sleep(random.uniform(MIN_WAIT, MAX_WAIT))
                 pages += 1
@@ -165,8 +177,8 @@ def main():
             if match:
                 found += 1
                 taken.add(match)
-            saved[club["name"]] = {"handle": match, "from": "guess" if match else "guess-none",
-                                   "checked": date.today().isoformat()}
+            source = ("website-checked" if match in maybe else "guess") if match else "guess-none"
+            saved[club["name"]] = {"handle": match, "from": source, "checked": date.today().isoformat()}
     except SlowDown as e:
         print(f"\nStopping: {e}. The clubs left go first next run.", flush=True)
     except instaloader.exceptions.ConnectionException as e:
