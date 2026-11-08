@@ -1,119 +1,138 @@
-/* DubHub: the night network. Midnight-blue enamel, porcelain white type and station ticks, and
-   the club-category colors as transit line inks (src/eventGroups.js). Two signal colors with one
-   job each: red is on now, amber is starting soon. Light mode is the same map by day, printed on
-   porcelain. Lines bend at 45 and 90 degrees; only stations, bullets and the NOW interchange
-   are round. */
+/* DubHub: NEON DISTRICT. The campus as a cyberpunk city at night: a skyline of lit windows and
+   glowing billboards behind every page, hover-cars crossing the sky, rain on the glass. Three neon
+   inks, each with a job: cyan is anything you can press, magenta is on now, acid yellow is
+   starting soon. Tektur for display, Saira for reading. Light mode is the district by day. */
 :root {
-  --font: "Overpass", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: var(--font); /* times and codes: the same face, with tabular figures */
+  --font: "Saira", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Tektur", "Saira", system-ui, sans-serif;
+  --mono: var(--font);
   --display-stretch: 100%;
-  --radius: 4px;
+  --radius: 3px;
 
-  --signal: #ffc21a; /* amber: starting soon */
-  --live: #ff5a4f; /* red: on now */
-  /* Older names the rest of the stylesheet uses for those two jobs */
-  --yellow: var(--signal);
-  --yellow-hover: #ffd04d;
-  --pink: var(--signal);
-  --orange: var(--live);
+  --cyan: #00f0ff; /* press me */
+  --magenta: #ff2bd6; /* on now */
+  --acid: #f5ff3a; /* starting soon */
+  --violet: #9d7bff;
+  --signal: var(--acid);
+  --live: var(--magenta);
+  --yellow: var(--acid);
+  --yellow-hover: #faff7a;
+  --pink: var(--acid);
+  --orange: var(--magenta);
 
-  --bg: #eef0f4; /* porcelain, by day */
-  --surface: #ffffff;
-  --tint: #f4f5f8;
-  --text: #0a1430;
-  --muted: #4b5675;
-  --line: #d6dae5;
-  --field-line: #8e97b0;
-  --ink: #0a1430;
-  --focus: #0a1430;
+  --bg: #ebe8f6; /* the district by day: smog lilac */
+  --surface: rgba(255, 255, 255, 0.88);
+  --tint: #f3f0fb;
+  --text: #120d2a;
+  --muted: #4f4878;
+  --line: #d8d2ee;
+  --field-line: #8f86b8;
+  --ink: #120d2a;
+  --focus: #b0009a;
 
-  --slate: #0a1430; /* the bar and anything sign-like: midnight */
-  --slate-2: #16234d;
-  --slate-line: #22305e;
-  --on-slate: #f3f1ea;
-  --on-slate-muted: #a3aed0;
-  --panel: var(--slate);
-  --track: rgba(10, 20, 48, 0.07);
+  --slate: #120d2a;
+  --slate-2: #251c50;
+  --slate-line: #3a2f6e;
+  --on-slate: #eef0ff;
+  --on-slate-muted: #a7a2d4;
+  --panel: rgba(18, 13, 42, 0.92);
 
-  --action: #0a1430;
-  --on-action: #f3f1ea;
-  --action-hover: #000a24;
+  --action: #120d2a;
+  --on-action: #00f0ff;
+  --action-hover: #000000;
+
+  --city-far: #d3cdec;
+  --city-mid: #c2b9e3;
+  --city-near: #ada3d8;
+  --city-window: 0.35;
+  --sky-glow: rgba(255, 43, 214, 0.12);
+  --sky-glow-2: rgba(0, 240, 255, 0.1);
 
   --error: #b3261e;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234b5675' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3aed0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-  --nav-bg: var(--slate);
-  --nav-line: var(--slate);
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234f4878' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a7a2d4' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --nav-bg: rgba(18, 13, 42, 0.92);
+  --nav-line: transparent;
   --overlay-bg: var(--panel);
   --callout-bg: var(--surface);
-  --shadow: 0 1px 2px rgba(10, 20, 48, 0.2), 0 10px 26px rgba(10, 20, 48, 0.18);
+  --shadow: 0 0 0 1px rgba(18, 13, 42, 0.12), 0 12px 30px rgba(18, 13, 42, 0.2);
   color-scheme: light;
-  --nav-h: 56px;
+  --nav-h: 58px;
   --tabbar-h: 0px; /* the bottom tab bar's height on phones */
 }
 
-/* Night: the default feel of the network. Follows the device unless someone flips the switch. */
+/* Night: follows the device unless someone flips the switch. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-  --bg: #0a1430; /* midnight enamel */
-  --surface: #101c40;
-  --tint: #16234d;
-  --text: #f3f1ea; /* porcelain */
-  --muted: #a3aed0;
-  --line: #22305e;
-  --field-line: #3c4a80;
-  --ink: #f3f1ea;
-  --focus: var(--signal);
-  --slate: #060c20;
-  --slate-2: #16234d;
-  --slate-line: #22305e;
-  --panel: #101c40;
-  --action: #f3f1ea;
-  --on-action: #0a1430;
-  --action-hover: #ffffff;
-  --track: rgba(243, 241, 234, 0.07); /* the faint time ticks behind the network */
-  --error: #ff9b8f;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3aed0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-  --nav-bg: var(--slate);
-  --nav-line: var(--slate-line);
+  --bg: #07060f; /* the district at night */
+  --surface: rgba(19, 14, 40, 0.86); /* panels: dark glass with the city behind */
+  --tint: rgba(48, 36, 96, 0.5);
+  --text: #eef0ff;
+  --muted: #a7a2d4;
+  --line: rgba(157, 123, 255, 0.22);
+  --field-line: #5a4aa0;
+  --ink: #eef0ff;
+  --focus: #00f0ff;
+  --slate: #0b0920;
+  --slate-2: #1d1640;
+  --slate-line: rgba(157, 123, 255, 0.28);
+  --panel: rgba(11, 9, 32, 0.9);
+  --action: #00f0ff;
+  --on-action: #07060f;
+  --action-hover: #7af8ff;
+  --city-far: #120d2c;
+  --city-mid: #0d0a22;
+  --city-near: #07051a;
+  --city-window: 0.85;
+  --sky-glow: rgba(255, 43, 214, 0.22);
+  --sky-glow-2: rgba(0, 240, 255, 0.12);
+  --error: #ff8fa8;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a7a2d4' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --nav-bg: rgba(7, 6, 15, 0.82);
+  --nav-line: rgba(157, 123, 255, 0.28);
   --overlay-bg: var(--panel);
   --callout-bg: var(--panel);
-  --shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 14px 34px rgba(0, 0, 0, 0.45);
+  --shadow: 0 0 0 1px rgba(157, 123, 255, 0.25), 0 12px 40px rgba(0, 0, 0, 0.6);
   color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #0a1430; /* midnight enamel */
-  --surface: #101c40;
-  --tint: #16234d;
-  --text: #f3f1ea; /* porcelain */
-  --muted: #a3aed0;
-  --line: #22305e;
-  --field-line: #3c4a80;
-  --ink: #f3f1ea;
-  --focus: var(--signal);
-  --slate: #060c20;
-  --slate-2: #16234d;
-  --slate-line: #22305e;
-  --panel: #101c40;
-  --action: #f3f1ea;
-  --on-action: #0a1430;
-  --action-hover: #ffffff;
-  --track: rgba(243, 241, 234, 0.07); /* the faint time ticks behind the network */
-  --error: #ff9b8f;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3aed0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-  --nav-bg: var(--slate);
-  --nav-line: var(--slate-line);
+  --bg: #07060f; /* the district at night */
+  --surface: rgba(19, 14, 40, 0.86); /* panels: dark glass with the city behind */
+  --tint: rgba(48, 36, 96, 0.5);
+  --text: #eef0ff;
+  --muted: #a7a2d4;
+  --line: rgba(157, 123, 255, 0.22);
+  --field-line: #5a4aa0;
+  --ink: #eef0ff;
+  --focus: #00f0ff;
+  --slate: #0b0920;
+  --slate-2: #1d1640;
+  --slate-line: rgba(157, 123, 255, 0.28);
+  --panel: rgba(11, 9, 32, 0.9);
+  --action: #00f0ff;
+  --on-action: #07060f;
+  --action-hover: #7af8ff;
+  --city-far: #120d2c;
+  --city-mid: #0d0a22;
+  --city-near: #07051a;
+  --city-window: 0.85;
+  --sky-glow: rgba(255, 43, 214, 0.22);
+  --sky-glow-2: rgba(0, 240, 255, 0.12);
+  --error: #ff8fa8;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a7a2d4' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --nav-bg: rgba(7, 6, 15, 0.82);
+  --nav-line: rgba(157, 123, 255, 0.28);
   --overlay-bg: var(--panel);
   --callout-bg: var(--panel);
-  --shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 14px 34px rgba(0, 0, 0, 0.45);
+  --shadow: 0 0 0 1px rgba(157, 123, 255, 0.25), 0 12px 40px rgba(0, 0, 0, 0.6);
   color-scheme: dark;
 }
 
 ::selection {
-  background: var(--signal);
-  color: #0a1430;
+  background: var(--magenta);
+  color: #07060f;
 }
 
 * {
@@ -413,7 +432,7 @@ a:hover {
 
 .plate.plate-now {
   background: var(--live);
-  color: #0a1430;
+  color: #07060f;
 }
 
 /* "In 12 min" / "Now": a fluoro sticker. Pink is starting soon, orange is on now. */
@@ -421,7 +440,7 @@ a:hover {
   display: inline-block;
   padding: 1px 6px;
   background: var(--pink);
-  color: #0a1430;
+  color: #07060f;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -630,12 +649,12 @@ a:hover {
 }
 
 .next-up .starts {
-  color: #0a1430;
+  color: #07060f;
 }
 
 .next-up .starts.now {
   align-self: flex-start;
-  color: #0a1430;
+  color: #07060f;
 }
 
 .next-up-text {
@@ -2408,12 +2427,12 @@ a.discord-bot-link.join {
 }
 
 :root[data-theme="dark"] .leaflet-container {
-  background: #0a1430;
+  background: #0a0817;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .leaflet-container {
-    background: #0a1430;
+    background: #0a0817;
   }
 }
 
@@ -4352,7 +4371,7 @@ button.person:hover,
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #0a1430;
+  color: #07060f;
   font-size: 10px;
   font-weight: 800;
   line-height: 1.05;
@@ -4574,7 +4593,7 @@ button.person:hover,
   justify-self: start;
   padding: 3px 8px 1px;
   border-radius: 4px;
-  color: #0a1430;
+  color: #07060f;
   font-size: 13px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -4857,7 +4876,7 @@ button.person:hover,
   border: none;
   border-radius: 999px;
   background: var(--signal);
-  color: #0a1430;
+  color: #07060f;
   font: inherit;
   font-size: 16px;
   font-weight: 900;
@@ -4911,4 +4930,1262 @@ button.person:hover,
     padding: 9px 16px 7px;
     font-size: 13px;
   }
+}
+
+/* ==================================================================== NEON DISTRICT: the city */
+body {
+  background: var(--bg);
+}
+
+.app {
+  position: relative;
+  isolation: isolate;
+}
+
+.app > :not(.city):not(.egg-toast) {
+  position: relative;
+  z-index: 1;
+}
+
+.page,
+.home {
+  background: transparent;
+}
+
+.city {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* The sky: neon haze rising off the city */
+.city-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 60% at 20% 100%, var(--sky-glow), transparent 60%),
+    radial-gradient(90% 50% at 85% 100%, var(--sky-glow-2), transparent 60%);
+}
+
+.city-layer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.city-layer-0 {
+  height: 62vh;
+  opacity: 0.9;
+}
+
+.city-layer-0 .city-building {
+  fill: var(--city-far);
+}
+
+.city-layer-1 {
+  height: 52vh;
+}
+
+.city-layer-1 .city-building {
+  fill: var(--city-mid);
+}
+
+.city-layer-2 {
+  height: 30vh;
+}
+
+.city-layer-2 .city-building {
+  fill: var(--city-near);
+}
+
+.city-window {
+  opacity: var(--city-window);
+}
+
+.city-beacon {
+  fill: var(--magenta);
+  animation: beacon 2.4s steps(2, jump-none) infinite;
+}
+
+.city-sign {
+  opacity: calc(var(--city-window) * 0.9);
+  filter: drop-shadow(0 0 4px currentColor);
+  animation: sign-flicker 7s linear infinite;
+}
+
+@keyframes beacon {
+  50% {
+    opacity: 0.15;
+  }
+}
+
+@keyframes sign-flicker {
+  0%,
+  92%,
+  100% {
+    opacity: calc(var(--city-window) * 0.9);
+  }
+  93%,
+  95% {
+    opacity: 0.1;
+  }
+  94% {
+    opacity: 0.8;
+  }
+}
+
+/* Hover-cars: a body with a headlight and a long light trail behind */
+.car {
+  position: absolute;
+  left: 0;
+  width: calc(46px * var(--size));
+  height: calc(10px * var(--size));
+  border-radius: 999px;
+  background: var(--ink-car, #1a1438);
+  box-shadow: 0 0 0 1px var(--ink), 0 0 12px var(--ink);
+  animation: drive var(--dur) linear var(--delay) infinite;
+  will-change: transform;
+}
+
+:root .car {
+  --ink-car: #1a1438;
+}
+
+/* The trail: a streak of the car's ink fading out behind it */
+.car::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  width: calc(180px * var(--size));
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(to left, var(--ink), transparent);
+  opacity: 0.8;
+}
+
+/* The headlight */
+.car::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -2px;
+  width: 6px;
+  height: 4px;
+  transform: translateY(-50%);
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 0 10px 3px #fff;
+}
+
+.car-back {
+  animation-name: drive-back;
+}
+
+.car-back::before {
+  right: auto;
+  left: 100%;
+  background: linear-gradient(to right, var(--ink), transparent);
+}
+
+.car-back::after {
+  right: auto;
+  left: -2px;
+}
+
+@keyframes drive {
+  from {
+    transform: translateX(-260px);
+  }
+  to {
+    transform: translateX(calc(100vw + 260px));
+  }
+}
+
+@keyframes drive-back {
+  from {
+    transform: translateX(calc(100vw + 260px));
+  }
+  to {
+    transform: translateX(-260px);
+  }
+}
+
+/* Rain on the glass: thin streaks falling at a slant */
+.city-rain {
+  position: absolute;
+  inset: -50% 0 0 0;
+  background-image: repeating-linear-gradient(
+    105deg,
+    transparent 0 46px,
+    rgba(180, 200, 255, 0.07) 46px 47px
+  );
+  background-size: 100% 90px;
+  animation: rain 0.7s linear infinite;
+}
+
+@keyframes rain {
+  to {
+    transform: translate3d(-24px, 90px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .car,
+  .city-rain,
+  .city-sign,
+  .city-beacon {
+    animation: none;
+  }
+  .car {
+    display: none;
+  }
+}
+
+/* ======================================================================= NEON DISTRICT: shell */
+/* No backdrop blur here: it would make the bar the containing block for the phone tab bar,
+   which is position: fixed to the bottom of the screen. */
+.nav {
+  border-bottom: 1px solid var(--nav-line);
+  box-shadow: 0 1px 0 rgba(0, 240, 255, 0.25), 0 8px 30px rgba(255, 43, 214, 0.08);
+}
+
+/* The wordmark: a neon sign with a cyan/magenta split that jitters now and then */
+.logo {
+  position: relative;
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: #fff;
+  text-shadow: 0 0 6px var(--cyan), 0 0 18px rgba(0, 240, 255, 0.6);
+}
+
+.logo::before,
+.logo::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.logo::before {
+  color: var(--magenta);
+  clip-path: inset(0 0 55% 0);
+  animation: logo-glitch 5s steps(1, end) infinite;
+  opacity: 0;
+}
+
+.logo::after {
+  color: var(--cyan);
+  clip-path: inset(55% 0 0 0);
+  animation: logo-glitch 5s steps(1, end) 0.15s infinite;
+  opacity: 0;
+}
+
+@keyframes logo-glitch {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+  90% {
+    opacity: 0.9;
+    transform: translateX(-3px);
+  }
+  93% {
+    opacity: 0.9;
+    transform: translateX(3px);
+  }
+}
+
+.tab {
+  font-family: var(--display);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tab.active {
+  color: #fff;
+  text-shadow: 0 0 8px var(--cyan);
+}
+
+.tab.active::after {
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan), 0 0 22px var(--cyan);
+}
+
+.signin {
+  background: transparent;
+  color: var(--cyan);
+  box-shadow: inset 0 0 0 1px var(--cyan), 0 0 14px rgba(0, 240, 255, 0.35);
+  font-family: var(--display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.signin:hover {
+  background: rgba(0, 240, 255, 0.12);
+}
+
+/* Headings everywhere: Tektur, with a faint neon edge */
+.page h1,
+.page h2,
+.club-modal h2,
+.map-card-title {
+  font-family: var(--display);
+  letter-spacing: 0.02em;
+}
+
+.page h1 {
+  font-size: 44px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(255, 43, 214, 0.35);
+}
+
+/* Buttons: cyan neon tubes */
+.join {
+  border-radius: var(--radius);
+  font-family: var(--display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.join.go {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #07060f;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.55);
+}
+
+.join.go:hover {
+  background: #7af8ff;
+  border-color: #7af8ff;
+}
+
+.join.quiet {
+  border-color: rgba(0, 240, 255, 0.55);
+  color: var(--text);
+}
+
+.join.quiet:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+}
+
+.join.joined,
+.join.quiet.joined {
+  background: rgba(255, 43, 214, 0.14);
+  border-color: var(--magenta);
+  box-shadow: 0 0 14px rgba(255, 43, 214, 0.45);
+  color: var(--text);
+}
+
+.chip-btn,
+.filter-select,
+.search {
+  backdrop-filter: blur(8px);
+}
+
+.chip-btn.on {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #07060f;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+}
+
+.search:focus-visible {
+  outline: 1px solid var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.3);
+}
+
+/* ===================================================================== NEON DISTRICT: Now page */
+.now-head h1 {
+  gap: 10px 20px;
+}
+
+.now-day {
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--magenta);
+  box-shadow: inset 0 0 0 2px var(--magenta), 0 0 14px rgba(255, 43, 214, 0.5);
+  text-shadow: 0 0 8px var(--magenta);
+  font-family: var(--display);
+}
+
+/* The clock: a neon tube that flickers awake (tap it five times for OVERDRIVE) */
+.now-clock {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #fff;
+  font-family: var(--display);
+  font-size: 76px;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  text-shadow: 0 0 4px #fff, 0 0 12px var(--cyan), 0 0 30px var(--cyan), 0 0 60px rgba(0, 240, 255, 0.5);
+  animation: tube-on 3.2s linear 1;
+}
+
+:root[data-theme="light"] .now-clock {
+  color: var(--slate);
+  text-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
+}
+
+@keyframes tube-on {
+  0%,
+  6%,
+  10%,
+  16% {
+    opacity: 0.2;
+  }
+  5%,
+  8%,
+  14%,
+  100% {
+    opacity: 1;
+  }
+}
+
+/* The LED ticker */
+.ticker {
+  position: relative;
+  overflow: hidden;
+  margin: 18px 0 4px;
+  padding: 9px 0;
+  border-block: 1px solid rgba(245, 255, 58, 0.35);
+  background: rgba(7, 6, 15, 0.72);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.ticker-track {
+  display: flex;
+  gap: 48px;
+  width: max-content;
+  animation: ticker 60s linear infinite;
+}
+
+.ticker-item {
+  color: var(--acid);
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 0 0 8px rgba(245, 255, 58, 0.6);
+}
+
+.ticker-time {
+  color: var(--cyan);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.ticker-host {
+  color: #a7a2d4;
+  text-shadow: none;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* The network as a maglev map */
+.network {
+  border-radius: var(--radius);
+  background: rgba(7, 6, 15, 0.86);
+  box-shadow: inset 0 0 0 1px rgba(0, 240, 255, 0.25), 0 0 40px rgba(157, 123, 255, 0.15);
+  backdrop-filter: blur(4px);
+}
+
+.network-hub {
+  fill: #07060f;
+  stroke: var(--cyan);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 10px var(--cyan));
+}
+
+.network-now {
+  color: #fff;
+}
+
+.network-now strong {
+  color: var(--cyan);
+  font-family: var(--display);
+}
+
+.network-time,
+.network-label {
+  font-family: var(--display);
+}
+
+.network-headlight {
+  fill: #fff;
+}
+
+.network-train {
+  filter: drop-shadow(0 0 6px #fff);
+}
+
+/* Departures as billboards: the event's own flyer lit up behind a neon frame */
+.page .departures h2 {
+  border-radius: 0;
+  background: transparent;
+  padding: 0 0 10px;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  box-shadow: none;
+}
+
+/* On now and Starting soon: a lit marker in their ink before the heading (readable by day too) */
+.page .departures-now h2,
+.page .departures-soon h2 {
+  box-shadow: none;
+  align-items: center;
+}
+
+.page .departures-now h2::before,
+.page .departures-soon h2::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--magenta);
+  box-shadow: 0 0 12px var(--magenta);
+}
+
+.page .departures-soon h2::before {
+  background: var(--acid);
+  box-shadow: 0 0 12px var(--acid);
+}
+
+.departure-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 18px;
+  border: none;
+  background: none;
+}
+
+.departure {
+  position: relative;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  grid-template-areas:
+    "flyer flyer flyer"
+    "bullet time time"
+    "main main main"
+    "where where join";
+  gap: 8px 10px;
+  padding: 0 14px 14px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line);
+  overflow: hidden;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms;
+}
+
+.departure:hover {
+  background: var(--surface);
+  transform: translateY(-3px);
+  box-shadow: inset 0 0 0 1px var(--cyan), 0 0 26px rgba(0, 240, 255, 0.25);
+}
+
+/* The billboard: the flyer, dimmed, with scanlines across it */
+.departure::before {
+  content: "";
+  grid-area: flyer;
+  height: 140px;
+  margin: 0 -14px 4px;
+  background:
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px),
+    linear-gradient(to bottom, transparent 40%, rgba(7, 6, 15, 0.85)),
+    var(--flyer, linear-gradient(135deg, #1d1640, #0b0920)) center / cover no-repeat;
+}
+
+.departure .bullet {
+  grid-area: bullet;
+  align-self: center;
+}
+
+.departure-time {
+  grid-area: time;
+  font-family: var(--display);
+}
+
+.departure-now {
+  background: var(--magenta);
+  box-shadow: 0 0 14px rgba(255, 43, 214, 0.6);
+}
+
+.departure-soon {
+  background: var(--acid);
+  box-shadow: 0 0 14px rgba(245, 255, 58, 0.5);
+}
+
+.departure-main {
+  grid-area: main;
+}
+
+.departure-main .club-link {
+  font-family: var(--display);
+  white-space: normal;
+}
+
+.departure-where {
+  grid-area: where;
+  justify-content: flex-start;
+  max-width: none;
+}
+
+.departure .join {
+  grid-area: join;
+}
+
+/* ========================================================================= NEON DISTRICT: Map */
+.hud-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 400;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.12) 0 1px, transparent 1px 3px);
+}
+
+.hud-corner {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--cyan);
+  filter: drop-shadow(0 0 6px var(--cyan));
+}
+
+.hud-corner.tl {
+  top: 8px;
+  left: 8px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.hud-corner.tr {
+  top: 8px;
+  right: 8px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.hud-corner.bl {
+  bottom: 8px;
+  left: 8px;
+  border-right: none;
+  border-top: none;
+}
+
+.hud-corner.br {
+  bottom: 8px;
+  right: 8px;
+  border-left: none;
+  border-top: none;
+}
+
+.filters,
+.next-up,
+.map-legend,
+.map-card {
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 0 1px rgba(0, 240, 255, 0.3), 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Trains become hover-cars: a capsule with a white headlight */
+.train {
+  width: 34px;
+  height: 16px;
+  border-radius: 999px;
+  background: #07060f;
+}
+
+.train::before {
+  inset: 4px 4px 4px auto;
+  width: 8px;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 0 8px #fff;
+}
+
+.train::after {
+  border-radius: 999px;
+}
+
+.surprise {
+  background: var(--magenta);
+  color: #07060f;
+  font-family: var(--display);
+  box-shadow: 0 0 0 3px #07060f, 0 0 30px rgba(255, 43, 214, 0.7);
+}
+
+/* Easter egg: the husky hover-car, across the whole map */
+.husky-car {
+  position: absolute;
+  z-index: 700;
+  top: 36%;
+  left: 0;
+  width: 220px;
+  height: 64px;
+  border-radius: 40px 60px 30px 30px;
+  background: linear-gradient(#2a1f5c, #120d2a);
+  box-shadow: 0 0 0 2px var(--violet), 0 0 40px var(--violet), 0 18px 30px -8px var(--cyan);
+  animation: husky-fly 5.5s cubic-bezier(0.45, 0, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+.husky-car::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 44%;
+  width: 380px;
+  height: 6px;
+  background: linear-gradient(to left, var(--violet), transparent);
+}
+
+.husky-sign {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--acid);
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-shadow: 0 0 10px var(--acid);
+}
+
+@keyframes husky-fly {
+  0% {
+    transform: translate(-300px, 80px) rotate(-6deg);
+  }
+  50% {
+    transform: translate(50vw, -20px) rotate(3deg);
+  }
+  100% {
+    transform: translate(calc(100vw + 300px), 60px) rotate(-4deg);
+  }
+}
+
+/* =================================================================== NEON DISTRICT: My Events */
+.my-page {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  align-items: start;
+  gap: 36px;
+}
+
+.my-main {
+  min-width: 0;
+}
+
+/* The ID card: a holographic badge that flips in 3D */
+.id-card {
+  position: sticky;
+  top: 0;
+  height: 400px;
+  perspective: 1200px;
+}
+
+.id-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 20px;
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(0, 240, 255, 0.18), rgba(255, 43, 214, 0.18) 50%, rgba(245, 255, 58, 0.12)),
+    var(--panel);
+  box-shadow: inset 0 0 0 1px rgba(0, 240, 255, 0.45), 0 0 34px rgba(157, 123, 255, 0.3);
+  color: var(--on-slate);
+  backface-visibility: hidden;
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.id-back {
+  transform: rotateY(180deg);
+  justify-content: center;
+  text-align: center;
+}
+
+.id-card.flipped .id-front {
+  transform: rotateY(-180deg);
+}
+
+.id-card.flipped .id-back {
+  transform: rotateY(0);
+}
+
+.id-org {
+  align-self: stretch;
+  color: var(--cyan);
+  font-family: var(--display);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+}
+
+.id-photo {
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--slate-2);
+  box-shadow: 0 0 0 2px var(--magenta), 0 0 24px rgba(255, 43, 214, 0.5);
+  font-family: var(--display);
+  font-size: 36px;
+}
+
+.id-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.id-name {
+  font-family: var(--display);
+  font-size: 22px;
+  text-align: center;
+}
+
+.id-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-self: stretch;
+  margin: 0;
+  text-align: center;
+}
+
+.id-stats dt {
+  grid-row: 2;
+  color: var(--on-slate-muted);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.id-stats dd {
+  margin: 0;
+  color: var(--acid);
+  font-family: var(--display);
+  font-size: 34px;
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(245, 255, 58, 0.5);
+}
+
+/* The chip: gold contacts; tap it three times */
+.id-chip {
+  margin-top: auto;
+  width: 46px;
+  height: 34px;
+  border: none;
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 10px, rgba(0, 0, 0, 0.35) 10px 11px),
+    repeating-linear-gradient(0deg, transparent 0 10px, rgba(0, 0, 0, 0.35) 10px 11px),
+    linear-gradient(135deg, #f7e27a, #b8892a);
+  cursor: pointer;
+}
+
+.id-back p {
+  color: var(--on-slate-muted);
+  font-size: 14px;
+}
+
+/* ======================================================================= NEON DISTRICT: Clubs */
+.clubs-page .list.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  border: none;
+  background: none;
+}
+
+.clubs-page .list.cards > li.club-row {
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 18px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms;
+}
+
+.clubs-page .list.cards > li.club-row:hover {
+  background: var(--surface);
+  transform: translateY(-3px);
+  box-shadow: inset 0 0 0 1px var(--magenta), 0 0 26px rgba(255, 43, 214, 0.25);
+}
+
+.clubs-page .club-avatar {
+  width: 64px;
+  height: 64px;
+  box-shadow: 0 0 0 2px var(--cyan), 0 0 18px rgba(0, 240, 255, 0.4);
+}
+
+.clubs-page .club-row .join {
+  align-self: stretch;
+  margin-top: auto;
+}
+
+.clubs-page .club-name {
+  font-family: var(--display);
+  font-size: 18px;
+}
+
+.view-switch button[aria-selected="true"] {
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.4);
+}
+
+/* Easter egg: digital rain across everything */
+.app.egg-matrix::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(57, 255, 136, 0) 0 6px,
+    rgba(57, 255, 136, 0.9) 6px 16px,
+    rgba(57, 255, 136, 0) 16px 40px
+  );
+  background-size: 14px 100%;
+  mask-image: repeating-linear-gradient(90deg, #000 0 2px, transparent 2px 14px);
+  animation: matrix-fall 0.6s linear infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes matrix-fall {
+  to {
+    background-position: 0 26px;
+  }
+}
+
+/* ======================================================================= NEON DISTRICT: About */
+.about-page .team {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+}
+
+/* Character select: each crew member a slot that lights up when you land on it */
+.about-page .member {
+  position: relative;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms;
+}
+
+.about-page .member:hover,
+.about-page .member:focus-within {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: inset 0 0 0 2px var(--acid), 0 0 30px rgba(245, 255, 58, 0.3);
+}
+
+.about-page .member:hover::after,
+.about-page .member:focus-within::after {
+  content: "SELECTED";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 2px 6px;
+  background: var(--acid);
+  color: #07060f;
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.about-page .member img,
+.about-page .member .avatar {
+  box-shadow: 0 0 0 2px var(--cyan), 0 0 22px rgba(0, 240, 255, 0.35);
+}
+
+.app.egg-lives .member {
+  animation: crew-jump 0.6s cubic-bezier(0.3, 1.6, 0.5, 1) 3;
+}
+
+.app.egg-lives .member:nth-child(2n) {
+  animation-delay: 0.1s;
+}
+
+.app.egg-lives .member:nth-child(3n) {
+  animation-delay: 0.2s;
+}
+
+@keyframes crew-jump {
+  50% {
+    transform: translateY(-22px);
+  }
+}
+
+/* ===================================================================== NEON DISTRICT: Sign in */
+.signin-card {
+  position: relative;
+  align-items: center;
+  text-align: center;
+  background: var(--panel);
+  color: var(--on-slate);
+  box-shadow: inset 0 0 0 1px rgba(0, 240, 255, 0.4), 0 0 50px rgba(157, 123, 255, 0.25);
+  overflow: hidden;
+}
+
+.signin-card .signin-reason,
+.signin-card .signin-perks,
+.signin-card .meta {
+  color: var(--on-slate-muted);
+}
+
+.signin-card h1 {
+  font-family: var(--display);
+  text-transform: uppercase;
+}
+
+/* The scanner: a fingerprint pad with a light sweeping over it */
+.scanner {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  overflow: hidden;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 240, 255, 0.08);
+  box-shadow: inset 0 0 0 2px var(--cyan), 0 0 24px rgba(0, 240, 255, 0.4);
+  color: var(--cyan);
+  cursor: pointer;
+}
+
+.scanner .icon {
+  width: 52px;
+  height: 52px;
+}
+
+.scanner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--cyan);
+  box-shadow: 0 0 12px 3px var(--cyan);
+  animation: scan 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes scan {
+  from {
+    top: 6%;
+  }
+  to {
+    top: 92%;
+  }
+}
+
+.app.egg-denied .signin-card {
+  animation: denied 0.5s linear 2;
+  box-shadow: inset 0 0 0 2px var(--magenta), 0 0 60px rgba(255, 43, 214, 0.6);
+}
+
+@keyframes denied {
+  20%,
+  60% {
+    transform: translateX(-10px);
+  }
+  40%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+/* ============================================================= Easter eggs: toast and modes */
+.egg-toast {
+  position: fixed;
+  top: 76px;
+  left: 50%;
+  z-index: 4000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 280px;
+  padding: 14px 24px;
+  transform: translateX(-50%);
+  border-radius: var(--radius);
+  background: rgba(7, 6, 15, 0.94);
+  box-shadow: inset 0 0 0 2px var(--magenta), 0 0 40px rgba(255, 43, 214, 0.55);
+  color: #eef0ff;
+  text-align: center;
+  animation: toast-in 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.egg-toast strong {
+  color: var(--acid);
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.14em;
+  text-shadow: 0 0 12px rgba(245, 255, 58, 0.6);
+}
+
+.egg-toast span {
+  color: #c9c4ef;
+  font-size: 14px;
+}
+
+@keyframes toast-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -14px) skewX(-12deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, 2px) skewX(4deg);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+/* OVERDRIVE: every car floors it and the city cycles through its inks */
+.app.egg-overdrive .car {
+  animation-duration: calc(var(--dur) / 6);
+}
+
+.app.egg-overdrive .city {
+  animation: overdrive-hue 1.2s linear infinite;
+}
+
+.app.egg-overdrive .now-clock {
+  animation: overdrive-hue 0.6s linear infinite;
+}
+
+@keyframes overdrive-hue {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* SIGNAL CORRUPTED: the whole app tears sideways for a moment */
+.app.egg-glitch > :not(.city):not(.egg-toast) {
+  animation: tear 0.32s steps(2, end) 8;
+}
+
+@keyframes tear {
+  0% {
+    transform: translateX(0);
+    filter: none;
+  }
+  50% {
+    transform: translateX(-8px) skewX(-6deg);
+    filter: hue-rotate(90deg) saturate(2);
+  }
+  100% {
+    transform: translateX(6px);
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .now-clock,
+  .ticker-track,
+  .scanner::after,
+  .logo::before,
+  .logo::after,
+  .husky-car,
+  .app.egg-overdrive .city,
+  .app.egg-matrix::after,
+  .app.egg-lives .member,
+  .app.egg-glitch > :not(.city):not(.egg-toast),
+  .app.egg-denied .signin-card {
+    animation: none;
+  }
+  .husky-car {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 700px) {
+  .now-clock {
+    font-size: 54px;
+  }
+  .page h1 {
+    font-size: 34px;
+  }
+  .my-page {
+    grid-template-columns: 1fr;
+  }
+  .id-card {
+    position: relative;
+    height: 360px;
+  }
+  .departure-list {
+    grid-template-columns: 1fr;
+  }
+  .departure {
+    grid-template-areas:
+      "flyer flyer flyer"
+      "bullet time join"
+      "main main main"
+      "where where where";
+  }
+  .city-layer-0 {
+    height: 40vh;
+  }
+  .city-layer-1 {
+    height: 32vh;
+  }
+  .city-layer-2 {
+    height: 20vh;
+  }
+}
+
+/* Cars stay a touch dimmer than the type over them */
+.car {
+  opacity: 0.8;
+}
+
+/* Clubs: Join is an outlined tube; a joined club lights up magenta */
+.clubs-page .club-row .join:not(.joined) {
+  background: transparent;
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
+}
+
+.clubs-page .club-row .join:not(.joined):hover {
+  background: rgba(0, 240, 255, 0.12);
+}
+
+.signin-card .signin-perks {
+  align-self: stretch;
+  text-align: left;
 }
