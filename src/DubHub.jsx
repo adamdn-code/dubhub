@@ -1188,7 +1188,6 @@ const MAP_COLORS = {
   wetland: "#c5e6b4",
   plaza: "#ece9e4",
   building: "#e5e2dc",
-  buildingOutline: "#b8b1a5",
   school: "#ece8e1",
   road: "#ffffff",
   highway: "#fdfcfa",
@@ -1209,7 +1208,6 @@ const APPLE_DARK_MAP = {
   wetland: "#1b2824",
   plaza: "#1f1e25",
   building: "#25242c", // close to the ground, so neighborhoods stay calm zoomed out
-  buildingOutline: null, // no outlines on the dark map: solid blocks, like Apple Maps
   school: "#1e1d24",
   road: "#2e2d36",
   major: "#3c3a45", // main streets
@@ -1237,7 +1235,6 @@ const MAP_PALETTES = {
     wetland: "#d4e9dc",
     plaza: "#e8eef3",
     building: "#dde6ee",
-    buildingOutline: "#a9b9c8",
     school: "#e6edf3",
     road: "#ffffff",
     highway: "#fdfeff",
@@ -1253,7 +1250,6 @@ const MAP_PALETTES = {
     wetland: "#f3d9e5",
     plaza: "#f6ecec",
     building: "#efe4e4",
-    buildingOutline: "#cdb5b9",
     school: "#f5eaea",
     road: "#ffffff",
     highway: "#fffafb",
@@ -1270,7 +1266,6 @@ const MAP_PALETTES = {
     wetland: "#3c3d31",
     plaza: "#33242c",
     building: "#3d2b34",
-    buildingOutline: "#574049",
     school: "#31232a",
     road: "#5a3f45",
     highway: "#7a4b3f",
@@ -1288,7 +1283,6 @@ const MAP_PALETTES = {
     wetland: "#b6d9a7",
     plaza: "#e6ebe2",
     building: "#dee4d8",
-    buildingOutline: "#a8b4a0",
     school: "#e7ece2",
     road: "#ffffff",
     highway: "#fbfdf8",
@@ -1308,7 +1302,7 @@ function restyle(style, C = MAP_COLORS) {
     landuse_pitch: green,
     landuse_track: green,
     landuse_cemetery: green,
-    // The fill's own 1px edge in the building's color too, so a dark map shows no outlines at all.
+    // Buildings are solid blocks with no outlines, in every theme (the fill's own 1px edge too).
     building: { "fill-color": C.building, "fill-outline-color": C.building },
     landuse_school: { "fill-color": C.school },
     landuse_residential: { "fill-opacity": 0 },
@@ -1362,22 +1356,6 @@ function restyle(style, C = MAP_COLORS) {
     }
   }
 
-  // Thicker outlines so neighboring buildings stand apart (a fill's own outline is only 1px).
-  const i = C.buildingOutline ? style.layers.findIndex((layer) => layer.id === "building") : -1;
-  if (i >= 0) {
-    const building = style.layers[i];
-    style.layers.splice(i + 1, 0, {
-      id: "building-outline",
-      type: "line",
-      source: building.source,
-      "source-layer": building["source-layer"],
-      minzoom: building.minzoom,
-      paint: {
-        "line-color": C.buildingOutline,
-        "line-width": ["interpolate", ["linear"], ["zoom"], 14, 0.5, 16, 1, 18, 1.75],
-      },
-    });
-  }
   return style;
 }
 
