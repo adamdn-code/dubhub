@@ -18,6 +18,7 @@ Set-up, once:
      It only asks to view channels and read message history.
 
 Every run (from this folder):  python discord_events.py
+See what the bot can see, changing nothing:  python discord_events.py --check
 Results: discord.json (the scheduled events; on GitHub) and the announcement posts in the
 scraper's saved posts. Both show on the site from this run on.
 """
@@ -122,10 +123,46 @@ def announcement_posts(guild, host, store):
     return posts
 
 
+def check():
+    """Show what the bot can see in each server, without changing anything on the site."""
+    me = api("/users/@me")
+    print(f"Signed in as the bot {me['username']} (id {me['id']}).")
+    clubs = club_of_server()
+    guilds = api("/users/@me/guilds") or []
+    print(f"It's in {len(guilds)} server(s).")
+    since = TODAY - timedelta(days=LOOKBACK_DAYS)
+    for g in guilds:
+        club = clubs.get(g["id"])
+        print(f"\n{g['name']}" + (f"  (the Discord of {club})" if club else "  (not matched to a club; events will show under the server's name)"))
+        events = scheduled_events(g, club or g["name"])
+        print(f"  Upcoming events in its Events tab: {len(events)}")
+        for e in events:
+            print(f"    - {e['date']} {e['start']}  {e['title']}  ({e['where'] or 'no place given'})")
+        channels = [ch for ch in api(f"/guilds/{g['id']}/channels") or []
+                    if ch.get("type") in (0, 5) and ANNOUNCEMENT_CHANNELS.search(ch.get("name") or "")]
+        if not channels:
+            print("  Announcement channels: none found (it reads channels named like #announcements, #events, #news)")
+        for ch in channels:
+            messages = api(f"/channels/{ch['id']}/messages", limit=MESSAGES_PER_CHANNEL)
+            if messages is None:
+                print(f"  #{ch['name']}: can't read it (the bot needs View Channel and Read Message History there)")
+                continue
+            recent = [m for m in messages if seattle(m["timestamp"]).date() >= since]
+            readable = [m for m in recent if (m.get("content") or "").strip() or m.get("embeds")]
+            note = ""
+            if recent and not readable:
+                note = "  <- the text comes back empty: turn on Message Content Intent on the bot's page"
+            print(f"  #{ch['name']}: {len(recent)} post(s) in the last {LOOKBACK_DAYS} days, {len(readable)} readable{note}")
+    print("\nNothing was changed. Run without --check to put these on the site.")
+
+
 def main():
     if not TOKEN:
         print("No DISCORD_BOT_TOKEN in scraper/.env yet, so no Discord servers were read. "
               "The top of discord_events.py says how to set up the DubHub bot.")
+        return
+    if "--check" in sys.argv:
+        check()
         return
     if "--invite-link" in sys.argv:
         me = api("/users/@me")
