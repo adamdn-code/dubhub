@@ -1209,9 +1209,7 @@ const APPLE_DARK_MAP = {
   wetland: "#1b2824",
   plaza: "#1f1e25",
   building: "#25242c", // close to the ground, so neighborhoods stay calm zoomed out
-  // Edges a shade darker than the buildings, like a gap between them (a lighter edge looked like
-  // a wireframe).
-  buildingOutline: "#1b1a20",
+  buildingOutline: null, // no outlines on the dark map: solid blocks, like Apple Maps
   school: "#1e1d24",
   road: "#2e2d36",
   major: "#3c3a45", // main streets
@@ -1310,7 +1308,8 @@ function restyle(style, C = MAP_COLORS) {
     landuse_pitch: green,
     landuse_track: green,
     landuse_cemetery: green,
-    building: { "fill-color": C.building },
+    // The fill's own 1px edge in the building's color too, so a dark map shows no outlines at all.
+    building: { "fill-color": C.building, "fill-outline-color": C.building },
     landuse_school: { "fill-color": C.school },
     landuse_residential: { "fill-opacity": 0 },
     waterway_river: { "line-color": C.water },
@@ -1364,7 +1363,7 @@ function restyle(style, C = MAP_COLORS) {
   }
 
   // Thicker outlines so neighboring buildings stand apart (a fill's own outline is only 1px).
-  const i = style.layers.findIndex((layer) => layer.id === "building");
+  const i = C.buildingOutline ? style.layers.findIndex((layer) => layer.id === "building") : -1;
   if (i >= 0) {
     const building = style.layers[i];
     style.layers.splice(i + 1, 0, {
