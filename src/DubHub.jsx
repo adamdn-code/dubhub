@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, CircleMarker, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { MapContainer, CircleMarker, Marker, Polyline, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -37,6 +37,7 @@ const CLOSE_ICON = "M6 6l12 12M18 6 6 18";
 const CHECK_ICON = "M4.5 12.5l5 5L19.5 7";
 const BACK_ICON = "M15 5l-7 7 7 7";
 const SHARE_ICON = "M12 3v12M7 8l5-5 5 5M5 14v7h14v-7";
+const SHUFFLE_ICON = "M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5";
 const SUN_ICON = "M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4";
 const MOON_ICON = "M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z";
 
@@ -1440,14 +1441,124 @@ function NextUp({ events, onPick }) {
   );
 }
 
-// Pans the map to an event picked from the Next up sign.
-function FlyTo({ event }) {
+// Moves the map to an event: a short pan for one picked from Next up, a long swooping flight
+// (out, across campus, and down) for Surprise me.
+function FlyTo({ target }) {
   const map = useMap();
   useEffect(() => {
-    if (event?.pos) map.panTo(event.pos, { animate: true, duration: 0.4 });
-  }, [map, event]);
+    const pos = target?.event?.pos;
+    if (!pos) return;
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (target.far && !calm) map.flyTo(pos, 17.5, { duration: 1.8, easeLinearity: 0.15 });
+    else map.panTo(pos, { animate: !calm, duration: 0.4 });
+  }, [map, target]);
   return null;
 }
+
+// ---------------------------------------------------------------- the transit system on the map
+// Each club category's next events (the coming 36 hours), joined in time order by its line, drawn
+// across the real campus the way a transit map draws a city: every leg goes diagonal first, then
+// straight, so lines only ever bend at 45 degrees. Distances are worked out in local metres, so a
+// 45-degree bend is 45 degrees on the ground too.
+const M_LAT = 111132;
+const M_LNG = 111320 * Math.cos((47.655 * Math.PI) / 180);
+const TRANSIT_HOURS = 36;
+
+function octilinear(a, b) {
+  const dx = (b[1] - a[1]) * M_LNG;
+  const dy = (b[0] - a[0]) * M_LAT;
+  const d = Math.min(Math.abs(dx), Math.abs(dy));
+  return [a, [a[0] + (Math.sign(dy) * d) / M_LAT, a[1] + (Math.sign(dx) * d) / M_LNG], b];
+}
+
+const metres = (a, b) => Math.hypot((b[0] - a[0]) * M_LAT, (b[1] - a[1]) * M_LNG);
+
+// The point `frac` (0 to 1) of the way along a polyline.
+function along(points, frac) {
+  const legs = points.slice(1).map((p, i) => metres(points[i], p));
+  let left = legs.reduce((x, y) => x + y, 0) * frac;
+  for (let i = 0; i < legs.length; i++) {
+    if (left <= legs[i] || i === legs.length - 1) {
+      const f = legs[i] ? Math.min(left / legs[i], 1) : 0;
+      return [points[i][0] + (points[i + 1][0] - points[i][0]) * f, points[i][1] + (points[i + 1][1] - points[i][1]) * f];
+    }
+    left -= legs[i];
+  }
+  return points.at(-1);
+}
+
+function transitLines(events, now) {
+  const horizon = now + TRANSIT_HOURS * 36e5;
+  const upcoming = events
+    .filter((e) => e.pos && e.start)
+    .map((e) => ({ e, span: eventSpan(e) }))
+    .filter(({ span }) => span && span.end >= now && span.start <= horizon)
+    .sort((x, y) => x.span.start - y.span.start);
+  return [...CATEGORY_GROUPS, OTHER_GROUP]
+    .map((group) => {
+      const stops = [];
+      for (const { e, span } of upcoming.filter((x) => eventGroup(x.e) === group)) {
+        // Two events back to back in the same building are one stop.
+        if (stops.at(-1)?.pos.join() === e.pos.join()) continue;
+        stops.push({ e, pos: e.pos, start: span.start, end: span.end });
+      }
+      const legs = stops.slice(1).map((st, i) => octilinear(stops[i].pos, st.pos));
+      const path = legs.length ? [legs[0][0], ...legs.flatMap((leg) => leg.slice(1))] : [];
+      return { group, stops, legs, path };
+    })
+    .filter((l) => l.stops.length > 1);
+}
+
+// Where a line's train is right now: waiting at a station while its event is on (or before the
+// first one), otherwise part way along the leg to the next, by how much of the gap has passed.
+function trainOf(line, now) {
+  const { stops, legs } = line;
+  if (now <= stops[0].start) return { pos: stops[0].pos, next: stops[0], moving: false };
+  for (let i = 0; i < legs.length; i++) {
+    if (now <= stops[i].end) return { pos: stops[i].pos, next: stops[i], moving: false };
+    if (now < stops[i + 1].start) {
+      const frac = (now - stops[i].end) / (stops[i + 1].start - stops[i].end);
+      return { pos: along(legs[i], frac), next: stops[i + 1], moving: true };
+    }
+  }
+  return { pos: stops.at(-1).pos, next: stops.at(-1), moving: false };
+}
+
+const trainIcons = new Map();
+function trainIcon(color) {
+  if (!trainIcons.has(color)) {
+    trainIcons.set(
+      color,
+      L.divIcon({ className: "train-icon", html: `<span class="train" style="--ink:${color}"></span>`, iconSize: [26, 26] })
+    );
+  }
+  return trainIcons.get(color);
+}
+
+function TransitLayer({ lines, dark, hidden }) {
+  const now = useNow();
+  return lines
+    .filter((l) => !hidden.has(l.group.name))
+    .map((l) => {
+      const color = dark ? l.group.dark : l.group.light;
+      const train = trainOf(l, now);
+      return (
+        <Fragment key={l.group.name}>
+          <Polyline positions={l.path} interactive={false} pathOptions={{ color, weight: 18, opacity: 0.22, lineCap: "round", lineJoin: "round", className: "transit-glow" }} />
+          <Polyline positions={l.path} interactive={false} pathOptions={{ color, weight: 6, opacity: 1, lineCap: "round", lineJoin: "round", className: "transit-line" }} />
+          <Marker position={train.pos} icon={trainIcon(color)} keyboard={false} zIndexOffset={500}>
+            <Tooltip direction="top" offset={[0, -14]} className="train-tip">
+              <strong>{l.group.name} line</strong>
+              <span>
+                {train.moving ? "Next stop" : "At"} {train.next.e.title} · {formatTime(train.next.e.start)}
+              </span>
+            </Tooltip>
+          </Marker>
+        </Fragment>
+      );
+    });
+}
+
 
 // Clicking the map itself (not a dot) closes the panel.
 function MapClicks({ onClick }) {
@@ -1474,8 +1585,10 @@ function dotRadius(e) {
 // How long a callout card's stem is (it matches .callout::after in DubHub.css).
 const STEM = 10;
 
-function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, palette }) {
+function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, palette, hiddenLines }) {
   const located = events.filter((e) => e.pos);
+  const now = useNow();
+  const lines = useMemo(() => transitLines(events.filter((e) => e.pos), now), [events, now]);
   // One intro label per place, so events in the same building don't pile up. Only events
   // happening in the next day get one; the rest are still dots you can hover.
   const byPlace = new Map();
@@ -1504,9 +1617,10 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
       className="map"
     >
       <ZoomControl position="bottomright" />
-      <FlyTo event={flyTo} />
+      <FlyTo target={flyTo} />
       <MapArea area={area} />
       <BaseMap palette={palette} />
+      <TransitLayer lines={lines} dark={palette?.dark} hidden={hiddenLines} />
       {located.map((e) => {
         const on = shown?.id === e.id;
         const soon = startsIn(e) != null;
@@ -1517,10 +1631,12 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
             center={e.pos}
             radius={radius}
             pathOptions={{
-              color: on ? (palette?.dark ? "#fff" : "#111214") : soon ? "#ff5da2" : palette?.dark ? "#16181b" : "#fff",
-              weight: on || soon ? 4 : 2,
-              fillColor: eventColor(e, palette?.dark),
+              // A station: porcelain, ringed in its line's ink; the picked one fills with the ink.
+              color: eventColor(e, palette?.dark),
+              weight: on ? 6 : 4,
+              fillColor: on ? eventColor(e, palette?.dark) : "#f3f1ea",
               fillOpacity: 1,
+              className: soon ? "station station-soon" : "station",
             }}
             bubblingMouseEvents={false}
             eventHandlers={{ click: () => onPin(e) }}
@@ -1618,26 +1734,49 @@ function EventCallout({ event, title = event.title, sub, dark }) {
   );
 }
 
-// What the dot colors mean: the groups on the map right now, always in the same order.
-function MapLegend({ events, dark }) {
+// The lines on the map (what each color means), each one a switch that shows or hides its line.
+function MapLegend({ events, dark, hidden, onToggle }) {
   const shown = new Set(events.filter((e) => e.pos).map(eventGroup));
   const groups = [...CATEGORY_GROUPS, OTHER_GROUP].filter((g) => shown.has(g));
   if (!groups.length) return null;
   return (
-    <ul className="map-legend" aria-label="Dot colors">
+    <ul className="map-legend" aria-label="Lines">
       {groups.map((g) => (
         <li key={g.name}>
-          <span className="dot" style={{ background: dark ? g.dark : g.light }} />
-          {g.name}
+          <button className="legend-line" aria-pressed={!hidden.has(g.name)} onClick={() => onToggle(g.name)}>
+            <span className="dot" style={{ background: dark ? g.dark : g.light }} />
+            {g.name}
+          </button>
         </li>
       ))}
     </ul>
   );
 }
 
+// One item at random (for Surprise me).
+function randomPick(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
 function Home({ f, area, introLabels, j, palette }) {
   const [shown, setShown] = useState(null); // { event, pinned }
-  const [flyTo, setFlyTo] = useState(null); // an event picked from the Next up sign
+  const [flyTo, setFlyTo] = useState(null); // { event, far }: where the map should go next
+  const [hiddenLines, setHiddenLines] = useState(() => new Set());
+  const toggleLine = (name) =>
+    setHiddenLines((h) => {
+      const next = new Set(h);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
+  // Surprise me: a random event that's on now or starting today, flown to across campus.
+  const surprise = () => {
+    const pool = f.events.filter((e) => e.pos && ["now", "soon", "today"].includes(sectionOf(e)));
+    const pick = randomPick(pool.length ? pool : f.events.filter((e) => e.pos));
+    if (!pick) return;
+    setFlyTo({ event: pick, far: true });
+    show(pick, true);
+  };
   const hideTimer = useRef();
   const keep = () => clearTimeout(hideTimer.current);
   const show = (event, pinned = false) => {
@@ -1666,8 +1805,13 @@ function Home({ f, area, introLabels, j, palette }) {
         onPin={(e) => show(e, true)}
         onMapClick={close}
         palette={palette}
+        hiddenLines={hiddenLines}
       />
-      <MapLegend events={f.events} dark={palette?.dark} />
+      <MapLegend events={f.events} dark={palette?.dark} hidden={hiddenLines} onToggle={toggleLine} />
+      <button className="surprise" onClick={surprise}>
+        <Icon d={SHUFFLE_ICON} />
+        Surprise me
+      </button>
       <Filters f={f} />
       <h1 className="visually-hidden">Events on the UW campus map</h1>
       {event ? (
@@ -1676,7 +1820,7 @@ function Home({ f, area, introLabels, j, palette }) {
         <NextUp
           events={f.events}
           onPick={(e) => {
-            setFlyTo(e);
+            setFlyTo({ event: e });
             show(e, true);
           }}
         />
@@ -1907,6 +2051,7 @@ function networkOf(events, now) {
 
 function Network({ events, now, dark, onSelect }) {
   const { keys, lines } = networkOf(events, now);
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!lines.length) return null;
   const hubY = NET.top + ((lines.length - 1) * NET.lane) / 2;
   const laneY = (i) => NET.top + i * NET.lane;
@@ -1934,7 +2079,17 @@ function Network({ events, now, dark, onSelect }) {
               const bend = NET.hubX + 24;
               const lastX = Math.max(...l.stops.map((e) => colX(`${e.date}T${e.start}`)));
               const d = `M${NET.hubX},${hubY} L${bend},${hubY} L${bend + Math.abs(y - hubY)},${y} L${lastX + 40},${y}`;
-              return <path key={l.group.name} className="network-line" d={d} stroke={lineColor(l.group, dark)} />;
+              return (
+                <g key={l.group.name}>
+                  <path className="network-glow" d={d} stroke={lineColor(l.group, dark)} />
+                  <path className="network-line" d={d} stroke={lineColor(l.group, dark)} />
+                  {!calm && (
+                    <circle className="network-train" r={6} fill={lineColor(l.group, dark)}>
+                      <animateMotion dur={`${7 + i * 1.3}s`} begin={`${-i * 0.9}s`} repeatCount="indefinite" path={d} />
+                    </circle>
+                  )}
+                </g>
+              );
             })}
             {lines.map((l, i) =>
               l.stops.map((e) => {

@@ -4719,3 +4719,196 @@ button.person:hover,
     font-size: 13px;
   }
 }
+
+/* ======================================================== The map: a neon transit system at night */
+/* Each line: a soft glow of its ink under a crisp core */
+.transit-glow {
+  filter: blur(6px);
+}
+
+.transit-line {
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.35));
+}
+
+/* Stations: porcelain discs ringed in their line's ink; those about to start breathe */
+.station {
+  transition: stroke-width 160ms;
+}
+
+.station-soon {
+  animation: map-station-pulse 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes map-station-pulse {
+  0%,
+  100% {
+    stroke-width: 4px;
+    stroke-opacity: 1;
+  }
+  50% {
+    stroke-width: 11px;
+    stroke-opacity: 0.55;
+  }
+}
+
+/* A train: a porcelain capsule edged in its line's ink, with a halo that pulses as it runs */
+.train-icon {
+  background: none;
+  border: none;
+}
+
+.train {
+  position: relative;
+  display: block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #f3f1ea;
+  box-shadow: 0 0 0 4px var(--ink), 0 0 18px 4px var(--ink);
+}
+
+.train::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.train::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  animation: train-halo 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes train-halo {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.leaflet-tooltip.train-tip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--slate);
+  color: var(--on-slate);
+  font-family: var(--font);
+  font-size: 13px;
+  box-shadow: var(--shadow);
+}
+
+.leaflet-tooltip.train-tip::before {
+  display: none;
+}
+
+.train-tip strong {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-slate-muted);
+}
+
+/* The line key: each line a switch */
+.legend-line {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 2px 4px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.legend-line:hover {
+  background: var(--slate-2);
+}
+
+.legend-line[aria-pressed="false"] {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+/* Surprise me: an amber capsule at the foot of the map */
+.surprise {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  z-index: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+  padding: 12px 22px 10px;
+  border: none;
+  border-radius: 999px;
+  background: var(--signal);
+  color: #0a1430;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 0 0 4px rgba(10, 20, 48, 0.85), 0 8px 30px rgba(255, 194, 26, 0.45);
+  cursor: pointer;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.surprise:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.surprise:active {
+  transform: translateX(-50%) scale(0.97);
+}
+
+.surprise .icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* The Now page's network: lines glow, and trains run out of the NOW interchange forever */
+.network-glow {
+  fill: none;
+  stroke-width: 22;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.18;
+  filter: blur(5px);
+}
+
+.network-train {
+  stroke: #f3f1ea;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 6px #f3f1ea);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .station-soon,
+  .train::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .surprise {
+    bottom: auto;
+    top: 128px;
+    padding: 9px 16px 7px;
+    font-size: 13px;
+  }
+}
