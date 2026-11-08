@@ -1,118 +1,119 @@
-/* DubHub: the flyer wall on the Ave. Xerox black for the bar and the type, a cool paper ground,
-   white flyer sheets held up with tape, and fluoro copy-paper colors that each have one job:
-   yellow is the action (I'm going) and the active tab, orange is on now, pink is starting soon,
-   green is the sheet a flyer with no picture is printed on. Square corners, 1px black rules. */
+/* DubHub: the night network. Midnight-blue enamel, porcelain white type and station ticks, and
+   the club-category colors as transit line inks (src/eventGroups.js). Two signal colors with one
+   job each: red is on now, amber is starting soon. Light mode is the same map by day, printed on
+   porcelain. Lines bend at 45 and 90 degrees; only stations, bullets and the NOW interchange
+   are round. */
 :root {
-  --font: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font: "Overpass", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: var(--font); /* times and codes: the same face, with tabular figures */
-  --display-stretch: 70%; /* headlines: Archivo condensed */
-  --radius: 2px;
+  --display-stretch: 100%;
+  --radius: 4px;
 
-  --yellow: #f2ff3d; /* fluoro: the action, the active tab */
-  --yellow-hover: #e6f52a;
-  --orange: #ff7417; /* fluoro: on now */
-  --pink: #ff5da2; /* fluoro: starting soon */
-  --green: #b4f04a; /* fluoro: the sheet for flyers with no picture */
+  --signal: #ffc21a; /* amber: starting soon */
+  --live: #ff5a4f; /* red: on now */
+  /* Older names the rest of the stylesheet uses for those two jobs */
+  --yellow: var(--signal);
+  --yellow-hover: #ffd04d;
+  --pink: var(--signal);
+  --orange: var(--live);
 
-  --bg: #ecece8; /* the pole: cool paper gray */
-  --surface: #ffffff; /* flyer sheets, inputs, pop-ups */
-  --tint: #f3f3f0;
-  --text: #111214;
-  --muted: #55575c;
-  --line: #d2d2cc;
-  --field-line: #8b8d91;
-  --ink: #111214;
-  --focus: #111214;
+  --bg: #eef0f4; /* porcelain, by day */
+  --surface: #ffffff;
+  --tint: #f4f5f8;
+  --text: #0a1430;
+  --muted: #4b5675;
+  --line: #d6dae5;
+  --field-line: #8e97b0;
+  --ink: #0a1430;
+  --focus: #0a1430;
 
-  --slate: #111214; /* xerox black: the top bar, map panels, labels */
-  --slate-2: #2a2c30;
-  --slate-line: #34363a;
-  --on-slate: #ffffff;
-  --on-slate-muted: #a9abb0;
+  --slate: #0a1430; /* the bar and anything sign-like: midnight */
+  --slate-2: #16234d;
+  --slate-line: #22305e;
+  --on-slate: #f3f1ea;
+  --on-slate-muted: #a3aed0;
   --panel: var(--slate);
-  --sheet-tape: rgba(250, 246, 214, 0.72); /* clear packing tape, a little yellowed */
-  --sheet-tape-edge: rgba(17, 18, 20, 0.16);
+  --track: rgba(10, 20, 48, 0.07);
 
-  --action: #111214;
-  --on-action: #ffffff;
-  --action-hover: #000000;
+  --action: #0a1430;
+  --on-action: #f3f1ea;
+  --action-hover: #000a24;
 
   --error: #b3261e;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2355575c' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
-  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a9abb0' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234b5675' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3aed0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
   --nav-bg: var(--slate);
   --nav-line: var(--slate);
   --overlay-bg: var(--panel);
   --callout-bg: var(--surface);
-  --shadow: 0 1px 2px rgba(17, 18, 20, 0.2), 0 8px 22px rgba(17, 18, 20, 0.16);
+  --shadow: 0 1px 2px rgba(10, 20, 48, 0.2), 0 10px 26px rgba(10, 20, 48, 0.18);
   color-scheme: light;
   --nav-h: 56px;
   --tabbar-h: 0px; /* the bottom tab bar's height on phones */
 }
 
-/* Dark: lights out on the pole. Follows the device unless someone flips the switch. */
+/* Night: the default feel of the network. Follows the device unless someone flips the switch. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-  --bg: #121314;
-  --surface: #1c1d1f;
-  --tint: #26272a;
-  --text: #f0f0ec;
-  --muted: #a3a5aa;
-  --line: #303236;
-  --field-line: #5a5c61;
-  --ink: #f0f0ec;
-  --focus: var(--yellow);
-  --slate: #000000;
-  --slate-2: #232427;
-  --slate-line: #303236;
-  --panel: #1c1d1f;
-  --action: #f0f0ec;
-  --on-action: #111214;
+  --bg: #0a1430; /* midnight enamel */
+  --surface: #101c40;
+  --tint: #16234d;
+  --text: #f3f1ea; /* porcelain */
+  --muted: #a3aed0;
+  --line: #22305e;
+  --field-line: #3c4a80;
+  --ink: #f3f1ea;
+  --focus: var(--signal);
+  --slate: #060c20;
+  --slate-2: #16234d;
+  --slate-line: #22305e;
+  --panel: #101c40;
+  --action: #f3f1ea;
+  --on-action: #0a1430;
   --action-hover: #ffffff;
-  --sheet-tape: rgba(250, 246, 214, 0.5);
-  --sheet-tape-edge: rgba(0, 0, 0, 0.3);
+  --track: rgba(243, 241, 234, 0.07); /* the faint time ticks behind the network */
   --error: #ff9b8f;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3a5aa' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3aed0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
   --nav-bg: var(--slate);
   --nav-line: var(--slate-line);
   --overlay-bg: var(--panel);
   --callout-bg: var(--panel);
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.4);
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 14px 34px rgba(0, 0, 0, 0.45);
   color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #121314;
-  --surface: #1c1d1f;
-  --tint: #26272a;
-  --text: #f0f0ec;
-  --muted: #a3a5aa;
-  --line: #303236;
-  --field-line: #5a5c61;
-  --ink: #f0f0ec;
-  --focus: var(--yellow);
-  --slate: #000000;
-  --slate-2: #232427;
-  --slate-line: #303236;
-  --panel: #1c1d1f;
-  --action: #f0f0ec;
-  --on-action: #111214;
+  --bg: #0a1430; /* midnight enamel */
+  --surface: #101c40;
+  --tint: #16234d;
+  --text: #f3f1ea; /* porcelain */
+  --muted: #a3aed0;
+  --line: #22305e;
+  --field-line: #3c4a80;
+  --ink: #f3f1ea;
+  --focus: var(--signal);
+  --slate: #060c20;
+  --slate-2: #16234d;
+  --slate-line: #22305e;
+  --panel: #101c40;
+  --action: #f3f1ea;
+  --on-action: #0a1430;
   --action-hover: #ffffff;
-  --sheet-tape: rgba(255, 255, 255, 0.16);
+  --track: rgba(243, 241, 234, 0.07); /* the faint time ticks behind the network */
   --error: #ff9b8f;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3a5aa' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3aed0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
   --nav-bg: var(--slate);
   --nav-line: var(--slate-line);
   --overlay-bg: var(--panel);
   --callout-bg: var(--panel);
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.4);
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 14px 34px rgba(0, 0, 0, 0.45);
   color-scheme: dark;
 }
 
 ::selection {
-  background: var(--yellow);
-  color: #111214;
+  background: var(--signal);
+  color: #0a1430;
 }
 
 * {
@@ -183,17 +184,16 @@ a:hover {
   z-index: 1000;
 }
 
-/* The wordmark: heavy condensed caps, like the top line of a photocopied flyer */
+/* The wordmark: heavy spaced caps, like a line name on a station sign */
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
   font: inherit;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 900;
-  font-stretch: var(--display-stretch);
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.06em;
   color: var(--on-slate);
   background: none;
   border: none;
@@ -412,8 +412,8 @@ a:hover {
 }
 
 .plate.plate-now {
-  background: var(--orange);
-  color: #111214;
+  background: var(--live);
+  color: #0a1430;
 }
 
 /* "In 12 min" / "Now": a fluoro sticker. Pink is starting soon, orange is on now. */
@@ -421,7 +421,7 @@ a:hover {
   display: inline-block;
   padding: 1px 6px;
   background: var(--pink);
-  color: #111214;
+  color: #0a1430;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -630,12 +630,12 @@ a:hover {
 }
 
 .next-up .starts {
-  color: #111214;
+  color: #0a1430;
 }
 
 .next-up .starts.now {
   align-self: flex-start;
-  color: #111214;
+  color: #0a1430;
 }
 
 .next-up-text {
@@ -904,14 +904,14 @@ a:hover {
 }
 
 .join.go {
-  background: var(--yellow);
-  border-color: #111214;
-  color: #111214;
+  background: var(--action);
+  border-color: var(--action);
+  color: var(--on-action);
 }
 
 .join.go:hover {
-  background: var(--yellow-hover);
-  border-color: #111214;
+  background: var(--action-hover);
+  border-color: var(--action-hover);
 }
 
 .join .icon {
@@ -944,13 +944,14 @@ a:hover {
 /* Going: black with yellow type and a check, in lists too */
 .join.joined,
 .join.quiet.joined {
-  background: #111214;
+  background: transparent;
   border-color: var(--ink);
-  color: var(--yellow);
+  box-shadow: inset 0 0 0 1px var(--ink);
+  color: var(--ink);
 }
 
 .join.joined:hover {
-  background: #000;
+  background: var(--tint);
   border-color: var(--ink);
 }
 
@@ -2407,12 +2408,12 @@ a.discord-bot-link.join {
 }
 
 :root[data-theme="dark"] .leaflet-container {
-  background: #16181b;
+  background: #0a1430;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .leaflet-container {
-    background: #16181b;
+    background: #0a1430;
   }
 }
 
@@ -4230,31 +4231,231 @@ button.person:hover,
   border-color: var(--ink);
 }
 
-/* ================================================================ The Now page: the flyer wall */
-/* Headlines on every page: heavy condensed, like the top line of a photocopied flyer */
-.page h1,
-.page h2,
-.club-modal h2,
-.map-card-title {
-  font-stretch: var(--display-stretch);
+/* ===================================================== The Now page: the network and departures */
+.page h1 {
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
 }
 
-.page h1 {
-  font-size: 44px;
-  font-weight: 900;
-  letter-spacing: -0.005em;
+/* The live time, set like a station name sign: day in a porcelain plate, time big beside it */
+.now-head h1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-bottom: 8px;
+}
+
+.now-day {
+  padding: 6px 14px 3px;
+  border-radius: 999px;
+  background: var(--slate);
+  color: var(--on-slate);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.now-head h1 span {
-  color: var(--muted);
+.now-clock {
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .now-head .page-sub {
   max-width: 70ch;
 }
 
-/* Search, then one row: type toggles, club type, and how far ahead */
+/* ------------------------------------------------------------------------------ the network */
+.network {
+  position: relative;
+  margin: 24px 0 8px;
+  padding: 8px 0 14px;
+  border-radius: 14px;
+  background: var(--slate);
+  color: var(--on-slate);
+  --track: rgba(243, 241, 234, 0.07);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.network-scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--slate-line) transparent;
+}
+
+.network-canvas {
+  position: relative;
+}
+
+.network-canvas svg {
+  position: absolute;
+  inset: 0;
+}
+
+.network-tick {
+  stroke: var(--track);
+  stroke-width: 1;
+}
+
+/* A line: thick ink, round-ended, bending only at 45° */
+.network-line {
+  fill: none;
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* A station: a porcelain tick ringed in its line's ink */
+.network-station {
+  fill: #f3f1ea;
+  stroke-width: 5;
+}
+
+/* On now: filled with its line's ink, ringed in porcelain */
+.network-station.network-now {
+  fill: var(--ink);
+  stroke: #f3f1ea;
+}
+
+/* Starting soon: the station pulses, a ring of its ink breathing out from it */
+.network-station.network-soon {
+  animation: station-pulse 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes station-pulse {
+  0% {
+    filter: drop-shadow(0 0 0 var(--ink));
+  }
+  60% {
+    filter: drop-shadow(0 0 9px var(--ink));
+  }
+  100% {
+    filter: drop-shadow(0 0 0 var(--ink));
+  }
+}
+
+/* The NOW interchange: a porcelain disc where every line starts */
+.network-hub {
+  fill: #f3f1ea;
+  stroke: var(--slate);
+  stroke-width: 4;
+}
+
+.network-now {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #0a1430;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.05;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.network-now strong {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.network-time {
+  position: absolute;
+  top: 6px;
+  transform: translateX(-50%);
+  color: var(--on-slate-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* A station's name, above its tick (every other one below, so neighbors never collide) */
+.network-label {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - 14px));
+  width: 124px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--on-slate);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  cursor: pointer;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.network-label.below {
+  transform: translate(-50%, 14px);
+}
+
+.network-label:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.network-label:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+.network-key {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 6px 0 0;
+  padding: 10px 20px 0;
+  border-top: 1px solid var(--slate-line);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--on-slate-muted);
+}
+
+.network-key li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* A line bullet: a disc in the line's ink */
+.bullet {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+.network .bullet {
+  box-shadow: 0 0 0 2px var(--slate);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .network-station.network-soon {
+    animation: none;
+    filter: drop-shadow(0 0 6px var(--ink));
+  }
+}
+
+/* -------------------------------------------------------------------- filters and search */
 .filter-row {
   display: flex;
   flex-wrap: wrap;
@@ -4266,15 +4467,19 @@ button.person:hover,
   flex: 0 1 auto;
 }
 
+.chip-btn {
+  border-radius: 999px;
+}
+
 .filter-select {
   appearance: none;
   font: inherit;
   font-size: 14px;
   font-weight: 600;
-  padding: 6px 32px 6px 11px;
+  padding: 6px 32px 6px 12px;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface) var(--select-arrow) no-repeat right 11px center;
+  border-radius: 999px;
+  background: var(--surface) var(--select-arrow) no-repeat right 12px center;
   color: var(--text);
   cursor: pointer;
 }
@@ -4288,310 +4493,152 @@ button.person:hover,
   box-shadow: inset 0 0 0 1px var(--ink);
 }
 
-/* A section of the wall: "On now 4" */
-.wall {
-  margin-top: 36px;
+/* --------------------------------------------------------------------------- departures */
+.departures {
+  margin-top: 32px;
 }
 
-.page .wall h2 {
+.page .departures h2 {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 4px 12px;
-  margin: 0 0 14px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--ink);
-  font-size: 30px;
-  font-weight: 900;
-  line-height: 1;
+  margin: 0;
+  padding: 10px 16px 8px;
+  border-radius: 10px 10px 0 0;
+  background: var(--slate);
+  color: var(--on-slate);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.page .departures-now h2 {
+  box-shadow: inset 0 -3px 0 var(--live);
+}
+
+.page .departures-soon h2 {
+  box-shadow: inset 0 -3px 0 var(--signal);
 }
 
 .wall-count {
-  font-size: 18px;
   font-weight: 700;
-  color: var(--muted);
+  color: var(--on-slate-muted);
 }
 
 .wall-note {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  font-stretch: 100%;
+  letter-spacing: 0;
   text-transform: none;
-  color: var(--muted);
+  color: var(--on-slate-muted);
 }
 
-/* On now and Starting soon get a fluoro rule under their heading */
-.page .wall-now h2 {
-  border-bottom-color: var(--orange);
-  border-bottom-width: 4px;
-}
-
-.page .wall-soon h2 {
-  border-bottom-color: var(--pink);
-  border-bottom-width: 4px;
-}
-
-.flyers {
+.departure-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  align-items: start; /* each flyer is its own height, so rows stay in soonest-first order */
-  gap: 28px 20px;
-}
-
-/* One flyer: a white sheet, taped up, hung a hair off straight (alternating), squared when you
-   reach for it. The tilt is under a degree so a full wall still reads as a tidy grid. */
-.flyer {
-  position: relative;
-  display: flex;
-  flex-direction: column;
   background: var(--surface);
-  box-shadow: 0 1px 1px rgba(17, 18, 20, 0.12), 0 4px 10px rgba(17, 18, 20, 0.08);
-  transform: rotate(-0.6deg);
-  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--line);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
 }
 
-.flyer:nth-child(2n) {
-  transform: rotate(0.5deg);
+.departure {
+  display: grid;
+  grid-template-columns: 14px 128px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
 }
 
-.flyer:nth-child(3n) {
-  transform: rotate(-0.2deg);
+.departure:last-child {
+  border-bottom: none;
 }
 
-.flyer:hover,
-.flyer:focus-within {
-  transform: none;
-  box-shadow: 0 2px 3px rgba(17, 18, 20, 0.14), 0 12px 26px rgba(17, 18, 20, 0.14);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .flyer {
-    transition: none;
-  }
-}
-
-/* A strip of tape across the top edge */
-.flyer::before {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  top: -9px;
-  left: 50%;
-  width: 72px;
-  height: 20px;
-  transform: translateX(-50%) rotate(-2deg);
-  background: var(--sheet-tape);
-  box-shadow: 0 0 0 1px var(--sheet-tape-edge);
-  pointer-events: none;
-}
-
-.flyer:nth-child(2n)::before {
-  transform: translateX(-50%) rotate(3deg);
-}
-
-/* The flyer is shown whole, at its own proportions (very tall ones are capped and letterboxed) */
-.flyer-sheet {
-  position: relative;
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: none;
+.departure:hover {
   background: var(--tint);
-  overflow: hidden;
-  cursor: pointer;
 }
 
-.flyer-sheet:focus-visible {
-  outline-offset: -3px;
-}
-
-.flyer-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 440px;
-  object-fit: contain;
-}
-
-/* No picture: the title, printed big on a sheet of fluoro green */
-.flyer-type {
-  display: flex;
-  align-items: flex-end;
-  width: 100%;
-  min-height: 200px;
-  padding: 16px 14px;
-  background: var(--green);
-  color: #111214;
-  font-size: 30px;
-  font-weight: 900;
-  font-stretch: 62%;
-  line-height: 0.95;
-  text-align: left;
-  text-transform: uppercase;
-  overflow-wrap: anywhere;
-}
-
-/* When: a fluoro sticker slapped on the flyer's corner */
-.sticker {
-  position: absolute;
-  left: 8px;
-  bottom: 8px;
-  padding: 4px 8px 3px;
-  background: #fff;
-  color: #111214;
-  font-size: 13px;
+/* The time column, like a departure board: big tabular figures; on now and soon in their signals */
+.departure-time {
+  font-size: 17px;
   font-weight: 800;
-  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.departure-now,
+.departure-soon {
+  justify-self: start;
+  padding: 3px 8px 1px;
+  border-radius: 4px;
+  color: #0a1430;
+  font-size: 13px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  box-shadow: 0 1px 2px rgba(17, 18, 20, 0.3);
 }
 
-.sticker-now {
-  background: var(--orange);
+.departure-now {
+  background: var(--live);
 }
 
-.sticker-soon {
-  background: var(--pink);
+.departure-soon {
+  background: var(--signal);
 }
 
-.flyer-body {
+.departure-main {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 12px 12px 10px;
-  flex: 1;
+  min-width: 0;
 }
 
-.page .flyer-title {
-  margin: 0;
-  font-size: 22px;
+.departure-main .club-link {
+  font-size: 17px;
   font-weight: 800;
-  font-stretch: var(--display-stretch);
-  line-height: 1.05;
-  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.flyer-title .club-link {
-  font-size: inherit;
-  line-height: inherit;
-  text-align: left;
-}
-
-.flyer-meta,
-.flyer-where {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 8px;
-  margin: 0;
-  font-size: 13px;
+.departure-host {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--muted);
+  font-size: 14px;
 }
 
-.flyer-meta {
-  flex-wrap: nowrap;
-  align-items: baseline;
-}
-
-.flyer-meta .dot {
-  width: 8px;
-  height: 8px;
-  margin: 0;
-  transform: translateY(-1px);
-}
-
-.flyer-going {
-  font-weight: 700;
+.departure-going {
   color: var(--text);
+  font-weight: 700;
 }
 
-/* The tear-off fringe: narrow strips cut up from the bottom of the flyer, with a perforation
-   across their tops. Going tears the end strip away (the page's one motion moment: it drops
-   and turns as it falls) and the remaining strips go black: "Going". */
-.tear-tab {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 46px;
-  padding: 0;
-  border: none;
-  border-top: 2px dashed var(--field-line);
-  background: none;
-  color: #111214;
-  font: inherit;
-  cursor: pointer;
-}
-
-.fringe {
-  position: absolute;
-  inset: 0;
+.departure-where {
   display: flex;
-  gap: 3px; /* the cuts between strips */
-}
-
-.strip {
-  flex: 1;
-  background: var(--yellow);
-  transition: background-color 160ms;
-}
-
-.tear-tab:hover .strip {
-  background: var(--yellow-hover);
-}
-
-.tear-label {
-  position: relative;
-  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 6px;
-  font-size: 15px;
-  font-weight: 800;
-  font-stretch: 85%;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  justify-content: flex-end;
+  max-width: 200px;
+  min-width: 0;
 }
 
-.tear-label .icon {
-  width: 17px;
-  height: 17px;
+.departure-place {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 13px;
 }
 
-.tear-tab.torn {
-  color: var(--yellow);
+.departure .join {
+  margin: 0;
+  border-radius: 999px;
 }
 
-.tear-tab.torn .strip {
-  background: #111214;
-}
-
-.tear-tab.torn .strip-tear {
-  animation: tear-away 520ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes tear-away {
-  0% {
-    transform: none;
-    opacity: 1;
-    background: var(--yellow);
-  }
-  100% {
-    transform: translate(6px, 34px) rotate(16deg);
-    opacity: 0;
-    background: var(--yellow);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .tear-tab.torn .strip-tear {
-    animation: none;
-    visibility: hidden;
-  }
+/* Building codes: porcelain station-name plates */
+.plate {
+  border-radius: 4px;
 }
 
 .share-button {
@@ -4602,11 +4649,21 @@ button.person:hover,
   text-decoration: underline;
 }
 
+.detail-flyer {
+  position: relative;
+  margin: -24px -24px 18px;
+  background: var(--slate);
+}
+
+.club-modal {
+  border-radius: 14px;
+}
+
 .empty-wall {
-  margin-top: 32px;
-  padding: 28px;
-  background: var(--surface);
+  margin-top: 28px;
+  padding: 24px;
   border: 1px dashed var(--field-line);
+  border-radius: 10px;
 }
 
 .empty-wall p {
@@ -4615,58 +4672,50 @@ button.person:hover,
   font-weight: 700;
 }
 
-@media (max-width: 700px) {
-  .page h1 {
-    font-size: 34px;
-  }
-  .flyers {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px 12px;
-  }
-  .page .wall h2 {
-    font-size: 24px;
-  }
-  .flyer-type {
-    font-size: 22px;
-    padding: 12px 10px;
-  }
-  .page .flyer-title {
-    font-size: 18px;
-  }
-  .flyer-body {
-    padding: 10px 10px 8px;
-  }
-  .tear-tab {
-    height: 42px;
-  }
-  .tear-label {
-    font-size: 13px;
-  }
-  .sticker {
-    font-size: 11px;
-  }
+.join {
+  border-radius: 999px;
 }
 
-/* Lights out on the pole: the flyers are still paper, just dimmer. */
-:root[data-theme="dark"] .flyer,
-:root[data-theme="dark"] .detail-flyer {
-  --surface: #d9d8d1;
-  --tint: #cfcec7;
-  --text: #111214;
-  --muted: #45474c;
-  --field-line: #6b6d72;
-  --ink: #111214;
-  color: #111214;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .flyer,
-  :root:not([data-theme="light"]) .detail-flyer {
-    --surface: #d9d8d1;
-    --tint: #cfcec7;
-    --text: #111214;
-    --muted: #45474c;
-    --field-line: #6b6d72;
-    --ink: #111214;
-    color: #111214;
+@media (max-width: 700px) {
+  .now-clock {
+    font-size: 42px;
+  }
+  .now-day {
+    font-size: 14px;
+  }
+  .network {
+    margin-left: -16px;
+    margin-right: -16px;
+    border-radius: 0;
+  }
+  .departure {
+    grid-template-columns: 14px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "bullet time join"
+      "bullet main main"
+      "bullet where where";
+    gap: 4px 12px;
+    align-items: start;
+  }
+  .departure .bullet {
+    grid-area: bullet;
+    margin-top: 5px;
+  }
+  .departure-time {
+    grid-area: time;
+  }
+  .departure-main {
+    grid-area: main;
+  }
+  .departure-where {
+    grid-area: where;
+    justify-content: flex-start;
+    max-width: none;
+  }
+  .departure .join {
+    grid-area: join;
+    min-height: 32px;
+    padding: 4px 12px;
+    font-size: 13px;
   }
 }

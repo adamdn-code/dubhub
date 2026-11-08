@@ -5,20 +5,20 @@ primary_target: "src/DubHub.jsx"
 related_targets: ["src/DubHub.css"]
 ---
 
-# DubHub app shell (all tabs), branch dubhub-now
+# DubHub app shell (all tabs), branch dubhub-wild
 
-Scope: the whole DubHub SPA. Visitor mode: Operate. Audience: UW students on phones between classes asking "what's happening right now?". Constraints: every feature keeps working; light + dark only. Product bet: "Now" (events by time from now) is the front page; the map is a tab; any event can be shared as a link.
+Scope: the whole DubHub SPA. Visitor mode: Operate. Audience: UW students on phones asking "what's happening right now?". The user asked for the redesign to be "really creative and stylistic, really bonkers and cool". Constraints: every feature keeps working; light + dark only. Product shape kept from dubhub-now: Now is the front page, the map is a tab, #event=<id> share links.
 
 ## Direction contract
 
-THESIS: DubHub is the telephone pole on the Ave, kept current: real club flyers, sorted by how soon they start, with a tear-off tab to say you're going. It refuses the map-first front page and the grid of identical soft cards.
+THESIS: DubHub is the night network map of campus: every kind of club event is a colored line, every event a station, and all of them leave from one glowing NOW interchange. It refuses the event feed and the card grid; the schedule is drawn as a transit diagram.
 
-OWN-WORLD: Xerox black (#111214) shell bar and type; cool paper ground (#ecece8 light, #121314 dark); white flyer sheets with a strip of translucent tape; fluoro copy-paper colors with jobs: fluoro yellow (#f2ff3d) is the action ("I'm going"), fluoro orange (#ff7417) is "on now", fluoro pink (#ff5da2) is "starting soon"; flyers with no picture are set as type on a fluoro sheet. Archivo, condensed and heavy for headlines, normal width for UI text, tabular figures. Square corners, 1px black rules.
+OWN-WORLD: Midnight-blue enamel ground (#0a1430) with porcelain white (#f3f1ea) for type, station ticks and sign plates; the line inks are the club-category colors from src/eventGroups.js (the validated dark set on midnight, the light set on day porcelain #eef0f4). Overpass, the highway and transit sign face, in fixed sizes, tabular figures. Lines bend only at 45 and 90 degrees. Rounded only where transit is round: stations, line bullets, the interchange.
 
-STORY: A student opens DubHub, sees what is on now and next as a wall of flyers, taps one, tears off "I'm going", and shares the link with a friend.
+STORY: A student opens DubHub, sees the network fanning out from NOW, follows a line to the next station, taps it, says they're going, and shares the link.
 
-FIRST VIEWPORT: Black bar (DUBHUB wordmark, tabs Now / Map / My Events / Clubs / About, sign-in). Below: a heavy condensed headline with the live day and time, a search field and one row of filters, then "On now" and "Starting soon" sections as a grid of flyers (picture, title, host, time sticker, building label, tear-off "I'm going" tab). Primary action: the tear-off tab on each flyer.
+FIRST VIEWPORT: Midnight bar (DUBHUB, tabs Now / Map / My Events / Clubs / About, sign-in). Below: the live time as a station sign, then the Network: a wide diagram with the NOW interchange at the left, one line per club category fanning out at 45 degrees into horizontal lanes, stations at each upcoming event (schematic, evenly spaced by start time, time headers above), stations about to start pulsing. Under it, Departures: rows with the line bullet, time, event, host, building plate and an "I'm going" button.
 
-FORM: The Ave Flyer Wall, grounded candidate 1 of 7 (IMPECCABLE'S PICK, chosen by the user over the assigned Ticket & Wristband). seed:526a28962363cb16. Signature move: the tear-off tab that tears away when you mark yourself going.
+FORM: Midnight Transit, a dealt challenger from the bolder re-roll (round 1), chosen by the user. seed:526a28962363cb16. Signature move: the network diagram leaving from the NOW interchange, with the next stations pulsing.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

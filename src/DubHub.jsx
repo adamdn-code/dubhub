@@ -1202,24 +1202,24 @@ const MAP_COLORS = {
 // The dark map: the top bar's slate, with streets a step lighter and water in a deep blue-gray.
 const DARK_MAP = {
   dark: true,
-  background: "#16181b",
-  water: "#1a2632",
-  park: "#1b231d",
-  wood: "#19211b",
-  wetland: "#1c241e",
-  plaza: "#1a1c1f",
-  building: "#222529",
-  school: "#1a1c20",
-  road: "#2b2f34",
-  major: "#3a3f45", // main streets
-  highway: "#5a4a40", // freeways only, in a dim brick
-  path: "#23262a", // walking paths, fainter than streets
-  casing: "#16181b",
-  highwayCasing: "#3a302a",
-  label: "#c3c7cc",
-  labelHalo: "#121417",
-  waterLabel: "#8ea6bd",
-  iconOpacity: 0.75, // place icons a little softer, so they don't glare
+  background: "#0a1430", // the network's midnight enamel
+  water: "#0f2152",
+  park: "#0e1f3a",
+  wood: "#0d1d36",
+  wetland: "#10213c",
+  plaza: "#0c1734",
+  building: "#13204a",
+  school: "#0c1835",
+  road: "#1b2a5c",
+  major: "#26387a", // main streets
+  highway: "#34488f", // freeways
+  path: "#152351", // walking paths, fainter than streets
+  casing: "#0a1430",
+  highwayCasing: "#1d2c63",
+  label: "#c3cbe6",
+  labelHalo: "#0a1430",
+  waterLabel: "#8ea3d8",
+  iconOpacity: 0.7,
 };
 
 const MAP_PALETTES = { light: MAP_COLORS, dark: DARK_MAP };
@@ -1712,15 +1712,11 @@ function EventDetail({ event, j, onClose }) {
         <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
           <Icon d={CLOSE_ICON} />
         </button>
-        <div className="detail-flyer">
-          {event.image ? <HeroImage src={event.image} /> : <span className="flyer-type detail-type">{event.title}</span>}
-          {sectionOf(event) && (
-            <span className={`sticker sticker-${stickerOf(event, sectionOf(event)).kind}`}>
-              {stickerOf(event, sectionOf(event)).text}
-            </span>
-          )}
-          <TearTab event={event} j={j} />
-        </div>
+        {event.image && (
+          <div className="detail-flyer">
+            <HeroImage src={event.image} />
+          </div>
+        )}
         <h2 id="event-detail-title">{event.title}</h2>
         <p className="detail-tags">
           <StartsTag event={event} />
@@ -1752,6 +1748,7 @@ function EventDetail({ event, j, onClose }) {
         <GoingList event={event} j={j} />
         {/* The action right under the facts, before a description that can run long */}
         <div className="detail-actions">
+          <JoinButton event={event} j={j} />
           <ShareButton event={event} />
           <CalendarLink event={event} />
           <PostLink event={event} />
@@ -1887,69 +1884,134 @@ function stickerOf(e, section) {
   return { kind: "time", text: `${day} ${time}` };
 }
 
-// One flyer on the wall: the club's own flyer picture (or, when there's none, the title set as
-// type on a sheet of fluoro paper), a sticker with when, and the tear-off tab to say you're going.
-function Flyer({ event: e, section, j, onSelect }) {
-  const [broken, setBroken] = useState(false);
-  const sticker = stickerOf(e, section);
-  const picture = e.image && !broken;
+// ------------------------------------------------------------------- the network (Now page)
+// Every kind of club event is a line, in its category's color (src/eventGroups.js), and every
+// event is a station on it. The diagram is schematic, like a transit map: stations are spaced
+// evenly by start time, not to scale, so a busy evening never crowds into an unreadable knot.
+const NET = { col: 132, lane: 62, hubX: 64, top: 70, maxCols: 12 };
+
+function lineColor(group, dark) {
+  return dark ? group.dark : group.light;
+}
+
+// The next stations across all lines: each distinct start time is a column, soonest first.
+function networkOf(events, now) {
+  const upcoming = events.filter((e) => e.start && ["now", "soon", "today", "tomorrow"].includes(sectionOf(e, now)));
+  const keys = [...new Set(upcoming.map((e) => `${e.date}T${e.start}`))].sort().slice(0, NET.maxCols);
+  const inView = upcoming.filter((e) => keys.includes(`${e.date}T${e.start}`));
+  const lines = [...CATEGORY_GROUPS, OTHER_GROUP]
+    .map((g) => ({ group: g, stops: inView.filter((e) => eventGroup(e) === g) }))
+    .filter((l) => l.stops.length);
+  return { keys, lines };
+}
+
+function Network({ events, now, dark, onSelect }) {
+  const { keys, lines } = networkOf(events, now);
+  if (!lines.length) return null;
+  const hubY = NET.top + ((lines.length - 1) * NET.lane) / 2;
+  const laneY = (i) => NET.top + i * NET.lane;
+  const fan = Math.max(...lines.map((_, i) => Math.abs(laneY(i) - hubY)));
+  const x0 = NET.hubX + 48 + fan; // where the first column sits, past the 45° fan-out
+  const colX = (k) => x0 + keys.indexOf(k) * NET.col;
+  const width = x0 + (keys.length - 1) * NET.col + 110;
+  const height = NET.top + (lines.length - 1) * NET.lane + 72;
+  const clock = new Date(now).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  const timeLabel = (k) => {
+    const [date, start] = k.split("T");
+    return `${date === localDate(0) ? "" : "Tmrw "}${formatTime(start)}`;
+  };
+
   return (
-    <li className="flyer">
-      <button className="flyer-sheet" onClick={() => onSelect(e)} aria-label={`${e.title}, ${sticker.text}`}>
-        {picture ? (
-          <img className="flyer-img" src={e.image} alt="" loading="lazy" decoding="async" onError={() => setBroken(true)} />
-        ) : (
-          <span className="flyer-type" aria-hidden="true">
-            {e.title}
+    <section className="network" aria-label="The next events, drawn as a transit map">
+      <div className="network-scroll">
+        <div className="network-canvas" style={{ width, height }}>
+          <svg width={width} height={height} aria-hidden="true">
+            {keys.map((k) => (
+              <line key={k} className="network-tick" x1={colX(k)} x2={colX(k)} y1={24} y2={height - 8} />
+            ))}
+            {lines.map((l, i) => {
+              const y = laneY(i);
+              const bend = NET.hubX + 24;
+              const lastX = Math.max(...l.stops.map((e) => colX(`${e.date}T${e.start}`)));
+              const d = `M${NET.hubX},${hubY} L${bend},${hubY} L${bend + Math.abs(y - hubY)},${y} L${lastX + 40},${y}`;
+              return <path key={l.group.name} className="network-line" d={d} stroke={lineColor(l.group, dark)} />;
+            })}
+            {lines.map((l, i) =>
+              l.stops.map((e) => {
+                const soon = sectionOf(e, now);
+                return (
+                  <circle
+                    key={e.id}
+                    className={`network-station network-${soon}`}
+                    cx={colX(`${e.date}T${e.start}`)}
+                    cy={laneY(i)}
+                    r={9}
+                    stroke={lineColor(l.group, dark)}
+                    style={{ "--ink": lineColor(l.group, dark) }}
+                  />
+                );
+              })
+            )}
+            <circle className="network-hub" cx={NET.hubX} cy={hubY} r={30} />
+          </svg>
+          <span className="network-now" style={{ left: NET.hubX, top: hubY }}>
+            <strong>Now</strong>
+            {clock}
           </span>
-        )}
-        <span className={`sticker sticker-${sticker.kind}`}>{sticker.text}</span>
-      </button>
-      <div className="flyer-body">
-        <h3 className="flyer-title">
-          <button className="club-link" onClick={() => onSelect(e)}>
-            {e.title}
-          </button>
-        </h3>
-        <p className="flyer-meta">
-          <span className="dot" style={{ background: eventColor(e) }} title={eventGroup(e).name} />
-          <span>{hostName(e)}</span>
-        </p>
-        <p className="flyer-where">
-          <Plate where={e.where} />
-          <span>{placeCode(e.where) ? null : e.where}</span>
-          {going(e, j) && <span className="flyer-going">{going(e, j)}</span>}
-        </p>
+          {keys.map((k) => (
+            <span key={k} className="network-time" style={{ left: colX(k) }}>
+              {timeLabel(k)}
+            </span>
+          ))}
+          {lines.map((l, i) =>
+            l.stops.map((e, n) => (
+              <button
+                key={e.id}
+                className={n % 2 ? "network-label below" : "network-label"}
+                style={{ left: colX(`${e.date}T${e.start}`), top: laneY(i) }}
+                onClick={() => onSelect(e)}
+                title={`${e.title} · ${hostName(e)}`}
+              >
+                {e.title}
+              </button>
+            ))
+          )}
+        </div>
       </div>
-      <TearTab event={e} j={j} />
-    </li>
+      <ul className="network-key" aria-label="Lines">
+        {lines.map((l) => (
+          <li key={l.group.name}>
+            <span className="bullet" style={{ background: lineColor(l.group, dark) }} />
+            {l.group.name}
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
-// The tear-off fringe at the bottom of a flyer, like the phone-number strips on a real one:
-// "I'm going". Going tears the end strip away (it drops, leaving a gap) and the rest of the
-// fringe turns black; tapping again puts the strip back.
-const FRINGE = 7;
-function TearTab({ event, j }) {
-  const isJoined = j.joined.includes(String(event.id));
+// One departure: line bullet, time, event, host, building plate, and "I'm going".
+function Departure({ event: e, section, j, dark, onSelect }) {
+  const sticker = stickerOf(e, section);
   return (
-    <button
-      className={isJoined ? "tear-tab torn" : "tear-tab"}
-      aria-pressed={isJoined}
-      aria-label={`${isJoined ? "Going to" : "Go to"} ${event.title}`}
-      title={isJoined ? "You're going. Tap to take it back" : j.signedIn ? undefined : "Sign in to say you're going"}
-      onClick={() => j.toggle(event.id)}
-    >
-      <span className="fringe" aria-hidden="true">
-        {Array.from({ length: FRINGE }, (_, i) => (
-          <span key={i} className={i === FRINGE - 1 ? "strip strip-tear" : "strip"} />
-        ))}
+    <li className="departure">
+      <span className="bullet" style={{ background: lineColor(eventGroup(e), dark) }} title={`${eventGroup(e).name} line`} />
+      <span className={`departure-time departure-${sticker.kind}`}>{sticker.text}</span>
+      <span className="departure-main">
+        <button className="club-link" onClick={() => onSelect(e)}>
+          {e.title}
+        </button>
+        <span className="departure-host">
+          {hostName(e)}
+          {going(e, j) && <span className="departure-going"> · {going(e, j)}</span>}
+        </span>
       </span>
-      <span className="tear-label">
-        {isJoined && <Icon d={CHECK_ICON} />}
-        {isJoined ? "Going" : "I'm going"}
+      <span className="departure-where">
+        <Plate where={e.where} />
+        {!placeCode(e.where) && e.where && <span className="departure-place">{e.where}</span>}
       </span>
-    </button>
+      <JoinButton event={e} j={j} quiet />
+    </li>
   );
 }
 
@@ -1963,7 +2025,7 @@ function useNow() {
   return now;
 }
 
-function NowPage({ f, updated, j, onSelect }) {
+function NowPage({ f, updated, j, dark, onSelect }) {
   const [query, setQuery] = useState("");
   const now = useNow();
   const q = query.trim().toLowerCase();
@@ -1971,6 +2033,7 @@ function NowPage({ f, updated, j, onSelect }) {
     ? f.events.filter((e) => [e.title, e.host, e.club?.name, e.where, e.description].some((s) => s?.toLowerCase().includes(q)))
     : f.events;
 
+  // The same session posted twice (HuskyLink and Instagram) shows once: same host, day and start.
   const seen = new Map();
   for (const e of events) {
     const key = `${hostName(e)}|${e.date}|${e.start ?? ""}`;
@@ -1991,11 +2054,11 @@ function NowPage({ f, updated, j, onSelect }) {
     <main className="page now-page">
       <header className="now-head">
         <h1>
-          <span>{clock.toLocaleDateString("en-US", { weekday: "long" })}</span>{" "}
-          {clock.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}
+          <span className="now-day">{clock.toLocaleDateString("en-US", { weekday: "long" })}</span>
+          <span className="now-clock">{clock.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}</span>
         </h1>
         <p className="page-sub">
-          What's on at UW, soonest first.
+          Every club event at UW, leaving from now.
           {updated &&
             ` Pulled from HuskyLink, club Instagram and Discord · updated ${new Date(updated).toLocaleString("en-US", {
               month: "short",
@@ -2005,6 +2068,8 @@ function NowPage({ f, updated, j, onSelect }) {
             })}`}
         </p>
       </header>
+      {/* The network is always the night map, so its lines use the dark-ground inks */}
+      <Network events={unique} now={now} dark onSelect={onSelect} />
       <div className="toolbar">
         <input
           type="search"
@@ -2032,7 +2097,7 @@ function NowPage({ f, updated, j, onSelect }) {
       </div>
       {shown.length === 0 && (
         <div className="empty-wall">
-          <p>{q ? `Nothing matches "${query}".` : "Nothing on the wall for these filters."}</p>
+          <p>{q ? `Nothing matches "${query}".` : "No departures for these filters."}</p>
           {f.when !== "Any time" && (
             <button className="link-button" onClick={() => f.setWhen("Any time")}>
               Look further ahead
@@ -2041,15 +2106,15 @@ function NowPage({ f, updated, j, onSelect }) {
         </div>
       )}
       {shown.map((sec) => (
-        <section key={sec.id} className={`wall wall-${sec.id}`} aria-labelledby={`wall-${sec.id}`}>
-          <h2 id={`wall-${sec.id}`}>
+        <section key={sec.id} className={`departures departures-${sec.id}`} aria-labelledby={`dep-${sec.id}`}>
+          <h2 id={`dep-${sec.id}`}>
             {sec.title}
             <span className="wall-count">{sec.events.length}</span>
             {sec.note && <span className="wall-note">{sec.note}</span>}
           </h2>
-          <ul className="flyers">
+          <ul className="departure-list">
             {sec.events.map((e) => (
-              <Flyer key={e.id} event={e} section={sec.id} j={j} onSelect={onSelect} />
+              <Departure key={e.id} event={e} section={sec.id} j={j} dark={dark} onSelect={onSelect} />
             ))}
           </ul>
         </section>
@@ -4718,7 +4783,7 @@ export default function DubHub() {
       </header>
 
       {view === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} palette={MAP_PALETTES[theme.theme]} />}
-      {view === "Events" && <NowPage f={f} updated={updated} j={j} onSelect={openEvent} />}
+      {view === "Events" && <NowPage f={f} updated={updated} j={j} dark={theme.theme === "dark"} onSelect={openEvent} />}
       {view === "My Events" && (
         <MyEventsPage
           all={all}
