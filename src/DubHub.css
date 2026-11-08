@@ -30,7 +30,8 @@
   --on-slate: #ffffff;
   --on-slate-muted: #a9abb0;
   --panel: var(--slate);
-  --sheet-tape: rgba(255, 255, 255, 0.55);
+  --sheet-tape: rgba(250, 246, 214, 0.72); /* clear packing tape, a little yellowed */
+  --sheet-tape-edge: rgba(17, 18, 20, 0.16);
 
   --action: #111214;
   --on-action: #ffffff;
@@ -68,7 +69,8 @@
   --action: #f0f0ec;
   --on-action: #111214;
   --action-hover: #ffffff;
-  --sheet-tape: rgba(255, 255, 255, 0.16);
+  --sheet-tape: rgba(250, 246, 214, 0.5);
+  --sheet-tape-edge: rgba(0, 0, 0, 0.3);
   --error: #ff9b8f;
   --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3a5aa' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
   --nav-bg: var(--slate);
@@ -230,17 +232,20 @@ a:hover {
   color: var(--on-slate);
 }
 
-/* The active tab: a strip of fluoro yellow behind its name, like a highlighter on the bar */
+/* The active tab: white, with a white rule flush with the bottom of the bar */
 .tab.active {
   color: var(--on-slate);
   font-weight: 700;
 }
 
-.tab.active span {
-  padding: 2px 6px;
-  margin: 0 -6px;
-  background: var(--yellow);
-  color: #111214;
+.tab.active::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+  height: 3px;
+  background: var(--on-slate);
 }
 
 .tab:focus-visible {
@@ -1259,14 +1264,29 @@ a:hover {
   margin: 0;
 }
 
-/* Flyers often have text on them, so show the whole image rather than cropping it. */
+/* The top of an event's window is the flyer itself: shown whole, sticker on its corner,
+   tear-off fringe along the bottom. */
+.detail-flyer {
+  position: relative;
+  margin: -24px -24px 18px;
+  background: var(--tint);
+}
+
 .event-hero {
   display: block;
-  width: calc(100% + 48px);
-  max-height: 320px;
-  margin: -24px -24px 18px;
+  width: 100%;
+  max-height: 360px;
   object-fit: contain;
   background: var(--slate);
+}
+
+.detail-flyer .sticker {
+  bottom: 56px;
+}
+
+.detail-flyer .detail-type {
+  min-height: 160px;
+  font-size: 40px;
 }
 
 /* Facts in an event's detail window: When / Where / Host / Going */
@@ -4318,6 +4338,7 @@ button.person:hover,
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  align-items: start; /* each flyer is its own height, so rows stay in soonest-first order */
   gap: 28px 20px;
 }
 
@@ -4364,8 +4385,7 @@ button.person:hover,
   height: 20px;
   transform: translateX(-50%) rotate(-2deg);
   background: var(--sheet-tape);
-  box-shadow: 0 0 0 1px rgba(17, 18, 20, 0.06);
-  backdrop-filter: blur(1px);
+  box-shadow: 0 0 0 1px var(--sheet-tape-edge);
   pointer-events: none;
 }
 
@@ -4373,11 +4393,11 @@ button.person:hover,
   transform: translateX(-50%) rotate(3deg);
 }
 
+/* The flyer is shown whole, at its own proportions (very tall ones are capped and letterboxed) */
 .flyer-sheet {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
   padding: 0;
   border: none;
   background: var(--tint);
@@ -4392,8 +4412,9 @@ button.person:hover,
 .flyer-img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  max-height: 440px;
+  object-fit: contain;
 }
 
 /* No picture: the title, printed big on a sheet of fluoro green */
@@ -4401,7 +4422,7 @@ button.person:hover,
   display: flex;
   align-items: flex-end;
   width: 100%;
-  height: 100%;
+  min-height: 200px;
   padding: 16px 14px;
   background: var(--green);
   color: #111214;
@@ -4488,51 +4509,88 @@ button.person:hover,
   color: var(--text);
 }
 
-/* The tear-off tab: a perforated strip at the bottom of the flyer. Going tears it away. */
+/* The tear-off fringe: narrow strips cut up from the bottom of the flyer, with a perforation
+   across their tops. Going tears the end strip away (the page's one motion moment: it drops
+   and turns as it falls) and the remaining strips go black: "Going". */
 .tear-tab {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-height: 44px;
-  padding: 10px 12px;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 46px;
+  padding: 0;
   border: none;
   border-top: 2px dashed var(--field-line);
-  background: var(--yellow);
+  background: none;
   color: #111214;
   font: inherit;
+  cursor: pointer;
+}
+
+.fringe {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  gap: 3px; /* the cuts between strips */
+}
+
+.strip {
+  flex: 1;
+  background: var(--yellow);
+  transition: background-color 160ms;
+}
+
+.tear-tab:hover .strip {
+  background: var(--yellow-hover);
+}
+
+.tear-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 6px;
   font-size: 15px;
   font-weight: 800;
   font-stretch: 85%;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), background-color 160ms;
 }
 
-.tear-tab:hover {
-  background: var(--yellow-hover);
-}
-
-.tear-tab .icon {
+.tear-label .icon {
   width: 17px;
   height: 17px;
 }
 
-/* Torn off: the tab hangs loose, black with yellow type */
 .tear-tab.torn {
-  background: #111214;
   color: var(--yellow);
-  border-top-color: transparent;
-  transform: translateY(5px) rotate(-1.5deg);
+}
+
+.tear-tab.torn .strip {
+  background: #111214;
+}
+
+.tear-tab.torn .strip-tear {
+  animation: tear-away 520ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tear-away {
+  0% {
+    transform: none;
+    opacity: 1;
+    background: var(--yellow);
+  }
+  100% {
+    transform: translate(6px, 34px) rotate(16deg);
+    opacity: 0;
+    background: var(--yellow);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tear-tab,
-  .tear-tab.torn {
-    transition: none;
-    transform: none;
+  .tear-tab.torn .strip-tear {
+    animation: none;
+    visibility: hidden;
   }
 }
 
@@ -4579,10 +4637,36 @@ button.person:hover,
     padding: 10px 10px 8px;
   }
   .tear-tab {
+    height: 42px;
+  }
+  .tear-label {
     font-size: 13px;
-    padding: 8px;
   }
   .sticker {
     font-size: 11px;
+  }
+}
+
+/* Lights out on the pole: the flyers are still paper, just dimmer. */
+:root[data-theme="dark"] .flyer,
+:root[data-theme="dark"] .detail-flyer {
+  --surface: #d9d8d1;
+  --tint: #cfcec7;
+  --text: #111214;
+  --muted: #45474c;
+  --field-line: #6b6d72;
+  --ink: #111214;
+  color: #111214;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .flyer,
+  :root:not([data-theme="light"]) .detail-flyer {
+    --surface: #d9d8d1;
+    --tint: #cfcec7;
+    --text: #111214;
+    --muted: #45474c;
+    --field-line: #6b6d72;
+    --ink: #111214;
+    color: #111214;
   }
 }

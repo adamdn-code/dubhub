@@ -1712,7 +1712,15 @@ function EventDetail({ event, j, onClose }) {
         <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
           <Icon d={CLOSE_ICON} />
         </button>
-        {event.image && <HeroImage src={event.image} />}
+        <div className="detail-flyer">
+          {event.image ? <HeroImage src={event.image} /> : <span className="flyer-type detail-type">{event.title}</span>}
+          {sectionOf(event) && (
+            <span className={`sticker sticker-${stickerOf(event, sectionOf(event)).kind}`}>
+              {stickerOf(event, sectionOf(event)).text}
+            </span>
+          )}
+          <TearTab event={event} j={j} />
+        </div>
         <h2 id="event-detail-title">{event.title}</h2>
         <p className="detail-tags">
           <StartsTag event={event} />
@@ -1744,7 +1752,6 @@ function EventDetail({ event, j, onClose }) {
         <GoingList event={event} j={j} />
         {/* The action right under the facts, before a description that can run long */}
         <div className="detail-actions">
-          <JoinButton event={event} j={j} />
           <ShareButton event={event} />
           <CalendarLink event={event} />
           <PostLink event={event} />
@@ -1919,8 +1926,10 @@ function Flyer({ event: e, section, j, onSelect }) {
   );
 }
 
-// The tear-off tab at the bottom of a flyer: "I'm going". Tearing it marks you going (it hangs
-// torn, with a check); tapping it again puts it back.
+// The tear-off fringe at the bottom of a flyer, like the phone-number strips on a real one:
+// "I'm going". Going tears the end strip away (it drops, leaving a gap) and the rest of the
+// fringe turns black; tapping again puts the strip back.
+const FRINGE = 7;
 function TearTab({ event, j }) {
   const isJoined = j.joined.includes(String(event.id));
   return (
@@ -1931,8 +1940,15 @@ function TearTab({ event, j }) {
       title={isJoined ? "You're going. Tap to take it back" : j.signedIn ? undefined : "Sign in to say you're going"}
       onClick={() => j.toggle(event.id)}
     >
-      {isJoined && <Icon d={CHECK_ICON} />}
-      {isJoined ? "Going" : "I'm going"}
+      <span className="fringe" aria-hidden="true">
+        {Array.from({ length: FRINGE }, (_, i) => (
+          <span key={i} className={i === FRINGE - 1 ? "strip strip-tear" : "strip"} />
+        ))}
+      </span>
+      <span className="tear-label">
+        {isJoined && <Icon d={CHECK_ICON} />}
+        {isJoined ? "Going" : "I'm going"}
+      </span>
     </button>
   );
 }
@@ -1955,9 +1971,16 @@ function NowPage({ f, updated, j, onSelect }) {
     ? f.events.filter((e) => [e.title, e.host, e.club?.name, e.where, e.description].some((s) => s?.toLowerCase().includes(q)))
     : f.events;
 
+  const seen = new Map();
+  for (const e of events) {
+    const key = `${hostName(e)}|${e.date}|${e.start ?? ""}`;
+    const prev = seen.get(key);
+    if (!prev || (!prev.image && e.image)) seen.set(key, e);
+  }
+  const unique = [...seen.values()];
   const sections = NOW_SECTIONS.map((sec) => ({ ...sec, events: [] }));
   const when = (e) => `${e.date}T${e.start ?? "99"}`; // all-day events after the timed ones that day
-  for (const e of [...events].sort((x, y) => when(x).localeCompare(when(y)))) {
+  for (const e of unique.sort((x, y) => when(x).localeCompare(when(y)))) {
     const id = sectionOf(e, now);
     if (id) sections.find((sec) => sec.id === id).events.push(e);
   }
