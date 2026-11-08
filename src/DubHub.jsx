@@ -1208,8 +1208,10 @@ const APPLE_DARK_MAP = {
   wood: "#182420",
   wetland: "#1b2824",
   plaza: "#1f1e25",
-  building: "#23222a", // close to the ground, so neighborhoods stay calm zoomed out
-  buildingOutline: "#2c2b34",
+  building: "#25242c", // close to the ground, so neighborhoods stay calm zoomed out
+  // Edges a shade darker than the buildings, like a gap between them (a lighter edge looked like
+  // a wireframe).
+  buildingOutline: "#1b1a20",
   school: "#1e1d24",
   road: "#2e2d36",
   major: "#3c3a45", // main streets
@@ -4156,6 +4158,53 @@ function fillGaps(snapshots, keys = ["upcoming", "onMap", "clubs", "clubsOnInsta
   return filled;
 }
 
+// Everyone who has signed in, most recently active first, with a search for long lists.
+function MembersList({ members }) {
+  const [q, setQ] = useState("");
+  const sorted = [...members].sort((a, b) => (b.lastSeen ?? "").localeCompare(a.lastSeen ?? "") || a.name.localeCompare(b.name));
+  const shown = sorted.filter((m) => !q || `${m.name} ${m.email}`.toLowerCase().includes(q.toLowerCase()));
+  const [week] = useState(() => Date.now() - 7 * 864e5); // a week before the page opened
+  const active = members.filter((m) => m.lastSeen && Date.parse(m.lastSeen) >= week).length;
+  return (
+    <section className="chart-card wide">
+      <div className="members-head">
+        <div>
+          <h2>Members</h2>
+          <p className="chart-sub">
+            {fmt(members.length)} people have signed in so far · {fmt(active)} active in the last week.
+          </p>
+        </div>
+        <input className="members-search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search names or emails" aria-label="Search members" />
+      </div>
+      <div className="table-scroll members-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>UW email</th>
+              <th>First signed in</th>
+              <th>Last active</th>
+              <th>Events joined</th>
+            </tr>
+          </thead>
+          <tbody>
+            {shown.map((m) => (
+              <tr key={m.email}>
+                <td>{m.name}</td>
+                <td>{m.email}</td>
+                <td>{m.firstSeen ? shortDate(m.firstSeen) : "Before Nov 7"}</td>
+                <td>{m.lastSeen ? dateTime(m.lastSeen) : "–"}</td>
+                <td>{fmt(m.joined)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {shown.length === 0 && <p className="meta">No one matches.</p>}
+      </div>
+    </section>
+  );
+}
+
 function StatsPage({ user, events, clubs, dark }) {
   const { data, error } = useStats(user);
   const snapshots = useMemo(() => fillGaps(data?.snapshots ?? []), [data]);
@@ -4206,6 +4255,12 @@ function StatsPage({ user, events, clubs, dark }) {
         <StatTile label="Upcoming events" value={events.length} delta={delta("upcoming", events.length)} note="vs a week ago" />
         <StatTile label="On the map" value={onMap} delta={delta("onMap", onMap)} note="vs a week ago" />
         <StatTile label="Clubs" value={clubs.length} delta={delta("clubs", clubs.length)} note="vs a week ago" />
+        <StatTile
+          label="Members"
+          value={live?.members?.length}
+          delta={weekAgo?.members != null && live ? live.members.length - weekAgo.members : null}
+          note={weekAgo?.members != null ? "vs a week ago" : "signed in so far"}
+        />
         <StatTile label="People who joined events" value={live?.joiners} note={live ? `${fmt(live.joins)} joins in all` : null} />
         <StatTile label="Job applications" value={live?.applications} />
       </div>
@@ -4256,6 +4311,7 @@ function StatsPage({ user, events, clubs, dark }) {
           <BarList rows={roles} />
         </section>
       </div>
+      {live?.members && <MembersList members={live.members} />}
       {recent.length > 0 && (
         <section className="chart-card wide">
           <h2>Recent updates</h2>

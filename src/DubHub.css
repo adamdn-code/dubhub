@@ -3802,3 +3802,56 @@ button.person:hover,
     display: none;
   }
 }
+
+/* The members list on the Stats page */
+.members-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.members-search {
+  min-width: 0;
+  width: min(100%, 260px);
+  padding: 7px 10px;
+  background: var(--surface);
+  border: 1px solid var(--field-line);
+  border-radius: 8px;
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+}
+
+.members-table {
+  max-height: 420px;
+}
+
+.members-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.members-table th,
+.members-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.members-table th {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.members-table td:last-child,
+.members-table th:last-child {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}

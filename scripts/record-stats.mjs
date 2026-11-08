@@ -23,7 +23,18 @@ export async function liveCounts(redis) {
     joins: perEvent.reduce((sum, n) => sum + (n || 0), 0),
     joiners: (await scanKeys(redis, "joined:*")).length,
     applications: await redis.llen("applications"),
+    members: (await memberEmails(redis)).length,
   };
+}
+
+// Everyone who has signed in: saved at each sign-in since Nov 7 (user:<email>), plus anyone who
+// joined an event or applied for a role before that.
+export async function memberEmails(redis) {
+  const emails = new Set();
+  for (const prefix of ["user:", "joined:", "applied:"]) {
+    for (const key of await scanKeys(redis, `${prefix}*`)) emails.add(key.slice(prefix.length));
+  }
+  return [...emails].filter((e) => e.includes("@"));
 }
 
 export async function recordStats(env = process.env) {
@@ -34,7 +45,7 @@ export async function recordStats(env = process.env) {
     const redis = new Redis({ url, token });
 
     const numbers = siteStats(read("public/events.json").events, read("public/clubs.json").clubs, pacificDate());
-    const { joins, joiners, applications } = await liveCounts(redis);
+    const { joins, joiners, applications, members } = await liveCounts(redis);
     const message = (env.VERCEL_GIT_COMMIT_MESSAGE || "").split("\n")[0].slice(0, 200);
     const snapshot = {
       sha: env.VERCEL_GIT_COMMIT_SHA || `build-${Date.now()}`,
@@ -46,6 +57,7 @@ export async function recordStats(env = process.env) {
       joins,
       joiners,
       applications,
+      members,
     };
     // Only the first build of a commit counts (a redeploy of the same commit adds nothing new).
     const added = await redis.hsetnx("stats:snapshots", snapshot.sha, snapshot);

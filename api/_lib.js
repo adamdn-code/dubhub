@@ -62,6 +62,20 @@ export function readToken(token) {
   }
 }
 
+// Saves who you are (for friends' lists, social.js) and when you were first and last on DubHub
+// (the members list on the Stats page). user:<email> = { name, picture, firstSeen, lastSeen }.
+export async function rememberUser(u) {
+  const key = `user:${u.email}`;
+  const old = (await db().get(key)) || {};
+  const now = new Date().toISOString();
+  await db().set(key, {
+    name: u.name || old.name || u.email.split("@")[0],
+    picture: u.picture || old.picture || null,
+    firstSeen: old.firstSeen || now,
+    lastSeen: now,
+  });
+}
+
 // Whether a signed-in account is one of DubHub's moderators.
 export function isModerator(session) {
   const moderators = (env.MODERATOR_EMAILS || "").toLowerCase().split(/[\s,]+/).filter(Boolean);

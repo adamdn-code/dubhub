@@ -1,15 +1,12 @@
 // POST /api/session { credential }: checks a Google sign-in and returns a DubHub token.
 // GET  /api/session (signed in): { email, moderator } -- whether to show the moderators' pages.
-import { db, isModerator, json, makeToken, missingConfig, sessionFrom, verifyGoogle } from "./_lib.js";
-
-// Your name and picture, for your friends' lists (see social.js).
-const remember = (u) => db().set(`user:${u.email}`, { name: u.name || u.email.split("@")[0], picture: u.picture || null });
+import { isModerator, json, makeToken, missingConfig, rememberUser, sessionFrom, verifyGoogle } from "./_lib.js";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
     const session = sessionFrom(req);
     if (!session) return json(res, 401, { error: "Sign in again" });
-    await remember(session).catch(() => {});
+    await rememberUser(session).catch(() => {}); // every visit, so "last seen" stays current
     return json(res, 200, { email: session.email, moderator: isModerator(session) });
   }
   if (req.method !== "POST") return json(res, 405, { error: "Use GET or POST" });
@@ -18,6 +15,6 @@ export default async function handler(req, res) {
 
   const user = await verifyGoogle(req.body?.credential || "");
   if (!user) return json(res, 401, { error: "Sign-in couldn't be verified" });
-  await remember(user).catch(() => {});
+  await rememberUser(user).catch(() => {});
   return json(res, 200, { token: makeToken({ kind: "session", ...user }), email: user.email });
 }

@@ -10,7 +10,7 @@
 // for the commits before that (_stats-history.js). `live` is counted right now.
 import HISTORY from "./_stats-history.js";
 import { db, isModerator, json, missingConfig, sessionFrom } from "./_lib.js";
-import { liveCounts } from "../scripts/record-stats.mjs";
+import { liveCounts, memberEmails } from "../scripts/record-stats.mjs";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") return json(res, 405, { error: "Use GET" });
@@ -34,5 +34,21 @@ export default async function handler(req, res) {
   }
   const topJoined = perEvent.filter((e) => e.count > 0).sort((a, b) => b.count - a.count).slice(0, 10);
 
-  return json(res, 200, { snapshots, live: { joins, joiners, applications, byRole, topJoined } });
+  // Everyone who has signed in, with when they were first and last on DubHub.
+  const emails = await memberEmails(db());
+  let members = [];
+  if (emails.length) {
+    const pipe = db().pipeline();
+    for (const e of emails) {
+      pipe.get(`user:${e}`);
+      pipe.scard(`joined:${e}`);
+    }
+    const out = await pipe.exec();
+    members = emails.map((email, i) => {
+      const u = out[2 * i] || {};
+      return { email, name: u.name || email.split("@")[0], firstSeen: u.firstSeen || null, lastSeen: u.lastSeen || null, joined: out[2 * i + 1] || 0 };
+    });
+  }
+
+  return json(res, 200, { snapshots, live: { joins, joiners, applications, byRole, topJoined, members } });
 }

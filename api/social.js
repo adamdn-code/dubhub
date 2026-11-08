@@ -19,7 +19,7 @@
 // friends:<email>, freq:in:<email>, freq:out:<email> = sets of emails, dm:<a>|<b> = the
 // conversation (a list, oldest first, at most 500), inbox:<email> = { other email: last message
 // time }, and unread:<email> = { other email: count }.
-import { db, json, missingConfig, sessionFrom } from "./_lib.js";
+import { db, json, missingConfig, rememberUser, sessionFrom } from "./_lib.js";
 
 const EMAIL = /^[a-z0-9._%+-]+@uw\.edu$/;
 const MAX_MESSAGES = 500;
@@ -154,7 +154,7 @@ export default async function handler(req, res) {
   if (!session) return json(res, 401, { error: "Sign in with your UW account" });
   const me = session.email;
   // Keep your name up to date for your friends (sign-ins before this didn't save it).
-  await db().set(key.user(me), { name: session.name || me.split("@")[0], picture: session.picture || null });
+  await rememberUser(session);
 
   if (req.method === "GET") {
     if (req.query.with) {
