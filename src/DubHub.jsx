@@ -76,6 +76,10 @@ function DesertTrail() {
   );
 }
 
+// The same horse and rider as a plain SVG string, for markers drawn by the map library.
+const RIDER_SVG =
+  '<svg class="rider" viewBox="0 0 64 46"><g class="rider-body"><path d="M14 21 Q4 18 3 28" class="rider-tail"/><ellipse cx="29" cy="23" rx="16" ry="8"/><path d="M40 22 L45 9 L52 5 L59 9 L58 13 L51 13 L48 24 Z"/><path d="M28 15 L25 5 L30 4 L33 15 Z"/><circle cx="27.5" cy="2.5" r="3"/><rect x="22" y="-1" width="11" height="2" rx="1"/></g><g class="leg leg-a"><rect x="40" y="27" width="3" height="16" rx="1.5"/><rect x="18" y="27" width="3" height="16" rx="1.5"/></g><g class="leg leg-b"><rect x="35" y="27" width="3" height="16" rx="1.5"/><rect x="13" y="27" width="3" height="16" rx="1.5"/></g></svg>';
+
 // A horse and rider at a gallop, facing right; its legs swing in CSS.
 function Rider({ className = "" }) {
   return (
@@ -109,6 +113,18 @@ function SteelBall({ className = "" }) {
       </svg>
     </span>
   );
+}
+
+// Your own artwork. Images you put in public/sbr/ show up in these spots; with none there, the
+// drawn versions show instead. (public/sbr/ is git-ignored, so they stay on your computer.)
+//   logo.png   the race logo, at the top of the race route
+//   hero.png   beside the clock on the Now page
+//   d4c.png    over the flags during the D4C easter egg
+//   wanted.png the backdrop of every WANTED poster on About
+function Art({ name, className, children }) {
+  const [missing, setMissing] = useState(false);
+  if (missing) return children ?? null;
+  return <img className={className} src={`/sbr/${name}`} alt="" onError={() => setMissing(true)} />;
 }
 
 // Menacing: the drifting ゴゴゴゴ beside a heading.
@@ -1361,41 +1377,45 @@ const MAP_ATTRIBUTION =
 // The light map: campus in the site's concrete and white, quiet enough that the event dots and the
 // slate panels carry the color. Parks and water stay recognizable, just muted.
 const MAP_COLORS = {
-  background: "#ead3a6", // desert sand
-  water: "#5bb7bd",
-  park: "#c8bf7a",
-  wood: "#b9b06a",
-  wetland: "#c9c387",
-  plaza: "#e2c995",
-  building: "#d7b884",
-  school: "#e4cd9c",
-  road: "#f6ead0",
-  highway: "#fff4dc",
-  casing: "#c8a464",
-  highwayCasing: "#b48a46",
+  background: "#ead6a8", // parchment
+  water: "#9fb8a6", // faded ink-wash blue-green
+  park: "#d3c38b",
+  wood: "#c7b67a",
+  wetland: "#d6c993",
+  plaza: "#e3cd9a",
+  building: "#d9bd88",
+  school: "#e6d09f",
+  road: "#f5e6c0",
+  highway: "#f8ecc8",
+  casing: "#a77b46",
+  highwayCasing: "#7d5428",
+  label: "#4a2f17",
+  labelHalo: "#f3e2b8",
+  waterLabel: "#3f5f52",
+  iconOpacity: 0.45,
 };
 
 // The dark map: the top bar's slate, with streets a step lighter and water in a deep blue-gray.
 const DARK_MAP = {
   dark: true,
-  background: "#211335", // the desert at night
-  water: "#123a5c",
-  park: "#2a2441",
-  wood: "#28223e",
-  wetland: "#2b2643",
-  plaza: "#25173b",
-  building: "#311f4c",
-  school: "#26183d",
-  road: "#3d2b5e",
-  major: "#59407f",
-  highway: "#f2b632", // the race route in gold
-  path: "#2f2150",
-  casing: "#211335",
-  highwayCasing: "#6b4a12",
-  label: "#f1d9a7",
-  labelHalo: "#160c26",
-  waterLabel: "#8fd6dc",
-  iconOpacity: 0.55,
+  background: "#2a1c10", // the territory map by lantern light
+  water: "#1f3330",
+  park: "#33281a",
+  wood: "#30251a",
+  wetland: "#34291b",
+  plaza: "#2f2014",
+  building: "#3a2a19",
+  school: "#302215",
+  road: "#4d3720",
+  major: "#664a2a",
+  highway: "#b98a3c",
+  path: "#3c2b19",
+  casing: "#2a1c10",
+  highwayCasing: "#5a3e1a",
+  label: "#ecd6a6",
+  labelHalo: "#1c120a",
+  waterLabel: "#9fc4b6",
+  iconOpacity: 0.4,
 };
 
 const MAP_PALETTES = { light: MAP_COLORS, dark: DARK_MAP };
@@ -1459,7 +1479,7 @@ function restyle(style, C = MAP_COLORS) {
     if (C.iconOpacity && layer.type === "symbol" && layer.layout?.["icon-image"] && !/shield/.test(layer.id)) {
       paint["icon-opacity"] = C.iconOpacity;
     }
-    if (C.dark && layer.type === "symbol" && layer.layout?.["text-field"] && !/shield/.test(layer.id)) {
+    if (C.label && layer.type === "symbol" && layer.layout?.["text-field"] && !/shield/.test(layer.id)) {
       const water = /water/.test(layer.id) && C.waterLabel;
       Object.assign(paint, { "text-color": water || C.label, "text-halo-color": C.labelHalo, "text-halo-width": 1.2 });
     }
@@ -1630,20 +1650,26 @@ function FlyTo({ target }) {
   return null;
 }
 
-// ---------------------------------------------------------------- the transit system on the map
-// Each club category's next events (the coming 36 hours), joined in time order by its line, drawn
-// across the real campus the way a transit map draws a city: every leg goes diagonal first, then
-// straight, so lines only ever bend at 45 degrees. Distances are worked out in local metres, so a
-// 45-degree bend is 45 degrees on the ground too.
+// --------------------------------------------------------------------- the trails on the map
+// Each club category's next events (the coming 36 hours), joined in time order by a wagon trail:
+// a dashed road that wanders between stops in a gentle curve (bowed to alternate sides, like a
+// trail that follows the land), with a rider on it, placed by the clock.
 const M_LAT = 111132;
 const M_LNG = 111320 * Math.cos((47.655 * Math.PI) / 180);
 const TRANSIT_HOURS = 36;
 
-function octilinear(a, b) {
+// A curved leg from a to b: a quadratic curve bowed sideways by a fifth of its length, sampled.
+function trailLeg(a, b, side) {
   const dx = (b[1] - a[1]) * M_LNG;
   const dy = (b[0] - a[0]) * M_LAT;
-  const d = Math.min(Math.abs(dx), Math.abs(dy));
-  return [a, [a[0] + (Math.sign(dy) * d) / M_LAT, a[1] + (Math.sign(dx) * d) / M_LNG], b];
+  const bow = 0.2 * side;
+  const mid = [(a[0] + b[0]) / 2 + (dx * bow) / M_LAT, (a[1] + b[1]) / 2 - (dy * bow) / M_LNG];
+  const pts = [];
+  for (let t = 0; t <= 1.0001; t += 0.1) {
+    const u = 1 - t;
+    pts.push([u * u * a[0] + 2 * u * t * mid[0] + t * t * b[0], u * u * a[1] + 2 * u * t * mid[1] + t * t * b[1]]);
+  }
+  return pts;
 }
 
 const metres = (a, b) => Math.hypot((b[0] - a[0]) * M_LAT, (b[1] - a[1]) * M_LNG);
@@ -1677,7 +1703,7 @@ function transitLines(events, now) {
         if (stops.at(-1)?.pos.join() === e.pos.join()) continue;
         stops.push({ e, pos: e.pos, start: span.start, end: span.end });
       }
-      const legs = stops.slice(1).map((st, i) => octilinear(stops[i].pos, st.pos));
+      const legs = stops.slice(1).map((st, i) => trailLeg(stops[i].pos, st.pos, i % 2 ? -1 : 1));
       const path = legs.length ? [legs[0][0], ...legs.flatMap((leg) => leg.slice(1))] : [];
       return { group, stops, legs, path };
     })
@@ -1699,15 +1725,22 @@ function trainOf(line, now) {
   return { pos: stops.at(-1).pos, next: stops.at(-1), moving: false };
 }
 
-const trainIcons = new Map();
-function trainIcon(color) {
-  if (!trainIcons.has(color)) {
-    trainIcons.set(
-      color,
-      L.divIcon({ className: "train-icon", html: `<span class="train" style="--ink:${color}"></span>`, iconSize: [24, 24] })
+// A rider on the trail: the galloping horse, in its trail's ink, facing the way it's heading.
+const riderIcons = new Map();
+function riderIcon(color, left) {
+  const key = `${color}|${left}`;
+  if (!riderIcons.has(key)) {
+    riderIcons.set(
+      key,
+      L.divIcon({
+        className: "trail-rider-icon",
+        html: `<span class="map-rider${left ? " map-rider-left" : ""}" style="color:${color}">${RIDER_SVG}</span>`,
+        iconSize: [44, 32],
+        iconAnchor: [22, 28],
+      })
     );
   }
-  return trainIcons.get(color);
+  return riderIcons.get(key);
 }
 
 function TransitLayer({ lines, dark, hidden }) {
@@ -1716,16 +1749,17 @@ function TransitLayer({ lines, dark, hidden }) {
     .filter((l) => !hidden.has(l.group.name))
     .map((l) => {
       const color = dark ? l.group.dark : l.group.light;
-      const train = trainOf(l, now);
+      const rider = trainOf(l, now);
+      const heading = rider.next.pos[1] < rider.pos[1];
       return (
         <Fragment key={l.group.name}>
-          <Polyline positions={l.path} interactive={false} pathOptions={{ color, weight: 18, opacity: 0.22, lineCap: "round", lineJoin: "round", className: "transit-glow" }} />
-          <Polyline positions={l.path} interactive={false} pathOptions={{ color, weight: 6, opacity: 1, lineCap: "round", lineJoin: "round", className: "transit-line" }} />
-          <Marker position={train.pos} icon={trainIcon(color)} keyboard={false} zIndexOffset={500}>
-            <Tooltip direction="top" offset={[0, -14]} className="train-tip">
-              <strong>{l.group.name} line</strong>
+          <Polyline positions={l.path} interactive={false} pathOptions={{ color: dark ? "#0d0805" : "#5a3a1c", weight: 9, opacity: 0.35, lineCap: "round", lineJoin: "round" }} />
+          <Polyline positions={l.path} interactive={false} pathOptions={{ color, weight: 4, opacity: 1, dashArray: "2 9", lineCap: "round", lineJoin: "round", className: "trail-line" }} />
+          <Marker position={rider.pos} icon={riderIcon(color, heading)} keyboard={false} zIndexOffset={500}>
+            <Tooltip direction="top" offset={[0, -26]} className="train-tip">
+              <strong>{l.group.name} trail</strong>
               <span>
-                {train.moving ? "Next stop" : "At"} {train.next.e.title} · {formatTime(train.next.e.start)}
+                {rider.moving ? "Riding to" : "Stopped at"} {rider.next.e.title} · {formatTime(rider.next.e.start)}
               </span>
             </Tooltip>
           </Marker>
@@ -1734,6 +1768,26 @@ function TransitLayer({ lines, dark, hidden }) {
     });
 }
 
+// The map's cartouche and compass rose, drawn over the corner like an old territory map.
+function MapOrnaments() {
+  return (
+    <div className="map-ornaments" aria-hidden="true">
+      <div className="cartouche">
+        <span className="cartouche-small">A map of the</span>
+        <strong>University Territory</strong>
+        <span className="cartouche-small">and its trails</span>
+      </div>
+      <svg className="compass" viewBox="-50 -50 100 100">
+        <circle r="44" className="compass-ring" />
+        <circle r="38" className="compass-ring thin" />
+        <path d="M0 -42 L7 0 L0 42 L-7 0 Z" className="compass-star" />
+        <path d="M-42 0 L0 -7 L42 0 L0 7 Z" className="compass-star" />
+        <path d="M0 -42 L7 0 L-7 0 Z" className="compass-north" />
+        <text y="-46" className="compass-n">N</text>
+      </svg>
+    </div>
+  );
+}
 
 // Clicking the map itself (not a dot) closes the panel.
 function MapClicks({ onClick }) {
@@ -1809,7 +1863,7 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
               // A station: porcelain, ringed in its line's ink; the picked one fills with the ink.
               color: eventColor(e, palette?.dark),
               weight: on ? 6 : 4,
-              fillColor: on ? eventColor(e, palette?.dark) : "#f3f1ea",
+              fillColor: on ? eventColor(e, palette?.dark) : palette?.dark ? "#2a1d12" : "#fbefd2",
               fillOpacity: 1,
               className: soon ? "station station-soon" : "station",
             }}
@@ -1915,7 +1969,7 @@ function MapLegend({ events, dark, hidden, onToggle }) {
   const groups = [...CATEGORY_GROUPS, OTHER_GROUP].filter((g) => shown.has(g));
   if (!groups.length) return null;
   return (
-    <ul className="map-legend" aria-label="Lines">
+    <ul className="map-legend" aria-label="Trails">
       {groups.map((g) => (
         <li key={g.name}>
           <button className="legend-line" aria-pressed={!hidden.has(g.name)} onClick={() => onToggle(g.name)}>
@@ -1989,6 +2043,7 @@ function Home({ f, area, introLabels, j, palette, onEgg }) {
         hiddenLines={hiddenLines}
       />
       <MapLegend events={f.events} dark={palette?.dark} hidden={hiddenLines} onToggle={toggleLine} />
+      <MapOrnaments />
       {rolling > 0 && (
         <div className="big-ball" key={rolling} aria-hidden="true">
           <SteelBall />
@@ -2344,6 +2399,7 @@ function NowPage({ f, updated, j, dark, onSelect, onEgg }) {
           </button>
         </h1>
         <Menacing />
+        <Art name="hero.png" className="art-hero" />
         <p className="page-sub">
           The race across campus is on. Every club event at UW, galloping toward now.
           {updated &&
@@ -5181,6 +5237,7 @@ export default function DubHub() {
         <div className="d4c-sandwich" key={sandwich} aria-hidden="true">
           <span className="d4c-flag d4c-left" />
           <span className="d4c-flag d4c-right" />
+          <Art name="d4c.png" className="art-d4c" />
         </div>
       )}
       <header className="nav">
@@ -5193,8 +5250,10 @@ export default function DubHub() {
           aria-label="DubHub, what's on now"
           data-text="DUBHUB"
         >
-          <span className="logo-word">DubHub</span>
-          <span className="logo-sub">Steel Ball Run</span>
+          <Art name="logo.png" className="art-logo">
+            <span className="logo-word">DubHub</span>
+            <span className="logo-sub">Steel Ball Run</span>
+          </Art>
         </button>
         <nav className="tabs" role="tablist" style={{ "--stage": Math.max(0, tabs.indexOf(view)) }}>
           <span className="trail-rider" aria-hidden="true">

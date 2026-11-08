@@ -6669,3 +6669,302 @@ body {
   font-family: var(--label);
   font-weight: 700;
 }
+
+/* ======================================================= the map: an old territory map, western */
+/* No neon: trails are dashed wagon roads, no glow */
+.transit-glow,
+.transit-line {
+  filter: none;
+}
+
+.leaflet-container {
+  background: #ead6a8;
+}
+
+:root[data-theme="dark"] .leaflet-container {
+  background: #2a1c10;
+}
+
+/* Aged paper over the whole map: a burned edge and a little grain */
+.home::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 450;
+  pointer-events: none;
+  box-shadow: inset 0 0 120px rgba(92, 52, 18, 0.55), inset 0 0 30px rgba(92, 52, 18, 0.5);
+  background: repeating-radial-gradient(circle at 30% 20%, rgba(120, 80, 30, 0.04) 0 2px, transparent 2px 5px);
+  mix-blend-mode: multiply;
+}
+
+/* Panels on the map: weathered boards and parchment notices */
+.filters,
+.next-up,
+.map-legend {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 13px, rgba(0, 0, 0, 0.12) 13px 14px),
+    linear-gradient(#5b3a1e, #4a2f17);
+  color: #f6e4c0;
+  border: 3px solid #2a160c;
+  box-shadow: 5px 6px 0 rgba(42, 22, 12, 0.75);
+}
+
+.filters h2,
+.next-up h2 {
+  color: #f2b632;
+  font-family: var(--display);
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.filters select {
+  background-color: #3b2412;
+  border-color: #8a6235;
+  color: #f6e4c0;
+}
+
+.next-up-row:hover,
+.legend-line:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.map-card {
+  background: #fbefd2;
+  color: #2a160c;
+  border: 3px solid #2a160c;
+  box-shadow: 6px 7px 0 rgba(42, 22, 12, 0.8);
+}
+
+.map-card-sign {
+  background: #4a2f17;
+  font-family: var(--label);
+}
+
+/* A rider on a trail: the galloping horse, with a dust cloud kicked up behind */
+.trail-rider-icon {
+  background: none;
+  border: none;
+}
+
+.map-rider {
+  position: relative;
+  display: block;
+  width: 44px;
+  filter: drop-shadow(1px 2px 0 #2a160c) drop-shadow(-1px -1px 0 #fbefd2);
+}
+
+.map-rider-left .rider {
+  transform: scaleX(-1);
+}
+
+.map-rider::after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  bottom: -2px;
+  width: 16px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(196, 160, 104, 0.8);
+  animation: dust 0.6s ease-out infinite;
+}
+
+.map-rider-left::after {
+  left: auto;
+  right: -8px;
+}
+
+@keyframes dust {
+  from {
+    transform: scale(0.4);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.6) translateY(-3px);
+    opacity: 0;
+  }
+}
+
+.leaflet-tooltip.train-tip {
+  background: #fbefd2;
+  color: #2a160c;
+  border: 2px solid #2a160c;
+  border-radius: 0;
+  font-family: var(--label);
+  box-shadow: 3px 3px 0 #2a160c;
+}
+
+.train-tip strong {
+  color: #8a3a1c;
+}
+
+/* The cartouche and the compass rose */
+.map-ornaments {
+  position: absolute;
+  inset: 0;
+  z-index: 460;
+  pointer-events: none;
+}
+
+.cartouche {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 26px 6px;
+  transform: translateX(-50%);
+  border: 3px double #4a2f17;
+  border-radius: 50% / 30%;
+  background: rgba(251, 239, 210, 0.92);
+  color: #4a2f17;
+  text-align: center;
+}
+
+.cartouche strong {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.cartouche-small {
+  font-family: var(--label);
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+.compass {
+  position: absolute;
+  right: 70px;
+  bottom: 110px;
+  width: 120px;
+  height: 120px;
+  opacity: 0.85;
+  animation: compass-settle 6s ease-in-out infinite;
+}
+
+.compass-ring {
+  fill: rgba(251, 239, 210, 0.6);
+  stroke: #4a2f17;
+  stroke-width: 2;
+}
+
+.compass-ring.thin {
+  fill: none;
+  stroke-width: 0.8;
+  stroke-dasharray: 2 3;
+}
+
+.compass-star {
+  fill: #e9d29c;
+  stroke: #4a2f17;
+  stroke-width: 1.2;
+}
+
+.compass-north {
+  fill: #8a3a1c;
+}
+
+.compass-n {
+  fill: #4a2f17;
+  font-family: var(--display);
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+@keyframes compass-settle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+.surprise {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+@media (max-width: 700px) {
+  .cartouche {
+    top: 176px;
+    padding: 4px 14px;
+  }
+  .cartouche strong {
+    font-size: 15px;
+  }
+  .compass {
+    width: 70px;
+    height: 70px;
+    right: 14px;
+    bottom: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-rider::after,
+  .compass {
+    animation: none;
+  }
+}
+
+/* ================================================================== your own artwork (slots) */
+.art-logo {
+  display: block;
+  max-width: 100%;
+  max-height: 90px;
+  object-fit: contain;
+}
+
+.art-hero {
+  display: block;
+  max-width: min(520px, 100%);
+  max-height: 300px;
+  margin: 12px 0;
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.art-d4c {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: 70vw;
+  max-height: 70vh;
+  transform: translate(-50%, -50%);
+  animation: d4c-art 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes d4c-art {
+  0%,
+  30% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Your wanted.png (when there is one) behind every WANTED poster; nothing shows if it's missing */
+.about-page .member {
+  background:
+    linear-gradient(rgba(246, 226, 184, 0.82), rgba(246, 226, 184, 0.82)),
+    url("/sbr/wanted.png") center / cover no-repeat,
+    radial-gradient(circle at 20% 10%, rgba(139, 94, 40, 0.18), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(139, 94, 40, 0.2), transparent 45%),
+    #f6e2b8;
+}
