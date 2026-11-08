@@ -126,7 +126,7 @@ function clubColor(club) {
 function FieldTag({ field }) {
   const color = FIELD_COLORS[field] ?? "#6a5f85";
   return (
-    <span className="tag field-tag" style={{ color, background: `${color}14`, borderColor: `${color}66` }}>
+    <span className="tag field-tag" style={{ "--tag": color }}>
       {field}
     </span>
   );
@@ -1200,24 +1200,27 @@ const MAP_COLORS = {
 // lighter still), muted gold freeways, deep green parks, and slate-blue water with blue names.
 const APPLE_DARK_MAP = {
   dark: true,
-  background: "#232325",
-  water: "#1d3145",
-  park: "#20392a",
-  wood: "#1e3527",
-  wetland: "#22382c",
-  plaza: "#29292c",
-  building: "#2b2b2e", // close to the ground, so neighborhoods stay calm zoomed out
-  buildingOutline: "#333337",
-  school: "#28282b",
-  road: "#3b3b40",
-  major: "#4f4f56", // main streets
-  highway: "#8a7448", // freeways only (main streets are `major`)
-  path: "#303034", // walking paths, fainter than streets
-  casing: "#232325",
-  highwayCasing: "#5a4c31",
-  label: "#d4d4d9",
-  labelHalo: "#1c1c1e",
-  waterLabel: "#7ea6cc",
+  // Apple Maps' dark look, in the dark theme's violet-tinted charcoals (see :root[data-theme="dark"]
+  // in DubHub.css), so the map, the panels on it, and the top bar read as one piece.
+  background: "#19181e",
+  water: "#172238", // deep indigo
+  park: "#1a2723", // a quiet green, not a bright patch
+  wood: "#182420",
+  wetland: "#1b2824",
+  plaza: "#1f1e25",
+  building: "#23222a", // close to the ground, so neighborhoods stay calm zoomed out
+  buildingOutline: "#2c2b34",
+  school: "#1e1d24",
+  road: "#2e2d36",
+  major: "#3c3a45", // main streets
+  highway: "#7a6845", // freeways only (main streets are `major`), in a muted UW gold
+  path: "#26252d", // walking paths, fainter than streets
+  casing: "#19181e",
+  highwayCasing: "#4b4130",
+  label: "#cbc7d6",
+  labelHalo: "#141318",
+  waterLabel: "#8aa2d4",
+  iconOpacity: 0.8, // place icons a little softer, so they don't glare
 };
 
 // Each theme's map. Light keeps the normal (Apple Maps-like) map, Dark is Apple Maps' dark
@@ -1349,6 +1352,9 @@ function restyle(style, C = MAP_COLORS) {
     }
     // Light names on a dark map (water names in blue). Highway shields keep their dark numbers,
     // since they sit on white shield signs.
+    if (C.iconOpacity && layer.type === "symbol" && layer.layout?.["icon-image"] && !/shield/.test(layer.id)) {
+      paint["icon-opacity"] = C.iconOpacity;
+    }
     if (C.dark && layer.type === "symbol" && layer.layout?.["text-field"] && !/shield/.test(layer.id)) {
       const water = /water/.test(layer.id) && C.waterLabel;
       Object.assign(paint, { "text-color": water || C.label, "text-halo-color": C.labelHalo, "text-halo-width": 1.2 });
@@ -2972,6 +2978,336 @@ function Careers({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, onR
   );
 }
 
+// --------------------------------------------------------------- friends ---
+// Friends and messages (api/social.js): add friends by their UW email, see the events they're
+// going to, and message them. The mailbox in the top bar shows how many messages and friend
+// requests are waiting.
+
+const MAIL_ICON = "M3 6h18v12H3zM3 7l9 6 9-6";
+
+// Your friends, requests, and conversations, checked every so often (more often on the Friends page).
+function useSocial(user, often) {
+  const token = user?.token;
+  const [state, setState] = useState({ token: null, data: null });
+  const [tick, setTick] = useState(0);
+  useEffect(() => {
+    if (!token) return;
+    let cancelled = false;
+    fetch("/api/social", { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => !cancelled && data && setState({ token, data }))
+      .catch(() => {});
+    const timer = setTimeout(() => setTick((t) => t + 1), often ? 8000 : 30000);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [token, often, tick]);
+  const refresh = useCallback(() => setTick((t) => t + 1), []);
+  // Sends a request, an answer, or a message. Resolves to an error message, or null when it worked.
+  const act = useCallback(
+    async (action, email, text) => {
+      try {
+        const r = await fetch("/api/social", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ action, email, text }),
+        });
+        const d = await r.json().catch(() => ({}));
+        if (!r.ok) return d.error || "That didn't work. Try again.";
+        refresh();
+        return null;
+      } catch {
+        return "Couldn't reach DubHub. Check your connection.";
+      }
+    },
+    [token, refresh]
+  );
+  const data = state.token === token ? state.data : null;
+  const waiting = data ? data.unread + data.incoming.length : 0;
+  return { data, waiting, act, refresh };
+}
+
+function MailButton({ count, active, onClick }) {
+  return (
+    <button
+      className={active ? "theme-toggle mail-button on" : "theme-toggle mail-button"}
+      onClick={onClick}
+      aria-label={count ? `Friends and messages, ${count} new` : "Friends and messages"}
+      title="Friends and messages"
+    >
+      <Icon d={MAIL_ICON} />
+      {count > 0 && <span className="mail-count">{count > 9 ? "9+" : count}</span>}
+    </button>
+  );
+}
+
+function Avatar({ person }) {
+  const [failed, setFailed] = useState(false);
+  if (person.picture && !failed) {
+    return <img className="friend-avatar" src={person.picture} alt="" referrerPolicy="no-referrer" onError={() => setFailed(true)} />;
+  }
+  return <span className="friend-avatar initials">{initials(person.name)}</span>;
+}
+
+// One conversation, checked every few seconds while it's open.
+function Conversation({ user, friend, isFriend, onSend }) {
+  const token = user.token;
+  const [state, setState] = useState({ with: null, messages: [] });
+  const [tick, setTick] = useState(0);
+  const [text, setText] = useState("");
+  const [error, setError] = useState(null);
+  const end = useRef(null);
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`/api/social?with=${encodeURIComponent(friend.email)}`, { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => !cancelled && d && setState({ with: friend.email, messages: d.messages }))
+      .catch(() => {});
+    const timer = setTimeout(() => setTick((t) => t + 1), 5000);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [token, friend.email, tick]);
+  const messages = state.with === friend.email ? state.messages : [];
+  useEffect(() => {
+    end.current?.scrollIntoView({ block: "nearest" });
+  }, [messages.length]);
+
+  const send = async (e) => {
+    e.preventDefault();
+    if (!text.trim()) return;
+    const err = await onSend(friend.email, text);
+    setError(err);
+    if (!err) {
+      setText("");
+      setTick((t) => t + 1);
+    }
+  };
+
+  return (
+    <div className="convo">
+      <ul className="convo-list" aria-live="polite">
+        {messages.length === 0 && <li className="meta convo-empty">No messages yet. Say hi!</li>}
+        {messages.map((m, i) => (
+          <li key={i} className={m.from === "me" ? "bubble mine" : "bubble"}>
+            <span>{m.text}</span>
+            <time>{dateTime(m.at)}</time>
+          </li>
+        ))}
+        <li ref={end} aria-hidden="true" />
+      </ul>
+      {isFriend ? (
+        <form className="convo-send" onSubmit={send}>
+          <input
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            maxLength={1000}
+            placeholder={`Message ${firstName(friend.name)}`}
+            aria-label={`Message ${friend.name}`}
+          />
+          <button className="join" disabled={!text.trim()}>
+            Send
+          </button>
+        </form>
+      ) : (
+        <p className="meta">You're no longer friends, so you can't send new messages.</p>
+      )}
+      {error && <p className="form-error">{error}</p>}
+    </div>
+  );
+}
+
+function FriendsPage({ user, social, events, onOpenEvent }) {
+  const { data, act } = social;
+  const [email, setEmail] = useState("");
+  const [note, setNote] = useState(null);
+  const [openEmail, setOpenEmail] = useState(null);
+
+  const add = async (e) => {
+    e.preventDefault();
+    const address = email.trim().toLowerCase();
+    const err = await act("request", address.includes("@") ? address : `${address}@uw.edu`);
+    setNote(err ? { error: err } : { ok: "Request sent. You'll be friends once they accept." });
+    if (!err) setEmail("");
+  };
+
+  if (!data) {
+    return (
+      <main className="page friends-page">
+        <h1>Friends</h1>
+        <p className="meta">Loading…</p>
+      </main>
+    );
+  }
+  const convoOf = (address) => data.conversations.find((c) => c.email === address);
+  // Friends, plus anyone you've talked to who isn't a friend anymore (to read the old messages).
+  const people = [
+    ...data.friends.map((f) => ({ ...f, isFriend: true })),
+    ...data.conversations.filter((c) => !data.friends.some((f) => f.email === c.email)).map((c) => ({ ...c, going: [], isFriend: false })),
+  ].sort((a, b) => (convoOf(b.email)?.last.at ?? "").localeCompare(convoOf(a.email)?.last.at ?? "") || a.name.localeCompare(b.name));
+  const open = people.find((p) => p.email === openEmail);
+  const goingTo = (p) =>
+    p.going
+      .map((id) => events.find((e) => String(e.id) === String(id)))
+      .filter(Boolean)
+      .sort((a, b) => `${a.date}${a.start}`.localeCompare(`${b.date}${b.start}`));
+
+  return (
+    <main className={open ? "page friends-page reading" : "page friends-page"}>
+      <div className="stats-head">
+        <h1>Friends</h1>
+        <span className="meta">See what your friends are going to, and message them. Only friends can message you.</span>
+      </div>
+      <div className="friends">
+        <div className="friends-side">
+          <form className="add-friend" onSubmit={add}>
+            <label className="field-label" htmlFor="add-friend">
+              Add a friend
+            </label>
+            <div className="add-friend-row">
+              <input
+                id="add-friend"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Their NetID or UW email"
+                autoComplete="off"
+              />
+              <button className="join" disabled={!email.trim()}>
+                Add
+              </button>
+            </div>
+            {note && <p className={note.error ? "form-error" : "meta"}>{note.error || note.ok}</p>}
+          </form>
+
+          {data.incoming.length > 0 && (
+            <section>
+              <h2 className="side-head">Friend requests</h2>
+              <ul className="people">
+                {data.incoming.map((p) => (
+                  <li key={p.email} className="person">
+                    <Avatar person={p} />
+                    <span className="person-text">
+                      <strong>{p.name}</strong>
+                      <span className="meta">{p.email}</span>
+                    </span>
+                    <span className="person-actions">
+                      <button className="join" onClick={() => act("accept", p.email)}>
+                        Accept
+                      </button>
+                      <button className="link-button" onClick={() => act("decline", p.email)}>
+                        Decline
+                      </button>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          <section>
+            <h2 className="side-head">Your friends</h2>
+            {people.length === 0 ? (
+              <p className="meta">No friends yet. Add someone by their UW email above.</p>
+            ) : (
+              <ul className="people">
+                {people.map((p) => {
+                  const convo = convoOf(p.email);
+                  return (
+                    <li key={p.email}>
+                      <button className={p.email === openEmail ? "person on" : "person"} onClick={() => setOpenEmail(p.email)}>
+                        <Avatar person={p} />
+                        <span className="person-text">
+                          <strong>{p.name}</strong>
+                          <span className="meta">
+                            {convo
+                              ? `${convo.last.from === "me" ? "You: " : ""}${convo.last.text}`
+                              : `Going to ${goingTo(p).length} event${goingTo(p).length === 1 ? "" : "s"}`}
+                          </span>
+                        </span>
+                        {convo?.unread > 0 && <span className="mail-count inline">{convo.unread}</span>}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </section>
+
+          {data.outgoing.length > 0 && (
+            <section>
+              <h2 className="side-head">Waiting for them to accept</h2>
+              <ul className="people">
+                {data.outgoing.map((p) => (
+                  <li key={p.email} className="person">
+                    <Avatar person={p} />
+                    <span className="person-text">
+                      <strong>{p.name}</strong>
+                      <span className="meta">{p.email}</span>
+                    </span>
+                    <button className="link-button" onClick={() => act("remove", p.email)}>
+                      Cancel
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </div>
+
+        {open ? (
+          <article className="friend-detail">
+            <button className="link-button hiring-back" onClick={() => setOpenEmail(null)}>
+              ← Friends
+            </button>
+            <div className="friend-head">
+              <Avatar person={open} />
+              <div>
+                <h2>{open.name}</h2>
+                <p className="meta">{open.email}</p>
+              </div>
+              {open.isFriend && (
+                <button
+                  className="link-button unfriend"
+                  onClick={() => {
+                    if (window.confirm(`Remove ${open.name} from your friends?`)) act("remove", open.email);
+                  }}
+                >
+                  Unfriend
+                </button>
+              )}
+            </div>
+            {open.isFriend && (
+              <>
+                <h3>Going to</h3>
+                {goingTo(open).length ? (
+                  <ul className="friend-events">
+                    {goingTo(open).map((e) => (
+                      <li key={e.id}>
+                        <button className="club-link" onClick={() => onOpenEvent(e)}>
+                          {e.title}
+                        </button>
+                        <span className="meta">{[formatWhen(e), e.where].filter(Boolean).join(" · ")}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="meta">Not going to any upcoming events yet.</p>
+                )}
+              </>
+            )}
+            <h3>Messages</h3>
+            <Conversation key={open.email} user={user} friend={open} isFriend={open.isFriend} onSend={(to, text) => act("message", to, text)} />
+          </article>
+        ) : (
+          <div className="hiring-empty meta">Pick a friend to see their events and message them.</div>
+        )}
+      </div>
+    </main>
+  );
+}
+
 // ---------------------------------------------------------------- hiring ---
 // The Hiring tab, for moderators: read every application, set where it stands, schedule an
 // interview (with a Google Calendar invite for the applicant), and write back. Applicants see the
@@ -4031,7 +4367,11 @@ export default function DubHub() {
   const moderator = useModerator(user);
   const tabs = moderator ? [...TABS, "Stats", "Hiring"] : TABS;
   // Stats and Hiring are for moderators only.
-  const view = (tab === "Stats" || tab === "Hiring") && !moderator ? "Home" : tab;
+  const social = useSocial(user, tab === "Friends");
+  // Stats and Hiring are for moderators only, and Friends needs a sign-in.
+  const view =
+    ((tab === "Stats" || tab === "Hiring") && !moderator) || (tab === "Friends" && !user?.token) ? "Home" : tab;
+  const [friendEvent, setFriendEvent] = useState(null);
   const { profile, update: updateProfile } = useProfile(user);
 
   // The sign-in page remembers where you came from and the event you tried to join (or the role
@@ -4089,6 +4429,7 @@ export default function DubHub() {
           ))}
         </nav>
         <div className="nav-end">
+          {user?.token && <MailButton count={social.waiting} active={view === "Friends"} onClick={() => setTab("Friends")} />}
           <ThemePicker theme={theme.theme} onPick={theme.pick} />
           <Account user={user} onOpenSignIn={() => openSignIn()} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
         </div>
@@ -4120,6 +4461,8 @@ export default function DubHub() {
       )}
       {view === "Stats" && <StatsPage user={user} events={all} clubs={clubList} dark={MAP_PALETTES[theme.theme]?.dark} />}
       {view === "Hiring" && <HiringPage user={user} />}
+      {view === "Friends" && <FriendsPage user={user} social={social} events={all} onOpenEvent={setFriendEvent} />}
+      {view === "Friends" && friendEvent && <EventDetail event={friendEvent} j={j} onClose={() => setFriendEvent(null)} />}
       {view === "Sign in" && (
         <SignInPage
           user={user}

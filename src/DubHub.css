@@ -14,6 +14,13 @@
   --error: #b3261e;
   --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234b2e83' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   --set-bg: #fbf7ea; /* a changed filter */
+  --nav-bg: var(--purple); /* the top bar (and the tab bar on phones) */
+  --nav-line: transparent;
+  --tab-active-bg: var(--purple-mid);
+  --overlay-bg: var(--surface); /* panels over the map */
+  --callout-bg: var(--surface); /* the cards over the map's dots */
+  --hero-bg: var(--purple); /* the welcome box on the map */
+  --button-hover: var(--purple);
   color-scheme: light;
   --nav-h: 60px;
   --tabbar-h: 0px; /* the bottom tab bar's height on phones */
@@ -22,35 +29,51 @@
 /* Dark mode: follows the device unless someone picks Light or Dark in the top bar. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --bg: #14111c;
-    --text: #ece8f5;
-    --muted: #a99fc0;
-    --line: #2e2740;
-    --surface: #1e1929;
-    --tint: #2b2339;
-    --field-line: #463c5c;
-    --accent: #c9b6ff;
-    --glass: rgba(30, 25, 41, 0.92);
+    --bg: #121117;
+    --text: #eceaf2;
+    --muted: #a5a1b2;
+    --line: #2d2b36;
+    --surface: #1b1a21;
+    --tint: #25232d;
+    --field-line: #3c3947;
+    --accent: #b4a3f0;
+    --purple-mid: #6a50cf;
+    --glass: rgba(34, 33, 42, 0.92);
     --error: #f2b8b5;
-    --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23c9b6ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    --set-bg: #3a3122;
+    --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b4a3f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    --set-bg: #352d1f;
+    --nav-bg: #17161c;
+    --nav-line: #29272f;
+    --tab-active-bg: rgba(255, 255, 255, 0.08);
+    --overlay-bg: #22212a;
+    --callout-bg: #2a2734;
+    --hero-bg: #2a2734;
+    --button-hover: #7b62dc;
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #14111c;
-  --text: #ece8f5;
-  --muted: #a99fc0;
-  --line: #2e2740;
-  --surface: #1e1929;
-  --tint: #2b2339;
-  --field-line: #463c5c;
-  --accent: #c9b6ff;
-  --glass: rgba(30, 25, 41, 0.92);
+  --bg: #121117;
+  --text: #eceaf2;
+  --muted: #a5a1b2;
+  --line: #2d2b36;
+  --surface: #1b1a21;
+  --tint: #25232d;
+  --field-line: #3c3947;
+  --accent: #b4a3f0;
+  --purple-mid: #6a50cf;
+  --glass: rgba(34, 33, 42, 0.92);
   --error: #f2b8b5;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23c9b6ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --set-bg: #3a3122;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b4a3f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --set-bg: #352d1f;
+  --nav-bg: #17161c;
+  --nav-line: #29272f;
+  --tab-active-bg: rgba(255, 255, 255, 0.08);
+  --overlay-bg: #22212a;
+  --callout-bg: #2a2734;
+  --hero-bg: #2a2734;
+  --button-hover: #7b62dc;
   color-scheme: dark;
 }
 
@@ -162,7 +185,8 @@ body {
   align-items: center;
   gap: 24px;
   padding: 0 20px;
-  background: var(--purple);
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-line);
   color: #fff;
   z-index: 1000;
   /* A soft shadow so the page and map tuck under the bar instead of meeting it at a hard edge */
@@ -213,7 +237,7 @@ body {
 
 .tab.active {
   color: #fff;
-  background: var(--purple-mid);
+  background: var(--tab-active-bg);
   box-shadow: inset 0 -3px 0 var(--gold);
 }
 
@@ -325,7 +349,7 @@ select:focus-visible {
   z-index: 500;
   width: 296px;
   padding: 12px 14px 10px;
-  background: var(--surface);
+  background: var(--overlay-bg);
   color: var(--text);
   border: 1px solid var(--line);
   border-top: 4px solid var(--gold);
@@ -435,7 +459,8 @@ select:focus-visible {
   max-width: 420px;
   padding: 16px 20px;
   text-align: center;
-  background: var(--purple);
+  background: var(--hero-bg);
+  border: 1px solid var(--nav-line);
   color: #fff;
   border-radius: 12px;
   /* Shown for 5 seconds, then fades out so it stops covering the map (and stops taking clicks). */
@@ -483,7 +508,7 @@ select:focus-visible {
 }
 
 .join:hover {
-  background: var(--purple);
+  background: var(--button-hover);
 }
 
 .join.secondary {
@@ -643,7 +668,7 @@ select:focus-visible {
   border: none;
   padding: 0;
   font: inherit;
-  color: var(--gold);
+  color: var(--accent); /* readable on light and dark (gold was faint on white) */
   font-weight: 700;
   text-decoration: underline;
   cursor: pointer;
@@ -1510,9 +1535,25 @@ a.discord-bot-link.join {
 }
 
 .field-tag {
-  border: 1px solid;
   margin-right: 4px;
   white-space: nowrap;
+  color: var(--tag);
+  background: color-mix(in srgb, var(--tag) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--tag) 40%, transparent);
+}
+
+:root[data-theme="dark"] .field-tag {
+  color: color-mix(in srgb, var(--tag) 45%, #fff);
+  background: color-mix(in srgb, var(--tag) 18%, transparent);
+  border-color: color-mix(in srgb, var(--tag) 50%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .field-tag {
+    color: color-mix(in srgb, var(--tag) 45%, #fff);
+    background: color-mix(in srgb, var(--tag) 18%, transparent);
+    border-color: color-mix(in srgb, var(--tag) 50%, transparent);
+  }
 }
 
 .tags {
@@ -1868,7 +1909,8 @@ a.discord-bot-link.join {
     height: var(--tabbar-h);
     padding-bottom: env(safe-area-inset-bottom, 0px);
     gap: 0;
-    background: var(--purple);
+    background: var(--nav-bg);
+    border-top: 1px solid var(--nav-line);
     box-shadow: 0 -2px 12px rgba(30, 10, 70, 0.2);
   }
   .tab {
@@ -1961,12 +2003,12 @@ a.discord-bot-link.join {
 
 /* Dark mode's map is Apple Maps-style dark, so its ground color is too (no white flash). */
 :root[data-theme="dark"] .leaflet-container {
-  background: #232325;
+  background: #19181e;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .leaflet-container {
-    background: #232325;
+    background: #19181e;
   }
 }
 
@@ -2226,9 +2268,10 @@ a.discord-bot-link.join {
   box-shadow: 0 0 0 1.5px #fff; /* like the dots on the map */
 }
 
-/* Dark mode: the cover's purple card, with a white tile and stem */
+/* Dark mode: a raised card in the night palette, with a white tile and stem */
 :root[data-theme="dark"] .callout {
-  background: var(--purple);
+  background: var(--callout-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: #fff;
   --callout-glow: rgba(255, 255, 255, 0.45);
 }
@@ -2239,7 +2282,7 @@ a.discord-bot-link.join {
 }
 
 :root[data-theme="dark"] .callout-text span {
-  color: #d9d0ee;
+  color: #c9c3d6;
 }
 
 :root[data-theme="dark"] .callout::after {
@@ -2248,7 +2291,8 @@ a.discord-bot-link.join {
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .callout {
-    background: var(--purple);
+    background: var(--callout-bg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     color: #fff;
     --callout-glow: rgba(255, 255, 255, 0.45);
   }
@@ -2257,7 +2301,7 @@ a.discord-bot-link.join {
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25);
   }
   :root:not([data-theme]) .callout-text span {
-    color: #d9d0ee;
+    color: #c9c3d6;
   }
   :root:not([data-theme]) .callout::after {
     background: #fff;
@@ -3464,5 +3508,297 @@ a.discord-bot-link.join {
   }
   .hiring-back {
     display: inline;
+  }
+}
+
+/* ------------------------------------------------------ Friends and messages --- */
+.mail-button {
+  position: relative;
+}
+
+.mail-button.on {
+  background: var(--tab-active-bg);
+}
+
+.mail-count {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #1c1530;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 17px;
+  text-align: center;
+}
+
+.mail-count.inline {
+  position: static;
+  margin-left: auto;
+}
+
+.friends {
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  align-items: start;
+  gap: 16px;
+}
+
+.friends-side,
+.friend-detail {
+  min-width: 0;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.friends-side {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.add-friend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.add-friend .meta,
+.add-friend .form-error {
+  margin: 0;
+  font-size: 13px;
+}
+
+.add-friend-row {
+  display: flex;
+  gap: 8px;
+}
+
+.add-friend-row input,
+.convo-send input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  background: var(--surface);
+  border: 1px solid var(--field-line);
+  border-radius: 8px;
+  color: var(--text);
+  font: inherit;
+}
+
+.add-friend-row .join,
+.convo-send .join {
+  margin: 0;
+}
+
+.page .side-head {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.people {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+button.person {
+  cursor: pointer;
+}
+
+button.person:hover,
+.person.on {
+  background: var(--tint);
+}
+
+.person.on {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.person-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.person-text .meta {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.person-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.person-actions .join {
+  margin: 0;
+}
+
+.friend-avatar {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.friend-avatar.initials {
+  display: grid;
+  place-items: center;
+  background: var(--purple-mid);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.friend-detail {
+  padding: 18px 20px;
+}
+
+.friend-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.friend-head .friend-avatar {
+  width: 52px;
+  height: 52px;
+}
+
+.page .friend-head h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.friend-head .meta {
+  margin: 0;
+}
+
+.unfriend {
+  margin-left: auto;
+  font-size: 13px;
+}
+
+.friend-detail h3 {
+  margin: 20px 0 8px;
+  font-size: 15px;
+}
+
+.friend-events {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.friend-events li {
+  display: flex;
+  flex-direction: column;
+}
+
+.friend-events .meta {
+  font-size: 13px;
+}
+
+.convo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.convo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 46vh;
+  min-height: 120px;
+  margin: 0;
+  padding: 10px;
+  overflow: auto;
+  list-style: none;
+  background: var(--bg);
+  border-radius: 10px;
+}
+
+.convo-empty {
+  margin: auto;
+}
+
+.bubble {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 78%;
+  padding: 8px 12px;
+  align-self: flex-start;
+  background: var(--tint);
+  border-radius: 14px 14px 14px 4px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.bubble.mine {
+  align-self: flex-end;
+  background: var(--purple-mid);
+  color: #fff;
+  border-radius: 14px 14px 4px 14px;
+}
+
+.bubble time {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.bubble.mine time {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.convo-send {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 760px) {
+  .friends {
+    grid-template-columns: 1fr;
+  }
+  .friends-page.reading .friends-side,
+  .friends-page:not(.reading) .hiring-empty {
+    display: none;
   }
 }

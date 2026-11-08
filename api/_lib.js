@@ -94,5 +94,5 @@ export async function verifyGoogle(credential) {
   const clientId = env.VITE_GOOGLE_CLIENT_ID || env.GOOGLE_CLIENT_ID;
   const verified = t.email_verified === true || t.email_verified === "true";
   if (t.aud !== clientId || t.hd !== "uw.edu" || !verified) return null;
-  return { email: t.email.toLowerCase(), name: t.name || t.email };
+  return { email: t.email.toLowerCase(), name: t.name || t.email, picture: t.picture || null };
 }
