@@ -6,6 +6,9 @@ Reads events from the Discord servers of UW clubs that added the DubHub bot:
      through the same AI event finder as Instagram captions (and the applications check).
 
 The bot only reads servers whose admins added it, which is how Discord allows reading servers.
+Since anyone can add it to any server, only servers find_discord_servers.py matched to a UW club
+go on the site; others are skipped. To add one by hand, give it an entry in club_discord.json
+like {"invite": "https://discord.gg/...", "guild_id": "...", "server": "...", "from": "manual"}.
 Tools that log in with a person's account instead ("self-bots") break Discord's terms and get
 accounts banned; DubHub doesn't do that. find_discord_servers.py says which server is which club's.
 
@@ -133,7 +136,8 @@ def check():
     since = TODAY - timedelta(days=LOOKBACK_DAYS)
     for g in guilds:
         club = clubs.get(g["id"])
-        print(f"\n{g['name']}" + (f"  (the Discord of {club})" if club else "  (not matched to a club; events will show under the server's name)"))
+        print(f"\n{g['name']}" + (f"  (the Discord of {club})" if club else
+                                  "  (not a known UW club's server, so a normal run skips it)"))
         events = scheduled_events(g, club or g["name"])
         print(f"  Upcoming events in its Events tab: {len(events)}")
         for e in events:
@@ -176,7 +180,11 @@ def main():
     store = load_store()
     events, posts = [], []
     for g in guilds:
-        host = clubs.get(g["id"], g["name"])
+        # Anyone can add the bot to any server, so only known UW clubs' servers go on the site.
+        host = clubs.get(g["id"])
+        if not host:
+            print(f"  {g['name']}: not a known UW club's server, skipped")
+            continue
         found, new = scheduled_events(g, host), announcement_posts(g, host, store)
         print(f"  {g['name']}: {len(found)} scheduled event(s), {len(new)} new announcement(s)", flush=True)
         events += found
