@@ -845,6 +845,20 @@
    "fields": []
   },
   {
+   "name": "HOSA: Future Health Professionals, UW Chapter",
+   "handle": "officialuwhosa",
+   "instagram": "https://www.instagram.com/officialuwhosa/",
+   "website": "https://linktr.ee/uwhosa",
+   "category": "Service",
+   "about": "HOSA chapter for future health professionals offering service and leadership opportunities.",
+   "description": "HOSA UW connects students interested in health careers through volunteering, workshops, and leadership conferences. The chapter also holds meetings to discuss competitions and professional development.",
+   "logo": "/ig/clubs/officialuwhosa.jpg",
+   "last_event": "2026-11-14",
+   "fields": [
+    "Health"
+   ]
+  },
+  {
    "name": "Hui Hoaloha ’Ulana Hawai’i Club",
    "handle": "hawaiiclubatuw",
    "instagram": "https://www.instagram.com/hawaiiclubatuw/",
@@ -864,7 +878,7 @@
    "description": "We are a service group dedicated to helping the underserved youth population in the Seattle metropolitan area. We accomplish this goal through education, fundraising, and service projects to make a difference in the lives of a child in need.",
    "logo": null,
    "source": "huskylink",
-   "last_event": "2026-10-27",
+   "last_event": "2026-11-10",
    "fields": []
   },
   {
@@ -979,8 +993,8 @@
    "instagram": "https://www.instagram.com/uw_icehockey/",
    "website": "https://www.tickettailor.com/events/washingtonicehockey",
    "category": "Sports",
-   "about": "Men’s ice hockey team sharing game updates, tickets, and fan gear.",
-   "description": "Washington Ice Hockey posts game results, travel schedules, and live streams for fans. The account also promotes ticket sales and a jersey store for supporters.",
+   "about": "UW men's ice hockey team competing in ACHA Division 2 and engaging fans.",
+   "description": "Washington Men’s Ice Hockey represents UW in the ACHA Division 2, competing in the PAC‑8 conference. Follow the team for game updates, ticket info, and store merchandise.",
    "logo": "/ig/clubs/uw_icehockey.jpg",
    "last_event": "2026-11-13",
    "fields": []
@@ -1059,8 +1073,8 @@
    "instagram": "https://www.instagram.com/gh_nupes/",
    "website": "https://fundraising.stjude.org/site/TR/TAEvents/Events?px=7192659&pg=personal&fr_id=158992",
    "category": "Greek Life",
-   "about": "Kappa Alpha Psi fraternity chapter fostering brotherhood and leadership.",
-   "description": "The University of Washington Nupes is the Gamma Eta chapter of Kappa Alpha Psi fraternity, known as the Rainy Nupes. They host social gatherings such as the Red Square event. Membership focuses on brotherhood, leadership, and community presence.",
+   "about": "Gamma Eta Chapter of Kappa Alpha Psi fraternity promoting brotherhood and leadership.",
+   "description": "Kappa Alpha Psi’s Gamma Eta Chapter at UW fosters brotherhood, academic excellence, and community service. Members attend leadership conferences and host social events for the campus community.",
    "logo": "/ig/clubs/gh_nupes.jpg",
    "last_event": "2026-11-17",
    "fields": []
@@ -1304,6 +1318,20 @@
    ]
   },
   {
+   "name": "Phi Alpha Delta PreLaw Fraternity",
+   "handle": "uw_pad",
+   "instagram": "https://www.instagram.com/uw_pad/",
+   "website": "http://linktr.ee/uwphialphadelta",
+   "category": "Greek Life",
+   "about": "Phi Alpha Delta UW chapter, a pre‑law academic fraternity fostering legal education.",
+   "description": "Phi Alpha Delta is an undergraduate pre‑law fraternity that offers academic panels, networking, and philanthropy events. Members meet in business‑casual attire to discuss legal topics and support community causes.",
+   "logo": "/ig/clubs/uw_pad.jpg",
+   "last_event": "2026-11-10",
+   "fields": [
+    "Social Sciences"
+   ]
+  },
+  {
    "name": "Phi Chi Theta",
    "handle": "uwpct",
    "instagram": "https://www.instagram.com/uwpct/",
@@ -1328,6 +1356,22 @@
    "instagram": "https://www.instagram.com/medphilosophyuw/",
    "source": "huskylink",
    "last_event": "2026-11-02",
+   "fields": [
+    "Health"
+   ]
+  },
+  {
+   "name": "PrePharmacy Club",
+   "handle": "uwprepharmacy",
+   "instagram": "https://www.instagram.com/uwprepharmacy/",
+   "website": "https://linktr.ee/uwprepharm",
+   "category": "Academic",
+   "about": "UW Pre‑Pharmacy Club supports students pursuing pharmacy careers with resources.",
+   "description": "The UW Pre‑Pharmacy Club provides resources like CASPer preparation sessions and health‑topic talks for aspiring pharmacists. Members share study tips, host events, and build a supportive community.",
+   "logo": "/ig/clubs/uwprepharmacy.jpg",
+   "discord": "https://discord.gg/VqS93CqrpA",
+   "discord_server": "UW Pre-Pharmacy Club",
+   "last_event": "2026-11-17",
    "fields": [
     "Health"
    ]

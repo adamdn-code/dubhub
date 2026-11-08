@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T14:09",
+ "updated": "2026-11-08T12:11",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -9436,6 +9436,22 @@
  ],
  "events": [
   {
+   "id": "hl-375488",
+   "title": "ThaiSAxATSA Sports Day",
+   "type": "Hangout",
+   "host": "Thai Student Association at University of Washington",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-08",
+   "start": "13:00",
+   "end": "17:00",
+   "url": "https://huskylink.washington.edu/thaisa/rsvp?id=375488",
+   "source": "huskylink",
+   "description": "Students from UW and PNW area are welcome to join this annual sports day event! Students will be able to make new friends, learn more about Thai culture, and get a chance to chat with ThaiSA officers!\nPlease choose to wear either: WHITE, BLACK, PURPLE, OR NAVY (teams will be sorted according to shirt color!)",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639960_IMG_6389JPG_71fa6bd1-fbf2-4850-8d76-0450e0b7abe6_11718217.jpeg",
+   "rsvps": 7
+  },
+  {
    "id": "hl-375483",
    "title": "The Link- Up",
    "type": "Club",
@@ -9647,6 +9663,22 @@
    "source": "huskylink",
    "description": "Pull up to Gym A to meet each other and play casual pickup basketball",
    "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375492",
+   "title": "11/10 Huskids General Meeting: Care Kit Making + UW CELE Guest Speaker",
+   "type": "Club",
+   "host": "Huskies for Kids",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-10",
+   "start": "19:00",
+   "end": "20:00",
+   "url": "https://huskylink.washington.edu/huskids/rsvp?id=375492",
+   "source": "huskylink",
+   "description": "Assemble care kits to donate to the Ronald McDonald House & Guest speaker from UW CELE",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_614633_71e812761e124c758c428ba86a5128a8_6ce6dc4e-2ddb-49d3-a158-04d282b3f118_11812710.jpeg",
    "rsvps": 0
   },
   {

@@ -1,510 +1,6 @@
 {
- "updated": "2026-11-07T20:33",
+ "updated": "2026-11-08T12:43",
  "events": [
-  {
-   "id": "DeajhNEmhDW-0",
-   "title": "Product Games",
-   "type": "Club",
-   "host": "Product Space @ UW (@uwproductspace)",
-   "where": "Founders Hall",
-   "pos": [
-    47.65882,
-    -122.30706
-   ],
-   "date": "2026-11-07",
-   "start": "09:00",
-   "end": "17:30",
-   "url": "https://www.instagram.com/p/DeajhNEmhDW/",
-   "source": "instagram",
-   "description": "Get ready for THE PRODUCT GAMES! 🚀🎯🏹\n\nRegistration is now OPEN for The Product Games, a one-day product competition combining the strategy of a case competition with the rapid building of a hackathon! \n\nWork in teams of 4 to tackle a real-world product challenge, build an innovative solution, and pitch your ideas to industry judges! Plus, enjoy free food, swag, mentorship, networking opportunities, and a chance to win prizes! 🏆\n\nEvent Details:\n📅 Date: Saturday, November 7 | 9 AM – 5:30 PM\n📍 Location: Founders Hall, UW\n👥 Eligibility: Open to all UW students, regardless of major or experience\n🔗 Applications are OPEN NOW, and close October 26 at 11:59 PM\n\nSpots are limited, so don’t miss your chance! Apply through the link in our bio or scan the QR code to register!",
-   "image": "/ig/posts/Dest2ueIkPI.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DeajhNEmhDW": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfVMXxWP0Q2-0",
-   "title": "UW vs Penn State Tailgate",
-   "type": "Hangout",
-   "host": "Hui Hoaloha Ulana 🤙🏽🌺 (@hawaiiclubatuw)",
-   "where": "Padelford parking lot N16",
-   "pos": [
-    47.65696,
-    -122.30428
-   ],
-   "date": "2026-11-07",
-   "start": "10:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfVMXxWP0Q2/",
-   "source": "instagram",
-   "description": "Join us this Saturday, November 7th for UW vs Penn State tailgate‼️\n\nWe’ll be at the Padelford parking lot N16 @10 am! Fill out the potluck sign up sheet linked in bio or slack 😋",
-   "image": "/ig/posts/DfVMXxWP0Q2.jpg",
-   "likes": 18,
-   "comments": 0,
-   "post_counts": {
-    "DfVMXxWP0Q2": [
-     18,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfQE3L5gfjG-0",
-   "title": "Bagels and Banter",
-   "type": "Food",
-   "host": "Hillel UW (@huskyhillel)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-07",
-   "start": "11:00",
-   "end": "13:00",
-   "url": "https://www.instagram.com/p/DfQE3L5gfjG/",
-   "source": "instagram",
-   "description": "Tomorrow, come get some bagels on campus!\n\nJoin Jess on campus every Tuesday from 11:00am-1:00pm for Bagels and Banter! It's your weekly time to enjoy a free bagel lunch and connect with your Hillel community!\n\nCheck Insta tomorrow to see where she'll be!\nhttps://www.instagram.com/huskyhillel/",
-   "image": "/ig/posts/DfQE3L5gfjG.jpg",
-   "likes": 5,
-   "comments": 0,
-   "post_counts": {
-    "DfQE3L5gfjG": [
-     5,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfSwbTrSwxR-0",
-   "title": "Game vs Crimson & Gray",
-   "type": "Club",
-   "host": "Womxn’s Husky Rugby Club (@uwwomxnsrugby)",
-   "where": "South Fairway Playfield",
-   "pos": null,
-   "date": "2026-11-07",
-   "start": "11:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfSwbTrSwxR/",
-   "source": "instagram",
-   "description": "🚨IT’S GAME WEEK🚨\n\nThis week we are playing @crimsonandgraywomensrugby in Pullman! \n\nSouth Fairway Playfield\nSat. Nov 7th\n11AM\n\nSEE YOU THERE‼️",
-   "image": "/ig/posts/DfSwbTrSwxR.jpg",
-   "likes": 105,
-   "comments": 7,
-   "post_counts": {
-    "DfSwbTrSwxR": [
-     105,
-     7
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfQ-xm-G6l1-0",
-   "title": "ODPhi Tailgate",
-   "type": "Hangout",
-   "host": "Omega Delta Phi Fraternity Inc. | UW Seattle (@uwknights)",
-   "where": "N25 Parking Lot",
-   "pos": null,
-   "date": "2026-11-07",
-   "start": "11:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfQ-xm-G6l1/",
-   "source": "instagram",
-   "description": "Lambda Chapter Alumni presents the ODPhi Tailgate 🏈🔥\n\nGame day is better with the Knights! Come hang out with the bros, enjoy the pregame atmosphere, and get ready for kickoff!\n\n📍 N25 Parking Lot\n🗓️ November 7th, 2026\n⏰ 11:00 AM\n🍲 Pozole will be served! Come hungry 😮‍💨🔥\n\n🎟️ Tickets + more info → scan the QR code.\n\nSee you all at the tailgate! 🐾",
-   "image": "/ig/posts/DfQ-xm-G6l1.jpg",
-   "likes": 77,
-   "comments": 12,
-   "post_counts": {
-    "DfQ-xm-G6l1": [
-     77,
-     12
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfbSyKTxu-W-0",
-   "title": "Origami Cats",
-   "type": "Club",
-   "host": "Origami Club at UW (@uw_origamiclub)",
-   "where": "Seattle Center Exhibition Hall",
-   "pos": [
-    47.62395,
-    -122.35149
-   ],
-   "date": "2026-11-07",
-   "start": "12:00",
-   "end": "12:45",
-   "url": "https://www.instagram.com/p/DfbSyKTxu-W/",
-   "source": "instagram",
-   "description": "Meow, we’re gonna be adoring cats at the Seattle Center Exhibition Hall and folding origami cats together this weekend!! Come and join us if you’re free🐱\n\n🗓️ Saturday, November 7th | 12:00 pm~ 12:45 pm\n🗓️ Sunday, November 8th | 1:00 pm ~ 1:45 pm\n📌 Seattle Center Exhibition Hall",
-   "image": "/ig/posts/DfbSyKTxu-W.jpg",
-   "likes": 6,
-   "comments": 2,
-   "post_counts": {
-    "DfbSyKTxu-W": [
-     6,
-     2
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfN9eKXsYET-0",
-   "title": "Cat Origami Workshop",
-   "type": "Club",
-   "host": "Origami Club at UW (@uw_origamiclub)",
-   "where": "Workshop Area",
-   "pos": null,
-   "date": "2026-11-07",
-   "start": "12:00",
-   "end": "12:45",
-   "url": "https://www.instagram.com/p/DfN9eKXsYET/",
-   "source": "instagram",
-   "description": "Another fun CATivity at Sea-Meow! ✂️📄\n\nJoin @uw_origamiclub to learn how to fold your very own paper cats! 🐈 \n\nWe’ll have one session each day, so pick the time that works best for you!\n📅 Saturday, November 7 | 12:00–12:45 PM\n📅 Sunday, November 8 | 1:00–1:45 PM\n📍 Workshop Area\n🐾 All supplies provided! Space is limited to about 20–25 participants per session, and seats are available on a first-come, first-served basis.\n\n🎟️ Get your Sea-Meow tickets: www.seameowconvention.com/tix\n\n#SeaMeow2026 #SeaMeowConvention #UWOrigamiClub #CatOrigami #catcrafts",
-   "image": "/ig/posts/DfN9eKXsYET.jpg",
-   "likes": 25,
-   "comments": 0,
-   "post_counts": {
-    "DfN9eKXsYET": [
-     25,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "Dezzasjy56Q-0",
-   "title": "Hillel Tabling",
-   "type": "Food",
-   "host": "Hillel UW (@huskyhillel)",
-   "where": "Quad",
-   "pos": [
-    47.65728,
-    -122.30721
-   ],
-   "date": "2026-11-07",
-   "start": "13:00",
-   "end": "14:30",
-   "url": "https://www.instagram.com/p/Dezzasjy56Q/",
-   "source": "instagram",
-   "description": "Find us tabling in the quad every Thursday from 1-2:30pm! We’re selling challahs to fundraise for Mazon, a nonprofit combatting hunger!",
-   "image": "/ig/posts/Dezzasjy56Q.jpg",
-   "likes": 60,
-   "comments": 0,
-   "post_counts": {
-    "Dezzasjy56Q": [
-     60,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "De0ClixknJP-0",
-   "title": "Let’s Talk Drop-in",
-   "type": "Club",
-   "host": "Ethnic Cultural Center (ECC) (@uw_ecc)",
-   "where": "Kelly ECC",
-   "pos": [
-    47.65509,
-    -122.31484
-   ],
-   "date": "2026-11-07",
-   "start": "14:00",
-   "end": "16:00",
-   "url": "https://www.instagram.com/p/De0ClixknJP/",
-   "source": "instagram",
-   "description": "Midterms are here and we see you 👀💜\n\nHere are a few things that actually help: study in short bursts, get some sleep (seriously), and don’t be afraid to ask for help. Swipe for our full survival guide and where to find support at UW.\n\nIf things feel heavy, you can talk to someone. Let’s Talk drop-ins are every Tuesday from 2-4 pm right here at the Kelly ECC, and the Husky HelpLine is open 24/7 at 206-616-7777.\n\nAnd you don’t have to study alone. Come hang out and study with us at the ECC 🦋\n\nSave this for later and send it to a friend who needs it. You’ve got this, Huskies! 🐾\n\n#UWLWB #KellyECC #UWMidterms #HuskyWellbeing #StudyTips",
-   "image": "/ig/posts/De0ClixknJP.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "De0ClixknJP": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "De0Sd9nKJKC-0",
-   "title": "Thursday Fellowship",
-   "type": "Food",
-   "host": "Christian Students Association (@christianstudentsuw)",
-   "where": "MEB 248",
-   "pos": [
-    47.65369,
-    -122.30476
-   ],
-   "date": "2026-11-07",
-   "start": "18:00",
-   "end": "20:00",
-   "url": "https://www.instagram.com/p/De0Sd9nKJKC/",
-   "source": "instagram",
-   "description": "☀️Interested in free food, singing and fellowship? Come join us every Thursday from 6-8pm in MEB 248!! We hope to see you all!!!😄\n\n#christianstudents #uw",
-   "image": "/ig/posts/De0Sd9nKJKC.jpg",
-   "likes": 95,
-   "comments": 6,
-   "post_counts": {
-    "De0Sd9nKJKC": [
-     95,
-     6
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DexTf2RknR_-0",
-   "title": "Chinese Bible Study",
-   "type": "Club",
-   "host": "Christians in Seattle At UW (@christiansinseattleatuw)",
-   "where": "Suzzallo 334",
-   "pos": [
-    47.65581,
-    -122.30805
-   ],
-   "date": "2026-11-07",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://www.instagram.com/p/DexTf2RknR_/",
-   "source": "instagram",
-   "description": "🍂🌸 Fall into Fellowship with Christians in Seattle! 🌸🍂\n\nLooking for community, friendship, and opportunities to grow in faith this fall? We'd love to meet you! 💜\n\nJoin us this October & November for Bible studies, Friday night fellowship, and fun Saturday adventures around Seattle! 🏔️\n\n📖 Weekly Bible Studies\n🇨🇳 Chinese Bible Study \n• Tuesdays | 6:00–7:00 PM \n• Thursdays | 12:00–1:00 PM\n\n🇺🇸 English Bible Study \n• Wednesdays | 4:30–5:30 PM \n• Thursdays | 4:30–5:30 PM\n\n📍 All Bible studies: Suzzallo 334\n\n🍽️ Friday Night Fellowship \nFridays | 6:00–7:30 PM \n📍 5221 11th Ave NE \nCome hungry—dinner is provided! 💕\n\n🌲 Saturday Adventures\nFrom hiking and ziplining to berry picking and exploring Seattle, there's always something fun to do together!\n\n✨ Whether you're new to Seattle, exploring faith, or looking for a Christian community, **everyone is welcome!**\n\n💌 DM us for more details, and bring a friend!",
-   "image": "/ig/posts/DexTf2RknR_.jpg",
-   "likes": 2,
-   "comments": 0,
-   "post_counts": {
-    "DexTf2RknR_": [
-     2,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DexdxKwjyOf-1",
-   "title": "Fall Con",
-   "type": "Hangout",
-   "host": "AAIV UW | Asian American InterVarsity (@aaivuw)",
-   "where": "Black Lake Bible Camp (Olympia, WA)",
-   "pos": null,
-   "date": "2026-11-07",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DexdxKwjyOf/",
-   "source": "instagram",
-   "description": "Hi AAIV! 🐟💙\n\nFall Con is coming up!! Join us November 6–8 for a weekend away from school to grow deeper in faith exploring the book of Peter, worship together and build meaningful friendships with students across the PNW and within our COMMUNITY! 🫶\n\nREGISTER BY TOMORROW (10/22) TO GET A FREE FALL CON SHIRT!! 👕✨\n\n📍Black Lake Bible Camp (Olympia, WA)\n\n💸 $185 ($40 deposit to secure your spot)\n\n🎟️ 50% OFF Discount Codes:\n- Freshmen: FIRSTYEAR50OFF\n- Non-Christians: OPENTOLEARN26\n\n💌 Scholarships are available if needed!\n\nDon’t miss out on this opportunity to rest, connect with community and see what God has in store for you! Registration closes October 29th, so sign up soon! 🫶\n\nSo see you at Retreat?\n\n- AAIV \n\n🖌️ Graphic made by Reuel Alejo",
-   "image": "/ig/posts/DexdxKwjyOf.jpg",
-   "likes": 19,
-   "comments": null,
-   "post_counts": {
-    "DexdxKwjyOf": [
-     19,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfD-U3MNuTI-1",
-   "title": "Fall Retreat",
-   "type": "Hangout",
-   "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-07",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfD-U3MNuTI/",
-   "source": "instagram",
-   "description": "🍂 Just a reminder that Fall Retreat is coming up November 6–8, and there’s still time to sign up!!! 🍁🙌\n\nWe would LOVE to have you guys join us for a fun and meaningful weekend together! Don’t miss out on this opportunity to connect, grow, and make some amazing memories. We hope to see you there! 🤍✨ \n\nSign up through the Newman Website (link in bio)",
-   "image": "/ig/posts/DfD-U3MNuTI.jpg",
-   "likes": 26,
-   "comments": 0,
-   "post_counts": {
-    "DfD-U3MNuTI": [
-     26,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DeuMU08m8EX-1",
-   "title": "Fall Retreat Day 2",
-   "type": "Hangout",
-   "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
-   "where": "Lake Retreat Camp, Ravensdale, WA",
-   "pos": null,
-   "date": "2026-11-07",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DeuMU08m8EX/",
-   "source": "instagram",
-   "description": "🍂 Looking for a weekend to reconnect, grow in faith, and build community? Come join us for our Fall Retreat! ❤️\n\nJoin us November 6–8 at Lake Retreat Camp in Ravensdale, WA, for a weekend centered on “The Father’s Love.” All undergraduate students are welcome! Whether you’re a regular at Newman or joining us for the first time, there’s a place for you here. 🫶\n\nCome take a break from the busyness of school, meet new friends, deepen your faith, and spend a meaningful weekend growing together in community.\n\n✨ We’d love to have you there!\n\n📍 Location: Lake Retreat Camp, Ravensdale, WA\n📅 Dates: November 6–8\n\n💻 Ready to join us? Sign up through the Newman website!\n\nBring a friend, and come experience a weekend of faith, fellowship, and the Father’s love. We can’t wait to see you there!",
-   "image": "/ig/posts/DeuMU08m8EX.jpg",
-   "likes": 34,
-   "comments": 0,
-   "post_counts": {
-    "DeuMU08m8EX": [
-     34,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfDmnrCD8f--0",
-   "title": "Arboretum Walk with UW Sustainability Office",
-   "type": "Hangout",
-   "host": "UW CIRCLE (@uwcircle)",
-   "where": "UW Arboretum",
-   "pos": null,
-   "date": "2026-11-07",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfDmnrCD8f-/",
-   "source": "instagram",
-   "description": "Check out upcoming hiking trips with Peaks and Professors!🏔️🥾\n \nSat, Nov 7 | Arboretum Walk with UW Sustainability Office\nSat, Nov 7 | Poo Poo Point with Diplomat Suzi LeVine\nSun, Nov 8 | Cedar Butte with Professor Denise Glover\nSun, Nov 8 | Olallie Lake via Pratt Lake Trail with Professor Meyers & McCloskey\n \nSign-up here: https://urldefense.com/v3/__https://forms.gle/eeSx1pqEhrf5chYA8__;!!K-Hz7m0Vt54!gu5XhjsS_WfZZvzrai3SbC-zNGZHLZdX7r6he5-GQc43v6Qa6kag3TogiZGtJtiU7GZ0pHbCpTqS2k1Zk6OlxX0GPcMuUdebBKnM0zkv$\n\nPeaks and Professors is a UW RSO that connects students, faculty, and professionals through weekly outdoor adventures and nature exploration while building community beyond the classroom. No experience, gear, or car required. \n\nFollow @peaksandprofessorsuw\nand join their mailing list to stay in the loop!",
-   "image": "/ig/posts/DfDmnrCD8f-.jpg",
-   "likes": 1,
-   "comments": 0,
-   "post_counts": {
-    "DfDmnrCD8f-": [
-     1,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfDmnrCD8f--1",
-   "title": "Poo Poo Point with Diplomat Suzi LeVine",
-   "type": "Hangout",
-   "host": "UW CIRCLE (@uwcircle)",
-   "where": "Poo Poo Point",
-   "pos": null,
-   "date": "2026-11-07",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfDmnrCD8f-/",
-   "source": "instagram",
-   "description": "Check out upcoming hiking trips with Peaks and Professors!🏔️🥾\n \nSat, Nov 7 | Arboretum Walk with UW Sustainability Office\nSat, Nov 7 | Poo Poo Point with Diplomat Suzi LeVine\nSun, Nov 8 | Cedar Butte with Professor Denise Glover\nSun, Nov 8 | Olallie Lake via Pratt Lake Trail with Professor Meyers & McCloskey\n \nSign-up here: https://urldefense.com/v3/__https://forms.gle/eeSx1pqEhrf5chYA8__;!!K-Hz7m0Vt54!gu5XhjsS_WfZZvzrai3SbC-zNGZHLZdX7r6he5-GQc43v6Qa6kag3TogiZGtJtiU7GZ0pHbCpTqS2k1Zk6OlxX0GPcMuUdebBKnM0zkv$\n\nPeaks and Professors is a UW RSO that connects students, faculty, and professionals through weekly outdoor adventures and nature exploration while building community beyond the classroom. No experience, gear, or car required. \n\nFollow @peaksandprofessorsuw\nand join their mailing list to stay in the loop!",
-   "image": "/ig/posts/DfDmnrCD8f-.jpg",
-   "likes": 1,
-   "comments": 0,
-   "post_counts": {
-    "DfDmnrCD8f-": [
-     1,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfaOe92ADHi-0",
-   "title": "Game vs WSU",
-   "type": "Club",
-   "host": "Womxn’s Husky Rugby Club (@uwwomxnsrugby)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-07",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfaOe92ADHi/",
-   "source": "instagram",
-   "description": "TOMORROW IS GAME DAY!!!\n\nGet ready to cheer for your dawgs this weekend as we play against WSU ‼️‼️",
-   "image": "/ig/posts/DfaOe92ADHi.jpg",
-   "likes": 102,
-   "comments": 5,
-   "post_counts": {
-    "DfaOe92ADHi": [
-     102,
-     5
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfP0Igdl9Ol-0",
-   "title": "Farmers Market Cooking Demo",
-   "type": "Food",
-   "host": "HCCUW (@huskyculinaryclub)",
-   "where": "U-District Farmers Market",
-   "pos": [
-    47.66587,
-    -122.31307
-   ],
-   "date": "2026-11-07",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfP0Igdl9Ol/",
-   "source": "instagram",
-   "description": "Join the Husky Culinary Club at the U-District Farmers Market this coming Saturday, November 7 for a delicious cooking demo and free samples! They will be focusing on food waste reduction and giving tips on how to save money and food in your kitchen this winter. \n\nThank you to Seattle Public Utilities for their partnerhip on this demo. @seattle_public_utilities",
-   "image": "/ig/posts/DfP0Igdl9Ol.jpg",
-   "likes": 18,
-   "comments": 0,
-   "post_counts": {
-    "DfP0Igdl9Ol": [
-     18,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfLcW51GaZQ-0",
-   "title": "Aztec Invitational Day 1",
-   "type": "Game night",
-   "host": "UW Women’s Water Polo (@uwwaterpolo)",
-   "where": "Online",
-   "pos": null,
-   "date": "2026-11-07",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfLcW51GaZQ/",
-   "source": "instagram",
-   "description": "T MINUS ONE WEEK UNTIL SAN DIEGO! 🐾 Our tournament schedule for day 1 of the Aztec invitational is OUTT!! We’ll be live streaming on Instagram, so tune in & watch for game updates posted throughout the weekend! GO DAWGS 💛💜",
-   "image": "/ig/posts/DfLcW51GaZQ.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfLcW51GaZQ": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "Dfc9bi1gVJd-0",
-   "title": "Alpha Youth Mentorship Program",
-   "type": "Club",
-   "host": "Alpha Xi (AΞ) Chapter of AΦA (@uwalphas)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-07",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/Dfc9bi1gVJd/",
-   "source": "instagram",
-   "description": "Today, Brother Lovick had the opportunity to collaborate with our esteemed alumni chapter, Zeta Pi Lambda, for the CLUB Alpha Youth Mentorship Program. \n\nAs men of Alpha Phi Alpha Fraternity, Inc., we understand the importance of giving back to our young Black community and investing in the next generation of leaders. Through mentorship, education, and service, we continue to create spaces that empower, uplift, and inspire our youth to reach their fullest potential.",
-   "image": "/ig/posts/Dfc9bi1gVJd.jpg",
-   "likes": 37,
-   "comments": 0,
-   "post_counts": {
-    "Dfc9bi1gVJd": [
-     37,
-     0
-    ]
-   },
-   "posts": 1
-  },
   {
    "id": "DfATbn2xbLQ-0",
    "title": "Hiking Club x Snow Club Collab",
@@ -581,10 +77,10 @@
    "posts": 1
   },
   {
-   "id": "DfdKKrOSnXb-0",
-   "title": "Northwest Sports Day",
+   "id": "hl-375488",
+   "title": "ThaiSAxATSA Sports Day",
    "type": "Hangout",
-   "host": "ThaiSA UW (@thaisauw)",
+   "host": "Thai Student Association at University of Washington",
    "where": "IMA GYM D",
    "pos": [
     47.65374,
@@ -593,12 +89,11 @@
    "date": "2026-11-08",
    "start": "13:00",
    "end": "17:00",
-   "url": "https://www.instagram.com/p/DfdKKrOSnXb/",
-   "source": "instagram",
-   "description": "WE BETTER SEE YOU THERE👀 TOMORROW at the IMA GYM D from 1-5 pm is our Northwest Sports Day!!! \n\nPlease come ready to have fun with so many exciting sports games and meet new friends!!🏀⚽️\n\n🚨If you have already sign up, emails will be send out soon about team assignment!!🚨\n\nPlease bring water bottles, towels, and ready to run shoes!!⛹️\n\nSee you guys there!!!👀👀",
-   "image": "/ig/posts/DfdKKrOSnXb.jpg",
-   "likes": 217,
-   "comments": 10,
+   "url": "https://huskylink.washington.edu/thaisa/rsvp?id=375488",
+   "source": "huskylink",
+   "description": "Students from UW and PNW area are welcome to join this annual sports day event! Students will be able to make new friends, learn more about Thai culture, and get a chance to chat with ThaiSA officers!\nPlease choose to wear either: WHITE, BLACK, PURPLE, OR NAVY (teams will be sorted according to shirt color!)",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639960_IMG_6389JPG_71fa6bd1-fbf2-4850-8d76-0450e0b7abe6_11718217.jpeg",
+   "rsvps": 7,
    "post_counts": {
     "DfTUpNlPtMy": [
      134,
@@ -617,6 +112,8 @@
      1
     ]
    },
+   "likes": 217,
+   "comments": 10,
    "posts": 4
   },
   {
@@ -1495,6 +992,33 @@
    "posts": 1
   },
   {
+   "id": "DffdY40orzb-0",
+   "title": "Pads from PAD",
+   "type": "Club",
+   "host": "Phi Alpha Delta | UW (@uw_pad)",
+   "where": "SAV 260",
+   "pos": [
+    47.65712,
+    -122.30842
+   ],
+   "date": "2026-11-10",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/DffdY40orzb/",
+   "source": "instagram",
+   "description": "Hi all! Join us this Tuesday, November 10, 6-7pm in SAV 260 for our Pads from PAD event. This is an in-meeting philanthropy event. While it is not necessary, it is encouraged to bring personal care items to donate to the UW food pantry!",
+   "image": "/ig/posts/DffdY40orzb.jpg",
+   "likes": 9,
+   "comments": 0,
+   "post_counts": {
+    "DffdY40orzb": [
+     9,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "hl-375054",
    "title": "UNA UW Chapter Meeting",
    "type": "Club",
@@ -1628,6 +1152,22 @@
     ]
    },
    "posts": 2
+  },
+  {
+   "id": "hl-375492",
+   "title": "11/10 Huskids General Meeting: Care Kit Making + UW CELE Guest Speaker",
+   "type": "Club",
+   "host": "Huskies for Kids",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-10",
+   "start": "19:00",
+   "end": "20:00",
+   "url": "https://huskylink.washington.edu/huskids/rsvp?id=375492",
+   "source": "huskylink",
+   "description": "Assemble care kits to donate to the Ronald McDonald House & Guest speaker from UW CELE",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_614633_71e812761e124c758c428ba86a5128a8_6ce6dc4e-2ddb-49d3-a158-04d282b3f118_11812710.jpeg",
+   "rsvps": 0
   },
   {
    "id": "DfBI2x7GTLoJzjcbmgfM-ft7ErgyyqoppeG3BQ0-0",
@@ -2173,6 +1713,33 @@
    "posts": 1
   },
   {
+   "id": "DfdTw7CPdWg-0",
+   "title": "General Meeting",
+   "type": "Club",
+   "host": "Hosa UW Chapter (@officialuwhosa)",
+   "where": "Warren G. Magnuson Health Sciences Building T-Wing, Room T530",
+   "pos": [
+    47.65164,
+    -122.31052
+   ],
+   "date": "2026-11-12",
+   "start": "18:30",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DfdTw7CPdWg/",
+   "source": "instagram",
+   "description": "Hey UW HOSA members! 💜 We have an upcoming general meeting where we will discuss about State Leadership Conference, collegiate competition events, workshops, and process of running for an executive council position. Come ready with questions, hope to see you all there! 🩺\n\nLocation: Warren G. Magnuson Health Sciences Building T-Wing, Room T530 (on the 5th floor)\nDate: Thursday, November 12th\nTime: 6:30pm-8:00pm",
+   "image": "/ig/posts/DfdTw7CPdWg.jpg",
+   "likes": 16,
+   "comments": 0,
+   "post_counts": {
+    "DfdTw7CPdWg": [
+     16,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfTTUjLGg6d-0",
    "title": "Trivia Night",
    "type": "Hangout",
@@ -2636,6 +2203,30 @@
     "De8CNY4HVdT": [
      3,
      1
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfdG4goSkUm-0",
+   "title": "Volunteer Deep Clean",
+   "type": "Club",
+   "host": "Hosa UW Chapter (@officialuwhosa)",
+   "where": "Jubilee Women’s Center on Capitol Hill",
+   "pos": null,
+   "date": "2026-11-14",
+   "start": "10:00",
+   "end": "14:00",
+   "url": "https://www.instagram.com/p/DfdG4goSkUm/",
+   "source": "instagram",
+   "description": "Hey UW HOSA members! 💜 We have an upcoming volunteering opportunity with Jubilee Women’s Center who is in need of help with a deep clean of their community clothing boutique. 👗👚\n\nLocation: Jubilee Women’s Center on Capitol Hill\nDate: Saturday, November 14th\nTime: 10:00am-2:00pm\n\nSign up using the link provided in our bio ⬆️⬆️",
+   "image": "/ig/posts/DfdG4goSkUm.jpg",
+   "likes": 15,
+   "comments": 0,
+   "post_counts": {
+    "DfdG4goSkUm": [
+     15,
+     0
     ]
    },
    "posts": 1
@@ -3139,6 +2730,37 @@
     ]
    },
    "posts": 1
+  },
+  {
+   "id": "DffVNvURKQ8-0",
+   "title": "CASPer prep session",
+   "type": "Club",
+   "host": "UW Pre-Pharmacy Club (@uwprepharmacy)",
+   "where": "STC 0040",
+   "pos": [
+    47.60383,
+    -122.33006
+   ],
+   "date": "2026-11-17",
+   "start": "17:00",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/DffVNvURKQ8/",
+   "source": "instagram",
+   "description": "Come join us for our CASPer prep session:\n🗓️ - Tuesday, November 17th\n📍 - STC 0040\n🕐 - 5-6:30pm\n\nYou’ll gain lots of useful information about the test and tips on how to ace it + FREE cookies :) Can’t wait to see you there!!\n\n#uwprepharmacy #uwaterloo #casperprep #cookies",
+   "image": "/ig/posts/DffVNvURKQ8.jpg",
+   "likes": 87,
+   "comments": 0,
+   "post_counts": {
+    "DffVNvURKQ8": [
+     63,
+     0
+    ],
+    "Dfd2SFdunqj": [
+     24,
+     0
+    ]
+   },
+   "posts": 2
   },
   {
    "id": "hl-375450",
