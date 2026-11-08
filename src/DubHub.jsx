@@ -2085,6 +2085,14 @@ function ClubDetail({ club, hosted, apps = [], clubs, onClose }) {
             ))}
           </ul>
         )}
+
+        <div className="officer-note">
+          <p>
+            <strong>Run this club?</strong> Add DubHub to {club.discord ? "your club's Discord" : "your club's Discord server"}{" "}
+            and the events in its Events tab and #announcements show up here on their own.
+          </p>
+          <DiscordBotLink className="join secondary" />
+        </div>
       </div>
     </div>
   );
@@ -2271,7 +2279,10 @@ function ClubsPage({ all, clubList, clubs: membership, applications }) {
         <ApplicationsView open={open} onSelectClub={setSelected} />
       ) : (
         <>
-      <p className="page-sub">Student organizations at UW Seattle. Join one to get its events in My Events.</p>
+      <p className="page-sub">
+        Student organizations at UW Seattle. Join one to get its events in My Events. Run a club?{" "}
+        <DiscordBotLink className="post-link">Add DubHub to your Discord</DiscordBotLink>
+      </p>
       <div className="toolbar">
         <input
           type="search"
@@ -3939,6 +3950,19 @@ function StatsPage({ user, events, clubs, dark }) {
   );
 }
 
+// Club officers add the DubHub bot to their Discord with this link; scraper/discord_events.py then
+// reads the servers it's in. It only asks to view channels and read message history.
+const DISCORD_BOT_INVITE =
+  "https://discord.com/oauth2/authorize?client_id=1568776849167745124&scope=bot&permissions=66560";
+
+function DiscordBotLink({ className = "join", children = "Add DubHub to your Discord" }) {
+  return (
+    <a className={`${className} discord-bot-link`} href={DISCORD_BOT_INVITE} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  );
+}
+
 function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, onReopened }) {
   return (
     <main className="page">
@@ -3963,6 +3987,19 @@ function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, o
           <TeamMember key={m.name} {...m} />
         ))}
       </ul>
+      <section className="officers" id="club-officers" aria-labelledby="officers-title">
+        <h2 id="officers-title">For club officers</h2>
+        <p>
+          DubHub already lists your club's events from HuskyLink and Instagram. If you post events on Discord too, add
+          the DubHub bot to your server and they show up here on their own: everything in your server's Events tab, plus
+          event posts in channels like #announcements or #events.
+        </p>
+        <p className="meta">
+          You need permission to manage the server to add it. The bot only asks to view channels and read message
+          history, and only reads your Events tab and announcement channels. Remove it from your server any time.
+        </p>
+        <DiscordBotLink />
+      </section>
       <Careers
         user={user}
         moderator={moderator}

@@ -1215,6 +1215,30 @@ select:focus-visible {
   gap: 6px;
 }
 
+/* "Run this club?" box at the bottom of a club's pop-up, and the About page's officer section */
+.officer-note {
+  margin-top: 20px;
+  padding: 12px 14px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  background: var(--tint);
+}
+
+.officer-note p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.officers {
+  margin: 28px 0 8px;
+}
+
+a.discord-bot-link.join {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 /* My Events: the clubs you joined, as small cards that open the club */
 .my-clubs {
   margin: 8px 0 20px;
