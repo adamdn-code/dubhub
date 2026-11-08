@@ -1,0 +1,982 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-08T08:35:14.683Z",
+  "title": "Design System: DubHub",
+  "extensions": {
+    "colorMeta": {
+      "brick": {
+        "role": "primary",
+        "displayName": "Red Square Brick",
+        "canonical": "#c4432b",
+        "tonalRamp": [
+          "#140705",
+          "#3e1810",
+          "#6f271a",
+          "#a43723",
+          "#cb5b45",
+          "#df8c7b",
+          "#efbbb0",
+          "#ffe9e4"
+        ]
+      },
+      "brick-ink": {
+        "role": "primary",
+        "displayName": "Brick Ink",
+        "canonical": "#b03a24",
+        "tonalRamp": [
+          "#140705",
+          "#3c1912",
+          "#6c2a1d",
+          "#a03c29",
+          "#c75f4a",
+          "#db8e7e",
+          "#ecbcb2",
+          "#fee9e5"
+        ]
+      },
+      "brick-wash": {
+        "role": "primary",
+        "displayName": "Brick Wash",
+        "canonical": "#f7e3dd",
+        "tonalRamp": [
+          "#0d0b0a",
+          "#292422",
+          "#493f3d",
+          "#6c5d59",
+          "#8e7e7a",
+          "#aea29f",
+          "#cec7c5",
+          "#f1eeed"
+        ]
+      },
+      "brick-on-slate": {
+        "role": "primary",
+        "displayName": "Brick on Slate",
+        "canonical": "#ff9479",
+        "tonalRamp": [
+          "#130806",
+          "#391c14",
+          "#672f22",
+          "#98442f",
+          "#be6650",
+          "#d49281",
+          "#e7beb4",
+          "#fceae5"
+        ]
+      },
+      "sign-slate": {
+        "role": "neutral",
+        "displayName": "Sign Slate",
+        "canonical": "#23262b",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#404245",
+          "#5e6166",
+          "#7f8288",
+          "#a3a5a9",
+          "#c8c9cc",
+          "#eeeeef"
+        ]
+      },
+      "slate-hover": {
+        "role": "neutral",
+        "displayName": "Slate Hover",
+        "canonical": "#33373d",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#404246",
+          "#5e6167",
+          "#7f8389",
+          "#a2a5aa",
+          "#c7c9cc",
+          "#eeeef0"
+        ]
+      },
+      "slate-rule": {
+        "role": "neutral",
+        "displayName": "Slate Rule",
+        "canonical": "#3e434a",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#232527",
+          "#3f4247",
+          "#5d6268",
+          "#7e838a",
+          "#a2a5aa",
+          "#c7c9cc",
+          "#edeef0"
+        ]
+      },
+      "on-slate": {
+        "role": "neutral",
+        "displayName": "On Slate",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "on-slate-muted": {
+        "role": "neutral",
+        "displayName": "On Slate Muted",
+        "canonical": "#b3b8bf",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#404246",
+          "#5e6267",
+          "#7f8388",
+          "#a2a5a9",
+          "#c7c9cc",
+          "#eeeeef"
+        ]
+      },
+      "concrete": {
+        "role": "neutral",
+        "displayName": "Concrete",
+        "canonical": "#e6e5e0",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252524",
+          "#42423f",
+          "#62615d",
+          "#83827e",
+          "#a6a5a2",
+          "#c9c9c7",
+          "#eeeeee"
+        ]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Sheet",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "tint": {
+        "role": "neutral",
+        "displayName": "Tint",
+        "canonical": "#f0efea",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252524",
+          "#42423f",
+          "#62615e",
+          "#83827e",
+          "#a6a5a2",
+          "#c9c9c7",
+          "#eeeeee"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1b1e22",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#404245",
+          "#5e6166",
+          "#7f8387",
+          "#a3a5a8",
+          "#c8c9cb",
+          "#eeeeef"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "#595e65",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#3f4246",
+          "#5d6268",
+          "#7e8389",
+          "#a2a5aa",
+          "#c7c9cc",
+          "#eeeef0"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "#d4d2cb",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#262523",
+          "#43423e",
+          "#63615c",
+          "#84827d",
+          "#a6a5a1",
+          "#cac9c6",
+          "#efeeed"
+        ]
+      },
+      "field-line": {
+        "role": "neutral",
+        "displayName": "Field Line",
+        "canonical": "#a9a7a0",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#262523",
+          "#43423e",
+          "#63615c",
+          "#84827c",
+          "#a6a5a1",
+          "#cac9c6",
+          "#efeeed"
+        ]
+      },
+      "error": {
+        "role": "error",
+        "displayName": "Error",
+        "canonical": "#b3261e",
+        "tonalRamp": [
+          "#150705",
+          "#3f1612",
+          "#71241d",
+          "#a83228",
+          "#cf5649",
+          "#e28a7d",
+          "#f1bab1",
+          "#ffe8e4"
+        ]
+      },
+      "brick-dark": {
+        "role": "primary",
+        "displayName": "Red Square Brick (dark)",
+        "canonical": "#ec6a4e",
+        "tonalRamp": [
+          "#140705",
+          "#3e1810",
+          "#6e2819",
+          "#a33922",
+          "#ca5c44",
+          "#de8d7a",
+          "#eebcb0",
+          "#ffe9e4"
+        ]
+      },
+      "brick-ink-dark": {
+        "role": "primary",
+        "displayName": "Brick Ink (dark)",
+        "canonical": "#ff8a70",
+        "tonalRamp": [
+          "#130806",
+          "#3b1a13",
+          "#6a2d1f",
+          "#9d402c",
+          "#c3624d",
+          "#d8907f",
+          "#eabdb3",
+          "#fdeae5"
+        ]
+      },
+      "brick-wash-dark": {
+        "role": "primary",
+        "displayName": "Brick Wash (dark)",
+        "canonical": "#3a221c",
+        "tonalRamp": [
+          "#0d0a09",
+          "#2c2320",
+          "#4e3e39",
+          "#735b54",
+          "#957c75",
+          "#b4a09b",
+          "#d2c6c3",
+          "#f2edec"
+        ]
+      },
+      "sign-slate-dark": {
+        "role": "neutral",
+        "displayName": "Sign Slate (dark)",
+        "canonical": "#0c0e10",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242526",
+          "#414244",
+          "#5f6164",
+          "#808385",
+          "#a3a5a7",
+          "#c8c9ca",
+          "#eeeeef"
+        ]
+      },
+      "panel-dark": {
+        "role": "neutral",
+        "displayName": "Map Panel (dark)",
+        "canonical": "#1f2226",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#404245",
+          "#5e6166",
+          "#7f8387",
+          "#a3a5a8",
+          "#c8c9cb",
+          "#eeeeef"
+        ]
+      },
+      "concrete-dark": {
+        "role": "neutral",
+        "displayName": "Concrete (dark)",
+        "canonical": "#131518",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242526",
+          "#414244",
+          "#5f6165",
+          "#808286",
+          "#a3a5a8",
+          "#c8c9cb",
+          "#eeeeef"
+        ]
+      },
+      "sheet-dark": {
+        "role": "neutral",
+        "displayName": "Sheet (dark)",
+        "canonical": "#1b1e22",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#404245",
+          "#5e6166",
+          "#7f8387",
+          "#a3a5a8",
+          "#c8c9cb",
+          "#eeeeef"
+        ]
+      },
+      "tint-dark": {
+        "role": "neutral",
+        "displayName": "Tint (dark)",
+        "canonical": "#24282d",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#404246",
+          "#5e6267",
+          "#7e8388",
+          "#a2a5a9",
+          "#c7c9cc",
+          "#eeeeef"
+        ]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Ink (dark)",
+        "canonical": "#ecebe6",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252524",
+          "#42423f",
+          "#62615d",
+          "#83827e",
+          "#a6a5a2",
+          "#c9c9c7",
+          "#eeeeee"
+        ]
+      },
+      "muted-dark": {
+        "role": "neutral",
+        "displayName": "Muted (dark)",
+        "canonical": "#a1a6ad",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#404246",
+          "#5e6267",
+          "#7e8388",
+          "#a2a5aa",
+          "#c7c9cc",
+          "#eeeef0"
+        ]
+      },
+      "rule-dark": {
+        "role": "neutral",
+        "displayName": "Rule (dark)",
+        "canonical": "#2c3035",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#404245",
+          "#5e6266",
+          "#7f8388",
+          "#a2a5a9",
+          "#c7c9cc",
+          "#eeeeef"
+        ]
+      },
+      "field-line-dark": {
+        "role": "neutral",
+        "displayName": "Field Line (dark)",
+        "canonical": "#464b52",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#3f4246",
+          "#5d6268",
+          "#7e8389",
+          "#a2a5aa",
+          "#c7c9cc",
+          "#edeef0"
+        ]
+      },
+      "error-dark": {
+        "role": "error",
+        "displayName": "Error (dark)",
+        "canonical": "#ff9b8f",
+        "tonalRamp": [
+          "#120807",
+          "#381c19",
+          "#64312b",
+          "#94463f",
+          "#ba685f",
+          "#d0938b",
+          "#e5bfb9",
+          "#fbeae8"
+        ]
+      },
+      "plate-light": {
+        "role": "neutral",
+        "displayName": "Light Plate",
+        "canonical": "#e8e7e2",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252524",
+          "#42423f",
+          "#62615d",
+          "#83827e",
+          "#a6a5a2",
+          "#c9c9c7",
+          "#eeeeee"
+        ]
+      },
+      "map-ground": {
+        "role": "neutral",
+        "displayName": "Map Ground",
+        "canonical": "#ebeae5",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252524",
+          "#42423f",
+          "#62615d",
+          "#83827e",
+          "#a6a5a2",
+          "#c9c9c7",
+          "#eeeeee"
+        ]
+      },
+      "map-ground-dark": {
+        "role": "neutral",
+        "displayName": "Map Ground (dark)",
+        "canonical": "#16181b",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242526",
+          "#414244",
+          "#5f6165",
+          "#808286",
+          "#a3a5a8",
+          "#c8c9cb",
+          "#eeeeef"
+        ]
+      },
+      "cat-tech": {
+        "role": "data",
+        "displayName": "Category: tech",
+        "canonical": "#2785f7",
+        "tonalRamp": [
+          "#040b17",
+          "#0b2546",
+          "#0c407f",
+          "#055ebd",
+          "#3481e3",
+          "#73a7ee",
+          "#acccf7",
+          "#e2f0ff"
+        ]
+      },
+      "cat-tech-dark": {
+        "role": "data",
+        "displayName": "Category: tech (dark map)",
+        "canonical": "#3250d4",
+        "tonalRamp": [
+          "#060a18",
+          "#152249",
+          "#253a84",
+          "#3754c5",
+          "#5578ec",
+          "#83a1f5",
+          "#b4c8fb",
+          "#e5eeff"
+        ]
+      },
+      "cat-cultural": {
+        "role": "data",
+        "displayName": "Category: cultural",
+        "canonical": "#881070",
+        "tonalRamp": [
+          "#12070f",
+          "#391730",
+          "#652655",
+          "#96357e",
+          "#bc58a1",
+          "#d28abc",
+          "#e6b9d8",
+          "#fbe8f5"
+        ]
+      },
+      "cat-cultural-dark": {
+        "role": "data",
+        "displayName": "Category: cultural (dark map)",
+        "canonical": "#804878",
+        "tonalRamp": [
+          "#0f090e",
+          "#301e2d",
+          "#563551",
+          "#7e4e77",
+          "#a26e9a",
+          "#bd97b6",
+          "#d8c1d4",
+          "#f5ebf3"
+        ]
+      },
+      "cat-arts": {
+        "role": "data",
+        "displayName": "Category: arts",
+        "canonical": "#cc5eca",
+        "tonalRamp": [
+          "#120711",
+          "#361736",
+          "#622661",
+          "#90358f",
+          "#b658b4",
+          "#cd8aca",
+          "#e3bae0",
+          "#fae8f8"
+        ]
+      },
+      "cat-arts-dark": {
+        "role": "data",
+        "displayName": "Category: arts (dark map)",
+        "canonical": "#ca3fa6",
+        "tonalRamp": [
+          "#14060f",
+          "#3c1430",
+          "#6b1e57",
+          "#9e2880",
+          "#c44ea3",
+          "#d984be",
+          "#ebb7d9",
+          "#fee7f5"
+        ]
+      },
+      "cat-service": {
+        "role": "data",
+        "displayName": "Category: service",
+        "canonical": "#18ba86",
+        "tonalRamp": [
+          "#030e09",
+          "#032d1e",
+          "#005035",
+          "#00774d",
+          "#0e996e",
+          "#6cb796",
+          "#aad5c0",
+          "#e2f3eb"
+        ]
+      },
+      "cat-service-dark": {
+        "role": "data",
+        "displayName": "Category: service (dark map)",
+        "canonical": "#04a67e",
+        "tonalRamp": [
+          "#040e0a",
+          "#072c21",
+          "#004f3a",
+          "#007555",
+          "#239875",
+          "#71b69b",
+          "#acd4c3",
+          "#e3f3ec"
+        ]
+      },
+      "cat-sports": {
+        "role": "data",
+        "displayName": "Category: sports",
+        "canonical": "#298805",
+        "tonalRamp": [
+          "#060e04",
+          "#122c0c",
+          "#1c4f0f",
+          "#25740b",
+          "#4a9738",
+          "#80b674",
+          "#b4d4ad",
+          "#e6f3e3"
+        ]
+      },
+      "cat-sports-dark": {
+        "role": "data",
+        "displayName": "Category: sports (dark map)",
+        "canonical": "#267a08",
+        "tonalRamp": [
+          "#060e05",
+          "#142c0f",
+          "#214e16",
+          "#2e731b",
+          "#519640",
+          "#84b479",
+          "#b6d3af",
+          "#e6f3e4"
+        ]
+      },
+      "cat-academic": {
+        "role": "data",
+        "displayName": "Category: academic",
+        "canonical": "#17c2f9",
+        "tonalRamp": [
+          "#030d12",
+          "#002a39",
+          "#004a67",
+          "#006d99",
+          "#0090bd",
+          "#64b0d1",
+          "#a6d1e5",
+          "#e0f2fa"
+        ]
+      },
+      "cat-academic-dark": {
+        "role": "data",
+        "displayName": "Category: academic (dark map)",
+        "canonical": "#228dca",
+        "tonalRamp": [
+          "#040c13",
+          "#0c283a",
+          "#0c4768",
+          "#00689a",
+          "#368abf",
+          "#76acd3",
+          "#aecee5",
+          "#e3f1fb"
+        ]
+      },
+      "cat-faith": {
+        "role": "data",
+        "displayName": "Category: faith",
+        "canonical": "#7647c7",
+        "tonalRamp": [
+          "#0c0816",
+          "#291c42",
+          "#493178",
+          "#6c46b2",
+          "#8d69d9",
+          "#ac95e6",
+          "#cdc1f2",
+          "#f0ebff"
+        ]
+      },
+      "cat-faith-dark": {
+        "role": "data",
+        "displayName": "Category: faith (dark map)",
+        "canonical": "#9361ef",
+        "tonalRamp": [
+          "#0c0817",
+          "#291b45",
+          "#4a2e7c",
+          "#6d42b9",
+          "#8e65df",
+          "#ac94eb",
+          "#cdc0f5",
+          "#f0ebff"
+        ]
+      },
+      "cat-social": {
+        "role": "data",
+        "displayName": "Category: social",
+        "canonical": "#d1900b",
+        "tonalRamp": [
+          "#100a03",
+          "#332102",
+          "#5c3a00",
+          "#895400",
+          "#ad7604",
+          "#c59e63",
+          "#ddc5a3",
+          "#f7eddf"
+        ]
+      },
+      "cat-social-dark": {
+        "role": "data",
+        "displayName": "Category: social (dark map)",
+        "canonical": "#c97f2e",
+        "tonalRamp": [
+          "#110904",
+          "#352009",
+          "#5f3708",
+          "#8d5000",
+          "#b1722f",
+          "#c99a6f",
+          "#e0c3aa",
+          "#f8ece1"
+        ]
+      },
+      "cat-other": {
+        "role": "data",
+        "displayName": "Category: other",
+        "canonical": "#8a8398",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#26242a",
+          "#44404b",
+          "#645e6f",
+          "#857f91",
+          "#a7a2b0",
+          "#cac7d0",
+          "#efeef1"
+        ]
+      },
+      "cat-other-dark": {
+        "role": "data",
+        "displayName": "Category: other (dark map)",
+        "canonical": "#c4c0cc",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252428",
+          "#434147",
+          "#625f69",
+          "#84808a",
+          "#a6a4ab",
+          "#cac8cd",
+          "#efeef0"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page titles."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section heads within pages."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "DubHub on the sign bar, after the brick square."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Event names, button labels, active tab."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Everything else; tabular figures on globally."
+      },
+      "sign-header": {
+        "displayName": "Sign Header",
+        "purpose": "Sign-panel names (Next up, filters) and side heads; uppercase. Not a label above titles."
+      },
+      "time": {
+        "displayName": "Time",
+        "purpose": "Start times, tabular."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Building codes on plates, tabular; room number at 400 muted."
+      }
+    },
+    "shadows": [
+      {
+        "name": "float",
+        "value": "0 1px 2px rgba(15, 17, 20, 0.18), 0 8px 24px rgba(15, 17, 20, 0.16)",
+        "purpose": "Anything floating over the map (sign panels, callouts, map card, map controls) and the club modal. Light theme."
+      },
+      {
+        "name": "float-dark",
+        "value": "0 2px 4px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35)",
+        "purpose": "The same float token in dark."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Map card (160ms) and intro callout entrances. Off under prefers-reduced-motion."
+      },
+      {
+        "name": "state",
+        "value": "0.15s",
+        "purpose": "Border and background changes on controls."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow",
+        "value": "520px"
+      },
+      {
+        "name": "phone",
+        "value": "700px"
+      },
+      {
+        "name": "tablet",
+        "value": "760px"
+      },
+      {
+        "name": "compact-desktop",
+        "value": "1100px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "I'm Going Button",
+      "kind": "button",
+      "refersTo": "button-going-action",
+      "description": "The one brick action: mark yourself going, in an event callout or detail sheet.",
+      "html": "<button class=\"ds-btn-go\">I'm going</button>",
+      "css": ".ds-btn-go{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;padding:6px 14px;border-radius:var(--radius,2px);font-family:var(--font,\"Atkinson Hyperlegible Next\",system-ui,sans-serif);font-size:14px;font-weight:700;white-space:nowrap;cursor:pointer;background:var(--brick,#c4432b);border:1px solid var(--brick,#c4432b);color:#fff;}.ds-btn-go:hover{background:var(--brick-ink,#b03a24);border-color:var(--brick-ink,#b03a24);}.ds-btn-go:focus-visible{outline:2px solid var(--brick,#c4432b);outline-offset:2px;}"
+    },
+    {
+      "name": "Going Button",
+      "kind": "button",
+      "refersTo": "button-going",
+      "description": "The committed state: brick wash, brick border, check.",
+      "html": "<button class=\"ds-btn-going\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M3 8.5l3 3 7-7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg>Going</button>",
+      "css": ".ds-btn-going{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;padding:6px 14px;border-radius:var(--radius,2px);font-family:var(--font,\"Atkinson Hyperlegible Next\",system-ui,sans-serif);font-size:14px;font-weight:700;white-space:nowrap;cursor:pointer;background:var(--brick-wash,#f7e3dd);border:1px solid var(--brick,#c4432b);color:var(--brick-ink,#b03a24);}.ds-btn-going:hover{border-color:var(--brick-ink,#b03a24);}.ds-btn-going:focus-visible{outline:2px solid var(--brick,#c4432b);outline-offset:2px;}"
+    },
+    {
+      "name": "Slate Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Default button: slate fill, square; inverts to a light fill in dark.",
+      "html": "<button class=\"ds-btn\">Apply</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;padding:6px 14px;border-radius:var(--radius,2px);font-family:var(--font,\"Atkinson Hyperlegible Next\",system-ui,sans-serif);font-size:14px;font-weight:700;white-space:nowrap;cursor:pointer;background:var(--action,#23262b);border:1px solid var(--action,#23262b);color:var(--on-action,#fff);}.ds-btn:hover{background:var(--action-hover,#000);border-color:var(--action-hover,#000);}.ds-btn:focus-visible{outline:2px solid var(--brick,#c4432b);outline-offset:2px;}"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Outlined button for long lists, so rows are not a column of filled buttons.",
+      "html": "<button class=\"ds-btn-quiet\">I'm going</button>",
+      "css": ".ds-btn-quiet{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;padding:6px 14px;border-radius:var(--radius,2px);font-family:var(--font,\"Atkinson Hyperlegible Next\",system-ui,sans-serif);font-size:14px;font-weight:700;white-space:nowrap;cursor:pointer;background:transparent;border:1px solid var(--field-line,#a9a7a0);color:var(--text,#1b1e22);}.ds-btn-quiet:hover{border-color:var(--ink,#1b1e22);}.ds-btn-quiet:focus-visible{outline:2px solid var(--brick,#c4432b);outline-offset:2px;}"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Square filter chip with an optional category dot; selected fills slate.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip ds-chip-on\">All</button><button class=\"ds-chip\"><i class=\"ds-dot\" style=\"background:#881070\"></i>Cultural</button><button class=\"ds-chip\"><i class=\"ds-dot\" style=\"background:#2785f7\"></i>Tech &amp; Engineering</button></div>",
+      "css": ".ds-chips{display:flex;gap:6px;flex-wrap:wrap;}.ds-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid var(--line,#d4d2cb);border-radius:var(--radius,2px);background:var(--surface,#fff);color:var(--text,#1b1e22);font-family:var(--font,\"Atkinson Hyperlegible Next\",system-ui,sans-serif);font-size:14px;font-weight:500;cursor:pointer;}.ds-chip:hover{border-color:var(--field-line,#a9a7a0);}.ds-chip-on{background:var(--action,#23262b);border-color:var(--action,#23262b);color:var(--on-action,#fff);font-weight:700;}.ds-chip:focus-visible{outline:2px solid var(--brick,#c4432b);outline-offset:2px;}.ds-dot{width:8px;height:8px;border-radius:50%;display:inline-block;}"
+    },
+    {
+      "name": "Building-Code Plate",
+      "kind": "custom",
+      "refersTo": "plate",
+      "description": "Signature: a building code as on a campus sign, room number lighter; brick when the event is on now. Only for codes placeCode() derives.",
+      "html": "<span class=\"ds-plate\">MGH<span class=\"ds-plate-room\">241</span></span> <span class=\"ds-plate ds-plate-now\">HUB<span class=\"ds-plate-room\">145</span></span>",
+      "css": ".ds-plate{display:inline-flex;align-items:baseline;gap:5px;padding:3px 7px 2px;background:var(--slate,#23262b);color:var(--on-slate,#fff);font-family:var(--font,\"Atkinson Hyperlegible Next\",system-ui,sans-serif);font-size:12px;font-weight:700;line-height:1.3;letter-spacing:0.02em;font-variant-numeric:tabular-nums;border-radius:var(--radius,2px);white-space:nowrap;}.ds-plate-room{font-weight:400;color:var(--on-slate-muted,#b3b8bf);}.ds-plate-now{background:var(--brick,#c4432b);color:#fff;}"
+    },
+    {
+      "name": "Starts Tag",
+      "kind": "chip",
+      "refersTo": "starts-now",
+      "description": "Brick time-to-start; Now is a filled brick tag.",
+      "html": "<span class=\"ds-starts\">In 12 min</span> <span class=\"ds-starts ds-starts-now\">Now</span>",
+      "css": ".ds-starts{display:inline-block;font-family:var(--font,\"Atkinson Hyperlegible Next\",system-ui,sans-serif);font-size:11px;font-weight:700;letter-spacing:0.02em;font-variant-numeric:tabular-nums;color:var(--brick-ink,#b03a24);white-space:nowrap;}.ds-starts-now{padding:1px 6px;background:var(--brick,#c4432b);color:#fff;border-radius:var(--radius,2px);}"
+    },
+    {
+      "name": "Next Up Sign",
+      "kind": "card",
+      "refersTo": "sign-panel",
+      "description": "A slate sign panel floating on the map: sign header, ruled rows of plate, title over place, time.",
+      "html": "<section class=\"ds-sign\"><h2 class=\"ds-sign-h\">Next up</h2><ol class=\"ds-sign-list\"><li><button class=\"ds-sign-row\"><span class=\"ds-p\">MGH</span><span class=\"ds-t\"><strong>Chess Club weekly</strong><span>Mary Gates Hall 241</span></span><span class=\"ds-time\">4:30 PM<span class=\"ds-soon\">In 12 min</span></span></button></li><li><button class=\"ds-sign-row\"><span class=\"ds-p\">HUB</span><span class=\"ds-t\"><strong>Study night</strong><span>HUB 145</span></span><span class=\"ds-time\">6:00 PM</span></button></li></ol></section>",
+      "css": ".ds-sign{width:360px;max-width:100%;padding:14px 0 6px;background:var(--panel,#23262b);color:var(--on-slate,#fff);border:1px solid var(--nav-line,#23262b);border-radius:var(--radius,2px);box-shadow:var(--shadow,0 1px 2px rgba(15,17,20,.18),0 8px 24px rgba(15,17,20,.16));font-family:var(--font,\"Atkinson Hyperlegible Next\",system-ui,sans-serif);}.ds-sign-h{margin:0;padding:0 14px 10px;border-bottom:1px solid var(--slate-line,#3e434a);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--on-slate-muted,#b3b8bf);}.ds-sign-list{list-style:none;margin:0;padding:0;}.ds-sign-list li+li{border-top:1px solid var(--slate-line,#3e434a);}.ds-sign-row{display:grid;grid-template-columns:80px minmax(0,1fr) auto;gap:10px;width:100%;padding:10px 14px;background:none;border:none;color:inherit;font:inherit;text-align:left;cursor:pointer;}.ds-sign-row:hover{background:var(--slate-2,#33373d);}.ds-sign-row:focus-visible{outline:2px solid var(--brick,#c4432b);outline-offset:-2px;}.ds-p{justify-self:start;padding:3px 7px 2px;background:#fff;color:#15171a;font-size:12px;font-weight:700;letter-spacing:.02em;border-radius:2px;}.ds-t{display:flex;flex-direction:column;min-width:0;}.ds-t strong{font-size:15px;line-height:1.25;}.ds-t span{font-size:13px;color:var(--on-slate-muted,#b3b8bf);}.ds-time{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;}.ds-soon{font-size:11px;color:#ff9479;}"
+    },
+    {
+      "name": "Sign Bar",
+      "kind": "nav",
+      "refersTo": "sign-bar",
+      "description": "56px slate top bar: wordmark with brick square, tabs, brick underline on the active tab.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-logo\"><i class=\"ds-mark\"></i>DubHub</span><div class=\"ds-tabs\"><button class=\"ds-tab ds-tab-on\">Home</button><button class=\"ds-tab\">Events</button><button class=\"ds-tab\">My Events</button><button class=\"ds-tab\">Clubs</button></div><button class=\"ds-signin\">Sign in</button></nav>",
+      "css": ".ds-nav{display:flex;align-items:stretch;gap:28px;height:56px;padding:0 20px;background:var(--nav-bg,#23262b);color:var(--on-slate,#fff);font-family:var(--font,\"Atkinson Hyperlegible Next\",system-ui,sans-serif);}.ds-logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;letter-spacing:-.01em;}.ds-mark{width:12px;height:12px;background:var(--brick,#c4432b);}.ds-tabs{display:flex;gap:2px;flex:1;}.ds-tab{position:relative;background:none;border:none;color:var(--on-slate-muted,#b3b8bf);font:inherit;font-size:15px;font-weight:500;padding:0 12px;cursor:pointer;}.ds-tab:hover{color:var(--on-slate,#fff);}.ds-tab-on{color:var(--on-slate,#fff);font-weight:700;}.ds-tab-on::after{content:\"\";position:absolute;left:12px;right:12px;bottom:0;height:3px;background:var(--brick,#c4432b);}.ds-tab:focus-visible{outline:2px solid var(--brick,#c4432b);outline-offset:-4px;}.ds-signin{align-self:center;background:#fff;color:#23262b;border:none;font:inherit;font-size:14px;font-weight:700;padding:8px 14px;border-radius:2px;cursor:pointer;}.ds-signin:hover{background:#e4e3de;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Campus Sign",
+    "overview": "DubHub is campus wayfinding for what's on. The visual world comes from UW's own signage: dark slate sign panels with white type, the concrete and brick of Red Square underfoot, and building codes like \"MGH 241\" set as small plates. The full-bleed campus map is the home screen, and anything that floats over it is drawn as a sign: slate, square, edged in 1px, set in one humanist sans.\n\nThe density is built for a phone between classes. A ruled white sheet holds the lists, slate day bands divide them, and every row reads left to right as time, plate, title, action. Color is rare on purpose. The chrome is slate and concrete. Scraped event photos, club avatars, and the category dots on the map supply the color. Brick appears only where something is happening now or where the student has committed to it.\n\nThe world was chosen to replace a generic event-app look. Its confirmed rejections: purple pill chips, rounded cards floating on shadows, a filled \"Join\" button on every row, and a centered hero box.",
+    "keyCharacteristics": [
+      "Slate sign panels (top bar, map panels, day bands, plates) over a concrete ground.",
+      "Red Square brick is the only accent, and it always means now, soon, active, or going.",
+      "Building-code plates are the signature, drawn only where a real code exists.",
+      "One typeface (Atkinson Hyperlegible Next) for every word, with tabular figures for times and codes.",
+      "2px corners, 1px rules, and one shadow, used only for things floating over the map.",
+      "Light and dark themes only."
+    ],
+    "rules": [
+      {
+        "name": "The One Brick Rule",
+        "body": "Brick means only four things: on now or starting soon, the active tab, the event \"I'm going\" action, and \"going\". Every other button is slate, outlined, or a white sheet. If an element isn't one of those four, it is not brick.",
+        "section": "colors"
+      },
+      {
+        "name": "The Plum Not Red Rule",
+        "body": "No category color may sit near brick's hue. Cultural moved to plum so that a dot is never mistaken for \"starting soon\". Any new or changed category color is re-run through the all-pairs validator on both map grounds.",
+        "section": "colors"
+      },
+      {
+        "name": "The Content Is The Color Rule",
+        "body": "The chrome stays slate, concrete, and white. Photos, avatars, and map dots carry the color.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Face Rule",
+        "body": "Every word, time, and code is set in Atkinson Hyperlegible Next. The Mono cut was tried and dropped because its slab letters read as a typewriter costume, while campus signs set codes in the same humanist sans. Alignment comes from tabular figures, not from a second family.",
+        "section": "typography"
+      },
+      {
+        "name": "The Only Things That Float Rule",
+        "body": "A shadow means \"this is floating over the map\". Use the one shadow token for that and nothing else. Page content never casts a shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep brick to its four meanings: now or soon, the active tab, the \"I'm going\" action, and going.",
+      "Do draw a plate only from a code placeCode() actually derives, and let the title take the space when there isn't one.",
+      "Do set times and codes in Atkinson Hyperlegible Next with tabular figures.",
+      "Do use 2px corners and 1px rules everywhere, and the single float shadow only for things over the map.",
+      "Do invert plates to the light plate on dark grounds so they still read as plates.",
+      "Do re-validate the category palette for all pairs on both map grounds whenever a category color changes, and keep it off brick's hue.",
+      "Do ship every surface in light and dark, following the device unless the user picks one."
+    ],
+    "donts": [
+      "Don't make a filled \"Join\" button on every row. Use the quiet outlined button in lists.",
+      "Don't use purple pill chips, rounded floating cards, or a centered hero box.",
+      "Don't invent building codes or decorative plates for places that don't have one.",
+      "Don't add a second typeface, including the Atkinson Mono cut.",
+      "Don't put a shadow on page content, or use any shadow value besides the float token.",
+      "Don't use category colors as chrome (buttons, panels, headings).",
+      "Don't add themes beyond light and dark.",
+      "Don't add invented small labels above titles. The only uppercase lines are sign-panel headers and the callout's category legend."
+    ]
+  }
+}

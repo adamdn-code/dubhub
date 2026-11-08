@@ -21,12 +21,64 @@ const TAB_ICONS = {
   Hiring: "M3 7h18v13H3zM8 7V4h8v3M3 12h18",
 };
 
+// What each tab is called on screen ("Home" is the map).
+const TAB_LABELS = { Home: "Map" };
+
 function Icon({ d }) {
   return (
     <svg className="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
-      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
       <path d={d} />
     </svg>
+  );
+}
+
+const CLOSE_ICON = "M6 6l12 12M18 6 6 18";
+const CHECK_ICON = "M4.5 12.5l5 5L19.5 7";
+const BACK_ICON = "M15 5l-7 7 7 7";
+const SUN_ICON = "M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4";
+const MOON_ICON = "M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z";
+
+// UW building codes, as on campus signs and the time schedule. Matched against an event's place:
+// a code already at the start ("HUB 314", "MEB 248") is kept as is; otherwise a known building
+// name gives its code. Places that aren't UW buildings get no code (none is made up).
+const BUILDING_CODES = [
+  ["uw club", null], // the faculty club behind the HUB, not the HUB itself
+  ["husky union building", "HUB"], ["hub", "HUB"], ["odegaard", "OUG"], ["suzzallo", "SUZ"], ["allen library", "ALB"],
+  ["kane hall", "KNE"], ["savery", "SAV"], ["mary gates", "MGH"], ["gates center", "CSE2"], ["allen center", "CSE"],
+  ["physics/astronomy", "PAB"], ["padelford", "PDL"], ["gowen", "GWN"], ["smith hall", "SMI"], ["denny hall", "DEN"],
+  ["paccar", "PCAR"], ["dempsey", "DEM"], ["sieg", "SIG"], ["johnson hall", "JHN"], ["kincaid", "KIN"], ["bagley", "BAG"],
+  ["guthrie", "GTH"], ["loew hall", "LOW"], ["mechanical engineering", "MEB"], ["more hall", "MOR"], ["ima", "IMA"],
+  ["meany", "MNY"], ["thomson hall", "THO"], ["raitt", "RAI"], ["art building", "ART"], ["music building", "MUS"],
+  ["communications building", "CMU"], ["condon", "CDH"], ["architecture hall", "ARC"], ["gould hall", "GLD"],
+  ["winkenwerder", "WFS"], ["anderson hall", "AND"], ["miller hall", "MLR"], ["clark hall", "CLK"], ["parrington", "PAR"],
+  ["chemistry building", "CHB"], ["health sciences", "HSB"], ["alder hall", "ALD"], ["founders", "FNDR"],
+  ["schmitz", "SMZ"], ["kelly ecc", "ECC"], ["ethnic cultural", "ECC"], ["red square", "RED SQ"], ["quad", "QUAD"],
+  ["husky stadium", "STADIUM"], ["hec ed", "HEC ED"], ["denny field", "DENNY FLD"],
+];
+const CODE_AT_START = /^([A-Z]{2,5}\d?)(?:\s+(\w*\d\w*))?\b/;
+
+// { code, rest }: "HUB 314" -> { code: "HUB", room: "314" }; "Mary Gates Hall" -> { code: "MGH" }.
+function placeCode(where) {
+  if (!where || where === "Online") return null;
+  const m = where.match(CODE_AT_START);
+  if (m && m[1] !== "UW") return { code: m[1], room: m[2] ?? null };
+  const lower = where.toLowerCase();
+  const hit = BUILDING_CODES.find(([name]) => new RegExp(`\\b${name.replace("/", "\\/")}\\b`).test(lower));
+  if (!hit?.[1]) return null;
+  const room = where.match(/\b(\d{2,4}[A-Z]?)\b/)?.[1] ?? null;
+  return { code: hit[1], room };
+}
+
+// A building-code plate, like the ones on campus signs: "MGH 241". Nothing for places with no code.
+function Plate({ where, size }) {
+  const p = placeCode(where);
+  if (!p) return null;
+  return (
+    <span className={size ? `plate plate-${size}` : "plate"} title={where}>
+      {p.code}
+      {p.room && <span className="plate-room">{p.room}</span>}
+    </span>
   );
 }
 
@@ -296,16 +348,12 @@ const TEAM = [
 const THEME_KEY = "dubhub-theme";
 const darkQuery = () => window.matchMedia("(prefers-color-scheme: dark)");
 
-// The site's themes. Light or dark follows the device until someone picks a theme from the
-// top-bar menu, which is then remembered in this browser. Sets <html data-theme>, which
-// DubHub.css reads; MAP_PALETTES has each theme's map. `swatch`: top bar, buttons, page.
+// Light or dark. Follows the device until someone flips the switch in the top bar, which is then
+// remembered in this browser. Sets <html data-theme>, which DubHub.css reads; MAP_PALETTES has
+// each one's map. (Older picks like "sunset" from the retired themes fall back to the device.)
 const THEMES = [
-  { id: "light", name: "Light", swatch: ["#32006e", "#4b2e83", "#f4f2f8"] },
-  { id: "dark", name: "Dark", swatch: ["#32006e", "#c9b6ff", "#14111c"] },
-  { id: "rainier", name: "Rainier", swatch: ["#0b3a5b", "#1d6fa5", "#eef5fa"] },
-  { id: "blossom", name: "Cherry Blossom", swatch: ["#7a2e4f", "#c2477a", "#fdf3f6"] },
-  { id: "sunset", name: "Sunset", swatch: ["#3a1424", "#e0663c", "#1c1218"] },
-  { id: "evergreen", name: "Evergreen", swatch: ["#173d2c", "#2f7a55", "#f1f5ef"] },
+  { id: "light", name: "Light" },
+  { id: "dark", name: "Dark" },
 ];
 
 function useTheme() {
@@ -342,62 +390,13 @@ function useTheme() {
   return { theme: choice ?? (deviceDark ? "dark" : "light"), pick };
 }
 
-const PALETTE_ICON =
-  "M12 3a9 9 0 1 0 0 18c1 0 1.5-.8 1.5-1.6 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5c0-4-4-7.4-9-7.4zM7.5 12.5h.01M9.5 8h.01M14.5 8h.01M16.5 12h.01";
-
-// The top-bar theme button: opens a small menu of themes with color swatches.
-function ThemePicker({ theme, onPick }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const onDown = (e) => !ref.current?.contains(e.target) && setOpen(false);
-    const onKey = (e) => e.key === "Escape" && setOpen(false);
-    document.addEventListener("mousedown", onDown);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onDown);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
-
+// The top-bar light/dark switch: shows the mode you'd switch to.
+function ThemeToggle({ theme, onPick }) {
+  const next = theme === "dark" ? "light" : "dark";
   return (
-    <div className="theme-picker" ref={ref}>
-      <button
-        className="theme-toggle"
-        aria-label="Theme"
-        title="Theme"
-        aria-haspopup="true"
-        aria-expanded={open}
-        onClick={() => setOpen((o) => !o)}
-      >
-        <Icon d={PALETTE_ICON} />
-      </button>
-      {open && (
-        <ul className="theme-menu" aria-label="Themes">
-          {THEMES.map((t) => (
-            <li key={t.id}>
-              <button
-                className={t.id === theme ? "theme-option on" : "theme-option"}
-                aria-pressed={t.id === theme}
-                onClick={() => {
-                  onPick(t.id);
-                  setOpen(false);
-                }}
-              >
-                <span className="theme-swatch" aria-hidden="true">
-                  {t.swatch.map((c) => (
-                    <span key={c} style={{ background: c }} />
-                  ))}
-                </span>
-                {t.name}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <button className="theme-toggle" aria-label={`Switch to ${next} mode`} title={`Switch to ${next} mode`} onClick={() => onPick(next)}>
+      <Icon d={next === "dark" ? MOON_ICON : SUN_ICON} />
+    </button>
   );
 }
 
@@ -698,7 +697,6 @@ function SignInPage({ user, pendingEvent, pendingJob, onSignIn, onBack }) {
   return (
     <main className="page signin-page">
       <div className="signin-card">
-        <p className="filters-eyebrow">DubHub</p>
         <h1>{stale ? "Sign in again" : "Sign in to DubHub"}</h1>
         {pendingJob ? (
           <p className="signin-reason">
@@ -706,10 +704,10 @@ function SignInPage({ user, pendingEvent, pendingJob, onSignIn, onBack }) {
           </p>
         ) : pendingEvent ? (
           <p className="signin-reason">
-            Sign in to join <strong>{pendingEvent.title}</strong>.
+            Sign in to say you're going to <strong>{pendingEvent.title}</strong>.
           </p>
         ) : (
-          <p className="signin-reason">Sign in to join events and see who's going.</p>
+          <p className="signin-reason">Sign in to mark the events you're going to and see who else is going.</p>
         )}
         {pendingJob ? (
           <ul className="signin-perks">
@@ -719,7 +717,7 @@ function SignInPage({ user, pendingEvent, pendingJob, onSignIn, onBack }) {
           </ul>
         ) : (
           <ul className="signin-perks">
-            <li>Join events and get them in My Events</li>
+            <li>Events you're going to collect in My Events</li>
             <li>Friends see you're going (as first name and last initial)</li>
             <li>Your events follow you to any device</li>
           </ul>
@@ -727,7 +725,7 @@ function SignInPage({ user, pendingEvent, pendingJob, onSignIn, onBack }) {
         <GoogleSignIn onSignIn={onSignIn} />
         <p className="meta">UW accounts only (NetID@uw.edu).</p>
         <button className="link-button" onClick={onBack}>
-          ← Back
+          <Icon d={BACK_ICON} /> Back
         </button>
       </div>
     </main>
@@ -878,7 +876,7 @@ function useFilteredEvents(all) {
 function Filters({ f }) {
   return (
     <aside className="filters" aria-label="Event filters">
-      <h2>Find something to do</h2>
+      <h2>Filter the map</h2>
 
       <div className="filter-grid">
         <label>
@@ -1009,7 +1007,7 @@ function calloutSize(title, sub, group) {
 // the map's own coordinates, so cards aren't hidden behind them.
 function mapOverlays(map) {
   const box = map.getContainer().getBoundingClientRect();
-  const els = map.getContainer().parentElement?.querySelectorAll(".filters, .tagline, .map-legend, .leaflet-control-zoom");
+  const els = map.getContainer().parentElement?.querySelectorAll(".filters, .next-up, .map-card, .map-legend, .leaflet-control-zoom");
   return [...(els ?? [])]
     .map((el) => el.getBoundingClientRect())
     .filter((r) => r.width && r.height) // ones hidden on this screen size
@@ -1076,16 +1074,20 @@ function IntroLabels({ places, dark }) {
   ));
 }
 
-function JoinButton({ event, j }) {
+// "Going" for an event. `quiet`: the outlined version for long lists, so a page of events isn't a
+// column of identical filled buttons. Once you're going it turns brick, in lists too.
+function JoinButton({ event, j, quiet = false }) {
   const isJoined = j.joined.includes(String(event.id));
   return (
     <button
-      className={isJoined ? "join joined" : "join"}
+      className={["join", quiet ? "quiet" : "go", isJoined && "joined"].filter(Boolean).join(" ")}
       aria-pressed={isJoined}
-      title={isJoined ? "Click to leave this event" : j.signedIn ? undefined : "Sign in to join"}
+      aria-label={`${isJoined ? "Going to" : "Go to"} ${event.title}`}
+      title={isJoined ? "You're going. Click to take it back" : j.signedIn ? undefined : "Sign in to say you're going"}
       onClick={() => j.toggle(event.id)}
     >
-      {isJoined ? "Joined ✓" : "Join"}
+      {isJoined && <Icon d={CHECK_ICON} />}
+      {isJoined ? "Going" : "I'm going"}
     </button>
   );
 }
@@ -1179,117 +1181,47 @@ const MAP_ATTRIBUTION =
   '<a href="https://openfreemap.org">OpenFreeMap</a> &copy; <a href="https://www.openmaptiles.org/">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' +
   "</details>";
 
-// Apple Maps-like palette: white roads with gray edges, soft blue water, light green parks.
+// The light map: campus in the site's concrete and white, quiet enough that the event dots and the
+// slate panels carry the color. Parks and water stay recognizable, just muted.
 const MAP_COLORS = {
-  background: "#f4f2ee",
-  water: "#a6d1f2",
-  park: "#b5e0a0",
-  wood: "#a6d98f",
-  wetland: "#c5e6b4",
-  plaza: "#ece9e4",
-  building: "#e5e2dc",
-  school: "#ece8e1",
+  background: "#ebeae5",
+  water: "#b4cad8",
+  park: "#c9d8bd",
+  wood: "#bfd1b2",
+  wetland: "#d0dcc6",
+  plaza: "#e4e3dd",
+  building: "#dad8d1",
+  school: "#e6e5df",
   road: "#ffffff",
-  highway: "#fdfcfa",
-  casing: "#dcd8d1",
-  highwayCasing: "#c9c4bb",
+  highway: "#fbfaf7",
+  casing: "#d6d4cd",
+  highwayCasing: "#c4c1b8",
 };
 
-// Apple Maps' dark mode: charcoal ground with borderless streets a step lighter (big streets
-// lighter still), muted gold freeways, deep green parks, and slate-blue water with blue names.
-const APPLE_DARK_MAP = {
+// The dark map: the top bar's slate, with streets a step lighter and water in a deep blue-gray.
+const DARK_MAP = {
   dark: true,
-  // Apple Maps' dark look, in the dark theme's violet-tinted charcoals (see :root[data-theme="dark"]
-  // in DubHub.css), so the map, the panels on it, and the top bar read as one piece.
-  background: "#19181e",
-  water: "#172238", // deep indigo
-  park: "#1a2723", // a quiet green, not a bright patch
-  wood: "#182420",
-  wetland: "#1b2824",
-  plaza: "#1f1e25",
-  building: "#25242c", // close to the ground, so neighborhoods stay calm zoomed out
-  school: "#1e1d24",
-  road: "#2e2d36",
-  major: "#3c3a45", // main streets
-  highway: "#7a6845", // freeways only (main streets are `major`), in a muted UW gold
-  path: "#26252d", // walking paths, fainter than streets
-  casing: "#19181e",
-  highwayCasing: "#4b4130",
-  label: "#cbc7d6",
-  labelHalo: "#141318",
-  waterLabel: "#8aa2d4",
-  iconOpacity: 0.8, // place icons a little softer, so they don't glare
+  background: "#16181b",
+  water: "#1a2632",
+  park: "#1b231d",
+  wood: "#19211b",
+  wetland: "#1c241e",
+  plaza: "#1a1c1f",
+  building: "#222529",
+  school: "#1a1c20",
+  road: "#2b2f34",
+  major: "#3a3f45", // main streets
+  highway: "#5a4a40", // freeways only, in a dim brick
+  path: "#23262a", // walking paths, fainter than streets
+  casing: "#16181b",
+  highwayCasing: "#3a302a",
+  label: "#c3c7cc",
+  labelHalo: "#121417",
+  waterLabel: "#8ea6bd",
+  iconOpacity: 0.75, // place icons a little softer, so they don't glare
 };
 
-// Each theme's map. Light keeps the normal (Apple Maps-like) map, Dark is Apple Maps' dark
-// mode, and the other themes recolor it.
-const MAP_PALETTES = {
-  light: MAP_COLORS,
-  dark: APPLE_DARK_MAP,
-  // Glacier blues: cool water, frosty parks and blue-gray streets.
-  rainier: {
-    background: "#eef3f7",
-    water: "#8cc3e8",
-    park: "#c9e3d2",
-    wood: "#b9d9c4",
-    wetland: "#d4e9dc",
-    plaza: "#e8eef3",
-    building: "#dde6ee",
-    school: "#e6edf3",
-    road: "#ffffff",
-    highway: "#fdfeff",
-    casing: "#cfdbe5",
-    highwayCasing: "#b9c9d6",
-  },
-  // The Quad in spring: pink parks, blush buildings.
-  blossom: {
-    background: "#fbf3f2",
-    water: "#b8d8f0",
-    park: "#f6cfe0",
-    wood: "#eebfd3",
-    wetland: "#f3d9e5",
-    plaza: "#f6ecec",
-    building: "#efe4e4",
-    school: "#f5eaea",
-    road: "#ffffff",
-    highway: "#fffafb",
-    casing: "#ecdcdf",
-    highwayCasing: "#dcc6cb",
-  },
-  // Dusk over Lake Washington: a dark map with violet water and warm streets.
-  sunset: {
-    dark: true,
-    background: "#2b1d25",
-    water: "#3b3f6b",
-    park: "#3a3a2c",
-    wood: "#34362a",
-    wetland: "#3c3d31",
-    plaza: "#33242c",
-    building: "#3d2b34",
-    school: "#31232a",
-    road: "#5a3f45",
-    highway: "#7a4b3f",
-    casing: "#2a1c23",
-    highwayCasing: "#2f2026",
-    label: "#f3d8c8",
-    labelHalo: "#2b1d25",
-  },
-  // Pacific Northwest forest: lush greens.
-  evergreen: {
-    background: "#eef2ea",
-    water: "#9cc9d6",
-    park: "#9fd18b",
-    wood: "#86c17a",
-    wetland: "#b6d9a7",
-    plaza: "#e6ebe2",
-    building: "#dee4d8",
-    school: "#e7ece2",
-    road: "#ffffff",
-    highway: "#fbfdf8",
-    casing: "#d2dacb",
-    highwayCasing: "#bec9b5",
-  },
-};
+const MAP_PALETTES = { light: MAP_COLORS, dark: DARK_MAP };
 
 function restyle(style, C = MAP_COLORS) {
   const green = { "fill-color": C.park, "fill-opacity": 1 };
@@ -1411,29 +1343,108 @@ function MapEventCard({ event, j, onEnter, onLeave, onClose }) {
   }, [onClose]);
 
   const e = event;
+  const desc = shortText(e.description, 180);
   return (
     <aside className="map-card" aria-label={`${e.title}, hosted by ${hostName(e)}`} onMouseEnter={onEnter} onMouseLeave={onLeave}>
-      <button className="map-card-close" aria-label="Close" onClick={onClose}>
-        &times;
-      </button>
-      <div className="map-popup">
-        <div className="map-popup-club">
-          <Thumb src={e.club?.logo} label={hostName(e)} color={eventColor(e)} className="map-popup-logo" />
-          <span className="map-popup-club-label">Hosted by</span>
-          <span className="map-popup-club-name">{hostName(e)}</span>
+      <header className="map-card-sign">
+        <Plate where={e.where} size="lg" />
+        <span className="map-card-where">{e.where ?? "Location not listed"}</span>
+        <button className="map-card-close" aria-label="Close" onClick={onClose}>
+          <Icon d={CLOSE_ICON} />
+        </button>
+      </header>
+      <div className="map-card-body">
+        <p className="map-card-when">
+          <StartsTag event={e} />
+          {formatWhen(e)}
+        </p>
+        <h2 className="map-card-title">{e.title}</h2>
+        <p className="map-card-host">
+          <Thumb src={e.club?.logo} label={hostName(e)} color={eventColor(e)} className="map-card-logo" />
+          <span>{hostName(e)}</span>
           <GreekTag event={e} />
-        </div>
-        <div className="map-popup-main">
-          <strong>{e.title}</strong>
-          {[formatWhen(e), e.where, going(e, j)].filter(Boolean).map((line) => (
-            <div key={line}>{line}</div>
-          ))}
-          {shortText(e.description) && <p className="map-popup-desc">{shortText(e.description)}</p>}
-          <JoinButton event={e} j={j} /> <PostLink event={e} />
+        </p>
+        {desc && <p className="map-card-desc">{desc}</p>}
+        {going(e, j) && <p className="map-card-going">{going(e, j)}</p>}
+        <div className="map-card-actions">
+          <JoinButton event={e} j={j} />
+          <CalendarLink event={e} />
+          <PostLink event={e} />
         </div>
       </div>
     </aside>
   );
+}
+
+// When an event starts, said the way a sign would: "Now", "In 12 min", "In 2 hr". Nothing for
+// events more than three hours off (their time is right next to it).
+function startsIn(e, now = Date.now()) {
+  if (!e.date || !e.start) return null;
+  const start = new Date(`${e.date}T${e.start}`).getTime();
+  const end = e.end ? new Date(`${e.date}T${e.end}`).getTime() : start + 36e5;
+  if (now >= start && now <= end) return "Now";
+  const min = Math.round((start - now) / 6e4);
+  if (min < 0 || min > 180) return null;
+  return min < 60 ? `In ${Math.max(min, 1)} min` : `In ${Math.round(min / 60)} hr`;
+}
+
+function StartsTag({ event }) {
+  const label = startsIn(event);
+  if (!label) return null;
+  return <span className={label === "Now" ? "starts now" : "starts"}>{label}</span>;
+}
+
+// The "Next up" sign on the map: the next few events that haven't ended, soonest first.
+const NEXT_UP_COUNT = 5;
+function upcoming(events, now = Date.now()) {
+  const endOf = (e) => new Date(`${e.date}T${e.end ?? e.start ?? "23:59"}`).getTime();
+  return events
+    .filter((e) => e.date && e.pos && endOf(e) >= now)
+    .sort((x, y) => `${x.date}T${x.start ?? "00:00"}`.localeCompare(`${y.date}T${y.start ?? "00:00"}`))
+    .slice(0, NEXT_UP_COUNT);
+}
+
+function NextUp({ events, onPick }) {
+  const next = upcoming(events);
+  return (
+    <section className="next-up" aria-labelledby="next-up-title">
+      <h2 id="next-up-title">Next up</h2>
+      {next.length === 0 ? (
+        <p className="next-up-empty">Nothing else on the map for these filters.</p>
+      ) : (
+        <ol>
+          {next.map((e) => (
+            <li key={e.id}>
+              <button className={placeCode(e.where) ? "next-up-row" : "next-up-row no-plate"} onClick={() => onPick(e)}>
+                {placeCode(e.where) && (
+                  <span className="next-up-plate">
+                    <Plate where={e.where} />
+                  </span>
+                )}
+                <span className="next-up-text">
+                  <strong>{e.title}</strong>
+                  <span>{hostName(e)}</span>
+                </span>
+                <span className={startsIn(e) ? "next-up-time soon" : "next-up-time"}>
+                  {e.date === localDate(0) ? (e.start ? formatTime(e.start) : "All day") : dayLabel(e.date)}
+                  <StartsTag event={e} />
+                </span>
+              </button>
+            </li>
+          ))}
+        </ol>
+      )}
+    </section>
+  );
+}
+
+// Pans the map to an event picked from the Next up sign.
+function FlyTo({ event }) {
+  const map = useMap();
+  useEffect(() => {
+    if (event?.pos) map.panTo(event.pos, { animate: true, duration: 0.4 });
+  }, [map, event]);
+  return null;
 }
 
 // Clicking the map itself (not a dot) closes the panel.
@@ -1461,7 +1472,7 @@ function dotRadius(e) {
 // How long a callout card's stem is (it matches .callout::after in DubHub.css).
 const STEM = 10;
 
-function EventMap({ events, area, introLabels, shown, onPin, onMapClick, palette }) {
+function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, palette }) {
   const located = events.filter((e) => e.pos);
   // One intro label per place, so events in the same building don't pile up. Only events
   // happening in the next day get one; the rest are still dots you can hover.
@@ -1490,18 +1501,25 @@ function EventMap({ events, area, introLabels, shown, onPin, onMapClick, palette
       zoomControl={false}
       className="map"
     >
-      <ZoomControl position="topright" />
+      <ZoomControl position="bottomright" />
+      <FlyTo event={flyTo} />
       <MapArea area={area} />
       <BaseMap palette={palette} />
       {located.map((e) => {
         const on = shown?.id === e.id;
+        const soon = startsIn(e) != null;
         const radius = dotRadius(e) + (on ? 3 : 0);
         return (
           <CircleMarker
             key={e.id}
             center={e.pos}
             radius={radius}
-            pathOptions={{ color: on ? "#b7a57a" : "#fff", weight: on ? 4 : 2, fillColor: eventColor(e, palette?.dark), fillOpacity: 0.95 }}
+            pathOptions={{
+              color: on ? (palette?.dark ? "#fff" : "#23262b") : soon ? (palette?.dark ? "#ec6a4e" : "#c4432b") : palette?.dark ? "#16181b" : "#fff",
+              weight: on || soon ? 4 : 2,
+              fillColor: eventColor(e, palette?.dark),
+              fillOpacity: 1,
+            }}
             bubblingMouseEvents={false}
             eventHandlers={{ click: () => onPin(e) }}
           >
@@ -1514,10 +1532,33 @@ function EventMap({ events, area, introLabels, shown, onPin, onMapClick, palette
           </CircleMarker>
         );
       })}
+      <SoonPlates events={located} shownId={shown?.id} />
       <MapClicks onClick={onMapClick} />
       {introLabels && <IntroLabels places={places} dark={palette?.dark} />}
     </MapContainer>
   );
+}
+
+// Events starting within three hours (or on now) keep their building's code plate beside the dot,
+// like a sign on the building: one plate per place, brick while something there is on now.
+// Each hangs off an invisible point, since a dot's own tooltip is its hover card.
+function SoonPlates({ events, shownId }) {
+  const byPlace = new Map();
+  for (const e of events) {
+    const label = startsIn(e);
+    const code = placeCode(e.where)?.code;
+    if (!label || !code || e.id === shownId) continue;
+    const key = e.pos.join();
+    const prev = byPlace.get(key);
+    if (!prev || (label === "Now" && !prev.now)) byPlace.set(key, { pos: e.pos, code, now: label === "Now", r: dotRadius(e) });
+  }
+  return [...byPlace.values()].map((p) => (
+    <CircleMarker key={`plate|${p.pos.join()}`} center={p.pos} radius={0} stroke={false} fill={false} interactive={false}>
+      <Tooltip permanent direction="right" offset={[p.r + 4, 0]} opacity={1} className="pin-plate">
+        <span className={p.now ? "plate plate-now" : "plate"}>{p.code}</span>
+      </Tooltip>
+    </CircleMarker>
+  ));
 }
 
 // Line icons for each event type (the callout's icon tile).
@@ -1536,15 +1577,19 @@ const brokenLogos = new Set();
 // A card on the map, as in DubHub's cover art: the club's picture (or, if it has none, an icon for
 // the kind of event on white), the event's name, and a line under it, with a stem to the dot.
 // Hovering a dot shows one (with where it is); so do the soonest events when the site opens.
-function EventCallout({ event, title = event.title, sub = event.where ?? hostName(event), dark }) {
+function EventCallout({ event, title = event.title, sub, dark }) {
   const [, setBroken] = useState(false);
   const group = eventGroup(event);
+  const code = placeCode(event.where)?.code;
   const logo = event.club?.logo;
-  const picture = logo && !brokenLogos.has(logo);
+  const picture = !code && logo && !brokenLogos.has(logo);
+  const line = sub ?? [event.start && formatTime(event.start), event.where ?? hostName(event)].filter(Boolean).join(" · ");
   return (
     <div className="callout">
-      <span className="callout-icon">
-        {picture ? (
+      <span className={code ? "callout-icon callout-code" : "callout-icon"}>
+        {code ? (
+          <span className={code.length > 4 ? "small" : undefined}>{code}</span>
+        ) : picture ? (
           <img
             src={logo}
             alt=""
@@ -1565,7 +1610,7 @@ function EventCallout({ event, title = event.title, sub = event.where ?? hostNam
           {group.name}
         </span>
         <strong>{title}</strong>
-        <span>{sub}</span>
+        <span>{line}</span>
       </span>
     </div>
   );
@@ -1590,6 +1635,7 @@ function MapLegend({ events, dark }) {
 
 function Home({ f, area, introLabels, j, palette }) {
   const [shown, setShown] = useState(null); // { event, pinned }
+  const [flyTo, setFlyTo] = useState(null); // an event picked from the Next up sign
   const hideTimer = useRef();
   const keep = () => clearTimeout(hideTimer.current);
   const show = (event, pinned = false) => {
@@ -1614,17 +1660,25 @@ function Home({ f, area, introLabels, j, palette }) {
         area={area}
         introLabels={introLabels}
         shown={event}
+        flyTo={flyTo}
         onPin={(e) => show(e, true)}
         onMapClick={close}
         palette={palette}
       />
       <MapLegend events={f.events} dark={palette?.dark} />
       <Filters f={f} />
-      <div className="tagline">
-        <h1>See what's happening at UW, right now.</h1>
-        <p>Study sessions, club meetings, game nights, and dinner plans, all on one map.</p>
-      </div>
-      {event && <MapEventCard event={event} j={j} onEnter={keep} onLeave={hideSoon} onClose={close} />}
+      <h1 className="visually-hidden">Events on the UW campus map</h1>
+      {event ? (
+        <MapEventCard event={event} j={j} onEnter={keep} onLeave={hideSoon} onClose={close} />
+      ) : (
+        <NextUp
+          events={f.events}
+          onPick={(e) => {
+            setFlyTo(e);
+            show(e, true);
+          }}
+        />
+      )}
     </main>
   );
 }
@@ -1654,30 +1708,45 @@ function EventDetail({ event, j, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
-          &times;
+          <Icon d={CLOSE_ICON} />
         </button>
         {event.image && <HeroImage src={event.image} />}
         <h2 id="event-detail-title">{event.title}</h2>
         <p className="detail-tags">
-          <span className="tag">{event.type}</span>
+          <StartsTag event={event} />
           <GreekTag event={event} />
         </p>
-        <p className="meta">
-          {[formatWhen(event), event.where ?? "Location not listed", `Hosted by ${event.host}`, going(event, j)]
-            .filter(Boolean)
-            .map((line) => (
-              <span key={line} className="event-detail-line">
-                {line}
-              </span>
-            ))}
-        </p>
+        <dl className="facts">
+          <dt>When</dt>
+          <dd>{formatWhen(event) ?? "Date not listed"}</dd>
+          <dt>Where</dt>
+          <dd>
+            <Plate where={event.where} />
+            {event.where ?? "Location not listed"}
+          </dd>
+          <dt>Host</dt>
+          <dd>{hostName(event)}</dd>
+          {event.type && (
+            <>
+              <dt>Type</dt>
+              <dd>{event.type}</dd>
+            </>
+          )}
+          {going(event, j) && (
+            <>
+              <dt>Going</dt>
+              <dd>{going(event, j)}</dd>
+            </>
+          )}
+        </dl>
         <GoingList event={event} j={j} />
-        <p className="event-description">{event.description || "No description yet."}</p>
-        <p className="club-links">
+        {/* The action right under the facts, before a description that can run long */}
+        <div className="detail-actions">
+          <JoinButton event={event} j={j} />
           <CalendarLink event={event} />
           <PostLink event={event} />
-        </p>
-        <JoinButton event={event} j={j} />
+        </div>
+        <p className="event-description">{event.description || "No description yet."}</p>
       </div>
     </div>
   );
@@ -1703,6 +1772,12 @@ function dayLabel(date) {
   return day.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
 }
 
+// "Saturday, November 7"
+function fullDay(date) {
+  const [y, m, d] = date.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+}
+
 // Events grouped under a heading per day, in date order (undated ones last).
 function EventList({ events, j, onSelect, columns = 2 }) {
   const days = [];
@@ -1713,7 +1788,10 @@ function EventList({ events, j, onSelect, columns = 2 }) {
   }
   return days.map(({ label, events: list }) => (
     <section key={label} className="day">
-      <h3 className="day-label">{label}</h3>
+      <h3 className="day-label">
+        {label}
+        {list[0].date && /^(Today|Tomorrow)$/.test(label) && <span>{fullDay(list[0].date)}</span>}
+      </h3>
       <ul className={columns === 3 ? "list cards cards-3" : "list cards"}>
         {list
           .sort((a, b) => (a.start ?? "99").localeCompare(b.start ?? "99"))
@@ -1722,17 +1800,19 @@ function EventList({ events, j, onSelect, columns = 2 }) {
               <div className="event-time">
                 {e.start ? formatTime(e.start) : "All day"}
                 {e.end && <span>{formatTime(e.end)}</span>}
+                <StartsTag event={e} />
               </div>
               <Thumb src={e.image} label={e.title} color={eventColor(e)} className="event-thumb" />
               <div className="grow">
                 <EventTitle event={e} onSelect={onSelect} />
                 <div className="meta">
-                  <span className="dot" style={{ background: eventColor(e) }} />
+                  <span className="dot" style={{ background: eventColor(e) }} title={eventGroup(e).name} />
                   <GreekTag event={e} />
-                  {[e.type, e.where, e.host, going(e, j)].filter(Boolean).join(" · ")}
+                  {[hostName(e), e.where, going(e, j)].filter(Boolean).join(" · ")}
                 </div>
               </div>
-              <JoinButton event={e} j={j} />
+              <Plate where={e.where} />
+              <JoinButton event={e} j={j} quiet />
             </li>
           ))}
       </ul>
@@ -1781,15 +1861,17 @@ function TrendingRow({ events, j, onSelect }) {
     <section className="trending" aria-labelledby="trending-title">
       <h2 id="trending-title">Trending</h2>
       <ol className="trending-row">
-        {top.map((e) => (
+        {top.map((e, i) => (
           <li key={e.id} className="trending-card">
             <Thumb src={e.image} label={e.title} color={eventColor(e)} className="trending-thumb" />
+            <span className="trending-rank">{i + 1}</span>
             <EventTitle event={e} onSelect={onSelect} />
             <div className="meta">
+              <Plate where={e.where} />
               <GreekTag event={e} />
-              {[formatWhen(e), e.where, going(e, j), trendReason(e)].filter(Boolean).join(" · ")}
+              {[formatWhen(e), placeCode(e.where) ? null : e.where, going(e, j), trendReason(e)].filter(Boolean).join(" · ")}
             </div>
-            <JoinButton event={e} j={j} />
+            <JoinButton event={e} j={j} quiet />
           </li>
         ))}
       </ol>
@@ -1831,7 +1913,7 @@ function EventsPage({ f, updated, j }) {
       </div>
       {updated && (
         <p className="page-sub">
-          From HuskyLink and club Instagram posts · updated{" "}
+          From HuskyLink, club Instagram posts and club Discord servers · updated{" "}
           {new Date(updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}
         </p>
       )}
@@ -1869,7 +1951,8 @@ function ClubJoinButton({ club, clubs }) {
       title={isMember ? "Click to leave this club" : undefined}
       onClick={() => clubs.toggle(club.name)}
     >
-      {isMember ? "Joined ✓" : "Join"}
+      {isMember && <Icon d={CHECK_ICON} />}
+      {isMember ? "Member" : "Join"}
     </button>
   );
 }
@@ -1963,7 +2046,7 @@ function MyEventsPage({ all, clubList, j, clubs, applications, onBrowse, onFindC
         <div className="empty-card">
           <h2>Nothing here yet</h2>
           <p>
-            Join an event to save it here, or join a club and every event it posts, and any application it opens, shows up
+            Tap I'm going on an event to save it here, or join a club and every event it posts, and any application it opens, shows up
             here on its own.
           </p>
           <div className="empty-actions">
@@ -2007,7 +2090,7 @@ function ClubDetail({ club, hosted, apps = [], clubs, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
-          &times;
+          <Icon d={CLOSE_ICON} />
         </button>
         <div className="detail-head">
           <Thumb src={club.logo} label={club.name} color={clubColor(club)} className="club-avatar large" />
@@ -2432,7 +2515,7 @@ function ProfilePage({ user, profile, onChange, clubList, clubs, j, onSignOut })
                 >
                   {m}
                   <button aria-label={`Remove ${m}`} onClick={() => removeMajor(m)}>
-                    &times;
+                    <Icon d={CLOSE_ICON} />
                   </button>
                 </li>
               ))}
@@ -2543,7 +2626,6 @@ function TeamMember({ name, role, note, github, githubPhoto = true, linkedin, ph
 // people sent. Applying takes a UW sign-in; api/apply.js checks and stores everything.
 
 const FILE_ICON = "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h5";
-const CHECK_ICON = "M20 6 9 17l-5-5";
 
 const authHeader = (user) => ({ Authorization: `Bearer ${user.token}` });
 
@@ -2844,7 +2926,7 @@ function JobDialog({ job, user, applied, myApp, startOnForm, onApplied, onNeedSi
         onClick={(e) => e.stopPropagation()}
       >
         <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
-          &times;
+          <Icon d={CLOSE_ICON} />
         </button>
         <span className="job-team">{job.team}</span>
         <h2 id="job-title">{job.title}</h2>
@@ -3238,7 +3320,7 @@ function FriendsPage({ user, social, events, onOpenEvent }) {
         {open ? (
           <article className="friend-detail">
             <button className="link-button hiring-back" onClick={() => setOpenEmail(null)}>
-              ← Friends
+              <Icon d={BACK_ICON} /> Friends
             </button>
             <div className="friend-head">
               <Avatar person={open} />
@@ -3630,7 +3712,7 @@ function ApplicationDetail({ app, user, onUpdate, onBack }) {
   return (
     <article className="hiring-detail">
       <button className="link-button hiring-back" onClick={onBack}>
-        ← All applications
+        <Icon d={BACK_ICON} /> All applications
       </button>
       <div className="detail-top">
         <div>
@@ -4336,11 +4418,11 @@ function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, o
   return (
     <main className="page">
       <h1>About DubHub</h1>
-      <p>
-        DubHub is a map of what UW students are doing. Post an event, pick who can see it by class year or major, and
-        join one to get added to its group chat.
+      <p className="about-lead">
+        DubHub puts every student event at UW on one campus map. Club events come in on their own from HuskyLink, club
+        Instagram posts and club Discord servers, so no one has to post anything twice.
       </p>
-      <p>Sign in with your UW ID so everyone on the map is a real student.</p>
+      <p>Sign in with your UW ID to mark the events you're going to and see which friends are going too.</p>
       <p>
         Want to help build it?{" "}
         <button
@@ -4444,7 +4526,8 @@ export default function DubHub() {
   return (
     <div className="app">
       <header className="nav">
-        <button className="logo" onClick={() => setTab("Home")}>
+        <button className="logo" onClick={() => setTab("Home")} aria-label="DubHub, back to the map">
+          <span className="logo-mark" aria-hidden="true" />
           DubHub
         </button>
         <nav className="tabs" role="tablist">
@@ -4457,13 +4540,13 @@ export default function DubHub() {
               onClick={() => setTab(t)}
             >
               <Icon d={TAB_ICONS[t]} />
-              <span>{t}</span>
+              <span>{TAB_LABELS[t] ?? t}</span>
             </button>
           ))}
         </nav>
         <div className="nav-end">
           {user?.token && <MailButton count={social.waiting} active={view === "Friends"} onClick={() => setTab("Friends")} />}
-          <ThemePicker theme={theme.theme} onPick={theme.pick} />
+          <ThemeToggle theme={theme.theme} onPick={theme.pick} />
           <Account user={user} onOpenSignIn={() => openSignIn()} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
         </div>
       </header>

@@ -6,11 +6,12 @@
 // More than 8 colors blur together on a map, where any two dots can sit side by side. Each group
 // has a color for the light maps and one for the dark ones, and both sets were checked with the
 // dataviz palette validator for every pair (normal vision, and red-green colorblindness with the
-// map's cards naming the group).
+// map's cards naming the group). Cultural moved from red to plum in Nov 2026 (red is the site's brick
+// accent); rechecked on every pair against the map grounds #ebeae5 (light) and #16181b (dark).
 export const NO_FIELD_COLOR = "#8a8398";
 export const CATEGORY_GROUPS = [
   { name: "Tech & Engineering", categories: ["Tech", "Engineering"], light: "#2785f7", dark: "#3250d4" },
-  { name: "Cultural", categories: ["Cultural"], light: "#e34a4b", dark: "#db313a" },
+  { name: "Cultural", categories: ["Cultural"], light: "#881070", dark: "#804878" }, // plum: kept off red, which is the site's "starting soon" color
   { name: "Arts", categories: ["Arts"], light: "#cc5eca", dark: "#ca3fa6" },
   { name: "Service", categories: ["Service"], light: "#18ba86", dark: "#04a67e" },
   { name: "Sports & Outdoors", categories: ["Sports", "Outdoors"], light: "#298805", dark: "#267a08" },

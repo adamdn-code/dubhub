@@ -1,160 +1,112 @@
+/* DubHub: campus wayfinding. Sign slate for the shell and anything floating on the map, concrete
+   for the ground, white sheets ruled in 1px lines, and Red Square brick as the one accent: now and
+   soon, the active tab, and events you're going to. Square corners throughout. */
 :root {
-  --purple: #32006e;
-  --purple-mid: #4b2e83;
-  --gold: #b7a57a;
-  --bg: #f4f2f8;
-  --text: #1c1530;
-  --muted: #6a5f85;
-  --line: #ddd6ec;
-  --surface: #fff; /* cards, inputs, pop-ups */
-  --tint: #ece6f7; /* chips, tags, hover backgrounds */
-  --field-line: #cfc8e0; /* input and card borders */
-  --accent: #4b2e83; /* purple text and borders on the page background */
-  --glass: rgba(255, 255, 255, 0.9); /* panels floating over the map */
+  --font: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: var(--font); /* times and codes: the same face, with tabular figures */
+  --radius: 2px;
+
+  --bg: #e6e5e0; /* concrete */
+  --surface: #ffffff; /* sheets, inputs, pop-ups */
+  --tint: #f0efea; /* hover, quiet fills */
+  --text: #1b1e22;
+  --muted: #595e65;
+  --line: #d4d2cb; /* 1px rules */
+  --field-line: #a9a7a0; /* input edges */
+  --ink: #1b1e22; /* links, focus, strong edges */
+
+  --slate: #23262b; /* sign panels: top bar, map panels, plates */
+  --slate-2: #33373d; /* hover on slate */
+  --slate-line: #3e434a;
+  --on-slate: #ffffff;
+  --on-slate-muted: #b3b8bf;
+  --panel: var(--slate);
+
+  --action: #23262b; /* buttons */
+  --on-action: #ffffff;
+  --action-hover: #000000;
+
+  --brick: #c4432b; /* Red Square: now, soon, active, going */
+  --brick-ink: #b03a24; /* brick as text on white */
+  --brick-wash: #f7e3dd;
+
   --error: #b3261e;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234b2e83' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --set-bg: #fbf7ea; /* a changed filter */
-  --nav-bg: var(--purple); /* the top bar (and the tab bar on phones) */
-  --nav-line: transparent;
-  --tab-active-bg: var(--purple-mid);
-  --overlay-bg: var(--surface); /* panels over the map */
-  --callout-bg: var(--surface); /* the cards over the map's dots */
-  --hero-bg: var(--purple); /* the welcome box on the map */
-  --button-hover: var(--purple);
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23595e65' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b3b8bf' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --nav-bg: var(--slate);
+  --nav-line: var(--slate); /* panels on the map are edged in this too: invisible in light */
+  --overlay-bg: var(--panel);
+  --callout-bg: var(--surface);
+  --shadow: 0 1px 2px rgba(15, 17, 20, 0.18), 0 8px 24px rgba(15, 17, 20, 0.16);
   color-scheme: light;
-  --nav-h: 60px;
+  --nav-h: 56px;
   --tabbar-h: 0px; /* the bottom tab bar's height on phones */
 }
 
-/* Dark mode: follows the device unless someone picks Light or Dark in the top bar. */
+/* Dark: follows the device unless someone picks Light or Dark in the top bar. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --bg: #121117;
-    --text: #eceaf2;
-    --muted: #a5a1b2;
-    --line: #2d2b36;
-    --surface: #1b1a21;
-    --tint: #25232d;
-    --field-line: #3c3947;
-    --accent: #b4a3f0;
-    --purple-mid: #6a50cf;
-    --glass: rgba(34, 33, 42, 0.92);
-    --error: #f2b8b5;
-    --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b4a3f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    --set-bg: #352d1f;
-    --nav-bg: #17161c;
-    --nav-line: #29272f;
-    --tab-active-bg: rgba(255, 255, 255, 0.08);
-    --overlay-bg: #22212a;
-    --callout-bg: #2a2734;
-    --hero-bg: #2a2734;
-    --button-hover: #7b62dc;
-    color-scheme: dark;
+  :root:not([data-theme="light"]) {
+  --bg: #131518;
+  --surface: #1b1e22;
+  --tint: #24282d;
+  --text: #ecebe6;
+  --muted: #a1a6ad;
+  --line: #2c3035;
+  --field-line: #464b52;
+  --ink: #ecebe6;
+  --slate: #0c0e10;
+  --slate-2: #2b2f35;
+  --slate-line: #3a3f46;
+  --panel: #1f2226;
+  --action: #ecebe6;
+  --on-action: #15171a;
+  --action-hover: #ffffff;
+  --brick: #ec6a4e;
+  --brick-ink: #ff8a70;
+  --brick-wash: #3a221c;
+  --error: #ff9b8f;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a1a6ad' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --nav-bg: var(--slate);
+  --nav-line: var(--slate-line);
+  --overlay-bg: var(--panel);
+  --callout-bg: var(--panel);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #121117;
-  --text: #eceaf2;
-  --muted: #a5a1b2;
-  --line: #2d2b36;
-  --surface: #1b1a21;
-  --tint: #25232d;
-  --field-line: #3c3947;
-  --accent: #b4a3f0;
-  --purple-mid: #6a50cf;
-  --glass: rgba(34, 33, 42, 0.92);
-  --error: #f2b8b5;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b4a3f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --set-bg: #352d1f;
-  --nav-bg: #17161c;
-  --nav-line: #29272f;
-  --tab-active-bg: rgba(255, 255, 255, 0.08);
-  --overlay-bg: #22212a;
-  --callout-bg: #2a2734;
-  --hero-bg: #2a2734;
-  --button-hover: #7b62dc;
+  --bg: #131518;
+  --surface: #1b1e22;
+  --tint: #24282d;
+  --text: #ecebe6;
+  --muted: #a1a6ad;
+  --line: #2c3035;
+  --field-line: #464b52;
+  --ink: #ecebe6;
+  --slate: #0c0e10;
+  --slate-2: #2b2f35;
+  --slate-line: #3a3f46;
+  --panel: #1f2226;
+  --action: #ecebe6;
+  --on-action: #15171a;
+  --action-hover: #ffffff;
+  --brick: #ec6a4e;
+  --brick-ink: #ff8a70;
+  --brick-wash: #3a221c;
+  --error: #ff9b8f;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a1a6ad' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --nav-bg: var(--slate);
+  --nav-line: var(--slate-line);
+  --overlay-bg: var(--panel);
+  --callout-bg: var(--panel);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
   color-scheme: dark;
 }
 
-/* Rainier: glacier blues and crisp whites. */
-:root[data-theme="rainier"] {
-  --purple: #0b3a5b;
-  --purple-mid: #1d6fa5;
-  --gold: #9fd6f5;
-  --bg: #eef5fa;
-  --text: #0f2433;
-  --muted: #4f6b80;
-  --line: #d3e3ee;
-  --surface: #fff;
-  --tint: #e1eef7;
-  --field-line: #c3d7e5;
-  --accent: #1d6fa5;
-  --glass: rgba(255, 255, 255, 0.92);
-  --error: #b3261e;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231d6fa5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --set-bg: #e6f5ff;
-  color-scheme: light;
-}
-
-/* Cherry Blossom: the Quad in spring, soft pinks. */
-:root[data-theme="blossom"] {
-  --purple: #7a2e4f;
-  --purple-mid: #c2477a;
-  --gold: #f4b6cc;
-  --bg: #fdf3f6;
-  --text: #3a1a28;
-  --muted: #85566b;
-  --line: #f2d7e1;
-  --surface: #fff;
-  --tint: #fbe5ee;
-  --field-line: #ecc6d5;
-  --accent: #b23a6c;
-  --glass: rgba(255, 255, 255, 0.92);
-  --error: #b3261e;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b23a6c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --set-bg: #fff0f6;
-  color-scheme: light;
-}
-
-/* Sunset: warm dusk over Lake Washington. */
-:root[data-theme="sunset"] {
-  --purple: #3a1424;
-  --purple-mid: #d9572f;
-  --gold: #ffb454;
-  --bg: #1c1218;
-  --text: #fbeee6;
-  --muted: #cfa99c;
-  --line: #3a2630;
-  --surface: #271820;
-  --tint: #36222b;
-  --field-line: #54353f;
-  --accent: #ffa36c;
-  --glass: rgba(39, 24, 32, 0.92);
-  --error: #ffb4ab;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23ffa36c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --set-bg: #4a2a1c;
-  color-scheme: dark;
-}
-
-/* Evergreen: Pacific Northwest forest greens. */
-:root[data-theme="evergreen"] {
-  --purple: #173d2c;
-  --purple-mid: #2f7a55;
-  --gold: #d2b048;
-  --bg: #f1f5ef;
-  --text: #142019;
-  --muted: #557060;
-  --line: #d6e2d8;
-  --surface: #fff;
-  --tint: #e3eee5;
-  --field-line: #c4d6c9;
-  --accent: #2f7a55;
-  --glass: rgba(255, 255, 255, 0.92);
-  --error: #b3261e;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%232f7a55' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --set-bg: #f7f5e3;
-  color-scheme: light;
+::selection {
+  background: var(--brick);
+  color: #fff;
 }
 
 * {
@@ -163,7 +115,10 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.45;
   color: var(--text);
   background: var(--bg);
 }
@@ -176,52 +131,92 @@ body {
   padding-bottom: var(--tabbar-h);
 }
 
-/* Top bar */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Browser parts drawn in the site's own colors */
+:root {
+  accent-color: var(--brick);
+  caret-color: var(--brick);
+  scrollbar-color: var(--field-line) transparent;
+}
+
+a {
+  color: var(--ink);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brick);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ Top bar (the sign) --- */
 .nav {
   position: relative;
   height: var(--nav-h);
   flex-shrink: 0;
   display: flex;
-  align-items: center;
-  gap: 24px;
+  align-items: stretch;
+  gap: 28px;
   padding: 0 20px;
   background: var(--nav-bg);
   border-bottom: 1px solid var(--nav-line);
-  color: #fff;
+  color: var(--on-slate);
   z-index: 1000;
-  /* A soft shadow so the page and map tuck under the bar instead of meeting it at a hard edge */
-  box-shadow: 0 4px 18px rgba(20, 0, 50, 0.35), 0 1px 3px rgba(20, 0, 50, 0.3);
 }
 
 .logo {
-  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: inherit;
+  font-size: 20px;
   font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--gold);
+  letter-spacing: -0.01em;
+  color: var(--on-slate);
   background: none;
   border: none;
   padding: 0;
-  font-family: inherit;
   cursor: pointer;
+}
+
+/* A brick square, the color of Red Square */
+.logo-mark {
+  width: 12px;
+  height: 12px;
+  background: var(--brick);
 }
 
 .tabs {
   display: flex;
-  gap: 4px;
+  gap: 2px;
   flex: 1;
 }
 
 .tab {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 6px;
   background: none;
   border: none;
-  color: #d9d0ee;
+  color: var(--on-slate-muted);
   font: inherit;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0 12px;
   cursor: pointer;
 }
 
@@ -232,33 +227,51 @@ body {
 }
 
 .tab:hover {
-  background: rgba(255, 255, 255, 0.1);
+  color: var(--on-slate);
 }
 
 .tab.active {
-  color: #fff;
-  background: var(--tab-active-bg);
-  box-shadow: inset 0 -3px 0 var(--gold);
+  color: var(--on-slate);
+  font-weight: 700;
 }
 
-.signin {
-  background: var(--gold);
-  color: var(--purple);
-  border: none;
-  font: inherit;
-  font-weight: 700;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
+/* The active tab is underlined in brick, flush with the bottom of the bar */
+.tab.active::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+  height: 3px;
+  background: var(--brick);
+}
+
+.tab:focus-visible {
+  outline-offset: -4px;
 }
 
 .nav-end {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
-/* Light/dark mode button, next to sign-in */
+.signin {
+  background: var(--on-slate);
+  color: var(--slate);
+  border: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.signin:hover {
+  background: #e4e3de;
+}
+
 .theme-toggle {
   display: grid;
   place-items: center;
@@ -267,18 +280,19 @@ body {
   padding: 0;
   background: none;
   border: none;
-  border-radius: 8px;
-  color: inherit;
+  border-radius: var(--radius);
+  color: var(--on-slate-muted);
   cursor: pointer;
 }
 
 .theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--slate-2);
+  color: var(--on-slate);
 }
 
 .theme-toggle .icon {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
 }
 
 .user {
@@ -289,8 +303,8 @@ body {
 }
 
 .user img {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 
@@ -302,34 +316,123 @@ body {
   border: none;
   color: inherit;
   font: inherit;
+  font-size: 14px;
   font-weight: 600;
   padding: 4px 8px;
-  border-radius: 8px;
+  border-radius: var(--radius);
   cursor: pointer;
 }
 
 .user-button:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--slate-2);
 }
 
 .signout {
   background: none;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #fff;
+  border: 1px solid var(--slate-line);
+  color: var(--on-slate);
   font: inherit;
-  font-size: 14px;
+  font-size: 13px;
   padding: 6px 10px;
-  border-radius: 8px;
+  border-radius: var(--radius);
   cursor: pointer;
 }
 
-button:focus-visible,
-select:focus-visible {
-  outline: 3px solid #fff;
-  outline-offset: 2px;
+.signout:hover {
+  border-color: var(--on-slate-muted);
 }
 
-/* Home: map fills the screen */
+/* -------------------------------------------------------------- Plates and time tags --- */
+/* A building code as it appears on campus signs: white on slate, the room number lighter. */
+.plate {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 3px 7px 2px;
+  background: var(--slate);
+  color: var(--on-slate);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+
+.plate-room {
+  font-weight: 400;
+  color: var(--on-slate-muted);
+}
+
+.plate-lg {
+  padding: 5px 9px 4px;
+  font-size: 15px;
+}
+
+/* On dark pages a slate plate would sink into the ground, so it inverts to a light plate. */
+:root[data-theme="dark"] .page .plate,
+:root[data-theme="dark"] .club-modal .plate {
+  background: #e8e7e2;
+  color: #15171a;
+}
+:root[data-theme="dark"] .page .plate-room,
+:root[data-theme="dark"] .club-modal .plate-room {
+  color: #4a4f56;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page .plate,
+  :root:not([data-theme="light"]) .club-modal .plate {
+    background: #e8e7e2;
+    color: #15171a;
+  }
+  :root:not([data-theme="light"]) .page .plate-room,
+  :root:not([data-theme="light"]) .club-modal .plate-room {
+    color: #4a4f56;
+  }
+}
+
+/* A soon pin's plate, beside its dot (a Leaflet tooltip with its own chrome removed) */
+.leaflet-tooltip.pin-plate {
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.leaflet-tooltip.pin-plate::before {
+  display: none;
+}
+
+.pin-plate .plate {
+  box-shadow: 0 1px 3px rgba(15, 17, 20, 0.3);
+}
+
+.plate.plate-now {
+  background: var(--brick);
+  color: #fff;
+}
+
+/* "In 12 min" / "Now": brick, the one color that means soon */
+.starts {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--brick-ink);
+  white-space: nowrap;
+}
+
+.starts.now {
+  padding: 1px 6px;
+  background: var(--brick);
+  color: #fff;
+  border-radius: var(--radius);
+}
+
+/* ------------------------------------------------------------------------- Home: map --- */
 .home {
   position: relative;
   flex: 1;
@@ -342,107 +445,101 @@ select:focus-visible {
   z-index: 1;
 }
 
+/* Panels on the map are sign panels: slate, square, white type. */
+.filters,
+.next-up,
+.map-legend {
+  border: 1px solid var(--nav-line);
+  background: var(--panel);
+  color: var(--on-slate);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
 .filters {
   position: absolute;
   top: 16px;
   left: 16px;
   z-index: 500;
-  width: 296px;
-  padding: 12px 14px 10px;
-  background: var(--overlay-bg);
-  color: var(--text);
-  border: 1px solid var(--line);
-  border-top: 4px solid var(--gold);
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(30, 10, 70, 0.18), 0 2px 6px rgba(30, 10, 70, 0.1);
+  width: 300px;
+  padding: 14px 14px 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
-/* The four dropdowns, two by two, so the panel stays short and more map shows */
 .filter-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px 10px;
+  gap: 10px 8px;
 }
 
-/* The fifth dropdown (club type) spans both columns */
 .filter-grid .filter-wide {
   grid-column: 1 / -1;
 }
 
-/* Small gold label above a title (sign-in page) */
-.filters-eyebrow {
-  margin: 0 0 -8px;
-  color: var(--gold);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.filters h2 {
+.filters h2,
+.next-up h2 {
   margin: 0;
-  color: var(--text);
-  font-size: 16px;
+  font-size: 13px;
+  font-weight: 700;
   line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--on-slate-muted);
 }
 
 .filters label {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
   min-width: 0;
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  color: var(--on-slate-muted);
+  font-size: 12px;
+  font-weight: 500;
 }
 
-/* Tinted fields with a purple arrow; a changed filter gets a gold edge. Both follow light/dark. */
 .filters select {
   appearance: none;
   width: 100%;
   font: inherit;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: normal;
-  text-transform: none;
-  padding: 6px 26px 6px 9px;
-  border: 2px solid transparent;
-  border-radius: 9px;
-  background: var(--tint) var(--select-arrow) no-repeat right 9px center;
-  color: var(--text);
+  padding: 7px 28px 7px 9px;
+  border: 1px solid var(--slate-line);
+  border-radius: var(--radius);
+  background: var(--slate-2) var(--select-arrow-slate, var(--select-arrow)) no-repeat right 10px center;
+  color: var(--on-slate);
   cursor: pointer;
-  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .filters select:hover {
-  box-shadow: 0 0 0 3px rgba(183, 165, 122, 0.45);
+  border-color: var(--on-slate-muted);
 }
 
-.filters select:focus-visible {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(183, 165, 122, 0.55);
-}
-
+/* A filter someone changed: a brick edge, so it's obvious the map is filtered */
 .filters select.set {
-  border-color: var(--gold);
-  background-color: var(--set-bg);
+  border-color: var(--brick);
+  box-shadow: inset 0 0 0 1px var(--brick);
+}
+
+.filters option {
+  background: var(--surface);
+  color: var(--text);
 }
 
 .filters .count {
-  color: var(--muted);
+  color: var(--on-slate-muted);
+  font-size: 13px;
 }
 
 .filters .count:last-child {
-  padding-top: 7px;
-  font-size: 12px;
-  border-top: 1px solid var(--line);
-  text-align: center;
+  padding-top: 8px;
+  border-top: 1px solid var(--slate-line);
+}
+
+.filters .link-button {
+  color: var(--on-slate);
 }
 
 .count {
@@ -451,156 +548,299 @@ select:focus-visible {
   color: var(--muted);
 }
 
-.tagline {
+/* "Next up": the sign at the top right of the map */
+.next-up {
   position: absolute;
-  left: 16px;
-  bottom: 24px;
+  top: 16px;
+  right: 16px;
   z-index: 500;
-  max-width: 420px;
-  padding: 16px 20px;
-  text-align: center;
-  background: var(--hero-bg);
-  border: 1px solid var(--nav-line);
-  color: #fff;
-  border-radius: 12px;
-  /* Shown for 5 seconds, then fades out so it stops covering the map (and stops taking clicks). */
-  animation: tagline-fade 0.6s ease-in 5s forwards;
+  width: 360px;
+  padding: 14px 0 6px;
 }
 
-@keyframes tagline-fade {
-  to {
+.next-up h2 {
+  padding: 0 14px 10px;
+  border-bottom: 1px solid var(--slate-line);
+}
+
+.next-up ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.next-up li + li {
+  border-top: 1px solid var(--slate-line);
+}
+
+.next-up-row {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.next-up-row:hover {
+  background: var(--slate-2);
+}
+
+.next-up-row:focus-visible {
+  outline-offset: -2px;
+}
+
+/* Rows for places with no building code: the title takes the plate's space */
+.next-up-row.no-plate {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.next-up-plate {
+  padding-top: 1px;
+  min-width: 0;
+}
+
+/* Codes only here (rooms are in the event panel), so the column stays one width */
+.next-up-plate .plate-room {
+  display: none;
+}
+
+.next-up-time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.next-up .starts,
+.next-up-time.soon {
+  color: #ff9479;
+}
+
+.next-up .starts.now {
+  align-self: flex-start;
+  color: #fff;
+}
+
+.next-up-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.next-up-text strong {
+  font-size: 15px;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.next-up-text span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  color: var(--on-slate-muted);
+}
+
+/* On the dark sign a slate plate needs to read as a plate: invert it */
+.next-up .plate,
+.map-card-sign .plate {
+  background: var(--on-slate, #fff);
+  color: #15171a;
+}
+
+.next-up .plate-room,
+.map-card-sign .plate-room {
+  color: #4a4f56;
+}
+
+.next-up-empty {
+  padding: 12px 14px 10px;
+  font-size: 14px;
+  color: var(--on-slate-muted);
+}
+
+/* The picked event, in the same spot as the Next up sign: a slate sign strip over a white sheet. */
+.map-card {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 600;
+  width: min(380px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  overflow: auto;
+  background: var(--surface);
+  color: var(--text);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  animation: map-card-in 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes map-card-in {
+  from {
     opacity: 0;
-    visibility: hidden;
+    transform: translateY(-6px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tagline {
-    animation-duration: 0.01s;
+  .map-card {
+    animation: none;
   }
 }
 
-.tagline h1 {
-  margin: 0 0 6px;
-  color: #fff;
-  font-size: 24px;
-  line-height: 1.2;
+.map-card-sign {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px 10px 14px;
+  background: var(--slate);
+  color: var(--on-slate);
 }
 
-.tagline p {
-  margin: 0;
-  color: #d9d0ee;
-}
-
-.join {
-  margin-top: 8px;
-  min-height: 34px;
-  background: var(--purple-mid);
-  color: #fff;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 700;
+.map-card-where {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.map-card-close {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: var(--radius);
+  color: var(--on-slate-muted);
   cursor: pointer;
 }
 
-.join:hover {
-  background: var(--button-hover);
+.map-card-close:hover {
+  background: var(--slate-2);
+  color: var(--on-slate);
 }
 
-.join.secondary {
-  background: var(--surface);
-  color: var(--accent);
-  box-shadow: inset 0 0 0 1.5px var(--line);
+.map-card-close .icon {
+  width: 18px;
+  height: 18px;
 }
 
-.join.secondary:hover {
-  box-shadow: inset 0 0 0 1.5px var(--accent);
+.map-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px 16px;
 }
 
-.club-links {
+.map-card-when {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
-.post-link {
+.map-card-title {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.map-card-host {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--accent);
 }
 
-.join.joined {
-  background: var(--tint);
-  color: var(--accent);
-  box-shadow: inset 0 0 0 1.5px var(--accent);
+.map-card-logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 10px;
 }
 
-/* Other tabs */
-/* The page itself is full width so its scrollbar sits at the window's edge; the side padding
-   keeps the content in a centered column up to --page-w wide. */
-.page {
-  --page-w: 1080px;
-  flex: 1;
-  overflow: auto;
-  width: 100%;
-  padding: 28px max(20px, calc((100% - var(--page-w)) / 2)) 48px;
+.map-card-desc {
+  font-size: 14px;
   line-height: 1.5;
-  text-align: left;
+  color: var(--muted);
 }
 
-/* On wide screens, event and club lists become two columns of cards. */
-@media (min-width: 900px) {
-  .list.cards {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 12px;
-  }
-  .list.cards > li {
-    padding: 14px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-  }
-  .list.cards > li:hover {
-    border-color: var(--field-line);
-  }
-  .day-label {
-    margin-top: 28px;
-  }
+.map-card-going {
+  font-size: 14px;
+  font-weight: 700;
 }
 
-/* My Events: three cards per row on wide screens. Each card stacks (photo, time and Join on
-   top; title and details below) since a third of the page is too narrow for one line. */
-@media (min-width: 1000px) {
-  .list.cards-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .list.cards-3 > li.event-row {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas:
-      "thumb time join"
-      "body body body";
-    align-items: center;
-    gap: 10px 12px;
-  }
-  .cards-3 .event-thumb {
-    grid-area: thumb;
-  }
-  .cards-3 .event-time {
-    grid-area: time;
-  }
-  .cards-3 .grow {
-    grid-area: body;
-  }
-  .cards-3 .join {
-    grid-area: join;
-  }
+.map-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.map-card-actions .join {
+  margin: 0;
+}
+
+/* What the dot colors mean, bottom left of the map */
+.map-legend {
+  position: absolute;
+  left: 16px;
+  bottom: 24px;
+  z-index: 500;
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 5px 14px;
+}
+
+.map-legend li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.map-legend .dot {
+  width: 10px;
+  height: 10px;
+  margin: 0;
+  box-shadow: 0 0 0 1.5px var(--panel);
 }
 
 /* Map data credit: a small "©" that opens to the full credit line */
@@ -611,8 +851,8 @@ select:focus-visible {
 
 .map-credit {
   padding: 2px 8px;
-  border-radius: 999px;
-  background: var(--glass);
+  border-radius: var(--radius);
+  background: var(--surface);
   font-size: 11px;
   color: var(--muted);
 }
@@ -632,123 +872,219 @@ select:focus-visible {
   margin-right: 6px;
 }
 
-/* What the dot colors mean, bottom right of the map. */
-.map-legend {
-  position: absolute;
-  right: 12px;
-  bottom: 28px;
-  z-index: 500;
-  list-style: none;
-  margin: 0;
-  padding: 8px 12px;
-  background: var(--glass);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(28, 21, 48, 0.15);
-  font-size: 12px;
-  font-weight: 600;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.map-legend li {
-  display: flex;
+/* ------------------------------------------------------------------------- Buttons --- */
+/* Buttons: slate, square. The event "I'm going" (.go) is brick, the one primary action. */
+.join {
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
+  margin-top: 8px;
+  min-height: 36px;
+  background: var(--action);
+  color: var(--on-action);
+  border: 1px solid var(--action);
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
-.map-legend .dot {
-  width: 10px;
-  height: 10px;
-  margin: 0;
+.join:hover {
+  background: var(--action-hover);
+  border-color: var(--action-hover);
+}
+
+.join.go {
+  background: var(--brick);
+  border-color: var(--brick);
+  color: #fff;
+}
+
+.join.go:hover {
+  background: var(--brick-ink);
+  border-color: var(--brick-ink);
+}
+
+.join .icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* In long lists: outlined, so the page isn't a column of identical filled buttons */
+.join.quiet {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--field-line);
+}
+
+.join.quiet:hover {
+  background: transparent;
+  border-color: var(--ink);
+}
+
+.join.secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--field-line);
+}
+
+.join.secondary:hover {
+  border-color: var(--ink);
+}
+
+/* Going: a brick outline with a check, in lists too */
+.join.joined,
+.join.quiet.joined {
+  background: var(--brick-wash);
+  border-color: var(--brick);
+  color: var(--brick-ink);
+}
+
+.join.joined:hover {
+  background: var(--brick-wash);
+  border-color: var(--brick-ink);
+}
+
+.club-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.post-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   background: none;
   border: none;
   padding: 0;
   font: inherit;
-  color: var(--accent); /* readable on light and dark (gold was faint on white) */
+  color: var(--ink);
   font-weight: 700;
   text-decoration: underline;
+  text-underline-offset: 0.18em;
   cursor: pointer;
+}
+
+.link-button .icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ------------------------------------------------------------------------ List pages --- */
+/* Full width so the scrollbar sits at the window's edge; the padding centers the column. */
+.page {
+  --page-w: 1080px;
+  flex: 1;
+  overflow: auto;
+  width: 100%;
+  padding: 32px max(20px, calc((100% - var(--page-w)) / 2)) 56px;
+  line-height: 1.5;
+  text-align: left;
 }
 
 .page-head {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
 }
 
-.page-head select {
+.page-head select,
+.major-select {
+  appearance: none;
   font: inherit;
-  padding: 8px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 32px 8px 12px;
   border: 1px solid var(--field-line);
-  border-radius: 8px;
-  background: var(--surface);
+  border-radius: var(--radius);
+  background: var(--surface) var(--select-arrow) no-repeat right 12px center;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.major-select {
+  align-self: flex-start;
 }
 
 .page h1 {
   margin: 0 0 4px;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 800;
-  letter-spacing: -0.5px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--text);
 }
 
 .page-sub {
-  margin: 0 0 16px;
+  margin: 0 0 20px;
   font-size: 14px;
   color: var(--muted);
 }
 
 .page h2 {
-  margin: 28px 0 8px;
+  margin: 36px 0 10px;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.01em;
   color: var(--text);
 }
 
-/* Search box + filter chips above a list */
+/* Search box + filter rows above a list */
 .toolbar {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 16px 0 8px;
+  margin: 20px 0 8px;
 }
 
 .search {
   width: 100%;
   font: inherit;
-  padding: 10px 14px;
+  font-size: 16px; /* 16px so phones don't zoom in on focus */
+  padding: 11px 14px;
   border: 1px solid var(--field-line);
-  border-radius: 10px;
+  border-radius: var(--radius);
   background: var(--surface);
+  color: var(--text);
 }
 
-.major-select {
-  align-self: flex-start;
-  font: inherit;
-  font-size: 14px;
-  padding: 7px 10px;
-  border: 1px solid var(--field-line);
-  border-radius: 10px;
-  background: var(--surface);
+.search::placeholder {
+  color: var(--muted);
 }
 
 .search:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 1px;
+  outline: 2px solid var(--brick);
+  outline-offset: -1px;
+  border-color: var(--brick);
 }
 
+/* One-pick filters: a row of square toggles; the picked one is a slate plate. */
 .chip-row {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
   scrollbar-width: none;
+}
+
+@media (min-width: 701px) {
+  .chip-row {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
 }
 
 .chip-btn {
@@ -756,25 +1092,26 @@ select:focus-visible {
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
-  padding: 6px 12px;
+  padding: 6px 11px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: var(--surface);
   color: var(--text);
   font: inherit;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
 }
 
 .chip-btn:hover {
-  border-color: var(--accent);
+  border-color: var(--field-line);
 }
 
 .chip-btn.on {
-  background: var(--purple-mid);
-  border-color: var(--accent);
-  color: #fff;
+  background: var(--action);
+  border-color: var(--action);
+  color: var(--on-action);
+  font-weight: 700;
 }
 
 .chip-btn .dot {
@@ -783,53 +1120,88 @@ select:focus-visible {
   margin: 0;
 }
 
-.chip-btn:focus-visible,
-.club-main:focus-visible,
-.show-more:focus-visible,
-.join:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 2px;
+/* Events, one ruled sheet, grouped by day under slate day bands */
+.list.cards {
+  margin-top: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: none;
 }
 
-/* Events grouped by day */
+.list.cards > li {
+  padding: 12px 16px;
+}
+
+.list.cards > li:last-child {
+  border-bottom: none;
+}
+
+.list.cards > li:hover {
+  background: var(--tint);
+}
+
 .day-label {
   position: sticky;
-  top: 0;
-  z-index: 1;
-  margin: 20px 0 0;
-  padding: 6px 0;
-  background: var(--bg);
-  font-size: 13px;
+  top: -32px; /* the page's top padding, so it sticks flush to the top bar */
+  z-index: 2;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 24px 0 0;
+  padding: 8px 16px;
+  background: var(--slate);
+  color: var(--on-slate);
+  font-size: 14px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  border-bottom: 2px solid var(--line);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.day-label span {
+  font-weight: 400;
+  color: var(--on-slate-muted);
 }
 
 .list li.event-row {
   align-items: center;
 }
 
+.event-row .plate {
+  align-self: center;
+}
+
 .event-time {
-  flex: 0 0 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 0 0 82px;
+  font-family: var(--mono);
   font-size: 14px;
   font-weight: 700;
   line-height: 1.3;
+  font-variant-numeric: tabular-nums;
 }
 
-.event-time span {
+.event-time > span:not(.starts) {
   display: block;
   font-weight: 400;
   color: var(--muted);
+}
+
+.event-time .starts {
+  margin-top: 2px;
+  align-self: flex-start;
 }
 
 .event-row .meta .dot {
   display: inline-block;
   width: 8px;
   height: 8px;
-  margin: 0 6px 1px 0;
+  margin: 0 7px 1px 0;
   vertical-align: middle;
+}
+
+.event-row .join {
+  margin: 0;
 }
 
 /* Event photos and club logos (or a colored tile with initials when there isn't one) */
@@ -845,153 +1217,20 @@ select:focus-visible {
   color: #fff;
   font-weight: 800;
   letter-spacing: 0.02em;
-  opacity: 0.9;
-}
-
-/* The hovered or tapped dot's event, docked in the map's top-right corner (under the zoom
-   buttons) instead of a pop-up over the dot, so it never runs off the map. */
-.map-card {
-  position: absolute;
-  top: 92px;
-  right: 12px;
-  z-index: 600;
-  width: min(380px, calc(100% - 24px));
-  max-height: calc(100% - 140px);
-  overflow: auto;
-  padding: 14px 14px 12px;
-  background: var(--surface);
-  color: var(--text);
-  border-radius: 12px;
-  box-shadow: 0 6px 24px rgba(28, 21, 48, 0.28);
-  animation: map-card-in 120ms ease-out;
-}
-
-@keyframes map-card-in {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-}
-
-.map-card .map-popup {
-  padding-right: 22px; /* room for the close button */
-}
-
-.map-card-close {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  padding: 0;
-  border: none;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--muted);
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.map-card-close:hover {
-  background: var(--line);
-  color: var(--text);
-}
-
-.map-card-close:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 1px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .map-card {
-    animation: none;
-  }
-}
-
-/* Map event details: the host club in its own column, next to the event's details */
-.map-popup {
-  display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 12px;
-  font-size: 13px;
-  line-height: 1.4;
-}
-
-.map-popup-club {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 10px 6px;
-  border-radius: 10px;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  text-align: center;
-}
-
-.map-popup-logo {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  font-size: 15px;
-}
-
-.map-popup-club-label {
-  color: var(--muted);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.map-popup-club-name {
-  color: var(--accent);
-  font-weight: 700;
-  overflow-wrap: anywhere;
-}
-
-.map-popup-main strong {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 2px;
-}
-
-.map-popup-desc {
-  margin: 6px 0 8px;
-  color: var(--muted);
-}
-
-@media (max-width: 420px) {
-  .map-popup {
-    grid-template-columns: 1fr;
-  }
-
-  .map-popup-club {
-    flex-direction: row;
-    justify-content: flex-start;
-    text-align: left;
-  }
-
-  .map-popup-logo {
-    width: 32px;
-    height: 32px;
-  }
 }
 
 .event-thumb {
-  width: 52px;
-  height: 52px;
-  border-radius: 10px;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius);
   font-size: 16px;
 }
 
 .trending-thumb {
   width: calc(100% + 28px);
-  height: 104px;
-  margin: -14px -14px 8px;
-  border-radius: 10px 10px 0 0;
+  height: 120px;
+  margin: -14px -14px 10px;
+  border-radius: 0;
   font-size: 28px;
 }
 
@@ -1024,11 +1263,52 @@ select:focus-visible {
 .event-hero {
   display: block;
   width: calc(100% + 48px);
-  max-height: 300px;
-  margin: -24px -24px 16px;
+  max-height: 320px;
+  margin: -24px -24px 18px;
   object-fit: contain;
-  background: var(--tint);
-  border-radius: 12px 12px 0 0;
+  background: var(--slate);
+}
+
+/* Facts in an event's detail window: When / Where / Host / Going */
+.facts {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  margin: 12px 0 16px;
+  border-top: 1px solid var(--line);
+}
+
+.facts dt,
+.facts dd {
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.facts dt {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  padding-top: 10px;
+}
+
+.facts dd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin: 0 0 18px;
+}
+
+.detail-actions .join {
+  margin: 0;
 }
 
 /* My Events when it's empty */
@@ -1037,7 +1317,7 @@ select:focus-visible {
   padding: 24px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius);
 }
 
 .page .empty-card h2 {
@@ -1070,7 +1350,7 @@ select:focus-visible {
   margin: -4px -6px;
   background: none;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius);
   font: inherit;
   color: inherit;
   text-align: left;
@@ -1107,22 +1387,19 @@ select:focus-visible {
   margin-top: 16px;
   padding: 12px;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--radius);
   background: var(--surface);
-  color: var(--accent);
+  color: var(--ink);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
 }
 
 .show-more:hover {
-  border-color: var(--accent);
+  border-color: var(--ink);
 }
 
 /* Events: horizontal "Trending" row */
-.trending h2 {
-  color: var(--gold);
-}
 
 .trending-row {
   list-style: none;
@@ -1132,8 +1409,23 @@ select:focus-visible {
   padding: 0 0 8px;
   margin: 0;
   scroll-snap-type: x mandatory;
-  /* fade the right edge so it's clear there's more to scroll to */
-  mask-image: linear-gradient(to right, #000 85%, transparent);
+  scrollbar-width: none;
+}
+
+.trending-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Phones: the row scrolls, so fade its right edge to show there's more */
+@media (max-width: 1100px) {
+  .trending-row {
+    mask-image: linear-gradient(to right, #000 85%, transparent);
+  }
+}
+
+.trending-card .meta .plate {
+  margin-right: 6px;
+  vertical-align: 1px;
 }
 
 .trending-card {
@@ -1145,10 +1437,25 @@ select:focus-visible {
   padding: 14px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--radius);
   scroll-snap-align: start;
   line-height: 1.35;
-  overflow: hidden; /* clip the photo to the card's rounded corners */
+  overflow: hidden; /* clip the photo to the card */
+  position: relative;
+}
+
+/* Its place in the ranking, as a plate on the photo's corner */
+.trending-rank {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 28px;
+  padding: 4px 8px;
+  background: var(--slate);
+  color: var(--on-slate);
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
 }
 
 .trending-card .dot {
@@ -1166,7 +1473,7 @@ select:focus-visible {
   padding: 4px;
   margin: 2px 0 10px;
   background: var(--tint);
-  border-radius: 12px;
+  border-radius: var(--radius);
 }
 
 .view-switch button {
@@ -1175,7 +1482,7 @@ select:focus-visible {
   gap: 6px;
   padding: 7px 16px;
   border: none;
-  border-radius: 9px;
+  border-radius: var(--radius);
   background: transparent;
   color: var(--muted);
   font: inherit;
@@ -1187,20 +1494,20 @@ select:focus-visible {
 .view-switch button[aria-selected="true"] {
   background: var(--surface);
   color: var(--text);
-  box-shadow: 0 1px 3px rgba(28, 21, 48, 0.15);
+  box-shadow: 0 1px 3px rgba(15, 17, 20, 0.15);
 }
 
 .view-switch button:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--ink);
   outline-offset: 1px;
 }
 
 .count-badge {
   min-width: 20px;
   padding: 1px 7px;
-  border-radius: 999px;
-  background: var(--purple-mid);
-  color: #fff;
+  border-radius: var(--radius);
+  background: var(--action);
+  color: var(--on-action);
   font-size: 12px;
   text-align: center;
 }
@@ -1230,7 +1537,7 @@ select:focus-visible {
   padding: 14px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--radius);
   line-height: 1.35;
 }
 
@@ -1245,7 +1552,7 @@ select:focus-visible {
   margin-top: 20px;
   padding: 12px 14px;
   border: 1px dashed var(--line);
-  border-radius: 10px;
+  border-radius: var(--radius);
   background: var(--tint);
 }
 
@@ -1291,7 +1598,7 @@ a.discord-bot-link.join {
   padding: 10px 12px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius);
   color: inherit;
   font: inherit;
   text-align: left;
@@ -1299,11 +1606,11 @@ a.discord-bot-link.join {
 }
 
 .my-club:hover:not(:disabled) {
-  border-color: var(--accent);
+  border-color: var(--ink);
 }
 
 .my-club:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--ink);
   outline-offset: 1px;
 }
 
@@ -1403,7 +1710,7 @@ a.discord-bot-link.join {
 }
 
 .apply-card button.apply-club-name:hover {
-  color: var(--accent);
+  color: var(--ink);
   text-decoration: underline;
 }
 
@@ -1434,8 +1741,8 @@ a.discord-bot-link.join {
 }
 
 .tag-apply {
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
-  color: var(--accent);
+  background: color-mix(in srgb, var(--ink) 14%, transparent);
+  color: var(--ink);
   white-space: nowrap;
 }
 
@@ -1495,7 +1802,7 @@ a.discord-bot-link.join {
   font-weight: 400;
   padding: 8px 10px;
   border: 1px solid var(--field-line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: var(--surface);
 }
 
@@ -1517,9 +1824,9 @@ a.discord-bot-link.join {
   align-items: center;
   gap: 6px;
   padding: 4px 12px;
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: var(--tint);
-  color: var(--accent);
+  color: var(--ink);
   font-size: 14px;
   font-weight: 600;
 }
@@ -1549,7 +1856,7 @@ a.discord-bot-link.join {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .field-tag {
+  :root:not([data-theme="light"]) .field-tag {
     color: color-mix(in srgb, var(--tag) 45%, #fff);
     background: color-mix(in srgb, var(--tag) 18%, transparent);
     border-color: color-mix(in srgb, var(--tag) 50%, transparent);
@@ -1591,7 +1898,7 @@ a.discord-bot-link.join {
   font: inherit;
   padding: 8px 10px;
   border: 1px solid var(--field-line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: var(--surface);
 }
 
@@ -1609,14 +1916,14 @@ a.discord-bot-link.join {
   font-size: 12px;
   font-weight: 600;
   padding: 2px 8px;
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: var(--tint);
-  color: var(--accent);
+  color: var(--ink);
 }
 
 /* Greek Life: a pill in the theme's gold, so fraternity and sorority events stand out */
 .tag-greek {
-  background: color-mix(in srgb, var(--gold) 30%, transparent);
+  background: color-mix(in srgb, var(--brick) 30%, transparent);
   color: var(--text);
   white-space: nowrap;
 }
@@ -1640,6 +1947,19 @@ a.discord-bot-link.join {
   gap: 16px;
 }
 
+.about-lead {
+  max-width: 62ch;
+  margin: 8px 0 12px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.about-lead + p,
+.about-lead + p + p {
+  max-width: 62ch;
+  color: var(--muted);
+}
+
 /* One team member: round photo on top, then name, role and links, all centered */
 .member {
   display: flex;
@@ -1650,7 +1970,7 @@ a.discord-bot-link.join {
   text-align: center;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius);
 }
 
 .member img,
@@ -1661,21 +1981,21 @@ a.discord-bot-link.join {
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--gold);
+  box-shadow: 0 0 0 1px var(--line);
 }
 
 .member .avatar {
   display: grid;
   place-items: center;
-  background: var(--purple-mid);
-  color: #fff;
+  background: var(--action);
+  color: var(--on-action);
   font-weight: 800;
   font-size: 34px;
 }
 
 .member .avatar.claude {
-  background: var(--gold);
-  color: var(--purple);
+  background: var(--brick);
+  color: var(--slate);
 }
 
 .member strong {
@@ -1683,7 +2003,7 @@ a.discord-bot-link.join {
 }
 
 .member-role {
-  color: var(--accent);
+  color: var(--ink);
   font-weight: 700;
   font-size: 14px;
 }
@@ -1703,7 +2023,7 @@ a.discord-bot-link.join {
 }
 
 .member a {
-  color: var(--accent);
+  color: var(--ink);
   font-weight: 600;
 }
 
@@ -1728,7 +2048,7 @@ a.discord-bot-link.join {
 
 .list li {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   align-items: flex-start;
   padding: 12px 0;
   border-bottom: 1px solid var(--line);
@@ -1753,7 +2073,9 @@ a.discord-bot-link.join {
   border: none;
   padding: 0;
   font: inherit;
+  font-size: 16px;
   font-weight: 700;
+  line-height: 1.3;
   color: inherit;
   text-align: left;
   cursor: pointer;
@@ -1761,18 +2083,14 @@ a.discord-bot-link.join {
 
 .club-link:hover {
   text-decoration: underline;
-}
-
-.club-link:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 2px;
+  text-underline-offset: 0.18em;
 }
 
 .club-hint {
   margin-left: 6px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .club-backdrop {
@@ -1783,30 +2101,34 @@ a.discord-bot-link.join {
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: rgba(28, 21, 48, 0.55);
+  background: rgba(15, 17, 20, 0.6);
 }
 
 .club-modal {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 520px;
   max-height: calc(100vh - 32px);
   overflow: auto;
   padding: 24px;
   background: var(--surface);
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(30, 10, 70, 0.35);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   line-height: 1.5;
   text-align: left;
 }
 
 .club-modal h2 {
   margin: 0 36px 8px 0;
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 .club-modal h3 {
-  margin: 20px 0 8px;
+  margin: 22px 0 8px;
   font-size: 16px;
 }
 
@@ -1814,51 +2136,55 @@ a.discord-bot-link.join {
   margin: 0 0 12px;
 }
 
+.club-modal .detail-tags {
+  margin-bottom: 8px;
+  align-items: center;
+}
+
 .event-detail-line {
   display: block;
 }
 
-/* Captions keep their own line breaks. */
-/* Who's going, in an event's detail pop-up */
+/* Who's going, in an event's detail window */
 .going-list {
   margin: 0 0 12px;
   color: var(--text);
 }
 
 .going-list strong {
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .event-description {
   white-space: pre-line;
   overflow-wrap: anywhere;
+  color: var(--text);
 }
 
 .club-modal .club-close {
   position: absolute;
-  top: 10px;
+  top: 12px;
   right: 12px;
-  width: 32px;
-  height: 32px;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
   display: grid;
   place-items: center;
   padding: 0;
   border: none;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--accent);
-  font-size: 24px;
-  line-height: 1;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
   cursor: pointer;
+}
+
+.club-modal .club-close .icon {
+  width: 18px;
+  height: 18px;
 }
 
 .club-modal .club-close:hover {
   background: var(--tint);
-}
-
-.club-modal .club-close:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 2px;
 }
 
 .club-events {
@@ -1872,33 +2198,26 @@ a.discord-bot-link.join {
   border-bottom: 1px solid var(--line);
 }
 
-/* Mobile: tabs become a bottom tab bar; the top bar keeps the logo and sign-in. */
+/* Phones: tabs become a bottom bar; the top bar keeps the wordmark and sign-in. */
 @media (max-width: 700px) {
-  .map-legend {
-    display: none;
-  }
-  .map-card {
-    /* across the top of the map, clear of the zoom buttons (the filters sit at the bottom) */
-    top: 10px;
-    left: 10px;
-    right: 56px;
-    width: auto;
-    max-height: calc(100% - 260px);
-  }
   :root {
     --nav-h: 52px;
     --tabbar-h: calc(60px + env(safe-area-inset-bottom, 0px));
   }
   .nav {
+    align-items: center;
     justify-content: space-between;
     gap: 8px;
     padding: 0 12px;
+  }
+  .logo {
+    font-size: 19px;
   }
   .wide-only {
     display: none;
   }
   .signin {
-    padding: 6px 14px;
+    padding: 7px 12px;
   }
   .tabs {
     position: fixed;
@@ -1910,68 +2229,133 @@ a.discord-bot-link.join {
     padding-bottom: env(safe-area-inset-bottom, 0px);
     gap: 0;
     background: var(--nav-bg);
-    border-top: 1px solid var(--nav-line);
-    box-shadow: 0 -2px 12px rgba(30, 10, 70, 0.2);
+    border-top: 1px solid var(--slate-line);
   }
   .tab {
     flex: 1;
     flex-direction: column;
     justify-content: center;
-    gap: 2px;
+    gap: 3px;
     padding: 6px 2px;
-    border-radius: 0;
     font-size: 11px;
     white-space: nowrap;
   }
   .tab .icon {
     display: block;
   }
-  .tab.active {
-    background: none;
-    box-shadow: inset 0 3px 0 var(--gold);
-    color: var(--gold);
+  .tab.active::after {
+    top: -1px;
+    bottom: auto;
+    left: 20%;
+    right: 20%;
   }
   .page {
     padding: 20px 16px 32px;
   }
   .page h1 {
-    font-size: 26px;
+    font-size: 28px;
+  }
+  .day-label {
+    top: -20px;
+  }
+  .list.cards > li {
+    padding: 12px;
   }
   .event-time {
-    flex-basis: 60px;
+    flex-basis: 64px;
     font-size: 13px;
   }
   .event-thumb {
     width: 44px;
     height: 44px;
   }
+  /* On a phone row the plate and Going button share a line under the title */
+  .list li.event-row {
+    display: grid;
+    grid-template-columns: 60px 44px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "time thumb body body"
+      "time thumb plate join";
+    align-items: start;
+    gap: 8px 12px;
+  }
+  .event-row .event-time {
+    grid-area: time;
+  }
+  .event-row .event-thumb {
+    grid-area: thumb;
+  }
+  .event-row .grow {
+    grid-area: body;
+  }
+  .event-row .plate {
+    grid-area: plate;
+    justify-self: start;
+  }
+  .event-row .join {
+    grid-area: join;
+    min-height: 32px;
+    padding: 4px 12px;
+    font-size: 13px;
+  }
+  .map-legend {
+    display: none;
+  }
+  /* Next up: a strip across the top of the map, one event per swipe */
+  .next-up {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    width: auto;
+    padding: 8px 0 0;
+  }
+  .next-up h2 {
+    padding: 0 12px 6px;
+    font-size: 11px;
+    border-bottom: none;
+  }
+  .next-up ol {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .next-up li {
+    flex: 0 0 88%;
+    scroll-snap-align: start;
+  }
+  .next-up li + li {
+    border-top: none;
+    border-left: 1px solid var(--slate-line);
+  }
+  .next-up-row {
+    grid-template-columns: 76px minmax(0, 1fr) auto;
+  }
+  .next-up-row.no-plate {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 6px 12px 10px;
+  }
+  .map-card {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    width: auto;
+    max-height: calc(100% - 210px);
+  }
+  /* The filters become a bottom sheet: the four dropdowns say what they are ("This week",
+     "All types", "All years", "Any major"), so no labels or count. */
   .filters {
     top: auto;
     bottom: 0;
     left: 0;
     right: 0;
     width: auto;
-    padding: 10px 12px 8px;
-    border-radius: 12px 12px 0 0;
-  }
-  /* On phones the panel is a bottom sheet: a grab handle, a small title and the four dropdowns
-     (they say what they are: "This week", "All types", "All years", "Any major"); no labels or count. */
-  .filters {
-    padding: 8px 14px 14px;
+    padding: 10px 12px 12px;
     gap: 8px;
-    border-radius: 18px 18px 0 0;
-    box-shadow: 0 -8px 24px rgba(30, 10, 70, 0.18);
-  }
-  .filters::before {
-    content: "";
-    align-self: center;
-    width: 40px;
-    height: 4px;
-    border-radius: 2px;
-    background: var(--field-line);
+    box-shadow: 0 -4px 16px rgba(15, 17, 20, 0.2);
   }
   .filters h2 {
-    font-size: 14px;
+    font-size: 11px;
   }
   .filters .count {
     display: none;
@@ -1989,26 +2373,26 @@ a.discord-bot-link.join {
   }
   .filters select {
     padding: 10px 30px 10px 12px;
-    font-size: 14px;
-    border-radius: 11px;
+    font-size: 16px;
   }
-  .tagline {
-    display: none;
+  .leaflet-bottom.leaflet-right {
+    bottom: 170px;
   }
-}
-/* Leaflet's pop-ups and zoom buttons follow light/dark mode. */
-.leaflet-container {
-  background: #f4f2ee; /* the map's own ground color, shown while it loads */
 }
 
-/* Dark mode's map is Apple Maps-style dark, so its ground color is too (no white flash). */
+/* Leaflet's zoom buttons and ground follow light/dark mode. */
+.leaflet-container {
+  background: #ebeae5; /* the map's own ground color, shown while it loads */
+  font-family: inherit; /* the site's font, not Leaflet's Helvetica */
+}
+
 :root[data-theme="dark"] .leaflet-container {
-  background: #19181e;
+  background: #16181b;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .leaflet-container {
-    background: #19181e;
+  :root:not([data-theme="light"]) .leaflet-container {
+    background: #16181b;
   }
 }
 
@@ -2022,11 +2406,31 @@ a.discord-bot-link.join {
   color: var(--muted);
 }
 
+.leaflet-touch .leaflet-bar,
+.leaflet-bar {
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
 .leaflet-bar a,
 .leaflet-bar a:hover {
-  background: var(--surface);
-  color: var(--text);
-  border-bottom-color: var(--line);
+  background: var(--panel);
+  color: var(--on-slate);
+  border-bottom-color: var(--slate-line);
+}
+
+.leaflet-bar a:hover {
+  background: var(--slate-2);
+}
+
+.leaflet-bar a:first-child,
+.leaflet-bar a:last-child {
+  border-radius: 0;
+}
+
+.leaflet-bottom.leaflet-right {
+  bottom: 12px;
 }
 
 /* Sign-in page */
@@ -2041,9 +2445,7 @@ a.discord-bot-link.join {
   padding: 28px 28px 22px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-top: 4px solid var(--gold);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(30, 10, 70, 0.15);
+  border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -2073,7 +2475,7 @@ a.discord-bot-link.join {
 
 .signin-card .link-button {
   align-self: flex-start;
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .signin-error {
@@ -2081,73 +2483,7 @@ a.discord-bot-link.join {
   font-size: 14px;
 }
 
-/* Theme menu (the palette button in the top bar) */
-.theme-picker {
-  position: relative;
-}
-
-.theme-menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  z-index: 2000;
-  min-width: 200px;
-  margin: 0;
-  padding: 6px;
-  list-style: none;
-  background: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(30, 10, 70, 0.25);
-}
-
-.theme-option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 8px 10px;
-  background: none;
-  border: none;
-  border-radius: 8px;
-  color: inherit;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 600;
-  text-align: left;
-  cursor: pointer;
-}
-
-.theme-option:hover {
-  background: var(--tint);
-}
-
-.theme-option.on {
-  background: var(--tint);
-  box-shadow: inset 3px 0 0 var(--accent);
-}
-
-/* Three stripes: top bar, buttons, page */
-.theme-swatch {
-  display: flex;
-  overflow: hidden;
-  width: 30px;
-  height: 18px;
-  flex-shrink: 0;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-}
-
-.theme-swatch span {
-  flex: 1;
-}
-
-/* Hovering a dot: a small card above it, as in DubHub's cover art */
-.leaflet-container {
-  font-family: inherit; /* the site's font, not Leaflet's Helvetica */
-}
-
+/* Hovering a dot: a small plate above it, on a stem */
 .leaflet-tooltip.event-callout {
   padding: 0;
   background: none;
@@ -2156,7 +2492,7 @@ a.discord-bot-link.join {
 }
 
 .leaflet-tooltip.event-callout::before {
-  display: none; /* Leaflet's own little arrow; the card has its stem */
+  display: none; /* Leaflet's own little arrow; the plate has its stem */
 }
 
 .leaflet-tooltip-top.event-callout,
@@ -2172,12 +2508,11 @@ a.discord-bot-link.join {
   width: max-content;
   max-width: 250px;
   padding: 9px 14px 9px 9px;
-  background: var(--surface);
+  background: var(--callout-bg);
   color: var(--text);
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(30, 10, 70, 0.22);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   white-space: normal;
-  --callout-glow: color-mix(in srgb, var(--purple-mid) 40%, transparent); /* the opening pulse */
 }
 
 /* The stem down to the dot */
@@ -2189,16 +2524,16 @@ a.discord-bot-link.join {
   width: 2px;
   height: 10px;
   transform: translateX(-50%);
-  background: var(--purple);
+  background: var(--slate);
 }
 
-/* A card below its dot has its stem on top. */
+/* A plate below its dot has its stem on top. */
 .leaflet-tooltip-bottom .callout::after {
   top: auto;
   bottom: 100%;
 }
 
-/* The club's picture, or the event type's icon on white */
+/* The building code, or (for places with none) the club's picture or the event type's icon */
 .callout-icon {
   display: grid;
   place-items: center;
@@ -2206,10 +2541,9 @@ a.discord-bot-link.join {
   width: 34px;
   height: 34px;
   flex-shrink: 0;
-  border-radius: 9px;
-  background: #fff;
-  color: var(--purple-mid);
-  box-shadow: 0 0 0 1px var(--line); /* so a white tile still stands out on a white card */
+  border-radius: var(--radius);
+  background: var(--tint);
+  color: var(--text);
 }
 
 .callout-icon .icon {
@@ -2221,6 +2555,22 @@ a.discord-bot-link.join {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.callout-code {
+  background: var(--slate);
+  color: var(--on-slate);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+.callout-code .small {
+  font-size: 9px;
+  overflow-wrap: anywhere;
+  padding: 0 2px;
 }
 
 .callout-text {
@@ -2245,10 +2595,10 @@ a.discord-bot-link.join {
   text-overflow: ellipsis;
   color: var(--muted);
   font-size: 12px;
-  line-height: 18px; /* with the group line and the name's 1.25, cards are 68px tall: see CARD_H */
+  line-height: 18px; /* with the group line and the name's 1.25, plates are 68px tall: see CARD_H */
 }
 
-/* The dot's group above the event's name: a dot in its color, then its name in small caps */
+/* The dot's group above the event's name, so a dot never rests on color alone */
 .callout-text .callout-group {
   display: flex;
   align-items: center;
@@ -2265,62 +2615,42 @@ a.discord-bot-link.join {
   height: 8px;
   flex-shrink: 0;
   border-radius: 50%;
-  box-shadow: 0 0 0 1.5px #fff; /* like the dots on the map */
 }
 
-/* Dark mode: a raised card in the night palette, with a white tile and stem */
+/* Dark: the plate is a lit sign panel, and its code tile turns light so it doesn't vanish */
 :root[data-theme="dark"] .callout {
-  background: var(--callout-bg);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #fff;
-  --callout-glow: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--slate-line);
 }
-
-:root[data-theme="dark"] .callout-icon {
-  color: var(--purple);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25);
-}
-
-:root[data-theme="dark"] .callout-text span {
-  color: #c9c3d6;
-}
-
 :root[data-theme="dark"] .callout::after {
-  background: #fff;
+  background: var(--text);
+}
+:root[data-theme="dark"] .callout-code {
+  background: #e8e7e2;
+  color: #15171a;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .callout {
-    background: var(--callout-bg);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: #fff;
-    --callout-glow: rgba(255, 255, 255, 0.45);
+  :root:not([data-theme="light"]) .callout {
+    border: 1px solid var(--slate-line);
   }
-  :root:not([data-theme]) .callout-icon {
-    color: var(--purple);
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25);
+  :root:not([data-theme="light"]) .callout::after {
+    background: var(--text);
   }
-  :root:not([data-theme]) .callout-text span {
-    color: #c9c3d6;
-  }
-  :root:not([data-theme]) .callout::after {
-    background: #fff;
+  :root:not([data-theme="light"]) .callout-code {
+    background: #e8e7e2;
+    color: #15171a;
   }
 }
 
-/* The cards over the soonest events when the site opens: fade in, pulse twice, then fade away. */
+/* The plates over the soonest events when the site opens: in, hold, then away. */
 .intro-callout .callout {
-  animation: intro-callout 4.8s ease-in-out forwards;
+  animation: intro-callout 4.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes intro-callout {
-  0% { opacity: 0; }
-  8% { opacity: 1; }
-  20% { box-shadow: 0 0 0 6px var(--callout-glow); }
-  32% { box-shadow: 0 6px 20px rgba(30, 10, 70, 0.22); }
-  44% { box-shadow: 0 0 0 6px var(--callout-glow); }
-  56% { box-shadow: 0 6px 20px rgba(30, 10, 70, 0.22); }
-  75% { opacity: 1; }
+  0% { opacity: 0; transform: translateY(4px); }
+  8% { opacity: 1; transform: none; }
+  80% { opacity: 1; }
   100% { opacity: 0; }
 }
 
@@ -2329,7 +2659,7 @@ a.discord-bot-link.join {
     animation: intro-callout-fade 4.8s linear forwards;
   }
   @keyframes intro-callout-fade {
-    0%, 75% { opacity: 1; }
+    0%, 80% { opacity: 1; }
     100% { opacity: 0; }
   }
 }
@@ -2345,7 +2675,7 @@ a.discord-bot-link.join {
   display: inline-block;
   margin: 0 0 16px;
   padding: 6px 12px;
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: var(--tint);
   color: var(--muted);
   font-size: 13px;
@@ -2367,21 +2697,17 @@ a.discord-bot-link.join {
   padding: 18px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
-  transition: box-shadow 0.15s, transform 0.15s;
+  border-radius: var(--radius);
 }
 
 .job-card:hover {
-  box-shadow: 0 6px 20px rgba(30, 10, 70, 0.12);
-  transform: translateY(-1px);
+  border-color: var(--field-line);
 }
 
 .job-team {
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .job-title {
@@ -2405,7 +2731,7 @@ a.discord-bot-link.join {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: var(--accent);
+  color: var(--ink);
   font-size: 14px;
   font-weight: 700;
 }
@@ -2480,7 +2806,7 @@ a.discord-bot-link.join {
   font: inherit;
   padding: 9px 11px;
   border: 1px solid var(--field-line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: var(--surface);
   color: var(--text);
 }
@@ -2495,8 +2821,8 @@ a.discord-bot-link.join {
 .apply-form textarea:focus-visible,
 .file-drop:focus-within {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 25%, transparent);
 }
 
 .apply-email {
@@ -2516,19 +2842,19 @@ a.discord-bot-link.join {
   gap: 2px;
   padding: 18px 14px;
   border: 2px dashed var(--field-line);
-  border-radius: 10px;
+  border-radius: var(--radius);
   text-align: center;
   cursor: pointer;
   transition: border-color 0.15s, background 0.15s;
 }
 
 .file-drop strong {
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .file-drop:hover,
 .file-drop.over {
-  border-color: var(--accent);
+  border-color: var(--ink);
   background: var(--tint);
 }
 
@@ -2549,7 +2875,7 @@ a.discord-bot-link.join {
   gap: 10px;
   padding: 10px 12px;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--radius);
   background: var(--tint);
 }
 
@@ -2564,7 +2890,7 @@ a.discord-bot-link.join {
 
 .file-icon {
   display: grid;
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .file-icon .icon {
@@ -2573,7 +2899,7 @@ a.discord-bot-link.join {
 }
 
 .file-chosen .link-button {
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .form-error {
@@ -2620,7 +2946,7 @@ a.discord-bot-link.join {
   height: 52px;
   border-radius: 50%;
   background: var(--tint);
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .apply-done-icon .icon {
@@ -2633,7 +2959,7 @@ a.discord-bot-link.join {
   margin-top: 28px;
   padding: 18px;
   border: 1px dashed var(--field-line);
-  border-radius: 12px;
+  border-radius: var(--radius);
 }
 
 .apps-head {
@@ -2653,7 +2979,7 @@ a.discord-bot-link.join {
   font: inherit;
   padding: 6px 10px;
   border: 1px solid var(--field-line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: var(--surface);
   color: var(--text);
 }
@@ -2670,7 +2996,7 @@ a.discord-bot-link.join {
 .apps-list details {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--radius);
 }
 
 .apps-list summary {
@@ -2715,22 +3041,21 @@ a.discord-bot-link.join {
 /* ---------------------------------------------- Stats (moderators only) --- */
 /* Chart colors, checked with the dataviz validator against each theme's cards. */
 :root {
-  --chart-1: #7a5bd6; /* DubHub purple */
-  --chart-2: #c99a2e; /* gold */
+  --chart-1: #c4432b; /* brick */
+  --chart-2: #4f6a8a; /* slate blue */
   --good: #1e7d32; /* a count that went up */
 }
 
-:root[data-theme="dark"],
-:root[data-theme="sunset"] {
-  --chart-1: #9478e8;
-  --chart-2: #b8862a;
+:root[data-theme="dark"] {
+  --chart-1: #ec6a4e;
+  --chart-2: #8ea7c4;
   --good: #4cc35a;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --chart-1: #9478e8;
-    --chart-2: #b8862a;
+  :root:not([data-theme="light"]) {
+    --chart-1: #ec6a4e;
+    --chart-2: #8ea7c4;
     --good: #4cc35a;
   }
 }
@@ -2760,7 +3085,7 @@ a.discord-bot-link.join {
   padding: 14px 16px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius);
 }
 
 .stat-label {
@@ -2801,7 +3126,7 @@ a.discord-bot-link.join {
   padding: 16px 18px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius);
 }
 
 .chart-card.wide {
@@ -2830,9 +3155,9 @@ a.discord-bot-link.join {
 }
 
 .chart svg:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 4px;
-  border-radius: 4px;
+  border-radius: var(--radius);
 }
 
 .chart .grid {
@@ -2914,7 +3239,7 @@ a.discord-bot-link.join {
   display: inline-block;
   width: 14px;
   height: 2px;
-  border-radius: 1px;
+  border-radius: var(--radius);
 }
 
 .chart-tip {
@@ -2930,8 +3255,8 @@ a.discord-bot-link.join {
   padding: 8px 10px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(30, 10, 70, 0.16);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(15, 17, 20, 0.16);
   color: var(--muted);
   font-size: 12px;
   pointer-events: none;
@@ -3008,7 +3333,7 @@ a.discord-bot-link.join {
   width: calc((100% - 3.5em) * var(--share));
   min-width: 2px;
   height: 12px;
-  border-radius: 0 4px 4px 0;
+  border-radius: var(--radius);
   background: var(--chart-1);
 }
 
@@ -3020,7 +3345,7 @@ a.discord-bot-link.join {
 
 .chart-table summary {
   margin-top: 12px;
-  color: var(--accent);
+  color: var(--ink);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -3082,9 +3407,9 @@ a.discord-bot-link.join {
 .update-kind {
   align-self: start;
   padding: 1px 8px;
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: var(--tint);
-  color: var(--accent);
+  color: var(--ink);
   font-size: 11px;
   font-weight: 700;
 }
@@ -3117,7 +3442,7 @@ a.discord-bot-link.join {
   min-width: 0;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius);
 }
 
 .hiring-list {
@@ -3149,7 +3474,7 @@ a.discord-bot-link.join {
   min-width: 0;
   padding: 6px 8px;
   border: 1px solid var(--field-line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: var(--surface);
   color: var(--text);
   font: inherit;
@@ -3167,7 +3492,7 @@ a.discord-bot-link.join {
   width: 100%;
   padding: 10px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: none;
   color: inherit;
   font: inherit;
@@ -3181,7 +3506,7 @@ a.discord-bot-link.join {
 
 .hiring-row.on {
   background: var(--tint);
-  box-shadow: inset 3px 0 0 var(--accent);
+  box-shadow: inset 0 0 0 1px var(--field-line);
 }
 
 .hiring-row-top {
@@ -3193,9 +3518,9 @@ a.discord-bot-link.join {
 
 .status-chip {
   padding: 1px 8px;
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: var(--tint);
-  color: var(--accent);
+  color: var(--ink);
   font-size: 11px;
   font-weight: 700;
   white-space: nowrap;
@@ -3261,7 +3586,7 @@ a.discord-bot-link.join {
 .hiring-back {
   display: none;
   margin-bottom: 10px;
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .answers dt {
@@ -3280,7 +3605,7 @@ a.discord-bot-link.join {
   gap: 12px;
   padding: 12px 14px;
   background: var(--tint);
-  border-radius: 10px;
+  border-radius: var(--radius);
 }
 
 .interview-card > div {
@@ -3301,7 +3626,7 @@ a.discord-bot-link.join {
 
 .interview-icon {
   display: grid;
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .interview-icon .icon {
@@ -3320,13 +3645,13 @@ a.discord-bot-link.join {
 
 .interview-links a,
 .thread-email {
-  color: var(--accent);
+  color: var(--ink);
   font-weight: 600;
 }
 
 .interview-card .link-button,
 .form-buttons .link-button {
-  color: var(--accent);
+  color: var(--ink);
   font-size: 13px;
 }
 
@@ -3356,7 +3681,7 @@ a.discord-bot-link.join {
 .thread-item {
   padding: 10px 12px;
   background: var(--tint);
-  border-radius: 10px;
+  border-radius: var(--radius);
 }
 
 .thread-item.note {
@@ -3394,7 +3719,7 @@ a.discord-bot-link.join {
   margin-left: 8px;
   padding: 0 7px;
   background: var(--surface);
-  border-radius: 999px;
+  border-radius: var(--radius);
   color: var(--text);
   font-size: 11px;
   font-weight: 700;
@@ -3418,7 +3743,7 @@ a.discord-bot-link.join {
   padding: 9px 11px;
   background: var(--surface);
   border: 1px solid var(--field-line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   color: var(--text);
   font: inherit;
   resize: vertical;
@@ -3426,8 +3751,8 @@ a.discord-bot-link.join {
 
 .composer textarea:focus-visible {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 25%, transparent);
 }
 
 .templates {
@@ -3470,7 +3795,7 @@ a.discord-bot-link.join {
   margin-top: 18px;
   padding: 14px 16px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius);
 }
 
 .job-modal .my-application h3 {
@@ -3494,7 +3819,7 @@ a.discord-bot-link.join {
 }
 
 .mod-note .link-button {
-  color: var(--accent);
+  color: var(--ink);
 }
 
 /* Phones: the list, then one application at a time */
@@ -3517,7 +3842,8 @@ a.discord-bot-link.join {
 }
 
 .mail-button.on {
-  background: var(--tab-active-bg);
+  background: var(--tint);
+  color: var(--ink);
 }
 
 .mail-count {
@@ -3527,9 +3853,9 @@ a.discord-bot-link.join {
   min-width: 17px;
   height: 17px;
   padding: 0 4px;
-  border-radius: 999px;
-  background: var(--gold);
-  color: #1c1530;
+  border-radius: var(--radius);
+  background: var(--action);
+  color: var(--on-action);
   font-size: 11px;
   font-weight: 800;
   line-height: 17px;
@@ -3554,7 +3880,7 @@ a.discord-bot-link.join {
   padding: 14px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius);
 }
 
 .friends-side {
@@ -3587,7 +3913,7 @@ a.discord-bot-link.join {
   padding: 8px 10px;
   background: var(--surface);
   border: 1px solid var(--field-line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   color: var(--text);
   font: inherit;
 }
@@ -3623,7 +3949,7 @@ a.discord-bot-link.join {
   padding: 8px;
   background: none;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius);
   color: inherit;
   font: inherit;
   text-align: left;
@@ -3639,7 +3965,7 @@ button.person:hover,
 }
 
 .person.on {
-  box-shadow: inset 3px 0 0 var(--accent);
+  box-shadow: inset 0 0 0 1px var(--field-line);
 }
 
 .person-text {
@@ -3677,8 +4003,8 @@ button.person:hover,
 .friend-avatar.initials {
   display: grid;
   place-items: center;
-  background: var(--purple-mid);
-  color: #fff;
+  background: var(--action);
+  color: var(--on-action);
   font-size: 14px;
   font-weight: 700;
 }
@@ -3752,7 +4078,7 @@ button.person:hover,
   overflow: auto;
   list-style: none;
   background: var(--bg);
-  border-radius: 10px;
+  border-radius: var(--radius);
 }
 
 .convo-empty {
@@ -3767,16 +4093,16 @@ button.person:hover,
   padding: 8px 12px;
   align-self: flex-start;
   background: var(--tint);
-  border-radius: 14px 14px 14px 4px;
+  border-radius: var(--radius);
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 
 .bubble.mine {
   align-self: flex-end;
-  background: var(--purple-mid);
-  color: #fff;
-  border-radius: 14px 14px 4px 14px;
+  background: var(--action);
+  color: var(--on-action);
+  border-radius: var(--radius);
 }
 
 .bubble time {
@@ -3818,7 +4144,7 @@ button.person:hover,
   padding: 7px 10px;
   background: var(--surface);
   border: 1px solid var(--field-line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   color: var(--text);
   font: inherit;
   font-size: 13px;
@@ -3854,4 +4180,32 @@ button.person:hover,
 .members-table th:last-child {
   text-align: right;
   font-variant-numeric: tabular-nums;
+}
+
+/* Dropdowns on the pages: one look everywhere (the map's filters have their own) */
+.page-head select,
+.major-select,
+.club-search select,
+.profile-form select,
+.apps-head select,
+.hiring-filters select,
+.status-pick select,
+.status-after select,
+.apply-form select {
+  appearance: none;
+  padding: 8px 32px 8px 11px;
+  background: var(--surface) var(--select-arrow) no-repeat right 11px center;
+  border: 1px solid var(--field-line);
+  border-radius: var(--radius);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.page-head select:hover,
+.major-select:hover,
+.club-search select:hover,
+.profile-form select:hover {
+  border-color: var(--ink);
 }
