@@ -21,88 +21,117 @@ const TAB_ICONS = {
   Hiring: "M3 7h18v13H3zM8 7V4h8v3M3 12h18",
 };
 
-// ------------------------------------------------------------------- the neon city (background)
-// A skyline that's the same on every visit (seeded, not random), three layers deep, with lit
-// windows and glowing billboards; hover-cars with light trails cross the sky; rain runs down the
-// glass. It sits behind every page and never takes clicks.
+// ------------------------------------------------------- the trail (background), a fan homage
+// DubHub as the Steel Ball Run: a horse race across campus. Everything here is drawn in code: a
+// desert of mesas under a sun (or stars), a golden spiral turning slowly behind it all, and
+// tumbleweeds rolling through. It sits behind every page and never takes clicks.
 function seeded(n) {
   const x = Math.sin(n * 9301.17 + 49297.31) * 233280.5;
   return x - Math.floor(x);
 }
 
-const NEON_INKS = ["#00f0ff", "#ff2bd6", "#f5ff3a", "#9d7bff", "#ffffff"];
-
-function skylineLayer(layer) {
-  const buildings = [];
-  const windows = [];
-  const signs = [];
-  let x = -20;
-  let n = layer * 1000;
-  const [minH, maxH] = [
-    [120, 260],
-    [160, 330],
-    [80, 210],
-  ][layer];
-  while (x < 1620) {
-    const w = 34 + seeded(n++) * 70;
-    const h = minH + seeded(n++) * (maxH - minH);
-    const top = 400 - h;
-    buildings.push({ x, w, h, top, spire: seeded(n++) > 0.82 });
-    if (layer > 0) {
-      for (let wy = top + 10; wy < 392; wy += 13) {
-        for (let wx = x + 6; wx < x + w - 6; wx += 9) {
-          if (seeded(n++) > 0.8) windows.push({ x: wx, y: wy, ink: NEON_INKS[Math.floor(seeded(n++) * 5)] });
-        }
-      }
-      if (seeded(n++) > 0.72 && w > 50) signs.push({ x: x + 6, y: top + 18 + seeded(n++) * 40, w: w - 12, ink: NEON_INKS[Math.floor(seeded(n++) * 4)] });
-    }
-    x += w + 2 + seeded(n++) * 10;
+// A mesa range: flat-topped rock with steep sides, seeded so it's the same on every visit.
+function mesaPath(layer) {
+  let n = layer * 500;
+  let x = -40;
+  const base = 300;
+  let d = `M-40 ${base} `;
+  while (x < 1640) {
+    const w = 120 + seeded(n++) * 260;
+    const h = (layer ? 60 : 110) + seeded(n++) * (layer ? 70 : 110);
+    const slope = 18 + seeded(n++) * 30;
+    d += `L${x + slope} ${base - h} L${x + w - slope} ${base - h} L${x + w} ${base - seeded(n++) * 20} `;
+    x += w + seeded(n++) * 60;
   }
-  return { buildings, windows, signs };
+  return d + "L1640 300 Z";
+}
+const MESAS = [mesaPath(0), mesaPath(1)];
+
+// The golden spiral: quarter turns that grow by the golden ratio, as one SVG path.
+const GOLDEN_SPIRAL = (() => {
+  const phi = 1.618033988749895;
+  const pts = [];
+  for (let t = 0; t < Math.PI * 9; t += 0.06) {
+    const r = 2 * Math.pow(phi, (2 * t) / Math.PI);
+    pts.push(`${(Math.cos(t) * r).toFixed(1)},${(Math.sin(t) * r).toFixed(1)}`);
+  }
+  return `M${pts.join(" L")}`;
+})();
+
+function DesertTrail() {
+  return (
+    <div className="desert" aria-hidden="true">
+      <div className="desert-sky" />
+      <span className="desert-sun" />
+      <svg className="desert-spiral" viewBox="-400 -400 800 800">
+        <path d={GOLDEN_SPIRAL} />
+      </svg>
+      <svg className="desert-mesas" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice">
+        <path className="mesa-far" d={MESAS[0]} />
+        <path className="mesa-near" d={MESAS[1]} />
+      </svg>
+      <span className="tumbleweed" />
+      <span className="tumbleweed tumbleweed-2" />
+    </div>
+  );
 }
 
-const SKYLINE = [0, 1, 2].map(skylineLayer);
-
-const CARS = Array.from({ length: 9 }, (_, i) => ({
-  y: 36 + seeded(i + 77) * 26, // % from the top: weaving between the tops of the towers
-  dur: 9 + seeded(i + 31) * 14,
-  delay: -seeded(i + 13) * 20,
-  ink: NEON_INKS[i % 4],
-  dir: i % 3 === 0 ? -1 : 1,
-  size: 0.6 + seeded(i + 5) * 0.8,
-}));
-
-function NeonCity() {
+// A horse and rider at a gallop, facing right; its legs swing in CSS.
+function Rider({ className = "" }) {
   return (
-    <div className="city" aria-hidden="true">
-      <div className="city-glow" />
-      {SKYLINE.map((l, i) => (
-        <svg key={i} className={`city-layer city-layer-${i}`} viewBox="0 0 1600 400" preserveAspectRatio="xMidYMax slice">
-          {l.buildings.map((b, k) => (
-            <g key={k}>
-              <rect x={b.x} y={b.top} width={b.w} height={b.h} className="city-building" />
-              {b.spire && <rect x={b.x + b.w / 2 - 1.5} y={b.top - 26} width={3} height={26} className="city-building" />}
-              {b.spire && <circle cx={b.x + b.w / 2} cy={b.top - 28} r={2.5} className="city-beacon" />}
-            </g>
-          ))}
-          {l.signs.map((g, k) => (
-            <rect key={`s${k}`} x={g.x} y={g.y} width={g.w} height={7} rx={1} fill={g.ink} className="city-sign" style={{ animationDelay: `${-k * 1.7}s` }} />
-          ))}
-          {l.windows.map((w, k) => (
-            <rect key={`w${k}`} x={w.x} y={w.y} width={4} height={6} fill={w.ink} className="city-window" />
-          ))}
-        </svg>
+    <svg className={`rider ${className}`} viewBox="0 0 64 46" aria-hidden="true">
+      <g className="rider-body">
+        <path d="M14 21 Q4 18 3 28" className="rider-tail" />
+        <ellipse cx="29" cy="23" rx="16" ry="8" />
+        <path d="M40 22 L45 9 L52 5 L59 9 L58 13 L51 13 L48 24 Z" />
+        <path d="M28 15 L25 5 L30 4 L33 15 Z" />
+        <circle cx="27.5" cy="2.5" r="3" />
+        <rect x="22" y="-1" width="11" height="2" rx="1" />
+      </g>
+      <g className="leg leg-a">
+        <rect x="40" y="27" width="3" height="16" rx="1.5" />
+        <rect x="18" y="27" width="3" height="16" rx="1.5" />
+      </g>
+      <g className="leg leg-b">
+        <rect x="35" y="27" width="3" height="16" rx="1.5" />
+        <rect x="13" y="27" width="3" height="16" rx="1.5" />
+      </g>
+    </svg>
+  );
+}
+
+// A steel ball: a polished sphere with the golden spiral turning on it.
+function SteelBall({ className = "" }) {
+  return (
+    <span className={`steel-ball ${className}`} aria-hidden="true">
+      <svg viewBox="-60 -60 120 120">
+        <path d={GOLDEN_SPIRAL} transform="scale(0.14)" />
+      </svg>
+    </span>
+  );
+}
+
+// Menacing: the drifting ゴゴゴゴ beside a heading.
+function Menacing() {
+  return (
+    <span className="menacing" aria-hidden="true">
+      {"ゴゴゴゴ".split("").map((ch, i) => (
+        <span key={i} style={{ animationDelay: `${i * 0.18}s` }}>
+          {ch}
+        </span>
       ))}
-      <div className="city-traffic">
-        {CARS.map((c, i) => (
-          <span
-            key={i}
-            className={c.dir < 0 ? "car car-back" : "car"}
-            style={{ top: `${c.y}%`, "--dur": `${c.dur}s`, "--delay": `${c.delay}s`, "--ink": c.ink, "--size": c.size }}
-          />
-        ))}
-      </div>
-      <div className="city-rain" />
+    </span>
+  );
+}
+
+// The arrow at the end of a list.
+function ToBeContinued() {
+  return (
+    <div className="tbc" aria-hidden="true">
+      <svg viewBox="0 0 300 44">
+        <path d="M0 22 L28 2 L28 13 L300 13 L300 31 L28 31 L28 42 Z" />
+        <text x="42" y="28">TO BE CONTINUED</text>
+      </svg>
     </div>
   );
 }
@@ -139,7 +168,8 @@ function useTaps(n, onDone) {
 }
 
 const KONAMI = ["arrowup", "arrowup", "arrowdown", "arrowdown", "arrowleft", "arrowright", "arrowleft", "arrowright", "b", "a"];
-const DAWGS = ["d", "a", "w", "g", "s"];
+const NYOHO = ["n", "y", "o", "h", "o"];
+const D4C_KEYS = ["d", "4", "c"];
 
 function EggToast({ egg }) {
   if (!egg) return null;
@@ -151,8 +181,18 @@ function EggToast({ egg }) {
   );
 }
 
-// What each tab is called on screen ("Home" is the map).
+// What each tab is called on screen ("Home" is the map), and its stage on the race route.
 const TAB_LABELS = { Events: "Now", Home: "Map" };
+const TAB_STAGES = {
+  Events: "The Start Line",
+  Home: "The Trail",
+  "My Events": "Your Saddlebag",
+  Clubs: "The Riders",
+  About: "Race Committee",
+  Stats: "Timekeepers",
+  Hiring: "Recruiting Office",
+};
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
 
 function Icon({ d }) {
   return (
@@ -167,8 +207,6 @@ const CLOSE_ICON = "M6 6l12 12M18 6 6 18";
 const CHECK_ICON = "M4.5 12.5l5 5L19.5 7";
 const BACK_ICON = "M15 5l-7 7 7 7";
 const SHARE_ICON = "M12 3v12M7 8l5-5 5 5M5 14v7h14v-7";
-const SHUFFLE_ICON = "M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5";
-const FINGERPRINT_ICON = "M12 11v4M8.5 7.5a5 5 0 0 1 8.5 3.5v2M7 11a5 5 0 0 0 0 .5V14M9 19c1-1.5 1.5-3.5 1.5-5v-3a1.5 1.5 0 0 1 3 0v3c0 2-.5 4-1.5 5.5M15.5 19.5c.5-1.5.5-3 .5-4.5M5.5 8A8 8 0 0 1 19 9.5";
 const SUN_ICON = "M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4";
 const MOON_ICON = "M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z";
 
@@ -827,14 +865,16 @@ function Account({ user, onOpenSignIn, onSignOut, onOpenProfile }) {
 // they were, and the event they tried to join is joined.
 function SignInPage({ user, pendingEvent, pendingJob, onSignIn, onBack, onEgg }) {
   const stale = user && !user.token; // signed in before RSVPs existed, or the login expired
-  const scan = useTaps(3, () => onEgg({ mode: "denied", title: "ACCESS DENIED", text: "Nice try, netrunner. Use your UW ID.", seconds: 4 }));
+  const scan = useTaps(3, () =>
+    onEgg({ mode: "golden", title: "GOLDEN ROTATION", text: "Infinite spin achieved. Entry still needs your UW ID, though.", seconds: 5 })
+  );
   return (
     <main className="page signin-page">
       <div className="signin-card">
-        <button className="scanner" onClick={scan} aria-label="Fingerprint scanner">
-          <Icon d={FINGERPRINT_ICON} />
+        <button className="scanner" onClick={scan} aria-label="Spin the steel ball">
+          <SteelBall />
         </button>
-        <h1>{stale ? "Sign in again" : "Sign in to DubHub"}</h1>
+        <h1>{stale ? "Sign in again" : "Enter the race"}</h1>
         {pendingJob ? (
           <p className="signin-reason">
             Sign in to apply for <strong>{pendingJob.title}</strong>.
@@ -1321,40 +1361,40 @@ const MAP_ATTRIBUTION =
 // The light map: campus in the site's concrete and white, quiet enough that the event dots and the
 // slate panels carry the color. Parks and water stay recognizable, just muted.
 const MAP_COLORS = {
-  background: "#ebeae5",
-  water: "#b4cad8",
-  park: "#c9d8bd",
-  wood: "#bfd1b2",
-  wetland: "#d0dcc6",
-  plaza: "#e4e3dd",
-  building: "#dad8d1",
-  school: "#e6e5df",
-  road: "#ffffff",
-  highway: "#fbfaf7",
-  casing: "#d6d4cd",
-  highwayCasing: "#c4c1b8",
+  background: "#ead3a6", // desert sand
+  water: "#5bb7bd",
+  park: "#c8bf7a",
+  wood: "#b9b06a",
+  wetland: "#c9c387",
+  plaza: "#e2c995",
+  building: "#d7b884",
+  school: "#e4cd9c",
+  road: "#f6ead0",
+  highway: "#fff4dc",
+  casing: "#c8a464",
+  highwayCasing: "#b48a46",
 };
 
 // The dark map: the top bar's slate, with streets a step lighter and water in a deep blue-gray.
 const DARK_MAP = {
   dark: true,
-  background: "#0a0817", // the district at night
-  water: "#0b1238",
-  park: "#0c1622",
-  wood: "#0b1420",
-  wetland: "#0d1724",
-  plaza: "#0d0a1e",
-  building: "#17112f",
-  school: "#0e0b22",
-  road: "#231a4a",
-  major: "#3a2a7a", // main streets
-  highway: "#ff2bd6", // freeways in magenta neon
-  path: "#1a1338",
-  casing: "#0a0817",
-  highwayCasing: "#5a1050",
-  label: "#bdb4ff",
-  labelHalo: "#07060f",
-  waterLabel: "#6fe8ff",
+  background: "#211335", // the desert at night
+  water: "#123a5c",
+  park: "#2a2441",
+  wood: "#28223e",
+  wetland: "#2b2643",
+  plaza: "#25173b",
+  building: "#311f4c",
+  school: "#26183d",
+  road: "#3d2b5e",
+  major: "#59407f",
+  highway: "#f2b632", // the race route in gold
+  path: "#2f2150",
+  casing: "#211335",
+  highwayCasing: "#6b4a12",
+  label: "#f1d9a7",
+  labelHalo: "#160c26",
+  waterLabel: "#8fd6dc",
   iconOpacity: 0.55,
 };
 
@@ -1664,7 +1704,7 @@ function trainIcon(color) {
   if (!trainIcons.has(color)) {
     trainIcons.set(
       color,
-      L.divIcon({ className: "train-icon", html: `<span class="train" style="--ink:${color}"></span>`, iconSize: [26, 26] })
+      L.divIcon({ className: "train-icon", html: `<span class="train" style="--ink:${color}"></span>`, iconSize: [24, 24] })
     );
   }
   return trainIcons.get(color);
@@ -1894,12 +1934,12 @@ function randomPick(list) {
 }
 
 function Home({ f, area, introLabels, j, palette, onEgg }) {
-  const [husky, setHusky] = useState(0);
-  const dawgs = useCallback(() => {
-    setHusky(Date.now());
-    onEgg({ mode: "husky", title: "GO DAWGS", text: "A wild husky hover-car appeared over campus.", seconds: 6 });
+  const [rolling, setRolling] = useState(0);
+  const nyoho = useCallback(() => {
+    setRolling(Date.now());
+    onEgg({ mode: "nyoho", title: "NYO-HO!", text: "A steel ball just rolled across campus. Don't ask where it's going.", seconds: 6 });
   }, [onEgg]);
-  useKeySequence(DAWGS, dawgs);
+  useKeySequence(NYOHO, nyoho);
   const [shown, setShown] = useState(null); // { event, pinned }
   const [flyTo, setFlyTo] = useState(null); // { event, far }: where the map should go next
   const [hiddenLines, setHiddenLines] = useState(() => new Set());
@@ -1949,19 +1989,14 @@ function Home({ f, area, introLabels, j, palette, onEgg }) {
         hiddenLines={hiddenLines}
       />
       <MapLegend events={f.events} dark={palette?.dark} hidden={hiddenLines} onToggle={toggleLine} />
-      <div className="hud-frame" aria-hidden="true">
-        <span className="hud-corner tl" />
-        <span className="hud-corner tr" />
-        <span className="hud-corner bl" />
-        <span className="hud-corner br" />
-      </div>
-      {husky > 0 && (
-        <div className="husky-car" key={husky} aria-hidden="true">
-          <span className="husky-sign">GO DAWGS</span>
+      {rolling > 0 && (
+        <div className="big-ball" key={rolling} aria-hidden="true">
+          <SteelBall />
+          <span className="big-ball-shout">NYO-HO!</span>
         </div>
       )}
       <button className="surprise" onClick={surprise}>
-        <Icon d={SHUFFLE_ICON} />
+        <SteelBall />
         Surprise me
       </button>
       <Filters f={f} />
@@ -2180,123 +2215,9 @@ function stickerOf(e, section) {
   return { kind: "time", text: `${day} ${time}` };
 }
 
-// ------------------------------------------------------------------- the network (Now page)
-// Every kind of club event is a line, in its category's color (src/eventGroups.js), and every
-// event is a station on it. The diagram is schematic, like a transit map: stations are spaced
-// evenly by start time, not to scale, so a busy evening never crowds into an unreadable knot.
-const NET = { col: 132, lane: 62, hubX: 64, top: 70, maxCols: 12 };
-
+// The color of a club category, on a dark ground or a light one.
 function lineColor(group, dark) {
   return dark ? group.dark : group.light;
-}
-
-// The next stations across all lines: each distinct start time is a column, soonest first.
-function networkOf(events, now) {
-  const upcoming = events.filter((e) => e.start && ["now", "soon", "today", "tomorrow"].includes(sectionOf(e, now)));
-  const keys = [...new Set(upcoming.map((e) => `${e.date}T${e.start}`))].sort().slice(0, NET.maxCols);
-  const inView = upcoming.filter((e) => keys.includes(`${e.date}T${e.start}`));
-  const lines = [...CATEGORY_GROUPS, OTHER_GROUP]
-    .map((g) => ({ group: g, stops: inView.filter((e) => eventGroup(e) === g) }))
-    .filter((l) => l.stops.length);
-  return { keys, lines };
-}
-
-function Network({ events, now, dark, onSelect }) {
-  const { keys, lines } = networkOf(events, now);
-  const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!lines.length) return null;
-  const hubY = NET.top + ((lines.length - 1) * NET.lane) / 2;
-  const laneY = (i) => NET.top + i * NET.lane;
-  const fan = Math.max(...lines.map((_, i) => Math.abs(laneY(i) - hubY)));
-  const x0 = NET.hubX + 48 + fan; // where the first column sits, past the 45° fan-out
-  const colX = (k) => x0 + keys.indexOf(k) * NET.col;
-  const width = x0 + (keys.length - 1) * NET.col + 110;
-  const height = NET.top + (lines.length - 1) * NET.lane + 72;
-  const clock = new Date(now).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
-  const timeLabel = (k) => {
-    const [date, start] = k.split("T");
-    return `${date === localDate(0) ? "" : "Tmrw "}${formatTime(start)}`;
-  };
-
-  return (
-    <section className="network" aria-label="The next events, drawn as a transit map">
-      <div className="network-scroll">
-        <div className="network-canvas" style={{ width, height }}>
-          <svg width={width} height={height} aria-hidden="true">
-            {keys.map((k) => (
-              <line key={k} className="network-tick" x1={colX(k)} x2={colX(k)} y1={24} y2={height - 8} />
-            ))}
-            {lines.map((l, i) => {
-              const y = laneY(i);
-              const bend = NET.hubX + 24;
-              const lastX = Math.max(...l.stops.map((e) => colX(`${e.date}T${e.start}`)));
-              const d = `M${NET.hubX},${hubY} L${bend},${hubY} L${bend + Math.abs(y - hubY)},${y} L${lastX + 40},${y}`;
-              return (
-                <g key={l.group.name}>
-                  <path className="network-glow" d={d} stroke={lineColor(l.group, dark)} />
-                  <path className="network-line" d={d} stroke={lineColor(l.group, dark)} />
-                  {!calm && (
-                    <g className="network-train">
-                      <rect x={-11} y={-5} width={22} height={10} rx={4} fill={lineColor(l.group, dark)} />
-                      <rect x={5} y={-3} width={5} height={6} rx={1.5} className="network-headlight" />
-                      <animateMotion dur={`${7 + i * 1.3}s`} begin={`${-i * 0.9}s`} repeatCount="indefinite" rotate="auto" path={d} />
-                    </g>
-                  )}
-                </g>
-              );
-            })}
-            {lines.map((l, i) =>
-              l.stops.map((e) => {
-                const soon = sectionOf(e, now);
-                return (
-                  <circle
-                    key={e.id}
-                    className={`network-station network-${soon}`}
-                    cx={colX(`${e.date}T${e.start}`)}
-                    cy={laneY(i)}
-                    r={9}
-                    stroke={lineColor(l.group, dark)}
-                    style={{ "--ink": lineColor(l.group, dark) }}
-                  />
-                );
-              })
-            )}
-            <circle className="network-hub" cx={NET.hubX} cy={hubY} r={30} />
-          </svg>
-          <span className="network-now" style={{ left: NET.hubX, top: hubY }}>
-            <strong>Now</strong>
-            {clock}
-          </span>
-          {keys.map((k) => (
-            <span key={k} className="network-time" style={{ left: colX(k) }}>
-              {timeLabel(k)}
-            </span>
-          ))}
-          {lines.map((l, i) =>
-            l.stops.map((e, n) => (
-              <button
-                key={e.id}
-                className={n % 2 ? "network-label below" : "network-label"}
-                style={{ left: colX(`${e.date}T${e.start}`), top: laneY(i) }}
-                onClick={() => onSelect(e)}
-                title={`${e.title} · ${hostName(e)}`}
-              >
-                {e.title}
-              </button>
-            ))
-          )}
-        </div>
-      </div>
-      <ul className="network-key" aria-label="Lines">
-        {lines.map((l) => (
-          <li key={l.group.name}>
-            <span className="bullet" style={{ background: lineColor(l.group, dark) }} />
-            {l.group.name}
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
 }
 
 // One departure: line bullet, time, event, host, building plate, and "I'm going".
@@ -2334,30 +2255,60 @@ function useNow() {
   return now;
 }
 
-// The LED ticker under the clock: the next few events, scrolling forever (twice over, so the
-// loop has no seam).
-function Ticker({ events }) {
-  const next = events.slice(0, 10);
-  if (!next.length) return null;
-  const items = next.map((e) => (
-    <span key={e.id} className="ticker-item">
-      <span className="ticker-time">{e.start ? formatTime(e.start) : "All day"}</span> {e.title}
-      <span className="ticker-host"> // {hostName(e)}</span>
-    </span>
-  ));
+// The Home Stretch: the next events as horses racing toward a finish line at NOW. Each one is
+// placed by how long until it starts (four hours out is the start of the track); those on now
+// are across the line.
+const STRETCH_MIN = 240;
+function HomeStretch({ events, now, dark, onSelect }) {
+  const runners = events
+    .filter((e) => e.start && ["now", "soon", "today", "tomorrow"].includes(sectionOf(e, now)))
+    .slice(0, 8)
+    .map((e) => {
+      const mins = Math.max(0, (eventSpan(e).start - now) / 6e4);
+      return { e, mins, pos: 100 - (Math.min(mins, STRETCH_MIN) / STRETCH_MIN) * 100 };
+    });
+  if (!runners.length) return null;
+  const away = (m) => (m <= 0 ? "Racing now" : m < 60 ? `${Math.round(m)} min out` : m < 1440 ? `${Math.round(m / 60)} hr out` : "Tomorrow");
   return (
-    <div className="ticker" aria-hidden="true">
-      <div className="ticker-track">
-        {items}
-        {items}
+    <section className="stretch" aria-label="The next events, racing toward now">
+      <div className="stretch-scale" aria-hidden="true">
+        <span>4 hr</span>
+        <span>3 hr</span>
+        <span>2 hr</span>
+        <span>1 hr</span>
+        <span className="stretch-finish-label">Now</span>
       </div>
-    </div>
+      <ol className="stretch-lanes">
+        {runners.map(({ e, mins, pos }, i) => (
+          <li key={e.id} className="lane">
+            <span className="lane-no">{i + 1}</span>
+            <div className="lane-track">
+              <button
+                className={pos > 55 ? "runner runner-left" : "runner"}
+                // Inset from both ends, so a horse hours away clears the lane number and one on now
+                // stops at the checkered line.
+                style={{ left: `calc(${pos} * (100% - 70px) / 100 + 30px)`, color: lineColor(eventGroup(e), dark) }}
+                onClick={() => onSelect(e)}
+              >
+                <Rider />
+                <span className="runner-label">
+                  <strong>{e.title}</strong>
+                  <span>
+                    {away(mins)} · {formatTime(e.start)}
+                  </span>
+                </span>
+              </button>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }
 
 function NowPage({ f, updated, j, dark, onSelect, onEgg }) {
-  const overdrive = useTaps(5, () =>
-    onEgg({ mode: "overdrive", title: "OVERDRIVE ENGAGED", text: "The whole district just floored it.", seconds: 8 })
+  const mandom = useTaps(5, () =>
+    onEgg({ mode: "mandom", title: "MANDOM", text: "Time rewound six seconds. Nobody noticed. Check your watch.", seconds: 6 })
   );
   const [query, setQuery] = useState("");
   const now = useNow();
@@ -2388,12 +2339,13 @@ function NowPage({ f, updated, j, dark, onSelect, onEgg }) {
       <header className="now-head">
         <h1>
           <span className="now-day">{clock.toLocaleDateString("en-US", { weekday: "long" })}</span>
-          <button className="now-clock" onClick={overdrive} aria-label={`It's ${clock.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}`}>
+          <button className="now-clock" onClick={mandom} aria-label={`It's ${clock.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}`}>
             {clock.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}
           </button>
         </h1>
+        <Menacing />
         <p className="page-sub">
-          Every club event at UW, leaving from now.
+          The race across campus is on. Every club event at UW, galloping toward now.
           {updated &&
             ` Pulled from HuskyLink, club Instagram and Discord · updated ${new Date(updated).toLocaleString("en-US", {
               month: "short",
@@ -2403,9 +2355,7 @@ function NowPage({ f, updated, j, dark, onSelect, onEgg }) {
             })}`}
         </p>
       </header>
-      <Ticker events={sections.flatMap((sec) => sec.events)} />
-      {/* The network is always the night map, so its lines use the dark-ground inks */}
-      <Network events={unique} now={now} dark onSelect={onSelect} />
+      <HomeStretch events={sections.flatMap((sec) => sec.events)} now={now} dark={dark} onSelect={onSelect} />
       <div className="toolbar">
         <input
           type="search"
@@ -2455,6 +2405,7 @@ function NowPage({ f, updated, j, dark, onSelect, onEgg }) {
           </ul>
         </section>
       ))}
+      {shown.length > 0 && <ToBeContinued />}
     </main>
   );
 }
@@ -2522,30 +2473,36 @@ function myEventsFor(all, clubList, j, clubs) {
   return all.filter((e) => j.joined.includes(String(e.id)) || myClubs.some((c) => isHostedBy(e, c)));
 }
 
-// The holographic student ID at the side of My Events. Tap its chip three times to flip it.
+// The rider's entry card at the side of My Events. Tap its steel ball three times to flip it.
 function IdCard({ user, going, clubCount }) {
   const [flipped, setFlipped] = useState(false);
   const flip = useTaps(3, () => setFlipped((v) => !v));
-  const name = user?.name ?? "Guest runner";
+  const name = user?.name ?? "Unregistered rider";
+  const number = user?.email ? 100 + (user.email.length * 37) % 900 : 0;
   return (
-    <aside className={flipped ? "id-card flipped" : "id-card"} aria-label="Your DubHub ID">
+    <aside className={flipped ? "id-card flipped" : "id-card"} aria-label="Your race entry card">
       <div className="id-face id-front">
-        <span className="id-org">DUBHUB // UW SEATTLE</span>
+        <span className="id-org">Steel Ball Run · UW Crossing</span>
         <div className="id-photo">{user?.picture ? <img src={user.picture} alt="" /> : <span>{initials(name)}</span>}</div>
         <strong className="id-name">{name}</strong>
+        <span className="id-number">Rider No. {number || "---"}</span>
         <dl className="id-stats">
           <dt>Going</dt>
           <dd>{going}</dd>
           <dt>Clubs</dt>
           <dd>{clubCount}</dd>
         </dl>
-        <button className="id-chip" onClick={flip} aria-label="ID chip" />
+        <button className="id-chip" onClick={flip} aria-label="The steel ball on your card">
+          <SteelBall />
+        </button>
       </div>
       <div className="id-face id-back">
-        <span className="id-org">CLEARANCE</span>
-        <strong className="id-name">Certified Dawg</strong>
-        <p>Status: probably should be studying. Bearer is cleared for every club event on campus and at least one free pizza.</p>
-        <button className="id-chip" onClick={flip} aria-label="Flip the ID back" />
+        <span className="id-org">Holy Corpse parts</span>
+        <strong className="id-name">0 of 9 found</strong>
+        <p>They're scattered across campus. Some say one is under Drumheller Fountain. Keep riding.</p>
+        <button className="id-chip" onClick={flip} aria-label="Flip the card back">
+          <SteelBall />
+        </button>
       </div>
     </aside>
   );
@@ -2567,7 +2524,10 @@ function MyEventsPage({ all, clubList, j, clubs, applications, onBrowse, onFindC
     <main className="page my-page">
       <IdCard user={user} going={j.joined.length} clubCount={clubs.joined.length} />
       <div className="my-main">
-      <h1>My Events</h1>
+      <h1>
+        Your Saddlebag
+        <Menacing />
+      </h1>
       {clubs.joined.length > 0 && (
         <p className="page-sub">
           Events you joined, plus everything from {clubs.joined.length === 1 ? clubs.joined[0] : `your ${clubs.joined.length} clubs`}
@@ -2894,6 +2854,54 @@ function ApplicationsView({ open, onSelectClub }) {
   );
 }
 
+// A club's Stand stats, in the six-letter style of a Stand's stat sheet, worked out from what
+// DubHub actually knows about it (for fun):
+//   Power: upcoming events · Speed: how recently it held one · Range: fields and links
+//   Durability: how much it says about itself · Precision: a regular meeting time and a handle
+//   Potential: applications open, or anything coming up
+const STAND_AXES = ["Power", "Speed", "Range", "Durability", "Precision", "Potential"];
+function standOf(club, upcoming, applying) {
+  const grade = (v, cuts) => "EDCBA"[cuts.filter((c) => v >= c).length];
+  const days = club.last_event ? (Date.parse(localDate(0)) - Date.parse(club.last_event)) / 864e5 : 999;
+  const speed = upcoming ? "A" : days < 14 ? "B" : days < 45 ? "C" : days < 120 ? "D" : "E";
+  return [
+    grade(upcoming, [1, 2, 4, 7]),
+    speed,
+    grade((club.fields?.length ?? 0) + (club.website ? 1 : 0) + (club.instagram ? 1 : 0), [1, 2, 3, 4]),
+    grade((club.description ?? club.about ?? "").length, [40, 100, 220, 400]),
+    club.meets ? (club.handle ? "A" : "B") : club.handle ? "C" : "E",
+    applying ? "A" : upcoming ? "B" : days < 60 ? "C" : "D",
+  ];
+}
+
+function StandStats({ club, upcoming, applying }) {
+  const grades = standOf(club, upcoming, applying);
+  const r = (g) => ({ A: 1, B: 0.8, C: 0.6, D: 0.4, E: 0.2 })[g] * 40;
+  const at = (i, len) => {
+    const a = (Math.PI / 3) * i - Math.PI / 2;
+    return [Math.cos(a) * len, Math.sin(a) * len];
+  };
+  const shape = grades.map((g, i) => at(i, r(g)).join(",")).join(" ");
+  const frame = STAND_AXES.map((_, i) => at(i, 40).join(",")).join(" ");
+  return (
+    <span className="stand" aria-label={STAND_AXES.map((a, i) => `${a} ${grades[i]}`).join(", ")}>
+      <svg viewBox="-58 -54 116 108" aria-hidden="true">
+        <polygon className="stand-frame" points={frame} />
+        <polygon className="stand-frame inner" points={STAND_AXES.map((_, i) => at(i, 20).join(",")).join(" ")} />
+        <polygon className="stand-shape" points={shape} />
+        {STAND_AXES.map((a, i) => {
+          const [x, y] = at(i, 50);
+          return (
+            <text key={a} x={x} y={y + 3} className="stand-grade">
+              {grades[i]}
+            </text>
+          );
+        })}
+      </svg>
+    </span>
+  );
+}
+
 function ClubsPage({ all, clubList, clubs: membership, applications, onEgg }) {
   const [view, setView] = useState("Clubs");
   const [query, setQuery] = useState("");
@@ -2920,7 +2928,10 @@ function ClubsPage({ all, clubList, clubs: membership, applications, onEgg }) {
 
   return (
     <main className="page clubs-page">
-      <h1>Clubs</h1>
+      <h1>
+        The Riders
+        <Menacing />
+      </h1>
       <div className="view-switch" role="tablist" aria-label="Show clubs or open applications">
         {["Clubs", "Applications"].map((v) => (
           <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}>
@@ -2946,8 +2957,8 @@ function ClubsPage({ all, clubList, clubs: membership, applications, onEgg }) {
           value={query}
           onChange={(e) => {
             filter(setQuery)(e.target.value);
-            if (e.target.value.trim().toLowerCase() === "hack the planet")
-              onEgg({ mode: "matrix", title: "HACK THE PLANET", text: "Access granted to every club on campus. (It was already free.)", seconds: 6 });
+            if (e.target.value.trim().toLowerCase() === "tusk")
+              onEgg({ mode: "tusk", title: "TUSK ACT 4", text: "Infinite rotation. You are now spinning forever (for six seconds).", seconds: 6 });
           }}
         />
         <ChipFilter label="Category" options={categories} value={category} onChange={filter(setCategory)} />
@@ -2978,6 +2989,7 @@ function ClubsPage({ all, clubList, clubs: membership, applications, onEgg }) {
                   ))}
                 </span>
                 {c.about && <span className="club-about">{c.about}</span>}
+                <StandStats club={c} upcoming={upcoming} applying={applying.has(c.name)} />
                 <span className="meta">
                   {[
                     c.meets && `Meets ${c.meets}`,
@@ -5006,13 +5018,16 @@ function DiscordBotLink({ className = "join", children = "Add DubHub to your Dis
 
 function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, onReopened, onEgg }) {
   const lives = useCallback(
-    () => onEgg({ mode: "lives", title: "+30 LIVES", text: "Up, up, down, down... the crew salutes you.", seconds: 6 }),
+    () => onEgg({ mode: "lives", title: "20TH CENTURY BOY", text: "Absolute defense. The whole committee is invincible for six seconds.", seconds: 6 }),
     [onEgg]
   );
   useKeySequence(KONAMI, lives);
   return (
     <main className="page about-page">
-      <h1>About DubHub</h1>
+      <h1>
+        Race Committee
+        <Menacing />
+      </h1>
       <p className="about-lead">
         DubHub puts every student event at UW on one campus map. Club events come in on their own from HuskyLink, club
         Instagram posts and club Discord servers, so no one has to post anything twice.
@@ -5027,7 +5042,7 @@ function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, o
           See open roles
         </button>
       </p>
-      <h2>Choose your crew</h2>
+      <h2>Wanted, for building DubHub</h2>
       <ul className="team">
         {TEAM.map((m) => (
           <TeamMember key={m.name} {...m} />
@@ -5139,12 +5154,35 @@ export default function DubHub() {
     setEgg({ mode, title, text, at: performance.now() });
     eggTimer.current = setTimeout(() => setEgg(null), seconds * 1000);
   }, []);
-  const glitch = useTaps(7, () => fireEgg({ mode: "glitch", title: "SIGNAL CORRUPTED", text: "You broke the district. It'll fix itself in a second.", seconds: 4 }));
+  const glitch = useTaps(7, () => fireEgg({ mode: "menacing", title: "ゴゴゴゴ", text: "Something menacing is approaching. (It's just the logo.)", seconds: 4 }));
+  // D4C: slip between two flags into a parallel world (and back). Tap the flag four times, or type d4c.
+  const [parallel, setParallel] = useState(false);
+  const [sandwich, setSandwich] = useState(0);
+  const d4c = useCallback(() => {
+    setSandwich(Date.now());
+    setTimeout(() => setParallel((p) => !p), 700);
+    fireEgg({
+      mode: "d4c",
+      title: "D4C",
+      text: parallel
+        ? "Dojyaaan~ Back between the flags, back to the world you came from."
+        : "Dirty Deeds Done Dirt Cheap. You slipped between two flags into a parallel world. Do it again to come home.",
+      seconds: 6,
+    });
+  }, [parallel, fireEgg]);
+  useKeySequence(D4C_KEYS, d4c);
+  const flagTaps = useTaps(4, d4c);
 
   return (
-    <div className={egg ? `app egg-${egg.mode}` : "app"}>
-      <NeonCity />
+    <div className={[`app`, egg && `egg-${egg.mode}`, parallel && "parallel"].filter(Boolean).join(" ")}>
+      <DesertTrail />
       <EggToast egg={egg} />
+      {sandwich > 0 && (
+        <div className="d4c-sandwich" key={sandwich} aria-hidden="true">
+          <span className="d4c-flag d4c-left" />
+          <span className="d4c-flag d4c-right" />
+        </div>
+      )}
       <header className="nav">
         <button
           className="logo"
@@ -5155,10 +5193,14 @@ export default function DubHub() {
           aria-label="DubHub, what's on now"
           data-text="DUBHUB"
         >
-          DubHub
+          <span className="logo-word">DubHub</span>
+          <span className="logo-sub">Steel Ball Run</span>
         </button>
-        <nav className="tabs" role="tablist">
-          {tabs.map((t) => (
+        <nav className="tabs" role="tablist" style={{ "--stage": Math.max(0, tabs.indexOf(view)) }}>
+          <span className="trail-rider" aria-hidden="true">
+            <Rider />
+          </span>
+          {tabs.map((t, i) => (
             <button
               key={t}
               role="tab"
@@ -5167,7 +5209,9 @@ export default function DubHub() {
               onClick={() => setTab(t)}
             >
               <Icon d={TAB_ICONS[t]} />
-              <span>{TAB_LABELS[t] ?? t}</span>
+              <span className="stage-no">{ROMAN[i]}</span>
+              <span className="stage-name">{TAB_LABELS[t] ?? t}</span>
+              <small className="stage-flavor">{TAB_STAGES[t]}</small>
             </button>
           ))}
         </nav>
@@ -5175,6 +5219,9 @@ export default function DubHub() {
           {user?.token && <MailButton count={social.waiting} active={view === "Friends"} onClick={() => setTab("Friends")} />}
           <ThemeToggle theme={theme.theme} onPick={theme.pick} />
           <Account user={user} onOpenSignIn={() => openSignIn()} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
+          <button className="race-flag" onClick={flagTaps} aria-label="The flag" title="A flag. Just a flag.">
+            <span />
+          </button>
         </div>
       </header>
 
