@@ -5237,6 +5237,9 @@ export default function DubHub() {
         <div className="d4c-sandwich" key={sandwich} aria-hidden="true">
           <span className="d4c-flag d4c-left" />
           <span className="d4c-flag d4c-right" />
+          <span className="d4c-rays" />
+          <span className="d4c-rays d4c-rays-2" />
+          <span className="d4c-flash" />
           <Art name="d4c.png" className="art-d4c" />
         </div>
       )}
