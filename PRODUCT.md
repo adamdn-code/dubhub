@@ -13,11 +13,12 @@ UW Seattle students, mostly on their phones, checking what is happening on campu
 DubHub puts every student event at UW (club meetings, study sessions, game nights, tabling, tailgates, food) on one campus map and one list, so a student can find something to do right now without following 150 club Instagram accounts. Success: a student opens it, sees what is on near them soon, and marks themselves going.
 
 ## Positioning
-Events are scraped automatically from HuskyLink, club Instagram posts, and club Discord servers, then pinned to real campus buildings. No club has to post anything for its events to appear. The map of campus is the product's home, not a feature.
+Events are scraped automatically from HuskyLink, club Instagram posts, and club Discord servers, then pinned to real campus buildings. No club has to post anything for its events to appear. On branch dubhub-now the front door is time, not place: what's on now and next, as the clubs' own flyers, with the map one tab away.
 
 ## Operating Context
-- Home: a full-bleed campus map with event dots, filters (when, type, class year, major, club type), and callouts for soon-starting events.
-- Events: searchable list grouped by day, type and club-type chips, a Trending row.
+- Now (the front page, on branch dubhub-now): every event that hasn't ended, grouped On now / Starting soon (3 hours) / Later today / Tomorrow / Later this week, shown as the clubs' own flyers; search, type, club type and how-far-ahead filters.
+- Map: the campus map with event dots, filters, a Next up list and labels on events starting soon.
+- Share links: #event=<id> opens an event directly, from the share sheet or a copied link.
 - My Events: events the student marked going plus events from clubs they joined.
 - Clubs: ~150 student orgs (name, Instagram handle, category, description, upcoming events) and an Applications view for open club applications with deadlines.
 - About: the team, plus hidden Stats and Hiring pages; Careers lets people apply to join DubHub.

@@ -8,12 +8,12 @@ import "./DubHub.css";
 import { APPLY_YEARS, FILE_ACCEPT, FILE_LIMITS, JOBS, SAMPLE_JOBS } from "./jobs.js";
 import { CATEGORY_GROUPS, NO_FIELD_COLOR, OTHER_GROUP, groupFor, isHostedBy } from "./eventGroups.js";
 
-const TABS = ["Home", "Events", "My Events", "Clubs", "About"];
+const TABS = ["Events", "Home", "My Events", "Clubs", "About"];
 
 // Outline icons (24x24) for the tab bar; on phones the tabs move to the bottom with these.
 const TAB_ICONS = {
-  Home: "M3 10.5 12 3l9 7.5M5 9.5V21h5v-6h4v6h5V9.5",
-  Events: "M4 6h16v15H4zM4 10h16M8 3v4M16 3v4",
+  Home: "M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14",
+  Events: "M12 7v5l3 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z",
   "My Events": "M6 3h12v18l-6-4-6 4z",
   Clubs: "M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21v-1a7 7 0 0 1 14 0v1M16 3.5a4 4 0 0 1 0 7.5M18 14a6 6 0 0 1 4 6v1",
   About: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 16v-5M12 8h.01",
@@ -22,7 +22,7 @@ const TAB_ICONS = {
 };
 
 // What each tab is called on screen ("Home" is the map).
-const TAB_LABELS = { Home: "Map" };
+const TAB_LABELS = { Events: "Now", Home: "Map" };
 
 function Icon({ d }) {
   return (
@@ -36,6 +36,7 @@ function Icon({ d }) {
 const CLOSE_ICON = "M6 6l12 12M18 6 6 18";
 const CHECK_ICON = "M4.5 12.5l5 5L19.5 7";
 const BACK_ICON = "M15 5l-7 7 7 7";
+const SHARE_ICON = "M12 3v12M7 8l5-5 5 5M5 14v7h14v-7";
 const SUN_ICON = "M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4";
 const MOON_ICON = "M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z";
 
@@ -1368,6 +1369,7 @@ function MapEventCard({ event, j, onEnter, onLeave, onClose }) {
         {going(e, j) && <p className="map-card-going">{going(e, j)}</p>}
         <div className="map-card-actions">
           <JoinButton event={e} j={j} />
+          <ShareButton event={e} />
           <CalendarLink event={e} />
           <PostLink event={e} />
         </div>
@@ -1515,7 +1517,7 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
             center={e.pos}
             radius={radius}
             pathOptions={{
-              color: on ? (palette?.dark ? "#fff" : "#23262b") : soon ? (palette?.dark ? "#ec6a4e" : "#c4432b") : palette?.dark ? "#16181b" : "#fff",
+              color: on ? (palette?.dark ? "#fff" : "#111214") : soon ? "#ff5da2" : palette?.dark ? "#16181b" : "#fff",
               weight: on || soon ? 4 : 2,
               fillColor: eventColor(e, palette?.dark),
               fillOpacity: 1,
@@ -1743,6 +1745,7 @@ function EventDetail({ event, j, onClose }) {
         {/* The action right under the facts, before a description that can run long */}
         <div className="detail-actions">
           <JoinButton event={event} j={j} />
+          <ShareButton event={event} />
           <CalendarLink event={event} />
           <PostLink event={event} />
         </div>
@@ -1820,65 +1823,6 @@ function EventList({ events, j, onSelect, columns = 2 }) {
   ));
 }
 
-// Trending: how much interest an event has, weighted toward the next few days.
-//   interest = 8 per RSVP + 1 per Instagram like + 3 per comment + 5 per extra post promoting it
-//   score    = (1 + log2(1 + interest)) / (1 + days until it / 3)
-// The log keeps one viral post from swamping everything; the second part halves an event's weight
-// three days out. Only events in the next TRENDING_DAYS count. With no interest data, the soonest win.
-const TRENDING_DAYS = 14;
-
-function interest(e) {
-  const rsvps = e.rsvps ?? e.going ?? 0; // sample events have "going" instead of RSVPs
-  return 8 * rsvps + (e.likes ?? 0) + 3 * (e.comments ?? 0) + 5 * ((e.posts ?? 1) - 1);
-}
-
-function trendScore(e) {
-  const days = e.date ? (Date.parse(e.date) - Date.parse(localDate(0))) / 864e5 : 3; // samples have no date
-  if (days < 0 || days > TRENDING_DAYS) return null;
-  return (1 + Math.log2(1 + interest(e))) / (1 + days / 3);
-}
-
-// Why an event is trending besides its RSVPs (which "N going" already shows), e.g. "84 likes".
-function trendReason(e) {
-  const likes = e.likes ? `${e.likes} like${e.likes === 1 ? "" : "s"}` : null;
-  return [likes, e.posts > 1 && `Posted ${e.posts}×`].filter(Boolean).join(" · ") || null;
-}
-
-function trending(events, limit = 5) {
-  const when = (e) => `${e.date ?? "9999"}T${e.start ?? ""}`;
-  return events
-    .map((e) => ({ e, score: trendScore(e) }))
-    .filter((x) => x.score != null)
-    .sort((a, b) => b.score - a.score || when(a.e).localeCompare(when(b.e)))
-    .slice(0, limit)
-    .map((x) => x.e);
-}
-
-function TrendingRow({ events, j, onSelect }) {
-  const top = trending(events);
-  if (top.length === 0) return null;
-  return (
-    <section className="trending" aria-labelledby="trending-title">
-      <h2 id="trending-title">Trending</h2>
-      <ol className="trending-row">
-        {top.map((e, i) => (
-          <li key={e.id} className="trending-card">
-            <Thumb src={e.image} label={e.title} color={eventColor(e)} className="trending-thumb" />
-            <span className="trending-rank">{i + 1}</span>
-            <EventTitle event={e} onSelect={onSelect} />
-            <div className="meta">
-              <Plate where={e.where} />
-              <GreekTag event={e} />
-              {[formatWhen(e), placeCode(e.where) ? null : e.where, going(e, j), trendReason(e)].filter(Boolean).join(" · ")}
-            </div>
-            <JoinButton event={e} j={j} quiet />
-          </li>
-        ))}
-      </ol>
-    </section>
-  );
-}
-
 // Pill buttons for picking one option (filters shared with the map use these too).
 // Fraternity and sorority events get a Greek Life label so they're easy to spot.
 function GreekTag({ event }) {
@@ -1897,26 +1841,147 @@ function ChipFilter({ label, options, value, onChange }) {
   );
 }
 
-function EventsPage({ f, updated, j }) {
-  const [selected, setSelected] = useState(null);
+// When an event starts and ends, as times (an event with no end runs an hour; no start, all day).
+function eventSpan(e) {
+  if (!e.date) return null;
+  const start = new Date(`${e.date}T${e.start ?? "00:00"}`).getTime();
+  const end = e.end ? new Date(`${e.date}T${e.end}`).getTime() : e.start ? start + 36e5 : new Date(`${e.date}T23:59`).getTime();
+  return { start, end, allDay: !e.start };
+}
+
+// The Now page's sections, in order. Every event that hasn't ended lands in exactly one.
+const NOW_SECTIONS = [
+  { id: "now", title: "On now" },
+  { id: "soon", title: "Starting soon", note: "In the next 3 hours" },
+  { id: "today", title: "Later today" },
+  { id: "tomorrow", title: "Tomorrow" },
+  { id: "later", title: "Later this week" },
+];
+
+function sectionOf(e, now = Date.now()) {
+  const span = eventSpan(e);
+  if (!span || span.end < now) return null;
+  if (!span.allDay && span.start <= now) return "now";
+  if (!span.allDay && span.start - now <= 3 * 36e5) return "soon";
+  if (e.date === localDate(0)) return "today"; // later today, or all day today
+  if (e.date === localDate(1)) return "tomorrow";
+  return "later";
+}
+
+// The sticker on a flyer: "On now", "In 20 min", "4:00 PM", "Thu 6:00 PM".
+function stickerOf(e, section) {
+  if (section === "now") return { kind: "now", text: "On now" };
+  if (section === "soon") return { kind: "soon", text: startsIn(e) ?? formatTime(e.start) };
+  const time = e.start ? formatTime(e.start) : "All day";
+  if (section === "today") return { kind: "time", text: time };
+  if (section === "tomorrow") return { kind: "time", text: `Tmrw ${time}` };
+  const [y, m, d] = e.date.split("-").map(Number);
+  const day = new Date(y, m - 1, d).toLocaleDateString("en-US", { weekday: "short" });
+  return { kind: "time", text: `${day} ${time}` };
+}
+
+// One flyer on the wall: the club's own flyer picture (or, when there's none, the title set as
+// type on a sheet of fluoro paper), a sticker with when, and the tear-off tab to say you're going.
+function Flyer({ event: e, section, j, onSelect }) {
+  const [broken, setBroken] = useState(false);
+  const sticker = stickerOf(e, section);
+  const picture = e.image && !broken;
+  return (
+    <li className="flyer">
+      <button className="flyer-sheet" onClick={() => onSelect(e)} aria-label={`${e.title}, ${sticker.text}`}>
+        {picture ? (
+          <img className="flyer-img" src={e.image} alt="" loading="lazy" decoding="async" onError={() => setBroken(true)} />
+        ) : (
+          <span className="flyer-type" aria-hidden="true">
+            {e.title}
+          </span>
+        )}
+        <span className={`sticker sticker-${sticker.kind}`}>{sticker.text}</span>
+      </button>
+      <div className="flyer-body">
+        <h3 className="flyer-title">
+          <button className="club-link" onClick={() => onSelect(e)}>
+            {e.title}
+          </button>
+        </h3>
+        <p className="flyer-meta">
+          <span className="dot" style={{ background: eventColor(e) }} title={eventGroup(e).name} />
+          <span>{hostName(e)}</span>
+        </p>
+        <p className="flyer-where">
+          <Plate where={e.where} />
+          <span>{placeCode(e.where) ? null : e.where}</span>
+          {going(e, j) && <span className="flyer-going">{going(e, j)}</span>}
+        </p>
+      </div>
+      <TearTab event={e} j={j} />
+    </li>
+  );
+}
+
+// The tear-off tab at the bottom of a flyer: "I'm going". Tearing it marks you going (it hangs
+// torn, with a check); tapping it again puts it back.
+function TearTab({ event, j }) {
+  const isJoined = j.joined.includes(String(event.id));
+  return (
+    <button
+      className={isJoined ? "tear-tab torn" : "tear-tab"}
+      aria-pressed={isJoined}
+      aria-label={`${isJoined ? "Going to" : "Go to"} ${event.title}`}
+      title={isJoined ? "You're going. Tap to take it back" : j.signedIn ? undefined : "Sign in to say you're going"}
+      onClick={() => j.toggle(event.id)}
+    >
+      {isJoined && <Icon d={CHECK_ICON} />}
+      {isJoined ? "Going" : "I'm going"}
+    </button>
+  );
+}
+
+// "Sat, Nov 8 · 1:40 PM", ticking once a minute.
+function useNow() {
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const t = setInterval(() => setNow(Date.now()), 60e3);
+    return () => clearInterval(t);
+  }, []);
+  return now;
+}
+
+function NowPage({ f, updated, j, onSelect }) {
   const [query, setQuery] = useState("");
+  const now = useNow();
   const q = query.trim().toLowerCase();
   const events = q
-    ? f.events.filter((e) => [e.title, e.host, e.where, e.description].some((s) => s?.toLowerCase().includes(q)))
+    ? f.events.filter((e) => [e.title, e.host, e.club?.name, e.where, e.description].some((s) => s?.toLowerCase().includes(q)))
     : f.events;
 
+  const sections = NOW_SECTIONS.map((sec) => ({ ...sec, events: [] }));
+  const when = (e) => `${e.date}T${e.start ?? "99"}`; // all-day events after the timed ones that day
+  for (const e of [...events].sort((x, y) => when(x).localeCompare(when(y)))) {
+    const id = sectionOf(e, now);
+    if (id) sections.find((sec) => sec.id === id).events.push(e);
+  }
+  const shown = sections.filter((sec) => sec.events.length);
+  const clock = new Date(now);
+
   return (
-    <main className="page">
-      <div className="page-head">
-        <h1>Events</h1>
-        <WhenSelect aria-label="When" value={f.when} onChange={f.setWhen} />
-      </div>
-      {updated && (
+    <main className="page now-page">
+      <header className="now-head">
+        <h1>
+          <span>{clock.toLocaleDateString("en-US", { weekday: "long" })}</span>{" "}
+          {clock.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}
+        </h1>
         <p className="page-sub">
-          From HuskyLink, club Instagram posts and club Discord servers · updated{" "}
-          {new Date(updated).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}
+          What's on at UW, soonest first.
+          {updated &&
+            ` Pulled from HuskyLink, club Instagram and Discord · updated ${new Date(updated).toLocaleString("en-US", {
+              month: "short",
+              day: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+            })}`}
         </p>
-      )}
+      </header>
       <div className="toolbar">
         <input
           type="search"
@@ -1926,18 +1991,83 @@ function EventsPage({ f, updated, j }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <ChipFilter label="Event type" options={["All", ...Object.keys(TYPE_COLORS)]} value={f.type} onChange={f.setType} />
-        <ChipFilter label="Club type" options={[ALL_CLUBS, ...f.clubTypes]} value={f.club} onChange={f.setClub} />
+        <div className="filter-row">
+          <ChipFilter label="Event type" options={["All", ...Object.keys(TYPE_COLORS)]} value={f.type} onChange={f.setType} />
+          <select
+            aria-label="Club type"
+            className={f.club !== ALL_CLUBS ? "filter-select set" : "filter-select"}
+            value={f.club}
+            onChange={(e) => f.setClub(e.target.value)}
+          >
+            <option>{ALL_CLUBS}</option>
+            {f.clubTypes.map((c) => (
+              <option key={c}>{c}</option>
+            ))}
+          </select>
+          <WhenSelect aria-label="How far ahead" className="filter-select" value={f.when} onChange={f.setWhen} />
+        </div>
       </div>
-      {!q && <TrendingRow events={events} j={j} onSelect={setSelected} />}
-      <h2>{q ? `${events.length} result${events.length === 1 ? "" : "s"}` : "All events"}</h2>
-      {events.length > 0 ? (
-        <EventList events={events} j={j} onSelect={setSelected} />
-      ) : (
-        <p className="empty">No events match{q ? ` "${query}"` : " these filters"}.</p>
+      {shown.length === 0 && (
+        <div className="empty-wall">
+          <p>{q ? `Nothing matches "${query}".` : "Nothing on the wall for these filters."}</p>
+          {f.when !== "Any time" && (
+            <button className="link-button" onClick={() => f.setWhen("Any time")}>
+              Look further ahead
+            </button>
+          )}
+        </div>
       )}
-      {selected && <EventDetail event={selected} j={j} onClose={() => setSelected(null)} />}
+      {shown.map((sec) => (
+        <section key={sec.id} className={`wall wall-${sec.id}`} aria-labelledby={`wall-${sec.id}`}>
+          <h2 id={`wall-${sec.id}`}>
+            {sec.title}
+            <span className="wall-count">{sec.events.length}</span>
+            {sec.note && <span className="wall-note">{sec.note}</span>}
+          </h2>
+          <ul className="flyers">
+            {sec.events.map((e) => (
+              <Flyer key={e.id} event={e} section={sec.id} j={j} onSelect={onSelect} />
+            ))}
+          </ul>
+        </section>
+      ))}
     </main>
+  );
+}
+
+// ------------------------------------------------------------------------------ share links
+// An event's own link: dubhub.../#event=<id> opens straight to it.
+function eventLink(e) {
+  return `${location.origin}${location.pathname}#event=${encodeURIComponent(e.id)}`;
+}
+
+function linkedEventId() {
+  const m = location.hash.match(/^#event=(.+)$/);
+  return m ? decodeURIComponent(m[1]) : null;
+}
+
+// Opens the phone's share sheet, or copies the link where there isn't one.
+function ShareButton({ event }) {
+  const [copied, setCopied] = useState(false);
+  const share = async () => {
+    const url = eventLink(event);
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: event.title, text: `${event.title} · ${formatWhen(event) ?? ""}`, url });
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Closing the share sheet throws; nothing to do.
+    }
+  };
+  return (
+    <button className="link-button share-button" onClick={share}>
+      <Icon d={SHARE_ICON} />
+      <span aria-live="polite">{copied ? "Link copied" : "Share"}</span>
+    </button>
   );
 }
 
@@ -4464,7 +4594,21 @@ function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, o
 }
 
 export default function DubHub() {
-  const [tab, setTab] = useState("Home");
+  const [tab, setTab] = useState("Events");
+  const [linkedId, setLinkedId] = useState(linkedEventId);
+  useEffect(() => {
+    const onHash = () => setLinkedId(linkedEventId());
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+  const openEvent = useCallback((e) => {
+    history.pushState(null, "", `#event=${encodeURIComponent(e.id)}`);
+    setLinkedId(String(e.id));
+  }, []);
+  const closeEvent = useCallback(() => {
+    history.pushState(null, "", location.pathname + location.search);
+    setLinkedId(null);
+  }, []);
   const { events: loaded, updated } = useEvents();
   const clubList = useClubs();
   const applications = useApplications();
@@ -4491,7 +4635,7 @@ export default function DubHub() {
 
   // The sign-in page remembers where you came from and the event you tried to join (or the role
   // you tried to apply for, whose form opens again once you're signed in).
-  const [signInFrom, setSignInFrom] = useState({ tab: "Home", eventId: null, jobId: null });
+  const [signInFrom, setSignInFrom] = useState({ tab: "Events", eventId: null, jobId: null });
   const pendingJoin = useRef(null);
   const openSignIn = useCallback(
     (eventId = null, jobId = null) => {
@@ -4526,8 +4670,7 @@ export default function DubHub() {
   return (
     <div className="app">
       <header className="nav">
-        <button className="logo" onClick={() => setTab("Home")} aria-label="DubHub, back to the map">
-          <span className="logo-mark" aria-hidden="true" />
+        <button className="logo" onClick={() => setTab("Events")} aria-label="DubHub, what's on now">
           DubHub
         </button>
         <nav className="tabs" role="tablist">
@@ -4552,7 +4695,7 @@ export default function DubHub() {
       </header>
 
       {view === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} palette={MAP_PALETTES[theme.theme]} />}
-      {view === "Events" && <EventsPage f={f} updated={updated} j={j} />}
+      {view === "Events" && <NowPage f={f} updated={updated} j={j} onSelect={openEvent} />}
       {view === "My Events" && (
         <MyEventsPage
           all={all}
@@ -4579,6 +4722,9 @@ export default function DubHub() {
       {view === "Hiring" && <HiringPage user={user} />}
       {view === "Friends" && <FriendsPage user={user} social={social} events={all} onOpenEvent={setFriendEvent} />}
       {view === "Friends" && friendEvent && <EventDetail event={friendEvent} j={j} onClose={() => setFriendEvent(null)} />}
+      {linkedId && all.find((e) => String(e.id) === linkedId) && (
+        <EventDetail event={all.find((e) => String(e.id) === linkedId)} j={j} onClose={closeEvent} />
+      )}
       {view === "Sign in" && (
         <SignInPage
           user={user}

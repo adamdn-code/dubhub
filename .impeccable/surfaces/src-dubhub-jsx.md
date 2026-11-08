@@ -5,20 +5,20 @@ primary_target: "src/DubHub.jsx"
 related_targets: ["src/DubHub.css"]
 ---
 
-# DubHub app shell (all tabs)
+# DubHub app shell (all tabs), branch dubhub-now
 
-Scope: the whole DubHub SPA (Home map, Events, My Events, Clubs, About and its sub-pages). Visitor mode: Operate. Audience: UW students on phones between classes deciding what to go to. Constraints: every feature, route and API call keeps working; light + dark only.
+Scope: the whole DubHub SPA. Visitor mode: Operate. Audience: UW students on phones between classes asking "what's happening right now?". Constraints: every feature keeps working; light + dark only. Product bet: "Now" (events by time from now) is the front page; the map is a tab; any event can be shared as a link.
 
 ## Direction contract
 
-THESIS: DubHub is campus wayfinding for what's on. Every event hangs off a building-code plate the way a UW sign hangs off a building, and the map leads. It refuses the vibe-coded event app: purple pill chips, floating rounded cards on shadows, a filled "Join" button on every row, a centered hero box.
+THESIS: DubHub is the telephone pole on the Ave, kept current: real club flyers, sorted by how soon they start, with a tear-off tab to say you're going. It refuses the map-first front page and the grid of identical soft cards.
 
-OWN-WORLD: Sign slate (#23262b) shell bar and map panels; concrete ground (#e7e6e1 light, #141619 dark); white sheets with 1px rules; Red Square brick (#c4432b) is the only accent: now/soon, the active tab, the primary action, and "going". Atkinson Hyperlegible Next for every word, times and codes in it with tabular figures (the Mono cut was tried and dropped: its slab letters read as a typewriter costume, and campus signs set codes in the same humanist sans). Square corners (2px max), no decorative shadows.
+OWN-WORLD: Xerox black (#111214) shell bar and type; cool paper ground (#ecece8 light, #121314 dark); white flyer sheets with a strip of translucent tape; fluoro copy-paper colors with jobs: fluoro yellow (#f2ff3d) is the action ("I'm going"), fluoro orange (#ff7417) is "on now", fluoro pink (#ff5da2) is "starting soon"; flyers with no picture are set as type on a fluoro sheet. Archivo, condensed and heavy for headlines, normal width for UI text, tabular figures. Square corners, 1px black rules.
 
-STORY: A student opens DubHub, sees what is starting next and in which building, taps one, marks going, and it shows up in My Events.
+STORY: A student opens DubHub, sees what is on now and next as a wall of flyers, taps one, tears off "I'm going", and shares the link with a friend.
 
-FIRST VIEWPORT: 56px slate sign bar (wordmark, tabs with a brick underline, sign-in). Full-bleed campus map beneath. Top-left: slate filter sign, 320px. Top-right: "Next up" sign, the next five events as code plate + title + time. Pins for events starting soon carry a code plate; the rest are category dots. Primary action: an event's Going button in its callout and detail sheet.
+FIRST VIEWPORT: Black bar (DUBHUB wordmark, tabs Now / Map / My Events / Clubs / About, sign-in). Below: a heavy condensed headline with the live day and time, a search field and one row of filters, then "On now" and "Starting soon" sections as a grid of flyers (picture, title, host, time sticker, building label, tear-off "I'm going" tab). Primary action: the tear-off tab on each flyer.
 
-FORM: Campus Wayfinding, grounded candidate 1 of 7 (IMPECCABLE'S PICK, chosen by the user over the assigned Time Schedule). seed:c5e019efe851ff94. Signature move: building-code plates on pins, lists, and detail sheets.
+FORM: The Ave Flyer Wall, grounded candidate 1 of 7 (IMPECCABLE'S PICK, chosen by the user over the assigned Ticket & Wristband). seed:526a28962363cb16. Signature move: the tear-off tab that tears away when you mark yourself going.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

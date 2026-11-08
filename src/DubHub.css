@@ -1,112 +1,116 @@
-/* DubHub: campus wayfinding. Sign slate for the shell and anything floating on the map, concrete
-   for the ground, white sheets ruled in 1px lines, and Red Square brick as the one accent: now and
-   soon, the active tab, and events you're going to. Square corners throughout. */
+/* DubHub: the flyer wall on the Ave. Xerox black for the bar and the type, a cool paper ground,
+   white flyer sheets held up with tape, and fluoro copy-paper colors that each have one job:
+   yellow is the action (I'm going) and the active tab, orange is on now, pink is starting soon,
+   green is the sheet a flyer with no picture is printed on. Square corners, 1px black rules. */
 :root {
-  --font: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: var(--font); /* times and codes: the same face, with tabular figures */
+  --display-stretch: 70%; /* headlines: Archivo condensed */
   --radius: 2px;
 
-  --bg: #e6e5e0; /* concrete */
-  --surface: #ffffff; /* sheets, inputs, pop-ups */
-  --tint: #f0efea; /* hover, quiet fills */
-  --text: #1b1e22;
-  --muted: #595e65;
-  --line: #d4d2cb; /* 1px rules */
-  --field-line: #a9a7a0; /* input edges */
-  --ink: #1b1e22; /* links, focus, strong edges */
+  --yellow: #f2ff3d; /* fluoro: the action, the active tab */
+  --yellow-hover: #e6f52a;
+  --orange: #ff7417; /* fluoro: on now */
+  --pink: #ff5da2; /* fluoro: starting soon */
+  --green: #b4f04a; /* fluoro: the sheet for flyers with no picture */
 
-  --slate: #23262b; /* sign panels: top bar, map panels, plates */
-  --slate-2: #33373d; /* hover on slate */
-  --slate-line: #3e434a;
+  --bg: #ecece8; /* the pole: cool paper gray */
+  --surface: #ffffff; /* flyer sheets, inputs, pop-ups */
+  --tint: #f3f3f0;
+  --text: #111214;
+  --muted: #55575c;
+  --line: #d2d2cc;
+  --field-line: #8b8d91;
+  --ink: #111214;
+  --focus: #111214;
+
+  --slate: #111214; /* xerox black: the top bar, map panels, labels */
+  --slate-2: #2a2c30;
+  --slate-line: #34363a;
   --on-slate: #ffffff;
-  --on-slate-muted: #b3b8bf;
+  --on-slate-muted: #a9abb0;
   --panel: var(--slate);
+  --sheet-tape: rgba(255, 255, 255, 0.55);
 
-  --action: #23262b; /* buttons */
+  --action: #111214;
   --on-action: #ffffff;
   --action-hover: #000000;
 
-  --brick: #c4432b; /* Red Square: now, soon, active, going */
-  --brick-ink: #b03a24; /* brick as text on white */
-  --brick-wash: #f7e3dd;
-
   --error: #b3261e;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23595e65' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
-  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b3b8bf' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2355575c' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a9abb0' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
   --nav-bg: var(--slate);
-  --nav-line: var(--slate); /* panels on the map are edged in this too: invisible in light */
+  --nav-line: var(--slate);
   --overlay-bg: var(--panel);
   --callout-bg: var(--surface);
-  --shadow: 0 1px 2px rgba(15, 17, 20, 0.18), 0 8px 24px rgba(15, 17, 20, 0.16);
+  --shadow: 0 1px 2px rgba(17, 18, 20, 0.2), 0 8px 22px rgba(17, 18, 20, 0.16);
   color-scheme: light;
   --nav-h: 56px;
   --tabbar-h: 0px; /* the bottom tab bar's height on phones */
 }
 
-/* Dark: follows the device unless someone picks Light or Dark in the top bar. */
+/* Dark: lights out on the pole. Follows the device unless someone flips the switch. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-  --bg: #131518;
-  --surface: #1b1e22;
-  --tint: #24282d;
-  --text: #ecebe6;
-  --muted: #a1a6ad;
-  --line: #2c3035;
-  --field-line: #464b52;
-  --ink: #ecebe6;
-  --slate: #0c0e10;
-  --slate-2: #2b2f35;
-  --slate-line: #3a3f46;
-  --panel: #1f2226;
-  --action: #ecebe6;
-  --on-action: #15171a;
+  --bg: #121314;
+  --surface: #1c1d1f;
+  --tint: #26272a;
+  --text: #f0f0ec;
+  --muted: #a3a5aa;
+  --line: #303236;
+  --field-line: #5a5c61;
+  --ink: #f0f0ec;
+  --focus: var(--yellow);
+  --slate: #000000;
+  --slate-2: #232427;
+  --slate-line: #303236;
+  --panel: #1c1d1f;
+  --action: #f0f0ec;
+  --on-action: #111214;
   --action-hover: #ffffff;
-  --brick: #ec6a4e;
-  --brick-ink: #ff8a70;
-  --brick-wash: #3a221c;
+  --sheet-tape: rgba(255, 255, 255, 0.16);
   --error: #ff9b8f;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a1a6ad' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3a5aa' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
   --nav-bg: var(--slate);
   --nav-line: var(--slate-line);
   --overlay-bg: var(--panel);
   --callout-bg: var(--panel);
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.4);
   color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #131518;
-  --surface: #1b1e22;
-  --tint: #24282d;
-  --text: #ecebe6;
-  --muted: #a1a6ad;
-  --line: #2c3035;
-  --field-line: #464b52;
-  --ink: #ecebe6;
-  --slate: #0c0e10;
-  --slate-2: #2b2f35;
-  --slate-line: #3a3f46;
-  --panel: #1f2226;
-  --action: #ecebe6;
-  --on-action: #15171a;
+  --bg: #121314;
+  --surface: #1c1d1f;
+  --tint: #26272a;
+  --text: #f0f0ec;
+  --muted: #a3a5aa;
+  --line: #303236;
+  --field-line: #5a5c61;
+  --ink: #f0f0ec;
+  --focus: var(--yellow);
+  --slate: #000000;
+  --slate-2: #232427;
+  --slate-line: #303236;
+  --panel: #1c1d1f;
+  --action: #f0f0ec;
+  --on-action: #111214;
   --action-hover: #ffffff;
-  --brick: #ec6a4e;
-  --brick-ink: #ff8a70;
-  --brick-wash: #3a221c;
+  --sheet-tape: rgba(255, 255, 255, 0.16);
   --error: #ff9b8f;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a1a6ad' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3a5aa' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
   --nav-bg: var(--slate);
   --nav-line: var(--slate-line);
   --overlay-bg: var(--panel);
   --callout-bg: var(--panel);
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.4);
   color-scheme: dark;
 }
 
 ::selection {
-  background: var(--brick);
-  color: #fff;
+  background: var(--yellow);
+  color: #111214;
 }
 
 * {
@@ -142,8 +146,8 @@ body {
 
 /* Browser parts drawn in the site's own colors */
 :root {
-  accent-color: var(--brick);
-  caret-color: var(--brick);
+  accent-color: var(--ink);
+  caret-color: var(--ink);
   scrollbar-color: var(--field-line) transparent;
 }
 
@@ -158,7 +162,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid var(--brick);
+  outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
 
@@ -177,26 +181,22 @@ a:hover {
   z-index: 1000;
 }
 
+/* The wordmark: heavy condensed caps, like the top line of a photocopied flyer */
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
   font: inherit;
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
+  font-size: 24px;
+  font-weight: 900;
+  font-stretch: var(--display-stretch);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
   color: var(--on-slate);
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-}
-
-/* A brick square, the color of Red Square */
-.logo-mark {
-  width: 12px;
-  height: 12px;
-  background: var(--brick);
 }
 
 .tabs {
@@ -230,20 +230,17 @@ a:hover {
   color: var(--on-slate);
 }
 
+/* The active tab: a strip of fluoro yellow behind its name, like a highlighter on the bar */
 .tab.active {
   color: var(--on-slate);
   font-weight: 700;
 }
 
-/* The active tab is underlined in brick, flush with the bottom of the bar */
-.tab.active::after {
-  content: "";
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: -1px;
-  height: 3px;
-  background: var(--brick);
+.tab.active span {
+  padding: 2px 6px;
+  margin: 0 -6px;
+  background: var(--yellow);
+  color: #111214;
 }
 
 .tab:focus-visible {
@@ -343,7 +340,7 @@ a:hover {
 }
 
 /* -------------------------------------------------------------- Plates and time tags --- */
-/* A building code as it appears on campus signs: white on slate, the room number lighter. */
+/* A building code (HUB 314) as a black label-maker strip; the room number lighter. */
 .plate {
   display: inline-flex;
   align-items: baseline;
@@ -410,26 +407,26 @@ a:hover {
 }
 
 .plate.plate-now {
-  background: var(--brick);
-  color: #fff;
+  background: var(--orange);
+  color: #111214;
 }
 
-/* "In 12 min" / "Now": brick, the one color that means soon */
+/* "In 12 min" / "Now": a fluoro sticker. Pink is starting soon, orange is on now. */
 .starts {
   display: inline-block;
-  font-family: var(--mono);
+  padding: 1px 6px;
+  background: var(--pink);
+  color: #111214;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--brick-ink);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   white-space: nowrap;
+  border-radius: var(--radius);
 }
 
 .starts.now {
-  padding: 1px 6px;
-  background: var(--brick);
-  color: #fff;
-  border-radius: var(--radius);
+  background: var(--orange);
 }
 
 /* ------------------------------------------------------------------------- Home: map --- */
@@ -517,10 +514,10 @@ a:hover {
   border-color: var(--on-slate-muted);
 }
 
-/* A filter someone changed: a brick edge, so it's obvious the map is filtered */
+/* A filter someone changed: a fluoro yellow edge, so it's obvious the map is filtered */
 .filters select.set {
-  border-color: var(--brick);
-  box-shadow: inset 0 0 0 1px var(--brick);
+  border-color: var(--yellow);
+  box-shadow: inset 0 0 0 1px var(--yellow);
 }
 
 .filters option {
@@ -623,14 +620,17 @@ a:hover {
   white-space: nowrap;
 }
 
-.next-up .starts,
 .next-up-time.soon {
-  color: #ff9479;
+  color: var(--pink);
+}
+
+.next-up .starts {
+  color: #111214;
 }
 
 .next-up .starts.now {
   align-self: flex-start;
-  color: #fff;
+  color: #111214;
 }
 
 .next-up-text {
@@ -873,7 +873,7 @@ a:hover {
 }
 
 /* ------------------------------------------------------------------------- Buttons --- */
-/* Buttons: slate, square. The event "I'm going" (.go) is brick, the one primary action. */
+/* Buttons: black, square. The event "I'm going" (.go) is fluoro yellow, the one primary action. */
 .join {
   display: inline-flex;
   align-items: center;
@@ -899,14 +899,14 @@ a:hover {
 }
 
 .join.go {
-  background: var(--brick);
-  border-color: var(--brick);
-  color: #fff;
+  background: var(--yellow);
+  border-color: #111214;
+  color: #111214;
 }
 
 .join.go:hover {
-  background: var(--brick-ink);
-  border-color: var(--brick-ink);
+  background: var(--yellow-hover);
+  border-color: #111214;
 }
 
 .join .icon {
@@ -936,17 +936,17 @@ a:hover {
   border-color: var(--ink);
 }
 
-/* Going: a brick outline with a check, in lists too */
+/* Going: black with yellow type and a check, in lists too */
 .join.joined,
 .join.quiet.joined {
-  background: var(--brick-wash);
-  border-color: var(--brick);
-  color: var(--brick-ink);
+  background: #111214;
+  border-color: var(--ink);
+  color: var(--yellow);
 }
 
 .join.joined:hover {
-  background: var(--brick-wash);
-  border-color: var(--brick-ink);
+  background: #000;
+  border-color: var(--ink);
 }
 
 .club-links {
@@ -1066,9 +1066,9 @@ a:hover {
 }
 
 .search:focus-visible {
-  outline: 2px solid var(--brick);
+  outline: 2px solid var(--focus);
   outline-offset: -1px;
-  border-color: var(--brick);
+  border-color: var(--ink);
 }
 
 /* One-pick filters: a row of square toggles; the picked one is a slate plate. */
@@ -1923,7 +1923,7 @@ a.discord-bot-link.join {
 
 /* Greek Life: a pill in the theme's gold, so fraternity and sorority events stand out */
 .tag-greek {
-  background: color-mix(in srgb, var(--brick) 30%, transparent);
+  background: var(--tint);
   color: var(--text);
   white-space: nowrap;
 }
@@ -1994,7 +1994,7 @@ a.discord-bot-link.join {
 }
 
 .member .avatar.claude {
-  background: var(--brick);
+  background: var(--yellow);
   color: var(--slate);
 }
 
@@ -3041,20 +3041,20 @@ a.discord-bot-link.join {
 /* ---------------------------------------------- Stats (moderators only) --- */
 /* Chart colors, checked with the dataviz validator against each theme's cards. */
 :root {
-  --chart-1: #c4432b; /* brick */
+  --chart-1: #e0539a; /* pink */
   --chart-2: #4f6a8a; /* slate blue */
   --good: #1e7d32; /* a count that went up */
 }
 
 :root[data-theme="dark"] {
-  --chart-1: #ec6a4e;
+  --chart-1: #ff5da2;
   --chart-2: #8ea7c4;
   --good: #4cc35a;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --chart-1: #ec6a4e;
+    --chart-1: #ff5da2;
     --chart-2: #8ea7c4;
     --good: #4cc35a;
   }
@@ -4208,4 +4208,381 @@ button.person:hover,
 .club-search select:hover,
 .profile-form select:hover {
   border-color: var(--ink);
+}
+
+/* ================================================================ The Now page: the flyer wall */
+/* Headlines on every page: heavy condensed, like the top line of a photocopied flyer */
+.page h1,
+.page h2,
+.club-modal h2,
+.map-card-title {
+  font-stretch: var(--display-stretch);
+}
+
+.page h1 {
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+}
+
+.now-head h1 span {
+  color: var(--muted);
+}
+
+.now-head .page-sub {
+  max-width: 70ch;
+}
+
+/* Search, then one row: type toggles, club type, and how far ahead */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-row .chip-row {
+  flex: 0 1 auto;
+}
+
+.filter-select {
+  appearance: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 32px 6px 11px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface) var(--select-arrow) no-repeat right 11px center;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.filter-select:hover {
+  border-color: var(--field-line);
+}
+
+.filter-select.set {
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+/* A section of the wall: "On now 4" */
+.wall {
+  margin-top: 36px;
+}
+
+.page .wall h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.wall-count {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.wall-note {
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: 100%;
+  text-transform: none;
+  color: var(--muted);
+}
+
+/* On now and Starting soon get a fluoro rule under their heading */
+.page .wall-now h2 {
+  border-bottom-color: var(--orange);
+  border-bottom-width: 4px;
+}
+
+.page .wall-soon h2 {
+  border-bottom-color: var(--pink);
+  border-bottom-width: 4px;
+}
+
+.flyers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 28px 20px;
+}
+
+/* One flyer: a white sheet, taped up, hung a hair off straight (alternating), squared when you
+   reach for it. The tilt is under a degree so a full wall still reads as a tidy grid. */
+.flyer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  box-shadow: 0 1px 1px rgba(17, 18, 20, 0.12), 0 4px 10px rgba(17, 18, 20, 0.08);
+  transform: rotate(-0.6deg);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flyer:nth-child(2n) {
+  transform: rotate(0.5deg);
+}
+
+.flyer:nth-child(3n) {
+  transform: rotate(-0.2deg);
+}
+
+.flyer:hover,
+.flyer:focus-within {
+  transform: none;
+  box-shadow: 0 2px 3px rgba(17, 18, 20, 0.14), 0 12px 26px rgba(17, 18, 20, 0.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flyer {
+    transition: none;
+  }
+}
+
+/* A strip of tape across the top edge */
+.flyer::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -9px;
+  left: 50%;
+  width: 72px;
+  height: 20px;
+  transform: translateX(-50%) rotate(-2deg);
+  background: var(--sheet-tape);
+  box-shadow: 0 0 0 1px rgba(17, 18, 20, 0.06);
+  backdrop-filter: blur(1px);
+  pointer-events: none;
+}
+
+.flyer:nth-child(2n)::before {
+  transform: translateX(-50%) rotate(3deg);
+}
+
+.flyer-sheet {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  border: none;
+  background: var(--tint);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.flyer-sheet:focus-visible {
+  outline-offset: -3px;
+}
+
+.flyer-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* No picture: the title, printed big on a sheet of fluoro green */
+.flyer-type {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  padding: 16px 14px;
+  background: var(--green);
+  color: #111214;
+  font-size: 30px;
+  font-weight: 900;
+  font-stretch: 62%;
+  line-height: 0.95;
+  text-align: left;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+/* When: a fluoro sticker slapped on the flyer's corner */
+.sticker {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  padding: 4px 8px 3px;
+  background: #fff;
+  color: #111214;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  box-shadow: 0 1px 2px rgba(17, 18, 20, 0.3);
+}
+
+.sticker-now {
+  background: var(--orange);
+}
+
+.sticker-soon {
+  background: var(--pink);
+}
+
+.flyer-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 12px 10px;
+  flex: 1;
+}
+
+.page .flyer-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  font-stretch: var(--display-stretch);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.flyer-title .club-link {
+  font-size: inherit;
+  line-height: inherit;
+  text-align: left;
+}
+
+.flyer-meta,
+.flyer-where {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.flyer-meta {
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+
+.flyer-meta .dot {
+  width: 8px;
+  height: 8px;
+  margin: 0;
+  transform: translateY(-1px);
+}
+
+.flyer-going {
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* The tear-off tab: a perforated strip at the bottom of the flyer. Going tears it away. */
+.tear-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: none;
+  border-top: 2px dashed var(--field-line);
+  background: var(--yellow);
+  color: #111214;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  font-stretch: 85%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), background-color 160ms;
+}
+
+.tear-tab:hover {
+  background: var(--yellow-hover);
+}
+
+.tear-tab .icon {
+  width: 17px;
+  height: 17px;
+}
+
+/* Torn off: the tab hangs loose, black with yellow type */
+.tear-tab.torn {
+  background: #111214;
+  color: var(--yellow);
+  border-top-color: transparent;
+  transform: translateY(5px) rotate(-1.5deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tear-tab,
+  .tear-tab.torn {
+    transition: none;
+    transform: none;
+  }
+}
+
+.share-button {
+  text-decoration: none;
+}
+
+.share-button:hover span {
+  text-decoration: underline;
+}
+
+.empty-wall {
+  margin-top: 32px;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px dashed var(--field-line);
+}
+
+.empty-wall p {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .page h1 {
+    font-size: 34px;
+  }
+  .flyers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 12px;
+  }
+  .page .wall h2 {
+    font-size: 24px;
+  }
+  .flyer-type {
+    font-size: 22px;
+    padding: 12px 10px;
+  }
+  .page .flyer-title {
+    font-size: 18px;
+  }
+  .flyer-body {
+    padding: 10px 10px 8px;
+  }
+  .tear-tab {
+    font-size: 13px;
+    padding: 8px;
+  }
+  .sticker {
+    font-size: 11px;
+  }
 }
