@@ -1480,8 +1480,121 @@ function dotRadius(e) {
 // How long a callout card's stem is (it matches .callout::after in DubHub.css).
 const STEM = 10;
 
-function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, palette }) {
+// Map flair: what's happening at a given moment (the time slider's position), today's busiest
+// buildings as glowing hotspots with name labels, and pulsing rings on what's live.
+function spanOf(e) {
+  return e.date && e.start ? eventSpan(e) : null;
+}
+
+// "live": on at that moment; "soon": starts within the next hour; "later": later today; null: other.
+function stateAt(e, at) {
+  const span = spanOf(e);
+  if (!span) return null;
+  if (span.start <= at && at < span.end) return "live";
+  if (span.start > at && span.start - at <= 36e5) return "soon";
+  if (e.date === localDate(0) && span.start > at) return "later";
+  return null;
+}
+
+// A building's short name for its label: the code where there is one, else the place up to a comma.
+function placeName(where) {
+  const p = placeCode(where);
+  if (p && /^[A-Z0-9 ]+$/.test(p.code) && p.code.length <= 5) {
+    return where.replace(/\s*\b\d{2,4}[A-Z]?\b.*$/, "").trim() || p.code;
+  }
+  return where.split(",")[0].replace(/\s*\b(Room|Rm\.?)\s*\S+$/i, "").trim();
+}
+
+// Today's places with something on from this moment on, busiest first.
+function hotPlaces(events, at) {
+  const byPlace = new Map();
+  for (const e of events) {
+    if (!e.pos || !e.where || e.where === "Online" || e.date !== localDate(0)) continue;
+    const span = spanOf(e);
+    if (span && span.end < at) continue;
+    const key = e.pos.join();
+    const p = byPlace.get(key) ?? { pos: e.pos, name: placeName(e.where), events: [] };
+    p.events.push(e);
+    byPlace.set(key, p);
+  }
+  return [...byPlace.values()].sort((a, b) => b.events.length - a.events.length);
+}
+
+const LABELS_SHOWN = 8;
+
+function MapFlair({ events, at, dark }) {
+  const places = hotPlaces(events, at);
+  const ink = dark ? "#b9a3f5" : "#4b2e83";
+  const gold = dark ? "#d6c38f" : "#b7a57a";
+  return (
+    <>
+      {/* Hotspots: a soft glow under each busy building, bigger the more is on there */}
+      {places.map((p) => (
+        <CircleMarker
+          key={`hot|${p.pos.join()}`}
+          center={p.pos}
+          radius={34 + Math.min(p.events.length, 6) * 12}
+          interactive={false}
+          pathOptions={{ stroke: false, fillColor: p.events.length > 1 ? ink : gold, fillOpacity: 0.28, className: "hotspot" }}
+        />
+      ))}
+      {/* Labels: the busiest buildings named, with how many events are on there today */}
+      {places.slice(0, LABELS_SHOWN).map((p) => (
+        <CircleMarker key={`label|${p.pos.join()}`} center={p.pos} radius={0} stroke={false} fill={false} interactive={false}>
+          <Tooltip permanent direction="right" offset={[16, 0]} opacity={1} className="place-label">
+            <strong>{p.name}</strong>
+            <span>
+              {p.events.length} event{p.events.length === 1 ? "" : "s"}
+            </span>
+          </Tooltip>
+        </CircleMarker>
+      ))}
+    </>
+  );
+}
+
+// The time slider over the map: scrub from now to midnight, and the dots show what's on then.
+function TimeSlider({ at, setAt, now }) {
+  const start = now;
+  const midnight = new Date(localDate(0) + "T23:59").getTime();
+  if (midnight - start < 30 * 6e4) return null;
+  const steps = Math.ceil((midnight - start) / (15 * 6e4));
+  const value = at == null ? 0 : Math.round((at - start) / (15 * 6e4));
+  const label = at == null ? "Now" : new Date(at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  return (
+    <div className="time-slider">
+      <span className="time-slider-label">
+        Showing <strong>{label}</strong>
+      </span>
+      <input
+        type="range"
+        min={0}
+        max={steps}
+        value={value}
+        aria-label="Time of day to show on the map"
+        aria-valuetext={label}
+        onChange={(ev) => {
+          const n = Number(ev.target.value);
+          setAt(n === 0 ? null : Math.min(start + n * 15 * 6e4, midnight));
+        }}
+      />
+      <span className="time-slider-ends" aria-hidden="true">
+        <span>Now</span>
+        <span>Midnight</span>
+      </span>
+      {at != null && (
+        <button className="link-button" onClick={() => setAt(null)}>
+          Back to now
+        </button>
+      )}
+    </div>
+  );
+}
+
+function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, palette, at }) {
   const located = events.filter((e) => e.pos);
+  const realNow = useNow();
+  const moment = at ?? realNow;
   // One intro label per place, so events in the same building don't pile up. Only events
   // happening in the next day get one; the rest are still dots you can hover.
   const byPlace = new Map();
@@ -1513,9 +1626,30 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
       <FlyTo event={flyTo} />
       <MapArea area={area} />
       <BaseMap palette={palette} />
+      <MapFlair events={located} at={moment} dark={palette?.dark} />
+      {located.map((e) => {
+        const state = stateAt(e, moment);
+        return state === "live" || state === "soon" ? (
+          <CircleMarker
+            key={`pulse|${e.id}`}
+            center={e.pos}
+            radius={dotRadius(e)}
+            interactive={false}
+            pathOptions={{
+              color: state === "live" ? (palette?.dark ? "#ff5c6c" : "#d0263d") : palette?.dark ? "#b9a3f5" : "#4b2e83",
+              weight: 3,
+              fill: false,
+              className: state === "live" ? "pulse pulse-live" : "pulse pulse-soon",
+            }}
+          />
+        ) : null;
+      })}
       {located.map((e) => {
         const on = shown?.id === e.id;
-        const soon = startsIn(e) != null;
+        const state = stateAt(e, moment);
+        const soon = state === "live" || state === "soon";
+        // Scrubbed to another time: what isn't on then fades back.
+        const faded = at != null && state !== "live" && state !== "soon" && !on;
         const radius = dotRadius(e) + (on ? 3 : 0);
         return (
           <CircleMarker
@@ -1526,7 +1660,8 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
               color: on ? (palette?.dark ? "#fff" : "#18222c") : soon ? (palette?.dark ? "#ff5c6c" : "#d0263d") : palette?.dark ? "#16181b" : "#fff",
               weight: on || soon ? 4 : 2,
               fillColor: eventColor(e, palette?.dark),
-              fillOpacity: 1,
+              fillOpacity: faded ? 0.18 : 1,
+              opacity: faded ? 0.3 : 1,
             }}
             bubblingMouseEvents={false}
             eventHandlers={{ click: () => onPin(e) }}
@@ -1623,6 +1758,8 @@ function MapLegend({ events, dark }) {
 }
 
 function Home({ f, area, introLabels, j, palette }) {
+  const [at, setAt] = useState(null); // the time slider: null is now
+  const now = useNow();
   const [shown, setShown] = useState(null); // { event, pinned }
   const [flyTo, setFlyTo] = useState(null); // an event picked from the Next up sign
   const hideTimer = useRef();
@@ -1653,7 +1790,9 @@ function Home({ f, area, introLabels, j, palette }) {
         onPin={(e) => show(e, true)}
         onMapClick={close}
         palette={palette}
+        at={at}
       />
+      <TimeSlider at={at} setAt={setAt} now={now} />
       <MapLegend events={f.events} dark={palette?.dark} />
       <Filters f={f} />
       <h1 className="visually-hidden">Events on the UW campus map</h1>

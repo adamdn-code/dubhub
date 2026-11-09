@@ -5922,3 +5922,196 @@ body {
   }
 }
 
+
+/* ============================================================== the map: hotspots, pulses, slider */
+/* Hotspots: a soft glow under busy buildings (blurred, so it reads as warmth, not shapes) */
+.hotspot {
+  filter: blur(14px);
+  pointer-events: none;
+}
+
+/* Live and soon: a ring that ripples out from the dot */
+.pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  pointer-events: none;
+  animation: dot-ripple 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.pulse-soon {
+  animation-duration: 3.2s;
+}
+
+@keyframes dot-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* Building labels: a small white tag with the name, and how many events */
+.leaflet-tooltip.place-label {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 9px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--purple);
+  font-family: var(--font);
+  line-height: 1.2;
+  box-shadow: 0 2px 10px rgba(29, 21, 48, 0.18);
+}
+
+.leaflet-tooltip.place-label::before {
+  display: none;
+}
+
+.place-label strong {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.place-label span {
+  color: #5e5672;
+  font-size: 11px;
+}
+
+:root[data-theme="dark"] .leaflet-tooltip.place-label {
+  background: rgba(27, 21, 40, 0.94);
+  color: #ece8f4;
+}
+
+:root[data-theme="dark"] .place-label span {
+  color: #a69cbb;
+}
+
+/* The time slider, a white bar above the strip of flyers */
+.time-slider {
+  position: absolute;
+  left: 50%;
+  bottom: 128px;
+  z-index: 600;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "label label back"
+    "range range range"
+    "ends ends ends";
+  align-items: center;
+  gap: 4px 12px;
+  width: min(520px, calc(100% - 32px));
+  padding: 10px 16px 8px;
+  transform: translateX(-50%);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 6px 20px rgba(29, 21, 48, 0.18);
+}
+
+.time-slider-label {
+  grid-area: label;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.time-slider-label strong {
+  color: var(--purple);
+  font-size: 15px;
+}
+
+:root[data-theme="dark"] .time-slider-label strong {
+  color: var(--action);
+}
+
+.time-slider .link-button {
+  grid-area: back;
+  font-size: 13px;
+}
+
+.time-slider input[type="range"] {
+  grid-area: range;
+  width: 100%;
+  accent-color: var(--purple);
+  cursor: pointer;
+}
+
+.time-slider-ends {
+  grid-area: ends;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* The legend sits clear of the slider and strip */
+.map-legend {
+  bottom: 230px;
+}
+
+@media (max-width: 700px) {
+  .time-slider {
+    top: 96px;
+    bottom: auto;
+  }
+  .leaflet-tooltip.place-label strong {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+    opacity: 0.6;
+    transform: scale(1.6);
+  }
+}
+
+/* ===================================================================== the top bar, with a design */
+/* Campus map lines faintly across the purple, and a thin gold edge along the bottom */
+.nav {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: none;
+  box-shadow: inset 0 -3px 0 var(--gold-brand);
+}
+
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("/campus-lines-white.svg") 30% 42% / 1200px auto no-repeat;
+  opacity: 0.13;
+  pointer-events: none;
+}
+
+/* A soft light from the right, behind the sign-in button */
+.nav::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, transparent 55%, rgba(183, 165, 122, 0.16));
+  pointer-events: none;
+}
+
+.tab.active::after {
+  bottom: 3px;
+}
+
+@media (max-width: 700px) {
+  .nav {
+    overflow: visible;
+  }
+  .tabs {
+    background:
+      url("/campus-lines-white.svg") 60% 55% / 900px auto no-repeat,
+      var(--nav-bg);
+    background-blend-mode: soft-light;
+  }
+}
