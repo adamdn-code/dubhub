@@ -6115,3 +6115,114 @@ body {
     background-blend-mode: soft-light;
   }
 }
+
+/* ========================================================= fill the whole screen, any width */
+.now-page .now-body {
+  width: 100%;
+  max-width: none;
+  padding: 0 clamp(16px, 3vw, 64px);
+}
+
+.now-hero-inner {
+  width: 100%;
+  max-width: none;
+  padding: 0 clamp(0px, 3vw, 44px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, clamp(440px, 34vw, 760px));
+}
+
+.now-hero h1 {
+  font-size: clamp(48px, 4.6vw, 96px);
+}
+
+/* The flyer fan grows with the screen */
+@media (min-width: 1800px) {
+  .fan-cards {
+    height: 380px;
+  }
+  .fan-card {
+    --w: 230px;
+  }
+  .fan-card.lead {
+    --w: 255px;
+  }
+}
+
+/* ============================================ the time slider: top center of the map, never cut */
+.time-slider {
+  top: 16px;
+  bottom: auto;
+  width: min(460px, calc(100% - 700px));
+  min-width: 300px;
+}
+
+/* Back down to the legend's normal spot now the slider's up top */
+.map-legend {
+  bottom: 124px;
+}
+
+/* Too narrow for the slider between the filter and event panels: it sits under the filters */
+@media (max-width: 1100px) {
+  .time-slider {
+    left: 16px;
+    top: auto;
+    bottom: 124px;
+    transform: none;
+    width: 300px;
+  }
+  .map-legend {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .time-slider {
+    top: 96px;
+    bottom: auto;
+    left: 8px;
+    right: 8px;
+    width: auto;
+    min-width: 0;
+  }
+}
+
+/* Short windows: the strip shrinks so the map keeps room */
+@media (max-height: 640px) and (min-width: 701px) {
+  .strip-card img,
+  .strip-card-none {
+    width: 40px;
+    height: 48px;
+  }
+  .map-legend {
+    display: none;
+  }
+}
+
+/* The campus drawing stretches to the full width on very wide screens */
+.page.now-page {
+  background-size: auto, max(1500px, 100%) auto, auto;
+}
+
+:root[data-theme="dark"] .page.now-page {
+  background-size: auto, max(1500px, 100%) auto, auto;
+}
+
+@media (max-width: 700px) {
+  .page.now-page {
+    background-size: auto, 900px auto, auto;
+  }
+  /* Phones: the slider sits under the flyer strip, not on it */
+  .time-slider {
+    top: 112px;
+  }
+}
+
+/* The same thin gold edge as the top bar, where the hero meets the page (drawn on the page side,
+   since the hero's photo and color layers would cover it) */
+.now-hero {
+  margin-bottom: 0;
+}
+
+.now-page .now-body {
+  border-top: 3px solid var(--gold-brand);
+  padding-top: 28px;
+}
