@@ -2100,6 +2100,8 @@ function NowPage({ f, updated, j, onSelect }) {
   return (
     <main className="page now-page">
       <section className="now-hero" style={heroArt.length ? { "--art-1": heroArt[0], "--art-2": heroArt[1] ?? heroArt[0], "--art-3": heroArt[2] ?? heroArt[0] } : undefined}>
+        {/* The Quad in spring (public domain, Wikimedia Commons), faint under the purple */}
+        <img className="hero-photo" src="/hero-quad.jpg" alt="" aria-hidden="true" />
         <div className="now-hero-inner">
           <header className="now-head">
             <h1>What's on</h1>
@@ -2179,7 +2181,11 @@ function NowPage({ f, updated, j, onSelect }) {
           {updated && (
             <p className="agenda-source">
               Events come from HuskyLink, club Instagram posts and club Discord servers. Last updated{" "}
-              {new Date(updated).toLocaleString("en-US", { month: "long", day: "numeric", hour: "numeric", minute: "2-digit" })}. Campus drawing from{" "}
+              {new Date(updated).toLocaleString("en-US", { month: "long", day: "numeric", hour: "numeric", minute: "2-digit" })}. Header photo of the Quad by Punctured Bicycle,{" "}
+              <a href="https://commons.wikimedia.org/wiki/File:University_of_Washington_Quad,_Spring_2007.jpg" target="_blank" rel="noreferrer">
+                public domain
+              </a>
+              . Campus drawing from{" "}
               <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">
                 OpenStreetMap
               </a>

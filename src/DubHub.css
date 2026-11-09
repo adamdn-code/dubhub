@@ -5775,3 +5775,19 @@ body {
     background-position: 0 0, center 560px, 0 0;
   }
 }
+
+/* A faint photo of the Quad under the hero: grayscale and blended into the purple, so it reads as
+   campus without competing with the flyers. Sits between the blurred flyer colors and the wash. */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  filter: grayscale(1) contrast(1.15);
+  opacity: 0.36;
+  mix-blend-mode: luminosity;
+  pointer-events: none;
+}
