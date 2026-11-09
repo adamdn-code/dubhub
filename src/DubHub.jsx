@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, CircleMarker, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
+import { MapContainer, CircleMarker, Marker, Pane, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -1408,7 +1408,7 @@ function BaseMap({ palette }) {
 // or the pop-up, so its buttons can still be clicked, and closes shortly after the mouse leaves.
 // The hovered (or tapped) dot's event, shown in a panel docked in the map's corner instead of a
 // pop-up above the dot, so it's never cut off at the map's edge.
-function MapEventCard({ event, j, onEnter, onLeave, onClose }) {
+function MapEventCard({ event, j, alsoHere = [], onPick, onEnter, onLeave, onClose }) {
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
@@ -1445,6 +1445,21 @@ function MapEventCard({ event, j, onEnter, onLeave, onClose }) {
           <CalendarLink event={e} />
           <PostLink event={e} />
         </div>
+        {alsoHere.length > 0 && (
+          <div className="map-card-also">
+            <h3>Also here</h3>
+            <ul>
+              {alsoHere.map((x) => (
+                <li key={x.id}>
+                  <button onClick={() => onPick(x)}>
+                    <strong>{x.title}</strong>
+                    <span>{formatWhen(x)}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </aside>
   );
@@ -1544,6 +1559,20 @@ function isSoon(e) {
   return end >= now && start <= now + INTRO_HOURS * 36e5;
 }
 
+// A map marker that's just a styled element (a glow, a ripple), cached so re-renders hand Leaflet
+// the same icon and don't rebuild it (which would restart its animation).
+const iconCache = new Map();
+function cssIcon(className, size) {
+  const key = `${className}|${size}`;
+  if (!iconCache.has(key)) iconCache.set(key, L.divIcon({ className, iconSize: [size, size], html: "<span></span>" }));
+  return iconCache.get(key);
+}
+
+// Events sharing a spot, most popular first (then soonest).
+function popularFirst(x, y) {
+  return (y.rsvps ?? y.going ?? 0) - (x.rsvps ?? x.going ?? 0) || `${x.date}T${x.start}`.localeCompare(`${y.date}T${y.start}`);
+}
+
 // A dot's size: bigger the more people are going.
 function dotRadius(e) {
   return 9 + Math.min((e.rsvps ?? e.going ?? 0) / 6, 8);
@@ -1596,20 +1625,22 @@ const LABELS_SHOWN = 3;
 
 function MapFlair({ events, at, dark }) {
   const places = hotPlaces(events, at);
-  const ink = dark ? "#b9a3f5" : "#4b2e83";
-  const gold = dark ? "#d6c38f" : "#b7a57a";
   return (
     <>
-      {/* Hotspots: a soft glow under each busy building, bigger the more is on there */}
-      {places.map((p) => (
-        <CircleMarker
-          key={`hot|${p.pos.join()}`}
-          center={p.pos}
-          radius={34 + Math.min(p.events.length, 6) * 12}
-          interactive={false}
-          pathOptions={{ stroke: false, fillColor: p.events.length > 1 ? ink : gold, fillOpacity: 0.28, className: "hotspot" }}
-        />
-      ))}
+      {/* Hotspots: a soft glow under each busy building, bigger the more is on there. A CSS
+          gradient on a plain element, not a blurred SVG circle, so panning and the pulsing rings
+          never have to re-blur it. */}
+      <Pane name="hot-glows" style={{ zIndex: 350 }}>
+        {places.map((p) => (
+          <Marker
+            key={`hot|${p.pos.join()}`}
+            position={p.pos}
+            interactive={false}
+            keyboard={false}
+            icon={cssIcon(`hot-glow ${p.events.length > 1 ? "hot-ink" : "hot-gold"}${dark ? " dark" : ""}`, 2 * (34 + Math.min(p.events.length, 6) * 12))}
+          />
+        ))}
+      </Pane>
       {/* Labels: the busiest buildings named, with how many events are on there today */}
       {places.slice(0, LABELS_SHOWN).map((p) => (
         <CircleMarker key={`label|${p.pos.join()}`} center={p.pos} radius={0} stroke={false} fill={false} interactive={false}>
@@ -1665,6 +1696,33 @@ function TimeSlider({ at, setAt, now }) {
 
 function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, palette, at }) {
   const located = events.filter((e) => e.pos);
+  // Events at the exact same spot draw their dots on top of each other, so hovering any of them
+  // shows all of them, and clicking opens the most popular.
+  const atSpot = new Map();
+  for (const e of located) atSpot.set(e.pos.join(), [...(atSpot.get(e.pos.join()) ?? []), e]);
+  for (const list of atSpot.values()) list.sort(popularFirst);
+  // The hovered spot's cards stay up while the mouse is anywhere in one rectangle: the dot, the
+  // cards, and the strip between them. Leave it and they fade out.
+  const [hoverSpot, setHoverSpot] = useState(null);
+  const [hoverClosing, setHoverClosing] = useState(false);
+  const hoverTimer = useRef();
+  const keepHover = () => {
+    clearTimeout(hoverTimer.current);
+    setHoverClosing(false);
+  };
+  const leaveHover = () => {
+    clearTimeout(hoverTimer.current);
+    // A beat to cross between the dot and the cards, then the fade (matches .callout-stack.closing)
+    hoverTimer.current = setTimeout(() => {
+      setHoverClosing(true);
+      hoverTimer.current = setTimeout(() => {
+        setHoverSpot(null);
+        setHoverClosing(false);
+      }, 180);
+    }, 60);
+  };
+  useEffect(() => () => clearTimeout(hoverTimer.current), []);
+  const hovered = hoverSpot && (atSpot.get(hoverSpot) ?? []).filter((x) => x.id !== shown?.id);
   const realNow = useNow();
   const moment = at ?? realNow;
   // One intro label per place, so events in the same building don't pile up. Only events
@@ -1699,23 +1757,38 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
       <MapArea area={area} />
       <BaseMap palette={palette} />
       <MapFlair events={located} at={moment} dark={palette?.dark} />
-      {located.map((e) => {
-        const state = stateAt(e, moment);
-        return state === "live" || state === "soon" ? (
-          <CircleMarker
-            key={`pulse|${e.id}`}
-            center={e.pos}
-            radius={dotRadius(e)}
-            interactive={false}
-            pathOptions={{
-              color: state === "live" ? (palette?.dark ? "#ff5c6c" : "#d0263d") : palette?.dark ? "#b9a3f5" : "#4b2e83",
-              weight: 3,
-              fill: false,
-              className: state === "live" ? "pulse pulse-live" : "pulse pulse-soon",
-            }}
-          />
-        ) : null;
-      })}
+      {/* Live and soon: a ring rippling out from the dot. Plain elements in their own layer, so
+          the animation runs on the GPU instead of repainting the map's dots every frame. */}
+      <Pane name="ripples" style={{ zIndex: 390 }}>
+        {located.map((e) => {
+          const state = stateAt(e, moment);
+          return state === "live" || state === "soon" ? (
+            <Marker
+              key={`pulse|${e.id}`}
+              position={e.pos}
+              interactive={false}
+              keyboard={false}
+              icon={cssIcon(`ripple ripple-${state}${palette?.dark ? " dark" : ""}`, 2 * dotRadius(e))}
+            />
+          ) : null;
+        })}
+      </Pane>
+      {/* The open event: a soft purple halo around its dot, instead of a dark ring */}
+      {shown?.pos && (
+        <CircleMarker
+          key={`halo|${shown.id}`}
+          center={shown.pos}
+          radius={dotRadius(shown) + 10}
+          interactive={false}
+          pathOptions={{
+            color: palette?.dark ? "#b9a3f5" : "#4b2e83",
+            weight: 2,
+            opacity: 0.9,
+            fillColor: palette?.dark ? "#b9a3f5" : "#4b2e83",
+            fillOpacity: 0.2,
+          }}
+        />
+      )}
       {located.map((e) => {
         const on = shown?.id === e.id;
         const state = stateAt(e, moment);
@@ -1729,24 +1802,53 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
             center={e.pos}
             radius={radius}
             pathOptions={{
-              color: on ? (palette?.dark ? "#fff" : "#18222c") : soon ? (palette?.dark ? "#ff5c6c" : "#d0263d") : palette?.dark ? "#16181b" : "#fff",
-              weight: on || soon ? 4 : 2,
+              color: on ? "#fff" : soon ? (palette?.dark ? "#ff5c6c" : "#d0263d") : palette?.dark ? "#16181b" : "#fff",
+              weight: on ? 3 : soon ? 4 : 2,
               fillColor: eventColor(e, palette?.dark),
               fillOpacity: faded ? 0.18 : 1,
               opacity: faded ? 0.3 : 1,
             }}
             bubblingMouseEvents={false}
-            eventHandlers={{ click: () => onPin(e) }}
-          >
-            {/* Hover: a small card above the dot. Click: the detailed panel (with Join). */}
-            {!on && (
-              <Tooltip direction="top" offset={[0, -(radius + STEM)]} opacity={1} className="event-callout">
-                <EventCallout event={e} dark={palette?.dark} />
-              </Tooltip>
-            )}
-          </CircleMarker>
+            eventHandlers={{
+              // Click: the detailed panel (with Join), for the most popular event at this spot.
+              click: () => {
+                setHoverSpot(null);
+                onPin(atSpot.get(e.pos.join())[0]);
+              },
+              // Hover: a small card above the dot for each event at this spot.
+              mouseover: () => {
+                keepHover();
+                setHoverSpot(e.pos.join());
+              },
+              mouseout: leaveHover,
+            }}
+          />
         );
       })}
+      {hovered?.length > 0 && (
+        <CircleMarker key={`hover|${hoverSpot}`} center={hovered[0].pos} radius={0} stroke={false} fill={false} interactive={false}>
+          <Tooltip
+            permanent
+            interactive
+            direction="top"
+            offset={[0, -(Math.max(...atSpot.get(hoverSpot).map(dotRadius)) + STEM)]}
+            opacity={1}
+            className="event-callout"
+          >
+            <HoverStack
+              events={hovered}
+              closing={hoverClosing}
+              dark={palette?.dark}
+              onEnter={keepHover}
+              onLeave={leaveHover}
+              onPick={(x) => {
+                setHoverSpot(null);
+                onPin(x);
+              }}
+            />
+          </Tooltip>
+        </CircleMarker>
+      )}
       <MapClicks onClick={onMapClick} />
       {introLabels && <IntroLabels places={places} dark={palette?.dark} />}
     </MapContainer>
@@ -1756,6 +1858,26 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
 // Events starting within three hours (or on now) keep their building's code plate beside the dot,
 // like a sign on the building: one plate per place, brick while something there is on now.
 // Each hangs off an invisible point, since a dot's own tooltip is its hover card.
+
+// The hover cards for one spot. Each is a button that opens that event's panel.
+function HoverStack({ events, closing, dark, onEnter, onLeave, onPick }) {
+  const ref = useRef();
+  useEffect(() => {
+    if (!ref.current) return;
+    L.DomEvent.disableClickPropagation(ref.current); // a click here isn't a click on the map
+    L.DomEvent.disableScrollPropagation(ref.current);
+  }, []);
+  return (
+    <div ref={ref} className={closing ? "callout-stack closing" : "callout-stack"} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+      {events.map((x, i) => (
+        // --i: how far from the dot, so the cards rise one after another, nearest first
+        <button key={x.id} type="button" className="callout-pick" style={{ "--i": events.length - 1 - i }} onClick={() => onPick(x)}>
+          <EventCallout event={x} dark={dark} />
+        </button>
+      ))}
+    </div>
+  );
+}
 
 // Line icons for each event type (the callout's icon tile).
 const TYPE_ICONS = {
@@ -1869,7 +1991,21 @@ function Home({ f, area, introLabels, j, palette, showSlider }) {
       <Filters f={f} />
       <h1 className="visually-hidden">Events on the UW campus map</h1>
       {event ? (
-        <MapEventCard event={event} j={j} onEnter={keep} onLeave={hideSoon} onClose={close} />
+        <MapEventCard
+          event={event}
+          j={j}
+          alsoHere={
+            event.pos
+              ? f.events
+                  .filter((x) => x.id !== event.id && x.pos?.join() === event.pos.join())
+                  .sort(popularFirst)
+              : []
+          }
+          onPick={(x) => show(x, true)}
+          onEnter={keep}
+          onLeave={hideSoon}
+          onClose={close}
+        />
       ) : (
         <NextUp
           events={f.events}

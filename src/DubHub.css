@@ -5924,22 +5924,58 @@ body {
 
 
 /* ============================================================== the map: hotspots, pulses, slider */
-/* Hotspots: a soft glow under busy buildings (blurred, so it reads as warmth, not shapes) */
-.hotspot {
-  filter: blur(14px);
+/* Hotspots: a soft glow under busy buildings (a soft-edged gradient, so it reads as warmth, not shapes) */
+.hot-glow {
   pointer-events: none;
 }
 
-/* Live and soon: a ring that ripples out from the dot */
-.pulse {
-  transform-box: fill-box;
-  transform-origin: center;
-  pointer-events: none;
-  animation: dot-ripple 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+.hot-glow span,
+.ripple span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-sizing: border-box;
 }
 
-.pulse-soon {
-  animation-duration: 3.2s;
+.hot-ink span {
+  background: radial-gradient(closest-side, rgba(75, 46, 131, 0.28) 62%, rgba(75, 46, 131, 0));
+}
+
+.hot-ink.dark span {
+  background: radial-gradient(closest-side, rgba(185, 163, 245, 0.28) 62%, rgba(185, 163, 245, 0));
+}
+
+.hot-gold span {
+  background: radial-gradient(closest-side, rgba(183, 165, 122, 0.28) 62%, rgba(183, 165, 122, 0));
+}
+
+.hot-gold.dark span {
+  background: radial-gradient(closest-side, rgba(214, 195, 143, 0.28) 62%, rgba(214, 195, 143, 0));
+}
+
+/* Live and soon: a ring that ripples out from the dot (transform and opacity only, so it stays on the GPU) */
+.ripple {
+  pointer-events: none;
+}
+
+.ripple span {
+  border: 3px solid #4b2e83;
+  will-change: transform, opacity;
+  animation: dot-ripple 3.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.ripple.dark span {
+  border-color: #b9a3f5;
+}
+
+.ripple-live span {
+  border-color: #d0263d;
+  animation-duration: 2.2s;
+}
+
+.ripple-live.dark span {
+  border-color: #ff5c6c;
 }
 
 @keyframes dot-ripple {
@@ -6063,7 +6099,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pulse {
+  .ripple span {
     animation: none;
     opacity: 0.6;
     transform: scale(1.6);
@@ -6596,4 +6632,190 @@ body {
 .nav {
   overflow: visible;
   z-index: 1100;
+}
+
+/* ============================================ purple edge on the map's floating panels */
+.filters,
+.next-up,
+.map-card,
+.time-slider,
+.map-legend,
+.leaflet-bar.leaflet-control {
+  border: 2.5px solid var(--action);
+}
+
+/* The options inside them get a purple edge too */
+.filters select {
+  border: 1.5px solid var(--action);
+}
+
+.filters select:hover {
+  border-color: var(--action-hover);
+}
+
+/* Several events at one spot: their hover plates stack, and only the bottom one has the stem */
+.callout-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Other events at the same spot, at the foot of the event card */
+.map-card-also {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.map-card-also h3 {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.map-card-also ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.map-card-also button {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  margin: 0 -8px;
+  padding: 8px;
+  box-sizing: content-box;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.map-card-also button:hover {
+  background: var(--tint);
+}
+
+.map-card-also button:focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 0;
+}
+
+.map-card-also strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.map-card-also span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Each hover plate is a button that opens its event */
+.callout-pick {
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.callout-pick .callout {
+  transition: box-shadow 120ms, transform 120ms;
+}
+
+.callout-pick .callout {
+  border: 2px solid var(--action);
+}
+
+.callout-pick:hover .callout {
+  border-color: var(--action-hover);
+  box-shadow: 0 0 0 1px var(--action-hover), var(--shadow);
+}
+
+.callout-pick:focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 2px;
+}
+
+.callout-stack .callout-pick:not(:last-child) .callout::after {
+  display: none;
+}
+
+/* Hover cards rise out of the dot: a quick fade, lift and settle, one after another */
+.callout-pick {
+  transform-origin: 50% 100%;
+  animation: callout-in 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 45ms);
+}
+
+@keyframes callout-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.94);
+  }
+}
+
+/* The event card slides in a touch slower and softer */
+.map-card {
+  animation: map-card-in 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes map-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .callout-pick,
+  .map-card {
+    animation: none;
+  }
+}
+
+/* The hover cards' hit area: the cards plus an invisible strip down to the top of the dot, so the
+   mouse can travel from dot to card without leaving. Off it, the cards fade out. */
+.callout-stack {
+  position: relative;
+  transition: opacity 180ms ease-out, transform 180ms ease-out;
+}
+
+.callout-stack::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 12px; /* the stem, plus a little overlap onto the dot */
+}
+
+.callout-stack.closing {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .callout-stack {
+    transition: opacity 120ms;
+  }
+  .callout-stack.closing {
+    transform: none;
+  }
 }
