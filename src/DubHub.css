@@ -1,39 +1,45 @@
-/* DubHub. An overcast Seattle palette: a cool grey ground, deep slate ink, fir green for anything
-   you can act on, and signal red only for what's live right now (the now line, events on now).
-   One family, Familjen Grotesk, with tabular figures for times. Corners have a hierarchy:
-   sheets 14px, pictures 8px, controls fully round. */
+/* DubHub, in UW colors. Husky purple (#4B2E83) carries the shell and everything you can act on;
+   Husky gold (#B7A57A) marks what's yours and what's chosen (the active tab, your plans, the
+   day strip's frame); a faint lavender-grey ground. Signal red stays reserved for what's live
+   right now. One family, Familjen Grotesk, with tabular figures for times. Corners have a
+   hierarchy: sheets 14px, pictures 8px, controls fully round. */
 :root {
   --font: "Familjen Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: var(--font);
   --display-stretch: 100%;
-  --radius: 8px; /* pictures, inputs */
+  --radius: 8px;
   --radius-sheet: 14px;
 
-  --bg: #edf0f2; /* overcast */
-  --surface: #ffffff;
-  --tint: #f4f6f7;
-  --text: #18222c; /* deep slate */
-  --muted: #5a6875;
-  --line: #dfe4e8;
-  --field-line: #b9c2ca;
-  --ink: #18222c;
-  --focus: #17604f;
+  --purple: #4b2e83; /* Husky purple */
+  --purple-deep: #32006e;
+  --gold-brand: #b7a57a; /* Husky gold */
 
-  --slate: #18222c;
-  --slate-2: #27333e;
-  --slate-line: #34414d;
+  --bg: #f1eff5; /* a faint lavender-grey */
+  --surface: #ffffff;
+  --tint: #f5f3f9;
+  --text: #1d1530;
+  --muted: #5e5672;
+  --line: #e2ddea;
+  --field-line: #bdb4cc;
+  --ink: #1d1530;
+  --focus: #4b2e83;
+
+  --slate: #1d1530;
+  --slate-2: #2c2245;
+  --slate-line: #3b2f57;
   --on-slate: #ffffff;
-  --on-slate-muted: #b7c2cc;
+  --on-slate-muted: #d4c9ea;
   --panel: #ffffff;
 
-  --action: #17604f; /* fir: anything you can act on */
+  --action: #4b2e83; /* purple: anything you can act on */
   --on-action: #ffffff;
-  --action-hover: #10493c;
-  --action-wash: #e3efeb;
+  --action-hover: #32006e;
+  --action-wash: #ece6f6;
+  --gold: #8a7542; /* gold as text and lines on light ground (the brand gold is too pale to read) */
+  --gold-wash: #f4efe2;
   --live: #d0263d; /* signal red: live right now, and nothing else */
   --live-wash: #fbe7ea;
 
-  /* Older names the rest of the stylesheet still uses */
   --yellow: var(--action);
   --yellow-hover: var(--action-hover);
   --orange: var(--live);
@@ -42,13 +48,13 @@
   --brick: var(--live);
 
   --error: #b3261e;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%235a6875' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%235a6875' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --nav-bg: #ffffff;
-  --nav-line: #dfe4e8;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%235e5672' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%235e5672' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --nav-bg: #4b2e83;
+  --nav-line: #4b2e83;
   --overlay-bg: var(--panel);
   --callout-bg: var(--surface);
-  --shadow: 0 1px 2px rgba(24, 34, 44, 0.08), 0 10px 28px rgba(24, 34, 44, 0.1);
+  --shadow: 0 1px 2px rgba(29, 21, 48, 0.08), 0 10px 28px rgba(75, 46, 131, 0.12);
   color-scheme: light;
   --nav-h: 60px;
   --tabbar-h: 0px;
@@ -56,69 +62,73 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-  --bg: #11171d; /* wet pavement */
-  --surface: #19212a;
-  --tint: #212b35;
-  --text: #e9eef2;
-  --muted: #98a6b2;
-  --line: #2a3540;
-  --field-line: #46535f;
-  --ink: #e9eef2;
-  --focus: #6fcfb2;
-  --slate: #0c1116;
-  --slate-2: #1d2731;
-  --slate-line: #2a3540;
-  --on-slate: #e9eef2;
-  --on-slate-muted: #98a6b2;
-  --panel: #19212a;
-  --action: #5cc3a4;
-  --on-action: #0c1a15;
-  --action-hover: #79d3b8;
+  --bg: #120e1c; /* night on the Quad */
+  --surface: #1b1528;
+  --tint: #251d36;
+  --text: #ece8f4;
+  --muted: #a69cbb;
+  --line: #30273f;
+  --field-line: #4d4263;
+  --ink: #ece8f4;
+  --focus: #c9b6ff;
+  --slate: #0d0915;
+  --slate-2: #251d36;
+  --slate-line: #30273f;
+  --on-slate: #ffffff;
+  --on-slate-muted: #c3b6dd;
+  --panel: #1b1528;
+  --action: #b9a3f5; /* UW purple, lifted for the dark */
+  --on-action: #1a1030;
+  --action-hover: #cdbcff;
+  --action-wash: rgba(185, 163, 245, 0.16);
+  --gold: #d6c38f;
+  --gold-wash: rgba(214, 195, 143, 0.16);
   --live: #ff5c6c;
-  --live-wash: rgba(255, 92, 108, 0.12);
-  --action-wash: rgba(92, 195, 164, 0.14);
+  --live-wash: rgba(255, 92, 108, 0.14);
   --error: #ff9b8f;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2398a6b2' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2398a6b2' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --nav-bg: #0c1116;
-  --nav-line: #2a3540;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23a69cbb' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23a69cbb' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --nav-bg: #2a1a4f;
+  --nav-line: #2a1a4f;
   --overlay-bg: var(--panel);
   --callout-bg: var(--panel);
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 12px 32px rgba(0, 0, 0, 0.4);
   color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #11171d; /* wet pavement */
-  --surface: #19212a;
-  --tint: #212b35;
-  --text: #e9eef2;
-  --muted: #98a6b2;
-  --line: #2a3540;
-  --field-line: #46535f;
-  --ink: #e9eef2;
-  --focus: #6fcfb2;
-  --slate: #0c1116;
-  --slate-2: #1d2731;
-  --slate-line: #2a3540;
-  --on-slate: #e9eef2;
-  --on-slate-muted: #98a6b2;
-  --panel: #19212a;
-  --action: #5cc3a4;
-  --on-action: #0c1a15;
-  --action-hover: #79d3b8;
+  --bg: #120e1c; /* night on the Quad */
+  --surface: #1b1528;
+  --tint: #251d36;
+  --text: #ece8f4;
+  --muted: #a69cbb;
+  --line: #30273f;
+  --field-line: #4d4263;
+  --ink: #ece8f4;
+  --focus: #c9b6ff;
+  --slate: #0d0915;
+  --slate-2: #251d36;
+  --slate-line: #30273f;
+  --on-slate: #ffffff;
+  --on-slate-muted: #c3b6dd;
+  --panel: #1b1528;
+  --action: #b9a3f5; /* UW purple, lifted for the dark */
+  --on-action: #1a1030;
+  --action-hover: #cdbcff;
+  --action-wash: rgba(185, 163, 245, 0.16);
+  --gold: #d6c38f;
+  --gold-wash: rgba(214, 195, 143, 0.16);
   --live: #ff5c6c;
-  --live-wash: rgba(255, 92, 108, 0.12);
-  --action-wash: rgba(92, 195, 164, 0.14);
+  --live-wash: rgba(255, 92, 108, 0.14);
   --error: #ff9b8f;
-  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2398a6b2' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2398a6b2' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  --nav-bg: #0c1116;
-  --nav-line: #2a3540;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23a69cbb' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --select-arrow-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23a69cbb' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --nav-bg: #2a1a4f;
+  --nav-line: #2a1a4f;
   --overlay-bg: var(--panel);
   --callout-bg: var(--panel);
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 12px 32px rgba(0, 0, 0, 0.4);
   color-scheme: dark;
 }
 
@@ -5115,5 +5125,121 @@ body {
   }
   .agenda-pic {
     transition: none;
+  }
+}
+
+/* ============================================================== UW colors: the purple shell */
+.nav {
+  background: var(--nav-bg);
+  border-bottom-color: var(--nav-line);
+  color: #fff;
+}
+
+.logo {
+  color: #fff;
+}
+
+.tab {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.tab:hover {
+  color: #fff;
+}
+
+.tab.active {
+  color: #fff;
+}
+
+/* The active tab: a gold bar under it */
+.tab.active::after {
+  height: 3px;
+  background: var(--gold-brand);
+}
+
+.theme-toggle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+/* Sign in on the purple bar: white, so it doesn't vanish into it */
+.nav .signin {
+  background: #fff;
+  color: var(--purple);
+}
+
+.nav .signin:hover {
+  background: #f1ecf9;
+}
+
+.nav .user-button,
+.nav .signout {
+  color: #fff;
+}
+
+.nav .user-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.nav .signout {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+:root[data-theme="dark"] .nav .signin {
+  background: var(--action);
+  color: var(--on-action);
+}
+
+/* The page title gets a short gold rule under it */
+.now-head h1::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 4px;
+  margin-top: 12px;
+  border-radius: 4px;
+  background: var(--gold-brand);
+}
+
+/* The day strip: a gold frame, purple-tinted ticks */
+.day-strip {
+  box-shadow: 0 0 0 1px var(--line), inset 0 3px 0 var(--gold-brand);
+}
+
+/* Filters on: purple */
+.chip-btn.on {
+  background: var(--action);
+  border-color: var(--action);
+  color: var(--on-action);
+}
+
+.filter-select.set {
+  border-color: var(--action);
+  box-shadow: inset 0 0 0 1px var(--action);
+}
+
+/* Going: purple, and the burst throws purple and gold */
+.burst i:nth-child(2n) {
+  background: var(--gold-brand);
+}
+
+/* Things that are yours (going counts, joined clubs) carry the gold */
+.agenda-going {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* Phones: the bottom tab bar is purple too */
+@media (max-width: 700px) {
+  .tabs {
+    background: var(--nav-bg);
+    border-top-color: var(--nav-line);
+  }
+  .tab.active::after {
+    background: var(--gold-brand);
   }
 }
