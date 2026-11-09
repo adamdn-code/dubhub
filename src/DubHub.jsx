@@ -1938,6 +1938,95 @@ function GoingToggle({ event, j, color }) {
   );
 }
 
+// ------------------------------------------------------------------- the hero's campus skyline
+// An original gold line drawing along the bottom of the Now page's purple band: Mount Rainier far
+// off, a Gothic library front with its tall arched windows, the fountain's jets, trees, and the
+// Space Needle on the horizon. Drawn in code, one stroke weight throughout.
+function CampusSkyline() {
+  const arches = [0, 1, 2, 3, 4, 5, 6];
+  return (
+    <svg className="skyline" viewBox="0 0 1200 170" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      {/* Rainier, far behind everything, with its snowcap */}
+      <path className="sky-far" d="M610 170 L760 70 Q790 52 820 66 L840 60 Q860 50 880 64 L1040 170 Z" />
+      <path className="sky-snow" d="M742 82 L760 70 Q790 52 820 66 L840 60 Q860 50 880 64 L900 78 L872 74 L852 84 L830 74 L806 86 L782 76 Z" />
+      {/* the Space Needle on the horizon */}
+      <g className="sky-line">
+        <path d="M120 170 L128 92 M140 170 L132 92 M124 120 L136 120" />
+        <path d="M112 92 L148 92 L141 84 L119 84 Z" />
+        <path d="M130 84 L130 64" />
+      </g>
+      {/* the library: a Gothic front with pinnacles and tall pointed windows */}
+      <g className="sky-line">
+        <path d="M300 170 L300 92 L560 92 L560 170" />
+        <path d="M290 92 L570 92" />
+        {[300, 360, 430, 500, 560].map((x) => (
+          <path key={x} d={`M${x} 92 L${x} 72 M${x - 5} 78 L${x} 66 L${x + 5} 78`} />
+        ))}
+        {arches.map((i) => {
+          const x = 318 + i * 34;
+          return <path key={i} d={`M${x} 166 L${x} 120 Q${x + 11} 100 ${x + 22} 120 L${x + 22} 166`} />;
+        })}
+        <circle cx="430" cy="106" r="7" />
+      </g>
+      {/* the fountain: a basin and its jets */}
+      <g className="sky-line">
+        <path d="M620 170 Q660 156 700 170" />
+        <path d="M660 160 L660 118 M650 162 Q646 136 640 124 M670 162 Q674 136 680 124 M642 164 Q632 146 624 138 M678 164 Q688 146 696 138" />
+      </g>
+      {/* trees: rounded crowns on trunks */}
+      <g className="sky-line">
+        {[220, 250, 595, 740, 980, 1010, 1080].map((x, i) => (
+          <g key={x}>
+            <path d={`M${x} 170 L${x} ${142 - (i % 2) * 8}`} />
+            <circle cx={x} cy={128 - (i % 2) * 8} r={16 + (i % 3) * 3} />
+          </g>
+        ))}
+      </g>
+      <path className="sky-ground" d="M0 169 L1200 169" />
+    </svg>
+  );
+}
+
+// The season, drifting through the band: autumn leaves (Sep to Nov), drizzle (Dec to Feb),
+// cherry blossoms from the Quad (Mar to May), warm motes in summer. Seeded, so it's the same
+// pattern every visit.
+function seasonOf(date = new Date()) {
+  const m = date.getMonth();
+  if (m >= 8 && m <= 10) return "autumn";
+  if (m === 11 || m <= 1) return "winter";
+  if (m <= 4) return "spring";
+  return "summer";
+}
+
+const SEASON_BITS = Array.from({ length: 16 }, (_, i) => {
+  const r = (n) => {
+    const x = Math.sin((i + 1) * 9301.17 + n * 49.3) * 233280.5;
+    return x - Math.floor(x);
+  };
+  return { left: r(1) * 100, delay: -r(2) * 14, dur: 9 + r(3) * 9, size: 0.7 + r(4) * 0.7, sway: 10 + r(5) * 26, spin: r(6) > 0.5 ? 1 : -1 };
+});
+
+function SeasonDrift() {
+  const season = seasonOf();
+  return (
+    <div className={`season season-${season}`} aria-hidden="true">
+      {SEASON_BITS.map((b, i) => (
+        <span
+          key={i}
+          style={{
+            left: `${b.left}%`,
+            animationDelay: `${b.delay}s`,
+            animationDuration: `${season === "winter" ? b.dur / 6 : b.dur}s`,
+            "--size": b.size,
+            "--sway": `${b.sway}px`,
+            "--spin": b.spin,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 // ------------------------------------------------------------------------------ the day strip
 // Today drawn as a timeline: each event a bar from its start to its end in its category's color,
 // stacked into as few rows as fit, with the red now marker crossing them. Tap a bar to open it.
@@ -2047,11 +2136,16 @@ function NowPage({ f, updated, j, onSelect }) {
 
   return (
     <main className="page now-page">
-      <header className="now-head">
-        <h1>What's on</h1>
-        <p className="now-date">{clock.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</p>
-        <DayStrip events={unique} now={now} onSelect={onSelect} />
-      </header>
+      <section className="now-hero">
+        <SeasonDrift />
+        <header className="now-head">
+          <h1>What's on</h1>
+          <p className="now-date">{clock.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</p>
+          <DayStrip events={unique} now={now} onSelect={onSelect} />
+        </header>
+        <CampusSkyline />
+      </section>
+      <div className="now-body">
       <div className="toolbar">
         <input
           type="search"
@@ -2126,6 +2220,7 @@ function NowPage({ f, updated, j, onSelect }) {
           )}
         </div>
       )}
+      </div>
     </main>
   );
 }

@@ -5243,3 +5243,256 @@ body {
     background: var(--gold-brand);
   }
 }
+
+/* ========================================================== flair: the purple hero band on Now */
+.now-page {
+  padding: 0 0 56px;
+}
+
+.now-body,
+.now-hero .now-head {
+  width: min(var(--page-w), 100%);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.now-hero {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 28px;
+  padding: 36px 0 150px;
+  background:
+    radial-gradient(120% 90% at 85% 0%, rgba(183, 165, 122, 0.22), transparent 55%),
+    var(--purple);
+  color: #fff;
+}
+
+:root[data-theme="dark"] .now-hero {
+  background:
+    radial-gradient(120% 90% at 85% 0%, rgba(214, 195, 143, 0.16), transparent 55%),
+    #2a1a4f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .now-hero {
+    background:
+      radial-gradient(120% 90% at 85% 0%, rgba(214, 195, 143, 0.16), transparent 55%),
+      #2a1a4f;
+  }
+}
+
+.now-hero .now-head {
+  position: relative;
+  z-index: 2;
+}
+
+.now-hero h1 {
+  color: #fff;
+  font-size: 64px;
+  letter-spacing: -0.035em;
+}
+
+.now-hero .now-date {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 18px;
+}
+
+/* The day strip, glowing on the purple */
+.now-hero .day-strip {
+  margin-top: 26px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16), inset 0 3px 0 var(--gold-brand);
+  backdrop-filter: blur(2px);
+}
+
+.now-hero .strip-tick {
+  border-left-color: rgba(255, 255, 255, 0.18);
+}
+
+.now-hero .strip-tick span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.now-hero .strip-bar {
+  opacity: 1;
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.25);
+}
+
+.now-hero .strip-bar.live {
+  box-shadow: 0 0 0 2px #fff, 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.now-hero .strip-now {
+  background: #ff6b7a;
+  box-shadow: 0 0 10px rgba(255, 107, 122, 0.8);
+}
+
+.now-hero .strip-now::before {
+  background: #ff6b7a;
+  box-shadow: 0 0 0 4px rgba(255, 107, 122, 0.25);
+}
+
+/* The campus skyline in gold line art along the bottom of the band */
+.skyline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  height: 150px;
+}
+
+.sky-line {
+  fill: none;
+  stroke: var(--gold-brand);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sky-line circle {
+  fill: rgba(183, 165, 122, 0.12);
+}
+
+.sky-far {
+  fill: rgba(255, 255, 255, 0.08);
+}
+
+.sky-snow {
+  fill: rgba(255, 255, 255, 0.22);
+}
+
+.sky-ground {
+  stroke: var(--gold-brand);
+  stroke-width: 2;
+}
+
+/* The skyline draws itself in once */
+.sky-line path,
+.sky-line circle {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: sky-draw 2.2s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
+}
+
+@keyframes sky-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* The season, drifting down through the band */
+.season {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.season span {
+  position: absolute;
+  top: -20px;
+  width: calc(12px * var(--size));
+  height: calc(12px * var(--size));
+  animation-name: drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Autumn: gold and rust leaves, tumbling */
+.season-autumn span {
+  border-radius: 0 70% 0 70%;
+  background: #d9a441;
+  opacity: 0.85;
+}
+
+.season-autumn span:nth-child(3n) {
+  background: #c2632f;
+}
+
+.season-autumn span:nth-child(4n) {
+  background: var(--gold-brand);
+}
+
+/* Spring: cherry blossom petals from the Quad */
+.season-spring span {
+  border-radius: 60% 0 60% 0;
+  background: #f6c4d6;
+  opacity: 0.9;
+}
+
+.season-spring span:nth-child(2n) {
+  background: #fde3ec;
+}
+
+/* Winter: Seattle drizzle */
+.season-winter span {
+  width: 1.5px;
+  height: calc(18px * var(--size));
+  background: rgba(255, 255, 255, 0.45);
+  animation-name: drizzle;
+}
+
+/* Summer: warm motes, floating slowly */
+.season-summer span {
+  width: calc(5px * var(--size));
+  height: calc(5px * var(--size));
+  border-radius: 50%;
+  background: rgba(255, 224, 150, 0.7);
+  box-shadow: 0 0 8px rgba(255, 224, 150, 0.8);
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) rotate(0);
+  }
+  25% {
+    transform: translate(var(--sway), 25vh) rotate(calc(120deg * var(--spin)));
+  }
+  50% {
+    transform: translate(0, 50vh) rotate(calc(220deg * var(--spin)));
+  }
+  75% {
+    transform: translate(calc(var(--sway) * -1), 75vh) rotate(calc(320deg * var(--spin)));
+  }
+  100% {
+    transform: translate(0, 100vh) rotate(calc(420deg * var(--spin)));
+  }
+}
+
+@keyframes drizzle {
+  from {
+    transform: translate(0, 0) rotate(12deg);
+  }
+  to {
+    transform: translate(-40px, 100vh) rotate(12deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .now-hero {
+    padding: 26px 0 112px;
+  }
+  .now-hero h1 {
+    font-size: 44px;
+  }
+  .skyline {
+    height: 110px;
+  }
+  .now-body,
+  .now-hero .now-head {
+    padding: 0 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .season {
+    display: none;
+  }
+  .sky-line path,
+  .sky-line circle {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
