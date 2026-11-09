@@ -5497,3 +5497,116 @@ body {
 .fan-card {
   box-shadow: 0 14px 36px rgba(16, 6, 36, 0.5);
 }
+
+/* ======================================================= the page below the hero: color, not blank */
+.now-page {
+  position: relative;
+  isolation: isolate;
+  background: #e9e3f3;
+}
+
+/* Today's flyer colors, very faint, behind the whole page; it stays put while the page scrolls */
+.now-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.now-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: -120px;
+  background:
+    var(--art-2, none) 0% 30% / 50% 80% no-repeat,
+    var(--art-3, none) 100% 100% / 55% 80% no-repeat,
+    var(--art-1, none) 60% 0% / 50% 70% no-repeat;
+  filter: blur(90px) saturate(1.6);
+  opacity: 0.32;
+}
+
+.now-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(rgba(75, 46, 131, 0.06) 1px, transparent 1.2px) 0 0 / 4px 4px;
+}
+
+:root[data-theme="dark"] .now-page {
+  background: #140f20;
+}
+
+:root[data-theme="dark"] .now-backdrop::before {
+  opacity: 0.22;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .now-page {
+    background: #140f20;
+  }
+  :root:not([data-theme="light"]) .now-backdrop::before {
+    opacity: 0.22;
+  }
+}
+
+/* Day headings in UW purple with a short gold rule, like the hero's title */
+.page .agenda-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--purple);
+  font-size: 24px;
+}
+
+.page .agenda-head::after {
+  content: "";
+  width: 32px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--gold-brand);
+}
+
+:root[data-theme="dark"] .page .agenda-head {
+  color: var(--action);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page .agenda-head {
+    color: var(--action);
+  }
+}
+
+/* The list: a white sheet lifted off the colored ground */
+.agenda-list {
+  box-shadow: 0 0 0 1px rgba(75, 46, 131, 0.12), 0 12px 32px rgba(75, 46, 131, 0.12);
+}
+
+/* Each row carries its category's color in a thin bar down the left edge */
+.agenda-row::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--cat);
+  opacity: 0.85;
+}
+
+/* On now keeps its red marker in the time column */
+.agenda-row.live::after {
+  background: var(--live);
+}
+
+/* The search and filters sit on the color as white pills with a soft lift */
+.now-body .search,
+.now-body .chip-btn,
+.now-body .filter-select {
+  box-shadow: 0 2px 8px rgba(75, 46, 131, 0.08);
+}
+
+.now-body .search {
+  border-color: rgba(75, 46, 131, 0.14);
+}

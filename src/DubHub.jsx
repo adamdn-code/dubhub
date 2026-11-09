@@ -1877,7 +1877,7 @@ function AgendaRow({ event: e, section, j, onSelect, index = 0 }) {
   const soon = section === "soon" ? startsIn(e) : null;
   const day = section === "later"; // tomorrow's heading already says which day
   return (
-    <li className={live ? "agenda-row live" : "agenda-row"} style={{ "--i": Math.min(index, 12) }}>
+    <li className={live ? "agenda-row live" : "agenda-row"} style={{ "--i": Math.min(index, 12), "--cat": eventColor(e) }}>
       <div className="agenda-time">
         {day && <span className="agenda-day">{dayLabel(e.date)}</span>}
         <span className="agenda-start">{e.start ? formatTime(e.start) : "All day"}</span>
@@ -2085,8 +2085,9 @@ function NowPage({ f, updated, j, onSelect }) {
     .map((e) => `url(${JSON.stringify(e.image)})`);
 
   return (
-    <main className="page now-page">
-      <section className="now-hero" style={heroArt.length ? { "--art-1": heroArt[0], "--art-2": heroArt[1] ?? heroArt[0], "--art-3": heroArt[2] ?? heroArt[0] } : undefined}>
+    <main className="page now-page" style={heroArt.length ? { "--art-1": heroArt[0], "--art-2": heroArt[1] ?? heroArt[0], "--art-3": heroArt[2] ?? heroArt[0] } : undefined}>
+      <div className="now-backdrop" aria-hidden="true" />
+      <section className="now-hero">
         <div className="now-hero-inner">
           <header className="now-head">
             <h1>What's on</h1>
