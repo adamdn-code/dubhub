@@ -5497,3 +5497,245 @@ body {
 .fan-card {
   box-shadow: 0 14px 36px rgba(16, 6, 36, 0.5);
 }
+
+/* ===================================================== Now: the poster board of flyers, on white */
+.now-page {
+  background: #ffffff;
+}
+
+:root[data-theme="dark"] .now-page {
+  background: var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .now-page {
+    background: var(--bg);
+  }
+}
+
+.now-page .now-body {
+  width: min(1120px, 100%);
+}
+
+.page .agenda-head {
+  margin: 0 0 18px;
+  padding: 0;
+  font-size: 26px;
+}
+
+.agenda section + section {
+  margin-top: 48px;
+}
+
+.tile-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 36px 24px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  animation: row-in 520ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 45ms + 120ms);
+}
+
+/* The flyer: the content of the card, rounded and lifted a little; no box around the rest */
+.tile-art {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.tile-flyer {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 12px;
+  background: var(--tint);
+  box-shadow: 0 1px 2px rgba(29, 21, 48, 0.1), 0 8px 20px rgba(29, 21, 48, 0.1);
+  cursor: pointer;
+}
+
+.tile-flyer img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tile-flyer:hover img {
+  transform: scale(1.04);
+}
+
+/* No flyer: the title set big on the category's color */
+.tile-noflyer {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+/* On now: a red tag on the flyer's corner */
+.tile-live {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--live);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* The going toggle rides on the flyer's bottom corner */
+.tile-art .going-toggle {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--purple);
+  box-shadow: 0 2px 10px rgba(29, 21, 48, 0.25);
+}
+
+.tile-art .going-toggle:hover {
+  background: #fff;
+  color: var(--purple);
+}
+
+.tile-art .going-toggle.on {
+  background: var(--purple);
+  color: #fff;
+}
+
+.tile-when {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+  margin: 0 0 2px;
+  color: var(--purple);
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+:root[data-theme="dark"] .tile-when {
+  color: var(--action);
+}
+
+.tile-soon {
+  color: var(--live);
+}
+
+.tile-title {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tile-title:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+}
+
+.tile-host,
+.tile-where {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.tile-host {
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+
+.tile-host > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tile-host .dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin: 0;
+  transform: translateY(-1px);
+}
+
+.tile-going {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* The now line runs across the whole board, between what's on and what's next */
+.tile-grid > .now-line {
+  grid-column: 1 / -1;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  margin: -12px 0;
+  padding: 0;
+}
+
+@media (max-width: 700px) {
+  .tile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 14px;
+  }
+  .tile-title {
+    font-size: 16px;
+  }
+  .tile-noflyer {
+    font-size: 18px;
+    padding: 12px;
+  }
+  .tile-art .going-toggle {
+    width: 38px;
+    height: 38px;
+  }
+  .tile-grid > .now-line {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    animation: none;
+  }
+  .tile-flyer img {
+    transition: none;
+  }
+}

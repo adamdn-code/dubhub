@@ -1869,41 +1869,47 @@ function sectionOf(e, now = Date.now()) {
   return "later";
 }
 
-// One event in the agenda: its time on the left, then what it is, who's hosting and where, the
-// club's flyer as a small picture, and the going toggle. The whole row opens the event.
-function AgendaRow({ event: e, section, j, onSelect, index = 0 }) {
+// One event on the board: the club's flyer first, with the going toggle on its corner, then the
+// time, the title, the host and where, set as plain text under it. The flyer and title open it.
+function EventTile({ event: e, section, j, onSelect, index = 0 }) {
   const [broken, setBroken] = useState(false);
   const live = section === "now";
   const soon = section === "soon" ? startsIn(e) : null;
-  const day = section === "later"; // tomorrow's heading already says which day
+  const day = section === "later";
+  const when = [day && dayLabel(e.date), e.start ? formatTime(e.start) : "All day"].filter(Boolean).join(", ");
   return (
-    <li className={live ? "agenda-row live" : "agenda-row"} style={{ "--i": Math.min(index, 12) }}>
-      <div className="agenda-time">
-        {day && <span className="agenda-day">{dayLabel(e.date)}</span>}
-        <span className="agenda-start">{e.start ? formatTime(e.start) : "All day"}</span>
-        {e.end && <span className="agenda-end">to {formatTime(e.end)}</span>}
-        {soon && <span className="agenda-soon">{soon.replace(/^In /, "in ")}</span>}
+    <li className={live ? "tile live" : "tile"} style={{ "--i": Math.min(index, 12) }}>
+      <div className="tile-art">
+        <button className="tile-flyer" onClick={() => onSelect(e)} tabIndex={-1} aria-hidden="true">
+          {e.image && !broken ? (
+            <img src={e.image} alt="" loading="lazy" decoding="async" onError={() => setBroken(true)} />
+          ) : (
+            <span className="tile-noflyer" style={{ background: eventColor(e) }}>
+              {e.title}
+            </span>
+          )}
+        </button>
+        {live && <span className="tile-live">On now</span>}
+        <GoingToggle event={e} j={j} color={eventColor(e)} />
       </div>
-      <button className="agenda-main" onClick={() => onSelect(e)}>
-        <span className="agenda-title">{e.title}</span>
-        <span className="agenda-host">
-          <span className="dot" style={{ background: eventColor(e) }} title={eventGroup(e).name} />
-          <span>{hostName(e)}</span>
-        </span>
-        <span className="agenda-where">
+      <p className="tile-when">
+        {when}
+        {soon && <span className="tile-soon">{soon.replace(/^In /, "in ")}</span>}
+      </p>
+      <button className="tile-title" onClick={() => onSelect(e)}>
+        {e.title}
+      </button>
+      <p className="tile-host">
+        <span className="dot" style={{ background: eventColor(e) }} title={eventGroup(e).name} />
+        <span>{hostName(e)}</span>
+      </p>
+      {(e.where || going(e, j)) && (
+        <p className="tile-where">
           <Plate where={e.where} />
           {e.where && !placeCode(e.where) && <span>{e.where}</span>}
-          {going(e, j) && <span className="agenda-going">{going(e, j)}</span>}
-        </span>
-      </button>
-      {e.image && !broken ? (
-        <img className="agenda-pic" src={e.image} alt="" loading="lazy" decoding="async" onError={() => setBroken(true)} />
-      ) : (
-        <span className="agenda-pic agenda-pic-none" style={{ background: eventColor(e) }} aria-hidden="true">
-          {initials(hostName(e))}
-        </span>
+          {going(e, j) && <span className="tile-going">{going(e, j)}</span>}
+        </p>
       )}
-      <GoingToggle event={e} j={j} color={eventColor(e)} />
     </li>
   );
 }
@@ -2140,13 +2146,13 @@ function NowPage({ f, updated, j, onSelect }) {
               <h2 id="day-today" className="agenda-head">
                 Today
               </h2>
-              <ol className="agenda-list">
+              <ol className="tile-grid">
                 {sections[0].events.map((e, i) => (
-                  <AgendaRow key={e.id} event={e} section="now" j={j} onSelect={onSelect} index={i} />
+                  <EventTile key={e.id} event={e} section="now" j={j} onSelect={onSelect} index={i} />
                 ))}
                 <NowLine now={now} />
                 {[...sections[1].events, ...sections[2].events].map((e, i) => (
-                  <AgendaRow key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} index={sections[0].events.length + i + 1} />
+                  <EventTile key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} index={sections[0].events.length + i + 1} />
                 ))}
               </ol>
             </section>
@@ -2156,9 +2162,9 @@ function NowPage({ f, updated, j, onSelect }) {
               <h2 id={`day-${sec.id}`} className="agenda-head">
                 {sec.title}
               </h2>
-              <ol className="agenda-list">
+              <ol className="tile-grid">
                 {sec.events.map((e) => (
-                  <AgendaRow key={e.id} event={e} section={sec.id} j={j} onSelect={onSelect} />
+                  <EventTile key={e.id} event={e} section={sec.id} j={j} onSelect={onSelect} />
                 ))}
               </ol>
             </section>
