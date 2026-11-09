@@ -5739,3 +5739,39 @@ body {
     transition: none;
   }
 }
+
+/* The campus, drawn faintly behind the board: UW's real paths and buildings in purple line art
+   (traced from OpenStreetMap), painted as the page's own scrolling background, so it runs the
+   full length of the page under the hero without any extra layer or sideways overflow */
+.page.now-page {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)),
+    url("/campus-lines.svg") center 400px / 1500px auto repeat-y,
+    #ffffff;
+  background-attachment: local, local, local;
+}
+
+:root[data-theme="dark"] .page.now-page {
+  background:
+    linear-gradient(rgba(18, 14, 28, 0.88), rgba(18, 14, 28, 0.88)),
+    url("/campus-lines-dark.svg") center 400px / 1500px auto repeat-y,
+    var(--bg);
+  background-attachment: local, local, local;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page.now-page {
+    background:
+      linear-gradient(rgba(18, 14, 28, 0.88), rgba(18, 14, 28, 0.88)),
+      url("/campus-lines-dark.svg") center 400px / 1500px auto repeat-y,
+      var(--bg);
+    background-attachment: local, local, local;
+  }
+}
+
+@media (max-width: 700px) {
+  .page.now-page {
+    background-size: auto, 900px auto, auto;
+    background-position: 0 0, center 560px, 0 0;
+  }
+}

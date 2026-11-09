@@ -2179,7 +2179,11 @@ function NowPage({ f, updated, j, onSelect }) {
           {updated && (
             <p className="agenda-source">
               Events come from HuskyLink, club Instagram posts and club Discord servers. Last updated{" "}
-              {new Date(updated).toLocaleString("en-US", { month: "long", day: "numeric", hour: "numeric", minute: "2-digit" })}.
+              {new Date(updated).toLocaleString("en-US", { month: "long", day: "numeric", hour: "numeric", minute: "2-digit" })}. Campus drawing from{" "}
+              <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">
+                OpenStreetMap
+              </a>
+              .
             </p>
           )}
         </div>
