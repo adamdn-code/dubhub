@@ -221,8 +221,17 @@ def commit_and_push(before, after):
         return
     code, out = git("push", "--quiet", "origin", BRANCH)
     if code:
-        # Someone pushed in the meantime. Undo the commit (the data stays); the next run gets their
-        # changes first and pushes a fresh scrape.
+        # Someone pushed during the run (usually site code). Put this commit on top of theirs and
+        # push again; that only fails if the same data files changed on both sides.
+        log("Someone pushed during the run; putting this scrape on top of their changes.")
+        code, out = git("pull", "--rebase", "--quiet", "origin", BRANCH)
+        if code:
+            git("rebase", "--abort")
+        else:
+            code, out = git("push", "--quiet", "origin", BRANCH)
+    if code:
+        # Undo the commit (the data stays); the next run gets their changes first and pushes a
+        # fresh scrape.
         git("reset", "--soft", "HEAD~1")
         log(f"Push failed, will try again next run: {out[:300]}")
         return
