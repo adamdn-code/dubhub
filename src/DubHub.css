@@ -6473,3 +6473,303 @@ body {
     transition: none;
   }
 }
+
+/* ===================================================== map controls in UW purple and gold */
+/* Filters: a purple header band with a gold rule; a set filter turns purple */
+.filters {
+  overflow: hidden;
+  padding-top: 0;
+  border-top: none;
+}
+
+.filters h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 -14px 4px;
+  padding: 12px 16px 10px;
+  background: var(--purple);
+  border-bottom: 3px solid var(--gold-brand);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.filters h2::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold-brand);
+  box-shadow: 0 0 0 3px rgba(183, 165, 122, 0.35);
+}
+
+.filters .filter-label {
+  color: var(--purple);
+  font-weight: 700;
+}
+
+.filters select {
+  border: 1.5px solid #ddd5ea;
+  transition: border-color 150ms, background-color 150ms;
+}
+
+.filters select:hover {
+  border-color: var(--purple);
+}
+
+.filters select.set {
+  border-color: var(--purple);
+  background-color: var(--purple);
+  color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23b7a57a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* Legend: a gold top edge, a title, and dots ringed like the ones on the map */
+.map-legend {
+  border-top: 3px solid var(--gold-brand);
+}
+
+.map-legend::before {
+  content: "What the colors mean";
+  grid-column: 1 / -1;
+  display: block;
+  margin-bottom: 4px;
+  color: var(--purple);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.map-legend .dot {
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px rgba(29, 21, 48, 0.18);
+}
+
+/* Time slider: a purple bar, gold fill up to the handle, hour ticks under the track */
+.time-slider {
+  background: linear-gradient(135deg, #4b2e83 0%, #3a2266 100%);
+  box-shadow: 0 8px 24px rgba(51, 32, 92, 0.35), inset 0 -3px 0 var(--gold-brand);
+  padding-bottom: 12px;
+}
+
+.time-slider-label,
+.time-slider-ends {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.time-slider-label strong,
+:root[data-theme="dark"] .time-slider-label strong {
+  color: var(--gold-brand);
+}
+
+.time-slider .link-button {
+  color: #fff;
+  text-decoration-color: var(--gold-brand);
+}
+
+.time-slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 22px;
+  margin: 2px 0;
+  background: transparent;
+}
+
+.time-slider input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 999px;
+  background:
+    linear-gradient(var(--gold-brand), var(--gold-brand)) 0 0 / var(--p, 0%) 100% no-repeat,
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.28) 0 1px, transparent 1px 8.33%),
+    rgba(255, 255, 255, 0.16);
+}
+
+.time-slider input[type="range"]::-moz-range-track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.time-slider input[type="range"]::-moz-range-progress {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--gold-brand);
+}
+
+.time-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -7px;
+  border: 3px solid var(--gold-brand);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  transition: transform 150ms;
+}
+
+.time-slider input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--gold-brand);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.time-slider input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.time-slider input[type="range"]:focus-visible {
+  outline: 2px solid var(--gold-brand);
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+
+/* Strip cards: an edge in the event's color, the time as a purple chip (red when on now) */
+.strip-card {
+  position: relative;
+  overflow: hidden;
+  padding-left: 13px;
+  box-shadow: 0 6px 20px rgba(29, 21, 48, 0.18), inset 0 0 0 1px rgba(75, 46, 131, 0.08);
+}
+
+.strip-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: var(--c, var(--purple));
+}
+
+.strip-card:hover {
+  box-shadow: 0 10px 26px rgba(51, 32, 92, 0.26), inset 0 0 0 1px rgba(75, 46, 131, 0.16);
+}
+
+.strip-card.on {
+  box-shadow: 0 0 0 2px var(--purple), 0 0 0 4px var(--gold-brand), 0 8px 24px rgba(75, 46, 131, 0.3);
+}
+
+.strip-card img,
+.strip-card-none {
+  box-shadow: 0 0 0 1px rgba(29, 21, 48, 0.1), 0 2px 6px rgba(29, 21, 48, 0.18);
+  transform: rotate(-2deg);
+}
+
+.strip-card-time {
+  align-self: flex-start;
+  margin-bottom: 3px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--purple);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0.01em;
+}
+
+.strip-card-time.live {
+  background: var(--live);
+}
+
+.strip-card-time.live::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #fff;
+  vertical-align: 1px;
+  animation: live-blink 1.6s ease-in-out infinite;
+}
+
+@keyframes live-blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+:root[data-theme="dark"] .strip-card-time {
+  background: var(--action);
+  color: #17112a;
+}
+
+:root[data-theme="dark"] .strip-card-time.live {
+  background: var(--live);
+  color: #fff;
+}
+
+/* Zoom buttons: purple, with a gold line between them */
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  background: var(--purple);
+  color: #fff;
+  border-bottom-color: var(--gold-brand);
+}
+
+.leaflet-bar a:hover {
+  background: #3a2266;
+  color: var(--gold-brand);
+}
+
+.leaflet-touch .leaflet-bar,
+.leaflet-bar {
+  box-shadow: 0 6px 18px rgba(51, 32, 92, 0.3);
+}
+
+/* Building tags: purple with a gold count */
+.leaflet-tooltip.place-label,
+:root[data-theme="dark"] .leaflet-tooltip.place-label {
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 5px 4px 10px;
+  border-radius: 999px;
+  background: var(--purple);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(51, 32, 92, 0.35);
+}
+
+.place-label span,
+:root[data-theme="dark"] .place-label span {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--gold-brand);
+  color: #2b1c4a;
+  font-weight: 700;
+}
+
+/* The event card: purple top, gold rule */
+.map-card {
+  border-top: 4px solid var(--purple);
+  box-shadow: 0 -1px 0 var(--gold-brand), 0 12px 32px rgba(51, 32, 92, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip-card-time.live::before {
+    animation: none;
+  }
+}
+
+:root[data-theme="dark"] .filters .filter-label,
+:root[data-theme="dark"] .map-legend::before {
+  color: var(--action);
+}
+
+:root[data-theme="dark"] .filters select {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .filters .filter-label,
+  :root:not([data-theme="light"]) .map-legend::before {
+    color: var(--action);
+  }
+  :root:not([data-theme="light"]) .filters select {
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  :root:not([data-theme="light"]) .strip-card-time:not(.live) {
+    background: var(--action);
+    color: #17112a;
+  }
+}
