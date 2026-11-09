@@ -392,6 +392,66 @@ function useTheme() {
   return { theme: choice ?? (deviceDark ? "dark" : "light"), pick };
 }
 
+// A yes/no preference kept in this browser.
+const SLIDER_KEY = "dubhub-map-slider";
+function useFlag(key, initial) {
+  const [on, setOn] = useState(() => {
+    try {
+      const saved = localStorage.getItem(key);
+      return saved == null ? initial : saved === "1";
+    } catch {
+      return initial;
+    }
+  });
+  const set = (v) => {
+    setOn(v);
+    try {
+      localStorage.setItem(key, v ? "1" : "0");
+    } catch {
+      // Private browsing can block storage; the choice still lasts until the page closes.
+    }
+  };
+  return [on, set];
+}
+
+const GEAR_ICON =
+  "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z";
+
+// The settings menu in the top bar.
+function SettingsMenu({ showSlider, setShowSlider }) {
+  const [open, setOpen] = useState(false);
+  const box = useRef();
+  useEffect(() => {
+    if (!open) return;
+    const away = (e) => !box.current?.contains(e.target) && setOpen(false);
+    const esc = (e) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("pointerdown", away);
+    document.addEventListener("keydown", esc);
+    return () => {
+      document.removeEventListener("pointerdown", away);
+      document.removeEventListener("keydown", esc);
+    };
+  }, [open]);
+  return (
+    <div className="settings" ref={box}>
+      <button className="theme-toggle" aria-label="Settings" title="Settings" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+        <Icon d={GEAR_ICON} />
+      </button>
+      {open && (
+        <div className="settings-menu" role="dialog" aria-label="Settings">
+          <label className="settings-row">
+            <span>
+              <strong>Time slider on the map</strong>
+              <span>Scrub ahead to see what's on later today</span>
+            </span>
+            <input type="checkbox" role="switch" checked={showSlider} onChange={(e) => setShowSlider(e.target.checked)} />
+          </label>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // The top-bar light/dark switch: shows the mode you'd switch to.
 function ThemeToggle({ theme, onPick }) {
   const next = theme === "dark" ? "light" : "dark";
@@ -1422,35 +1482,47 @@ function FlyTo({ event }) {
   return null;
 }
 
-// The strip of today's flyers along the bottom of the map: tap one to fly to it.
-function MapStrip({ events, shownId, onPick }) {
+// The "Next up" sign on the map: the next few events that haven't ended, soonest first.
+const NEXT_UP_COUNT = 5;
+function upcoming(events, now) {
+  const endOf = (e) => new Date(`${e.date}T${e.end ?? e.start ?? "23:59"}`).getTime();
+  return events
+    .filter((e) => e.date && e.pos && endOf(e) >= now)
+    .sort((x, y) => `${x.date}T${x.start ?? "00:00"}`.localeCompare(`${y.date}T${y.start ?? "00:00"}`))
+    .slice(0, NEXT_UP_COUNT);
+}
+
+function NextUp({ events, onPick }) {
   const now = useNow();
-  const today = events
-    .filter((e) => e.pos && ["now", "soon", "today"].includes(sectionOf(e, now)))
-    .sort((a, b) => `${a.start ?? "99"}`.localeCompare(`${b.start ?? "99"}`));
-  if (!today.length) return null;
+  const next = upcoming(events, now);
   return (
-    <section className="map-strip" aria-label="Today's events">
-      <ol>
-        {today.map((e) => (
-          <li key={e.id}>
-            <button className={e.id === shownId ? "strip-card on" : "strip-card"} onClick={() => onPick(e)}>
-              {e.image ? (
-                <img src={e.image} alt="" loading="lazy" decoding="async" />
-              ) : (
-                <span className="strip-card-none" style={{ background: eventColor(e) }} />
-              )}
-              <span className="strip-card-text">
-                <span className="strip-card-time">
-                  {sectionOf(e, now) === "now" ? "On now" : e.start ? formatTime(e.start) : "All day"}
+    <section className="next-up" aria-labelledby="next-up-title">
+      <h2 id="next-up-title">Next up</h2>
+      {next.length === 0 ? (
+        <p className="next-up-empty">Nothing else on the map for these filters.</p>
+      ) : (
+        <ol>
+          {next.map((e) => (
+            <li key={e.id}>
+              <button className={placeCode(e.where) ? "next-up-row" : "next-up-row no-plate"} onClick={() => onPick(e)}>
+                {placeCode(e.where) && (
+                  <span className="next-up-plate">
+                    <Plate where={e.where} />
+                  </span>
+                )}
+                <span className="next-up-text">
+                  <strong>{e.title}</strong>
+                  <span>{hostName(e)}</span>
                 </span>
-                <strong>{e.title}</strong>
-                <span>{e.where ?? hostName(e)}</span>
-              </span>
-            </button>
-          </li>
-        ))}
-      </ol>
+                <span className={startsIn(e) ? "next-up-time soon" : "next-up-time"}>
+                  {e.date === localDate(0) ? (e.start ? formatTime(e.start) : "All day") : dayLabel(e.date)}
+                  <StartsTag event={e} />
+                </span>
+              </button>
+            </li>
+          ))}
+        </ol>
+      )}
     </section>
   );
 }
@@ -1520,7 +1592,7 @@ function hotPlaces(events, at) {
   return [...byPlace.values()].sort((a, b) => b.events.length - a.events.length);
 }
 
-const LABELS_SHOWN = 8;
+const LABELS_SHOWN = 3;
 
 function MapFlair({ events, at, dark }) {
   const places = hotPlaces(events, at);
@@ -1757,7 +1829,7 @@ function MapLegend({ events, dark }) {
   );
 }
 
-function Home({ f, area, introLabels, j, palette }) {
+function Home({ f, area, introLabels, j, palette, showSlider }) {
   const [at, setAt] = useState(null); // the time slider: null is now
   const now = useNow();
   const [shown, setShown] = useState(null); // { event, pinned }
@@ -1790,21 +1862,23 @@ function Home({ f, area, introLabels, j, palette }) {
         onPin={(e) => show(e, true)}
         onMapClick={close}
         palette={palette}
-        at={at}
+        at={showSlider ? at : null}
       />
-      <TimeSlider at={at} setAt={setAt} now={now} />
+      {showSlider && <TimeSlider at={at} setAt={setAt} now={now} />}
       <MapLegend events={f.events} dark={palette?.dark} />
       <Filters f={f} />
       <h1 className="visually-hidden">Events on the UW campus map</h1>
-      {event && <MapEventCard event={event} j={j} onEnter={keep} onLeave={hideSoon} onClose={close} />}
-      <MapStrip
-        events={f.events}
-        shownId={event?.id}
-        onPick={(e) => {
-          setFlyTo(e);
-          show(e, true);
-        }}
-      />
+      {event ? (
+        <MapEventCard event={event} j={j} onEnter={keep} onLeave={hideSoon} onClose={close} />
+      ) : (
+        <NextUp
+          events={f.events}
+          onPick={(e) => {
+            setFlyTo(e);
+            show(e, true);
+          }}
+        />
+      )}
     </main>
   );
 }
@@ -4994,6 +5068,7 @@ export default function DubHub() {
   }, [user?.token, join]);
   const clubs = useJoined(CLUBS_KEY);
   const theme = useTheme();
+  const [showSlider, setShowSlider] = useFlag(SLIDER_KEY, false);
 
   return (
     <div className="app">
@@ -5017,12 +5092,13 @@ export default function DubHub() {
         </nav>
         <div className="nav-end">
           {user?.token && <MailButton count={social.waiting} active={view === "Friends"} onClick={() => setTab("Friends")} />}
+          <SettingsMenu showSlider={showSlider} setShowSlider={setShowSlider} />
           <ThemeToggle theme={theme.theme} onPick={theme.pick} />
           <Account user={user} onOpenSignIn={() => openSignIn()} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
         </div>
       </header>
 
-      {view === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} palette={MAP_PALETTES[theme.theme]} />}
+      {view === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} palette={MAP_PALETTES[theme.theme]} showSlider={showSlider} />}
       {view === "Events" && <NowPage f={f} updated={updated} j={j} onSelect={openEvent} />}
       {view === "My Events" && (
         <MyEventsPage
