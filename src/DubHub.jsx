@@ -1434,14 +1434,14 @@ function MapStrip({ events, shownId, onPick }) {
       <ol>
         {today.map((e) => (
           <li key={e.id}>
-            <button className={e.id === shownId ? "strip-card on" : "strip-card"} style={{ "--c": eventColor(e) }} onClick={() => onPick(e)}>
+            <button className={e.id === shownId ? "strip-card on" : "strip-card"} onClick={() => onPick(e)}>
               {e.image ? (
                 <img src={e.image} alt="" loading="lazy" decoding="async" />
               ) : (
                 <span className="strip-card-none" style={{ background: eventColor(e) }} />
               )}
               <span className="strip-card-text">
-                <span className={sectionOf(e, now) === "now" ? "strip-card-time live" : "strip-card-time"}>
+                <span className="strip-card-time">
                   {sectionOf(e, now) === "now" ? "On now" : e.start ? formatTime(e.start) : "All day"}
                 </span>
                 <strong>{e.title}</strong>
@@ -1562,7 +1562,7 @@ function TimeSlider({ at, setAt, now }) {
   const value = at == null ? 0 : Math.round((at - start) / (15 * 6e4));
   const label = at == null ? "Now" : new Date(at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
   return (
-    <div className="time-slider" style={{ "--p": `${(value / steps) * 100}%` }}>
+    <div className="time-slider">
       <span className="time-slider-label">
         Showing <strong>{label}</strong>
       </span>
