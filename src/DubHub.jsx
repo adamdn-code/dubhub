@@ -2077,10 +2077,16 @@ function NowPage({ f, updated, j, onSelect }) {
   }
   const shown = sections.filter((sec) => sec.events.length);
   const clock = new Date(now);
+  // The band behind the headline takes its color from the next three events' flyers.
+  const heroArt = sections
+    .flatMap((sec) => sec.events)
+    .filter((e) => e.image && ["now", "soon", "today"].includes(sectionOf(e, now)))
+    .slice(0, 3)
+    .map((e) => `url(${JSON.stringify(e.image)})`);
 
   return (
     <main className="page now-page">
-      <section className="now-hero">
+      <section className="now-hero" style={heroArt.length ? { "--art-1": heroArt[0], "--art-2": heroArt[1] ?? heroArt[0], "--art-3": heroArt[2] ?? heroArt[0] } : undefined}>
         <div className="now-hero-inner">
           <header className="now-head">
             <h1>What's on</h1>

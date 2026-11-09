@@ -5447,3 +5447,53 @@ body {
     transition: none;
   }
 }
+
+/* The band's background: the next event's flyer, blown up and blurred, under a purple wash, so
+   the color comes from whatever's actually on today (falls back to flat purple without one) */
+.now-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.now-hero::before {
+  content: "";
+  position: absolute;
+  inset: -80px;
+  z-index: -2;
+  background:
+    var(--art-1, none) 100% 0% / 55% 100% no-repeat,
+    var(--art-2, none) 55% 100% / 50% 90% no-repeat,
+    var(--art-3, none) 0% 0% / 50% 100% no-repeat;
+  filter: blur(56px) saturate(1.7) brightness(1.05);
+  transform: scale(1.15);
+}
+
+.now-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(100deg, rgba(50, 0, 110, 0.92) 0%, rgba(60, 24, 115, 0.72) 38%, rgba(75, 46, 131, 0.3) 70%, rgba(75, 46, 131, 0.12) 100%),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1.2px) 0 0 / 4px 4px;
+}
+
+:root[data-theme="dark"] .now-hero::after {
+  background:
+    linear-gradient(100deg, rgba(26, 12, 52, 0.96) 0%, rgba(42, 26, 79, 0.86) 45%, rgba(42, 26, 79, 0.6) 100%),
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1.2px) 0 0 / 4px 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .now-hero::after {
+    background:
+      linear-gradient(100deg, rgba(26, 12, 52, 0.96) 0%, rgba(42, 26, 79, 0.86) 45%, rgba(42, 26, 79, 0.6) 100%),
+      radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1.2px) 0 0 / 4px 4px;
+  }
+}
+
+/* The flyers float a little higher off the richer ground */
+.fan-card {
+  box-shadow: 0 14px 36px rgba(16, 6, 36, 0.5);
+}
