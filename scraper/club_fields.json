@@ -235,11 +235,11 @@
 },
 "alphaphialphafraternityincorporated": {
 "fields": [],
-"from": "Alpha Phi Alpha Fraternity Incorporated|Alpha Phi Alpha fraternity chapter fostering brotherhood, mentorship, and service."
+"from": "Alpha Phi Alpha Fraternity Incorporated|Alpha Xi Chapter of Alpha Phi Alpha, a fraternity promoting brotherhood, mentorship, and service."
 },
 "alphaphiomegagammaalpha": {
 "fields": [],
-"from": "Alpha Phi Omega Gamma Alpha|Co-ed service fraternity focused on leadership and community service."
+"from": "Alpha Phi Omega Gamma Alpha|Co‑ed service fraternity promoting volunteerism and community impact."
 },
 "alphasigmaphi": {
 "fields": [],
@@ -316,7 +316,7 @@
 "fields": [
 "Business"
 ],
-"from": "American Marketing Association, UW Chapter|Student marketing organization connecting consultants with real‑world projects."
+"from": "American Marketing Association, UW Chapter|Student chapter focused on marketing education, projects, and industry trends."
 },
 "americanmedicalwomensassociationatuwsomgraduate": {
 "fields": [
@@ -348,7 +348,7 @@
 },
 "americansignlanguageclub": {
 "fields": [],
-"from": "American Sign Language Club at University of Washington|ASL club teaching American Sign Language and hosting inclusive social events."
+"from": "American Sign Language Club at University of Washington|ASL club offering lessons, social gatherings, and events for Deaf and hearing students."
 },
 "americansocietyformicrobiology": {
 "fields": [
@@ -360,7 +360,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "American Society of Civil Engineers UW Student Chapter|Student chapter of the American Society of Civil Engineers at UW."
+"from": "American Society of Civil Engineers UW Student Chapter|Civil engineering student chapter with industry talks."
 },
 "americansocietyofhealthsystempharmacists": {
 "fields": [
@@ -440,7 +440,7 @@
 },
 "animenation": {
 "fields": [],
-"from": "Anime Nation at the University of Washington|Community for UW anime, manga, and gaming enthusiasts."
+"from": "Anime Nation at the University of Washington|Anime Nation UW unites the campus anime, manga, and gaming community."
 },
 "anticinemacinemaclub": {
 "fields": [
@@ -493,7 +493,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Artificial Intelligence Student Collective @ UW|Democratizes AI education with workshops, projects, and events for all disciplines."
+"from": "Artificial Intelligence Student Collective @ UW|Student network offering AI workshops and interdisciplinary projects."
 },
 "artsandcraftsclub": {
 "fields": [
@@ -519,11 +519,11 @@
 },
 "asianamericanchristianfellowship": {
 "fields": [],
-"from": "Asian American Christian Fellowship|Asian American Christian fellowship offering worship, study, and community."
+"from": "Asian American Christian Fellowship|Asian American Christian fellowship offering worship, study, and community events."
 },
 "asianamericanintervarsitychristianfellowship": {
 "fields": [],
-"from": "Asian American Intervarsity Christian Fellowship|Asian American InterVarsity Christian fellowship at UW"
+"from": "Asian American Intervarsity Christian Fellowship|Christian fellowship empowering Asian American students on campus."
 },
 "asianboardgameclub": {
 "fields": [],
@@ -637,7 +637,7 @@
 "fields": [
 "Business"
 ],
-"from": "Association of Latino Professionals for America|Latino professional organization empowering future leaders at UW."
+"from": "Association of Latino Professionals for America|Latino professional network empowering future leaders."
 },
 "associationofmedicalspecialties": {
 "fields": [
@@ -700,7 +700,7 @@
 },
 "asuwgenderequitycommission": {
 "fields": [],
-"from": "ASUW Gender Equity Commission|Campus commission advocating gender equity and inclusive culture for all UW members."
+"from": "ASUW Gender Equity Commission|Promotes gender equity and supports trans and breast cancer communities."
 },
 "asuwlatinestudentcommission": {
 "fields": [],
@@ -717,10 +717,8 @@
 "from": "ASUW Office of Government Relations|"
 },
 "asuwofficeofinclusivedesign": {
-"fields": [
-"Engineering"
-],
-"from": "ASUW Office of Inclusive Design|Office offering accessibility resources and inclusive design support."
+"fields": [],
+"from": "ASUW Office of Inclusive Design|Campus office assisting students with inclusive event design and accessibility."
 },
 "asuwofficeofinternationalstudentadvocacy": {
 "fields": [],
@@ -738,7 +736,7 @@
 },
 "asuwqueerstudentcommission": {
 "fields": [],
-"from": "ASUW Queer Student Commission|Student group advocating, empowering, and supporting UW's queer community."
+"from": "ASUW Queer Student Commission|Advocate for queer culture at UW."
 },
 "asuwrainydawgradio": {
 "fields": [],
@@ -794,7 +792,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "AVELA A Vision for Engineering Literacy and Access|Engineering literacy group offering workshops, camps, and panels to broaden access."
+"from": "AVELA A Vision for Engineering Literacy and Access|Engineering literacy and access workshops and camps."
 },
 "awaaz": {
 "fields": [],
@@ -820,15 +818,17 @@
 },
 "barbellclub": {
 "fields": [],
-"from": "Barbell Club at the University of Washington|Social weightlifting club meeting weekly for workouts and camaraderie."
+"from": "Barbell Club at the University of Washington|Social lifting club with workouts and events."
 },
 "barteringclub": {
 "fields": [],
 "from": "Bartering Club at UW|The goal of Bartering Club is to promote sustainability, reuse, and mutual support in a communitycentered space, as…"
 },
 "batmanskitchen": {
-"fields": [],
-"from": "Batman’s Kitchen|We are a welcoming community for students at the University of Washington to foster their interest, knowledge, and…"
+"fields": [
+"Computing & Math"
+],
+"from": "Batman’s Kitchen|Cybersecurity and ethical hacking student organization at UW."
 },
 "beautifyudub": {
 "fields": [],
@@ -842,7 +842,7 @@
 },
 "bengalistudentsassociation": {
 "fields": [],
-"from": "Bengali Students Association|Association celebrating Bengali culture and community for UW students."
+"from": "Bengali Students Association|Bengali student community."
 },
 "bestbuddies": {
 "fields": [],
@@ -894,7 +894,7 @@
 "Engineering",
 "Sciences"
 ],
-"from": "BioExplore at UW|Club for bioengineering students offering workshops, mentorship, and lab tours."
+"from": "BioExplore at UW|Bioengineering community offering workshops, mentorship, and lab tours."
 },
 "biologystudentsforequity": {
 "fields": [
@@ -1066,7 +1066,7 @@
 "fields": [
 "Business"
 ],
-"from": "Business Impact Group at UW|Undergraduate consulting group helping startups, small businesses, and nonprofits grow."
+"from": "Business Impact Group at UW|Undergrad consulting org helping startups, small biz & social groups."
 },
 "businessinformationtechnologysociety": {
 "fields": [
@@ -1123,13 +1123,11 @@
 },
 "catholicnewmancenter": {
 "fields": [],
-"from": "Catholic Newman Center at the UW|Catholic Newman Center fostering prayer, fellowship, and spiritual growth."
+"from": "Catholic Newman Center at the UW|Catholic community fostering faith, fellowship, and service at UW."
 },
 "centerforinternationalrelationsandculturalleadershipexchange": {
-"fields": [
-"Social Sciences"
-],
-"from": "Center for International Relations and Cultural Leadership Exchange|Program promoting cultural engagement, research resources, and career skill building."
+"fields": [],
+"from": "Center for International Relations and Cultural Leadership Exchange|Cultural engagement hub offering events, research support, and creative workshops."
 },
 "centralasianstudentassociation": {
 "fields": [],
@@ -1242,7 +1240,7 @@
 },
 "chinesestudentassociation": {
 "fields": [],
-"from": "Chinese Student Association at the University of Washington|Chinese Student Association hosting cultural events like dumpling nights."
+"from": "Chinese Student Association at the University of Washington|Chinese Student Association promoting Chinese culture and community at UW."
 },
 "chinesestudentsandscholarsassociation": {
 "fields": [],
@@ -1274,15 +1272,15 @@
 },
 "christianstudentsassociation": {
 "fields": [],
-"from": "Christian Students Association|Student group for worship, Bible study, and fellowship with free food."
+"from": "Christian Students Association|Christian student association for worship, Bible study and fellowship."
 },
 "christiansinseattle": {
 "fields": [],
-"from": "Christians in Seattle|Christian community offering fellowship, worship, and weekly gatherings in Seattle."
+"from": "Christians in Seattle|Christian fellowship group offering worship, dinner and community."
 },
 "circlekinternational": {
 "fields": [],
-"from": "Circle K International at the University of Washington|Student-led volunteer club serving UW and the Greater Seattle community."
+"from": "Circle K International at the University of Washington|Student‑led volunteer club serving UW and Seattle community"
 },
 "civillibertiesclub": {
 "fields": [
@@ -1292,10 +1290,9 @@
 },
 "claudebuilderclub": {
 "fields": [
-"Engineering",
 "Computing & Math"
 ],
-"from": "Claude Builder Club @ UW|Club learning to build projects using Claude AI coding assistant."
+"from": "Claude Builder Club @ UW|Learns to build AI‑powered applications using Claude."
 },
 "climateactionandsustainabilityteamschoolofdentistry": {
 "fields": [
@@ -1352,10 +1349,8 @@
 "from": "Communists At University of Washington|We, Communists at UW, are an organization of likeminded students who understand the need to fight to overthrow…"
 },
 "communityengagementandleadershipeducationcenter": {
-"fields": [
-"Social Sciences"
-],
-"from": "Community Engagement and Leadership Education Center|Center helping students develop skills for community engagement and civic participation."
+"fields": [],
+"from": "Community Engagement and Leadership Education Center|Center offering programs to build community‑engaged skills."
 },
 "communityforneuroethicscomputationandtechnology": {
 "fields": [
@@ -1388,7 +1383,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Computing Community @ the University of Washington|Computing community creating a homey atmosphere in the Allen School."
+"from": "Computing Community @ the University of Washington|Computing community creating a homey vibe for Allen School students."
 },
 "computingforenvironmentalandsocialadvocacy": {
 "fields": [
@@ -1422,7 +1417,7 @@
 "fields": [
 "Business"
 ],
-"from": "Consulting Association at UW|UW’s premier consulting club offering career resources and networking."
+"from": "Consulting Association at UW|Student consulting club offering case prep, networking, and career resources."
 },
 "corporatebankingclub": {
 "fields": [
@@ -1440,7 +1435,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Costume Club|Club for sewing, crafting, and cosplay enthusiasts at UW."
+"from": "Costume Club|Student group for costume making, cosplay, and crafting."
 },
 "crafticians": {
 "fields": [],
@@ -1460,13 +1455,13 @@
 },
 "cru": {
 "fields": [],
-"from": "Cru at UW|Multicultural Christian community focused on connecting students to Jesus."
+"from": "Cru at UW|Multicultural Christian community connecting people to Jesus."
 },
 "cseed": {
 "fields": [
 "Engineering"
 ],
-"from": "cseed|Inspires engineering and design students with projects, workshops, and events."
+"from": "cseed|Inspires engineering and design students through projects and events."
 },
 "cseeduw": {
 "fields": [],
@@ -1512,13 +1507,13 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Dance Student Association|Student dance club presenting performances and supporting choreographers."
+"from": "Dance Student Association|Student dance club offering performances and choreography workshops."
 },
 "datasciencesociety": {
 "fields": [
 "Computing & Math"
 ],
-"from": "Data Science Society at UW|Connects students interested in data science and AI through talks and research projects."
+"from": "Data Science Society at UW|Student group exploring data science, AI, and LLM research."
 },
 "dawgpack": {
 "fields": [],
@@ -1572,7 +1567,7 @@
 "fields": [
 "Health"
 ],
-"from": "Delta Epsilon Mu, Inc. Alpha Kappa Chapter|Our goal is to help prehealth students find their passion, connect with other students, access resources, and give…"
+"from": "Delta Epsilon Mu, Inc. Alpha Kappa Chapter|Professional pre‑health fraternity supporting students pursuing health careers."
 },
 "deltagammasorority": {
 "fields": [],
@@ -1677,7 +1672,7 @@
 },
 "disabilityanddeafculturalcenter": {
 "fields": [],
-"from": "Disability and Deaf Cultural Center|Supports disability and Deaf community on campus"
+"from": "Disability and Deaf Cultural Center|Center supporting disability and Deaf culture on campus."
 },
 "diversityinbusiness": {
 "fields": [
@@ -1723,9 +1718,9 @@
 },
 "dubstech": {
 "fields": [
-"Computing & Math"
+"Engineering"
 ],
-"from": "DubsTech|Student tech group at UW."
+"from": "DubsTech|Student tech community hosting workshops, hackathons, and talks on design & engineering."
 },
 "dubsartclub": {
 "fields": [
@@ -1875,7 +1870,7 @@
 },
 "ethnicculturalcenter": {
 "fields": [],
-"from": "Ethnic Cultural Center|Center celebrating diverse ethnic cultures on campus."
+"from": "Ethnic Cultural Center|Campus center fostering multicultural inclusion and events since 1972."
 },
 "ethnomusicologysociety": {
 "fields": [
@@ -1943,7 +1938,7 @@
 },
 "filipinoamericanstudentassociation": {
 "fields": [],
-"from": "Filipino American Student Association|Promotes Filipino American culture and community at UW."
+"from": "Filipino American Student Association|Filipino American student group promoting culture and charitable events."
 },
 "filipinxassociationforhealthcareers": {
 "fields": [
@@ -1987,7 +1982,7 @@
 },
 "firstnations": {
 "fields": [],
-"from": "First Nations at UW|Supports First Nations students and raises awareness of Indigenous cultures."
+"from": "First Nations at UW|Largest inter‑tribal Native student organization at UW."
 },
 "fishandturtleclub": {
 "fields": [
@@ -2020,10 +2015,9 @@
 },
 "formulamotorsports": {
 "fields": [
-"Engineering",
-"Computing & Math"
+"Engineering"
 ],
-"from": "Formula Motorsports|Student team designing and racing formula-style cars"
+"from": "Formula Motorsports|Build and race Formula SAE cars with a student engineering team."
 },
 "fosteraerospaceassociation": {
 "fields": [
@@ -2132,7 +2126,7 @@
 "fields": [
 "Health"
 ],
-"from": "Future Nurses Club at the University of Washington|A student group for those pursuing nursing careers at UW."
+"from": "Future Nurses Club at the University of Washington|Provides mentorship and resources for UW nursing students."
 },
 "futureschoolpsychologistsofcolor": {
 "fields": [
@@ -2142,7 +2136,7 @@
 },
 "gamingassociation": {
 "fields": [],
-"from": "Gaming Association at UW|Brings together UW students who love video games."
+"from": "Gaming Association at UW|Campus hub for esports, trading card games, and pop‑culture events."
 },
 "gammaalphaomegasororityincorporated": {
 "fields": [],
@@ -2255,7 +2249,7 @@
 },
 "graduateandprofessionalstudentsenateof": {
 "fields": [],
-"from": "Graduate and Professional Student Senate of the University of Washington|Represents graduate and professional students in UW governance."
+"from": "Graduate and Professional Student Senate of the University of Washington|Graduate student government representing UW graduate voices."
 },
 "graduatechristianfellowship": {
 "fields": [],
@@ -2409,7 +2403,7 @@
 },
 "hilleljewishcenterforcampuslife": {
 "fields": [],
-"from": "Hillel at the UW: Jewish Center for Campus Life|Jewish community center supporting students at UW."
+"from": "Hillel at the UW: Jewish Center for Campus Life|Fosters Jewish community and cultural events for UW students."
 },
 "hinduyuva": {
 "fields": [],
@@ -2459,7 +2453,7 @@
 "fields": [
 "Health"
 ],
-"from": "HOSA: Future Health Professionals, UW Chapter|Student organization for future health professionals."
+"from": "HOSA: Future Health Professionals, UW Chapter|HOSA chapter for future health professionals offering service and leadership opportunities."
 },
 "houndsofmusicacappella": {
 "fields": [
@@ -2475,7 +2469,7 @@
 },
 "huihoalohaulanahawaiiclub": {
 "fields": [],
-"from": "Hui Hoaloha ’Ulana Hawai’i Club|Celebrates Hawaiian culture and community at UW."
+"from": "Hui Hoaloha ’Ulana Hawai’i Club|Celebrates Hawaiian culture through events and gatherings."
 },
 "humancentereddesignandengineeringstudentassociationforundergraduates": {
 "fields": [
@@ -2578,7 +2572,7 @@
 },
 "huskyculinaryclub": {
 "fields": [],
-"from": "Husky Culinary Club|Explores cooking and food culture among UW students."
+"from": "Husky Culinary Club|Student culinary club offering cooking demos, food games, and waste‑reduction tips."
 },
 "huskycyclingclub": {
 "fields": [],
@@ -2686,7 +2680,7 @@
 },
 "huskyroundnetclub": {
 "fields": [],
-"from": "Husky Roundnet Club|A club for playing roundnet (Spikeball) on campus."
+"from": "Husky Roundnet Club|Student club for playing roundnet (spikeball) on campus."
 },
 "huskyrugbyclub": {
 "fields": [],
@@ -2764,7 +2758,7 @@
 },
 "huskyunionbuilding": {
 "fields": [],
-"from": "Husky Union Building|Campus hub offering events, resources, and gathering spaces for Husky students."
+"from": "Husky Union Building|Runs campus events to enhance the Husky experience and student engagement."
 },
 "huskywaterpolo": {
 "fields": [],
@@ -2794,7 +2788,7 @@
 },
 "icehockeyclub": {
 "fields": [],
-"from": "Ice Hockey Club at the UW|Student-run club for playing ice hockey."
+"from": "Ice Hockey Club at the UW|UW men's ice hockey team competing in ACHA Division 2 and engaging fans."
 },
 "ieee": {
 "fields": [
@@ -2846,7 +2840,7 @@
 },
 "indianstudentassociation": {
 "fields": [],
-"from": "Indian Student Association at University of Washington|Celebrates Indian culture and community for UW students"
+"from": "Indian Student Association at University of Washington|Celebrates Indian culture with music, dance, and social events."
 },
 "indigenousstudentsoflatinamerica": {
 "fields": [],
@@ -2943,7 +2937,7 @@
 "Computing & Math",
 "Arts & Humanities"
 ],
-"from": "Interaction Design Association at University of Washington ( IxDA UW )|Explores interaction design through workshops and projects."
+"from": "Interaction Design Association at University of Washington ( IxDA UW )|Connects students interested in interaction and visual design at UW."
 },
 "interactiveintelligence": {
 "fields": [
@@ -3090,7 +3084,7 @@
 },
 "kappaalphapsiincgammaeta": {
 "fields": [],
-"from": "Kappa Alpha Psi Inc. Gamma Eta Chapter|Gamma Eta chapter of the Kappa Alpha Psi fraternity at UW."
+"from": "Kappa Alpha Psi Inc. Gamma Eta Chapter|Gamma Eta Chapter of Kappa Alpha Psi fraternity promoting brotherhood and leadership."
 },
 "kappaalphatheta": {
 "fields": [],
@@ -3140,7 +3134,7 @@
 },
 "khmerstudentassociation": {
 "fields": [],
-"from": "Khmer Student Association|Celebrates Cambodian culture and connects Khmer students at UW."
+"from": "Khmer Student Association|Promotes Khmer culture and community at UW."
 },
 "kinspire": {
 "fields": [],
@@ -3557,7 +3551,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Minorities in Tech|Supports underrepresented groups pursuing technology careers at UW."
+"from": "Minorities in Tech|Community promoting diverse participation in tech through panels and events."
 },
 "minorityassociationofpremedicalstudents": {
 "fields": [
@@ -3687,7 +3681,7 @@
 },
 "muslimstudentsassociation": {
 "fields": [],
-"from": "Muslim Students Association at the University of Washington|Fosters community and support for Muslim students at UW."
+"from": "Muslim Students Association at the University of Washington|Builds community for Muslim students with cultural festivals and service."
 },
 "muslimsatfoster": {
 "fields": [],
@@ -3769,7 +3763,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Natya at UW|Showcases Indian classical dance and performance art for UW students."
+"from": "Natya at UW|Premier Indian classical dance team performing Bharatanatyam at UW."
 },
 "ncoda": {
 "fields": [
@@ -3831,7 +3825,7 @@
 },
 "newstudentandtransferprograms": {
 "fields": [],
-"from": "New Student and Transfer Programs|Assists new and transfer students with transition to UW"
+"from": "New Student and Transfer Programs|Support first‑year student transitions to UW."
 },
 "nikkeistudentunion": {
 "fields": [],
@@ -3889,7 +3883,7 @@
 },
 "omegadeltaphifraternityinclambda": {
 "fields": [],
-"from": "Omega Delta Phi Fraternity, Inc. Lambda Chapter|Brotherhood focused on service and cultural enrichment"
+"from": "Omega Delta Phi Fraternity, Inc. Lambda Chapter|Greek fraternity focused on brotherhood, leadership, and service"
 },
 "omegapsiphifraternityinccampus": {
 "fields": [],
@@ -3921,7 +3915,7 @@
 },
 "organizationofhuaclassmates": {
 "fields": [],
-"from": "Organization of Hua Classmates|Connects Hua alumni and classmates."
+"from": "Organization of Hua Classmates|Chinese student network connecting classmates and sharing campus resources."
 },
 "organizationofstudentsocialworkers": {
 "fields": [
@@ -3934,8 +3928,10 @@
 "from": "Oriental Orthodox Christian Student Assocation|The Oriental Orthodox Christian Student Association (OCSA) serves Oriental Orthodox students from Ethiopian, Syrian,…"
 },
 "origamiclub": {
-"fields": [],
-"from": "Origami Club|Club for folding origami and sharing techniques."
+"fields": [
+"Arts & Humanities"
+],
+"from": "Origami Club|Creates origami art and hosts folding sessions for all skill levels."
 },
 "originslifeinuniverse": {
 "fields": [
@@ -3987,7 +3983,7 @@
 },
 "pakistanistudentsassociation": {
 "fields": [],
-"from": "Pakistani Students Association at the UW|Promotes Pakistani culture and community among students at UW."
+"from": "Pakistani Students Association at the UW|Connects Pakistani students through social events and cultural activities."
 },
 "panhellenicassociation": {
 "fields": [],
@@ -4007,7 +4003,7 @@
 },
 "peaksandprofessors": {
 "fields": [],
-"from": "Peaks and Professors at UW|Organizes hikes and outdoor adventures with faculty for the UW community."
+"from": "Peaks and Professors at UW|Organizes outdoor adventures that connect UW students with faculty."
 },
 "pediatricinterestgroup": {
 "fields": [
@@ -4047,13 +4043,13 @@
 },
 "persiancircle": {
 "fields": [],
-"from": "Persian Circle|Celebrates Persian culture and community at UW."
+"from": "Persian Circle|Persian cultural and social community hosting gatherings, baking contests, and fun events."
 },
 "personalfinance": {
 "fields": [
 "Business"
 ],
-"from": "Personal Finance at UW|Provides financial literacy resources and workshops for UW students."
+"from": "Personal Finance at UW|Student group providing personal finance education and wealth‑management guidance."
 },
 "pharmacistsforreproductiveeducationandsexualhealth": {
 "fields": [
@@ -4065,7 +4061,7 @@
 "fields": [
 "Social Sciences"
 ],
-"from": "Phi Alpha Delta PreLaw Fraternity|Pre-law fraternity for students interested in legal careers."
+"from": "Phi Alpha Delta PreLaw Fraternity|Phi Alpha Delta UW chapter, a pre‑law academic fraternity fostering legal education."
 },
 "phibetasigmafraternityincorporatedkappalambda": {
 "fields": [],
@@ -4075,7 +4071,7 @@
 "fields": [
 "Business"
 ],
-"from": "Phi Chi Theta|Professional business fraternity for networking and development"
+"from": "Phi Chi Theta|Co‑ed professional business fraternity for networking, skill building, and career growth."
 },
 "phideltaepsiloninternationalmedicalfraternity": {
 "fields": [
@@ -4250,7 +4246,7 @@
 "fields": [
 "Health"
 ],
-"from": "PrePharmacy Club|Club for students preparing for pharmacy school."
+"from": "PrePharmacy Club|UW Pre‑Pharmacy Club supports students pursuing pharmacy careers with resources."
 },
 "prephysicianscientistclub": {
 "fields": [
@@ -4285,16 +4281,15 @@
 },
 "productspace": {
 "fields": [
-"Business",
-"Engineering"
+"Business"
 ],
-"from": "Product Space|Cultivates product leaders via competitions and community."
+"from": "Product Space|Develops product leadership skills and hosts product challenges."
 },
 "programonclimatechangeundergraduatecohort": {
 "fields": [
 "Sciences"
 ],
-"from": "Program on Climate Change Undergraduate Cohort|Undergraduate cohort studying climate change solutions"
+"from": "Program on Climate Change Undergraduate Cohort|Undergrad cohort for climate science community."
 },
 "progressivestudentunion": {
 "fields": [],
@@ -4394,10 +4389,8 @@
 "from": "Punjabi Cultural Association|The purpose and motivation behind PCA will be to help educate the Seattle region on Punjabi Culture, History, and…"
 },
 "pupsupport": {
-"fields": [
-"Health"
-],
-"from": "Pup Support|Social Media based organization communicating mental health resources and tips through our husky artwork digitally."
+"fields": [],
+"from": "Pup Support|Mental‑health resource group sharing tips through husky‑themed art."
 },
 "purpleambassadors": {
 "fields": [
@@ -4407,13 +4400,11 @@
 },
 "qcenter": {
 "fields": [],
-"from": "Q Center|Provides LGBTQ+ resources and community support at UW."
+"from": "Q Center|Affirming space and resources for queer, trans, and allied students."
 },
 "qplusplus": {
-"fields": [
-"Computing & Math"
-],
-"from": "Q plus plus|Group exploring the Q++ programming language and related projects."
+"fields": [],
+"from": "Q plus plus|LGBTQ+ community events for Allen School students."
 },
 "quantumcomputingclub": {
 "fields": [
@@ -4432,7 +4423,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Queer Cinema History at the University of Washington|Explores the history of LGBTQ+ cinema."
+"from": "Queer Cinema History at the University of Washington|Weekly queer film screenings for all majors and allies."
 },
 "queertranssportsclub": {
 "fields": [],
@@ -4570,8 +4561,10 @@
 "from": "Ruth Jackson Orthopaedic Society, UW Chapter|RJOS UW Chapter is a medical studentrun organization that is focused on promoting professional development of…"
 },
 "salsaclub": {
-"fields": [],
-"from": "Salsa Club at UW|Student group that dances and teaches salsa at UW."
+"fields": [
+"Arts & Humanities"
+],
+"from": "Salsa Club at UW|Weekly salsa and bachata lessons for all skill levels"
 },
 "sandsharkmusic": {
 "fields": [
@@ -4722,7 +4715,7 @@
 },
 "sherepunjabsociety": {
 "fields": [],
-"from": "SherePunjab Society at University of Washington|Promotes Punjabi culture and community at UW."
+"from": "SherePunjab Society at University of Washington|Celebrates Punjabi culture with food socials and fun gatherings."
 },
 "shifastudenthealthinitiativeforaccess": {
 "fields": [
@@ -4854,7 +4847,7 @@
 "Engineering",
 "Sciences"
 ],
-"from": "Society of Asian Scientists and Engineers|Supports Asian students in science and engineering fields."
+"from": "Society of Asian Scientists and Engineers|Professional network for Asian scientists and engineers at UW."
 },
 "societyofhispanicprofessionalengineers": {
 "fields": [
@@ -4882,16 +4875,17 @@
 },
 "societyofwomenengineers": {
 "fields": [
-"Engineering"
+"Engineering",
+"Computing & Math"
 ],
-"from": "Society of Women Engineers at UW|Supports women in engineering through networking and events."
+"from": "Society of Women Engineers at UW|Supports women and nonbinary students in engineering and tech through events."
 },
 "softwareengineeringcareerclub": {
 "fields": [
 "Engineering",
 "Computing & Math"
 ],
-"from": "Software Engineering Career Club|Prepares students for software engineering careers."
+"from": "Software Engineering Career Club|Provides career resources and workshops for aspiring software engineers."
 },
 "sojourncampusministry": {
 "fields": [],
@@ -4917,7 +4911,7 @@
 },
 "somalistudentassociation": {
 "fields": [],
-"from": "Somali Student Association|Community for Somali students and those interested in Somali culture."
+"from": "Somali Student Association|Supports Somali students and showcases Somali culture."
 },
 "sonmentorship": {
 "fields": [
@@ -4933,7 +4927,7 @@
 },
 "southasianstudentassociation": {
 "fields": [],
-"from": "South Asian Student Association at UW|Celebrates South Asian culture and community at UW."
+"from": "South Asian Student Association at UW|Fosters South Asian community and culture at UW."
 },
 "spanishclub": {
 "fields": [],
@@ -5279,7 +5273,7 @@
 },
 "taiwanesestudentassociation": {
 "fields": [],
-"from": "Taiwanese Student Association|Celebrates Taiwanese culture and community."
+"from": "Taiwanese Student Association|Shares Taiwanese culture via events, food, and community."
 },
 "taiwaneseyouthallianceofpacificnorthwest": {
 "fields": [],
@@ -5317,7 +5311,7 @@
 },
 "teaclub": {
 "fields": [],
-"from": "Tea Club|Gathering to enjoy and discuss tea."
+"from": "Tea Club|A student group that shares and enjoys tea together."
 },
 "teambao": {
 "fields": [],
@@ -5334,7 +5328,7 @@
 "Computing & Math",
 "Business"
 ],
-"from": "Technology and Business Association|Links technology interests with business skills."
+"from": "Technology and Business Association|Explores tech and business topics via panels and interactive talks."
 },
 "technologyconsultingassociation": {
 "fields": [
@@ -5355,7 +5349,7 @@
 },
 "thaistudentassociation": {
 "fields": [],
-"from": "Thai Student Association at University of Washington|Celebrates Thai culture and community at UW."
+"from": "Thai Student Association at University of Washington|Thai student association celebrating Thai culture and community."
 },
 "actuaryclub": {
 "fields": [
@@ -5482,7 +5476,7 @@
 },
 "hikingclub": {
 "fields": [],
-"from": "The Hiking Club at UW|Organizes group hikes for UW students to explore local trails."
+"from": "The Hiking Club at UW|Student hiking club organizing year‑round trail outings across Washington."
 },
 "historicalreview": {
 "fields": [
@@ -5664,7 +5658,7 @@
 "Engineering",
 "Sciences"
 ],
-"from": "Triangle Fraternity|The purpose of Triangle UW is to create and maintain a fraternity of engineers, architects, and scientists at the…"
+"from": "Triangle Fraternity|Engineering, science, and architecture fraternity for UW students."
 },
 "turkishstudentassociation": {
 "fields": [],
@@ -5694,7 +5688,7 @@
 "fields": [
 "Business"
 ],
-"from": "Undergraduate Business Council|Student organization focused on business leadership and networking."
+"from": "Undergraduate Business Council|Fosters leadership, collaboration, and mentorship among UW business students."
 },
 "undergraduatelinguisticssociety": {
 "fields": [
@@ -5712,7 +5706,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Undergraduate Theater Society|Student group producing and performing theater productions."
+"from": "Undergraduate Theater Society|Creates inclusive theatre productions and learning opportunities for undergrads."
 },
 "undergraduatewomeninbusinessuwib": {
 "fields": [
@@ -5793,7 +5787,7 @@
 },
 "recreation": {
 "fields": [],
-"from": "UW Recreation|Offers recreational sports, fitness classes, and wellness activities."
+"from": "UW Recreation|University recreation department offering activities for student wellbeing."
 },
 "cbc": {
 "fields": [],
@@ -5879,7 +5873,7 @@
 },
 "vietnamesestudentassociation": {
 "fields": [],
-"from": "Vietnamese Student Association|Vietnamese cultural community offering events, networking, and discounts."
+"from": "Vietnamese Student Association|Vietnamese student association fostering community and culture."
 },
 "virtualbedsideconcerts": {
 "fields": [
@@ -5964,7 +5958,7 @@
 },
 "washingtonmensgymnastics": {
 "fields": [],
-"from": "Washington Men’s Gymnastics|Men’s gymnastics program for UW students."
+"from": "Washington Men’s Gymnastics|Men's gymnastics team representing UW in competitions and community clinics."
 },
 "washingtonmensultimatefrisbee": {
 "fields": [],
@@ -6080,7 +6074,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "WiUX: Women in User Experience|Supports women interested in user experience design at UW."
+"from": "WiUX: Women in User Experience|Connects and empowers women in UX and related fields via workshops and networking."
 },
 "womenempowermentthroughcollaborationsawarenessandresourcesforeducation": {
 "fields": [
@@ -6092,13 +6086,13 @@
 "fields": [
 "Engineering"
 ],
-"from": "Women in Chemical Engineering at the University of Washington|Supports women in chemical engineering at UW."
+"from": "Women in Chemical Engineering at the University of Washington|Supports and mentors women in chemical engineering through community events and professional development."
 },
 "womenincomputing": {
 "fields": [
 "Computing & Math"
 ],
-"from": "Women in Computing|Supports women pursuing computing and tech fields."
+"from": "Women in Computing|Supports women and non‑binary CSE students with mentorship and tech events."
 },
 "womeninconsultingatwashington": {
 "fields": [
@@ -6168,7 +6162,7 @@
 },
 "womensrugby": {
 "fields": [],
-"from": "Women’s Rugby at UW|Women’s rugby community offering training and competition at UW."
+"from": "Women’s Rugby at UW|UW women's rugby team open to all interested players."
 },
 "womensrunclub": {
 "fields": [],
@@ -6176,7 +6170,7 @@
 },
 "womenswaterpoloclub": {
 "fields": [],
-"from": "Women’s Water Polo Club at University of Washington|Student-run club for women’s water polo at UW."
+"from": "Women’s Water Polo Club at University of Washington|University women’s water polo team competing in Northwest Division"
 },
 "woof3d": {
 "fields": [
@@ -6338,6 +6332,6 @@
 },
 "huskysnowclub": {
 "fields": [],
-"from": "Husky Snow Club|UW mountain community for snow sports, gear swaps, and events"
+"from": "Husky Snow Club|Mountain community for snow enthusiasts."
 }
 }

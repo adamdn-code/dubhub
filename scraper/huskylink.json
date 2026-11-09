@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T20:07",
+ "updated": "2026-11-09T15:28",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -208,14 +208,6 @@
    "about": "AIESEC is a global non-profit organization that sends people abroad to develop their international knowledge and…",
    "description": "AIESEC is a global non-profit organization that sends people abroad to develop their international knowledge and personal skills. As a member of our organization, you will help find and send these people abroad while developing your own skills and gaining real work experience without the pressure of a job.",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_633124_AIESECHumanBlue_e40cb47a-4e6b-421e-a87b-336db5fdb659_92717320.png"
-  },
-  {
-   "name": "Alan’s Disciples",
-   "website": "https://huskylink.washington.edu/ADD/",
-   "category": "Social",
-   "about": "we love alan, yes we do!",
-   "description": "we love alan, yes we do! We LOVE Alan, How About YOu!!!",
-   "logo": null
   },
   {
    "name": "Album Listening Club",
@@ -4839,7 +4831,7 @@
    "category": "Social",
    "about": "The purpose of our club is to foster community with UW huskies who love and enjoy Kpop.",
    "description": "The purpose of our club is to foster community with UW huskies who love and enjoy Kpop. We have various events such as concert meetups, toploader deco, movie nights, and more! Come enjoy weekly events with Kpop Club @ UW!",
-   "logo": null
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_648158_KpopClubLogo20252026_1_f332e89c-9bd7-4d03-8b89-bf464aad1434_11917598.png"
   },
   {
    "name": "Kung Fu slash Tai Chi Club at the University of Washington",
@@ -8754,6 +8746,14 @@
    "logo": null
   },
   {
+   "name": "UW Counseling Center",
+   "website": "https://wellbeing.uw.edu/counseling-center/",
+   "category": "Other",
+   "about": "Our counseling center team is here to support your mental health and well-being.",
+   "description": "Our counseling center team is here to support your mental health and well-being. Our diverse staff of counselors, psychologists, and mental health professionals helps students navigate stress, anxiety, relationships, identity, academic pressures, and more. Whether you’re seeking short-term counseling, crisis support, or help connecting to long-term care, we’re here to support your next step toward wellness.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_599699_91618095_249078212791846_3976767793403002880_njpg_29f3604c-fee7-43f8-8125-a26314dac786_119164922.jpeg"
+  },
+  {
    "name": "UW Recreation",
    "website": "https://www.washington.edu/ima/",
    "category": "Other",
@@ -9452,6 +9452,25 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375493",
+   "title": "Organic Steps - Workshop - Alkene & Alkyne Nomenclature & Properties",
+   "type": "Study",
+   "host": "Organic Steps",
+   "where": "General Chemistry Study Center Break Out Room (BAG 330)",
+   "pos": [
+    47.65349,
+    -122.30885
+   ],
+   "date": "2026-11-09",
+   "start": "16:30",
+   "end": "18:30",
+   "url": "https://huskylink.washington.edu/organicsteps/rsvp?id=375493",
+   "source": "huskylink",
+   "description": "We will go over the properties and nomenclature of alkenes and alkynes, while providing practice for students with these topics.",
+   "image": null,
+   "rsvps": 0
+  },
+  {
    "id": "hl-375243",
    "title": "Commander Night at the Hub!",
    "type": "Game night",
@@ -9481,7 +9500,7 @@
    "source": "huskylink",
    "description": "Interested in healthcare? We can connect you!\nOur mission is to break down barriers to healthcare experiences at UW by connecting students with meaningful opportunities and equipping them with the skills to succeed in empathetic, compassionate healthcare.\nWhether you’re pre-med, pre-nursing, pre-PA, pre-pharmacy, or simply interested in getting involved in healthcare, we’re here to help guide you toward your goals.\nCome meet fellow students, learn about upcoming clinical, volunteering, shadowing, and research opportunities, and discover how MedConnect can help you take the next step in your healthcare journey!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_601449_medconnect_15e58cb6-04f9-49b7-9718-e0f3c8577367_102610374.png",
-   "rsvps": 4
+   "rsvps": 7
   },
   {
    "id": "hl-375005",
@@ -9532,7 +9551,7 @@
    "source": "huskylink",
    "description": "Get your game on with the CTC!\nMario Kart\nSuper Smash Bros\nJust Dance\nAnd free popcorn!\nWe play every Tuesday from 2-4PM!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_653212_CTC_Logo_2024_1_340a4878-48de-404e-b908-fc1c4763a198_102017247.png",
-   "rsvps": 0
+   "rsvps": 1
   },
   {
    "id": "hl-375160",
@@ -9615,7 +9634,7 @@
    "source": "huskylink",
    "description": "Join TWN for our First-Generation Speaker Panel, where we’ll celebrate first-gen experiences, hear from inspiring voices, and explore the different journeys that shape our communities.\nCome listen, connect, and be part of the conversation!\nBusiness casual clothing is encouraged but not required!\nWe hope to see you there!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_608695_DEI_Event_Post_TWN_2026_Fall_5594b25f-bbdb-4ba1-8737-742112862590_115181253.png",
-   "rsvps": 0
+   "rsvps": 1
   },
   {
    "id": "hl-375455",
@@ -9723,6 +9742,25 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375494",
+   "title": "Organic Steps - Meeting",
+   "type": "Club",
+   "host": "Organic Steps",
+   "where": "General Chemistry Study Center Break Out Room (BAG 330)",
+   "pos": [
+    47.65349,
+    -122.30885
+   ],
+   "date": "2026-11-13",
+   "start": "16:30",
+   "end": "18:30",
+   "url": "https://huskylink.washington.edu/organicsteps/rsvp?id=375494",
+   "source": "huskylink",
+   "description": "We will provide help for students with any concepts, questions, or assignments they have.",
+   "image": null,
+   "rsvps": 0
+  },
+  {
    "id": "hl-375487",
    "title": "Let's Talk: Mandarin",
    "type": "Club",
@@ -9758,7 +9796,7 @@
    "source": "huskylink",
    "description": "Watch real Japanese Grand Sumo with us in the HUB!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png",
-   "rsvps": 5
+   "rsvps": 11
   },
   {
    "id": "hl-375343",
@@ -9968,6 +10006,22 @@
    "source": "huskylink",
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375495",
+   "title": "Accessibility Audit - Wallingford",
+   "type": "Study",
+   "host": "Urban Accessibility Group",
+   "where": "Parking Lot N1",
+   "pos": null,
+   "date": "2026-12-03",
+   "start": "16:00",
+   "end": "18:00",
+   "url": "https://huskylink.washington.edu/uag/rsvp?id=375495",
+   "source": "huskylink",
+   "description": "UAG welcomes any and all interested students to join us for our Accessibility (Walk) Audit of the Wallingford neighborhood of Seattle. We will be convening in the parking lot of the Burke museum at the start time, then we will travel as a group to the start location.\nWe will be using an app to record the infrastructure accessibility of a section of the neighborhood. This data can then be used for awareness and advocacy purposes, as well as being integrated into a tool that allows people with mobility impairments plan urban routes that accommodate their specific accessibility needs.\nMostly, these audits are about raising awareness about urban accessibility and enjoying a walk with other great people. Volunteer hours are provided to all participants.",
+   "image": null,
    "rsvps": 0
   },
   {
