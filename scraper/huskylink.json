@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T14:09",
+ "updated": "2026-11-08T20:07",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -9452,22 +9452,6 @@
    "rsvps": 0
   },
   {
-   "id": "hl-375142",
-   "title": "Beginner Workshops (CAD)",
-   "type": "Study",
-   "host": "Woof3D",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-09",
-   "start": "17:30",
-   "end": "18:30",
-   "url": "https://huskylink.washington.edu/woof3d/rsvp?id=375142",
-   "source": "huskylink",
-   "description": "Intro to CAD (OnShape) and 3D printing",
-   "image": null,
-   "rsvps": 0
-  },
-  {
    "id": "hl-375243",
    "title": "Commander Night at the Hub!",
    "type": "Game night",
@@ -9647,6 +9631,22 @@
    "source": "huskylink",
    "description": "Pull up to Gym A to meet each other and play casual pickup basketball",
    "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375492",
+   "title": "11/10 Huskids General Meeting: Care Kit Making + UW CELE Guest Speaker",
+   "type": "Club",
+   "host": "Huskies for Kids",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-10",
+   "start": "19:00",
+   "end": "20:00",
+   "url": "https://huskylink.washington.edu/huskids/rsvp?id=375492",
+   "source": "huskylink",
+   "description": "Assemble care kits to donate to the Ronald McDonald House & Guest speaker from UW CELE",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_614633_71e812761e124c758c428ba86a5128a8_6ce6dc4e-2ddb-49d3-a158-04d282b3f118_11812710.jpeg",
    "rsvps": 0
   },
   {

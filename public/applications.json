@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-07T16:10",
+ "updated": "2026-11-08T20:28",
  "applications": [
   {
    "id": "DesAIzMhUL7",
    "host": "@vsauw",
    "for": "ACCE Fam Interest Form",
-   "kind": "Programs",
+   "kind": "Membership",
    "deadline": "2026-11-08",
    "link": "https://linktr.ee/vsauw",
    "post": "https://www.instagram.com/p/DesAIzMhUL7/",
@@ -16,7 +16,7 @@
   {
    "id": "De9jfVIm6Yn",
    "host": "Rainy Dawg Radio (@rainydawgradio)",
-   "for": "DJ positions",
+   "for": "Student Radio DJ",
    "kind": "Team & staff",
    "deadline": "2026-11-09",
    "link": "http://linktr.ee/rainydawg",
@@ -40,8 +40,8 @@
   {
    "id": "DfOPFhKm-YD",
    "host": "Delta Delta Sigma (@uw.dds)",
-   "for": "General membership",
-   "kind": "Membership",
+   "for": "Circle Lead team",
+   "kind": "Officer & board",
    "deadline": "2026-11-11",
    "link": null,
    "post": "https://www.instagram.com/p/DfOPFhKm-YD/",
@@ -64,26 +64,14 @@
   {
    "id": "De5hKvmGiiR",
    "host": "@vsauw",
-   "for": "General membership",
+   "for": "Club membership",
    "kind": "Membership",
    "deadline": "2026-11-25",
    "link": "https://linktr.ee/vsauw",
    "post": "https://www.instagram.com/p/De5hKvmGiiR/",
-   "posted": "2026-10-24",
+   "posted": "2026-10-25",
    "logo": "/ig/clubs/vsauw.jpg",
    "category": "Cultural"
-  },
-  {
-   "id": "DevbqCqFMXr",
-   "host": "Circle K International at UW Seattle (@uwcki)",
-   "for": "Official membership",
-   "kind": "Membership",
-   "deadline": "2026-12-01",
-   "link": null,
-   "post": "https://www.instagram.com/p/DevbqCqFMXr/",
-   "posted": "2026-10-20",
-   "logo": "/ig/clubs/uwcki.jpg",
-   "category": "Social"
   },
   {
    "id": "DeiQCYesjVY",
@@ -93,7 +81,7 @@
    "deadline": "2026-12-31",
    "link": "http://linktr.ee/bricolageuw",
    "post": "https://www.instagram.com/p/DeiQCYesjVY/",
-   "posted": "2026-10-15",
+   "posted": "2026-10-16",
    "logo": "/ig/clubs/bricolageuw.jpg",
    "category": "Social"
   },
@@ -120,18 +108,6 @@
    "posted": "2026-10-17",
    "logo": "/ig/clubs/uwimprov.jpg",
    "category": "Arts"
-  },
-  {
-   "id": "Der1GjVGb1k",
-   "host": "Rainy Dawg Radio (@rainydawgradio)",
-   "for": "DJ applications",
-   "kind": "Team & staff",
-   "deadline": null,
-   "link": null,
-   "post": "https://www.instagram.com/p/Der1GjVGb1k/",
-   "posted": "2026-10-19",
-   "logo": "/ig/clubs/rainydawgradio.jpg",
-   "category": "Service"
   },
   {
    "id": "Der8aVrD-ta",
@@ -184,7 +160,7 @@
   {
    "id": "De0GH4WhdBq",
    "host": "UW Recycling (@uwrecycling)",
-   "for": "Husky Goods Free Store Student Volunteer",
+   "for": "Husky Goods Free Store volunteer",
    "kind": "Team & staff",
    "deadline": null,
    "link": "http://linktr.ee/uwrecycling",
@@ -232,7 +208,7 @@
   {
    "id": "De8U-IgosUe",
    "host": "COM²: Computing Community at UW (@uwcom2)",
-   "for": "Associate Officer apps",
+   "for": "Associate Officer",
    "kind": "Officer & board",
    "deadline": null,
    "link": null,
@@ -256,8 +232,8 @@
   {
    "id": "De-urQeg-8Z",
    "host": "ASUW Latine Student Commission (@asuwlsc)",
-   "for": "Intern positions",
-   "kind": "Team & staff",
+   "for": "Latine Student Commission intern spots",
+   "kind": "Programs",
    "deadline": null,
    "link": "https://forms.cloud.microsoft/r/EbDzSFBCf1",
    "post": "https://www.instagram.com/p/De-urQeg-8Z/",
@@ -302,6 +278,18 @@
    "category": "Greek Life"
   },
   {
+   "id": "DfQf5ZxvCv3",
+   "host": "University of Washington Army ROTC (@uwarmyrotc)",
+   "for": "ROTC scholarships",
+   "kind": "Programs",
+   "deadline": null,
+   "link": "https://www.goarmy.com/careers-and-jobs/find-your-path/army-officers/rotc/scholarships",
+   "post": "https://www.instagram.com/p/DfQf5ZxvCv3/",
+   "posted": "2026-11-02",
+   "logo": "/ig/clubs/uwarmyrotc.jpg",
+   "category": "Social"
+  },
+  {
    "id": "DfQDO3iBmaP",
    "host": "Washington iGEM (@washington_igem)",
    "for": "2026-2027 Applications",
@@ -336,18 +324,6 @@
    "posted": "2026-11-04",
    "logo": "/ig/clubs/uw_pad.jpg",
    "category": "Academic"
-  },
-  {
-   "id": "DfaQxXIj5We",
-   "host": "Costume Club at UW (@uwcostumeclub)",
-   "for": "Cosplayer & staff",
-   "kind": "Team & staff",
-   "deadline": null,
-   "link": null,
-   "post": "https://www.instagram.com/p/DfaQxXIj5We/",
-   "posted": "2026-11-06",
-   "logo": "/ig/clubs/uwcostumeclub.jpg",
-   "category": "Arts"
   },
   {
    "id": "DfdMF54ksQu",
