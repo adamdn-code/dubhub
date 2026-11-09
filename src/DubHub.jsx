@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, CircleMarker, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
+import { MapContainer, CircleMarker, Marker, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -1193,41 +1193,45 @@ const MAP_ATTRIBUTION =
 // The light map: campus in the site's concrete and white, quiet enough that the event dots and the
 // slate panels carry the color. Parks and water stay recognizable, just muted.
 const MAP_COLORS = {
-  background: "#ebeae5",
-  water: "#b4cad8",
-  park: "#c9d8bd",
-  wood: "#bfd1b2",
-  wetland: "#d0dcc6",
-  plaza: "#e4e3dd",
-  building: "#dad8d1",
-  school: "#e6e5df",
+  background: "#f1eef6", // lavender ground
+  water: "#c9cdef",
+  park: "#dfe9d6",
+  wood: "#d6e3cb",
+  wetland: "#e1eadb",
+  plaza: "#ece7f3",
+  building: "#e2dbef", // buildings tinted purple
+  school: "#efeaf6",
   road: "#ffffff",
-  highway: "#fbfaf7",
-  casing: "#d6d4cd",
-  highwayCasing: "#c4c1b8",
+  highway: "#fdfcff",
+  casing: "#d9d1e8",
+  highwayCasing: "#c7bbdd",
+  label: "#4a3d66",
+  labelHalo: "#f7f4fb",
+  waterLabel: "#4b4f9a",
+  iconOpacity: 0.55,
 };
 
 // The dark map: the top bar's slate, with streets a step lighter and water in a deep blue-gray.
 const DARK_MAP = {
   dark: true,
-  background: "#16181b",
-  water: "#1a2632",
-  park: "#1b231d",
-  wood: "#19211b",
-  wetland: "#1c241e",
-  plaza: "#1a1c1f",
-  building: "#222529",
-  school: "#1a1c20",
-  road: "#2b2f34",
-  major: "#3a3f45", // main streets
-  highway: "#5a4a40", // freeways only, in a dim brick
-  path: "#23262a", // walking paths, fainter than streets
-  casing: "#16181b",
-  highwayCasing: "#3a302a",
-  label: "#c3c7cc",
-  labelHalo: "#121417",
-  waterLabel: "#8ea6bd",
-  iconOpacity: 0.75, // place icons a little softer, so they don't glare
+  background: "#17112a", // night, in purple
+  water: "#1d1a44",
+  park: "#1c2025",
+  wood: "#1a1e22",
+  wetland: "#1d2126",
+  plaza: "#1b1430",
+  building: "#271d40",
+  school: "#1c1530",
+  road: "#30254f",
+  major: "#45366e",
+  highway: "#8a7542", // freeways in gold
+  path: "#241b3c",
+  casing: "#17112a",
+  highwayCasing: "#3d3220",
+  label: "#cfc6e6",
+  labelHalo: "#120d20",
+  waterLabel: "#9ea3e6",
+  iconOpacity: 0.5,
 };
 
 const MAP_PALETTES = { light: MAP_COLORS, dark: DARK_MAP };
@@ -1291,7 +1295,7 @@ function restyle(style, C = MAP_COLORS) {
     if (C.iconOpacity && layer.type === "symbol" && layer.layout?.["icon-image"] && !/shield/.test(layer.id)) {
       paint["icon-opacity"] = C.iconOpacity;
     }
-    if (C.dark && layer.type === "symbol" && layer.layout?.["text-field"] && !/shield/.test(layer.id)) {
+    if (C.label && layer.type === "symbol" && layer.layout?.["text-field"] && !/shield/.test(layer.id)) {
       const water = /water/.test(layer.id) && C.waterLabel;
       Object.assign(paint, { "text-color": water || C.label, "text-halo-color": C.labelHalo, "text-halo-width": 1.2 });
     }
@@ -1404,57 +1408,94 @@ function StartsTag({ event }) {
   return <span className={label === "Now" ? "starts now" : "starts"}>{label}</span>;
 }
 
-// The "Next up" sign on the map: the next few events that haven't ended, soonest first.
-const NEXT_UP_COUNT = 5;
-function upcoming(events, now = Date.now()) {
-  const endOf = (e) => new Date(`${e.date}T${e.end ?? e.start ?? "23:59"}`).getTime();
-  return events
-    .filter((e) => e.date && e.pos && endOf(e) >= now)
-    .sort((x, y) => `${x.date}T${x.start ?? "00:00"}`.localeCompare(`${y.date}T${y.start ?? "00:00"}`))
-    .slice(0, NEXT_UP_COUNT);
-}
 
-function NextUp({ events, onPick }) {
-  const next = upcoming(events);
-  return (
-    <section className="next-up" aria-labelledby="next-up-title">
-      <h2 id="next-up-title">Next up</h2>
-      {next.length === 0 ? (
-        <p className="next-up-empty">Nothing else on the map for these filters.</p>
-      ) : (
-        <ol>
-          {next.map((e) => (
-            <li key={e.id}>
-              <button className={placeCode(e.where) ? "next-up-row" : "next-up-row no-plate"} onClick={() => onPick(e)}>
-                {placeCode(e.where) && (
-                  <span className="next-up-plate">
-                    <Plate where={e.where} />
-                  </span>
-                )}
-                <span className="next-up-text">
-                  <strong>{e.title}</strong>
-                  <span>{hostName(e)}</span>
-                </span>
-                <span className={startsIn(e) ? "next-up-time soon" : "next-up-time"}>
-                  {e.date === localDate(0) ? (e.start ? formatTime(e.start) : "All day") : dayLabel(e.date)}
-                  <StartsTag event={e} />
-                </span>
-              </button>
-            </li>
-          ))}
-        </ol>
-      )}
-    </section>
-  );
-}
 
 // Pans the map to an event picked from the Next up sign.
 function FlyTo({ event }) {
   const map = useMap();
   useEffect(() => {
-    if (event?.pos) map.panTo(event.pos, { animate: true, duration: 0.4 });
+    if (!event?.pos) return;
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (calm) map.setView(event.pos, Math.max(map.getZoom(), 17));
+    else map.flyTo(event.pos, Math.max(map.getZoom(), 17), { duration: 1.1 });
   }, [map, event]);
   return null;
+}
+
+// ---------------------------------------------------------------------- flyer pins on the map
+// Today's events that have a flyer stand on the map as small pins showing the club's own poster,
+// with the start time on a tab under it. One per building (its soonest event); the picked one
+// grows. Everything else stays a dot.
+const PIN_LIMIT = 16;
+function todaysPins(events, now = Date.now()) {
+  const byPlace = new Map();
+  for (const e of events) {
+    if (!e.pos || !e.image || !["now", "soon", "today"].includes(sectionOf(e, now))) continue;
+    const key = e.pos.join();
+    const prev = byPlace.get(key);
+    if (!prev || `${e.start ?? "99"}` < `${prev.start ?? "99"}`) byPlace.set(key, e);
+  }
+  return [...byPlace.values()]
+    .sort((a, b) => `${a.start ?? "99"}`.localeCompare(`${b.start ?? "99"}`))
+    .slice(0, PIN_LIMIT);
+}
+
+function pinIcon(e, picked, now) {
+  const live = sectionOf(e, now) === "now";
+  const label = live ? "On now" : e.start ? formatTime(e.start) : "Today";
+  return L.divIcon({
+    className: "flyer-pin-wrap",
+    html: `<span class="flyer-pin${picked ? " picked" : ""}${live ? " live" : ""}"><img src="${encodeURI(e.image)}" alt="" /><span class="flyer-pin-time">${label}</span></span>`,
+    iconSize: picked ? [64, 92] : [46, 70],
+    iconAnchor: picked ? [32, 92] : [23, 70],
+  });
+}
+
+function FlyerPins({ events, shownId, onPin }) {
+  const now = useNow();
+  return todaysPins(events, now).map((e) => (
+    <Marker
+      key={`pin|${e.id}`}
+      position={e.pos}
+      icon={pinIcon(e, e.id === shownId, now)}
+      zIndexOffset={e.id === shownId ? 1000 : 400}
+      eventHandlers={{ click: () => onPin(e) }}
+      keyboard={false}
+    />
+  ));
+}
+
+// The strip of today's flyers along the bottom of the map: tap one to fly to it.
+function MapStrip({ events, shownId, onPick }) {
+  const now = useNow();
+  const today = events
+    .filter((e) => e.pos && ["now", "soon", "today"].includes(sectionOf(e, now)))
+    .sort((a, b) => `${a.start ?? "99"}`.localeCompare(`${b.start ?? "99"}`));
+  if (!today.length) return null;
+  return (
+    <section className="map-strip" aria-label="Today's events">
+      <ol>
+        {today.map((e) => (
+          <li key={e.id}>
+            <button className={e.id === shownId ? "strip-card on" : "strip-card"} onClick={() => onPick(e)}>
+              {e.image ? (
+                <img src={e.image} alt="" loading="lazy" decoding="async" />
+              ) : (
+                <span className="strip-card-none" style={{ background: eventColor(e) }} />
+              )}
+              <span className="strip-card-text">
+                <span className="strip-card-time">
+                  {sectionOf(e, now) === "now" ? "On now" : e.start ? formatTime(e.start) : "All day"}
+                </span>
+                <strong>{e.title}</strong>
+                <span>{e.where ?? hostName(e)}</span>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
 }
 
 // Clicking the map itself (not a dot) closes the panel.
@@ -1542,7 +1583,7 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
           </CircleMarker>
         );
       })}
-      <SoonPlates events={located} shownId={shown?.id} />
+      <FlyerPins events={located} shownId={shown?.id} onPin={onPin} />
       <MapClicks onClick={onMapClick} />
       {introLabels && <IntroLabels places={places} dark={palette?.dark} />}
     </MapContainer>
@@ -1552,24 +1593,6 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
 // Events starting within three hours (or on now) keep their building's code plate beside the dot,
 // like a sign on the building: one plate per place, brick while something there is on now.
 // Each hangs off an invisible point, since a dot's own tooltip is its hover card.
-function SoonPlates({ events, shownId }) {
-  const byPlace = new Map();
-  for (const e of events) {
-    const label = startsIn(e);
-    const code = placeCode(e.where)?.code;
-    if (!label || !code || e.id === shownId) continue;
-    const key = e.pos.join();
-    const prev = byPlace.get(key);
-    if (!prev || (label === "Now" && !prev.now)) byPlace.set(key, { pos: e.pos, code, now: label === "Now", r: dotRadius(e) });
-  }
-  return [...byPlace.values()].map((p) => (
-    <CircleMarker key={`plate|${p.pos.join()}`} center={p.pos} radius={0} stroke={false} fill={false} interactive={false}>
-      <Tooltip permanent direction="right" offset={[p.r + 4, 0]} opacity={1} className="pin-plate">
-        <span className={p.now ? "plate plate-now" : "plate"}>{p.code}</span>
-      </Tooltip>
-    </CircleMarker>
-  ));
-}
 
 // Line icons for each event type (the callout's icon tile).
 const TYPE_ICONS = {
@@ -1678,17 +1701,15 @@ function Home({ f, area, introLabels, j, palette }) {
       <MapLegend events={f.events} dark={palette?.dark} />
       <Filters f={f} />
       <h1 className="visually-hidden">Events on the UW campus map</h1>
-      {event ? (
-        <MapEventCard event={event} j={j} onEnter={keep} onLeave={hideSoon} onClose={close} />
-      ) : (
-        <NextUp
-          events={f.events}
-          onPick={(e) => {
-            setFlyTo(e);
-            show(e, true);
-          }}
-        />
-      )}
+      {event && <MapEventCard event={event} j={j} onEnter={keep} onLeave={hideSoon} onClose={close} />}
+      <MapStrip
+        events={f.events}
+        shownId={event?.id}
+        onPick={(e) => {
+          setFlyTo(e);
+          show(e, true);
+        }}
+      />
     </main>
   );
 }
