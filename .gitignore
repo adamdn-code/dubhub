@@ -30,3 +30,10 @@ scraper/.env
 
 .vercel
 .env*
+
+# Browser test screenshots and design-review scratch files
+.playwright-mcp/
+.impeccable/decision-payload.json
+
+# Personal artwork for the Steel Ball Run theme (stays local)
+public/sbr/*
