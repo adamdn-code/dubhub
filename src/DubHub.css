@@ -5249,47 +5249,48 @@ body {
   padding: 0 0 56px;
 }
 
-.now-body,
-.now-hero .now-head {
+.now-body {
   width: min(var(--page-w), 100%);
   margin: 0 auto;
   padding: 0 20px;
 }
 
+/* Flat Husky purple; the flyers bring the color */
 .now-hero {
-  position: relative;
-  overflow: hidden;
   margin-bottom: 28px;
-  padding: 36px 0 150px;
-  background:
-    radial-gradient(120% 90% at 85% 0%, rgba(183, 165, 122, 0.22), transparent 55%),
-    var(--purple);
+  padding: 44px 20px 40px;
+  background: var(--purple);
   color: #fff;
 }
 
 :root[data-theme="dark"] .now-hero {
-  background:
-    radial-gradient(120% 90% at 85% 0%, rgba(214, 195, 143, 0.16), transparent 55%),
-    #2a1a4f;
+  background: #2a1a4f;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .now-hero {
-    background:
-      radial-gradient(120% 90% at 85% 0%, rgba(214, 195, 143, 0.16), transparent 55%),
-      #2a1a4f;
+    background: #2a1a4f;
   }
 }
 
+/* Headline and strip on the left, the flyer fan on the right */
+.now-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+  align-items: center;
+  gap: 40px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
 .now-hero .now-head {
-  position: relative;
-  z-index: 2;
+  margin: 0;
 }
 
 .now-hero h1 {
   color: #fff;
-  font-size: 64px;
-  letter-spacing: -0.035em;
+  font-size: 68px;
+  letter-spacing: -0.04em;
 }
 
 .now-hero .now-date {
@@ -5297,12 +5298,11 @@ body {
   font-size: 18px;
 }
 
-/* The day strip, glowing on the purple */
+/* The day strip on the purple */
 .now-hero .day-strip {
-  margin-top: 26px;
+  margin-top: 28px;
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16), inset 0 3px 0 var(--gold-brand);
-  backdrop-filter: blur(2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
 }
 
 .now-hero .strip-tick {
@@ -5310,189 +5310,140 @@ body {
 }
 
 .now-hero .strip-tick span {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .now-hero .strip-bar {
   opacity: 1;
-  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.25);
 }
 
 .now-hero .strip-bar.live {
-  box-shadow: 0 0 0 2px #fff, 0 0 12px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 0 2px var(--purple), 0 0 0 3.5px #fff;
 }
 
 .now-hero .strip-now {
-  background: #ff6b7a;
-  box-shadow: 0 0 10px rgba(255, 107, 122, 0.8);
+  background: #ff7a88;
 }
 
 .now-hero .strip-now::before {
-  background: #ff6b7a;
-  box-shadow: 0 0 0 4px rgba(255, 107, 122, 0.25);
+  background: #ff7a88;
+  box-shadow: 0 0 0 4px rgba(255, 122, 136, 0.25);
 }
 
-/* The campus skyline in gold line art along the bottom of the band */
-.skyline {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
+/* The flyer fan: the lead flyer in front, the next ones tucked behind and turned out */
+.fan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.fan-cards {
+  position: relative;
   width: 100%;
-  height: 150px;
+  height: 300px;
 }
 
-.sky-line {
-  fill: none;
-  stroke: var(--gold-brand);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.sky-line circle {
-  fill: rgba(183, 165, 122, 0.12);
-}
-
-.sky-far {
-  fill: rgba(255, 255, 255, 0.08);
-}
-
-.sky-snow {
-  fill: rgba(255, 255, 255, 0.22);
-}
-
-.sky-ground {
-  stroke: var(--gold-brand);
-  stroke-width: 2;
-}
-
-/* The skyline draws itself in once */
-.sky-line path,
-.sky-line circle {
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600;
-  animation: sky-draw 2.2s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
-}
-
-@keyframes sky-draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-/* The season, drifting down through the band */
-.season {
+.fan-card {
+  --w: 180px;
   position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+  left: 50%;
+  top: 50%;
+  z-index: calc(10 - var(--k));
+  width: var(--w);
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  overflow: hidden;
+  border: 4px solid #fff;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(16, 6, 36, 0.4);
+  cursor: pointer;
+  transform: translate(calc(-50% + var(--k) * 74px - 140px), -50%) rotate(calc(var(--k) * 5deg - 6deg)) scale(calc(1 - var(--k) * 0.06));
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 260ms;
+  animation: fan-in 700ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--k) * 70ms + 100ms);
 }
 
-.season span {
-  position: absolute;
-  top: -20px;
-  width: calc(12px * var(--size));
-  height: calc(12px * var(--size));
-  animation-name: drift;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+.fan-card.lead {
+  --w: 200px;
 }
 
-/* Autumn: gold and rust leaves, tumbling */
-.season-autumn span {
-  border-radius: 0 70% 0 70%;
-  background: #d9a441;
-  opacity: 0.85;
+.fan-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.season-autumn span:nth-child(3n) {
-  background: #c2632f;
+/* Reaching for a flyer brings it to the front and turns it straight */
+.fan-card:hover,
+.fan-card:focus-visible {
+  z-index: 20;
+  transform: translate(calc(-50% + var(--k) * 74px - 140px), calc(-50% - 10px)) rotate(0) scale(1.04);
+  box-shadow: 0 18px 40px rgba(16, 6, 36, 0.5);
 }
 
-.season-autumn span:nth-child(4n) {
-  background: var(--gold-brand);
+.fan-card:focus-visible {
+  outline: 3px solid var(--gold-brand);
+  outline-offset: 3px;
 }
 
-/* Spring: cherry blossom petals from the Quad */
-.season-spring span {
-  border-radius: 60% 0 60% 0;
-  background: #f6c4d6;
-  opacity: 0.9;
-}
-
-.season-spring span:nth-child(2n) {
-  background: #fde3ec;
-}
-
-/* Winter: Seattle drizzle */
-.season-winter span {
-  width: 1.5px;
-  height: calc(18px * var(--size));
-  background: rgba(255, 255, 255, 0.45);
-  animation-name: drizzle;
-}
-
-/* Summer: warm motes, floating slowly */
-.season-summer span {
-  width: calc(5px * var(--size));
-  height: calc(5px * var(--size));
-  border-radius: 50%;
-  background: rgba(255, 224, 150, 0.7);
-  box-shadow: 0 0 8px rgba(255, 224, 150, 0.8);
-}
-
-@keyframes drift {
-  0% {
-    transform: translate(0, 0) rotate(0);
-  }
-  25% {
-    transform: translate(var(--sway), 25vh) rotate(calc(120deg * var(--spin)));
-  }
-  50% {
-    transform: translate(0, 50vh) rotate(calc(220deg * var(--spin)));
-  }
-  75% {
-    transform: translate(calc(var(--sway) * -1), 75vh) rotate(calc(320deg * var(--spin)));
-  }
-  100% {
-    transform: translate(0, 100vh) rotate(calc(420deg * var(--spin)));
-  }
-}
-
-@keyframes drizzle {
+@keyframes fan-in {
   from {
-    transform: translate(0, 0) rotate(12deg);
+    opacity: 0;
+    transform: translate(-50%, -40%) rotate(0) scale(0.9);
   }
-  to {
-    transform: translate(-40px, 100vh) rotate(12deg);
+}
+
+.fan-caption {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 15px;
+  text-align: center;
+}
+
+.fan-caption strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .now-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .now-hero h1 {
+    font-size: 48px;
+  }
+  .fan-cards {
+    height: 210px;
+  }
+  .fan-card {
+    --w: 128px;
+    transform: translate(calc(-50% + var(--k) * 48px - 96px), -50%) rotate(calc(var(--k) * 5deg - 6deg)) scale(calc(1 - var(--k) * 0.06));
+  }
+  .fan-card.lead {
+    --w: 140px;
+  }
+  .fan-card:hover,
+  .fan-card:focus-visible {
+    transform: translate(calc(-50% + var(--k) * 48px - 96px), calc(-50% - 8px)) rotate(0) scale(1.04);
   }
 }
 
 @media (max-width: 700px) {
   .now-hero {
-    padding: 26px 0 112px;
+    padding: 26px 16px 26px;
   }
-  .now-hero h1 {
-    font-size: 44px;
-  }
-  .skyline {
-    height: 110px;
-  }
-  .now-body,
-  .now-hero .now-head {
+  .now-body {
     padding: 0 16px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .season {
-    display: none;
-  }
-  .sky-line path,
-  .sky-line circle {
+  .fan-card {
     animation: none;
-    stroke-dashoffset: 0;
+    transition: none;
   }
 }
