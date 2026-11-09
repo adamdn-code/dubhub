@@ -6375,3 +6375,101 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ======================================================= the top bar: solid purple, pill tabs */
+/* No map lines or glow on the bar; the gold edge stays */
+.nav::before,
+.nav::after {
+  content: none;
+}
+
+.nav {
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+.tabs {
+  align-items: center;
+  gap: 4px;
+}
+
+/* Each tab is a pill: plain text at rest, a faint fill on hover, white for the current page */
+.tab {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 160ms, color 160ms;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.tab.active {
+  background: #fff;
+  color: var(--purple);
+  font-weight: 600;
+}
+
+.tab.active::after {
+  content: none;
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--gold-brand);
+  outline-offset: 2px;
+}
+
+:root[data-theme="dark"] .tab.active {
+  background: rgba(255, 255, 255, 0.92);
+  color: #2a1a4f;
+}
+
+/* Phones: the bottom tab bar keeps icons; the current tab gets a soft pill behind its icon */
+@media (max-width: 700px) {
+  .tabs {
+    background: var(--nav-bg);
+  }
+  .tab {
+    height: auto;
+    padding: 6px 2px;
+    border-radius: 0;
+    background: none;
+  }
+  .tab:hover {
+    background: none;
+  }
+  .tab.active {
+    background: none;
+    color: #fff;
+  }
+  .tab .icon {
+    width: 46px;
+    height: 28px;
+    padding: 3px 12px;
+    border-radius: 999px;
+    box-sizing: border-box;
+  }
+  .tab.active .icon {
+    background: #fff;
+    color: var(--purple);
+  }
+  :root[data-theme="dark"] .tab.active .icon {
+    color: #2a1a4f;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}
