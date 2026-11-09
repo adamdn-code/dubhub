@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T12:11",
+ "updated": "2026-11-08T20:07",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -9436,22 +9436,6 @@
  ],
  "events": [
   {
-   "id": "hl-375488",
-   "title": "ThaiSAxATSA Sports Day",
-   "type": "Hangout",
-   "host": "Thai Student Association at University of Washington",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-08",
-   "start": "13:00",
-   "end": "17:00",
-   "url": "https://huskylink.washington.edu/thaisa/rsvp?id=375488",
-   "source": "huskylink",
-   "description": "Students from UW and PNW area are welcome to join this annual sports day event! Students will be able to make new friends, learn more about Thai culture, and get a chance to chat with ThaiSA officers!\nPlease choose to wear either: WHITE, BLACK, PURPLE, OR NAVY (teams will be sorted according to shirt color!)",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639960_IMG_6389JPG_71fa6bd1-fbf2-4850-8d76-0450e0b7abe6_11718217.jpeg",
-   "rsvps": 7
-  },
-  {
    "id": "hl-375483",
    "title": "The Link- Up",
    "type": "Club",
@@ -9465,22 +9449,6 @@
    "source": "huskylink",
    "description": "Welcome our new officers and kick off the new academic year. Afghan food will be provided.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_614919_Image_04868185-c0b4-4889-bfe6-212d85ecfaca_11532312.png",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375142",
-   "title": "Beginner Workshops (CAD)",
-   "type": "Study",
-   "host": "Woof3D",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-09",
-   "start": "17:30",
-   "end": "18:30",
-   "url": "https://huskylink.washington.edu/woof3d/rsvp?id=375142",
-   "source": "huskylink",
-   "description": "Intro to CAD (OnShape) and 3D printing",
-   "image": null,
    "rsvps": 0
   },
   {
