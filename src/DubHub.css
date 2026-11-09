@@ -4898,3 +4898,222 @@ body {
   border-color: var(--action);
   color: var(--on-action);
 }
+
+/* ======================================================================= flair: the day strip */
+.day-strip {
+  --lane-h: 12px;
+  margin: 22px 0 8px;
+  padding: 30px 14px 12px;
+  border-radius: var(--radius-sheet);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.day-strip-track {
+  position: relative;
+  height: calc(var(--lanes) * var(--lane-h));
+}
+
+/* Hour ticks: a faint line down the track with the hour above it */
+.strip-tick {
+  position: absolute;
+  top: -8px;
+  bottom: -4px;
+  width: 0;
+  border-left: 1px dashed var(--line);
+}
+
+.strip-tick span {
+  position: absolute;
+  bottom: calc(100% + 2px);
+  transform: translateX(-50%);
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.strip-tick.first span {
+  transform: none;
+}
+
+.strip-tick.last span {
+  transform: translateX(-100%);
+}
+
+/* An event: a rounded bar in its category's color */
+.strip-bar {
+  position: absolute;
+  height: calc(var(--lane-h) - 4px);
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  opacity: 0.85;
+  cursor: pointer;
+  transform-origin: left center;
+  transition: transform 160ms cubic-bezier(0.2, 1.4, 0.4, 1), opacity 160ms;
+  animation: strip-in 700ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.strip-bar:hover,
+.strip-bar:focus-visible {
+  opacity: 1;
+  transform: scaleY(1.5);
+}
+
+.strip-bar.live {
+  opacity: 1;
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--live);
+}
+
+/* Now: a red line through the whole strip, with a dot on top */
+.strip-now {
+  position: absolute;
+  top: -12px;
+  bottom: -6px;
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 2px;
+  background: var(--live);
+}
+
+.strip-now::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--live);
+  box-shadow: 0 0 0 4px var(--live-wash);
+}
+
+@keyframes strip-in {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+}
+
+/* ================================================ flair: one entrance, the now line draws */
+.agenda-row {
+  animation: row-in 520ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 45ms + 120ms);
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.now-line-rule {
+  transform-origin: left center;
+  animation: line-draw 900ms cubic-bezier(0.65, 0, 0.35, 1) backwards;
+}
+
+@keyframes line-draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* ============================================== flair: going pops and throws a burst */
+.going-toggle {
+  position: relative;
+  overflow: visible;
+}
+
+.going-toggle.on {
+  animation: going-pop 420ms cubic-bezier(0.2, 1.6, 0.4, 1);
+}
+
+@keyframes going-pop {
+  40% {
+    transform: scale(1.22);
+  }
+}
+
+.burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.burst i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px;
+  border-radius: 50%;
+  background: var(--burst);
+  animation: burst 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.burst i:nth-child(2n) {
+  width: 5px;
+  height: 5px;
+  margin: -2.5px;
+  background: var(--action);
+}
+
+@keyframes burst {
+  0% {
+    transform: rotate(var(--a)) translateY(0) scale(0.6);
+  }
+  65% {
+    transform: rotate(var(--a)) translateY(-30px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(var(--a)) translateY(-36px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+/* ================================================ flair: hover a flyer to read it */
+@media (hover: hover) and (min-width: 701px) {
+  .agenda-pic {
+    position: relative;
+    z-index: 1;
+    transform-origin: right center;
+    transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 240ms;
+  }
+  img.agenda-pic:hover {
+    z-index: 5;
+    transform: scale(3.6);
+    border-radius: 4px;
+    box-shadow: 0 18px 50px rgba(24, 34, 44, 0.35);
+  }
+}
+
+@media (max-width: 700px) {
+  .day-strip {
+    --lane-h: 11px;
+    margin-left: -4px;
+    margin-right: -4px;
+    padding: 28px 10px 10px;
+  }
+  .strip-tick:nth-child(2n) span {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip-bar,
+  .agenda-row,
+  .now-line-rule,
+  .going-toggle.on,
+  .burst i {
+    animation: none;
+  }
+  .burst {
+    display: none;
+  }
+  .agenda-pic {
+    transition: none;
+  }
+}

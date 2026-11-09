@@ -1871,13 +1871,13 @@ function sectionOf(e, now = Date.now()) {
 
 // One event in the agenda: its time on the left, then what it is, who's hosting and where, the
 // club's flyer as a small picture, and the going toggle. The whole row opens the event.
-function AgendaRow({ event: e, section, j, onSelect }) {
+function AgendaRow({ event: e, section, j, onSelect, index = 0 }) {
   const [broken, setBroken] = useState(false);
   const live = section === "now";
   const soon = section === "soon" ? startsIn(e) : null;
   const day = section === "later"; // tomorrow's heading already says which day
   return (
-    <li className={live ? "agenda-row live" : "agenda-row"}>
+    <li className={live ? "agenda-row live" : "agenda-row"} style={{ "--i": Math.min(index, 12) }}>
       <div className="agenda-time">
         {day && <span className="agenda-day">{dayLabel(e.date)}</span>}
         <span className="agenda-start">{e.start ? formatTime(e.start) : "All day"}</span>
@@ -1903,24 +1903,101 @@ function AgendaRow({ event: e, section, j, onSelect }) {
           {initials(hostName(e))}
         </span>
       )}
-      <GoingToggle event={e} j={j} />
+      <GoingToggle event={e} j={j} color={eventColor(e)} />
     </li>
   );
 }
 
-// The going toggle on each row: a round button with a check; filled once you're going.
-function GoingToggle({ event, j }) {
+// The going toggle on each row: a round button with a plus; once you're going it fills green with
+// a check, popping and throwing a small burst in the event's color.
+const BURST = 8;
+function GoingToggle({ event, j, color }) {
   const isJoined = j.joined.includes(String(event.id));
+  const [burst, setBurst] = useState(0);
   return (
     <button
       className={isJoined ? "going-toggle on" : "going-toggle"}
       aria-pressed={isJoined}
       aria-label={`${isJoined ? "You're going to" : "Go to"} ${event.title}`}
       title={isJoined ? "You're going. Tap to undo" : j.signedIn ? "I'm going" : "Sign in to say you're going"}
-      onClick={() => j.toggle(event.id)}
+      onClick={() => {
+        if (!isJoined && j.signedIn) setBurst((n) => n + 1);
+        j.toggle(event.id);
+      }}
+      style={{ "--burst": color }}
     >
       <Icon d={isJoined ? CHECK_ICON : PLUS_ICON} />
+      {burst > 0 && (
+        <span className="burst" key={burst} aria-hidden="true">
+          {Array.from({ length: BURST }, (_, i) => (
+            <i key={i} style={{ "--a": `${(360 / BURST) * i}deg` }} />
+          ))}
+        </span>
+      )}
     </button>
+  );
+}
+
+// ------------------------------------------------------------------------------ the day strip
+// Today drawn as a timeline: each event a bar from its start to its end in its category's color,
+// stacked into as few rows as fit, with the red now marker crossing them. Tap a bar to open it.
+const STRIP_FROM = 8; // 8 AM
+const STRIP_TO = 24; // midnight
+const STRIP_LANES = 4;
+function DayStrip({ events, now, onSelect }) {
+  const today = localDate(0);
+  const hours = (hhmm) => {
+    const [h, m] = hhmm.split(":").map(Number);
+    return h + m / 60;
+  };
+  const bars = events
+    .filter((e) => e.date === today && e.start)
+    .map((e) => ({ e, from: Math.max(hours(e.start), STRIP_FROM), to: Math.min(e.end ? hours(e.end) : hours(e.start) + 1, STRIP_TO) }))
+    .filter((x) => x.to > STRIP_FROM && x.from < STRIP_TO)
+    .sort((x, y) => x.from - y.from);
+  // Greedy lanes: each bar takes the first lane that's free by its start.
+  const laneEnds = [];
+  for (const bar of bars) {
+    let lane = laneEnds.findIndex((end) => end <= bar.from);
+    if (lane < 0 && laneEnds.length < STRIP_LANES) lane = laneEnds.length;
+    if (lane < 0) lane = laneEnds.indexOf(Math.min(...laneEnds));
+    laneEnds[lane] = bar.to;
+    bar.lane = lane;
+  }
+  const lanes = Math.max(1, laneEnds.length);
+  const pct = (h) => ((h - STRIP_FROM) / (STRIP_TO - STRIP_FROM)) * 100;
+  const d = new Date(now);
+  const nowH = d.getHours() + d.getMinutes() / 60;
+  const ticks = [];
+  for (let h = STRIP_FROM; h <= STRIP_TO; h += 2) ticks.push(h);
+  const tickLabel = (h) => (h === 12 ? "Noon" : h === 24 ? "12 AM" : `${h % 12} ${h < 12 ? "AM" : "PM"}`);
+  if (!bars.length) return null;
+  return (
+    <div className="day-strip" style={{ "--lanes": lanes }} aria-label="Today's events on a timeline">
+      <div className="day-strip-track">
+        {ticks.map((h) => (
+          <span key={h} className={h === STRIP_FROM ? "strip-tick first" : h === STRIP_TO ? "strip-tick last" : "strip-tick"} style={{ left: `${pct(h)}%` }}>
+            <span>{tickLabel(h)}</span>
+          </span>
+        ))}
+        {bars.map(({ e, from, to, lane }) => (
+          <button
+            key={e.id}
+            className={from <= nowH && nowH < to ? "strip-bar live" : "strip-bar"}
+            style={{
+              left: `${pct(from)}%`,
+              width: `max(${pct(to) - pct(from)}%, 10px)`,
+              top: `calc(${lane} * var(--lane-h))`,
+              background: eventColor(e),
+            }}
+            title={`${e.title}, ${formatTime(e.start)}`}
+            aria-label={`${e.title}, ${formatTime(e.start)}`}
+            onClick={() => onSelect(e)}
+          />
+        ))}
+        {nowH >= STRIP_FROM && nowH <= STRIP_TO && <span className="strip-now" style={{ left: `${pct(nowH)}%` }} />}
+      </div>
+    </div>
   );
 }
 
@@ -1973,6 +2050,7 @@ function NowPage({ f, updated, j, onSelect }) {
       <header className="now-head">
         <h1>What's on</h1>
         <p className="now-date">{clock.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</p>
+        <DayStrip events={unique} now={now} onSelect={onSelect} />
       </header>
       <div className="toolbar">
         <input
@@ -2018,12 +2096,12 @@ function NowPage({ f, updated, j, onSelect }) {
                 Today
               </h2>
               <ol className="agenda-list">
-                {sections[0].events.map((e) => (
-                  <AgendaRow key={e.id} event={e} section="now" j={j} onSelect={onSelect} />
+                {sections[0].events.map((e, i) => (
+                  <AgendaRow key={e.id} event={e} section="now" j={j} onSelect={onSelect} index={i} />
                 ))}
                 <NowLine now={now} />
-                {[...sections[1].events, ...sections[2].events].map((e) => (
-                  <AgendaRow key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} />
+                {[...sections[1].events, ...sections[2].events].map((e, i) => (
+                  <AgendaRow key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} index={sections[0].events.length + i + 1} />
                 ))}
               </ol>
             </section>
