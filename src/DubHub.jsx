@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, CircleMarker, Marker, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
+import { MapContainer, CircleMarker, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -1422,49 +1422,6 @@ function FlyTo({ event }) {
   return null;
 }
 
-// ---------------------------------------------------------------------- flyer pins on the map
-// Today's events that have a flyer stand on the map as small pins showing the club's own poster,
-// with the start time on a tab under it. One per building (its soonest event); the picked one
-// grows. Everything else stays a dot.
-const PIN_LIMIT = 16;
-function todaysPins(events, now = Date.now()) {
-  const byPlace = new Map();
-  for (const e of events) {
-    if (!e.pos || !e.image || !["now", "soon", "today"].includes(sectionOf(e, now))) continue;
-    const key = e.pos.join();
-    const prev = byPlace.get(key);
-    if (!prev || `${e.start ?? "99"}` < `${prev.start ?? "99"}`) byPlace.set(key, e);
-  }
-  return [...byPlace.values()]
-    .sort((a, b) => `${a.start ?? "99"}`.localeCompare(`${b.start ?? "99"}`))
-    .slice(0, PIN_LIMIT);
-}
-
-function pinIcon(e, picked, now) {
-  const live = sectionOf(e, now) === "now";
-  const label = live ? "On now" : e.start ? formatTime(e.start) : "Today";
-  return L.divIcon({
-    className: "flyer-pin-wrap",
-    html: `<span class="flyer-pin${picked ? " picked" : ""}${live ? " live" : ""}"><img src="${encodeURI(e.image)}" alt="" /><span class="flyer-pin-time">${label}</span></span>`,
-    iconSize: picked ? [64, 92] : [46, 70],
-    iconAnchor: picked ? [32, 92] : [23, 70],
-  });
-}
-
-function FlyerPins({ events, shownId, onPin }) {
-  const now = useNow();
-  return todaysPins(events, now).map((e) => (
-    <Marker
-      key={`pin|${e.id}`}
-      position={e.pos}
-      icon={pinIcon(e, e.id === shownId, now)}
-      zIndexOffset={e.id === shownId ? 1000 : 400}
-      eventHandlers={{ click: () => onPin(e) }}
-      keyboard={false}
-    />
-  ));
-}
-
 // The strip of today's flyers along the bottom of the map: tap one to fly to it.
 function MapStrip({ events, shownId, onPick }) {
   const now = useNow();
@@ -1583,7 +1540,6 @@ function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, 
           </CircleMarker>
         );
       })}
-      <FlyerPins events={located} shownId={shown?.id} onPin={onPin} />
       <MapClicks onClick={onMapClick} />
       {introLabels && <IntroLabels places={places} dark={palette?.dark} />}
     </MapContainer>
