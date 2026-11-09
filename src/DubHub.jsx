@@ -803,11 +803,18 @@ function WhenSelect({ value, onChange, ...props }) {
 
 // Gives each event its host `club` (when it's a known club) and `fields`: its own majors'
 // fields (sample events) or its host club's fields.
+// Flyer pictures that don't match their event (the scraper picked the wrong image from a post).
+// The event still shows, just without a picture; listed by image path so a re-scrape keeps it hidden.
+const HIDDEN_IMAGES = new Set([
+  "/ig/posts/DfdKKrOSnXb.jpg", // Northwest Sports Day: a person, not the event's flyer
+]);
+
 function withFields(events, clubList) {
   return events.map((e) => {
     const club = clubList.find((c) => isHostedBy(e, c));
     return {
       ...e,
+      image: HIDDEN_IMAGES.has(e.image) ? undefined : e.image,
       club,
       fields: e.majors?.length
         ? [...new Set(e.majors.map((m) => FIELD_OF_MAJOR[m]).filter(Boolean))]
