@@ -1193,22 +1193,22 @@ const MAP_ATTRIBUTION =
 // The light map: campus in the site's concrete and white, quiet enough that the event dots and the
 // slate panels carry the color. Parks and water stay recognizable, just muted.
 const MAP_COLORS = {
-  background: "#f1eef6", // lavender ground
-  water: "#c9cdef",
-  park: "#dfe9d6",
-  wood: "#d6e3cb",
-  wetland: "#e1eadb",
-  plaza: "#ece7f3",
-  building: "#e2dbef", // buildings tinted purple
-  school: "#efeaf6",
+  background: "#eeeaf4", // the city: a light lavender
+  water: "#9fa9ec", // Lake Union and Lake Washington in a clear blue-violet
+  park: "#bfdca4", // parks and the Quad's lawns, a fresh green
+  wood: "#acd290",
+  wetland: "#c6e2b2",
+  plaza: "#e6e0ef",
+  building: "#d3c7ea", // buildings a step deeper in lavender
+  school: "#f3e8c8", // UW's campus grounds in a soft Husky gold, so campus stands out from the city
   road: "#ffffff",
-  highway: "#fdfcff",
-  casing: "#d9d1e8",
-  highwayCasing: "#c7bbdd",
-  label: "#4a3d66",
+  highway: "#ffffff",
+  casing: "#cdbfe2",
+  highwayCasing: "#a996cc",
+  label: "#3d2c63",
   labelHalo: "#f7f4fb",
-  waterLabel: "#4b4f9a",
-  iconOpacity: 0.55,
+  waterLabel: "#33388f",
+  iconOpacity: 0.6,
 };
 
 // The dark map: the top bar's slate, with streets a step lighter and water in a deep blue-gray.
