@@ -2718,6 +2718,29 @@ function ApplicationsView({ open, onSelectClub }) {
   );
 }
 
+// The Clubs header's flair: a wall of real club logos, the most active clubs first, slightly
+// staggered; tap one to open that club.
+const LOGO_WALL = 18;
+function LogoWall({ clubs, all, onSelect }) {
+  const withLogo = clubs
+    .filter((c) => c.logo)
+    .map((c) => ({ c, n: hostedBy(all, c).length }))
+    .sort((a, b) => b.n - a.n || a.c.name.localeCompare(b.c.name))
+    .slice(0, LOGO_WALL);
+  if (!withLogo.length) return null;
+  return (
+    <ul className="logo-wall" aria-label="Some of the clubs">
+      {withLogo.map(({ c }, i) => (
+        <li key={c.name} style={{ "--k": i }}>
+          <button onClick={() => onSelect(c)} title={c.name} aria-label={c.name}>
+            <img src={c.logo} alt="" loading="lazy" decoding="async" />
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function ClubsPage({ all, clubList, clubs: membership, applications }) {
   const [view, setView] = useState("Clubs");
   const [query, setQuery] = useState("");
@@ -2743,8 +2766,21 @@ function ClubsPage({ all, clubList, clubs: membership, applications }) {
   const applying = new Set(open.map((a) => a.club?.name).filter(Boolean));
 
   return (
-    <main className="page">
-      <h1>Clubs</h1>
+    <main className="page clubs-page">
+      <section className="now-hero clubs-hero">
+        {/* Red Square at golden hour (CC BY 4.0, Wikimedia Commons), faint under the purple */}
+        <img className="hero-photo" src="/hero-redsquare.jpg" alt="" aria-hidden="true" />
+        <div className="now-hero-inner">
+          <header className="now-head">
+            <h1>Clubs</h1>
+            <p className="now-date">
+              {clubList.length ? `${clubList.length.toLocaleString()} student organizations at UW Seattle` : "Student organizations at UW Seattle"}
+            </p>
+          </header>
+          <LogoWall clubs={clubList} all={all} onSelect={setSelected} />
+        </div>
+      </section>
+      <div className="now-body">
       <div className="view-switch" role="tablist" aria-label="Show clubs or open applications">
         {["Clubs", "Applications"].map((v) => (
           <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}>
@@ -2832,6 +2868,18 @@ function ClubsPage({ all, clubList, clubs: membership, applications }) {
           onClose={() => setSelected(null)}
         />
       )}
+      <p className="agenda-source">
+        Header photo of Red Square by Guywelch2000,{" "}
+        <a href="https://commons.wikimedia.org/wiki/File:University_of_Washington_Red_Square_golden_hour_Seattle_Washington.jpg" target="_blank" rel="noreferrer">
+          CC BY 4.0
+        </a>
+        . Campus drawing from{" "}
+        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">
+          OpenStreetMap
+        </a>
+        .
+      </p>
+      </div>
     </main>
   );
 }
