@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T15:28",
+ "updated": "2026-11-10T01:28",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -5653,8 +5653,8 @@
    "name": "National Pan-Hellenic Council, Inc.",
    "website": "http://uwnphc.wordpress.com",
    "category": "Greek Life",
-   "about": "The National Pan-Hellenic Council at the University of Washington is comprised of six out of nine active historically…",
-   "description": "The National Pan-Hellenic Council at the University of Washington is comprised of six out of nine active historically Black Greekletter Fraternities and Sororities.",
+   "about": "The National Pan-Hellenic Council at the University of Washington is comprised of seven out of nine active…",
+   "description": "The National Pan-Hellenic Council at the University of Washington is comprised of seven out of nine active historically Black Greek letter Fraternities and Sororities.",
    "logo": null
   },
   {
@@ -9436,108 +9436,6 @@
  ],
  "events": [
   {
-   "id": "hl-375483",
-   "title": "The Link- Up",
-   "type": "Club",
-   "host": "Afghanistan Student Union at the University of Washington",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-09",
-   "start": "16:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/asuatuwseattle/rsvp?id=375483",
-   "source": "huskylink",
-   "description": "Welcome our new officers and kick off the new academic year. Afghan food will be provided.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_614919_Image_04868185-c0b4-4889-bfe6-212d85ecfaca_11532312.png",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375493",
-   "title": "Organic Steps - Workshop - Alkene & Alkyne Nomenclature & Properties",
-   "type": "Study",
-   "host": "Organic Steps",
-   "where": "General Chemistry Study Center Break Out Room (BAG 330)",
-   "pos": [
-    47.65349,
-    -122.30885
-   ],
-   "date": "2026-11-09",
-   "start": "16:30",
-   "end": "18:30",
-   "url": "https://huskylink.washington.edu/organicsteps/rsvp?id=375493",
-   "source": "huskylink",
-   "description": "We will go over the properties and nomenclature of alkenes and alkynes, while providing practice for students with these topics.",
-   "image": null,
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375243",
-   "title": "Commander Night at the Hub!",
-   "type": "Game night",
-   "host": "WGA Magic: The Gathering",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-09",
-   "start": "18:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375243",
-   "source": "huskylink",
-   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_Magic_The_Gathering_Commander_2015_logojpg_a7d6e719-41a9-4aa8-9637-b06d03cff3d9_1092025.jpeg",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375443",
-   "title": "Med Connect: Connecting You to Healthcare",
-   "type": "Club",
-   "host": "Med Connect",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-09",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/medconnect/rsvp?id=375443",
-   "source": "huskylink",
-   "description": "Interested in healthcare? We can connect you!\nOur mission is to break down barriers to healthcare experiences at UW by connecting students with meaningful opportunities and equipping them with the skills to succeed in empathetic, compassionate healthcare.\nWhether you’re pre-med, pre-nursing, pre-PA, pre-pharmacy, or simply interested in getting involved in healthcare, we’re here to help guide you toward your goals.\nCome meet fellow students, learn about upcoming clinical, volunteering, shadowing, and research opportunities, and discover how MedConnect can help you take the next step in your healthcare journey!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_601449_medconnect_15e58cb6-04f9-49b7-9718-e0f3c8577367_102610374.png",
-   "rsvps": 7
-  },
-  {
-   "id": "hl-375005",
-   "title": "WashPIRG CORE Meeting",
-   "type": "Club",
-   "host": "Washington Public Interest Research Group",
-   "where": "Mechanical Engineering",
-   "pos": [
-    47.65369,
-    -122.30476
-   ],
-   "date": "2026-11-09",
-   "start": "18:30",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/washpirg/rsvp?id=375005",
-   "source": "huskylink",
-   "description": "Come hang out with WashPIRG on Mondays, 6:30pm-8:00pm in MEB 238! We're a student advocacy group focused on environmental and social justice causes! At CORE meetings, we discuss upcoming events, plans, and ideas. These weekly meetings give space for our different campaigns to work on their goals throughout the quarter.",
-   "image": null,
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375124",
-   "title": "Writers in Progress Meeting",
-   "type": "Club",
-   "host": "Writers in Progress",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-09",
-   "start": "19:00",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/writersinprogressuw/rsvp?id=375124",
-   "source": "huskylink",
-   "description": "A meeting usually includes an icebreaker, a short freewrite, and a feedback session.\nRegistration not required :) Feel free to drop in and say hi",
-   "image": null,
-   "rsvps": 0
-  },
-  {
    "id": "hl-375404",
    "title": "Video Game Party",
    "type": "Game night",
@@ -9688,6 +9586,22 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375244",
+   "title": "Commander Night at the Hub!",
+   "type": "Game night",
+   "host": "WGA Magic: The Gathering",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-11",
+   "start": "18:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375244",
+   "source": "huskylink",
+   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_Magic_The_Gathering_Commander_2015_logojpg_a7d6e719-41a9-4aa8-9637-b06d03cff3d9_1092025.jpeg",
+   "rsvps": 0
+  },
+  {
    "id": "hl-375338",
    "title": "RSO Drop-In Advising",
    "type": "Study",
@@ -9796,7 +9710,7 @@
    "source": "huskylink",
    "description": "Watch real Japanese Grand Sumo with us in the HUB!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png",
-   "rsvps": 11
+   "rsvps": 12
   },
   {
    "id": "hl-375343",
@@ -9834,6 +9748,25 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375006",
+   "title": "WashPIRG CORE Meeting",
+   "type": "Club",
+   "host": "Washington Public Interest Research Group",
+   "where": "Mechanical Engineering",
+   "pos": [
+    47.65369,
+    -122.30476
+   ],
+   "date": "2026-11-16",
+   "start": "18:30",
+   "end": "20:00",
+   "url": "https://huskylink.washington.edu/washpirg/rsvp?id=375006",
+   "source": "huskylink",
+   "description": "Come hang out with WashPIRG on Mondays, 6:30pm-8:00pm in MEB 238! We're a student advocacy group focused on environmental and social justice causes! At CORE meetings, we discuss upcoming events, plans, and ideas. These weekly meetings give space for our different campaigns to work on their goals throughout the quarter.",
+   "image": null,
+   "rsvps": 0
+  },
+  {
    "id": "hl-375385",
    "title": "Sentient Film Screening with Animal Advocacy at UW",
    "type": "Hangout",
@@ -9851,6 +9784,22 @@
    "description": "Come watch the screening for the powerful documentary Sentient, which explores animal experimentation, ahead of its release along with a Q&A with Dr. Lisa Jones-Engel!\nWhen/where: HUB 334 on November 16th from 6:30-8:30PM\nEveryone is welcome, regardless of diet, lifestyle, or familiarity with animal rights! Free vegan pizza and snacks will be provided.\nFree admission, please RSVP! https://luma.com/5bcotf0s",
    "image": null,
    "rsvps": 2
+  },
+  {
+   "id": "hl-375125",
+   "title": "Writers in Progress Meeting",
+   "type": "Club",
+   "host": "Writers in Progress",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-16",
+   "start": "19:00",
+   "end": "20:00",
+   "url": "https://huskylink.washington.edu/writersinprogressuw/rsvp?id=375125",
+   "source": "huskylink",
+   "description": "A meeting usually includes an icebreaker, a short freewrite, and a feedback session.\nRegistration not required :) Feel free to drop in and say hi",
+   "image": null,
+   "rsvps": 0
   },
   {
    "id": "hl-375450",
@@ -9937,6 +9886,22 @@
    "description": "Cultural Fest Collaboration with MSA. We will have a table at the cultural fest representing Afghanistan.",
    "image": null,
    "rsvps": 0
+  },
+  {
+   "id": "hl-375444",
+   "title": "Med Connect: Connecting You to Healthcare",
+   "type": "Club",
+   "host": "Med Connect",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-23",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/medconnect/rsvp?id=375444",
+   "source": "huskylink",
+   "description": "Interested in healthcare? We can connect you!\nOur mission is to break down barriers to healthcare experiences at UW by connecting students with meaningful opportunities and equipping them with the skills to succeed in empathetic, compassionate healthcare.\nWhether you’re pre-med, pre-nursing, pre-PA, pre-pharmacy, or simply interested in getting involved in healthcare, we’re here to help guide you toward your goals.\nCome meet fellow students, learn about upcoming clinical, volunteering, shadowing, and research opportunities, and discover how MedConnect can help you take the next step in your healthcare journey!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_601449_medconnect_15e58cb6-04f9-49b7-9718-e0f3c8577367_102610374.png",
+   "rsvps": 2
   },
   {
    "id": "hl-375479",
