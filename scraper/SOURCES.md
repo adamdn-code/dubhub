@@ -39,6 +39,32 @@ the club's **profile picture** (its logo on the Clubs page).
    adds the like count, which the site's Trending row ranks by.
 
 
+# Flyer text sources
+
+Clubs often put an event's time and room only on the flyer, not in the caption. Instagram used to
+describe each picture with its text ("May be an image of text that says '...'"), but its public
+pages hardly ever include that any more (1 recent post in 293 in November 2026), so the scraper
+reads the flyers itself: `flyer_text.py`, called from `events_common.py` before the AI looks for
+events. The AI is told the text came from OCR, so it reads past misread letters.
+
+| Project | What we took from it |
+| --- | --- |
+| [pywinrt](https://github.com/pywinrt/pywinrt) (MIT, Microsoft's Python bindings for Windows) | `winrt-Windows.Media.Ocr`: the text reader built into Windows 10 and 11. Free, runs on the computer, about 0.1 s per flyer, no separate program to install. Reads plain printed flyers well ("Friday, November 13 \| 6:00 PM - 8:00 PM"); fancy lettering comes out partly garbled. |
+| Groq's picture-reading model (`qwen/qwen3.8-27b`, same `GROQ_API_KEY` as the event finder) | The backup where Windows' reader isn't available (a Mac, or the packages aren't installed): better with fancy lettering, but 3 to 30 s per flyer and it counts against the free daily limit, so at most 30 flyers a run. |
+
+Tried on the 60 newest posts (Nov 10, 2026): upcoming events found went from 22 to 31 (some were
+only on the flyer), events with a time from 12 to 21, with a place from 16 to 28.
+
+## Others we compared
+
+| Project | Why not |
+| --- | --- |
+| [Tesseract](https://github.com/tesseract-ocr/tesseract) with [pytesseract](https://github.com/madmaze/pytesseract) | The standard open-source OCR, but every computer that runs the scraper would need the Tesseract program installed separately. |
+| [RapidOCR](https://github.com/RapidAI/RapidOCR) | Accurate and light, but needs onnxruntime, which has no build for Python 3.15 yet. Worth another look when it does. |
+| [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) | Needs PaddlePaddle; same Python 3.15 problem, and much heavier. |
+| [EasyOCR](https://github.com/JaidedAI/EasyOCR) | Needs PyTorch (over a gigabyte) for a job Windows already does. |
+
+
 # Discord sources
 
 `find_discord_servers.py` and `discord_events.py` are DubHub's own code, modeled on how the

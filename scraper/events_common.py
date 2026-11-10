@@ -23,6 +23,7 @@ from pathlib import Path
 
 import requests
 
+from flyer_text import ReaderUnavailable, can_read, read_flyer, reader_name
 from uw_buildings import find_building
 
 HERE = Path(__file__).resolve().parent
@@ -359,7 +360,7 @@ def ai_prompt(batch):
         f"Known UW club: {'yes' if p['source'] in ('instagram', 'discord') else 'no, check'}\n"
         f"Posted: {p['posted'].strftime('%A, %B %d, %Y') if p['posted'] else 'unknown'}\n"
         f"Caption: {p['caption'][:1500]}"
-        + (f"\nText in the picture: {p['image_text'][:500]}" if p.get("image_text") else "")
+        + (f"\nText in the picture: {p['image_text'][:1200]}" if p.get("image_text") else "")
         for i, p in enumerate(batch)
     )
     return f"""Today is {TODAY:%A, %B %d, %Y}. Below are Instagram posts from University of Washington clubs.
@@ -373,12 +374,17 @@ Rules:
   Husky in the club name or handle, a UW building, or Seattle). UW Seattle uses quarters, so a
   post about a "semester" is from another school.
 - Some captions are cut-off Google search snippets; only use what's actually written.
-- "Text in the picture" is the text on the post's flyer (from Instagram's picture description);
-  use it together with the caption, since the date, time or room is often only on the flyer.
+- "Text in the picture" is the text on the post's flyer, read from the picture by OCR; use it
+  together with the caption, since the date, time or room is often only on the flyer. OCR misreads
+  some letters (I or l for 1, O for 0, S for 5, "IOEh" for "10th") and can jumble the order of
+  lines, so read it for meaning and only use details that fit the rest of the post. It adds to
+  the caption, it doesn't replace it: keep every event the caption lists, and where the two
+  disagree, go with the caption.
 - Only real events people attend (meetings, socials, workshops, games, performances...).
 - Skip application/form deadlines, recruiting forms, giveaways, and recaps of past events.
 - Work out relative dates ("this Friday", "tomorrow") from the post's Posted date.
-- If one post lists several sessions, make one event per session.
+- If one post lists several sessions, make one event per session. Something that runs over
+  several days ("Nov 19-21", "January 8-10") is one event per day.
 - "title": short name of the event (2-6 words), using the post's own wording when possible.
 - "date": YYYY-MM-DD. "start"/"end": 24-hour HH:MM, or null if not given.
 - "location": building and room as written (e.g. "HUB 145", "Kane Hall 120"), "Online" if virtual, or null.
@@ -514,47 +520,143 @@ def save_store(store):
     _save(POSTS_FILE, store)
 
 
+def post_picture(post):
+    """The post's picture as bytes: the site's saved copy if there is one, else Instagram's link
+    (those expire within days). None if neither works."""
+    saved = IG_POST_IMAGES / f"{post['key']}.jpg"
+    if re.fullmatch(r"[\w-]+", post["key"]) and saved.exists():
+        return saved.read_bytes()
+    if not post.get("image_src"):
+        return None
+    try:
+        r = requests.get(post["image_src"], headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
+        return r.content if r.ok and r.headers.get("content-type", "").startswith("image/") else None
+    except requests.RequestException:
+        return None
+
+
+def add_flyer_text(posts):
+    """Read the text on each post's picture (flyer_text.py) into its "image_text", after any text
+    Instagram's own description of the picture quoted. Each picture is only read once: after that
+    the post's "flyer_read" is set (False when its picture couldn't be fetched). When the reader
+    can't read any more this run, the rest are left unread, to be read next run."""
+    if not reader_name():
+        return
+    read = found = 0
+    for post in posts:
+        if "flyer_read" in post or not post.get("image_src"):
+            continue
+        if not can_read():
+            print(f"{reader_name()} can't read more flyers this run; the rest wait for the next run.")
+            break
+        data = post_picture(post)
+        if data is None:
+            post["flyer_read"] = False
+            continue
+        try:
+            text = read_flyer(data)
+        except ReaderUnavailable:
+            continue  # (the next post stops the loop, saying why)
+        post["flyer_read"] = True
+        read += 1
+        if text:
+            found += 1
+            post["image_text"] = "\n".join(filter(None, [post.get("image_text"), text]))
+    if read:
+        print(f"Read the text on {read} flyer(s) with {reader_name()}; {found} had text.")
+
+
+def remember(post, events, mode, store):
+    """Save a post and the events found in it."""
+    store[post["key"]] = {
+        "club": post["club"],
+        "url": post["url"],
+        "source": post["source"],
+        "posted": post["posted"].isoformat() if post["posted"] else None,
+        "caption": post["caption"][:2000],
+        "events": events,
+        "found_with": mode,
+        "likes": post.get("likes"),
+        "comments": post.get("comments"),
+        # From Instagram, when the scraper saw them: the picture's (expiring) link, and the text on
+        # the flyer (read from the picture, see add_flyer_text).
+        **{k: post[k] for k in ("image_src", "image_text") if post.get(k)},
+        **({"flyer_read": post["flyer_read"]} if "flyer_read" in post else {}),
+    }
+
+
 def process_posts(posts, store):
     """Find events in new posts (AI if available, else keywords) and remember them in store."""
     for i in range(0, len(posts), AI_BATCH):
         batch = posts[i:i + AI_BATCH]
+        add_flyer_text(batch)
         found = ai_extract(batch)
         mode = "ai" if found is not None else "keywords"
         if found is None:
             found = [keyword_extract(p) for p in batch]
         for post, events in zip(batch, found):
-            store[post["key"]] = {
-                "club": post["club"],
-                "url": post["url"],
-                "source": post["source"],
-                "posted": post["posted"].isoformat() if post["posted"] else None,
-                "caption": post["caption"][:2000],
-                "events": events,
-                "found_with": mode,
-                "likes": post.get("likes"),
-                "comments": post.get("comments"),
-                # From Instagram, when the scraper saw them: the picture's (expiring) link and the
-                # flyer's text (from Instagram's description of the picture).
-                **{k: post[k] for k in ("image_src", "image_text") if post.get(k)},
-            }
+            remember(post, events, mode, store)
         if found and i + AI_BATCH < len(posts) and mode == "ai":
             time.sleep(3)  # stay under Groq's free per-minute limit
 
 
-def redo_keyword_posts(store):
-    """When AI is available, re-read posts that were only keyword-matched before."""
-    if not GROQ_KEY:
+def stored_post(key, v):
+    """A remembered post, back in the shape the scrapers hand to process_posts."""
+    return {"key": key, "club": v["club"], "caption": v["caption"], "url": v["url"], "source": v["source"],
+            "posted": date.fromisoformat(v["posted"]) if v["posted"] else None,
+            **{f: v[f] for f in ("image_src", "image_text", "likes", "comments", "flyer_read") if v.get(f) is not None}}
+
+
+FLYERS_PER_RUN = 60  # earlier posts whose flyers are read each run (newest first)
+
+
+def read_earlier_flyers(store):
+    """Read the flyers of recent posts the scraper saw before it could read flyers, and look for
+    events in them again with that text. A few dozen a run, so the AI's free daily limit isn't
+    spent all at once. Only with the AI: if it isn't available (or runs out partway), a post keeps
+    the events it has and its flyer is read again next run."""
+    if not reader_name() or not GROQ_KEY:
         return
-    redo = [
-        {"key": k, "club": v["club"], "caption": v["caption"], "url": v["url"], "source": v["source"],
-         "posted": date.fromisoformat(v["posted"]) if v["posted"] else None,
-         **{f: v[f] for f in ("image_src", "image_text", "likes", "comments") if v.get(f) is not None}}
-        for k, v in store.items()
-        if v.get("found_with") == "keywords" and (v.get("posted") or "9999") >= (TODAY - timedelta(days=LOOKBACK_DAYS)).isoformat()
-    ]
-    if redo:
-        print(f"Re-reading {len(redo)} earlier post(s) with AI...")
-        process_posts(redo, store)
+    recent = (TODAY - timedelta(days=LOOKBACK_DAYS)).isoformat()
+    waiting = sorted(((k, v) for k, v in store.items()
+                      if (v.get("posted") or "") >= recent and v.get("image_src") and "flyer_read" not in v),
+                     key=lambda kv: kv[1]["posted"], reverse=True)
+    if not waiting:
+        return
+    posts = [stored_post(k, v) for k, v in waiting[:FLYERS_PER_RUN]]
+    print(f"Reading the flyers of {len(posts)} earlier post(s) ({len(waiting) - len(posts)} left for later runs)...")
+    add_flyer_text(posts)
+    with_text = []
+    for post in posts:
+        if "flyer_read" not in post:
+            continue  # the reader didn't get to it this run
+        if post.get("image_text") and post["image_text"] != store[post["key"]].get("image_text"):
+            with_text.append(post)
+        else:
+            store[post["key"]]["flyer_read"] = post["flyer_read"]  # nothing new to read: no need to ask the AI
+    for i in range(0, len(with_text), AI_BATCH):
+        batch = with_text[i:i + AI_BATCH]
+        found = ai_extract(batch)
+        if found is None:
+            print(f"The AI isn't available; {len(with_text) - i} post(s) wait for the next run.")
+            return
+        for post, events in zip(batch, found):
+            remember(post, events, "ai", store)
+        if i + AI_BATCH < len(with_text):
+            time.sleep(3)
+
+
+def redo_keyword_posts(store):
+    """Re-read recent posts that weren't read in full the first time: ones only keyword-matched
+    (when AI is available now), and ones whose flyer hasn't been read yet (read_earlier_flyers)."""
+    if GROQ_KEY:
+        recent = (TODAY - timedelta(days=LOOKBACK_DAYS)).isoformat()
+        redo = [stored_post(k, v) for k, v in store.items()
+                if v.get("found_with") == "keywords" and (v.get("posted") or "9999") >= recent]
+        if redo:
+            print(f"Re-reading {len(redo)} earlier post(s) with AI...")
+            process_posts(redo, store)
+    read_earlier_flyers(store)
 
 
 def not_uw_clubs(store):
@@ -1185,7 +1287,7 @@ def application_prompt(batch):
     posts = "\n\n".join(
         f"POST {i + 1}\nClub: {p['club']}\nPosted: {p['posted'] or 'unknown'}\n"
         f"Caption: {p['caption'][:1500]}"
-        + (f"\nText in the picture: {p['image_text'][:500]}" if p.get("image_text") else "")
+        + (f"\nText in the picture: {p['image_text'][:1200]}" if p.get("image_text") else "")
         for i, p in enumerate(batch)
     )
     return f"""Today is {TODAY:%A, %B %d, %Y}. Below are Instagram posts from University of Washington clubs.
