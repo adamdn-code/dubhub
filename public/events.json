@@ -1,16 +1,13 @@
 {
- "updated": "2026-11-10T02:05",
+ "updated": "2026-11-10T14:23",
  "events": [
   {
    "id": "Dfh5h7xPLwk-0",
-   "title": "ECC Weekly Engagement Hot Cocoa Bar",
+   "title": "Hot Cocoa Bar",
    "type": "Food",
    "host": "Ethnic Cultural Center (ECC) (@uw_ecc)",
-   "where": "ECC",
-   "pos": [
-    47.65509,
-    -122.31484
-   ],
+   "where": null,
+   "pos": null,
    "date": "2026-11-10",
    "start": "09:00",
    "end": "11:00",
@@ -18,61 +15,10 @@
    "source": "instagram",
    "description": "Stop by for some FREE HOT COCOA to warm up, sweeten your day, and hang out with us! 🤎✨",
    "image": "/ig/posts/Dfh5h7xPLwk.jpg",
-   "likes": 73,
-   "comments": 0,
+   "likes": null,
+   "comments": null,
    "post_counts": {
     "Dfh5h7xPLwk": [
-     73,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfgbVhaMY81-0",
-   "title": "Spam Musubi Sale",
-   "type": "Food",
-   "host": "CSA UW (@csauw)",
-   "where": "Red Square",
-   "pos": [
-    47.65603,
-    -122.30944
-   ],
-   "date": "2026-11-10",
-   "start": "11:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfgbVhaMY81/",
-   "source": "instagram",
-   "description": "Stop by at Red Square this week for a delicious snack to brighten your day😋",
-   "image": "/ig/posts/DfgbVhaMY81.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfgbVhaMY81": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfQE3L5gfjG-0",
-   "title": "Bagels and Banter",
-   "type": "Food",
-   "host": "Hillel UW (@huskyhillel)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-10",
-   "start": "11:00",
-   "end": "13:00",
-   "url": "https://www.instagram.com/p/DfQE3L5gfjG/",
-   "source": "instagram",
-   "description": "Tomorrow, come get some bagels on campus!\n\nJoin Jess on campus every Tuesday from 11:00am-1:00pm for Bagels and Banter! It's your weekly time to enjoy a free bagel lunch and connect with your Hillel community!\n\nCheck Insta tomorrow to see where she'll be!\nhttps://www.instagram.com/huskyhillel/",
-   "image": "/ig/posts/DfQE3L5gfjG.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfQE3L5gfjG": [
      null,
      null
     ]
@@ -131,33 +77,6 @@
    "posts": 1
   },
   {
-   "id": "De0ClixknJP-0",
-   "title": "Let’s Talk Drop-in",
-   "type": "Club",
-   "host": "Ethnic Cultural Center (ECC) (@uw_ecc)",
-   "where": "Kelly ECC",
-   "pos": [
-    47.65509,
-    -122.31484
-   ],
-   "date": "2026-11-10",
-   "start": "14:00",
-   "end": "16:00",
-   "url": "https://www.instagram.com/p/De0ClixknJP/",
-   "source": "instagram",
-   "description": "Midterms are here and we see you 👀💜\n\nHere are a few things that actually help: study in short bursts, get some sleep (seriously), and don’t be afraid to ask for help. Swipe for our full survival guide and where to find support at UW.\n\nIf things feel heavy, you can talk to someone. Let’s Talk drop-ins are every Tuesday from 2-4 pm right here at the Kelly ECC, and the Husky HelpLine is open 24/7 at 206-616-7777.\n\nAnd you don’t have to study alone. Come hang out and study with us at the ECC 🦋\n\nSave this for later and send it to a friend who needs it. You’ve got this, Huskies! 🐾\n\n#UWLWB #KellyECC #UWMidterms #HuskyWellbeing #StudyTips",
-   "image": "/ig/posts/De0ClixknJP.jpg",
-   "likes": 309,
-   "comments": 1,
-   "post_counts": {
-    "De0ClixknJP": [
-     309,
-     1
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "hl-375404",
    "title": "Video Game Party",
    "type": "Game night",
@@ -175,14 +94,11 @@
   },
   {
    "id": "DfWIQy8s5Ac-0",
-   "title": "Coffee & Community",
-   "type": "Food",
+   "title": "Afternoon Pick-me-up",
+   "type": "Hangout",
    "host": "Ethnic Cultural Center (ECC) (@uw_ecc)",
-   "where": "Kelly ECC 207",
-   "pos": [
-    47.65509,
-    -122.31484
-   ],
+   "where": "Kelly ECC 207 Pacific Islander Room",
+   "pos": null,
    "date": "2026-11-10",
    "start": "15:00",
    "end": "17:00",
@@ -190,12 +106,12 @@
    "source": "instagram",
    "description": "Hey Huskies, we know that as the chilly fall weather sets in and the days get shorter, it can feel harder to find the motivation to get through the school day. We get it! That’s why you should stop by the Kelly ECC's, 207 Pacific Islander Room, next Tuesday, November 10th from 3-5 PM, for an afternoon pick-me-up!\n\nLWB will be providing hot drinks, pastries, and coloring supplies! ☕️🥐🎨\n\nThis time of year can be challenging, so let’s pour into each other! Whether you need a place to get through your to-do list, want to decompress with some coloring, or simply need some fuel- whatever you need, stop by, grab a drink and a snack, make some friends, and spend time in a supportive and cozy environment💜💜",
    "image": "/ig/posts/DfWIQy8s5Ac.jpg",
-   "likes": 46,
-   "comments": 0,
+   "likes": null,
+   "comments": null,
    "post_counts": {
     "DfWIQy8s5Ac": [
-     46,
-     0
+     null,
+     null
     ]
    },
    "posts": 1
@@ -215,60 +131,6 @@
    "description": "Want to talk about comics, learn how to draw them, or just hang out in a chill and artsy space to draw and make friends? Then this club is for you! Art supplies is available, and we provide free snacks at the first and last meeting of the quarter. :)",
    "image": null,
    "rsvps": 0
-  },
-  {
-   "id": "DfY5GRgx9vs-0",
-   "title": "Diya Painting",
-   "type": "Club",
-   "host": "UW CIRCLE (@uwcircle)",
-   "where": "Schmitz Hall 250",
-   "pos": [
-    47.65647,
-    -122.31271
-   ],
-   "date": "2026-11-10",
-   "start": "18:00",
-   "end": "20:00",
-   "url": "https://www.instagram.com/p/DfY5GRgx9vs/",
-   "source": "instagram",
-   "description": "Get creative and celebrate the spirit of Diwali with CIRCLE of Friends!\n\nJoin us for a relaxing evening of Diya Painting, where you can decorate your own traditional clay diya (oil lamp) with colorful paints and creative designs! 🖌️\n\nCome explore a beautiful cultural tradition, express your creativity, and make new friends along the way. \n\nDate 📅 : Tuesday, November 10\nTime ⏰: 6:00–8:00 PM\nLocation:📍 CIRCLE Office | Schmitz Hall 250\nRegistration link: https://forms.gle/cz59efQpKrc6FkAT8",
-   "image": "/ig/posts/DfY5GRgx9vs.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfY5GRgx9vs": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DexTf2RknR_-0",
-   "title": "Chinese Bible Study",
-   "type": "Club",
-   "host": "Christians in Seattle At UW (@christiansinseattleatuw)",
-   "where": "Suzzallo 334",
-   "pos": [
-    47.65581,
-    -122.30805
-   ],
-   "date": "2026-11-10",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://www.instagram.com/p/DexTf2RknR_/",
-   "source": "instagram",
-   "description": "🍂🌸 Fall into Fellowship with Christians in Seattle! 🌸🍂\n\nLooking for community, friendship, and opportunities to grow in faith this fall? We'd love to meet you! 💜\n\nJoin us this October & November for Bible studies, Friday night fellowship, and fun Saturday adventures around Seattle! 🏔️\n\n📖 Weekly Bible Studies\n🇨🇳 Chinese Bible Study \n• Tuesdays | 6:00–7:00 PM \n• Thursdays | 12:00–1:00 PM\n\n🇺🇸 English Bible Study \n• Wednesdays | 4:30–5:30 PM \n• Thursdays | 4:30–5:30 PM\n\n📍 All Bible studies: Suzzallo 334\n\n🍽️ Friday Night Fellowship \nFridays | 6:00–7:30 PM \n📍 5221 11th Ave NE \nCome hungry—dinner is provided! 💕\n\n🌲 Saturday Adventures\nFrom hiking and ziplining to berry picking and exploring Seattle, there's always something fun to do together!\n\n✨ Whether you're new to Seattle, exploring faith, or looking for a Christian community, **everyone is welcome!**\n\n💌 DM us for more details, and bring a friend!",
-   "image": "/ig/posts/DexTf2RknR_.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DexTf2RknR_": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
   },
   {
    "id": "DfYfnKBGgGf-0",
@@ -292,6 +154,33 @@
    "post_counts": {
     "DfYfnKBGgGf": [
      19,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfY5GRgx9vs-0",
+   "title": "Diya Painting",
+   "type": "Hangout",
+   "host": "UW CIRCLE (@uwcircle)",
+   "where": "Schmitz Hall 250",
+   "pos": [
+    47.65647,
+    -122.31271
+   ],
+   "date": "2026-11-10",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DfY5GRgx9vs/",
+   "source": "instagram",
+   "description": "Get creative and celebrate the spirit of Diwali with CIRCLE of Friends!\n\nJoin us for a relaxing evening of Diya Painting, where you can decorate your own traditional clay diya (oil lamp) with colorful paints and creative designs! 🖌️\n\nCome explore a beautiful cultural tradition, express your creativity, and make new friends along the way. \n\nDate 📅 : Tuesday, November 10\nTime ⏰: 6:00–8:00 PM\nLocation:📍 CIRCLE Office | Schmitz Hall 250\nRegistration link: https://forms.gle/cz59efQpKrc6FkAT8",
+   "image": "/ig/posts/DfY5GRgx9vs.jpg",
+   "likes": 3,
+   "comments": 0,
+   "post_counts": {
+    "DfY5GRgx9vs": [
+     3,
      0
     ]
    },
@@ -373,16 +262,7 @@
    "source": "huskylink",
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png",
-   "rsvps": 0,
-   "post_counts": {
-    "DfdOOyzPBgI": [
-     null,
-     null
-    ]
-   },
-   "likes": null,
-   "comments": null,
-   "posts": 1
+   "rsvps": 0
   },
   {
    "id": "hl-375486",
@@ -441,57 +321,6 @@
    "rsvps": 0
   },
   {
-   "id": "DfftKk3EuuE-0",
-   "title": "First-years Pie Making",
-   "type": "Food",
-   "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-10",
-   "start": "19:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfftKk3EuuE/",
-   "source": "instagram",
-   "description": "✨ This Week at Newman! ✨\n\nWe have a great week ahead! Come join us for fellowship, fun, and faith!\n\n🥧 TUESDAY: First-years are making pies! Come enjoy some delicious treats and good company.\n\n✝️ FRIDAY: Join us for a special lecture on Christian Friendship, given by Thomas Aquinas Pickett, O.P.\n\n☕ SUNDAY: After the 10 AM Mass, head over to Saint Doms Hall for Ask a Friar Anything! Bring your questions and enjoy some great conversation.\n\nWe hope to see you there! God bless! 🙏",
-   "image": "/ig/posts/DfftKk3EuuE.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfftKk3EuuE": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "Dfh1B7rvhty-0",
-   "title": "Second Drylands",
-   "type": "Club",
-   "host": "Husky Winter Sports (@huskywintersports)",
-   "where": "Savery 264",
-   "pos": [
-    47.65712,
-    -122.30842
-   ],
-   "date": "2026-11-10",
-   "start": "19:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/Dfh1B7rvhty/",
-   "source": "instagram",
-   "description": "HELLO!! WE WILL BE HOSTING OUR SECOND (and most important) DRYLANDS TOMORROW AT 7:00PM!! 🔥📢 WE WILL BE IN SAVERY 264 AWAITING YOUR ARRIVAL! \n\nWe hope to see you all there!",
-   "image": "/ig/posts/Dfh1B7rvhty.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "Dfh1B7rvhty": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "DfTkKWRBZkj-0",
    "title": "Persian Baking Competition",
    "type": "Food",
@@ -520,6 +349,57 @@
    "posts": 2
   },
   {
+   "id": "Dfh1B7rvhty-0",
+   "title": "Drylands",
+   "type": "Club",
+   "host": "Husky Winter Sports (@huskywintersports)",
+   "where": "SAVERY 264",
+   "pos": [
+    47.65712,
+    -122.30842
+   ],
+   "date": "2026-11-10",
+   "start": "19:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/Dfh1B7rvhty/",
+   "source": "instagram",
+   "description": "HELLO!! WE WILL BE HOSTING OUR SECOND (and most important) DRYLANDS TOMORROW AT 7:00PM!! 🔥📢 WE WILL BE IN SAVERY 264 AWAITING YOUR ARRIVAL! \n\nWe hope to see you all there!",
+   "image": "/ig/posts/Dfh1B7rvhty.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Dfh1B7rvhty": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfWeb0XNgtw-0",
+   "title": "Care Kits for Ronald McDonald House",
+   "type": "Club",
+   "host": "CELE Center (@uwcelecenter)",
+   "where": "Thompson 135",
+   "pos": null,
+   "date": "2026-11-10",
+   "start": "19:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DfWeb0XNgtw/",
+   "source": "instagram",
+   "description": "Hi, everyone! 👋 This upcoming Tuesday, November 10th we will be making care kits for Ronald Mcdonald House from 7:00PM - 8:00PM at Thompson 135! \n\nWe will be listening to music while decorating gift bags to stuff full of goodies for the kids 💕 Plus, we will have a lovely guest speaker from the CELE Center to tell us about an awesome opportunity! 🕺Would definitely recommend anyone interested in education or any related field to attend 😊 Hope to see you there!\n\nRonald Mcdonald is an organization that offers comfort  of home and support services to families of seriously ill children near the medical care they need. The location we are donating to his connected to Seattle Children's!",
+   "image": "/ig/posts/DfWeb0XNgtw.jpg",
+   "likes": 25,
+   "comments": 1,
+   "post_counts": {
+    "DfWeb0XNgtw": [
+     25,
+     1
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "hl-375492",
    "title": "11/10 Huskids General Meeting: Care Kit Making + UW CELE Guest Speaker",
    "type": "Club",
@@ -534,6 +414,30 @@
    "description": "Assemble care kits to donate to the Ronald McDonald House & Guest speaker from UW CELE",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_614633_71e812761e124c758c428ba86a5128a8_6ce6dc4e-2ddb-49d3-a158-04d282b3f118_11812710.jpeg",
    "rsvps": 0
+  },
+  {
+   "id": "DfBI2x7GTLoJzjcbmgfM-ft7ErgyyqoppeG3BQ0-0",
+   "title": "Cafe Ivrit",
+   "type": "Food",
+   "host": "Hillel UW (@huskyhillel)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-10",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfBI2x7GTLoJzjcbmgfM-ft7ErgyyqoppeG3BQ0/",
+   "source": "instagram",
+   "description": "Cafe Ivrit meets Shakshuka Night! ☕🍳🇮🇱\n\nYesterday, while we practiced Hebrew over coffee on one side of Hillel, Mishelanu was busy cooking delicious shakshuka in the kitchen. Then, we all came together to enjoy the meal!\n\nIt was so exciting seeing our diverse community of students connect, talk, and share stories around the table while doing what we do best: eating! See you in two weeks for our next Cafe Ivrit!",
+   "image": "/ig/posts/DfBI2x7GTLoJzjcbmgfM-ft7ErgyyqoppeG3BQ0.jpg",
+   "likes": 84,
+   "comments": 6,
+   "post_counts": {
+    "DfBI2x7GTLoJzjcbmgfM-ft7ErgyyqoppeG3BQ0": [
+     84,
+     6
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "DfIj2IjyCSa-0",
@@ -584,11 +488,83 @@
    "posts": 1
   },
   {
+   "id": "DfftKk3EuuE-0",
+   "title": "First-years Pie Making",
+   "type": "Hangout",
+   "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-10",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfftKk3EuuE/",
+   "source": "instagram",
+   "description": "✨ This Week at Newman! ✨\n\nWe have a great week ahead! Come join us for fellowship, fun, and faith!\n\n🥧 TUESDAY: First-years are making pies! Come enjoy some delicious treats and good company.\n\n✝️ FRIDAY: Join us for a special lecture on Christian Friendship, given by Thomas Aquinas Pickett, O.P.\n\n☕ SUNDAY: After the 10 AM Mass, head over to Saint Doms Hall for Ask a Friar Anything! Bring your questions and enjoy some great conversation.\n\nWe hope to see you there! God bless! 🙏",
+   "image": "/ig/posts/DfftKk3EuuE.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfftKk3EuuE": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfdOOyzPBgI-0",
+   "title": "Free Pre-Workout",
+   "type": "Club",
+   "host": "Barbell Club at UW (@barbellclubuw)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-10",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfdOOyzPBgI/",
+   "source": "instagram",
+   "description": "Meet us on Tuesday for free pre workout!(within healthy limits)",
+   "image": "/ig/posts/DfdOOyzPBgI.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfdOOyzPBgI": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfieSRjGYF6-0",
+   "title": "ColorMode",
+   "type": "Club",
+   "host": "UW Q Center (@uwqcenter)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-10",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfieSRjGYF6/",
+   "source": "instagram",
+   "description": "Happy Week 7 Q-mmunity! Swipe to see what we got going on this next week. 💜\n\nThis week:\n*ColorMode (11/10): Moved to Tuesday (tomorrow)\nA-Spec Discussion Group (11/12)\n*(Note: Let’s Talk has been cancelled this week)\n\nServices:\n(NEW!) Game Library\nQueer Mentorship and Peer Program\nEnGender\nMenstruation Station\nBeginning of year survey—help us continue making the Q Center yours!\n\nComing up:\nGayme Night (11/17)\nRainbow Circle (11/18)\nQ Book Club (Virtual: 11/17; In-person: 11/19)\n*Free STI Testing (11/18): UW is closed on the original testing date of 11/11. Seattle’s LGBTQ+ Center will be providing free STI testing at the Q Center on Wednesday, November 18th instead!\n\nFor more information / access to request forms, click the link in bio.\n\nHave a great week!",
+   "image": "/ig/posts/DfieSRjGYF6.jpg",
+   "likes": 3,
+   "comments": 0,
+   "post_counts": {
+    "DfieSRjGYF6": [
+     3,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfispvMJwV6-0",
-   "title": "Challah Baking Workshop",
+   "title": "Challah Baking",
    "type": "Food",
    "host": "Hillel UW (@huskyhillel)",
-   "where": "Hillel UW",
+   "where": null,
    "pos": null,
    "date": "2026-11-11",
    "start": "09:00",
@@ -651,66 +627,12 @@
    "rsvps": 0,
    "post_counts": {
     "DfFjpm5Best": [
-     90,
+     89,
      6
     ]
    },
-   "likes": 90,
+   "likes": 89,
    "comments": 6,
-   "posts": 1
-  },
-  {
-   "id": "DexTf2RknR_-1",
-   "title": "English Bible Study",
-   "type": "Club",
-   "host": "Christians in Seattle At UW (@christiansinseattleatuw)",
-   "where": "Suzzallo 334",
-   "pos": [
-    47.65581,
-    -122.30805
-   ],
-   "date": "2026-11-11",
-   "start": "16:30",
-   "end": "17:30",
-   "url": "https://www.instagram.com/p/DexTf2RknR_/",
-   "source": "instagram",
-   "description": "🍂🌸 Fall into Fellowship with Christians in Seattle! 🌸🍂\n\nLooking for community, friendship, and opportunities to grow in faith this fall? We'd love to meet you! 💜\n\nJoin us this October & November for Bible studies, Friday night fellowship, and fun Saturday adventures around Seattle! 🏔️\n\n📖 Weekly Bible Studies\n🇨🇳 Chinese Bible Study \n• Tuesdays | 6:00–7:00 PM \n• Thursdays | 12:00–1:00 PM\n\n🇺🇸 English Bible Study \n• Wednesdays | 4:30–5:30 PM \n• Thursdays | 4:30–5:30 PM\n\n📍 All Bible studies: Suzzallo 334\n\n🍽️ Friday Night Fellowship \nFridays | 6:00–7:30 PM \n📍 5221 11th Ave NE \nCome hungry—dinner is provided! 💕\n\n🌲 Saturday Adventures\nFrom hiking and ziplining to berry picking and exploring Seattle, there's always something fun to do together!\n\n✨ Whether you're new to Seattle, exploring faith, or looking for a Christian community, **everyone is welcome!**\n\n💌 DM us for more details, and bring a friend!",
-   "image": "/ig/posts/DexTf2RknR_.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DexTf2RknR_": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfQMNszk-tm-0",
-   "title": "Roundnet Pickup",
-   "type": "Club",
-   "host": "UW Husky Roundnet (Spikeball) Club (@huskyroundnetclub)",
-   "where": "Denny Field",
-   "pos": [
-    47.65976,
-    -122.30581
-   ],
-   "date": "2026-11-11",
-   "start": "17:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfQMNszk-tm/",
-   "source": "instagram",
-   "description": "Halloween Pickup! 🎃\n\nIt was amazing seeing everyone’s costumes out on the field! Reminder that we host pickups every week and everyone is welcome! 🙌\n🗓️ Wednesdays @ 5PM\n🗓️ Sundays @ 2PM\n📍 Denny Field\n\nWishing our Huskies the best of luck with midterms and the rest of the fall quarter! 💜💛",
-   "image": "/ig/posts/DfQMNszk-tm.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfQMNszk-tm": [
-     null,
-     null
-    ]
-   },
    "posts": 1
   },
   {
@@ -754,9 +676,33 @@
    "posts": 1
   },
   {
+   "id": "DfSegPhEgBb-0",
+   "title": "ColorMode",
+   "type": "Club",
+   "host": "UW Q Center (@uwqcenter)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-11",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfSegPhEgBb/",
+   "source": "instagram",
+   "description": "Happy Week 6 Q-mmunity!\n\nThis week:\nBuild Your Library (11/2 through 11/5 during Q Center operating hours)\nGender Discussion Group (11/5)\nQueer Mentorship and Peer Program\nEnGender\nMenstruation Station\nBeginning of year survey—help us continue making the Q Center yours!\n\nMark your calendars:\nColorMode (11/11)\nA-Spec Discussion Group (11/12)\nQ Book Club (Virtual: 11/17; In-person: 11/19)\n\nFor more information / access to request forms, click the link in bio.\n\nHave a great week!",
+   "image": "/ig/posts/DfSegPhEgBb.jpg",
+   "likes": 5,
+   "comments": 0,
+   "post_counts": {
+    "DfSegPhEgBb": [
+     5,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "De5qm3ym0Y3-2",
    "title": "Ask An Alpha",
-   "type": "Hangout",
+   "type": "Club",
    "host": "Alpha Xi (AΞ) Chapter of AΦA (@uwalphas)",
    "where": "Online",
    "pos": null,
@@ -778,25 +724,25 @@
    "posts": 1
   },
   {
-   "id": "DfSegPhEgBb-0",
-   "title": "ColorMode",
+   "id": "DfiDE6nsiLS-0",
+   "title": "National Soccer Tournament",
    "type": "Club",
-   "host": "UW Q Center (@uwqcenter)",
+   "host": "UW Men's Club Soccer (@uwclubsoccer)",
    "where": null,
    "pos": null,
    "date": "2026-11-11",
    "start": null,
    "end": null,
-   "url": "https://www.instagram.com/p/DfSegPhEgBb/",
+   "url": "https://www.instagram.com/p/DfiDE6nsiLS/",
    "source": "instagram",
-   "description": "Happy Week 6 Q-mmunity!\n\nThis week:\nBuild Your Library (11/2 through 11/5 during Q Center operating hours)\nGender Discussion Group (11/5)\nQueer Mentorship and Peer Program\nEnGender\nMenstruation Station\nBeginning of year survey—help us continue making the Q Center yours!\n\nMark your calendars:\nColorMode (11/11)\nA-Spec Discussion Group (11/12)\nQ Book Club (Virtual: 11/17; In-person: 11/19)\n\nFor more information / access to request forms, click the link in bio.\n\nHave a great week!",
-   "image": "/ig/posts/DfSegPhEgBb.jpg",
-   "likes": 5,
-   "comments": 0,
+   "description": "The boys are headed to nationals this week Nov 11-15! GoFundMe in bio! https://gofund.me/ba65a8efa",
+   "image": "/ig/posts/DfiDE6nsiLS.jpg",
+   "likes": 161,
+   "comments": 1,
    "post_counts": {
-    "DfSegPhEgBb": [
-     5,
-     0
+    "DfiDE6nsiLS": [
+     161,
+     1
     ]
    },
    "posts": 1
@@ -850,60 +796,6 @@
    "posts": 1
   },
   {
-   "id": "DfgbVhaMY81-1",
-   "title": "Spam Musubi Sale",
-   "type": "Food",
-   "host": "CSA UW (@csauw)",
-   "where": "Red Square",
-   "pos": [
-    47.65603,
-    -122.30944
-   ],
-   "date": "2026-11-12",
-   "start": "11:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfgbVhaMY81/",
-   "source": "instagram",
-   "description": "Stop by at Red Square this week for a delicious snack to brighten your day😋",
-   "image": "/ig/posts/DfgbVhaMY81.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfgbVhaMY81": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DexTf2RknR_-2",
-   "title": "Chinese Bible Study",
-   "type": "Club",
-   "host": "Christians in Seattle At UW (@christiansinseattleatuw)",
-   "where": "Suzzallo 334",
-   "pos": [
-    47.65581,
-    -122.30805
-   ],
-   "date": "2026-11-12",
-   "start": "12:00",
-   "end": "13:00",
-   "url": "https://www.instagram.com/p/DexTf2RknR_/",
-   "source": "instagram",
-   "description": "🍂🌸 Fall into Fellowship with Christians in Seattle! 🌸🍂\n\nLooking for community, friendship, and opportunities to grow in faith this fall? We'd love to meet you! 💜\n\nJoin us this October & November for Bible studies, Friday night fellowship, and fun Saturday adventures around Seattle! 🏔️\n\n📖 Weekly Bible Studies\n🇨🇳 Chinese Bible Study \n• Tuesdays | 6:00–7:00 PM \n• Thursdays | 12:00–1:00 PM\n\n🇺🇸 English Bible Study \n• Wednesdays | 4:30–5:30 PM \n• Thursdays | 4:30–5:30 PM\n\n📍 All Bible studies: Suzzallo 334\n\n🍽️ Friday Night Fellowship \nFridays | 6:00–7:30 PM \n📍 5221 11th Ave NE \nCome hungry—dinner is provided! 💕\n\n🌲 Saturday Adventures\nFrom hiking and ziplining to berry picking and exploring Seattle, there's always something fun to do together!\n\n✨ Whether you're new to Seattle, exploring faith, or looking for a Christian community, **everyone is welcome!**\n\n💌 DM us for more details, and bring a friend!",
-   "image": "/ig/posts/DexTf2RknR_.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DexTf2RknR_": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "hl-375338",
    "title": "RSO Drop-In Advising",
    "type": "Study",
@@ -942,33 +834,6 @@
     "DfISSAwvQLe": [
      8,
      0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DexTf2RknR_-3",
-   "title": "English Bible Study",
-   "type": "Club",
-   "host": "Christians in Seattle At UW (@christiansinseattleatuw)",
-   "where": "Suzzallo 334",
-   "pos": [
-    47.65581,
-    -122.30805
-   ],
-   "date": "2026-11-12",
-   "start": "16:30",
-   "end": "17:30",
-   "url": "https://www.instagram.com/p/DexTf2RknR_/",
-   "source": "instagram",
-   "description": "🍂🌸 Fall into Fellowship with Christians in Seattle! 🌸🍂\n\nLooking for community, friendship, and opportunities to grow in faith this fall? We'd love to meet you! 💜\n\nJoin us this October & November for Bible studies, Friday night fellowship, and fun Saturday adventures around Seattle! 🏔️\n\n📖 Weekly Bible Studies\n🇨🇳 Chinese Bible Study \n• Tuesdays | 6:00–7:00 PM \n• Thursdays | 12:00–1:00 PM\n\n🇺🇸 English Bible Study \n• Wednesdays | 4:30–5:30 PM \n• Thursdays | 4:30–5:30 PM\n\n📍 All Bible studies: Suzzallo 334\n\n🍽️ Friday Night Fellowship \nFridays | 6:00–7:30 PM \n📍 5221 11th Ave NE \nCome hungry—dinner is provided! 💕\n\n🌲 Saturday Adventures\nFrom hiking and ziplining to berry picking and exploring Seattle, there's always something fun to do together!\n\n✨ Whether you're new to Seattle, exploring faith, or looking for a Christian community, **everyone is welcome!**\n\n💌 DM us for more details, and bring a friend!",
-   "image": "/ig/posts/DexTf2RknR_.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DexTf2RknR_": [
-     null,
-     null
     ]
    },
    "posts": 1
@@ -1017,12 +882,12 @@
    "source": "instagram",
    "description": "RISING UP FOR RELIEF IS IN 10 DAYS‼️\n\nCome to our first flagship event of the year, our fundraiser talent show ⭐️ Free entry but donations heavily encouraged to support Alon and Araw 🇵🇭\n\n📅Thursday, Nov. 12\n🕛5:00-7:00PM\n📍Ethnic Cultural Theater",
    "image": "/ig/posts/DfSXoQrOgoH.jpg",
-   "likes": 168,
-   "comments": 10,
+   "likes": null,
+   "comments": null,
    "post_counts": {
     "DfSXoQrOgoH": [
-     168,
-     10
+     null,
+     null
     ]
    },
    "posts": 1
@@ -1044,16 +909,16 @@
    "source": "instagram",
    "description": "☀️ ALON AND ARAW ☀️\n\nAs Rising Up for Relief (RUfR) gets closer, we want to tell you more about where the proceeds will be going!\n\nAll of the donations will be given to Alon and Araw, a nonprofit organization based in Zambales, Philippines. Their goal is to provide underprivileged youth with different recreational opportunities. \n\nThese children participate in beach cleanups all over the area before ending their day learning certain sports. \n\nAlon and Araw focuses on inspiring and uniting these children with oceans of opportunity. FASA sa UW is excited to work with them for RUfR, and we hope you show your support on November 12th!\n\nRising Up For Relief\n📅 Thursday, November 12th\n⏰ 5-7PM\n📍Ethnic Cultural Theater",
    "image": "/ig/posts/DfPy2xxlAUv.jpg",
-   "likes": 401,
-   "comments": 34,
+   "likes": null,
+   "comments": null,
    "post_counts": {
     "DfPy2xxlAUv": [
-     50,
-     0
+     null,
+     null
     ],
     "De-g5QpM7y7": [
-     351,
-     34
+     null,
+     null
     ],
     "DekYBsekmel": [
      null,
@@ -1085,6 +950,33 @@
     "DfWD8TkRWzH": [
      46,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfgAfz_C82l-0",
+   "title": "Diwali Celebration",
+   "type": "Hangout",
+   "host": "SASA UW (@sasauw)",
+   "where": "SOCC 301",
+   "pos": [
+    47.65164,
+    -122.31052
+   ],
+   "date": "2026-11-12",
+   "start": "17:15",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DfgAfz_C82l/",
+   "source": "instagram",
+   "description": "HAPPY DIWALI!!!🪔🎇✨\n\nCelebrate Diwali with UW SASA AND SSA! Join us for an evening of food, festivities, and creativity as we celebrate the Festival of Lights! Come paint your own diya and celebrate with us!!!\n\nWe hope to see you there🤍\n\nThursday, 11/12\n5:15-8pm\nSOCC 301 (1601 NE Columbia Road)",
+   "image": "/ig/posts/DfgAfz_C82l.jpg",
+   "likes": 177,
+   "comments": 4,
+   "post_counts": {
+    "DfgAfz_C82l": [
+     177,
+     4
     ]
    },
    "posts": 1
@@ -1161,37 +1053,10 @@
    "description": "Looking to fine tune your interviewing skills? Join us for interview prep night! Industry professionals join us to teach you some of their skills. NOVEMBER 12th, 6pm-8pm, in MEB 103!!! See you there!!",
    "image": "/ig/posts/DexYu0MRZo8.jpg",
    "likes": 3,
-   "comments": 1,
+   "comments": null,
    "post_counts": {
     "DexYu0MRZo8": [
      3,
-     1
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "De7sE16yzAu-0",
-   "title": "Trans Day of Remembrance Panel",
-   "type": "Club",
-   "host": "ASUW Queer Student Commission (@asuwqsc)",
-   "where": "MGH 231",
-   "pos": [
-    47.65485,
-    -122.30779
-   ],
-   "date": "2026-11-12",
-   "start": "18:00",
-   "end": "19:30",
-   "url": "https://www.instagram.com/p/De7sE16yzAu/",
-   "source": "instagram",
-   "description": "Join us for our annual Transgender Day of Remembrance Panel on November 12th from 6-7:30pm in MGH 231. \n\nWe will be providing light food and refreshments during the educational panel, as well as a providing professional mental health support from the UW Social Work Department. \n\nDuring this event, we will be recognizing the higher rates of violence and inequality that trans-folk face; sharing information about your rights, advocacy and access to resources on UW campus and within Seattle. The event will also include an open Q&A portion. \n\nACCESSIBILITY: CART captions will be available, please contact asuwgec@uw.edu, asuwqsc@uw.edu, or asuwsarva@uw.edu if you have any questions or need additional accommodations. \n\nImage Description: Blue, pink and green floral background with black ASUW logo; black SARVA logo; black, pink, blue, white Trans Collective logo; black GEC logo; Queer Student Commission orange, pink and white ombré logo. With white text: “Nov 12, 6:00-7:30 MGH 231 Trans Day of Remembrance Panel. Join us as we recognize the higher rates of violence and inequality transgender people face. Learn about your rights and resources in the area with an open Q&A portion. Light refreshments and snacks provided. Questions? Contact: asuwgec@uw.edu, asuwqsc@uw.edu”\n\nALT text is provided within the post.",
-   "image": "/ig/posts/De7sE16yzAu.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "De7sE16yzAu": [
-     null,
      null
     ]
    },
@@ -1199,7 +1064,7 @@
   },
   {
    "id": "DfYmnwBm0nU-0",
-   "title": "CSA Dumpling Night",
+   "title": "Dumpling Night",
    "type": "Food",
    "host": "CSA UW (@csauw)",
    "where": "ECC Unity Suite 104/106",
@@ -1211,66 +1076,43 @@
    "source": "instagram",
    "description": "🥟 IT’S HERE: CSA Dumpling Night is back! 🥟\n\nJoin us on Thursday, November 12th from 6:00–7:30 PM for our annual Dumpling Night! Enjoy a dumpling dinner catered by Yingying Food LLC, make your own paracord keychain, and spend the evening hanging out with us. Both Non-members and CSA Members are invited!! We hope to see you there! \n\n⏰ When: Thursday, November 12th, 6:00–7:30 PM\n📍 Where: ECC Unity Suite 104/106  (Samuel E. Kelly Ethnic Cultural Center, 3931 Brooklyn Ave NE, Seattle, WA 98105\n\n🎟️ Tickets are on sale now! You can purchase tickets ONLINE through the link in our bio or visit our table in Red Square on weekdays from 11 AM–2 PM. Online ticket holders can also stop by our table to redeem a physical ticket.\n\nThe earlier you purchase, the better the deal! \n\n🎟️ Ticket Prices*: 🎟️ \n* EARLY BIRD (THIS WEEK ONLY): $7 with CSA Perk Card / $10 without card \n* GENERAL (After 11/7): $10 with CSA Perk Card / $13 without card\n🎟️ Where to Buy 🎟️ \n Link in bio or at our Red Square table\n Accepted Payments: Cash, Venmo (@csauw), or Zelle (csauw@uw.edu).\n\n*All tickets include dinner and the keychain-making activity!\n\nWe can’t wait to see you there! 🥟\n\n#csauw #uw #chinesestudentassociation #dumplingnight #universityofwashington",
    "image": "/ig/posts/DfYmnwBm0nU.jpg",
-   "likes": null,
-   "comments": null,
+   "likes": 85,
+   "comments": 24,
    "post_counts": {
     "DfYmnwBm0nU": [
-     null,
-     null
+     14,
+     3
+    ],
+    "DfQtgjmh2ut": [
+     71,
+     21
     ]
    },
-   "posts": 1
+   "posts": 2
   },
   {
-   "id": "DfSefC9hOsm-0",
-   "title": "Weekly Fellowship",
-   "type": "Food",
-   "host": "Christian Students Association (@christianstudentsuw)",
-   "where": "MEB 248",
+   "id": "DfQx5VjR8SB-0",
+   "title": "Graduate Networking Mixer",
+   "type": "Hangout",
+   "host": "SWE UW (@uwswe)",
+   "where": "Big Time Brewery, 4133 University Way NE Seattle, WA 98105",
    "pos": [
-    47.65369,
-    -122.30476
+    47.65786,
+    -122.31344
    ],
    "date": "2026-11-12",
    "start": "18:00",
    "end": "20:00",
-   "url": "https://www.instagram.com/p/DfSefC9hOsm/",
+   "url": "https://www.instagram.com/p/DfQx5VjR8SB/",
    "source": "instagram",
-   "description": "Same time, same place, new enjoyment of the Lord every week! Join us for fellowship, free food and singing🙌 Thursdays from 6-8pm MEB 248",
-   "image": "/ig/posts/DfSefC9hOsm.jpg",
-   "likes": null,
-   "comments": null,
+   "description": "Graduate students, are you looking to expand your network?\n\nPlease join us as we welcome women across varying Seattle industries! Enjoy a beverage and snacks while you connect with each other and professionals. First drink on us!\n\n💫 When: Thursday November 12th | 6:00 - 8:00 PM\n🍻 Where: Big Time Brewery, 4133 University Way NE Seattle, WA 98105 United States\n\nRSVP here: forms.gle/5B6y6vBc6put94Wt8",
+   "image": "/ig/posts/DfQx5VjR8SB.jpg",
+   "likes": 22,
+   "comments": 0,
    "post_counts": {
-    "DfSefC9hOsm": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "De0Sd9nKJKC-0",
-   "title": "Thursday Fellowship",
-   "type": "Club",
-   "host": "Christian Students Association (@christianstudentsuw)",
-   "where": "MEB 248",
-   "pos": [
-    47.65369,
-    -122.30476
-   ],
-   "date": "2026-11-12",
-   "start": "18:00",
-   "end": "20:00",
-   "url": "https://www.instagram.com/p/De0Sd9nKJKC/",
-   "source": "instagram",
-   "description": "☀️Interested in free food, singing and fellowship? Come join us every Thursday from 6-8pm in MEB 248!! We hope to see you all!!!😄\n\n#christianstudents #uw",
-   "image": "/ig/posts/De0Sd9nKJKC.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "De0Sd9nKJKC": [
-     null,
-     null
+    "DfQx5VjR8SB": [
+     22,
+     0
     ]
    },
    "posts": 1
@@ -1280,8 +1122,11 @@
    "title": "Trans Day of Remembrance Panel",
    "type": "Study",
    "host": "ASUW Gender Equity Commission",
-   "where": null,
-   "pos": null,
+   "where": "MGH 231",
+   "pos": [
+    47.65485,
+    -122.30779
+   ],
    "date": "2026-11-12",
    "start": "18:00",
    "end": "19:30",
@@ -1289,33 +1134,15 @@
    "source": "huskylink",
    "description": "During this event, we will be recognizing the higher rates of violence and inequality that trans-folk face; sharing information about your rights, advocacy and access to resources on UW campus and within Seattle. The event will also include an open Q&A portion.\nPanelist from:\nQ Center\nSchool of Social Work\nTRANSITION",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615660_OID_approved_version_74113d72-80bc-411e-a131-678df7a7a1d3_112173549.png",
-   "rsvps": 0
-  },
-  {
-   "id": "DfdTw7CPdWg-0",
-   "title": "HOSA General Meeting",
-   "type": "Club",
-   "host": "Hosa UW Chapter (@officialuwhosa)",
-   "where": "Warren G. Magnuson Health Sciences Building T-Wing, Room T530",
-   "pos": [
-    47.65164,
-    -122.31052
-   ],
-   "date": "2026-11-12",
-   "start": "18:30",
-   "end": "20:00",
-   "url": "https://www.instagram.com/p/DfdTw7CPdWg/",
-   "source": "instagram",
-   "description": "Hey UW HOSA members! 💜 We have an upcoming general meeting where we will discuss about State Leadership Conference, collegiate competition events, workshops, and process of running for an executive council position. Come ready with questions, hope to see you all there! 🩺\n\nLocation: Warren G. Magnuson Health Sciences Building T-Wing, Room T530 (on the 5th floor)\nDate: Thursday, November 12th\nTime: 6:30pm-8:00pm",
-   "image": "/ig/posts/DfdTw7CPdWg.jpg",
-   "likes": null,
-   "comments": null,
+   "rsvps": 0,
    "post_counts": {
-    "DfdTw7CPdWg": [
-     null,
-     null
+    "De7sE16yzAu": [
+     3,
+     1
     ]
    },
+   "likes": 3,
+   "comments": 1,
    "posts": 1
   },
   {
@@ -1346,9 +1173,36 @@
    "posts": 1
   },
   {
+   "id": "DfdTw7CPdWg-0",
+   "title": "General Meeting",
+   "type": "Club",
+   "host": "Hosa UW Chapter (@officialuwhosa)",
+   "where": "Warren G. Magnuson Health Sciences Building T-Wing, Room T530",
+   "pos": [
+    47.65164,
+    -122.31052
+   ],
+   "date": "2026-11-12",
+   "start": "18:30",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DfdTw7CPdWg/",
+   "source": "instagram",
+   "description": "Hey UW HOSA members! 💜 We have an upcoming general meeting where we will discuss about State Leadership Conference, collegiate competition events, workshops, and process of running for an executive council position. Come ready with questions, hope to see you all there! 🩺\n\nLocation: Warren G. Magnuson Health Sciences Building T-Wing, Room T530 (on the 5th floor)\nDate: Thursday, November 12th\nTime: 6:30pm-8:00pm",
+   "image": "/ig/posts/DfdTw7CPdWg.jpg",
+   "likes": 16,
+   "comments": 0,
+   "post_counts": {
+    "DfdTw7CPdWg": [
+     16,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfgLOt8peAO-0",
    "title": "Phantom of the Paradise Screening",
-   "type": "Club",
+   "type": "Hangout",
    "host": "UW Film Club (@filmclubuw)",
    "where": "PAA 114",
    "pos": [
@@ -1362,36 +1216,39 @@
    "source": "instagram",
    "description": "This Thursday we will be screening Phantom of the Paradise (1974) in PAA 114 at 7:30PM!",
    "image": "/ig/posts/DfgLOt8peAO.jpg",
-   "likes": 26,
-   "comments": 0,
+   "likes": null,
+   "comments": null,
    "post_counts": {
     "DfgLOt8peAO": [
-     26,
-     0
+     null,
+     null
     ]
    },
    "posts": 1
   },
   {
-   "id": "Dfa80Kth-CO-0",
-   "title": "Friendsgiving",
-   "type": "Food",
-   "host": "Cru at UW Seattle (@uwcru)",
-   "where": "Cross and Crown church",
-   "pos": null,
+   "id": "DfTTUjLGg6d-0",
+   "title": "Trivia Night",
+   "type": "Hangout",
+   "host": "Husky Union Building (@hubatuw)",
+   "where": "HUB",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
    "date": "2026-11-12",
    "start": null,
    "end": null,
-   "url": "https://www.instagram.com/p/Dfa80Kth-CO/",
+   "url": "https://www.instagram.com/p/DfTTUjLGg6d/",
    "source": "instagram",
-   "description": "Hi everyone! We are so excited to host our annual Friendsgiving next Thursday and would love if you could join us! From eating delicious meals, having intentional conversations and building amazing relationships! We hope to see you there!",
-   "image": "/ig/posts/Dfa80Kth-CO.jpg",
-   "likes": null,
-   "comments": null,
+   "description": "Missing that Halloween spirit already? Us too. \n\nThank you to everyone who came and participated in our Spookativities! We hope there were more treats than tricks in your colorful bags 👻\n\nBut the fun’s not over yet! Keep an eye out for a tricky trivia night happening NEXT Thursday, November 12 at the HUB.",
+   "image": "/ig/posts/DfTTUjLGg6d.jpg",
+   "likes": 148,
+   "comments": 0,
    "post_counts": {
-    "Dfa80Kth-CO": [
-     null,
-     null
+    "DfTTUjLGg6d": [
+     148,
+     0
     ]
    },
    "posts": 1
@@ -1410,7 +1267,7 @@
    "source": "instagram",
    "description": "Happy Week 6 Q-mmunity!\n\nThis week:\nBuild Your Library (11/2 through 11/5 during Q Center operating hours)\nGender Discussion Group (11/5)\nQueer Mentorship and Peer Program\nEnGender\nMenstruation Station\nBeginning of year survey—help us continue making the Q Center yours!\n\nMark your calendars:\nColorMode (11/11)\nA-Spec Discussion Group (11/12)\nQ Book Club (Virtual: 11/17; In-person: 11/19)\n\nFor more information / access to request forms, click the link in bio.\n\nHave a great week!",
    "image": "/ig/posts/DfSegPhEgBb.jpg",
-   "likes": 19,
+   "likes": 22,
    "comments": 0,
    "post_counts": {
     "DfSegPhEgBb": [
@@ -1420,9 +1277,13 @@
     "De-ATG2AU3G": [
      14,
      0
+    ],
+    "DfieSRjGYF6": [
+     3,
+     0
     ]
    },
-   "posts": 2
+   "posts": 3
   },
   {
    "id": "DfX0MwJBtc9-0",
@@ -1457,6 +1318,30 @@
    "posts": 3
   },
   {
+   "id": "Dfa80Kth-CO-0",
+   "title": "Friendsgiving",
+   "type": "Hangout",
+   "host": "Cru at UW Seattle (@uwcru)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-12",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Dfa80Kth-CO/",
+   "source": "instagram",
+   "description": "Hi everyone! We are so excited to host our annual Friendsgiving next Thursday and would love if you could join us! From eating delicious meals, having intentional conversations and building amazing relationships! We hope to see you there!",
+   "image": "/ig/posts/Dfa80Kth-CO.jpg",
+   "likes": 18,
+   "comments": 0,
+   "post_counts": {
+    "Dfa80Kth-CO": [
+     18,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DexO1bdSDsF-0",
    "title": "Parametric Company Visit",
    "type": "Club",
@@ -1470,38 +1355,11 @@
    "source": "instagram",
    "description": "We’re heading to Parametric on November 13th!🏙️ \n\nJoin us for a company visit to their downtown Seattle office and get a closer look at what they do.\n\n**Juniors & seniors prioritized!** Sophomores with junior standing are also welcome.\n\nNovember 13 | 10 AM-12 PM\nScan the QR code to RSVP!",
    "image": "/ig/posts/DexO1bdSDsF.jpg",
-   "likes": null,
+   "likes": 31,
    "comments": null,
    "post_counts": {
     "DexO1bdSDsF": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfgbVhaMY81-2",
-   "title": "Spam Musubi Sale",
-   "type": "Food",
-   "host": "CSA UW (@csauw)",
-   "where": "Red Square",
-   "pos": [
-    47.65603,
-    -122.30944
-   ],
-   "date": "2026-11-13",
-   "start": "11:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfgbVhaMY81/",
-   "source": "instagram",
-   "description": "Stop by at Red Square this week for a delicious snack to brighten your day😋",
-   "image": "/ig/posts/DfgbVhaMY81.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfgbVhaMY81": [
-     null,
+     31,
      null
     ]
    },
@@ -1530,33 +1388,6 @@
     "DfWpR6pBXa7": [
      3,
      0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfX94PDyob8-0",
-   "title": "Professional Headshots",
-   "type": "Club",
-   "host": "ASME at UW (@asmeuw)",
-   "where": "ECE 5th floor",
-   "pos": [
-    47.65358,
-    -122.3063
-   ],
-   "date": "2026-11-13",
-   "start": "12:30",
-   "end": "14:30",
-   "url": "https://www.instagram.com/p/DfX94PDyob8/",
-   "source": "instagram",
-   "description": "Are you in need of a new LinkedIn profile picture? Do you just want to have a cool professional picture of yourself? Come get your awesome portraits taken by ASME for FREE at this event 😁😁 See you there!",
-   "image": "/ig/posts/DfX94PDyob8.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfX94PDyob8": [
-     null,
-     null
     ]
    },
    "posts": 1
@@ -1675,10 +1506,37 @@
    "rsvps": 0
   },
   {
+   "id": "Dew7znHmKrf-0",
+   "title": "Charlie Brown Fall Fest",
+   "type": "Food",
+   "host": "COM²: Computing Community at UW (@uwcom2)",
+   "where": "HUB North Ballroom",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-13",
+   "start": "17:00",
+   "end": "19:30",
+   "url": "https://www.instagram.com/p/Dew7znHmKrf/",
+   "source": "instagram",
+   "description": "A Charlie Brown Fall Fest is here! \nGather your pals and get ready to celebrate the season at COM2’s Annual Fall Fest! This year we’re bringing some Charlie Brown charm to Fall Fest with an evening full of great food, entertainment, themed snacks, sweet treats and lots of autumn spirit! 🍂\n\n📅 Date: Friday, November 13th\n⏰ Time: 5:00 - 7:30 PM\n📍 Location: HUB North Ballroom\n🍂Theme: Charlie Brown Pumpkin Patch\n\n🎟️ RSVP now with the link in bio!\nGood food, good friends, and plenty of fall fun - we’ll see you at Fall Fest! 🍂🎃",
+   "image": "/ig/posts/Dew7znHmKrf.jpg",
+   "likes": 49,
+   "comments": 4,
+   "post_counts": {
+    "Dew7znHmKrf": [
+     49,
+     4
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfYWbF0NZtt-0",
    "title": "Being Heumann Screening",
-   "type": "Club",
-   "host": "ASUW Office of Inclusive Design (@asuwoid)",
+   "type": "Hangout",
+   "host": "D Center (@uwdcenter)",
    "where": "Alder Auditorium",
    "pos": null,
    "date": "2026-11-13",
@@ -1699,28 +1557,25 @@
    "posts": 1
   },
   {
-   "id": "Dew7znHmKrf-0",
-   "title": "Charlie Brown Fall Fest",
+   "id": "Dfh-m6ZGZl6-0",
+   "title": "Onigiri Making Evening",
    "type": "Food",
-   "host": "COM²: Computing Community at UW (@uwcom2)",
-   "where": "HUB North Ballroom",
-   "pos": [
-    47.65537,
-    -122.3051
-   ],
+   "host": "Japanese Student Association (@jsauw)",
+   "where": "Social Work Building, Room 305",
+   "pos": null,
    "date": "2026-11-13",
    "start": "17:00",
-   "end": "19:30",
-   "url": "https://www.instagram.com/p/Dew7znHmKrf/",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/Dfh-m6ZGZl6/",
    "source": "instagram",
-   "description": "A Charlie Brown Fall Fest is here! \nGather your pals and get ready to celebrate the season at COM2’s Annual Fall Fest! This year we’re bringing some Charlie Brown charm to Fall Fest with an evening full of great food, entertainment, themed snacks, sweet treats and lots of autumn spirit! 🍂\n\n📅 Date: Friday, November 13th\n⏰ Time: 5:00 - 7:30 PM\n📍 Location: HUB North Ballroom\n🍂Theme: Charlie Brown Pumpkin Patch\n\n🎟️ RSVP now with the link in bio!\nGood food, good friends, and plenty of fall fun - we’ll see you at Fall Fest! 🍂🎃",
-   "image": "/ig/posts/Dew7znHmKrf.jpg",
-   "likes": null,
-   "comments": null,
+   "description": "Join JSA for a fun evening of making onigiri, meeting new friends, and giving back to a great cause! \n\n📅 Friday, November 13\n⏰ 5–8 PM\n📍 Social Work Building, Room 305\n🎟️ $3 Members | $5 Non-Members\n\nEither get tickets from the link in bio, while we table in Red Square, or at the check in table AT the event!\n\n#UWJSA #TABLEFORTWO",
+   "image": "/ig/posts/Dfh-m6ZGZl6.jpg",
+   "likes": 3,
+   "comments": 8,
    "post_counts": {
-    "Dew7znHmKrf": [
-     null,
-     null
+    "Dfh-m6ZGZl6": [
+     3,
+     8
     ]
    },
    "posts": 1
@@ -1745,52 +1600,25 @@
    "rsvps": 0
   },
   {
-   "id": "Dfidi7pF4Jz-0",
-   "title": "Shabbat Song Circle",
+   "id": "DfSj2Trj2Nc-0",
+   "title": "Portfolio Planning & Personal Branding",
    "type": "Club",
-   "host": "Hillel UW (@huskyhillel)",
-   "where": "Hillel",
+   "host": "Women in User Experience (@womeninux_uw)",
+   "where": "Remote",
    "pos": null,
    "date": "2026-11-13",
-   "start": "17:15",
-   "end": null,
-   "url": "https://www.instagram.com/p/Dfidi7pF4Jz/",
-   "source": "instagram",
-   "description": "Gather around the table for Friendsgiving Shabbat! Celebrate the season of gratitude with a delicious Shabbat dinner and plenty of things to be thankful for. 🦃🥧\n\nYou are invited to join us for Shabbat Song Circle at 5:15pm before dinner. 🎶",
-   "image": "/ig/posts/Dfidi7pF4Jz.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "Dfidi7pF4Jz": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfftKk3EuuE-1",
-   "title": "Christian Friendship Lecture",
-   "type": "Club",
-   "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
-   "where": "On Campus",
-   "pos": [
-    47.64813,
-    -122.30867
-   ],
-   "date": "2026-11-13",
    "start": "17:30",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfftKk3EuuE/",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/DfSj2Trj2Nc/",
    "source": "instagram",
-   "description": "✨ This Week at Newman! ✨\n\nWe have a great week ahead! Come join us for fellowship, fun, and faith!\n\n🥧 TUESDAY: First-years are making pies! Come enjoy some delicious treats and good company.\n\n✝️ FRIDAY: Join us for a special lecture on Christian Friendship, given by Thomas Aquinas Pickett, O.P.\n\n☕ SUNDAY: After the 10 AM Mass, head over to Saint Doms Hall for Ask a Friar Anything! Bring your questions and enjoy some great conversation.\n\nWe hope to see you there! God bless! 🙏",
-   "image": "/ig/posts/DfftKk3EuuE.jpg",
-   "likes": null,
-   "comments": null,
+   "description": "Join Women in UX and Elaine Yu on November 13 for a virtual workshop on Portfolio Planning & Personal Branding! 📣\n\nWhether you’re searching for internships, preparing for the job market, or simply refreshing your portfolio, we’ll explore how to showcase your work, stand out to hiring teams, and tell a compelling story through your projects. Learn to create a portfolio that feels like YOU! 🩷\n\nExpect a 30-minute presentation followed by a 30-minute AMA, so bring your questions! ✨\n\n🗓️ Friday, 11/13\n🕠 5:30-6:30 PM PT\n📍 Remote\n\n🔗 RSVP using link in bio\n#uxdesign #universityofwashington #womeninux",
+   "image": "/ig/posts/DfSj2Trj2Nc.jpg",
+   "likes": 3,
+   "comments": 0,
    "post_counts": {
-    "DfftKk3EuuE": [
-     null,
-     null
+    "DfSj2Trj2Nc": [
+     3,
+     0
     ]
    },
    "posts": 1
@@ -1823,84 +1651,6 @@
    "posts": 1
   },
   {
-   "id": "DfSj2Trj2Nc-0",
-   "title": "Portfolio Planning & Personal Branding",
-   "type": "Club",
-   "host": "Women in User Experience (@womeninux_uw)",
-   "where": "Remote",
-   "pos": null,
-   "date": "2026-11-13",
-   "start": "17:30",
-   "end": "18:30",
-   "url": "https://www.instagram.com/p/DfSj2Trj2Nc/",
-   "source": "instagram",
-   "description": "Join Women in UX and Elaine Yu on November 13 for a virtual workshop on Portfolio Planning & Personal Branding! 📣\n\nWhether you’re searching for internships, preparing for the job market, or simply refreshing your portfolio, we’ll explore how to showcase your work, stand out to hiring teams, and tell a compelling story through your projects. Learn to create a portfolio that feels like YOU! 🩷\n\nExpect a 30-minute presentation followed by a 30-minute AMA, so bring your questions! ✨\n\n🗓️ Friday, 11/13\n🕠 5:30-6:30 PM PT\n📍 Remote\n\n🔗 RSVP using link in bio\n#uxdesign #universityofwashington #womeninux",
-   "image": "/ig/posts/DfSj2Trj2Nc.jpg",
-   "likes": 3,
-   "comments": 0,
-   "post_counts": {
-    "DfSj2Trj2Nc": [
-     3,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfeJCCNAV_r-0",
-   "title": "Peer Career Day",
-   "type": "Club",
-   "host": "UW CIRCLE (@uwcircle)",
-   "where": "Schmitz Hall 250",
-   "pos": [
-    47.65647,
-    -122.31271
-   ],
-   "date": "2026-11-13",
-   "start": "18:00",
-   "end": "20:00",
-   "url": "https://www.instagram.com/p/DfeJCCNAV_r/",
-   "source": "instagram",
-   "description": "Looking for a space to practice your interview skills and build confidence? \n\n🖥️ Join CoF Peer Career Day to practice answering interview questions and strengthen your speaking skills! Whether you are preparing for your first interview or looking for more practice, this is the perfect opportunity to practice with your peers. 📝 You can also get a new LinkedIn headshot, create a LinkedIn banner, and design your own business cards!\n \nDate: Nov 13, 2026\nLocation: Schmitz Hall 250\nRegistration link: https://docs.google.com/forms/d/e/1FAIpQLSdi0PWfrJ1inRIqUBeNOjG0zgOmvn0azxcdLlXFC_eAfmmrCg/viewform?usp=dialog",
-   "image": "/ig/posts/DfeJCCNAV_r.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfeJCCNAV_r": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DexTf2RknR_-4",
-   "title": "Friday Night Fellowship",
-   "type": "Hangout",
-   "host": "Christians in Seattle At UW (@christiansinseattleatuw)",
-   "where": "5221 11th Ave NE",
-   "pos": [
-    47.66705,
-    -122.31656
-   ],
-   "date": "2026-11-13",
-   "start": "18:00",
-   "end": "19:30",
-   "url": "https://www.instagram.com/p/DexTf2RknR_/",
-   "source": "instagram",
-   "description": "🍂🌸 Fall into Fellowship with Christians in Seattle! 🌸🍂\n\nLooking for community, friendship, and opportunities to grow in faith this fall? We'd love to meet you! 💜\n\nJoin us this October & November for Bible studies, Friday night fellowship, and fun Saturday adventures around Seattle! 🏔️\n\n📖 Weekly Bible Studies\n🇨🇳 Chinese Bible Study \n• Tuesdays | 6:00–7:00 PM \n• Thursdays | 12:00–1:00 PM\n\n🇺🇸 English Bible Study \n• Wednesdays | 4:30–5:30 PM \n• Thursdays | 4:30–5:30 PM\n\n📍 All Bible studies: Suzzallo 334\n\n🍽️ Friday Night Fellowship \nFridays | 6:00–7:30 PM \n📍 5221 11th Ave NE \nCome hungry—dinner is provided! 💕\n\n🌲 Saturday Adventures\nFrom hiking and ziplining to berry picking and exploring Seattle, there's always something fun to do together!\n\n✨ Whether you're new to Seattle, exploring faith, or looking for a Christian community, **everyone is welcome!**\n\n💌 DM us for more details, and bring a friend!",
-   "image": "/ig/posts/DexTf2RknR_.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DexTf2RknR_": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "DfViJgohllB-0",
    "title": "Women in Tech Panel",
    "type": "Club",
@@ -1917,36 +1667,39 @@
    "source": "instagram",
    "description": "Interested in learning from successful women in tech❓\nJoin us for our Women in Tech Panel on Friday Nov 13th\n.\nWe’ll have UX Researchers, Software Engineers, Product Managers, and more joining us to share their experiences\n.\nNov 13, Fri\n6:30-7:30pm \nSavery 130\n.\n🔜Stay tuned for more info!🔜",
    "image": "/ig/posts/DfViJgohllB.jpg",
-   "likes": 37,
+   "likes": 35,
    "comments": 0,
    "post_counts": {
     "DfViJgohllB": [
-     37,
+     35,
      0
     ]
    },
    "posts": 1
   },
   {
-   "id": "Dfidi7pF4Jz-1",
-   "title": "Friendsgiving Shabbat Dinner",
-   "type": "Food",
-   "host": "Hillel UW (@huskyhillel)",
-   "where": "Hillel",
-   "pos": null,
+   "id": "Dfhw_OpGYdD-0",
+   "title": "Glow-in-the-dark Capture the Flag",
+   "type": "Game night",
+   "host": "Reformed University Fellowship | UW (@ruf_uw)",
+   "where": "Johnson Hall",
+   "pos": [
+    47.65442,
+    -122.30875
+   ],
    "date": "2026-11-13",
-   "start": "18:30",
+   "start": "19:00",
    "end": null,
-   "url": "https://www.instagram.com/p/Dfidi7pF4Jz/",
+   "url": "https://www.instagram.com/p/Dfhw_OpGYdD/",
    "source": "instagram",
-   "description": "Gather around the table for Friendsgiving Shabbat! Celebrate the season of gratitude with a delicious Shabbat dinner and plenty of things to be thankful for. 🦃🥧\n\nYou are invited to join us for Shabbat Song Circle at 5:15pm before dinner. 🎶",
-   "image": "/ig/posts/Dfidi7pF4Jz.jpg",
-   "likes": null,
-   "comments": null,
+   "description": "Week six is here! A little change to the usual schedule this week, but we still have some fun things coming up! Bible studies are meeting as usual, but we’ll be taking a break from Large Group this Wednesday for Veterans Day.\nJoin us Friday for glow-in-the-dark capture the flag! We’ll meet at Johnson Hall at 7pm and walk over to the Quad together. Hope to see you there!\n#reformeduniversityfellowship #universityofwashington",
+   "image": "/ig/posts/Dfhw_OpGYdD.jpg",
+   "likes": 26,
+   "comments": 0,
    "post_counts": {
-    "Dfidi7pF4Jz": [
-     null,
-     null
+    "Dfhw_OpGYdD": [
+     26,
+     0
     ]
    },
    "posts": 1
@@ -1995,54 +1748,6 @@
    "rsvps": 12
   },
   {
-   "id": "DfaPgyTSJZC-0",
-   "title": "Fall Fest",
-   "type": "Hangout",
-   "host": "COM²: Computing Community at UW (@uwcom2)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-13",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfaPgyTSJZC/",
-   "source": "instagram",
-   "description": "FALL FEST IS IN ONE WEEK 👀👀 GAMES FOOD FUN 🤩 RSVP IN BIO !!",
-   "image": "/ig/posts/DfaPgyTSJZC.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfaPgyTSJZC": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "De8CNY4HVdT-0",
-   "title": "Home Ice vs MSU",
-   "type": "Game night",
-   "host": "Washington Ice Hockey (@uw_icehockey)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-13",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/De8CNY4HVdT/",
-   "source": "instagram",
-   "description": "Dawgs had an action packed weekend sweeping USC 🧹 \nWe’re back on home ice November 13th for an eventful weekend vs MSU ! \n\n#huskyhockey | #resilient",
-   "image": "/ig/posts/De8CNY4HVdT.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "De8CNY4HVdT": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "DfaasZMvECQ-0",
    "title": "Zaila’s Launch",
    "type": "Hangout",
@@ -2067,11 +1772,86 @@
    "posts": 1
   },
   {
+   "id": "De8CNY4HVdT-0",
+   "title": "Home Ice vs MSU",
+   "type": "Club",
+   "host": "Washington Ice Hockey (@uw_icehockey)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-13",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/De8CNY4HVdT/",
+   "source": "instagram",
+   "description": "Dawgs had an action packed weekend sweeping USC 🧹 \nWe’re back on home ice November 13th for an eventful weekend vs MSU ! \n\n#huskyhockey | #resilient",
+   "image": "/ig/posts/De8CNY4HVdT.jpg",
+   "likes": 3,
+   "comments": 1,
+   "post_counts": {
+    "De8CNY4HVdT": [
+     3,
+     1
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfftKk3EuuE-1",
+   "title": "Lecture on Christian Friendship",
+   "type": "Club",
+   "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-13",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfftKk3EuuE/",
+   "source": "instagram",
+   "description": "✨ This Week at Newman! ✨\n\nWe have a great week ahead! Come join us for fellowship, fun, and faith!\n\n🥧 TUESDAY: First-years are making pies! Come enjoy some delicious treats and good company.\n\n✝️ FRIDAY: Join us for a special lecture on Christian Friendship, given by Thomas Aquinas Pickett, O.P.\n\n☕ SUNDAY: After the 10 AM Mass, head over to Saint Doms Hall for Ask a Friar Anything! Bring your questions and enjoy some great conversation.\n\nWe hope to see you there! God bless! 🙏",
+   "image": "/ig/posts/DfftKk3EuuE.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfftKk3EuuE": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfeJCCNAV_r-0",
+   "title": "CoF Peer Career Day",
+   "type": "Club",
+   "host": "UW CIRCLE (@uwcircle)",
+   "where": "Schmitz Hall 250",
+   "pos": [
+    47.65647,
+    -122.31271
+   ],
+   "date": "2026-11-13",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfeJCCNAV_r/",
+   "source": "instagram",
+   "description": "Looking for a space to practice your interview skills and build confidence? \n\n🖥️ Join CoF Peer Career Day to practice answering interview questions and strengthen your speaking skills! Whether you are preparing for your first interview or looking for more practice, this is the perfect opportunity to practice with your peers. 📝 You can also get a new LinkedIn headshot, create a LinkedIn banner, and design your own business cards!\n \nDate: Nov 13, 2026\nLocation: Schmitz Hall 250\nRegistration link: https://docs.google.com/forms/d/e/1FAIpQLSdi0PWfrJ1inRIqUBeNOjG0zgOmvn0azxcdLlXFC_eAfmmrCg/viewform?usp=dialog",
+   "image": "/ig/posts/DfeJCCNAV_r.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfeJCCNAV_r": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfdG4goSkUm-0",
-   "title": "Jubilee Women's Center Deep Clean",
+   "title": "Volunteer Deep Clean",
    "type": "Club",
    "host": "Hosa UW Chapter (@officialuwhosa)",
-   "where": "Jubilee Women's Center on Capitol Hill",
+   "where": "Jubilee Women’s Center on Capitol Hill",
    "pos": null,
    "date": "2026-11-14",
    "start": "10:00",
@@ -2080,22 +1860,22 @@
    "source": "instagram",
    "description": "Hey UW HOSA members! 💜 We have an upcoming volunteering opportunity with Jubilee Women’s Center who is in need of help with a deep clean of their community clothing boutique. 👗👚\n\nLocation: Jubilee Women’s Center on Capitol Hill\nDate: Saturday, November 14th\nTime: 10:00am-2:00pm\n\nSign up using the link provided in our bio ⬆️⬆️",
    "image": "/ig/posts/DfdG4goSkUm.jpg",
-   "likes": null,
-   "comments": null,
+   "likes": 15,
+   "comments": 0,
    "post_counts": {
     "DfdG4goSkUm": [
-     null,
-     null
+     15,
+     0
     ]
    },
    "posts": 1
   },
   {
    "id": "DfY_lcEG1A6-0",
-   "title": "Round1 Outing",
-   "type": "Hangout",
+   "title": "Round1 Arcade",
+   "type": "Game night",
    "host": "anime nation uw (@animenationuw)",
-   "where": "Round1 Southcenter Mall",
+   "where": "UDistrict station",
    "pos": null,
    "date": "2026-11-14",
    "start": "11:00",
@@ -2104,39 +1884,39 @@
    "source": "instagram",
    "description": "ROUND1 NOV. 14 SATURDAY! COME THRU!\n\nmeetup at 11am UDistrict station. If u late we leaving your ass in Seattle!\n\nfor new members, round1 in southcenter mall is a super massive arcade with a bunch of arcade and rhythm games for you to go crazy on. if you’re at all into that COME THRU",
    "image": "/ig/posts/DfY_lcEG1A6.jpg",
-   "likes": 43,
+   "likes": 42,
    "comments": 1,
    "post_counts": {
     "DfY_lcEG1A6": [
-     43,
+     42,
      1
     ]
    },
    "posts": 1
   },
   {
-   "id": "DfgbVhaMY81-3",
-   "title": "Spam Musubi Sale",
-   "type": "Food",
-   "host": "CSA UW (@csauw)",
-   "where": "Red Square",
+   "id": "Dfkby-3A0-g-0",
+   "title": "Home Rugby Game",
+   "type": "Hangout",
+   "host": "Womxn’s Husky Rugby Club (@uwwomxnsrugby)",
+   "where": "IMA Field 1",
    "pos": [
-    47.65603,
-    -122.30944
+    47.65374,
+    -122.30123
    ],
    "date": "2026-11-14",
    "start": "11:00",
    "end": null,
-   "url": "https://www.instagram.com/p/DfgbVhaMY81/",
+   "url": "https://www.instagram.com/p/Dfkby-3A0-g/",
    "source": "instagram",
-   "description": "Stop by at Red Square this week for a delicious snack to brighten your day😋",
-   "image": "/ig/posts/DfgbVhaMY81.jpg",
-   "likes": null,
-   "comments": null,
+   "description": "🚨FIRST HOME GAME OF THE SEASON🚨\n\nThis Saturday is our first home game of the season against @gonzagawomensrugby !!! Come out to support your dawgs !!!\n\nSat. Nov 14th\n11:00 AM\nIMA Field 1",
+   "image": "/ig/posts/Dfkby-3A0-g.jpg",
+   "likes": 106,
+   "comments": 4,
    "post_counts": {
-    "DfgbVhaMY81": [
-     null,
-     null
+    "Dfkby-3A0-g": [
+     106,
+     4
     ]
    },
    "posts": 1
@@ -2188,41 +1968,41 @@
    "rsvps": 2,
    "post_counts": {
     "DfXpRLgBR6z": [
-     22,
+     18,
      0
     ],
     "DfOW2hPBtyI": [
-     null,
-     null
+     17,
+     1
     ]
    },
-   "likes": 22,
-   "comments": 0,
+   "likes": 35,
+   "comments": 1,
    "posts": 2
   },
   {
-   "id": "DfQMNszk-tm-1",
-   "title": "Roundnet Pickup",
-   "type": "Club",
-   "host": "UW Husky Roundnet (Spikeball) Club (@huskyroundnetclub)",
-   "where": "Denny Field",
+   "id": "DeuqK9oh1Av-0",
+   "title": "Office Hours",
+   "type": "Study",
+   "host": "ASUW Office of Inclusive Design (@asuwoid)",
+   "where": "HUB 131J",
    "pos": [
-    47.65976,
-    -122.30581
+    47.65537,
+    -122.3051
    ],
    "date": "2026-11-14",
-   "start": "14:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfQMNszk-tm/",
+   "start": "13:30",
+   "end": "15:30",
+   "url": "https://www.instagram.com/p/DeuqK9oh1Av/",
    "source": "instagram",
-   "description": "Halloween Pickup! 🎃\n\nIt was amazing seeing everyone’s costumes out on the field! Reminder that we host pickups every week and everyone is welcome! 🙌\n🗓️ Wednesdays @ 5PM\n🗓️ Sundays @ 2PM\n📍 Denny Field\n\nWishing our Huskies the best of luck with midterms and the rest of the fall quarter! 💜💛",
-   "image": "/ig/posts/DfQMNszk-tm.jpg",
-   "likes": null,
-   "comments": null,
+   "description": "UPDATED OFFICE HOURS!! Stop by at Office of Inclusive Design in HUB 131J on Thursdays from 1:30-3:30pm! 🎉😆Office hours are the perfect time to discuss accessibility for your events, marketing materials, or simply chat!\n\nOffice hours are also available over Zoom! Access the link in the Linktree in our bio!\n\nIf you would like to meet outside of office hours, email asuwoid@uw.edu to set up an appointment, or ask any questions you have. \n\nImage Description: [A promotional graphic with an off-white background announcing Office of Inclusive Design’s “OFFICE HOURS” in large black words with two overlapping lavender and purple rounded rectangles with black outlines behind each word.\nBelow them, large black text states the hours of “1:30-3:30PM” with a small rounded lavendar label with black outlines that reads “THURSDAYS” underneath it. Near the bottom, the graphic states “HUB 131J & ZOOM” above a horizontal line, followed by “STOP BY ANYTIME & DISCUSS ACCESSIBILITY!” Near the top are the OID and ASUW logos. The design uses bold black typography, purple panels, and abstract geometric accents in the corners.]",
+   "image": "/ig/posts/DeuqK9oh1Av.jpg",
+   "likes": 0,
+   "comments": 0,
    "post_counts": {
-    "DfQMNszk-tm": [
-     null,
-     null
+    "DeuqK9oh1Av": [
+     0,
+     0
     ]
    },
    "posts": 1
@@ -2322,11 +2102,11 @@
    "source": "instagram",
    "description": "If you are an alumni of our team, come join us for Alumni Design Reviews on November 14th and 15th! Alumni feedback is crucial to this team's success so any and all review is appreciated. Please check your inbox or email for an email from uwformula@uw.edu for more information.\n\nRSVP link in bio.",
    "image": "/ig/posts/De-TjE_jbWZ.jpg",
-   "likes": 40,
+   "likes": 39,
    "comments": 2,
    "post_counts": {
     "De-TjE_jbWZ": [
-     40,
+     39,
      2
     ]
    },
@@ -2383,12 +2163,12 @@
   {
    "id": "DfftKk3EuuE-2",
    "title": "Ask a Friar Anything",
-   "type": "Club",
+   "type": "Hangout",
    "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
    "where": "Saint Doms Hall",
    "pos": null,
-   "date": "2026-11-15",
-   "start": "11:00",
+   "date": "2026-11-14",
+   "start": null,
    "end": null,
    "url": "https://www.instagram.com/p/DfftKk3EuuE/",
    "source": "instagram",
@@ -2400,6 +2180,54 @@
     "DfftKk3EuuE": [
      null,
      null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Dfi05bOiTKj-0",
+   "title": "College and Scholarship Workshop",
+   "type": "Study",
+   "host": "Somali Student Association UW (@uw_ssa)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-14",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Dfi05bOiTKj/",
+   "source": "instagram",
+   "description": "Are you a highschool senior looking for help on your common app applications? Then come to our College and Scholarship Workshop on 11/14!! Bring a friend and get advice from UW students ✏️📄",
+   "image": "/ig/posts/Dfi05bOiTKj.jpg",
+   "likes": 18,
+   "comments": 0,
+   "post_counts": {
+    "Dfi05bOiTKj": [
+     18,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DffYGQBEhTO-0",
+   "title": "Rugby Game vs Gonzaga",
+   "type": "Club",
+   "host": "Womxn’s Husky Rugby Club (@uwwomxnsrugby)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-14",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DffYGQBEhTO/",
+   "source": "instagram",
+   "description": "🚨Your dawgs secured their first win of the season against the cougs🚨\n\nThank you for having us in Pullman @crimsonandgraywomensrugby !!!\n\nAnd GET HYPED for our next game this Saturday against @gonzagawomensrugby !",
+   "image": "/ig/posts/DffYGQBEhTO.jpg",
+   "likes": 218,
+   "comments": 13,
+   "post_counts": {
+    "DffYGQBEhTO": [
+     218,
+     13
     ]
    },
    "posts": 1
@@ -2418,11 +2246,11 @@
    "source": "instagram",
    "description": "If you are an alumni of our team, come join us for Alumni Design Reviews on November 14th and 15th! Alumni feedback is crucial to this team's success so any and all review is appreciated. Please check your inbox or email for an email from uwformula@uw.edu for more information.\n\nRSVP link in bio.",
    "image": "/ig/posts/De-TjE_jbWZ.jpg",
-   "likes": 40,
+   "likes": 39,
    "comments": 2,
    "post_counts": {
     "De-TjE_jbWZ": [
-     40,
+     39,
      2
     ]
    },
@@ -2430,14 +2258,11 @@
   },
   {
    "id": "DfalHAkvNfA-0",
-   "title": "Tour de Seattle MOPOP",
+   "title": "Tour de Seattle",
    "type": "Hangout",
    "host": "Hillel UW (@huskyhillel)",
-   "where": "Seattle",
-   "pos": [
-    47.60202,
-    -122.33986
-   ],
+   "where": null,
+   "pos": null,
    "date": "2026-11-15",
    "start": null,
    "end": null,
@@ -2445,12 +2270,39 @@
    "source": "instagram",
    "description": "Oh I’m excited for this one…Tour de Seattle: MOPOP edition!! Join me on November 15th for a SUPER fun time. Tickets are extremely limited, sign up today!",
    "image": "/ig/posts/DfalHAkvNfA.jpg",
-   "likes": null,
-   "comments": null,
+   "likes": 11,
+   "comments": 1,
    "post_counts": {
     "DfalHAkvNfA": [
-     null,
-     null
+     11,
+     1
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfjILmphCpd-0",
+   "title": "Bake Sale",
+   "type": "Food",
+   "host": "SASE UW (@saseuw)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-16",
+   "start": "11:00",
+   "end": "14:00",
+   "url": "https://www.instagram.com/p/DfjILmphCpd/",
+   "source": "instagram",
+   "description": "🍪 BAKE SALE FUNDRAISER 🍬‼️\n\nSASE is having our first bake sale of the year! We'll be tabling every other day next week with banana pudding brownies, raspberry sugar cookies, chocolate peppermint cookies, and peppermint bark. Stay tuned to see which sweet treats will be sold on each day!\n\n📍 Red Square\n🗓 November 16-20th, MWF\n⏰️ 11am - 2pm",
+   "image": "/ig/posts/DfjILmphCpd.jpg",
+   "likes": 7,
+   "comments": 2,
+   "post_counts": {
+    "DfjILmphCpd": [
+     7,
+     2
     ]
    },
    "posts": 1
@@ -2497,7 +2349,7 @@
   },
   {
    "id": "DfVd9Q6BtDN-0",
-   "title": "Nursing Application Seminar",
+   "title": "Application Seminar",
    "type": "Club",
    "host": "Future Nurses Club at UW (@futurenursesatuw)",
    "where": "HSB T530",
@@ -2512,11 +2364,11 @@
    "source": "instagram",
    "description": "We have a general application seminar for the UW School of Nursing application that just opened! If you are a prospective BSN or ABSN student, come to learn more about what you need to do!!!\n\nDate: Monday November 16th\nWhere: HSB T530\nTime: 5:30pm-6:30pm\nPurpose: learn about the application process, essay questions, and ask current BSN1 students any questions regarding the application \n\nAll are welcome and the event is free! Note that HST requires a Husky Card to enter, but you can DM this account for assistance.",
    "image": "/ig/posts/DfVd9Q6BtDN.jpg",
-   "likes": 84,
+   "likes": 80,
    "comments": 0,
    "post_counts": {
     "DfVd9Q6BtDN": [
-     84,
+     80,
      0
     ]
    },
@@ -2602,7 +2454,7 @@
   },
   {
    "id": "De5qm3ym0Y3-4",
-   "title": "Informational Session",
+   "title": "Informational",
    "type": "Club",
    "host": "Alpha Xi (AΞ) Chapter of AΦA (@uwalphas)",
    "where": "Brooklyn Trails Building",
@@ -2752,8 +2604,8 @@
   },
   {
    "id": "DfT69kvG4fn-0",
-   "title": "CSEED Buildspace Demo Day",
-   "type": "Food",
+   "title": "CSEED Demo Day",
+   "type": "Club",
    "host": "cseed (@cseeduw)",
    "where": "Zillow Commons",
    "pos": [
@@ -2767,12 +2619,12 @@
    "source": "instagram",
    "description": "🚀 CSEED BUILDSPACE DEMO DAY IS HERE 🚀\n\nOver the past 5 weeks, our Cohort 6 builders have poured their passion into creating some incredible projects across hardware, software, design, and creator tracks! Now it’s time to show them off 🔥\n\nCome celebrate the dedication of our builders, get inspired, and learn more about CSEED! \n\n📅 November 17th, 5:30-7:30 pm at ZILLOW COMMONS\n🥪 FREE dinner, snacks, and drinks provided!\n📍RSVP: https://tinyurl.com/cseed2026demoday \n\nFor accommodations, questions, or concerns, please reach out to questions@cseed.co",
    "image": "/ig/posts/DfT69kvG4fn.jpg",
-   "likes": 56,
-   "comments": 7,
+   "likes": 55,
+   "comments": null,
    "post_counts": {
     "DfT69kvG4fn": [
-     56,
-     7
+     55,
+     null
     ]
    },
    "posts": 1
@@ -2824,30 +2676,6 @@
    "rsvps": 0
   },
   {
-   "id": "DfS75djBpYR-0",
-   "title": "Friendsgiving Potluck",
-   "type": "Food",
-   "host": "Bengali Students Association (@bsa.uw)",
-   "where": "Accolade Rooftop",
-   "pos": null,
-   "date": "2026-11-17",
-   "start": "18:30",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfS75djBpYR/",
-   "source": "instagram",
-   "description": "What’s better than celebrating Thanksgiving with your PSA and BSA friends? Join us for a cozy Friendsgiving Potluck filled with good food, great company, and even better memories! Bring a dish to share (all food must be HALAL) and come dressed in your favorite cozy fall fits! RSVP link is in bio (spots are limited and registration will close once capacity is reached, so RSVP soon). We cant waittt to see you there!!🍁🧣 🤎🍂",
-   "image": "/ig/posts/DfS75djBpYR.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfS75djBpYR": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "DfahL8OP3zg-0",
    "title": "Red Square",
    "type": "Hangout",
@@ -2875,57 +2703,6 @@
    "posts": 1
   },
   {
-   "id": "DfRPoccmylD-1",
-   "title": "Gear Drop-off",
-   "type": "Club",
-   "host": "Husky Snow Club (@huskysnowclub)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-17",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfRPoccmylD/",
-   "source": "instagram",
-   "description": "YOUR CLOSET CALLED… IT’S TIME TO LET GO OF THAT GEAR 🗣️♻️ UW OUTDOOR GEAR SWAP IS HERE!! ♻️\nGot gear collecting dust? Looking to score some new gear without destroying your bank account? We got you 🤝\nWe’re bringing UW’s outdoor community together to buy, sell, and donate gear while supporting our outdoor clubs, keeping gear out of landfills, and getting more Huskies outside!!\n\n🏷️ SELL OR DONATE YOUR GEAR\n\n* Fill out the registration form linked in our bio!\n* Nov 16–18: Drop off your gear for intake (time & location TBD).\n* Nov 18: Join us for a little movie night + social before Snow Club trip registration! 🎬🍿\n* Nov 19–21: THE GEAR SWAP!! Come shop at Red Square or the Quad (final location TBD).\n* After the swap, collect your payout and/or pick up any unsold gear!\n\n📩 Everyone registering gear will receive an email with detailed instructions, locations, times, and updates!\n\n⛷️ JUST WANNA SHOP?\nNo registration needed! Come browse secondhand skis, snowboards, climbing gear, camping equipment, outdoor clothing, and whatever else your fellow Huskies bring!\n\n🌎 Less waste, cheaper gear, more adventures, and a little extra money for the clubs that get us outside.\n\nGIVE YOUR GEAR A SECOND LIFE!! 🌞🏔️\n\n#UWGearSwap #HuskySnowClub #UWOutdoors #SecondhandGear #UniversityOfWashington",
-   "image": "/ig/posts/DfRPoccmylD.jpg",
-   "likes": 24,
-   "comments": 1,
-   "post_counts": {
-    "DfRPoccmylD": [
-     24,
-     1
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfdOgSMS8mR-0",
-   "title": "Dinner Party with BSU",
-   "type": "Food",
-   "host": "UW Black Student Union (@uwseattlebsu)",
-   "where": "Jacob Lawrence Gallery",
-   "pos": [
-    47.65874,
-    -122.30639
-   ],
-   "date": "2026-11-17",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfdOgSMS8mR/",
-   "source": "instagram",
-   "description": "RSVP now!! Join us for dinner and conversation with UW Black Student Union members @uwseattlebsu ! We can’t wait to see you!",
-   "image": "/ig/posts/DfdOgSMS8mR.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfdOgSMS8mR": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "DfSegPhEgBb-2",
    "title": "Q Book Club (Virtual)",
    "type": "Club",
@@ -2939,15 +2716,19 @@
    "source": "instagram",
    "description": "Happy Week 6 Q-mmunity!\n\nThis week:\nBuild Your Library (11/2 through 11/5 during Q Center operating hours)\nGender Discussion Group (11/5)\nQueer Mentorship and Peer Program\nEnGender\nMenstruation Station\nBeginning of year survey—help us continue making the Q Center yours!\n\nMark your calendars:\nColorMode (11/11)\nA-Spec Discussion Group (11/12)\nQ Book Club (Virtual: 11/17; In-person: 11/19)\n\nFor more information / access to request forms, click the link in bio.\n\nHave a great week!",
    "image": "/ig/posts/DfSegPhEgBb.jpg",
-   "likes": 5,
+   "likes": 8,
    "comments": 0,
    "post_counts": {
     "DfSegPhEgBb": [
      5,
      0
+    ],
+    "DfieSRjGYF6": [
+     3,
+     0
     ]
    },
-   "posts": 1
+   "posts": 2
   },
   {
    "id": "DfAtr4Ky5UR-0",
@@ -3001,6 +2782,81 @@
    "posts": 1
   },
   {
+   "id": "DfRPoccmylD-1",
+   "title": "Gear Drop-off",
+   "type": "Club",
+   "host": "Husky Snow Club (@huskysnowclub)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-17",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfRPoccmylD/",
+   "source": "instagram",
+   "description": "YOUR CLOSET CALLED… IT’S TIME TO LET GO OF THAT GEAR 🗣️♻️ UW OUTDOOR GEAR SWAP IS HERE!! ♻️\nGot gear collecting dust? Looking to score some new gear without destroying your bank account? We got you 🤝\nWe’re bringing UW’s outdoor community together to buy, sell, and donate gear while supporting our outdoor clubs, keeping gear out of landfills, and getting more Huskies outside!!\n\n🏷️ SELL OR DONATE YOUR GEAR\n\n* Fill out the registration form linked in our bio!\n* Nov 16–18: Drop off your gear for intake (time & location TBD).\n* Nov 18: Join us for a little movie night + social before Snow Club trip registration! 🎬🍿\n* Nov 19–21: THE GEAR SWAP!! Come shop at Red Square or the Quad (final location TBD).\n* After the swap, collect your payout and/or pick up any unsold gear!\n\n📩 Everyone registering gear will receive an email with detailed instructions, locations, times, and updates!\n\n⛷️ JUST WANNA SHOP?\nNo registration needed! Come browse secondhand skis, snowboards, climbing gear, camping equipment, outdoor clothing, and whatever else your fellow Huskies bring!\n\n🌎 Less waste, cheaper gear, more adventures, and a little extra money for the clubs that get us outside.\n\nGIVE YOUR GEAR A SECOND LIFE!! 🌞🏔️\n\n#UWGearSwap #HuskySnowClub #UWOutdoors #SecondhandGear #UniversityOfWashington",
+   "image": "/ig/posts/DfRPoccmylD.jpg",
+   "likes": 24,
+   "comments": 1,
+   "post_counts": {
+    "DfRPoccmylD": [
+     24,
+     1
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfieSRjGYF6-2",
+   "title": "Gayme Night",
+   "type": "Game night",
+   "host": "UW Q Center (@uwqcenter)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-17",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfieSRjGYF6/",
+   "source": "instagram",
+   "description": "Happy Week 7 Q-mmunity! Swipe to see what we got going on this next week. 💜\n\nThis week:\n*ColorMode (11/10): Moved to Tuesday (tomorrow)\nA-Spec Discussion Group (11/12)\n*(Note: Let’s Talk has been cancelled this week)\n\nServices:\n(NEW!) Game Library\nQueer Mentorship and Peer Program\nEnGender\nMenstruation Station\nBeginning of year survey—help us continue making the Q Center yours!\n\nComing up:\nGayme Night (11/17)\nRainbow Circle (11/18)\nQ Book Club (Virtual: 11/17; In-person: 11/19)\n*Free STI Testing (11/18): UW is closed on the original testing date of 11/11. Seattle’s LGBTQ+ Center will be providing free STI testing at the Q Center on Wednesday, November 18th instead!\n\nFor more information / access to request forms, click the link in bio.\n\nHave a great week!",
+   "image": "/ig/posts/DfieSRjGYF6.jpg",
+   "likes": 3,
+   "comments": 0,
+   "post_counts": {
+    "DfieSRjGYF6": [
+     3,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfjILmphCpd-1",
+   "title": "Bake Sale",
+   "type": "Food",
+   "host": "SASE UW (@saseuw)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-18",
+   "start": "11:00",
+   "end": "14:00",
+   "url": "https://www.instagram.com/p/DfjILmphCpd/",
+   "source": "instagram",
+   "description": "🍪 BAKE SALE FUNDRAISER 🍬‼️\n\nSASE is having our first bake sale of the year! We'll be tabling every other day next week with banana pudding brownies, raspberry sugar cookies, chocolate peppermint cookies, and peppermint bark. Stay tuned to see which sweet treats will be sold on each day!\n\n📍 Red Square\n🗓 November 16-20th, MWF\n⏰️ 11am - 2pm",
+   "image": "/ig/posts/DfjILmphCpd.jpg",
+   "likes": 7,
+   "comments": 2,
+   "post_counts": {
+    "DfjILmphCpd": [
+     7,
+     2
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfGANVLSYWa-0",
    "title": "Game Night",
    "type": "Game night",
@@ -3017,12 +2873,12 @@
    "source": "instagram",
    "description": "WANT TO WIN AN OWALA? 👀🏆\n\nMiCSE, COM², MiT, and WiC are teaming up for a game night full of Jeopardy, Kahoot, and friendly competition! Test your CS knowledge (and your random trivia skills) for a chance to take home prizes 🎮\n\n🎁 Prizes: Owala, a speaker, Needohs, portable charger & more\n🍿 Free snacks\n\n📅 Wed, Nov 18\n⏰ 4:30–6:00 PM\n📍 CSE2 G01\n\nRSVP using the link in our bio! Bring your friends, see you there 💜",
    "image": "/ig/posts/DfGANVLSYWa.jpg",
-   "likes": null,
-   "comments": null,
+   "likes": 3,
+   "comments": 0,
    "post_counts": {
     "DfGANVLSYWa": [
-     null,
-     null
+     3,
+     0
     ]
    },
    "posts": 1
@@ -3106,28 +2962,28 @@
    "posts": 1
   },
   {
-   "id": "DfaIXvwOIL3-0",
-   "title": "Legislative Reception",
-   "type": "Hangout",
-   "host": "Office of Government Relations (@asuwogr)",
-   "where": "HUB Lyceum",
+   "id": "DfiIeixD9D1-0",
+   "title": "Black Student Union Panel",
+   "type": "Club",
+   "host": "UW Black Student Union (@uwseattlebsu)",
+   "where": "HUB 145",
    "pos": [
     47.65537,
     -122.3051
    ],
    "date": "2026-11-18",
-   "start": "18:00",
-   "end": "19:30",
-   "url": "https://www.instagram.com/p/DfaIXvwOIL3/",
+   "start": "17:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/DfiIeixD9D1/",
    "source": "instagram",
-   "description": "Save the date! Meet with fellow students and legislators to discuss student issues, and celebrate civic engagement. RSVP for OGR’s Legislative Reception using the link in our LinkTree.",
-   "image": "/ig/posts/DfaIXvwOIL3.jpg",
-   "likes": null,
-   "comments": null,
+   "description": "Join us as we engage in the tough conversations. \n\nWe are all connected through the African diaspora, yet our histories, cultures, identities, and experiences are not always the same. What does it mean to be part of the diaspora? How do our differences shape our perspectives? And how can we build unity while embracing those differences?\n\nKappa Lambda is committed to bringing Black students together on campus, debunking myths, breaking down barriers, and creating safe spaces for open conversations that foster understanding and unity across our community.\n\nThe panel will feature Black professionals who will share their perspectives and help facilitate meaningful conversations. More information about our panelists on the slides.\n\nLocation: HUB 145\nDate: November 18th\nTime: 5–7 PM\n\nRSVP link in bio, or scan QR code on the last slide.\n\nLight refreshments will be provided! We hope to see you there!",
+   "image": "/ig/posts/DfiIeixD9D1.jpg",
+   "likes": 3,
+   "comments": 3,
    "post_counts": {
-    "DfaIXvwOIL3": [
-     null,
-     null
+    "DfiIeixD9D1": [
+     3,
+     3
     ]
    },
    "posts": 1
@@ -3147,6 +3003,30 @@
    "description": "Weekly gathering that brings together the entire community of AACF for worship, teaching, and community-building activities.\nCheck our Instagram @uwaacf for details! Locations may be subject to change each week.",
    "image": null,
    "rsvps": 0
+  },
+  {
+   "id": "DfVv22_G68--0",
+   "title": "Trouble in Mind Opening Night",
+   "type": "Club",
+   "host": "Undergraduate Theatre Society @ University of Washington (@uw_uts)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-18",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfVv22_G68-/",
+   "source": "instagram",
+   "description": "Check out these rehearsal photos for Trouble in Mind!! Our actors and directing team are hard at work getting this show ready for opening night, November 18th. \n\nGet tickets at the link in our bio! \n\n#uts #uw #undergraduatetheatre #TroubleinMind #theatre #tickets #rehearsal",
+   "image": "/ig/posts/DfVv22_G68-.jpg",
+   "likes": 154,
+   "comments": 14,
+   "post_counts": {
+    "DfVv22_G68-": [
+     154,
+     14
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "DfRPoccmylD-2",
@@ -3197,25 +3077,49 @@
    "posts": 1
   },
   {
-   "id": "DfVv22_G68--0",
-   "title": "Trouble in Mind Opening Night",
-   "type": "Club",
-   "host": "Undergraduate Theatre Society @ University of Washington (@uw_uts)",
+   "id": "DfieSRjGYF6-3",
+   "title": "Rainbow Circle",
+   "type": "Hangout",
+   "host": "UW Q Center (@uwqcenter)",
    "where": null,
    "pos": null,
    "date": "2026-11-18",
    "start": null,
    "end": null,
-   "url": "https://www.instagram.com/p/DfVv22_G68-/",
+   "url": "https://www.instagram.com/p/DfieSRjGYF6/",
    "source": "instagram",
-   "description": "Check out these rehearsal photos for Trouble in Mind!! Our actors and directing team are hard at work getting this show ready for opening night, November 18th. \n\nGet tickets at the link in our bio! \n\n#uts #uw #undergraduatetheatre #TroubleinMind #theatre #tickets #rehearsal",
-   "image": "/ig/posts/DfVv22_G68-.jpg",
-   "likes": 154,
-   "comments": 14,
+   "description": "Happy Week 7 Q-mmunity! Swipe to see what we got going on this next week. 💜\n\nThis week:\n*ColorMode (11/10): Moved to Tuesday (tomorrow)\nA-Spec Discussion Group (11/12)\n*(Note: Let’s Talk has been cancelled this week)\n\nServices:\n(NEW!) Game Library\nQueer Mentorship and Peer Program\nEnGender\nMenstruation Station\nBeginning of year survey—help us continue making the Q Center yours!\n\nComing up:\nGayme Night (11/17)\nRainbow Circle (11/18)\nQ Book Club (Virtual: 11/17; In-person: 11/19)\n*Free STI Testing (11/18): UW is closed on the original testing date of 11/11. Seattle’s LGBTQ+ Center will be providing free STI testing at the Q Center on Wednesday, November 18th instead!\n\nFor more information / access to request forms, click the link in bio.\n\nHave a great week!",
+   "image": "/ig/posts/DfieSRjGYF6.jpg",
+   "likes": 3,
+   "comments": 0,
    "post_counts": {
-    "DfVv22_G68-": [
-     154,
-     14
+    "DfieSRjGYF6": [
+     3,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfieSRjGYF6-6",
+   "title": "Free STI Testing",
+   "type": "Club",
+   "host": "UW Q Center (@uwqcenter)",
+   "where": "Q Center",
+   "pos": null,
+   "date": "2026-11-18",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfieSRjGYF6/",
+   "source": "instagram",
+   "description": "Happy Week 7 Q-mmunity! Swipe to see what we got going on this next week. 💜\n\nThis week:\n*ColorMode (11/10): Moved to Tuesday (tomorrow)\nA-Spec Discussion Group (11/12)\n*(Note: Let’s Talk has been cancelled this week)\n\nServices:\n(NEW!) Game Library\nQueer Mentorship and Peer Program\nEnGender\nMenstruation Station\nBeginning of year survey—help us continue making the Q Center yours!\n\nComing up:\nGayme Night (11/17)\nRainbow Circle (11/18)\nQ Book Club (Virtual: 11/17; In-person: 11/19)\n*Free STI Testing (11/18): UW is closed on the original testing date of 11/11. Seattle’s LGBTQ+ Center will be providing free STI testing at the Q Center on Wednesday, November 18th instead!\n\nFor more information / access to request forms, click the link in bio.\n\nHave a great week!",
+   "image": "/ig/posts/DfieSRjGYF6.jpg",
+   "likes": 3,
+   "comments": 0,
+   "post_counts": {
+    "DfieSRjGYF6": [
+     3,
+     0
     ]
    },
    "posts": 1
@@ -3237,11 +3141,11 @@
    "source": "instagram",
    "description": "Join us for the Association for Computing Education (ACE) monthly TA Social: November edition!\n\nCome take a break and join us for plenty of snacks, a huge selection of board games and playing cards (like Jenga, Scrabble, UNO, and Monopoly) and our creative activities of the month: rhinestoning, loom bracelet making, painting, fuse beading, and other arts and crafts! This is the perfect time to make friends, bond, and enjoy some great company.\n\nWhether you are a TA, are considering becoming one, or simply want to mingle with the computing education community, the ACE team welcomes you! This event is open to everyone.\n\n📅 Date: Thursday, November 19th\n🕔 Time: 3:00 PM - 4:00 PM\n📍 Location: CSE1 305 (Allen)\n*Please remember to RSVP at the link in our bio!*\n\n- ACE Officers\n\nIf you have any questions or concerns, please don’t hesitate to contact us at ace-officers@cs.washington.edu. ACE is committed to providing access, equal opportunity, and reasonable accommodation for our events, programs, activities, and education for individuals with disabilities (with advance notice). Please reach out to Linda Taing, Senior Student Leadership Development Specialist, directly at lindavt@cs.washington.edu if you have any questions or requests.\n\nImage Description:\nFlyer for the Association for Computing Education’s November TA Social event. The flyer contains photos from a previous event, including: members in a classroom engaged in their activities with a man standing up with his arms spread out; a bowl of plastic beads; friendship bracelets; a bedazzled tin of mints; and fuse bead creations such as a sword with a heart and a butterfly. The text around the flyer reads: TA Social November Edition; take a break from work, join us in our monthly TA social!;board games, arts & crafts; open to everyone!; Thursday, November 19th; CSE1 (Allen) 305; 3-4 PM.",
    "image": "/ig/posts/DfAs_UYMODt.jpg",
-   "likes": null,
+   "likes": 12,
    "comments": null,
    "post_counts": {
     "DfAs_UYMODt": [
-     null,
+     12,
      null
     ]
    },
@@ -3279,6 +3183,33 @@
    "posts": 2
   },
   {
+   "id": "DfiUqoZP6G9-0",
+   "title": "Know Your Rights Workshop",
+   "type": "Club",
+   "host": "UW Student Legal Services (@uwsls)",
+   "where": "HUB Lyceum",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-19",
+   "start": "17:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/DfiUqoZP6G9/",
+   "source": "instagram",
+   "description": "Know Your Rights. Join ASUW and SARVA for an informative workshop with Student Legal Services to learn about your rights, available support, and resources related to sexual assault.\n\n📅 Thursday, November 19 \n🕔 5–7 PM \n📍 HUB Lyceum\n\nCome learn, ask questions, and get connected with resources available to you. Knowledge is power, and knowing your rights matters!\n\n#ASUW #KnowYourRights #UWBeyondTheClassroom #StudentResources",
+   "image": "/ig/posts/DfiUqoZP6G9.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfiUqoZP6G9": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfX2A5vS6Zm-0",
    "title": "3v3 Charity Basketball Tournament",
    "type": "Game night",
@@ -3306,57 +3237,6 @@
    "posts": 1
   },
   {
-   "id": "DfRPoccmylD-4",
-   "title": "Gear Swap",
-   "type": "Hangout",
-   "host": "Husky Snow Club (@huskysnowclub)",
-   "where": "Red Square / Quad",
-   "pos": [
-    47.65603,
-    -122.30944
-   ],
-   "date": "2026-11-19",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfRPoccmylD/",
-   "source": "instagram",
-   "description": "YOUR CLOSET CALLED… IT’S TIME TO LET GO OF THAT GEAR 🗣️♻️ UW OUTDOOR GEAR SWAP IS HERE!! ♻️\nGot gear collecting dust? Looking to score some new gear without destroying your bank account? We got you 🤝\nWe’re bringing UW’s outdoor community together to buy, sell, and donate gear while supporting our outdoor clubs, keeping gear out of landfills, and getting more Huskies outside!!\n\n🏷️ SELL OR DONATE YOUR GEAR\n\n* Fill out the registration form linked in our bio!\n* Nov 16–18: Drop off your gear for intake (time & location TBD).\n* Nov 18: Join us for a little movie night + social before Snow Club trip registration! 🎬🍿\n* Nov 19–21: THE GEAR SWAP!! Come shop at Red Square or the Quad (final location TBD).\n* After the swap, collect your payout and/or pick up any unsold gear!\n\n📩 Everyone registering gear will receive an email with detailed instructions, locations, times, and updates!\n\n⛷️ JUST WANNA SHOP?\nNo registration needed! Come browse secondhand skis, snowboards, climbing gear, camping equipment, outdoor clothing, and whatever else your fellow Huskies bring!\n\n🌎 Less waste, cheaper gear, more adventures, and a little extra money for the clubs that get us outside.\n\nGIVE YOUR GEAR A SECOND LIFE!! 🌞🏔️\n\n#UWGearSwap #HuskySnowClub #UWOutdoors #SecondhandGear #UniversityOfWashington",
-   "image": "/ig/posts/DfRPoccmylD.jpg",
-   "likes": 24,
-   "comments": 1,
-   "post_counts": {
-    "DfRPoccmylD": [
-     24,
-     1
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfYQ6FwhAaK-0",
-   "title": "Jeopardy Night",
-   "type": "Game night",
-   "host": "Husky Math Club at UW (@huskymathclub)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-19",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfYQ6FwhAaK/",
-   "source": "instagram",
-   "description": "Join us for an evening of jeopardy. Food will be provided and there will be prizes! \n\nBring your friends along, test your knowleadge and see who comes out on top.\n\nScan the Qr code to sign up in teams or individually.\n\n#huskymath #uwseattle #jeopardy #mathclub",
-   "image": "/ig/posts/DfYQ6FwhAaK.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfYQ6FwhAaK": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "DfSegPhEgBb-3",
    "title": "Q Book Club (In-person)",
    "type": "Club",
@@ -3370,15 +3250,19 @@
    "source": "instagram",
    "description": "Happy Week 6 Q-mmunity!\n\nThis week:\nBuild Your Library (11/2 through 11/5 during Q Center operating hours)\nGender Discussion Group (11/5)\nQueer Mentorship and Peer Program\nEnGender\nMenstruation Station\nBeginning of year survey—help us continue making the Q Center yours!\n\nMark your calendars:\nColorMode (11/11)\nA-Spec Discussion Group (11/12)\nQ Book Club (Virtual: 11/17; In-person: 11/19)\n\nFor more information / access to request forms, click the link in bio.\n\nHave a great week!",
    "image": "/ig/posts/DfSegPhEgBb.jpg",
-   "likes": 5,
+   "likes": 8,
    "comments": 0,
    "post_counts": {
     "DfSegPhEgBb": [
      5,
      0
+    ],
+    "DfieSRjGYF6": [
+     3,
+     0
     ]
    },
-   "posts": 1
+   "posts": 2
   },
   {
    "id": "DfBzvQWIAIr-1",
@@ -3429,6 +3313,57 @@
    "posts": 1
   },
   {
+   "id": "DfRPoccmylD-4",
+   "title": "Gear Swap",
+   "type": "Hangout",
+   "host": "Husky Snow Club (@huskysnowclub)",
+   "where": "Red Square / Quad",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-19",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfRPoccmylD/",
+   "source": "instagram",
+   "description": "YOUR CLOSET CALLED… IT’S TIME TO LET GO OF THAT GEAR 🗣️♻️ UW OUTDOOR GEAR SWAP IS HERE!! ♻️\nGot gear collecting dust? Looking to score some new gear without destroying your bank account? We got you 🤝\nWe’re bringing UW’s outdoor community together to buy, sell, and donate gear while supporting our outdoor clubs, keeping gear out of landfills, and getting more Huskies outside!!\n\n🏷️ SELL OR DONATE YOUR GEAR\n\n* Fill out the registration form linked in our bio!\n* Nov 16–18: Drop off your gear for intake (time & location TBD).\n* Nov 18: Join us for a little movie night + social before Snow Club trip registration! 🎬🍿\n* Nov 19–21: THE GEAR SWAP!! Come shop at Red Square or the Quad (final location TBD).\n* After the swap, collect your payout and/or pick up any unsold gear!\n\n📩 Everyone registering gear will receive an email with detailed instructions, locations, times, and updates!\n\n⛷️ JUST WANNA SHOP?\nNo registration needed! Come browse secondhand skis, snowboards, climbing gear, camping equipment, outdoor clothing, and whatever else your fellow Huskies bring!\n\n🌎 Less waste, cheaper gear, more adventures, and a little extra money for the clubs that get us outside.\n\nGIVE YOUR GEAR A SECOND LIFE!! 🌞🏔️\n\n#UWGearSwap #HuskySnowClub #UWOutdoors #SecondhandGear #UniversityOfWashington",
+   "image": "/ig/posts/DfRPoccmylD.jpg",
+   "likes": 24,
+   "comments": 1,
+   "post_counts": {
+    "DfRPoccmylD": [
+     24,
+     1
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Dfkx4iUyyUv-0",
+   "title": "Friendsgiving Potluck",
+   "type": "Food",
+   "host": "Khmer Student Association UW (@khsauw)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-19",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Dfkx4iUyyUv/",
+   "source": "instagram",
+   "description": "Hey khuties! 🦃🍂\n\nJoin us on Thursday, November 19th for our friendsgiving potluck! Come hang out, enjoy some good food, and spend the evening with everyone before the holidays.\n\nBe sure to RSVP through Partiful on linktree for the location. We hope to see you all there!",
+   "image": "/ig/posts/Dfkx4iUyyUv.jpg",
+   "likes": 13,
+   "comments": 0,
+   "post_counts": {
+    "Dfkx4iUyyUv": [
+     13,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfVbLn2ywCN-0",
    "title": "Service Fair & Blood Drive",
    "type": "Club",
@@ -3456,28 +3391,28 @@
    "posts": 1
   },
   {
-   "id": "DfAtlZlMygm-0",
-   "title": "Trans Day of Remembrance Candle Light Vigil",
-   "type": "Hangout",
-   "host": "ASUW Queer Student Commission (@asuwqsc)",
-   "where": "MGH 389",
+   "id": "DfjILmphCpd-2",
+   "title": "Bake Sale",
+   "type": "Food",
+   "host": "SASE UW (@saseuw)",
+   "where": "Red Square",
    "pos": [
-    47.65485,
-    -122.30779
+    47.65603,
+    -122.30944
    ],
    "date": "2026-11-20",
-   "start": "17:00",
-   "end": "18:30",
-   "url": "https://www.instagram.com/p/DfAtlZlMygm/",
+   "start": "11:00",
+   "end": "14:00",
+   "url": "https://www.instagram.com/p/DfjILmphCpd/",
    "source": "instagram",
-   "description": "Join us as we honor the lives of Transgender and gender-diverse people who have been lost to anti-trans violence during Trans Day of Remembrance. \n\nPlease be mindful of mental health resources on-campus, and do not hesitate to contact us for additional support. \n\nWe will be in MGH 389 from 5-6:30pm on Nov 20th. \n\nImage description: Black background with multiple candles with white lettering: \"Trans Day of Remembrance Candle Light Vigil, Join us in honoring the lives of transgender and gender-diverse people lost to anti-trans violence. A night for remembrance, reflection, and community care. Candles Provided\". With student organizations included: ASUW, Queer Student Commission, SARVA, Gender Equity Commission and Trans Collective at UW. At the top right: Nov 20, MGH 389, 5-6:30pm. Questions? Contact: asuwgec@uw.edu, asuwqsc@uw.edu.",
-   "image": "/ig/posts/DfAtlZlMygm.jpg",
-   "likes": null,
-   "comments": null,
+   "description": "🍪 BAKE SALE FUNDRAISER 🍬‼️\n\nSASE is having our first bake sale of the year! We'll be tabling every other day next week with banana pudding brownies, raspberry sugar cookies, chocolate peppermint cookies, and peppermint bark. Stay tuned to see which sweet treats will be sold on each day!\n\n📍 Red Square\n🗓 November 16-20th, MWF\n⏰️ 11am - 2pm",
+   "image": "/ig/posts/DfjILmphCpd.jpg",
+   "likes": 7,
+   "comments": 2,
    "post_counts": {
-    "DfAtlZlMygm": [
-     null,
-     null
+    "DfjILmphCpd": [
+     7,
+     2
     ]
    },
    "posts": 1
@@ -3526,14 +3461,47 @@
    "source": "huskylink",
    "description": "Join us as we honor the lives of Transgender and gender-diverse people who have been lost to anti-trans violence during Trans Day of Remembrance.\nWe will be walking to Drumheller Fountain with your choosing of real/battery powered tea-lights.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615660_option_b__cb92a180-f25f-4a9b-8900-ec674338a2a0_11217332.png",
-   "rsvps": 0
+   "rsvps": 0,
+   "post_counts": {
+    "DfAtlZlMygm": [
+     3,
+     0
+    ]
+   },
+   "likes": 3,
+   "comments": 0,
+   "posts": 1
+  },
+  {
+   "id": "DfgK8CvjaHG-0",
+   "title": "Gurpurab Commemoration",
+   "type": "Hangout",
+   "host": "Sikh Student Association @ UW (@ssa_uw)",
+   "where": "Gurdwara Singh Sabha, Renton, WA",
+   "pos": null,
+   "date": "2026-11-20",
+   "start": "17:30",
+   "end": "20:30",
+   "url": "https://www.instagram.com/p/DfgK8CvjaHG/",
+   "source": "instagram",
+   "description": "Join us as we commemorate the Gurpurab of Sri Guru Nanak Dev Ji on November 20, 2026, from 5:30 PM to 8:30 PM at Gurdwara Singh Sabha in Renton, WA. All are welcome to sign-up for kirtan/tabla seva through the link in our bio. ✨🙏",
+   "image": "/ig/posts/DfgK8CvjaHG.jpg",
+   "likes": 70,
+   "comments": 0,
+   "post_counts": {
+    "DfgK8CvjaHG": [
+     70,
+     0
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "DfQf192GaeW-0",
    "title": "Marketing & Mocktails",
-   "type": "Club",
+   "type": "Hangout",
    "host": "American Marketing Association (@uw_ama)",
-   "where": "Anthony’s Forum, Dempsey Hall",
+   "where": "Anthonys Forum, Dempsey Hall",
    "pos": [
     47.65911,
     -122.30781
@@ -3545,19 +3513,43 @@
    "source": "instagram",
    "description": "M&M Monday: Industry Professionals Round 2 💼🙌\n\nAMA is excited to introduce our next round of professionals attending our 14th annual Marketing & Mocktails event! Their insights will be directly connected to this year’s M&M theme of “Connection Powers People,” so bring your questions and curiosity to the event 🤝\n\n🖼️ Kat Bryant Flaherty, Director of Marketing & Communications at Seattle Art Museum\n\n👗 Tanya Nguyen, Brand PR Specialist at Nordstrom\n\n⚽️ Kelley Myers, Director of Social Media at Seattle Reign\n\n📲 Samriddhi Simlai, Marketing Manager at Contact.One\n\n📌Buy your ticket:\nFriday, November 20th\n6:00 - 8:00 PM\nAnthony’s Forum, Dempsey Hall\n\n*Purchase tickets at the link in our bio!",
    "image": "/ig/posts/DfQf192GaeW.jpg",
-   "likes": 114,
-   "comments": 4,
+   "likes": 113,
+   "comments": null,
    "post_counts": {
     "DfQf192GaeW": [
-     43,
-     0
+     42,
+     null
     ],
     "De9_2kFgYaZ": [
      71,
-     4
+     null
     ]
    },
    "posts": 2
+  },
+  {
+   "id": "DfkV_tqmoJb-0",
+   "title": "Thrillest Club Night",
+   "type": "Hangout",
+   "host": "TSAUW 🇹🇼 (@tsauw)",
+   "where": "Club Sur (2901 1st Ave S, Seattle, WA 98134)",
+   "pos": null,
+   "date": "2026-11-20",
+   "start": "21:00",
+   "end": "00:30",
+   "url": "https://www.instagram.com/p/DfkV_tqmoJb/",
+   "source": "instagram",
+   "description": "KSA, HKSA, TSA, CSA presents: THRILLEST 🕺🪩 \n\nGrab your friends and join us for an unforgettable club night with a DUNE THEME 🔥\n\n📅 Date: November 20th \n⏰ Time: 9:00 PM – 12:30 AM (this is the correct end time!) \n📍 Location: Club Sur (2901 1st Ave S, Seattle, WA 98134)\n\n🎟️ TICKET PRICES: \n• Early Bird (11/9–11/13): $20 Members | $24 Non-members\n• Regular (11/14–11/20 @ 8:59 PM): $24 Members | $28 Non-members\n•At the Door (11/20 @ 9:00 PM): $30 for everyone\n\n🎫 Purchase tickets through the link in our bio or at any RSO booth on Red Square!\n\n⚠️ IMPORTANT INFO\n\nBring a government-issued ID and proof of purchase.\nAll attendees must be 18+.\nAttendees are responsible for any cleaning fees or property damages.",
+   "image": "/ig/posts/DfkV_tqmoJb.jpg",
+   "likes": 122,
+   "comments": 5,
+   "post_counts": {
+    "DfkV_tqmoJb": [
+     122,
+     5
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "DfRPoccmylD-5",
@@ -3654,12 +3646,12 @@
    "source": "instagram",
    "description": "INFLUX 2026 IS OPENING SOON!\n\nCome see works by 7 incredible choreographers in Meany Hall studio 267 this November 21-22, with shows on both days at 2:30pm and 7:30pm. Seats are first come, first serve. The concert is free, but donations are welcome :)\n\nWe’re so excited to see you there!\n\n📸 @emottosenphotos",
    "image": "/ig/posts/DfYtRU4qcOZ.jpg",
-   "likes": null,
-   "comments": null,
+   "likes": 16,
+   "comments": 0,
    "post_counts": {
     "DfYtRU4qcOZ": [
-     null,
-     null
+     16,
+     0
     ]
    },
    "posts": 1
@@ -3782,12 +3774,12 @@
    "source": "instagram",
    "description": "INFLUX 2026 IS OPENING SOON!\n\nCome see works by 7 incredible choreographers in Meany Hall studio 267 this November 21-22, with shows on both days at 2:30pm and 7:30pm. Seats are first come, first serve. The concert is free, but donations are welcome :)\n\nWe’re so excited to see you there!\n\n📸 @emottosenphotos",
    "image": "/ig/posts/DfYtRU4qcOZ.jpg",
-   "likes": null,
-   "comments": null,
+   "likes": 16,
+   "comments": 0,
    "post_counts": {
     "DfYtRU4qcOZ": [
-     null,
-     null
+     16,
+     0
     ]
    },
    "posts": 1
@@ -3810,7 +3802,7 @@
   },
   {
    "id": "DevWzTnsPsL-0",
-   "title": "Taking Back the Dinner",
+   "title": "Taking Back Dinner",
    "type": "Food",
    "host": "First Nations @ UW (@firstnationsuw)",
    "where": "Intellectual House",
@@ -3825,11 +3817,11 @@
    "source": "instagram",
    "description": "SAVE THE DATE! Taking Back the Dinner 2026\n\nCome join First Nations at 4:45pm on Tuesday, November 24th at the Intellectual House. More information to come! \n\nRSVP at the link in our bio! RSVP NOT required, but encouraged.",
    "image": "/ig/posts/DevWzTnsPsL.jpg",
-   "likes": 112,
+   "likes": 111,
    "comments": 0,
    "post_counts": {
     "DevWzTnsPsL": [
-     112,
+     111,
      0
     ]
    },
@@ -3943,22 +3935,22 @@
   {
    "id": "DfYsTHBmzpk-0",
    "title": "SAB Alumni Panel",
-   "type": "Food",
+   "type": "Club",
    "host": "Ethnic Cultural Center (ECC) (@uw_ecc)",
-   "where": "ECC Unity Suite",
+   "where": null,
    "pos": null,
    "date": "2026-11-30",
-   "start": "17:00",
+   "start": "16:45",
    "end": "19:00",
    "url": "https://www.instagram.com/p/DfYsTHBmzpk/",
    "source": "instagram",
    "description": "Save the date for our Samuel E. Kelly Ethnic Cultural Center Student Advisory Board (SAB) Alumni Panel!!! Monday, November 30th from 5-7 PM. Come join us and connect with past student leaders within our Kelly ECC community! \n\nDoors open and food will be available at 4:45 PM. We’ll then start our meeting at 5 PM. There will also be raffle prizes you could potentially win 👀 🎉\n\nPlease RSVP so that we can ensure there is enough food for everyone! RSVP link is attached in our linktree in our bio. We can’t wait to see you there! If you have any questions, please email ecc@uw.edu",
    "image": "/ig/posts/DfYsTHBmzpk.jpg",
-   "likes": 22,
+   "likes": 20,
    "comments": 0,
    "post_counts": {
     "DfYsTHBmzpk": [
-     22,
+     20,
      0
     ]
    },
@@ -3978,18 +3970,18 @@
    "source": "instagram",
    "description": "Thank you to everyone who joined us for the Kelly ECC SAB Fall Kickoff Mixer last week!\n\nWe hope to see you next time at our alumni panel on November 30th from 5-7pm in the ECC Unity Suite!",
    "image": "/ig/posts/De-yPXmlNTw.jpg",
-   "likes": 80,
-   "comments": 0,
+   "likes": null,
+   "comments": null,
    "post_counts": {
     "De-yPXmlNTw": [
-     80,
-     0
+     null,
+     null
     ]
    },
    "posts": 1
   },
   {
-   "id": "DfA85MuhM0V-0",
+   "id": "DfVLDgfTAiN-0",
    "title": "Computing Bee",
    "type": "Club",
    "host": "Association for Computing Education (@ace_uw)",
@@ -4001,19 +3993,19 @@
    "date": "2026-12-01",
    "start": "16:00",
    "end": "18:30",
-   "url": "https://www.instagram.com/p/DfA85MuhM0V/",
+   "url": "https://www.instagram.com/p/DfVLDgfTAiN/",
    "source": "instagram",
-   "description": "Think you can spell out the perfect end to your quarter? The Association for Computing Education (ACE) is wrapping up the quarter with our first-ever Computing Bee.\n\nTo unwind right before dead week, we are putting together a fun computing education twist on the classic spelling bee. You and a group will team up to compete in a thrilling series of computing-themed games, earning points along the way to win some awesome prizes. Prizes will range from squish toys and goodie bags, all the way up to the ultimate prize: getting to pie our ACE President, Nichole!\n\nSo whether you are yearning for the title of first place, want to participate in some fun games, or simply want to destress from exams, come take a break and join us for plenty of snacks, drinks, prizes, and fun! Everyone is welcome!\n\n📅 Date: Tuesday, December 1st\n🕔 Time: 4:00 PM to 6:30 PM\n📍 Location: Gates Common (CSE1 691)\n*Please remember to RSVP at the link in our bio!*\n\n- ACE Officers\n\nIf you have any questions or concerns, please don’t hesitate to contact us at ace-officers@cs.washington.edu. ACE is committed to providing access, equal opportunity, and reasonable accommodation for our events, programs, activities, and education for individuals with disabilities (with advance notice). Please reach out to Linda Taing, Senior Student Leadership Development Specialist, directly at lindavt@cs.washington.edu if you have any questions or requests.\n\nImage description: \nFlyer for the Association for Computing Education's Computing Bee Event. The flyer contains ASCII depiction of a cartoon bee head and its stinger. The title \"Computing Bee\" is stylized to resemble a JSX object. There is a message in binary that reads \"Buzz\" and a few lines of Python code initializing variables for the event's date and time. The text around the flyer reads: Press the buzzer when you know the answer; Computing Bee; Team up and compete in our end-of-quarter computing related games to win prizes and pie our president; Tuesday, December",
+   "description": "BEE bold, BEE ready, BEE the champion of Computing Bee 🐝 Everyone is welcome! \n\n📅 Date: Tuesday, December 1st\n🕔 Time: 4:00 PM to 6:30 PM\n📍 Location: Gates Common (CSE1 691)\n*Please remember to RSVP at the link in our bio!*\n\nVideo Description:\nA woman stands on a walking path in front of large sculptures of yellow and green flowers and bright blue butterflies. On screen stickers appear for swarming bees, a goodie bag, a pie, and a bee waving goodbye.",
    "image": "/ig/posts/DfVLDgfTAiN.jpg",
-   "likes": null,
+   "likes": 33,
    "comments": null,
    "post_counts": {
-    "DfA85MuhM0V": [
-     null,
+    "DfVLDgfTAiN": [
+     17,
      null
     ],
-    "DfVLDgfTAiN": [
-     null,
+    "DfA85MuhM0V": [
+     16,
      null
     ]
    },
@@ -4201,8 +4193,8 @@
   },
   {
    "id": "DfWlu4XG2mW-0",
-   "title": "AACF Winter Retreat",
-   "type": "Club",
+   "title": "AACF 2027 Winter Retreat",
+   "type": "Hangout",
    "host": "AACF UW (@uwaacf)",
    "where": "Lake Retreat Camps",
    "pos": null,
@@ -4213,60 +4205,12 @@
    "source": "instagram",
    "description": "AACF 2027 WINTER RETREAT!! ☃️❄️\n\nIt’s that time of year to register for our annual AACF winter retreat!! This is an extra special weekend to spend together as a fellowship bonding and deepening our relationships with God. It’ll be a weekend filled with learning from the Word, worship, prayer, deep and meaningful conversations, bonding with the community, and fun activities and games!\n\nPlease take note of all this very important information‼️\n\nTime:\nJanuary 8-10, 2027 (Arriving Friday evening and returning Sunday afternoon)\n\nLocation:\nLake Retreat Camps\n\nPrice:\n$150 for early bird (by 11/18 at 11:59pm)\n$170 for regular (11/19-12/9)\n\nTo complete registration, you must submit all 4 of these items (link in bio):\n1. Google Form Registration\n2. Signed AACF Waiver\n3. Signed Lake Retreat Waiver\n4. Payment (via AACF form)\n\nALL payment and forms are due by December 9, 2026‼️\n\nIf finances/money is a concern, we offer scholarships! Read the details in the Google Form or reach out to a core member. We don’t want finances to be an issue for attending retreat with us!",
    "image": "/ig/posts/DfWlu4XG2mW.jpg",
-   "likes": 19,
-   "comments": 0,
+   "likes": 58,
+   "comments": 1,
    "post_counts": {
     "DfWlu4XG2mW": [
-     19,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfWlu4XG2mW-1",
-   "title": "AACF Winter Retreat",
-   "type": "Club",
-   "host": "AACF UW (@uwaacf)",
-   "where": "Lake Retreat Camps",
-   "pos": null,
-   "date": "2027-01-09",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfWlu4XG2mW/",
-   "source": "instagram",
-   "description": "AACF 2027 WINTER RETREAT!! ☃️❄️\n\nIt’s that time of year to register for our annual AACF winter retreat!! This is an extra special weekend to spend together as a fellowship bonding and deepening our relationships with God. It’ll be a weekend filled with learning from the Word, worship, prayer, deep and meaningful conversations, bonding with the community, and fun activities and games!\n\nPlease take note of all this very important information‼️\n\nTime:\nJanuary 8-10, 2027 (Arriving Friday evening and returning Sunday afternoon)\n\nLocation:\nLake Retreat Camps\n\nPrice:\n$150 for early bird (by 11/18 at 11:59pm)\n$170 for regular (11/19-12/9)\n\nTo complete registration, you must submit all 4 of these items (link in bio):\n1. Google Form Registration\n2. Signed AACF Waiver\n3. Signed Lake Retreat Waiver\n4. Payment (via AACF form)\n\nALL payment and forms are due by December 9, 2026‼️\n\nIf finances/money is a concern, we offer scholarships! Read the details in the Google Form or reach out to a core member. We don’t want finances to be an issue for attending retreat with us!",
-   "image": "/ig/posts/DfWlu4XG2mW.jpg",
-   "likes": 19,
-   "comments": 0,
-   "post_counts": {
-    "DfWlu4XG2mW": [
-     19,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfWlu4XG2mW-2",
-   "title": "AACF Winter Retreat",
-   "type": "Club",
-   "host": "AACF UW (@uwaacf)",
-   "where": "Lake Retreat Camps",
-   "pos": null,
-   "date": "2027-01-10",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfWlu4XG2mW/",
-   "source": "instagram",
-   "description": "AACF 2027 WINTER RETREAT!! ☃️❄️\n\nIt’s that time of year to register for our annual AACF winter retreat!! This is an extra special weekend to spend together as a fellowship bonding and deepening our relationships with God. It’ll be a weekend filled with learning from the Word, worship, prayer, deep and meaningful conversations, bonding with the community, and fun activities and games!\n\nPlease take note of all this very important information‼️\n\nTime:\nJanuary 8-10, 2027 (Arriving Friday evening and returning Sunday afternoon)\n\nLocation:\nLake Retreat Camps\n\nPrice:\n$150 for early bird (by 11/18 at 11:59pm)\n$170 for regular (11/19-12/9)\n\nTo complete registration, you must submit all 4 of these items (link in bio):\n1. Google Form Registration\n2. Signed AACF Waiver\n3. Signed Lake Retreat Waiver\n4. Payment (via AACF form)\n\nALL payment and forms are due by December 9, 2026‼️\n\nIf finances/money is a concern, we offer scholarships! Read the details in the Google Form or reach out to a core member. We don’t want finances to be an issue for attending retreat with us!",
-   "image": "/ig/posts/DfWlu4XG2mW.jpg",
-   "likes": 19,
-   "comments": 0,
-   "post_counts": {
-    "DfWlu4XG2mW": [
-     19,
-     0
+     58,
+     1
     ]
    },
    "posts": 1
@@ -4276,7 +4220,7 @@
    "title": "Sweetheart Saloon",
    "type": "Hangout",
    "host": "Costume Club at UW (@uwcostumeclub)",
-   "where": "Cowgirls Inc.",
+   "where": "Cowgirls Inc. | 421 1st Ave S, Seattle, WA",
    "pos": [
     47.59851,
     -122.33443
@@ -4288,19 +4232,19 @@
    "source": "instagram",
    "description": "💋🤠 **SADDLE UP, SWEETHEARTS!** 🤠💋\n\nYou’re invited to **THE SWEETHEART SALOON** — a Valentine’s weekend western cosplay celebration with a little charm, a little romance, and a whole lot of fun!\n\nJoin us for an unforgettable afternoon at **Cowgirls Inc.** in Seattle, where you’ll find interactive cosplayers, music, games, photo opportunities, and plenty of chances to make some memories. And yes, there is a mechanical bull.\n\nWhether you’re coming with your sweetheart, your besties, or riding solo, there’s a place for you at our saloon. ❤️\n\n💋**WHEN:** Saturday, February 13th | 3 PM – 6 PM \n💋 **WHERE:** Cowgirls Inc. | 421 1st Ave S, Seattle, WA \n💋**AGE:** 21+ ONLY \n💋**TICKETS:** Announcement coming soon! Keep an eye out in January for more info and where to buy 🙂 \n\nBrought to you by @ani.popup.pnw × @uwcostumeclub × @pnw_cosplay_events\n\nDust off your boots, grab your favorite people, and get ready for one unforgettable night!\n\nAny questions? Dm us and they will be addressed when possible\n\nInterested in getting involved? Applications for interactive cosplayers, front of house,  and back of house release within the week🤠💋\n\nAdditional asset art by @tarobreaad \nPhotography credits\nSage - @heejinhankim \nRaychie - @magicmango.photo \nJade - @skyephoenixphotography \nAki - @alikade.pics / @noriboi77\n\n#cosplay #seattleevents #cosplaycommunity #valetinesevent #pnwcosplay",
    "image": "/ig/posts/DfaQxXIj5We.jpg",
-   "likes": null,
-   "comments": null,
+   "likes": 328,
+   "comments": 36,
    "post_counts": {
     "DfaQxXIj5We": [
-     null,
-     null
+     328,
+     36
     ]
    },
    "posts": 1
   },
   {
    "id": "Dez1mR6yaaY-0",
-   "title": "Kindergarten Visit",
+   "title": "Kindergartners Campus Visit",
    "type": "Club",
    "host": "CELE Center (@uwcelecenter)",
    "where": null,
@@ -4312,12 +4256,12 @@
    "source": "instagram",
    "description": "Interested in early childhood education? Want to think critically about when college access begins? Want a chance to build AND facilitate a lesson plan with kindergartners?\n\nEDUC 401 E is coming in WINTER 2027!\nTaught by CELE staff, this will be a project-based community-engaged course. Kinders to College is all about designing learning experiences for diverse groups of kindergartners. Federal Way’s kindergartners are coming to campus on Feb 24th…and we’re planning their big visit!\n\nVisit link in bio to RSVP for an info session!\nQuestions? Email celecenter@uw.edu",
    "image": "/ig/posts/Dez1mR6yaaY.jpg",
-   "likes": null,
-   "comments": null,
+   "likes": 39,
+   "comments": 0,
    "post_counts": {
     "Dez1mR6yaaY": [
-     null,
-     null
+     39,
+     0
     ]
    },
    "posts": 1
