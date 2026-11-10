@@ -2419,20 +2419,41 @@ a.discord-bot-link.join {
   }
 }
 
-/* Leaflet's zoom buttons and ground follow light/dark mode. */
-.leaflet-container {
+/* Leaflet's zoom buttons and ground follow light/dark mode. (.map-loading stands in the map's
+   place while its code downloads, so it shows the same ground.) */
+.leaflet-container,
+.map-loading {
   background: #ebeae5; /* the map's own ground color, shown while it loads */
   font-family: inherit; /* the site's font, not Leaflet's Helvetica */
 }
 
-:root[data-theme="dark"] .leaflet-container {
+:root[data-theme="dark"] .leaflet-container,
+:root[data-theme="dark"] .map-loading {
   background: #16181b;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .leaflet-container {
+  :root:not([data-theme="light"]) .leaflet-container,
+  :root:not([data-theme="light"]) .map-loading {
     background: #16181b;
   }
+}
+
+/* The map's code couldn't be fetched: a short note and a Reload button where the map would be */
+.map-failed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  color: var(--muted);
+  font-size: 16px;
+  text-align: center;
+}
+
+.map-failed p {
+  margin: 0;
 }
 
 .leaflet-popup-content-wrapper,
@@ -4679,22 +4700,39 @@ body {
   border-radius: 2px;
 }
 
-.now-line-rule::before {
+/* The dot at the start of the line, with a soft ring that breathes around it. The ring is its
+   own circle, grown and shrunk with transform, which the browser animates on its own without
+   redrawing anything. (It used to be a box-shadow growing from 4px to 7px, which made the browser
+   repaint the whole board 60 times a second for as long as the page was open.) */
+.now-line-rule::before,
+.now-line-rule::after {
   content: "";
   position: absolute;
+  border-radius: 50%;
+}
+
+/* The ring: 4px out from the dot, growing to 7px out (24px across) and back */
+.now-line-rule::before {
+  left: -9px;
+  top: -8px;
+  width: 18px;
+  height: 18px;
+  background: var(--live-wash);
+  animation: now-pulse 2.4s ease-in-out infinite;
+}
+
+/* The dot, on top of the ring */
+.now-line-rule::after {
   left: -5px;
   top: -4px;
   width: 10px;
   height: 10px;
-  border-radius: 50%;
   background: var(--live);
-  box-shadow: 0 0 0 4px var(--live-wash);
-  animation: now-pulse 2.4s ease-in-out infinite;
 }
 
 @keyframes now-pulse {
   50% {
-    box-shadow: 0 0 0 7px var(--live-wash);
+    transform: scale(1.3333);
   }
 }
 
@@ -5469,6 +5507,25 @@ body {
   transform: scale(1.15);
 }
 
+/* The same picture drawn once into a small canvas (HeroArt in DubHub.jsx) and stretched over the
+   same box, in browsers that can blur on a canvas. It looks the same, but a CSS blur this big is
+   recomputed on every frame the band is on screen while anything moves; a stretched picture isn't.
+   When the canvas is there, the CSS version is switched off. */
+.hero-art {
+  position: absolute;
+  left: -80px;
+  top: -80px;
+  z-index: -2;
+  width: calc(100% + 160px);
+  height: calc(100% + 160px);
+  transform: scale(1.15);
+  pointer-events: none;
+}
+
+.now-hero.art-on-canvas::before {
+  content: none;
+}
+
 .now-hero::after {
   content: "";
   position: absolute;
@@ -5743,10 +5800,58 @@ body {
 /* The campus, drawn faintly behind the board: UW's real paths and buildings in purple line art
    (traced from OpenStreetMap), painted as the page's own scrolling background, so it runs the
    full length of the page under the hero without any extra layer or sideways overflow */
+
+/* Which file the drawing comes from. The SVG stays sharp at any size, but it's about 19,000 line
+   segments, and a browser redraws every one of them for each strip of the page it paints, which
+   makes scrolling stutter (at full-HD size it could stall for seconds on a slow computer). So
+   there are also ready-made pictures of it, 1500px and 1920px wide, which the browser unpacks
+   once and then only copies (scripts/render-campus-lines.py makes them from the SVG). A picture
+   is used wherever it comes out the same as the SVG would:
+   - the 1500px one in a window from 701px to 1500px wide on a standard-density screen, where
+     the drawing is shown exactly 1500px wide (pixel for pixel the same);
+   - the 1920px one where the drawing ends up about 1920 screen pixels wide: a window from 1501px
+     to 1920px on a standard-density screen (it stretches to the window's width), and a full-HD
+     laptop at 125% scaling;
+   and on lower-end computers and phones (main.jsx marks those with data-lite) at any size, where
+   a slightly softer line on a big or high-density screen is a fair trade for smooth scrolling.
+   Everything else (phones, very large and high-density screens on capable devices) keeps the SVG. */
+:root {
+  --campus-lines: url("/campus-lines.svg");
+  --campus-lines-dark: url("/campus-lines-dark.svg");
+}
+
+@media (min-width: 701px) and (max-width: 1500px) and (max-resolution: 1dppx) {
+  :root {
+    --campus-lines: url("/campus-lines.webp");
+    --campus-lines-dark: url("/campus-lines-dark.webp");
+  }
+}
+
+@media (min-width: 1501px) and (max-width: 1920px) and (max-resolution: 1dppx),
+  (min-width: 701px) and (max-width: 1536px) and (min-resolution: 1.24dppx) and (max-resolution: 1.26dppx) {
+  :root {
+    --campus-lines: url("/campus-lines-wide.webp");
+    --campus-lines-dark: url("/campus-lines-dark-wide.webp");
+  }
+}
+
+:root[data-lite] {
+  --campus-lines: url("/campus-lines.webp");
+  --campus-lines-dark: url("/campus-lines-dark.webp");
+}
+
+/* (a lower-end computer with a big or high-density screen: the bigger picture, so it's less soft) */
+@media (min-width: 1501px), (min-width: 701px) and (min-resolution: 1.1dppx) {
+  :root[data-lite] {
+    --campus-lines: url("/campus-lines-wide.webp");
+    --campus-lines-dark: url("/campus-lines-dark-wide.webp");
+  }
+}
+
 .page.now-page {
   background:
     linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)),
-    url("/campus-lines.svg") center 400px / 1500px auto repeat-y,
+    var(--campus-lines) center 400px / 1500px auto repeat-y,
     #ffffff;
   background-attachment: local, local, local;
 }
@@ -5754,7 +5859,7 @@ body {
 :root[data-theme="dark"] .page.now-page {
   background:
     linear-gradient(rgba(18, 14, 28, 0.88), rgba(18, 14, 28, 0.88)),
-    url("/campus-lines-dark.svg") center 400px / 1500px auto repeat-y,
+    var(--campus-lines-dark) center 400px / 1500px auto repeat-y,
     var(--bg);
   background-attachment: local, local, local;
 }
@@ -5763,7 +5868,7 @@ body {
   :root:not([data-theme="light"]) .page.now-page {
     background:
       linear-gradient(rgba(18, 14, 28, 0.88), rgba(18, 14, 28, 0.88)),
-      url("/campus-lines-dark.svg") center 400px / 1500px auto repeat-y,
+      var(--campus-lines-dark) center 400px / 1500px auto repeat-y,
       var(--bg);
     background-attachment: local, local, local;
   }
@@ -6121,7 +6226,13 @@ body {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: url("/campus-lines-white.svg") 30% 42% / 1200px auto no-repeat;
+  /* The white campus drawing, 1200px wide at "30% 42%". Only a band as tall as the bar ever
+     shows, so this is a picture of just that band (rows 456 to 544 of the drawing's 1172, made
+     by scripts/render-campus-lines.py) instead of the whole SVG, which the browser had to redraw
+     in full every time anything in the bar changed. The position puts the band exactly where
+     those rows sat: 42% of the way down a 1172px-tall drawing, then down again by the 456 rows
+     the picture leaves off its top. */
+  background: url("/campus-lines-nav.webp") 30% calc((var(--nav-h) - 1172px) * 0.42 + 456px) / 1200px auto no-repeat;
   opacity: 0.13;
   pointer-events: none;
 }
@@ -6269,7 +6380,7 @@ body {
   overflow-x: clip;
   background:
     linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)),
-    url("/campus-lines.svg") center 340px / max(1500px, 100%) auto repeat-y,
+    var(--campus-lines) center 340px / max(1500px, 100%) auto repeat-y,
     #ffffff;
   background-attachment: local, local, local;
 }
@@ -6277,7 +6388,7 @@ body {
 :root[data-theme="dark"] .page.clubs-page {
   background:
     linear-gradient(rgba(18, 14, 28, 0.88), rgba(18, 14, 28, 0.88)),
-    url("/campus-lines-dark.svg") center 340px / max(1500px, 100%) auto repeat-y,
+    var(--campus-lines-dark) center 340px / max(1500px, 100%) auto repeat-y,
     var(--bg);
   background-attachment: local, local, local;
 }
@@ -6286,7 +6397,7 @@ body {
   :root:not([data-theme="light"]) .page.clubs-page {
     background:
       linear-gradient(rgba(18, 14, 28, 0.88), rgba(18, 14, 28, 0.88)),
-      url("/campus-lines-dark.svg") center 340px / max(1500px, 100%) auto repeat-y,
+      var(--campus-lines-dark) center 340px / max(1500px, 100%) auto repeat-y,
       var(--bg);
     background-attachment: local, local, local;
   }

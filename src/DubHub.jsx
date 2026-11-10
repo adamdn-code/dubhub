@@ -1,12 +1,62 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, CircleMarker, Marker, Pane, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
-import L from "leaflet";
-import "@maplibre/maplibre-gl-leaflet";
+import { Component, Suspense, lazy, memo, useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+// The map's styles stay here, ahead of DubHub.css, which restyles parts of them (the later file
+// wins a tie). Only the map's code is downloaded separately (see EventMap below).
 import "leaflet/dist/leaflet.css";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./DubHub.css";
+import Icon from "./Icon.jsx";
 import { APPLY_YEARS, FILE_ACCEPT, FILE_LIMITS, JOBS, SAMPLE_JOBS } from "./jobs.js";
-import { CATEGORY_GROUPS, NO_FIELD_COLOR, OTHER_GROUP, groupFor, isHostedBy } from "./eventGroups.js";
+import { CATEGORY_GROUPS, NO_FIELD_COLOR, OTHER_GROUP, isHostedBy } from "./eventGroups.js";
+import {
+  clockTime,
+  dayLabel,
+  eventColor,
+  eventGroup,
+  eventSpan,
+  formatTime,
+  formatWhen,
+  fullDay,
+  hostName,
+  localDate,
+  placeCode,
+  popularFirst,
+  startsIn,
+  useNow,
+} from "./eventHelpers.js";
+import { MAP_PALETTES } from "./mapPalettes.js";
+
+// The map itself (Leaflet and MapLibre) is about three quarters of the site's JavaScript, and
+// the site opens on the Now page, which doesn't use it. So it's a separate download, fetched the
+// first time the Map tab is opened, or a moment earlier when the pointer reaches the tab.
+const loadEventMap = () => import("./EventMap.jsx");
+const EventMap = lazy(loadEventMap);
+// Getting a head start on that download; if it fails here, opening the map tries again.
+const warmUpEventMap = () => {
+  loadEventMap().catch(() => {});
+};
+
+// If the map's code can't be fetched (no connection, or the site was updated while this tab sat
+// open, so the file it knew about is gone), say so where the map would be instead of the whole
+// site going blank. Reloading gets the current site.
+class MapGuard extends Component {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    if (!this.state.failed) return this.props.children;
+    return (
+      <div className="map map-loading map-failed" role="alert">
+        <p>The map didn't load. Check your connection, then reload.</p>
+        <button className="join" onClick={() => location.reload()}>
+          Reload
+        </button>
+      </div>
+    );
+  }
+}
 
 const TABS = ["Events", "Home", "My Events", "Clubs", "About"];
 
@@ -24,15 +74,6 @@ const TAB_ICONS = {
 // What each tab is called on screen ("Home" is the map).
 const TAB_LABELS = { Events: "Now", Home: "Map" };
 
-function Icon({ d }) {
-  return (
-    <svg className="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
-      strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
-      <path d={d} />
-    </svg>
-  );
-}
-
 const CLOSE_ICON = "M6 6l12 12M18 6 6 18";
 const CHECK_ICON = "M4.5 12.5l5 5L19.5 7";
 const BACK_ICON = "M15 5l-7 7 7 7";
@@ -40,37 +81,6 @@ const SHARE_ICON = "M12 3v12M7 8l5-5 5 5M5 14v7h14v-7";
 const PLUS_ICON = "M12 5v14M5 12h14";
 const SUN_ICON = "M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4";
 const MOON_ICON = "M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z";
-
-// UW building codes, as on campus signs and the time schedule. Matched against an event's place:
-// a code already at the start ("HUB 314", "MEB 248") is kept as is; otherwise a known building
-// name gives its code. Places that aren't UW buildings get no code (none is made up).
-const BUILDING_CODES = [
-  ["uw club", null], // the faculty club behind the HUB, not the HUB itself
-  ["husky union building", "HUB"], ["hub", "HUB"], ["odegaard", "OUG"], ["suzzallo", "SUZ"], ["allen library", "ALB"],
-  ["kane hall", "KNE"], ["savery", "SAV"], ["mary gates", "MGH"], ["gates center", "CSE2"], ["allen center", "CSE"],
-  ["physics/astronomy", "PAB"], ["padelford", "PDL"], ["gowen", "GWN"], ["smith hall", "SMI"], ["denny hall", "DEN"],
-  ["paccar", "PCAR"], ["dempsey", "DEM"], ["sieg", "SIG"], ["johnson hall", "JHN"], ["kincaid", "KIN"], ["bagley", "BAG"],
-  ["guthrie", "GTH"], ["loew hall", "LOW"], ["mechanical engineering", "MEB"], ["more hall", "MOR"], ["ima", "IMA"],
-  ["meany", "MNY"], ["thomson hall", "THO"], ["raitt", "RAI"], ["art building", "ART"], ["music building", "MUS"],
-  ["communications building", "CMU"], ["condon", "CDH"], ["architecture hall", "ARC"], ["gould hall", "GLD"],
-  ["winkenwerder", "WFS"], ["anderson hall", "AND"], ["miller hall", "MLR"], ["clark hall", "CLK"], ["parrington", "PAR"],
-  ["chemistry building", "CHB"], ["health sciences", "HSB"], ["alder hall", "ALD"], ["founders", "FNDR"],
-  ["schmitz", "SMZ"], ["kelly ecc", "ECC"], ["ethnic cultural", "ECC"], ["red square", "RED SQ"], ["quad", "QUAD"],
-  ["husky stadium", "STADIUM"], ["hec ed", "HEC ED"], ["denny field", "DENNY FLD"],
-];
-const CODE_AT_START = /^([A-Z]{2,5}\d?)(?:\s+(\w*\d\w*))?\b/;
-
-// { code, rest }: "HUB 314" -> { code: "HUB", room: "314" }; "Mary Gates Hall" -> { code: "MGH" }.
-function placeCode(where) {
-  if (!where || where === "Online") return null;
-  const m = where.match(CODE_AT_START);
-  if (m && m[1] !== "UW") return { code: m[1], room: m[2] ?? null };
-  const lower = where.toLowerCase();
-  const hit = BUILDING_CODES.find(([name]) => new RegExp(`\\b${name.replace("/", "\\/")}\\b`).test(lower));
-  if (!hit?.[1]) return null;
-  const room = where.match(/\b(\d{2,4}[A-Z]?)\b/)?.[1] ?? null;
-  return { code: hit[1], room };
-}
 
 // A building-code plate, like the ones on campus signs: "MGH 241". Nothing for places with no code.
 function Plate({ where, size }) {
@@ -621,7 +631,12 @@ function useGoing(user, events, onNeedSignIn) {
     for (let i = 0; i < list.length; i += 100) {
       fetch(`/api/going?ids=${encodeURIComponent(list.slice(i, i + 100).join(","))}`)
         .then((r) => (r.ok ? r.json() : null))
-        .then((d) => !cancelled && d?.going && setNames((n) => ({ ...n, ...d.going })))
+        .then((d) => {
+          // Usually nobody's going to most events yet: with nothing to add, the list is left
+          // alone, so the page isn't redrawn for no reason.
+          if (cancelled || !d?.going || Object.keys(d.going).length === 0) return;
+          setNames((n) => ({ ...n, ...d.going }));
+        })
         .catch(() => {});
     }
     return () => {
@@ -699,7 +714,11 @@ function useGoing(user, events, onNeedSignIn) {
 
   const joined = useMemo(() => (token && mine.token === token ? mine.ids : []), [token, mine]);
   const toggle = useCallback((id) => setGoing(id, !joined.includes(String(id))), [setGoing, joined]);
-  return { joined, toggle, join: (id) => setGoing(id, true), names, signedIn: Boolean(token) };
+  const join = useCallback((id) => setGoing(id, true), [setGoing]);
+  const signedIn = Boolean(token);
+  // The same object until something in it changes, so pages that only take `j` can skip
+  // redrawing when the rest of the site re-renders.
+  return useMemo(() => ({ joined, toggle, join, names, signedIn }), [joined, toggle, join, names, signedIn]);
 }
 
 // Sign-in uses Google, limited to UW's Google accounts (@uw.edu).
@@ -936,7 +955,7 @@ function useEvents() {
   }, []);
 
   // events.json only refreshes when a scraper runs, so hide events whose day has passed.
-  const today = new Date().toLocaleDateString("en-CA");
+  const today = localDate(0);
   const events = useMemo(() => data.events.filter((e) => !e.date || e.date >= today), [data.events, today]);
   // Past ones too, for a club's past events and whether you went
   return { events, everything: data.events, updated: data.updated };
@@ -945,11 +964,6 @@ function useEvents() {
 // "When" choices: how many days after today each one reaches (rolling, so "This week" is always 7 days).
 const WHEN_DAYS = { Today: 0, "This week": 6, "This month": 30, "Any time": null };
 const DEFAULT_WHEN = "This week";
-
-// "YYYY-MM-DD" for today plus `days`, in the viewer's own time zone.
-function localDate(days = 0) {
-  return new Date(Date.now() + days * 864e5).toLocaleDateString("en-CA");
-}
 
 function inWhen(event, when) {
   if (WHEN_DAYS[when] == null || !event.date) return true; // sample events have no date
@@ -975,8 +989,12 @@ const HIDDEN_IMAGES = new Set([
 ]);
 
 function withFields(events, clubList) {
+  // Which club hosts an event depends only on the event's `host` text, and many events share a
+  // host, so each host is looked up in the club list once.
+  const clubOfHost = new Map();
   return events.map((e) => {
-    const club = clubList.find((c) => isHostedBy(e, c));
+    if (!clubOfHost.has(e.host)) clubOfHost.set(e.host, clubList.find((c) => isHostedBy(e, c)));
+    const club = clubOfHost.get(e.host);
     return {
       ...e,
       image: HIDDEN_IMAGES.has(e.image) ? undefined : e.image,
@@ -988,27 +1006,11 @@ function withFields(events, clubList) {
   });
 }
 
-// "Product Space @ UW (@uwproductspace)" -> "Product Space @ UW"; "@vsauw" stays as is.
-function hostName(event) {
-  return event.club?.name ?? event.host.replace(/\s*\(@[\w.]+\)$/, "");
-}
-
 // The first couple of sentences of a description, for small spaces like the map pop-up.
 function shortText(text, max = 150) {
   if (!text) return null;
   const flat = text.replace(/\s+/g, " ").trim();
   return flat.length <= max ? flat : `${flat.slice(0, max).replace(/\s+\S*$/, "")}…`;
-}
-
-// Dots are colored by the host club's group (src/eventGroups.js has the groups and their colors).
-function eventGroup(e) {
-  return groupFor(e.club?.category, e.fields?.[0]);
-}
-
-// `dark`: the color for a dark map (MAP_PALETTES' `dark`).
-function eventColor(e, dark = false) {
-  const g = eventGroup(e);
-  return dark ? g.dark : g.light;
 }
 
 // "Club type" choices: the categories of clubs hosting events, Greek Life first (fraternity and
@@ -1044,7 +1046,12 @@ function useFilteredEvents(all) {
     );
   }, [all, when, type, year, major, club]);
 
-  return { events, when, setWhen, type, setType, year, setYear, major, setMajor, club, setClub, clubTypes };
+  // The same object until a filter or the events change, so the pages that take `f` can skip
+  // redrawing when something unrelated re-renders the site (the setters never change).
+  return useMemo(
+    () => ({ events, when, setWhen, type, setType, year, setYear, major, setMajor, club, setClub, clubTypes }),
+    [events, when, type, year, major, club, clubTypes]
+  );
 }
 
 function Filters({ f }) {
@@ -1127,127 +1134,6 @@ function mapAreaFor(events) {
   return MAP_AREAS.find((a) => spots.every((p) => inside(p, a.bounds))) ?? MAP_AREAS.at(-1);
 }
 
-// UW's main campus (15th Ave NE to Montlake Blvd, the Ave's north end to the Cut): where the
-// map opens, whatever else is on it.
-const UW_CAMPUS = [[47.6500, -122.3135], [47.6605, -122.3005]];
-
-// Space the filter panel covers: its left side on wide screens, its bottom on phones.
-function panelPadding(map) {
-  const panel = map.getContainer().parentElement?.querySelector(".filters");
-  if (!panel) return {};
-  return map.getSize().x > 700
-    ? { paddingTopLeft: [panel.offsetWidth + 24, 0] }
-    : { paddingBottomRight: [0, panel.offsetHeight + 8] };
-}
-
-// Opens the map on UW's campus. You can zoom out and pan as far as the area that holds every
-// event, but not past it.
-function MapArea({ area }) {
-  const map = useMap();
-
-  useEffect(() => {
-    const bounds = L.latLngBounds(area.bounds);
-    // getBoundsZoom never goes below the current minimum, so clear the old area's limit first.
-    map.setMinZoom(0);
-    map.setMinZoom(map.getBoundsZoom(bounds));
-    map.setMaxBounds(bounds.pad(0.05));
-    map.fitBounds(UW_CAMPUS, panelPadding(map));
-  }, [map, area]);
-
-  return null;
-}
-
-// How big a callout card is on screen (see .callout in DubHub.css): the picture tile and padding,
-// plus the text (the group's name above the event's, then the line under it), which is at most
-// 250px wide (past that the event's name wraps to a second line).
-const CALLOUT_MAX = 250;
-const CALLOUT_CHROME = 9 + 34 + 10 + 14; // left padding, tile, gap, right padding
-const CARD_H = 68; // a card's height with a one-line name (two lines add 17px)
-let measureCtx;
-function calloutSize(title, sub, group) {
-  measureCtx ??= document.createElement("canvas").getContext("2d");
-  const font = getComputedStyle(document.body).fontFamily;
-  measureCtx.font = `700 14px ${font}`;
-  const titleW = measureCtx.measureText(title).width;
-  measureCtx.font = `12px ${font}`;
-  const subW = measureCtx.measureText(sub).width;
-  measureCtx.font = `700 10.5px ${font}`;
-  const groupW = measureCtx.measureText(group.toUpperCase()).width + group.length * 0.6 + 13; // spacing, dot
-  const wraps = CALLOUT_CHROME + titleW > CALLOUT_MAX;
-  return { w: Math.min(CALLOUT_MAX, CALLOUT_CHROME + Math.max(titleW, subW, groupW)), h: wraps ? CARD_H + 17 : CARD_H };
-}
-
-// What sits on top of the map (the filters, the welcome box, the dot colors, the zoom buttons), in
-// the map's own coordinates, so cards aren't hidden behind them.
-function mapOverlays(map) {
-  const box = map.getContainer().getBoundingClientRect();
-  const els = map.getContainer().parentElement?.querySelectorAll(".filters, .next-up, .map-card, .map-legend, .leaflet-control-zoom");
-  return [...(els ?? [])]
-    .map((el) => el.getBoundingClientRect())
-    .filter((r) => r.width && r.height) // ones hidden on this screen size
-    .map((r) => ({ l: r.left - box.left, r: r.right - box.left, t: r.top - box.top, b: r.bottom - box.top }));
-}
-
-// Space kept between cards (and between a card and anything else it shouldn't cover).
-const CARD_GAP = 6;
-
-// At most this many cards when the site opens, the soonest events first, so the map isn't buried.
-const MAX_INTRO_LABELS = 5;
-
-// The cards over the dots when the site opens (then they fade away). Each goes above its dot, or
-// below it if that would cover another card, a labeled dot, or the filters, or run off the map; if
-// neither fits it's skipped (hovering the dot still shows its card).
-function IntroLabels({ places, dark }) {
-  const map = useMap();
-  const [, redraw] = useState(0);
-
-  useEffect(() => {
-    const update = () => redraw((n) => n + 1);
-    map.on("zoomend moveend", update);
-    return () => map.off("zoomend moveend", update);
-  }, [map]);
-
-  const size = map.getSize();
-  const taken = mapOverlays(map);
-  const fits = (b) =>
-    b.l >= 0 && b.t >= 0 && b.r <= size.x && b.b <= size.y && // all on screen
-    taken.every((o) => b.r + CARD_GAP <= o.l || b.l - CARD_GAP >= o.r || b.b + CARD_GAP <= o.t || b.t - CARD_GAP >= o.b);
-  const shown = [];
-  for (const place of [...places].sort((a, b) => a.when.localeCompare(b.when) || b.count - a.count)) {
-    if (shown.length === MAX_INTRO_LABELS) break;
-    const pt = map.latLngToContainerPoint(place.pos);
-    const { w, h } = calloutSize(place.title, place.sub, eventGroup(place.event).name);
-    const radius = place.lift - STEM;
-    for (const dir of ["above", "below"]) {
-      const up = dir === "above";
-      const top = up ? pt.y - place.lift - h : pt.y + place.lift;
-      const card = { l: pt.x - w / 2, r: pt.x + w / 2, t: top, b: top + h };
-      // Its stem and dot, which no other card should cover either.
-      const dot = { l: pt.x - radius, r: pt.x + radius, t: up ? card.b : pt.y - radius, b: up ? pt.y + radius : card.t };
-      if (fits(card) && fits(dot)) {
-        taken.push(card, dot);
-        shown.push({ ...place, dir });
-        break;
-      }
-    }
-  }
-
-  // Each card hangs off an invisible point on its dot, since a dot holds just one card (its hover one).
-  return shown.map((p) => (
-    <CircleMarker key={`${p.pos.join()}|${p.dir}`} center={p.pos} radius={0} stroke={false} fill={false} interactive={false}>
-      <Tooltip
-        permanent
-        direction={p.dir === "above" ? "top" : "bottom"}
-        offset={[0, p.dir === "above" ? -p.lift : p.lift]}
-        opacity={1}
-        className="event-callout intro-callout"
-      >
-        <EventCallout event={p.event} title={p.title} sub={p.sub} dark={dark} />
-      </Tooltip>
-    </CircleMarker>
-  ));
-}
-
 // "Going" for an event. `quiet`: the outlined version for long lists, so a page of events isn't a
 // column of identical filled buttons. Once you're going it turns brick, in lists too.
 function JoinButton({ event, j, quiet = false }) {
@@ -1291,20 +1177,6 @@ function going(event, j) {
   return count > 0 ? `${count} going` : null;
 }
 
-function formatTime(hhmm) {
-  const [h, m] = hhmm.split(":").map(Number);
-  return new Date(2000, 0, 1, h, m).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
-}
-
-// "Thu, Oct 29, 7:00 PM–8:30 PM"
-function formatWhen(e) {
-  if (!e.date) return null;
-  const [y, m, d] = e.date.split("-").map(Number);
-  const day = new Date(y, m - 1, d).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
-  if (!e.start) return day;
-  return `${day}, ${formatTime(e.start)}${e.end ? `–${formatTime(e.end)}` : ""}`;
-}
-
 function PostLink({ event }) {
   if (!event.url) return null;
   return (
@@ -1345,168 +1217,6 @@ function CalendarLink({ event }) {
       Add to Google Calendar
     </a>
   );
-}
-
-// Free vector basemap from OpenFreeMap (no API key), drawn with MapLibre inside Leaflet.
-const MAP_STYLE = "https://tiles.openfreemap.org/styles/liberty";
-// The map data's licenses require this credit on the map, so it's tucked behind a small "©" button.
-const MAP_ATTRIBUTION =
-  '<details class="map-credit"><summary aria-label="Map credits">&copy;</summary>' +
-  '<a href="https://openfreemap.org">OpenFreeMap</a> &copy; <a href="https://www.openmaptiles.org/">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' +
-  "</details>";
-
-// The light map: campus in the site's concrete and white, quiet enough that the event dots and the
-// slate panels carry the color. Parks and water stay recognizable, just muted.
-const MAP_COLORS = {
-  background: "#f1eef6", // lavender ground
-  water: "#c9cdef",
-  park: "#dfe9d6",
-  wood: "#d6e3cb",
-  wetland: "#e1eadb",
-  plaza: "#ece7f3",
-  building: "#e2dbef", // buildings tinted purple
-  school: "#efeaf6",
-  road: "#ffffff",
-  highway: "#fdfcff",
-  casing: "#d9d1e8",
-  highwayCasing: "#c7bbdd",
-  label: "#4a3d66",
-  labelHalo: "#f7f4fb",
-  waterLabel: "#4b4f9a",
-  iconOpacity: 0.55,
-};
-
-// The dark map: the top bar's slate, with streets a step lighter and water in a deep blue-gray.
-const DARK_MAP = {
-  dark: true,
-  background: "#17112a", // night, in purple
-  water: "#1d1a44",
-  park: "#1c2025",
-  wood: "#1a1e22",
-  wetland: "#1d2126",
-  plaza: "#1b1430",
-  building: "#271d40",
-  school: "#1c1530",
-  road: "#30254f",
-  major: "#45366e",
-  highway: "#8a7542", // freeways in gold
-  path: "#241b3c",
-  casing: "#17112a",
-  highwayCasing: "#3d3220",
-  label: "#cfc6e6",
-  labelHalo: "#120d20",
-  waterLabel: "#9ea3e6",
-  iconOpacity: 0.5,
-};
-
-const MAP_PALETTES = { light: MAP_COLORS, dark: DARK_MAP };
-
-function restyle(style, C = MAP_COLORS) {
-  const green = { "fill-color": C.park, "fill-opacity": 1 };
-  const set = {
-    background: { "background-color": C.background },
-    water: { "fill-color": C.water },
-    park: { ...green, "fill-outline-color": C.park },
-    landcover_grass: green,
-    landcover_wood: { "fill-color": C.wood, "fill-opacity": 1 },
-    landuse_pitch: green,
-    landuse_track: green,
-    landuse_cemetery: green,
-    // Buildings are solid blocks with no outlines, in every theme (the fill's own 1px edge too).
-    building: { "fill-color": C.building, "fill-outline-color": C.building },
-    landuse_school: { "fill-color": C.school },
-    landuse_residential: { "fill-opacity": 0 },
-    waterway_river: { "line-color": C.water },
-    waterway_other: { "line-color": C.water },
-    waterway_tunnel: { "line-color": C.water },
-    // Flat colors instead of the grass-tuft and striped textures.
-    landcover_wetland: { "fill-color": C.wetland, "fill-opacity": 1 },
-    road_area_pattern: { "fill-color": C.plaza, "fill-opacity": 1 },
-  };
-
-  // Icons that clutter the map: bus stops with their long names ("... & NE Pacific Pl - Bay 5"),
-  // parking "P" signs, dorm (residence hall) beds, and (zoomed all the way in) info points, restrooms
-  // and trash cans. Hotels share the dorms' "lodging" class, so dorms are hidden by subclass.
-  // Also the 3D buildings that pop up when zoomed in; the flat "building" layer still draws them.
-  style.layers = style.layers.filter((layer) => layer.id !== "poi_transit" && layer.type !== "fill-extrusion");
-  const hidden = ["bus", "parking", "bicycle_parking", "information", "toilets", "waste_basket"];
-  const notBusStop = [
-    "!",
-    ["any", ["match", ["get", "class"], hidden, true, false], ["==", ["get", "subclass"], "dormitory"]],
-  ];
-
-  for (const layer of style.layers) {
-    if (layer.paint?.["fill-pattern"]) delete layer.paint["fill-pattern"];
-    if (layer.id === "building") delete layer.maxzoom; // it hands off to the (removed) 3D layer at zoom 14
-    if (/^poi_/.test(layer.id)) layer.filter = ["all", layer.filter, notBusStop];
-    const paint = (layer.paint ??= {});
-    // Walkways, sidewalks and park edges as solid lines instead of rows of dots.
-    if (/path_pedestrian|park_outline/.test(layer.id)) delete paint["line-dasharray"];
-    if (set[layer.id]) {
-      Object.assign(paint, set[layer.id]);
-    } else if (layer.type === "line" && /^(road|bridge|tunnel)_/.test(layer.id) && !/rail|path/.test(layer.id)) {
-      const isHighway = (C.major ? /motorway/ : /motorway|trunk/).test(layer.id);
-      const isMajor = C.major && !isHighway && /trunk|primary|secondary|tertiary/.test(layer.id);
-      paint["line-color"] = layer.id.endsWith("casing")
-        ? isHighway ? C.highwayCasing : C.casing
-        : isHighway ? C.highway : isMajor ? C.major : C.road;
-    } else if (C.dark && layer.type === "fill") {
-      paint["fill-color"] = C.plaza; // other land types, so no bright patches on a dark map
-    } else if (C.dark && layer.type === "line") {
-      paint["line-color"] = /path/.test(layer.id) ? (C.path ?? C.road) : C.road; // paths, rail, borders
-    }
-    // Light names on a dark map (water names in blue). Highway shields keep their dark numbers,
-    // since they sit on white shield signs.
-    if (C.iconOpacity && layer.type === "symbol" && layer.layout?.["icon-image"] && !/shield/.test(layer.id)) {
-      paint["icon-opacity"] = C.iconOpacity;
-    }
-    if (C.label && layer.type === "symbol" && layer.layout?.["text-field"] && !/shield/.test(layer.id)) {
-      const water = /water/.test(layer.id) && C.waterLabel;
-      Object.assign(paint, { "text-color": water || C.label, "text-halo-color": C.labelHalo, "text-halo-width": 1.2 });
-    }
-  }
-
-  return style;
-}
-
-// Street and place names in DubHub's own font (whatever the device shows the site in) instead of
-// the map's Noto Sans. MapLibre can draw labels locally in a CSS font, but by default only does it
-// for Chinese, Japanese and Korean; this tells it to do it for every character. If a MapLibre
-// update renames this internal piece, the labels just stay in Noto Sans.
-function labelsInSiteFont(glMap) {
-  const glyphs = glMap?.style?.glyphManager;
-  if (glyphs && typeof glyphs._doesCharSupportLocalGlyph === "function" && glyphs.localIdeographFontFamily) {
-    glyphs._doesCharSupportLocalGlyph = () => true;
-  }
-}
-
-function BaseMap({ palette }) {
-  const map = useMap();
-
-  // Redrawn in the new theme's colors when the theme changes.
-  useEffect(() => {
-    map.attributionControl?.setPrefix(false); // drop the "Leaflet" credit; only the map data's stays
-    let layer;
-    let cancelled = false;
-    fetch(MAP_STYLE)
-      .then((r) => r.json())
-      .then((style) => {
-        if (cancelled) return;
-        layer = L.maplibreGL({
-          style: restyle(style, palette),
-          attribution: MAP_ATTRIBUTION,
-          localIdeographFontFamily: getComputedStyle(document.body).fontFamily,
-        }).addTo(map);
-        labelsInSiteFont(layer.getMaplibreMap());
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-      if (layer) map.removeLayer(layer);
-    };
-  }, [map, palette]);
-
-  return null;
 }
 
 // Hovering a dot opens its pop-up (same as clicking). It stays open while the mouse is on the dot
@@ -1570,18 +1280,6 @@ function MapEventCard({ event, j, alsoHere = [], onPick, onEnter, onLeave, onClo
   );
 }
 
-// When an event starts, said the way a sign would: "Now", "In 12 min", "In 2 hr". Nothing for
-// events more than three hours off (their time is right next to it).
-function startsIn(e, now = Date.now()) {
-  if (!e.date || !e.start) return null;
-  const start = new Date(`${e.date}T${e.start}`).getTime();
-  const end = e.end ? new Date(`${e.date}T${e.end}`).getTime() : start + 36e5;
-  if (now >= start && now <= end) return "Now";
-  const min = Math.round((start - now) / 6e4);
-  if (min < 0 || min > 180) return null;
-  return min < 60 ? `In ${Math.max(min, 1)} min` : `In ${Math.round(min / 60)} hr`;
-}
-
 function StartsTag({ event }) {
   const label = startsIn(event);
   if (!label) return null;
@@ -1589,18 +1287,6 @@ function StartsTag({ event }) {
 }
 
 
-
-// Pans the map to an event picked from the Next up sign.
-function FlyTo({ event }) {
-  const map = useMap();
-  useEffect(() => {
-    if (!event?.pos) return;
-    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (calm) map.setView(event.pos, Math.max(map.getZoom(), 17));
-    else map.flyTo(event.pos, Math.max(map.getZoom(), 17), { duration: 1.1 });
-  }, [map, event]);
-  return null;
-}
 
 // The "Next up" sign on the map: the next few events that haven't ended, soonest first.
 const NEXT_UP_COUNT = 5;
@@ -1647,120 +1333,6 @@ function NextUp({ events, onPick }) {
   );
 }
 
-// Clicking the map itself (not a dot) closes the panel.
-function MapClicks({ onClick }) {
-  useMapEvents({ click: onClick });
-  return null;
-}
-
-// Whether an event is on now or starts within the next day (for the opening labels).
-// Times are the viewer's local time; an event with no time counts as all day.
-const INTRO_HOURS = 24;
-function isSoon(e) {
-  if (!e.date) return true; // sample events have no date
-  const start = new Date(`${e.date}T${e.start ?? "00:00"}`);
-  const end = new Date(`${e.date}T${e.end ?? e.start ?? "23:59"}`);
-  const now = Date.now();
-  return end >= now && start <= now + INTRO_HOURS * 36e5;
-}
-
-// A map marker that's just a styled element (a glow, a ripple), cached so re-renders hand Leaflet
-// the same icon and don't rebuild it (which would restart its animation).
-const iconCache = new Map();
-function cssIcon(className, size) {
-  const key = `${className}|${size}`;
-  if (!iconCache.has(key)) iconCache.set(key, L.divIcon({ className, iconSize: [size, size], html: "<span></span>" }));
-  return iconCache.get(key);
-}
-
-// Events sharing a spot, most popular first (then soonest).
-function popularFirst(x, y) {
-  return (y.rsvps ?? y.going ?? 0) - (x.rsvps ?? x.going ?? 0) || `${x.date}T${x.start}`.localeCompare(`${y.date}T${y.start}`);
-}
-
-// A dot's size: bigger the more people are going.
-function dotRadius(e) {
-  return 9 + Math.min((e.rsvps ?? e.going ?? 0) / 6, 8);
-}
-
-// How long a callout card's stem is (it matches .callout::after in DubHub.css).
-const STEM = 10;
-
-// Map flair: what's happening at a given moment (the time slider's position), today's busiest
-// buildings as glowing hotspots with name labels, and pulsing rings on what's live.
-function spanOf(e) {
-  return e.date && e.start ? eventSpan(e) : null;
-}
-
-// "live": on at that moment; "soon": starts within the next hour; "later": later today; null: other.
-function stateAt(e, at) {
-  const span = spanOf(e);
-  if (!span) return null;
-  if (span.start <= at && at < span.end) return "live";
-  if (span.start > at && span.start - at <= 36e5) return "soon";
-  if (e.date === localDate(0) && span.start > at) return "later";
-  return null;
-}
-
-// A building's short name for its label: the code where there is one, else the place up to a comma.
-function placeName(where) {
-  const p = placeCode(where);
-  if (p && /^[A-Z0-9 ]+$/.test(p.code) && p.code.length <= 5) {
-    return where.replace(/\s*\b\d{2,4}[A-Z]?\b.*$/, "").trim() || p.code;
-  }
-  return where.split(",")[0].replace(/\s*\b(Room|Rm\.?)\s*\S+$/i, "").trim();
-}
-
-// Today's places with something on from this moment on, busiest first.
-function hotPlaces(events, at) {
-  const byPlace = new Map();
-  for (const e of events) {
-    if (!e.pos || !e.where || e.where === "Online" || e.date !== localDate(0)) continue;
-    const span = spanOf(e);
-    if (span && span.end < at) continue;
-    const key = e.pos.join();
-    const p = byPlace.get(key) ?? { pos: e.pos, name: placeName(e.where), events: [] };
-    p.events.push(e);
-    byPlace.set(key, p);
-  }
-  return [...byPlace.values()].sort((a, b) => b.events.length - a.events.length);
-}
-
-const LABELS_SHOWN = 3;
-
-function MapFlair({ events, at, dark }) {
-  const places = hotPlaces(events, at);
-  return (
-    <>
-      {/* Hotspots: a soft glow under each busy building, bigger the more is on there. A CSS
-          gradient on a plain element, not a blurred SVG circle, so panning and the pulsing rings
-          never have to re-blur it. */}
-      <Pane name="hot-glows" style={{ zIndex: 350 }}>
-        {places.map((p) => (
-          <Marker
-            key={`hot|${p.pos.join()}`}
-            position={p.pos}
-            interactive={false}
-            keyboard={false}
-            icon={cssIcon(`hot-glow ${p.events.length > 1 ? "hot-ink" : "hot-gold"}${dark ? " dark" : ""}`, 2 * (34 + Math.min(p.events.length, 6) * 12))}
-          />
-        ))}
-      </Pane>
-      {/* Labels: the busiest buildings named, with how many events are on there today */}
-      {places.slice(0, LABELS_SHOWN).map((p) => (
-        <CircleMarker key={`label|${p.pos.join()}`} center={p.pos} radius={0} stroke={false} fill={false} interactive={false}>
-          <Tooltip permanent direction="right" offset={[16, 0]} opacity={1} className="place-label">
-            <strong>{p.name}</strong>
-            <span>
-              {p.events.length} event{p.events.length === 1 ? "" : "s"}
-            </span>
-          </Tooltip>
-        </CircleMarker>
-      ))}
-    </>
-  );
-}
-
 // The time slider over the map: scrub from now to midnight, and the dots show what's on then.
 function TimeSlider({ at, setAt, now }) {
   const start = now;
@@ -1795,246 +1367,6 @@ function TimeSlider({ at, setAt, now }) {
           Back to now
         </button>
       )}
-    </div>
-  );
-}
-
-function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, palette, at }) {
-  const located = events.filter((e) => e.pos);
-  // Events at the exact same spot draw their dots on top of each other, so hovering any of them
-  // shows all of them, and clicking opens the most popular.
-  const atSpot = new Map();
-  for (const e of located) atSpot.set(e.pos.join(), [...(atSpot.get(e.pos.join()) ?? []), e]);
-  for (const list of atSpot.values()) list.sort(popularFirst);
-  // The hovered spot's cards stay up while the mouse is anywhere in one rectangle: the dot, the
-  // cards, and the strip between them. Leave it and they fade out.
-  const [hoverSpot, setHoverSpot] = useState(null);
-  const [hoverClosing, setHoverClosing] = useState(false);
-  const hoverTimer = useRef();
-  const keepHover = () => {
-    clearTimeout(hoverTimer.current);
-    setHoverClosing(false);
-  };
-  const leaveHover = () => {
-    clearTimeout(hoverTimer.current);
-    // A beat to cross between the dot and the cards, then the fade (matches .callout-stack.closing)
-    hoverTimer.current = setTimeout(() => {
-      setHoverClosing(true);
-      hoverTimer.current = setTimeout(() => {
-        setHoverSpot(null);
-        setHoverClosing(false);
-      }, 180);
-    }, 60);
-  };
-  useEffect(() => () => clearTimeout(hoverTimer.current), []);
-  const hovered = hoverSpot && (atSpot.get(hoverSpot) ?? []).filter((x) => x.id !== shown?.id);
-  const realNow = useNow();
-  const moment = at ?? realNow;
-  // One intro label per place, so events in the same building don't pile up. Only events
-  // happening in the next day get one; the rest are still dots you can hover.
-  const byPlace = new Map();
-  for (const e of located.filter(isSoon)) byPlace.set(e.pos.join(), [...(byPlace.get(e.pos.join()) ?? []), e]);
-  const places = [...byPlace.values()].map((list) => {
-    const clubs = new Set(list.map(hostName));
-    return {
-      pos: list[0].pos,
-      count: list.length,
-      when: list.map((e) => `${e.date ?? ""}T${e.start ?? "00:00"}`).sort()[0], // its soonest event
-      event: list[0], // whose club picture the card shows
-      title: list.length > 1 ? `${list[0].title} +${list.length - 1} more` : list[0].title,
-      sub: clubs.size > 1 ? `${clubs.size} clubs` : hostName(list[0]),
-      lift: Math.max(...list.map(dotRadius)) + STEM, // from the dot's center to the card
-    };
-  });
-
-  return (
-    <MapContainer
-      center={[47.6553, -122.3035]}
-      zoom={15}
-      maxBoundsViscosity={1}
-      zoomSnap={0.25} // so UW's campus fits snugly on any screen size, not just at whole zoom steps
-      scrollWheelZoom
-      zoomControl={false}
-      className="map"
-    >
-      <ZoomControl position="bottomright" />
-      <FlyTo event={flyTo} />
-      <MapArea area={area} />
-      <BaseMap palette={palette} />
-      <MapFlair events={located} at={moment} dark={palette?.dark} />
-      {/* Live and soon: a ring rippling out from the dot. Plain elements in their own layer, so
-          the animation runs on the GPU instead of repainting the map's dots every frame. */}
-      <Pane name="ripples" style={{ zIndex: 390 }}>
-        {located.map((e) => {
-          const state = stateAt(e, moment);
-          return state === "live" || state === "soon" ? (
-            <Marker
-              key={`pulse|${e.id}`}
-              position={e.pos}
-              interactive={false}
-              keyboard={false}
-              icon={cssIcon(`ripple ripple-${state}${palette?.dark ? " dark" : ""}`, 2 * dotRadius(e))}
-            />
-          ) : null;
-        })}
-      </Pane>
-      {/* The open event: a soft purple halo around its dot, instead of a dark ring */}
-      {shown?.pos && (
-        <CircleMarker
-          key={`halo|${shown.id}`}
-          center={shown.pos}
-          radius={dotRadius(shown) + 10}
-          interactive={false}
-          pathOptions={{
-            color: palette?.dark ? "#b9a3f5" : "#4b2e83",
-            weight: 2,
-            opacity: 0.9,
-            fillColor: palette?.dark ? "#b9a3f5" : "#4b2e83",
-            fillOpacity: 0.2,
-          }}
-        />
-      )}
-      {located.map((e) => {
-        const on = shown?.id === e.id;
-        const state = stateAt(e, moment);
-        const soon = state === "live" || state === "soon";
-        // Scrubbed to another time: what isn't on then fades back.
-        const faded = at != null && state !== "live" && state !== "soon" && !on;
-        const radius = dotRadius(e) + (on ? 3 : 0);
-        return (
-          <CircleMarker
-            key={e.id}
-            center={e.pos}
-            radius={radius}
-            pathOptions={{
-              color: on ? "#fff" : soon ? (palette?.dark ? "#ff5c6c" : "#d0263d") : palette?.dark ? "#16181b" : "#fff",
-              weight: on ? 3 : soon ? 4 : 2,
-              fillColor: eventColor(e, palette?.dark),
-              fillOpacity: faded ? 0.18 : 1,
-              opacity: faded ? 0.3 : 1,
-            }}
-            bubblingMouseEvents={false}
-            eventHandlers={{
-              // Click: the detailed panel (with Join), for the most popular event at this spot.
-              click: () => {
-                setHoverSpot(null);
-                onPin(atSpot.get(e.pos.join())[0]);
-              },
-              // Hover: a small card above the dot for each event at this spot.
-              mouseover: () => {
-                keepHover();
-                setHoverSpot(e.pos.join());
-              },
-              mouseout: leaveHover,
-            }}
-          />
-        );
-      })}
-      {hovered?.length > 0 && (
-        <CircleMarker key={`hover|${hoverSpot}`} center={hovered[0].pos} radius={0} stroke={false} fill={false} interactive={false}>
-          <Tooltip
-            permanent
-            interactive
-            direction="top"
-            offset={[0, -(Math.max(...atSpot.get(hoverSpot).map(dotRadius)) + STEM)]}
-            opacity={1}
-            className="event-callout"
-          >
-            <HoverStack
-              events={hovered}
-              closing={hoverClosing}
-              dark={palette?.dark}
-              onEnter={keepHover}
-              onLeave={leaveHover}
-              onPick={(x) => {
-                setHoverSpot(null);
-                onPin(x);
-              }}
-            />
-          </Tooltip>
-        </CircleMarker>
-      )}
-      <MapClicks onClick={onMapClick} />
-      {introLabels && <IntroLabels places={places} dark={palette?.dark} />}
-    </MapContainer>
-  );
-}
-
-// Events starting within three hours (or on now) keep their building's code plate beside the dot,
-// like a sign on the building: one plate per place, brick while something there is on now.
-// Each hangs off an invisible point, since a dot's own tooltip is its hover card.
-
-// The hover cards for one spot. Each is a button that opens that event's panel.
-function HoverStack({ events, closing, dark, onEnter, onLeave, onPick }) {
-  const ref = useRef();
-  useEffect(() => {
-    if (!ref.current) return;
-    L.DomEvent.disableClickPropagation(ref.current); // a click here isn't a click on the map
-    L.DomEvent.disableScrollPropagation(ref.current);
-  }, []);
-  return (
-    <div ref={ref} className={closing ? "callout-stack closing" : "callout-stack"} onMouseEnter={onEnter} onMouseLeave={onLeave}>
-      {events.map((x, i) => (
-        // --i: how far from the dot, so the cards rise one after another, nearest first
-        <button key={x.id} type="button" className="callout-pick" style={{ "--i": events.length - 1 - i }} onClick={() => onPick(x)}>
-          <EventCallout event={x} dark={dark} />
-        </button>
-      ))}
-    </div>
-  );
-}
-
-// Line icons for each event type (the callout's icon tile).
-const TYPE_ICONS = {
-  Study: "M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20",
-  Club: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8",
-  Food: "M3 2v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6a2 2 0 0 0 2 2h3zm0 0v7",
-  Hangout: "M17 8h1a4 4 0 1 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4zM6 2v2M10 2v2M14 2v2",
-  "Game night": "M6 11h4M8 9v4M15 12h.01M18 10h.01M17.3 5H6.7a4 4 0 0 0-4 3.6C2.6 9.4 2 14.5 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.4-1.4a2 2 0 0 1 1.4-.6h4.4a2 2 0 0 1 1.4.6L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.5-.6-6.6-.7-7.3a4 4 0 0 0-4-3.7z",
-};
-const PIN_ICON = "M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z";
-
-// Club pictures that didn't load, so the cards don't keep asking for them.
-const brokenLogos = new Set();
-
-// A card on the map, as in DubHub's cover art: the club's picture (or, if it has none, an icon for
-// the kind of event on white), the event's name, and a line under it, with a stem to the dot.
-// Hovering a dot shows one (with where it is); so do the soonest events when the site opens.
-function EventCallout({ event, title = event.title, sub, dark }) {
-  const [, setBroken] = useState(false);
-  const group = eventGroup(event);
-  const code = placeCode(event.where)?.code;
-  const logo = event.club?.logo;
-  const picture = !code && logo && !brokenLogos.has(logo);
-  const line = sub ?? [event.start && formatTime(event.start), event.where ?? hostName(event)].filter(Boolean).join(", ");
-  return (
-    <div className="callout">
-      <span className={code ? "callout-icon callout-code" : "callout-icon"}>
-        {code ? (
-          <span className={code.length > 4 ? "small" : undefined}>{code}</span>
-        ) : picture ? (
-          <img
-            src={logo}
-            alt=""
-            decoding="async"
-            onError={() => {
-              brokenLogos.add(logo);
-              setBroken(true);
-            }}
-          />
-        ) : (
-          <Icon d={TYPE_ICONS[event.type] ?? PIN_ICON} />
-        )}
-      </span>
-      <span className="callout-text">
-        {/* What the dot's color means, so it never rests on color alone */}
-        <span className="callout-group">
-          <i style={{ background: dark ? group.dark : group.light }} />
-          {group.name}
-        </span>
-        <strong>{title}</strong>
-        <span>{line}</span>
-      </span>
     </div>
   );
 }
@@ -2080,17 +1412,22 @@ function Home({ f, area, introLabels, j, palette, showSlider }) {
 
   return (
     <main className="home">
-      <EventMap
-        events={f.events}
-        area={area}
-        introLabels={introLabels}
-        shown={event}
-        flyTo={flyTo}
-        onPin={(e) => show(e, true)}
-        onMapClick={close}
-        palette={palette}
-        at={showSlider ? at : null}
-      />
+      {/* Until the map's code has arrived, its place shows the map's own ground color. */}
+      <MapGuard>
+        <Suspense fallback={<div className="map map-loading" aria-busy="true" />}>
+          <EventMap
+            events={f.events}
+            area={area}
+            introLabels={introLabels}
+            shown={event}
+            flyTo={flyTo}
+            onPin={(e) => show(e, true)}
+            onMapClick={close}
+            palette={palette}
+            at={showSlider ? at : null}
+          />
+        </Suspense>
+      </MapGuard>
       {showSlider && <TimeSlider at={at} setAt={setAt} now={now} />}
       <MapLegend events={f.events} dark={palette?.dark} />
       <Filters f={f} />
@@ -2197,37 +1534,80 @@ function EventDetail({ event, j, onClose }) {
 // The color around a picture's edges (cached per picture), to fill the space beside it when it's
 // fitted into a frame of another shape, so the gap looks like part of the picture. Sampled from a
 // tiny copy; pictures from other sites that don't allow it get no color (null).
-const edgeColors = new Map();
-function edgeColor(img) {
-  if (edgeColors.has(img.src)) return edgeColors.get(img.src);
-  let color = null;
-  try {
-    const n = 24;
-    const canvas = document.createElement("canvas");
-    canvas.width = canvas.height = n;
-    const ctx = canvas.getContext("2d", { willReadFrequently: true });
-    ctx.drawImage(img, 0, 0, n, n);
-    const px = ctx.getImageData(0, 0, n, n).data;
-    let r = 0;
-    let g = 0;
-    let b = 0;
-    let count = 0;
-    for (let y = 0; y < n; y++) {
-      for (let x = 0; x < n; x++) {
-        if (x > 1 && x < n - 2 && y > 1 && y < n - 2) continue; // just the outer two pixels
-        const i = (y * n + x) * 4;
-        r += px[i];
-        g += px[i + 1];
-        b += px[i + 2];
-        count++;
-      }
+const edgeColors = new Map(); // picture address -> its color, once known
+const edgeColorJobs = new Map(); // picture address -> the look-up under way
+
+// The average color of the outer two pixels of a 24x24 copy of a picture, as "rgb(r, g, b)".
+function borderColor(picture) {
+  const n = 24;
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = n;
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  ctx.drawImage(picture, 0, 0, n, n);
+  const px = ctx.getImageData(0, 0, n, n).data;
+  let r = 0;
+  let g = 0;
+  let b = 0;
+  let count = 0;
+  for (let y = 0; y < n; y++) {
+    for (let x = 0; x < n; x++) {
+      if (x > 1 && x < n - 2 && y > 1 && y < n - 2) continue; // just the outer two pixels
+      const i = (y * n + x) * 4;
+      r += px[i];
+      g += px[i + 1];
+      b += px[i + 2];
+      count++;
     }
-    color = `rgb(${Math.round(r / count)}, ${Math.round(g / count)}, ${Math.round(b / count)})`;
-  } catch {
-    // A picture from another site that doesn't allow reading it
   }
-  edgeColors.set(img.src, color);
-  return color;
+  return `rgb(${Math.round(r / count)}, ${Math.round(g / count)}, ${Math.round(b / count)})`;
+}
+
+async function findEdgeColor(img) {
+  const url = new URL(img.src);
+  const onTheWeb = url.protocol === "http:" || url.protocol === "https:";
+  // A picture from another site: browsers don't let a page read those, so don't try.
+  if (onTheWeb && url.origin !== location.origin) return null;
+  // A big picture (a flyer) is the slow case; a small one (a club's logo) is read straight off
+  // the page below, which takes no time at all.
+  const big = img.naturalWidth * img.naturalHeight > 256 * 256;
+  if (big && onTheWeb && window.createImageBitmap) {
+    try {
+      // Drawing the <img> itself makes the browser unpack the whole picture right then, freezing
+      // the page for a moment on a slow computer (and there's one of these per odd-shaped flyer).
+      // Asking for a tiny copy of the file instead (it just loaded, so it comes from the browser's
+      // cache) gets unpacked and shrunk in the background. "medium" makes each of its pixels an
+      // average of the picture under it, which gives the same color to within a shade or two.
+      const file = await (await fetch(img.src, { cache: "force-cache" })).blob();
+      const tiny = await createImageBitmap(file, { resizeWidth: 24, resizeHeight: 24, resizeQuality: "medium" });
+      try {
+        return borderColor(tiny);
+      } finally {
+        tiny.close?.();
+      }
+    } catch {
+      // Couldn't get it that way: read the picture on the page instead.
+    }
+  }
+  try {
+    return borderColor(img);
+  } catch {
+    return null; // A picture that can't be read
+  }
+}
+
+// A promise of the picture's edge color (null if it can't be read).
+function edgeColor(img) {
+  const src = img.src;
+  if (!edgeColorJobs.has(src)) {
+    edgeColorJobs.set(
+      src,
+      findEdgeColor(img).then((color) => {
+        edgeColors.set(src, color);
+        return color;
+      })
+    );
+  }
+  return edgeColorJobs.get(src);
 }
 
 // A picture that fills its frame when it's about the frame's shape, and otherwise is shown whole
@@ -2235,16 +1615,28 @@ function edgeColor(img) {
 // their colors (HuskyLink) sit on a blurred, zoomed-in copy of themselves instead, unless
 // `backdrop` is off (then they get the frame's own background). `whole` always shows it whole.
 function FitImg({ src, whole = false, backdrop = true, className, onError, ...rest }) {
-  const [fit, setFit] = useState(null); // null, or { color } (color null: use the blurred copy)
+  // null: fills the frame. { color }: shown whole on that color; a null color means use the
+  // blurred copy, and undefined means the color is still being looked up.
+  const [fit, setFit] = useState(null);
   const onLoad = (ev) => {
     const img = ev.currentTarget;
     const frame = img.clientWidth / img.clientHeight;
     const pic = img.naturalWidth / img.naturalHeight;
     if (!frame || !pic) return;
     // More than about 15% off the frame's shape: cropping would cut off too much
-    if (whole || Math.abs(Math.log(pic / frame)) > 0.14) setFit({ color: edgeColor(img) });
+    if (!whole && Math.abs(Math.log(pic / frame)) <= 0.14) return;
+    const loaded = img.src;
+    if (edgeColors.has(loaded)) {
+      setFit({ color: edgeColors.get(loaded) });
+      return;
+    }
+    setFit({ color: undefined });
+    edgeColor(img).then((color) => {
+      if (img.src === loaded) setFit({ color }); // (not if the frame has since been given another picture)
+    });
   };
-  const blurred = fit && !fit.color && backdrop;
+  const waiting = fit && fit.color === undefined;
+  const blurred = fit && fit.color === null && backdrop;
   return (
     <>
       {blurred && <span className="fit-backdrop" style={{ backgroundImage: `url(${JSON.stringify(src)})` }} aria-hidden="true" />}
@@ -2253,7 +1645,16 @@ function FitImg({ src, whole = false, backdrop = true, className, onError, ...re
         src={src}
         alt=""
         className={fit ? [className, "fitted"].filter(Boolean).join(" ") : className}
-        style={fit ? { objectFit: "contain", backgroundColor: fit.color ?? (blurred ? "transparent" : undefined) } : undefined}
+        style={
+          fit
+            ? {
+                objectFit: "contain",
+                backgroundColor: fit.color ?? (blurred ? "transparent" : undefined),
+                // The picture and its edge color show up together, a moment later, never one without the other.
+                visibility: waiting ? "hidden" : undefined,
+              }
+            : undefined
+        }
         onLoad={onLoad}
         onError={onError}
       />
@@ -2266,25 +1667,6 @@ function HeroImage({ src }) {
   const [failed, setFailed] = useState(false);
   if (failed) return null;
   return <FitImg className="event-hero" src={src} whole backdrop={false} decoding="async" onError={() => setFailed(true)} />;
-}
-
-// "Today", "Tomorrow", or "Wed, Nov 4" for an event's "2026-11-04" date.
-function dayLabel(date) {
-  if (!date) return "Date not listed";
-  const [y, m, d] = date.split("-").map(Number);
-  const day = new Date(y, m - 1, d);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const diff = Math.round((day - today) / 864e5);
-  if (diff === 0) return "Today";
-  if (diff === 1) return "Tomorrow";
-  return day.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
-}
-
-// "Saturday, November 7"
-function fullDay(date) {
-  const [y, m, d] = date.split("-").map(Number);
-  return new Date(y, m - 1, d).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
 }
 
 // Events grouped under a heading per day, in date order (undated ones last).
@@ -2347,14 +1729,6 @@ function ChipFilter({ label, options, value, onChange }) {
   );
 }
 
-// When an event starts and ends, as times (an event with no end runs an hour; no start, all day).
-function eventSpan(e) {
-  if (!e.date) return null;
-  const start = new Date(`${e.date}T${e.start ?? "00:00"}`).getTime();
-  const end = e.end ? new Date(`${e.date}T${e.end}`).getTime() : e.start ? start + 36e5 : new Date(`${e.date}T23:59`).getTime();
-  return { start, end, allDay: !e.start };
-}
-
 // The Now page's sections, in order. Every event that hasn't ended lands in exactly one.
 const NOW_SECTIONS = [
   { id: "now", title: "On now" },
@@ -2376,13 +1750,15 @@ function sectionOf(e, now = Date.now()) {
 
 // One event on the board: the club's flyer first, with the going toggle on its corner, then the
 // time, the title, the host and where, set as plain text under it. The flyer and title open it.
-function EventTile({ event: e, section, j, onSelect, index = 0, children }) {
+// A board holds about a hundred of these, so a tile is only redrawn when something it shows
+// changes (`now`, the page's clock, is what keeps "in 12 min" counting down).
+const EventTile = memo(function EventTile({ event: e, section, j, onSelect, index = 0, now, children }) {
   // The flyer, else the club's picture; if one won't load, the next; none left, the title card.
   const pictures = eventPictures(e);
   const [broken, setBroken] = useState(0);
   const picture = pictures[broken];
   const live = section === "now";
-  const soon = section === "soon" ? startsIn(e) : null;
+  const soon = section === "soon" ? startsIn(e, now) : null;
   const day = section === "later";
   const when = [day && dayLabel(e.date), e.start ? formatTime(e.start) : "All day"].filter(Boolean).join(", ");
   return (
@@ -2421,7 +1797,7 @@ function EventTile({ event: e, section, j, onSelect, index = 0, children }) {
       {children}
     </li>
   );
-}
+});
 
 // The going toggle on each row: a round button with a plus; once you're going it fills green with
 // a check, popping and throwing a small burst in the event's color.
@@ -2551,22 +1927,118 @@ function DayStrip({ events, now, onSelect }) {
 
 // The red line at the current time, between what's on and what's next.
 function NowLine({ now }) {
+  const time = clockTime(now);
   return (
-    <li className="now-line" aria-label={`Now, ${new Date(now).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}`}>
-      <span className="now-line-time">{new Date(now).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}</span>
+    <li className="now-line" aria-label={`Now, ${time}`}>
+      <span className="now-line-time">{time}</span>
       <span className="now-line-rule" />
     </li>
   );
 }
 
-// "Sat, Nov 8 · 1:40 PM", ticking once a minute.
-function useNow() {
-  const [now, setNow] = useState(() => Date.now());
+// ------------------------------------------------------------------ the hero's blurred flyers
+// The band behind the Now headline takes its color from the next three flyers, blown up and
+// blurred. DubHub.css can do that itself (.now-hero::before, a CSS blur), but a blur that big is
+// worked out again on every frame the band is on screen while anything moves (scrolling, the
+// flyers fanning in), which is a lot to ask of a computer without a fast graphics chip. So where
+// the browser is able to, the same picture is drawn once, small, into a canvas, and the browser
+// only has to stretch it: under a 56px blur there's no detail left to lose. Browsers that can't
+// blur on a canvas keep the CSS version.
+const canBlurOnCanvas = typeof CanvasRenderingContext2D !== "undefined" && "filter" in CanvasRenderingContext2D.prototype;
+const HERO_ART_SHRINK = 8; // one canvas pixel for every 8 on the page
+const HERO_ART_BLUR = 56; // the same numbers as .now-hero::before
+const HERO_ART_TONE = "saturate(1.7) brightness(1.05)";
+// Where each flyer goes in the band, as fractions of its width and height [left, top, wide, tall],
+// back to front: the same layout as .now-hero::before's three backgrounds.
+const HERO_ART_SPOTS = [
+  [0, 0, 0.5, 1], // the third flyer, on the left
+  [0.275, 0.1, 0.5, 0.9], // the second, low in the middle
+  [0.45, 0, 0.55, 1], // the next event's, on the right and on top
+];
+
+// A small copy of a picture to draw from (null if it won't load). Our own pictures are unpacked
+// in the background; another site's can't be fetched that way, so it's shrunk from the loaded image.
+async function smallPicture(url) {
+  const img = new Image();
+  img.src = url;
+  try {
+    await new Promise((ok, failed) => {
+      img.onload = ok;
+      img.onerror = failed;
+    });
+  } catch {
+    return null;
+  }
+  if (!window.createImageBitmap) return img;
+  const size = { resizeWidth: 128, resizeQuality: "medium" };
+  try {
+    if (new URL(img.src).origin === location.origin) {
+      // (it just loaded, so this read comes from the browser's cache)
+      const file = await (await fetch(img.src, { cache: "force-cache" })).blob();
+      return await createImageBitmap(file, size);
+    }
+  } catch {
+    // Couldn't get it that way: shrink the loaded image instead.
+  }
+  try {
+    return await createImageBitmap(img, size);
+  } catch {
+    return img;
+  }
+}
+
+// `pictures`: three flyer addresses, front to back.
+function HeroArt({ pictures }) {
+  const canvas = useRef(null);
+  const key = pictures.join("\n");
   useEffect(() => {
-    const t = setInterval(() => setNow(Date.now()), 60e3);
-    return () => clearInterval(t);
-  }, []);
-  return now;
+    const el = canvas.current;
+    const urls = key.split("\n");
+    let stopped = false;
+    let small = null; // the three small copies, once they've loaded
+    let drawn = "";
+    const draw = () => {
+      if (stopped || !small) return;
+      // The canvas covers the band plus 80px all around (DubHub.css); it's drawn at 1/8 of that.
+      const w = Math.max(1, Math.round(el.clientWidth / HERO_ART_SHRINK));
+      const h = Math.max(1, Math.round(el.clientHeight / HERO_ART_SHRINK));
+      if (drawn === `${w}x${h}` || !el.clientWidth) return;
+      drawn = `${w}x${h}`;
+      // The three flyers, sharp, on a spare canvas...
+      const sharp = document.createElement("canvas");
+      sharp.width = w;
+      sharp.height = h;
+      const pen = sharp.getContext("2d");
+      pen.imageSmoothingQuality = "medium";
+      HERO_ART_SPOTS.forEach(([left, top, wide, tall], i) => {
+        const picture = small[HERO_ART_SPOTS.length - 1 - i]; // back to front
+        if (picture) pen.drawImage(picture, left * w, top * h, wide * w, tall * h);
+      });
+      // ...then blurred as one picture, the way a CSS blur treats an element.
+      el.width = w;
+      el.height = h;
+      const ctx = el.getContext("2d");
+      ctx.filter = `blur(${(HERO_ART_BLUR * w) / el.clientWidth}px) ${HERO_ART_TONE}`;
+      ctx.drawImage(sharp, 0, 0);
+    };
+    const copies = new Map(urls.map((url) => [url, null]));
+    Promise.all([...copies.keys()].map(async (url) => copies.set(url, await smallPicture(url)))).then(() => {
+      if (stopped) {
+        for (const copy of copies.values()) copy?.close?.();
+        return;
+      }
+      small = urls.map((url) => copies.get(url));
+      draw();
+    });
+    const sized = new ResizeObserver(draw); // the band changes size with the window
+    sized.observe(el);
+    return () => {
+      stopped = true;
+      sized.disconnect();
+      if (small) for (const copy of copies.values()) copy?.close?.();
+    };
+  }, [key]);
+  return <canvas ref={canvas} className="hero-art" aria-hidden="true" />;
 }
 
 // The Now page's headline changes every two hours, in keeping with the time of day, and the day
@@ -2585,39 +2057,55 @@ function headline(date) {
   return pool[(Math.floor(h / 2) + day) % pool.length];
 }
 
-function NowPage({ f, updated, j, onSelect }) {
+// The front page. Only redrawn when its own events, filters or going list change (not when, say,
+// an event's pop-up opens over it).
+const NowPage = memo(function NowPage({ f, updated, j, onSelect }) {
   const [query, setQuery] = useState("");
   const now = useNow();
-  const q = query.trim().toLowerCase();
-  const events = q
-    ? f.events.filter((e) => [e.title, e.host, e.club?.name, e.where, e.description].some((s) => s?.toLowerCase().includes(q)))
-    : f.events;
+  // The search box shows each letter right away; the board (about a hundred flyers) follows as
+  // soon as the browser has a free moment, so typing never waits on it.
+  const searched = useDeferredValue(query);
+  const q = searched.trim().toLowerCase();
 
-  const seen = new Map();
-  for (const e of events) {
-    const key = `${hostName(e)}|${e.date}|${e.start ?? ""}`;
-    const prev = seen.get(key);
-    if (!prev || (!prev.image && e.image)) seen.set(key, e);
-  }
-  const unique = [...seen.values()];
-  const sections = NOW_SECTIONS.map((sec) => ({ ...sec, events: [] }));
-  const when = (e) => `${e.date}T${e.start ?? "99"}`; // all-day events after the timed ones that day
-  for (const e of unique.sort((x, y) => when(x).localeCompare(when(y)))) {
-    const id = sectionOf(e, now);
-    if (id) sections.find((sec) => sec.id === id).events.push(e);
-  }
+  // What the board shows, worked out again only when the events, the search or the minute changes.
+  const { unique, sections } = useMemo(() => {
+    const events = q
+      ? f.events.filter((e) => [e.title, e.host, e.club?.name, e.where, e.description].some((s) => s?.toLowerCase().includes(q)))
+      : f.events;
+
+    const seen = new Map();
+    for (const e of events) {
+      const key = `${hostName(e)}|${e.date}|${e.start ?? ""}`;
+      const prev = seen.get(key);
+      if (!prev || (!prev.image && e.image)) seen.set(key, e);
+    }
+    const unique = [...seen.values()];
+    const sections = NOW_SECTIONS.map((sec) => ({ ...sec, events: [] }));
+    const when = (e) => `${e.date}T${e.start ?? "99"}`; // all-day events after the timed ones that day
+    for (const e of unique.sort((x, y) => when(x).localeCompare(when(y)))) {
+      const id = sectionOf(e, now);
+      if (id) sections.find((sec) => sec.id === id).events.push(e);
+    }
+    return { unique, sections };
+  }, [f.events, q, now]);
   const shown = sections.filter((sec) => sec.events.length);
   const clock = new Date(now);
   // The band behind the headline takes its color from the next three events' flyers.
-  const heroArt = sections
+  const heroFlyers = sections
     .flatMap((sec) => sec.events)
     .filter((e) => e.image && ["now", "soon", "today"].includes(sectionOf(e, now)))
     .slice(0, 3)
-    .map((e) => `url(${JSON.stringify(e.image)})`);
+    .map((e) => e.image);
+  const heroArt = heroFlyers.map((image) => `url(${JSON.stringify(image)})`);
+  const onCanvas = canBlurOnCanvas && heroFlyers.length > 0;
 
   return (
     <main className="page now-page">
-      <section className="now-hero" style={heroArt.length ? { "--art-1": heroArt[0], "--art-2": heroArt[1] ?? heroArt[0], "--art-3": heroArt[2] ?? heroArt[0] } : undefined}>
+      <section
+        className={onCanvas ? "now-hero art-on-canvas" : "now-hero"}
+        style={!onCanvas && heroArt.length ? { "--art-1": heroArt[0], "--art-2": heroArt[1] ?? heroArt[0], "--art-3": heroArt[2] ?? heroArt[0] } : undefined}
+      >
+        {onCanvas && <HeroArt pictures={[heroFlyers[0], heroFlyers[1] ?? heroFlyers[0], heroFlyers[2] ?? heroFlyers[0]]} />}
         {/* The Quad in spring (public domain, Wikimedia Commons), faint under the purple */}
         <img className="hero-photo" src="/hero-quad.jpg" alt="" aria-hidden="true" />
         <div className="now-hero-inner">
@@ -2657,7 +2145,7 @@ function NowPage({ f, updated, j, onSelect }) {
       </div>
       {shown.length === 0 && (
         <div className="empty-wall">
-          <p>{q ? `Nothing matches "${query}".` : "Nothing coming up for these filters."}</p>
+          <p>{q ? `Nothing matches "${searched}".` : "Nothing coming up for these filters."}</p>
           {f.when !== "Any time" && (
             <button className="link-button" onClick={() => f.setWhen("Any time")}>
               Look further ahead
@@ -2675,11 +2163,11 @@ function NowPage({ f, updated, j, onSelect }) {
               </h2>
               <ol className="tile-grid">
                 {sections[0].events.map((e, i) => (
-                  <EventTile key={e.id} event={e} section="now" j={j} onSelect={onSelect} index={i} />
+                  <EventTile key={e.id} event={e} section="now" j={j} onSelect={onSelect} index={i} now={now} />
                 ))}
                 <NowLine now={now} />
                 {[...sections[1].events, ...sections[2].events].map((e, i) => (
-                  <EventTile key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} index={sections[0].events.length + i + 1} />
+                  <EventTile key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} index={sections[0].events.length + i + 1} now={now} />
                 ))}
               </ol>
             </section>
@@ -2691,7 +2179,7 @@ function NowPage({ f, updated, j, onSelect }) {
               </h2>
               <ol className="tile-grid">
                 {sec.events.map((e) => (
-                  <EventTile key={e.id} event={e} section={sec.id} j={j} onSelect={onSelect} />
+                  <EventTile key={e.id} event={e} section={sec.id} j={j} onSelect={onSelect} now={now} />
                 ))}
               </ol>
             </section>
@@ -2715,7 +2203,7 @@ function NowPage({ f, updated, j, onSelect }) {
       </div>
     </main>
   );
-}
+});
 
 // ------------------------------------------------------------------------------ share links
 // An event's own link: dubhub.../#event=<id> opens straight to it.
@@ -2770,8 +2258,16 @@ function ClubJoinButton({ club, clubs }) {
 }
 
 
+// A club's events from a list (don't change the list it returns). The Clubs page asks this for
+// every club each time it redraws (on every letter typed in its search box), which is about
+// 25,000 comparisons, so each answer is kept for as long as the same list of events is in use.
+const hostedLists = new WeakMap(); // a list of events -> (club -> that club's events in it)
 function hostedBy(all, club) {
-  return all.filter((e) => isHostedBy(e, club));
+  let byClub = hostedLists.get(all);
+  if (!byClub) hostedLists.set(all, (byClub = new Map()));
+  let list = byClub.get(club);
+  if (!list) byClub.set(club, (list = all.filter((e) => isHostedBy(e, club))));
+  return list;
 }
 
 // A club's events that have already happened, most recent first.
@@ -2979,7 +2475,7 @@ function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect })
         {picks.slice(0, limit).map(({ event: e, reason }, i) => {
           const v = votes[String(e.id)];
           return (
-            <EventTile key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} index={i}>
+            <EventTile key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} index={i} now={now}>
               <div className="rec-foot">
                 <span className={v === 1 ? "rec-reason liked" : "rec-reason"}>{v === 1 ? "You liked this" : reason}</span>
                 <span className="rec-votes">
@@ -5667,6 +5163,21 @@ export default function DubHub() {
     const t = setTimeout(() => setIntroLabels(false), 5000);
     return () => clearTimeout(t);
   }, []);
+  // A few seconds after the site opens, in a quiet moment, the map's code is fetched and made
+  // ready in the background, so the first tap on the Map tab doesn't have to wait for it.
+  // (Not when the browser has been asked to save data.)
+  useEffect(() => {
+    if (navigator.connection?.saveData) return;
+    let quiet;
+    const later = setTimeout(() => {
+      if (window.requestIdleCallback) quiet = requestIdleCallback(warmUpEventMap, { timeout: 4000 });
+      else warmUpEventMap();
+    }, 6000);
+    return () => {
+      clearTimeout(later);
+      if (quiet !== undefined) cancelIdleCallback(quiet);
+    };
+  }, []);
   // Based on every event, not just the filtered ones, so the map doesn't jump around while filtering.
   const mapArea = useMemo(() => mapAreaFor(all), [all]);
   const { user, signIn, signOut } = useUser();
@@ -5730,6 +5241,9 @@ export default function DubHub() {
               aria-selected={view === t}
               className={view === t ? "tab active" : "tab"}
               onClick={() => setTab(t)}
+              // Reaching for the Map tab starts fetching the map's code, so it's there by the click.
+              onPointerEnter={t === "Home" ? warmUpEventMap : undefined}
+              onFocus={t === "Home" ? warmUpEventMap : undefined}
             >
               <Icon d={TAB_ICONS[t]} />
               <span>{TAB_LABELS[t] ?? t}</span>

@@ -11,6 +11,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&display=swap"
     />
+    <!-- The events and clubs the first page is made of: asked for right away, alongside the
+         site's code, instead of only once that code has downloaded and started running. -->
+    <link rel="preload" href="/events.json" as="fetch" crossorigin />
+    <link rel="preload" href="/clubs.json" as="fetch" crossorigin />
     <title>DubHub</title>
     <meta name="description" content="See what UW students are doing right now: club events, study sessions, game nights, and more, all on one map." />
   </head>
