@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, CircleMarker, Marker, Pane, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
@@ -348,15 +348,56 @@ const TEAM = [
 ];
 
 const THEME_KEY = "dubhub-theme";
-const darkQuery = () => window.matchMedia("(prefers-color-scheme: dark)");
 
-// Light or dark. Follows the device until someone flips the switch in the top bar, which is then
-// remembered in this browser. Sets <html data-theme>, which DubHub.css reads; MAP_PALETTES has
-// each one's map. (Older picks like "sunset" from the retired themes fall back to the device.)
+// Light or dark. Once someone flips the switch in the top bar, that choice sticks (it's remembered
+// in this browser). Until then: dark if the device is set to dark, and otherwise it follows the
+// sun in Seattle, dark from sunset to sunrise (about 4:30 PM in November, 9 PM in June). Sets
+// <html data-theme>, which DubHub.css reads; MAP_PALETTES has each one's map.
 const THEMES = [
   { id: "light", name: "Light" },
   { id: "dark", name: "Dark" },
 ];
+
+// Sunrise and sunset on a given day in Seattle, from the standard solar position formulas
+// (the ones the NOAA calculator and suncalc use). Good to a minute or two.
+const SEATTLE = { lat: 47.6062, lng: -122.3321 };
+function sunTimes(date) {
+  const rad = Math.PI / 180;
+  const toJulian = (t) => t / 864e5 - 0.5 + 2440588;
+  const fromJulian = (j) => (j + 0.5 - 2440588) * 864e5;
+  const lw = rad * -SEATTLE.lng;
+  const phi = rad * SEATTLE.lat;
+  const noon = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12).getTime();
+  const d = toJulian(noon) - 2451545;
+  const n = Math.round(d - 0.0009 - lw / (2 * Math.PI));
+  const ds = 0.0009 + lw / (2 * Math.PI) + n;
+  const M = rad * (357.5291 + 0.98560028 * ds);
+  const C = rad * (1.9148 * Math.sin(M) + 0.02 * Math.sin(2 * M) + 0.0003 * Math.sin(3 * M));
+  const L = M + C + rad * 102.9372 + Math.PI;
+  const dec = Math.asin(Math.sin(rad * 23.4397) * Math.sin(L));
+  const transit = (a) => 2451545 + a + 0.0053 * Math.sin(M) - 0.0069 * Math.sin(2 * L);
+  const jNoon = transit(ds);
+  const w = Math.acos((Math.sin(rad * -0.833) - Math.sin(phi) * Math.sin(dec)) / (Math.cos(phi) * Math.cos(dec)));
+  const jSet = transit(0.0009 + (w + lw) / (2 * Math.PI) + n);
+  return { rise: fromJulian(jNoon - (jSet - jNoon)), set: fromJulian(jSet) };
+}
+
+function sunTheme(now) {
+  const { rise, set } = sunTimes(new Date(now));
+  return now >= rise && now < set ? "light" : "dark";
+}
+
+// When the sun next rises or sets.
+function nextSunChange(now) {
+  const { rise, set } = sunTimes(new Date(now));
+  if (now < rise) return rise;
+  if (now < set) return set;
+  const tomorrow = new Date(now);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  return sunTimes(tomorrow).rise;
+}
+
+const darkQuery = () => window.matchMedia("(prefers-color-scheme: dark)");
 
 function useTheme() {
   const [choice, setChoice] = useState(() => {
@@ -368,6 +409,7 @@ function useTheme() {
     }
   });
   const [deviceDark, setDeviceDark] = useState(() => darkQuery().matches);
+  const [sun, setSun] = useState(() => sunTheme(Date.now()));
 
   useEffect(() => {
     const q = darkQuery();
@@ -376,10 +418,24 @@ function useTheme() {
     return () => q.removeEventListener("change", onChange);
   }, []);
 
+  // At sunrise or sunset, switch. Also check on coming back to the tab, since a sleeping laptop
+  // can miss the timer.
   useEffect(() => {
-    if (choice) document.documentElement.dataset.theme = choice;
-    else delete document.documentElement.dataset.theme;
-  }, [choice]);
+    const check = () => setSun(sunTheme(Date.now()));
+    const t = setTimeout(check, nextSunChange(Date.now()) - Date.now() + 1000);
+    const onVisible = () => document.visibilityState === "visible" && check();
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      clearTimeout(t);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, [sun]);
+
+  const theme = choice ?? (deviceDark ? "dark" : sun);
+  // Before the first paint, so the page never flashes the other theme
+  useLayoutEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
 
   const pick = (id) => {
     setChoice(id);
@@ -389,7 +445,7 @@ function useTheme() {
       // Private browsing can block storage; the choice still lasts until the page closes.
     }
   };
-  return { theme: choice ?? (deviceDark ? "dark" : "light"), pick };
+  return { theme, pick };
 }
 
 // A yes/no preference kept in this browser.
@@ -498,7 +554,55 @@ function useJoined(key) {
     });
   }, [key]);
 
-  return { joined, toggle };
+  // Add several at once (no-op for ones already there).
+  const add = useCallback(
+    (ids) => {
+      setJoined((old) => {
+        const fresh = ids.filter((id) => !old.includes(id));
+        if (!fresh.length) return old;
+        const next = [...old, ...fresh];
+        try {
+          localStorage.setItem(key, JSON.stringify(next));
+        } catch {
+          // Storage blocked: joins last for this visit only.
+        }
+        return next;
+      });
+    },
+    [key]
+  );
+
+  return { joined, toggle, add };
+}
+
+// Going to an event makes you a member of the club that hosts it. Each event only does this once
+// (remembered in this browser), so leaving that club later sticks.
+const CLUBBED_KEY = "dubhub-going-clubbed";
+function useGoingJoinsClubs(going, events, clubs) {
+  const { add } = clubs;
+  useEffect(() => {
+    if (!going.length || !events.length) return;
+    let done;
+    try {
+      done = new Set(JSON.parse(localStorage.getItem(CLUBBED_KEY)) ?? []);
+    } catch {
+      done = new Set();
+    }
+    const byId = new Map(events.map((e) => [String(e.id), e]));
+    const names = [];
+    for (const id of going) {
+      const e = byId.get(String(id));
+      if (!e || done.has(String(id))) continue;
+      if (e.club?.name) names.push(e.club.name);
+      done.add(String(id));
+    }
+    if (names.length) add([...new Set(names)]);
+    try {
+      localStorage.setItem(CLUBBED_KEY, JSON.stringify([...done]));
+    } catch {
+      // Storage blocked: fine, it just checks again next visit.
+    }
+  }, [going, events, add]);
 }
 
 // Who's going to each event, and which events you joined. Joining needs a UW sign-in: your Joins
@@ -834,7 +938,8 @@ function useEvents() {
   // events.json only refreshes when a scraper runs, so hide events whose day has passed.
   const today = new Date().toLocaleDateString("en-CA");
   const events = useMemo(() => data.events.filter((e) => !e.date || e.date >= today), [data.events, today]);
-  return { events, updated: data.updated };
+  // Past ones too, for a club's past events and whether you went
+  return { events, everything: data.events, updated: data.updated };
 }
 
 // "When" choices: how many days after today each one reaches (rolling, so "This week" is always 7 days).
@@ -2204,7 +2309,7 @@ function sectionOf(e, now = Date.now()) {
 
 // One event on the board: the club's flyer first, with the going toggle on its corner, then the
 // time, the title, the host and where, set as plain text under it. The flyer and title open it.
-function EventTile({ event: e, section, j, onSelect, index = 0 }) {
+function EventTile({ event: e, section, j, onSelect, index = 0, children }) {
   const [broken, setBroken] = useState(false);
   const live = section === "now";
   const soon = section === "soon" ? startsIn(e) : null;
@@ -2243,6 +2348,7 @@ function EventTile({ event: e, section, j, onSelect, index = 0 }) {
           {going(e, j) && <span className="tile-going">{going(e, j)}</span>}
         </p>
       )}
+      {children}
     </li>
   );
 }
@@ -2393,6 +2499,22 @@ function useNow() {
   return now;
 }
 
+// The Now page's headline changes every two hours, in keeping with the time of day, and the day
+// shifts which line comes up so the same hour doesn't always say the same thing.
+const HEADLINES = {
+  late: ["Still up?", "Night owls", "After hours", "Can't sleep?", "Late on the Ave"],
+  morning: ["Rise and shine", "Morning, Huskies", "Coffee first", "Fresh day", "Up and at it"],
+  midday: ["What's on", "On campus today", "Out on the Quad", "Between classes", "Happening now"],
+  afternoon: ["Done with class?", "This afternoon", "Afternoon plans", "Out and about", "Go Dawgs"],
+  evening: ["Tonight", "Evening plans", "After dark", "Night on campus", "Where to tonight?"],
+};
+function headline(date) {
+  const h = date.getHours();
+  const pool = h < 6 ? HEADLINES.late : h < 10 ? HEADLINES.morning : h < 14 ? HEADLINES.midday : h < 18 ? HEADLINES.afternoon : h < 22 ? HEADLINES.evening : HEADLINES.late;
+  const day = Math.floor(new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime() / 864e5);
+  return pool[(Math.floor(h / 2) + day) % pool.length];
+}
+
 function NowPage({ f, updated, j, onSelect }) {
   const [query, setQuery] = useState("");
   const now = useNow();
@@ -2430,7 +2552,7 @@ function NowPage({ f, updated, j, onSelect }) {
         <img className="hero-photo" src="/hero-quad.jpg" alt="" aria-hidden="true" />
         <div className="now-hero-inner">
           <header className="now-head">
-            <h1>What's on</h1>
+            <h1>{headline(clock)}</h1>
             <p className="now-date">{clock.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</p>
             <DayStrip events={unique} now={now} onSelect={onSelect} />
           </header>
@@ -2582,14 +2704,242 @@ function hostedBy(all, club) {
   return all.filter((e) => isHostedBy(e, club));
 }
 
+// A club's events that have already happened, most recent first.
+function pastHostedBy(everything, club) {
+  const today = localDate(0);
+  return everything
+    .filter((e) => e.date && e.date < today && isHostedBy(e, club))
+    .sort((a, b) => b.date.localeCompare(a.date) || (b.start ?? "").localeCompare(a.start ?? ""));
+}
+
+// A club's cover: the flyer from its next event, or failing that its most recent one.
+function clubCover(club, all, everything) {
+  return hostedBy(all, club).find((e) => e.image)?.image ?? pastHostedBy(everything, club).find((e) => e.image)?.image ?? null;
+}
+
 // Events you joined plus every event hosted by a club you're in.
 function myEventsFor(all, clubList, j, clubs) {
   const myClubs = clubList.filter((c) => clubs.joined.includes(c.name));
   return all.filter((e) => j.joined.includes(String(e.id)) || myClubs.some((c) => isHostedBy(e, c)));
 }
 
-function MyEventsPage({ all, clubList, j, clubs, applications, onBrowse, onFindClubs }) {
-  const mine = myEventsFor(all, clubList, j, clubs);
+// ------------------------------------------------------------------ recommendations
+// Thumbs up or down on suggested events, remembered in this browser: { [eventId]: 1 | -1 }.
+const VOTES_KEY = "dubhub-votes";
+function useVotes() {
+  const [votes, setVotes] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(VOTES_KEY)) ?? {};
+    } catch {
+      return {};
+    }
+  });
+  const vote = (id, v) =>
+    setVotes((old) => {
+      const next = { ...old };
+      if (!v || old[id] === v) delete next[id]; // tapping the same thumb again takes it back
+      else next[id] = v;
+      try {
+        localStorage.setItem(VOTES_KEY, JSON.stringify(next));
+      } catch {
+        // Storage blocked: votes last for this visit only.
+      }
+      return next;
+    });
+  return { votes, vote };
+}
+
+const TITLE_STOPWORDS = new Set(
+  "with your from this that will have night club meeting general event events join come free week first annual session the and for our huskies husky".split(" ")
+);
+
+// What an event is "about", as weighted features: its kind, its host, the host's club type, the
+// fields it's for, and the telling words in its title.
+function eventFeatures(e) {
+  const f = [
+    [`type:${e.type}`, 0.5], // broad (a third of everything is a hangout), so it counts for less
+    [`host:${hostName(e)}`, 1],
+  ];
+  if (e.club?.category) f.push([`cat:${e.club.category}`, 0.6]);
+  for (const field of e.fields ?? []) f.push([`field:${field}`, 1]);
+  const words = new Set((e.title ?? "").toLowerCase().match(/[a-z]{4,}/g) ?? []);
+  for (const w of words) if (!TITLE_STOPWORDS.has(w)) f.push([`w:${w}`, 0.5]);
+  return f;
+}
+
+// How many people are into it: RSVPs, plus Instagram likes (worth far less each).
+function popularity(e) {
+  return (e.rsvps ?? e.going ?? 0) + (e.likes ?? 0) / 25;
+}
+
+// A small content-based recommender. It builds a taste profile from what it knows about you
+// (your majors and year, the events you've said you're going to, past ones included, your
+// clubs, and your thumbs up and down), scores every upcoming event against it, and blends in how
+// popular and how soon each one is. With nothing to go on, it falls back to what's popular now.
+function recommend(all, { profile, joined, votes, clubs, exclude }, now = Date.now()) {
+  const taste = new Map();
+  const add = (key, w) => taste.set(key, (taste.get(key) ?? 0) + w);
+  const byId = new Map(all.map((e) => [String(e.id), e]));
+  for (const m of profile?.majors ?? []) {
+    const field = fieldOf(m);
+    if (field) add(`field:${field}`, 2.5);
+  }
+  for (const id of joined) {
+    const e = byId.get(String(id));
+    if (e) for (const [k, w] of eventFeatures(e)) add(k, 1.2 * w);
+  }
+  for (const [id, v] of Object.entries(votes)) {
+    const e = byId.get(id);
+    if (e) for (const [k, w] of eventFeatures(e)) add(k, 1.6 * v * w);
+  }
+  for (const c of clubs) if (c.category) add(`cat:${c.category}`, 0.8);
+  const cold = taste.size === 0;
+
+  const horizon = now + 14 * 864e5;
+  const candidates = all.filter((e) => {
+    const span = eventSpan(e);
+    if (!span || span.end < now || span.start > horizon) return false;
+    if (exclude.has(String(e.id)) || votes[String(e.id)] === -1) return false;
+    if (profile?.year && e.years && !e.years.includes(profile.year)) return false;
+    return true;
+  });
+  const topPop = Math.max(1, ...candidates.map(popularity));
+
+  const scored = candidates.map((e) => {
+    let fit = 0;
+    let best = null;
+    for (const [k, w] of eventFeatures(e)) {
+      const s = (taste.get(k) ?? 0) * w;
+      fit += s;
+      if (s > 0 && (!best || s > best.s)) best = { k, s };
+    }
+    const pop = Math.log1p(popularity(e)) / Math.log1p(topPop); // 0 to 1
+    const hours = (eventSpan(e).start - now) / 36e5;
+    const soon = hours < 48 ? 0.4 : hours < 96 ? 0.2 : 0;
+    const liked = votes[String(e.id)] === 1 ? 1 : 0;
+    // Fit grows with evidence but levels off (toward 3), so one thumbs up nudges the list instead
+    // of taking it over; a poor fit counts against an event in full.
+    const fitScore = cold ? 0 : fit > 0 ? (3 * fit) / (fit + 3) : fit;
+    return { event: e, score: fitScore + 1.5 * pop + soon + liked, reason: reasonFor(best, cold) };
+  });
+  scored.sort((a, b) => b.score - a.score);
+
+  // Keep it varied: at most two from the same host.
+  const perHost = new Map();
+  const picks = scored.filter(({ event }) => {
+    const h = hostName(event);
+    perHost.set(h, (perHost.get(h) ?? 0) + 1);
+    return perHost.get(h) <= 2;
+  });
+  return { cold, picks };
+}
+
+// Why an event was suggested, in a few words.
+function reasonFor(best, cold) {
+  if (cold || !best || best.s < 0.5) return "Popular right now";
+  const cut = best.k.indexOf(":");
+  const kind = best.k.slice(0, cut);
+  const value = best.k.slice(cut + 1);
+  if (kind === "field") return `For ${value} majors`;
+  if (kind === "type") return `You like ${value.toLowerCase()} events`;
+  if (kind === "host") return `More from ${value}`;
+  if (kind === "cat") return `${value}, like your clubs`;
+  return "Like events you liked";
+}
+
+const THUMB_UP_ICON = "M7 10v11M7 10l4-8a3 3 0 0 1 3 3v4h5.5a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 18 21H7M7 10H4v11h3";
+const THUMB_DOWN_ICON = "M17 14V3M17 14l-4 8a3 3 0 0 1-3-3v-4H4.5a2 2 0 0 1-2-2.3l1.4-8A2 2 0 0 1 6 3h11M17 14h3V3h-3";
+const RECS_PAGE = 8;
+
+// "Picked for you": suggested events as flyer tiles, each with thumbs up and down. A thumbs down
+// hides it (with an undo) and steers the rest away from things like it; a thumbs up steers toward.
+function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect }) {
+  const now = useNow();
+  const { votes, vote } = useVotes();
+  const [limit, setLimit] = useState(RECS_PAGE);
+  const [hidden, setHidden] = useState(null); // the event just thumbed down, for undo
+  const { cold, picks } = useMemo(
+    () => recommend(all, { profile, joined: j.joined, votes, clubs: myClubs, exclude }, now),
+    [all, profile, j.joined, votes, myClubs, exclude, now]
+  );
+  if (!picks.length) return null;
+  const known = [
+    profile?.majors?.length > 0 && "your major",
+    j.joined.length > 0 && "events you've joined",
+    Object.keys(votes).length > 0 && "your votes",
+    clubs.joined.length > 0 && "your clubs",
+  ].filter(Boolean);
+  const basis = known.length > 1 ? `${known.slice(0, -1).join(", ")} and ${known.at(-1)}` : known[0];
+  return (
+    <section className="recs" aria-labelledby="recs-title">
+      <header className="recs-head">
+        <p className="recs-kicker">{cold ? "Start here" : "Picked for you"}</p>
+        <h2 id="recs-title">{cold ? "Popular right now" : "Suggested for you"}</h2>
+        <p className="recs-sub">
+          {cold
+            ? "What the most people are going to. Thumbs up the ones you like and this turns into picks for you. Adding your major in your profile helps too."
+            : `Based on ${basis}. Thumbs up or down to tune them.`}
+        </p>
+      </header>
+      {hidden && (
+        <p className="recs-undo" role="status">
+          Hidden <strong>{hidden.title}</strong>. You'll see fewer like it.{" "}
+          <button
+            className="link-button"
+            onClick={() => {
+              vote(String(hidden.id), 0);
+              setHidden(null);
+            }}
+          >
+            Undo
+          </button>
+        </p>
+      )}
+      <ul className="tile-grid recs-grid">
+        {picks.slice(0, limit).map(({ event: e, reason }, i) => {
+          const v = votes[String(e.id)];
+          return (
+            <EventTile key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} index={i}>
+              <div className="rec-foot">
+                <span className={v === 1 ? "rec-reason liked" : "rec-reason"}>{v === 1 ? "You liked this" : reason}</span>
+                <span className="rec-votes">
+                  <button
+                    className={v === 1 ? "rec-vote on" : "rec-vote"}
+                    aria-pressed={v === 1}
+                    aria-label={`More like ${e.title}`}
+                    title="More like this"
+                    onClick={() => vote(String(e.id), 1)}
+                  >
+                    <Icon d={THUMB_UP_ICON} />
+                  </button>
+                  <button
+                    className="rec-vote down"
+                    aria-label={`Less like ${e.title}`}
+                    title="Less like this"
+                    onClick={() => {
+                      vote(String(e.id), -1);
+                      setHidden(e);
+                    }}
+                  >
+                    <Icon d={THUMB_DOWN_ICON} />
+                  </button>
+                </span>
+              </div>
+            </EventTile>
+          );
+        })}
+      </ul>
+      {picks.length > limit && (
+        <button className="join secondary recs-more" onClick={() => setLimit((n) => n + RECS_PAGE)}>
+          Show more suggestions
+        </button>
+      )}
+    </section>
+  );
+}
+
+function MyEventsPage({ all, everything = all, clubList, j, clubs, applications, profile, onBrowse, onFindClubs }) {
+  const mine = useMemo(() => myEventsFor(all, clubList, j, clubs), [all, clubList, j, clubs]);
   const [selected, setSelected] = useState(null);
   const [openClub, setOpenClub] = useState(null);
   // Open applications from the clubs you joined, soonest deadline first.
@@ -2597,35 +2947,79 @@ function MyEventsPage({ all, clubList, j, clubs, applications, onBrowse, onFindC
   const myApps = open.filter((a) => a.club && clubs.joined.includes(a.club.name));
   // The clubs you joined, in the order you joined them. One that's left the Clubs page (no events
   // in a year) still shows by name once the club list has loaded.
-  const myClubs = clubList.length
-    ? clubs.joined.map((name) => clubList.find((c) => c.name === name) ?? { name, gone: true })
-    : [];
+  const myClubs = useMemo(
+    () => (clubList.length ? clubs.joined.map((name) => clubList.find((c) => c.name === name) ?? { name, gone: true }) : []),
+    [clubList, clubs.joined]
+  );
+  const now = useNow();
+  // Suggestions leave out what's already on this page.
+  const exclude = useMemo(() => new Set(mine.map((e) => String(e.id))), [mine]);
+  const upcomingMine = mine.filter((e) => sectionOf(e, now));
+  const today = localDate(0);
+  const beenTo = everything.filter((e) => e.date && e.date < today && j.joined.includes(String(e.id))).length;
+  const recs = <Recommendations all={all} profile={profile} j={j} clubs={clubs} myClubs={myClubs} exclude={exclude} onSelect={setSelected} />;
+  const nextUp = [...upcomingMine].sort((a, b) => eventSpan(a).start - eventSpan(b).start)[0];
   return (
-    <main className="page">
-      <h1>My Events</h1>
-      {clubs.joined.length > 0 && (
-        <p className="page-sub">
-          Events you joined, plus everything from {clubs.joined.length === 1 ? clubs.joined[0] : `your ${clubs.joined.length} clubs`}
-        </p>
-      )}
+    <main className="page now-page mine-page">
+      <section className="now-hero mine-hero">
+        {/* Red Square at golden hour (CC BY 4.0, Wikimedia Commons), faint under the purple */}
+        <img className="hero-photo" src="/hero-redsquare.jpg" alt="" aria-hidden="true" />
+        <div className="now-hero-inner">
+          <header className="now-head">
+            <h1>My Events</h1>
+            <p className="now-date">
+              {clubs.joined.length > 0
+                ? `Events you joined, plus everything from ${clubs.joined.length === 1 ? clubs.joined[0] : `your ${clubs.joined.length} clubs`}`
+                : "Your week on campus, and what you might like next"}
+            </p>
+            {(mine.length > 0 || clubs.joined.length > 0 || beenTo > 0) && (
+            <ul className="mine-stats">
+              <li>
+                <strong>{upcomingMine.length}</strong> coming up
+              </li>
+              <li>
+                <strong>{clubs.joined.length}</strong> club{clubs.joined.length === 1 ? "" : "s"}
+              </li>
+              <li>
+                <strong>{beenTo}</strong> been to
+              </li>
+            </ul>
+            )}
+          </header>
+          {nextUp ? (
+            <button className="mine-next" onClick={() => setSelected(nextUp)}>
+              <span className="mine-next-label">Your next event</span>
+              <strong>{nextUp.title}</strong>
+              <span>{[formatWhen(nextUp), nextUp.where].filter(Boolean).join(" · ")}</span>
+              {nextUp.image && <img src={nextUp.image} alt="" loading="lazy" decoding="async" />}
+            </button>
+          ) : (
+            <FlyerFan events={all.filter((e) => sectionOf(e, now))} now={now} onSelect={setSelected} />
+          )}
+        </div>
+      </section>
+      <div className="now-body">
+      {/* Nothing of your own yet: suggestions first, as the way in */}
+      {mine.length === 0 && recs}
       {myClubs.length > 0 && (
         <section className="my-clubs" aria-labelledby="my-clubs-title">
-          <h2 id="my-clubs-title">Your clubs</h2>
-          <ul className="my-club-row">
-            {myClubs.map((c) => {
+          <h2 id="my-clubs-title">Clubs</h2>
+          <p className="my-clubs-sub">Clubs you joined, and the ones hosting events you're going to.</p>
+          <ul className="club-covers">
+            {myClubs.map((c, i) => {
               const upcoming = c.gone ? 0 : hostedBy(all, c).length;
+              const cover = c.gone ? null : clubCover(c, all, everything);
               return (
-                <li key={c.name}>
-                  <button className="my-club" onClick={() => !c.gone && setOpenClub(c)} disabled={c.gone}>
-                    <Thumb src={c.logo} label={c.name} color={c.gone ? NO_FIELD_COLOR : clubColor(c)} className="my-club-logo" />
-                    <span className="my-club-text">
-                      <span className="my-club-name">{c.name}</span>
+                <li key={c.name} style={{ "--i": Math.min(i, 12) }}>
+                  <button className="club-cover" onClick={() => !c.gone && setOpenClub(c)} disabled={c.gone}>
+                    <span className="club-cover-art" style={{ "--club": c.gone ? NO_FIELD_COLOR : clubColor(c) }}>
+                      {cover && <img src={cover} alt="" loading="lazy" decoding="async" />}
+                      <Thumb src={c.logo} label={c.name} color={c.gone ? NO_FIELD_COLOR : clubColor(c)} className="club-cover-logo" />
+                    </span>
+                    <span className="club-cover-text">
+                      <span className="club-cover-name">{c.name}</span>
                       <span className="meta">
-                        {c.gone
-                          ? "No recent events"
-                          : [c.category, upcoming ? `${upcoming} upcoming event${upcoming === 1 ? "" : "s"}` : "No upcoming events"]
-                              .filter(Boolean)
-                              .join(", ")}
+                        {c.gone ? "No recent events" : upcoming ? `${upcoming} upcoming event${upcoming === 1 ? "" : "s"}` : "No upcoming events"}
                       </span>
                       {myApps.some((a) => a.club?.name === c.name) && <span className="tag tag-apply">Applications open</span>}
                     </span>
@@ -2679,11 +3073,15 @@ function MyEventsPage({ all, clubList, j, clubs, applications, onBrowse, onFindC
           </div>
         </div>
       )}
+      {mine.length > 0 && recs}
+      </div>
       {selected && <EventDetail event={selected} j={j} onClose={() => setSelected(null)} />}
       {openClub && (
         <ClubDetail
           club={openClub}
           hosted={hostedBy(all, openClub)}
+          past={pastHostedBy(everything, openClub)}
+          j={j}
           apps={open.filter((a) => a.club?.name === openClub.name)}
           clubs={clubs}
           onClose={() => setOpenClub(null)}
@@ -2693,7 +3091,8 @@ function MyEventsPage({ all, clubList, j, clubs, applications, onBrowse, onFindC
   );
 }
 
-function ClubDetail({ club, hosted, apps = [], clubs, onClose }) {
+function ClubDetail({ club, hosted, past = [], j, apps = [], clubs, onClose }) {
+  const [showPast, setShowPast] = useState(false);
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
@@ -2772,6 +3171,35 @@ function ClubDetail({ club, hosted, apps = [], clubs, onClose }) {
               </li>
             ))}
           </ul>
+        )}
+
+        {past.length > 0 && (
+          <>
+            <button className="join secondary past-toggle" aria-expanded={showPast} onClick={() => setShowPast((v) => !v)}>
+              {showPast ? "Hide past events" : `Past events (${past.length})`}
+            </button>
+            {showPast && (
+              <ul className="club-events past-events">
+                {past.map((e) => {
+                  const went = j?.joined.includes(String(e.id));
+                  return (
+                    <li key={e.id} className={went ? "went" : undefined}>
+                      <span className="past-text">
+                        <strong>{e.title}</strong>
+                        <span className="meta">{[formatWhen(e), e.where].filter(Boolean).join(", ")}</span>
+                      </span>
+                      {j?.signedIn && (
+                        <span className={went ? "attended yes" : "attended"}>
+                          {went && <Icon d={CHECK_ICON} />}
+                          {went ? "You went" : "Didn't go"}
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </>
         )}
 
         <div className="officer-note">
@@ -5147,10 +5575,11 @@ export default function DubHub() {
     history.pushState(null, "", location.pathname + location.search);
     setLinkedId(null);
   }, []);
-  const { events: loaded, updated } = useEvents();
+  const { events: loaded, everything: loadedEverything, updated } = useEvents();
   const clubList = useClubs();
   const applications = useApplications();
   const all = useMemo(() => withFields(loaded, clubList), [loaded, clubList]);
+  const everything = useMemo(() => withFields(loadedEverything, clubList), [loadedEverything, clubList]);
   const f = useFilteredEvents(all);
   // Event names flash over their dots for a few seconds when the site first opens.
   const [introLabels, setIntroLabels] = useState(true);
@@ -5203,6 +5632,7 @@ export default function DubHub() {
     }
   }, [user?.token, join]);
   const clubs = useJoined(CLUBS_KEY);
+  useGoingJoinsClubs(j.joined, everything, clubs);
   const theme = useTheme();
   const [showSlider, setShowSlider] = useFlag(SLIDER_KEY, false);
 
@@ -5239,10 +5669,12 @@ export default function DubHub() {
       {view === "My Events" && (
         <MyEventsPage
           all={all}
+          everything={everything}
           clubList={clubList}
           j={j}
           clubs={clubs}
           applications={applications}
+          profile={profile}
           onBrowse={() => setTab("Events")}
           onFindClubs={() => setTab("Clubs")}
         />
