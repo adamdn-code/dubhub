@@ -7213,57 +7213,417 @@ body {
   }
 }
 
-/* Your events: the same kind of panel as the suggestions, in the site's plain surface color */
+/* Your events: a panel on the page's soft ground, so the tickets on it stand out */
 .your-events {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 28px clamp(16px, 3vw, 32px) 32px;
+  padding: 0;
   border: 2px solid var(--line);
   border-radius: var(--radius-sheet);
-  background: var(--surface);
+  background: var(--bg);
 }
 
-.your-events h2 {
+/* The purple band across the top: the title, what's next, and this week as a strip of days.
+   A faint dot grid and a soft gold glow, both plain gradients (nothing to repaint as it scrolls). */
+.ye-band {
+  position: relative;
+  padding: 26px clamp(16px, 3vw, 32px) 20px;
+  border-radius: calc(var(--radius-sheet) - 2px) calc(var(--radius-sheet) - 2px) 0 0;
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1.4px) 0 0 / 14px 14px,
+    radial-gradient(90% 120% at 100% 0%, rgba(183, 165, 122, 0.35), transparent 60%),
+    linear-gradient(135deg, var(--purple-deep), var(--purple) 70%);
+  color: #fff;
+  box-shadow: inset 0 -3px 0 var(--gold-brand);
+}
+
+:root[data-theme="dark"] .ye-band {
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.4px) 0 0 / 14px 14px,
+    radial-gradient(90% 120% at 100% 0%, rgba(183, 165, 122, 0.22), transparent 60%),
+    linear-gradient(135deg, #1a0f33, #2a1a4f 70%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ye-band {
+    background:
+      radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.4px) 0 0 / 14px 14px,
+      radial-gradient(90% 120% at 100% 0%, rgba(183, 165, 122, 0.22), transparent 60%),
+      linear-gradient(135deg, #1a0f33, #2a1a4f 70%);
+  }
+}
+
+.ye-kicker {
+  margin: 0 0 4px;
+  color: var(--gold-brand);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page .your-events h2 {
   margin: 0;
+  padding: 0;
+  color: #fff;
   font-size: 30px;
   letter-spacing: -0.02em;
 }
 
-.your-events .day:first-child .day-label {
-  margin-top: 0;
+.ye-summary {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
 }
 
-/* (inside the panel the day headings stick to the panel's own top, not the page's) */
-.mine-split .your-events .day-label {
-  top: 0;
+.ye-summary strong {
+  color: #fff;
 }
 
-/* No events: the note sits in the middle of the panel, not boxed again */
-.your-events .empty-card {
+/* This week: seven small day tiles; the ones with your events get a gold dot each */
+.ye-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ye-weekday {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  width: 100%;
+  padding: 8px 2px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.62);
+  font: inherit;
+  cursor: default;
+  transition: background-color 160ms, transform 160ms;
+}
+
+.ye-weekday span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ye-weekday strong {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.ye-weekday i {
+  display: flex;
+  gap: 3px;
+  height: 6px;
+}
+
+.ye-weekday b {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-brand);
+}
+
+.ye-weekday.busy {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  cursor: pointer;
+}
+
+.ye-weekday.busy:hover {
+  background: rgba(255, 255, 255, 0.24);
+  transform: translateY(-2px);
+}
+
+.ye-weekday.today {
+  border-color: var(--gold-brand);
+  box-shadow: inset 0 0 0 1px var(--gold-brand);
+}
+
+.ye-weekday:focus-visible {
+  outline: 2px solid var(--gold-brand);
+  outline-offset: 2px;
+}
+
+/* Your events, day by day: a date badge that stays in view while its day scrolls by, beside
+   that day's tickets */
+.ye-agenda {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0;
+  padding: 20px clamp(12px, 2.4vw, 24px) 24px;
+  list-style: none;
+}
+
+.ye-day {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.ye-date {
+  position: sticky;
+  top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 4px 9px;
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 0 0 1px var(--line), 0 4px 12px rgba(29, 21, 48, 0.06);
+}
+
+.ye-date span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ye-date strong {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.ye-date.today {
+  background: var(--purple);
+  color: #fff;
+  box-shadow: 0 0 0 2px var(--gold-brand);
+}
+
+.ye-date.today span {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ye-tickets {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* A ticket: the flyer, a dashed tear line with a notch cut at each end, then the details. The
+   notches are circles in the panel's own color, so they read as bites out of the ticket. */
+.ye-ticket {
+  --pic: 78px;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--pic) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0 14px;
+  min-height: 98px;
+  padding: 8px 14px 8px 8px;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line), 0 6px 16px rgba(29, 21, 48, 0.06);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms;
+}
+
+.ye-ticket:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px var(--line), 0 10px 24px rgba(29, 21, 48, 0.1);
+}
+
+.ye-ticket::before,
+.ye-ticket::after {
+  content: "";
+  position: absolute;
+  left: calc(8px + var(--pic) + 7px - 7px);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.ye-ticket::before {
+  top: -7px;
+  box-shadow: inset 0 -1px 0 var(--line);
+}
+
+.ye-ticket::after {
+  bottom: -7px;
+  box-shadow: inset 0 1px 0 var(--line);
+}
+
+.ye-pic {
+  display: block;
+  width: var(--pic);
+  height: 82px;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 8px;
+  background: var(--tint);
+  cursor: pointer;
+}
+
+.ye-pic .ye-thumb {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.ye-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  align-self: stretch;
+  justify-content: center;
+  padding: 2px 0 2px 14px;
+  border-left: 2px dashed var(--line);
+}
+
+.ye-time {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 8px;
+  margin: 0;
+  color: var(--action);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.ye-title {
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ye-title:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+}
+
+.ye-host,
+.ye-where {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.ye-host span:last-child,
+.ye-where span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ye-host .dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin: 0;
+}
+
+.ye-ticket .going-toggle {
+  flex-shrink: 0;
+}
+
+/* No events: an empty, dashed ticket in front of two faint ones, then the note */
+.ye-empty {
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0;
-  padding: 32px 8px;
-  border: none;
-  background: none;
+  padding: 36px clamp(16px, 3vw, 32px) 40px;
   text-align: center;
 }
 
-.your-events .empty-card p {
-  max-width: 42ch;
+.ye-empty-art {
+  position: relative;
+  width: 200px;
+  height: 120px;
+  margin-bottom: 22px;
 }
 
-.your-events .empty-actions {
-  justify-content: center;
+.ye-stub {
+  position: absolute;
+  inset: 14px 30px;
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line), 0 8px 20px rgba(29, 21, 48, 0.08);
 }
 
-.page .empty-card h3 {
+.ye-stub.back {
+  transform: rotate(-9deg) translate(-18px, 4px);
+  opacity: 0.55;
+}
+
+.ye-stub.mid {
+  transform: rotate(6deg) translate(16px, 2px);
+  opacity: 0.75;
+}
+
+.ye-stub.front {
+  display: grid;
+  place-items: center;
+  border: 2px dashed var(--field-line);
+  background: var(--surface);
+  color: var(--action);
+  box-shadow: 0 10px 26px rgba(75, 46, 131, 0.14);
+}
+
+.ye-stub.front .icon {
+  width: 34px;
+  height: 34px;
+  padding: 6px;
+  border-radius: 50%;
+  background: var(--action-wash);
+}
+
+.page .ye-empty h3 {
   margin: 0 0 6px;
+  color: var(--text);
   font-size: 22px;
+}
+
+.ye-empty p {
+  max-width: 42ch;
+  margin: 0;
+  color: var(--muted);
+}
+
+.ye-empty .empty-actions {
+  justify-content: center;
+  margin-top: 16px;
 }
 
 @media (max-width: 1000px) {
@@ -7273,8 +7633,46 @@ body {
 }
 
 @media (max-width: 700px) {
-  .your-events h2 {
+  .page .your-events h2 {
     font-size: 24px;
+  }
+  .ye-week {
+    gap: 4px;
+  }
+  .ye-weekday strong {
+    font-size: 17px;
+  }
+  .ye-weekday span {
+    font-size: 10px;
+  }
+  .ye-day {
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 10px;
+  }
+  .ye-date strong {
+    font-size: 21px;
+  }
+  .ye-ticket {
+    --pic: 60px;
+    gap: 0 10px;
+    padding-right: 10px;
+  }
+  .ye-pic {
+    height: 70px;
+  }
+  .ye-info {
+    padding-left: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ye-ticket,
+  .ye-weekday {
+    transition: none;
+  }
+  .ye-ticket:hover,
+  .ye-weekday.busy:hover {
+    transform: none;
   }
 }
 

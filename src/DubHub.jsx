@@ -1462,14 +1462,6 @@ function Home({ f, area, introLabels, j, palette, showSlider }) {
   );
 }
 
-function EventTitle({ event, onSelect }) {
-  return (
-    <button className="club-link" onClick={() => onSelect(event)}>
-      {event.title}
-    </button>
-  );
-}
-
 function EventDetail({ event, j, onClose }) {
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -1668,48 +1660,6 @@ function HeroImage({ src }) {
   const [failed, setFailed] = useState(false);
   if (failed) return null;
   return <FitImg className="event-hero" src={src} whole backdrop={false} decoding="async" onError={() => setFailed(true)} />;
-}
-
-// Events grouped under a heading per day, in date order (undated ones last).
-function EventList({ events, j, onSelect, columns = 2 }) {
-  const days = [];
-  for (const e of [...events].sort((a, b) => (a.date ?? "9999").localeCompare(b.date ?? "9999"))) {
-    const label = dayLabel(e.date);
-    if (days.at(-1)?.label !== label) days.push({ label, events: [] });
-    days.at(-1).events.push(e);
-  }
-  return days.map(({ label, events: list }) => (
-    <section key={label} className="day">
-      <h3 className="day-label">
-        {label}
-        {list[0].date && /^(Today|Tomorrow)$/.test(label) && <span>{fullDay(list[0].date)}</span>}
-      </h3>
-      <ul className={columns === 3 ? "list cards cards-3" : "list cards"}>
-        {list
-          .sort((a, b) => (a.start ?? "99").localeCompare(b.start ?? "99"))
-          .map((e) => (
-            <li key={e.id} className="event-row">
-              <div className="event-time">
-                {e.start ? formatTime(e.start) : "All day"}
-                {e.end && <span>{formatTime(e.end)}</span>}
-                <StartsTag event={e} />
-              </div>
-              <Thumb src={eventPicture(e)} label={e.title} color={eventColor(e)} className="event-thumb" />
-              <div className="grow">
-                <EventTitle event={e} onSelect={onSelect} />
-                <div className="meta">
-                  <span className="dot" style={{ background: eventColor(e) }} title={eventGroup(e).name} />
-                  <GreekTag event={e} />
-                  {[hostName(e), e.where, going(e, j)].filter(Boolean).join(", ")}
-                </div>
-              </div>
-              <Plate where={e.where} />
-              <JoinButton event={e} j={j} quiet />
-            </li>
-          ))}
-      </ul>
-    </section>
-  ));
 }
 
 // Pill buttons for picking one option (filters shared with the map use these too).
@@ -2468,10 +2418,10 @@ function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect })
     <section className="recs" aria-labelledby="recs-title">
       <header className="recs-head">
         <p className="recs-kicker">{cold ? "Start here" : "Picked for you"}</p>
-        <h2 id="recs-title">{cold ? "Popular right now" : "Suggested for you"}</h2>
+        <h2 id="recs-title">Suggested for you</h2>
         <p className="recs-sub">
           {cold
-            ? "What the most people are going to. Thumbs up the ones you like and this turns into picks for you. Adding your major in your profile helps too."
+            ? "For now, what the most people are going to. Thumbs up the ones you like and these turn into picks for you. Adding your major in your profile helps too."
             : `Based on ${basis}. Thumbs up or down to tune them.`}
         </p>
       </header>
@@ -2532,6 +2482,149 @@ function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect })
   );
 }
 
+// ------------------------------------------------------------------ My Events: your events panel
+// A purple band with what's coming up and this week as a strip of days (a gold dot for each of
+// your events; tap a day to jump to it), then your events day by day: a big date badge beside
+// each day's events, drawn as tickets (the flyer, a perforated tear line, then the details).
+const WEEK_DAYS = 7;
+
+function dateParts(date) {
+  const [y, m, d] = date.split("-").map(Number);
+  const day = new Date(y, m - 1, d);
+  return {
+    weekday: day.toLocaleDateString("en-US", { weekday: "short" }),
+    month: day.toLocaleDateString("en-US", { month: "short" }),
+    day: d,
+  };
+}
+
+function YourEvents({ events, j, now, onSelect, onBrowse, onFindClubs }) {
+  const list = useRef(null);
+  const upcoming = events
+    .filter((e) => sectionOf(e, now))
+    .sort((a, b) => `${a.date}T${a.start ?? "99"}`.localeCompare(`${b.date}T${b.start ?? "99"}`));
+  const days = [];
+  for (const e of upcoming) {
+    if (days.at(-1)?.date !== e.date) days.push({ date: e.date, events: [] });
+    days.at(-1).events.push(e);
+  }
+  const week = Array.from({ length: WEEK_DAYS }, (_, i) => {
+    const date = localDate(i);
+    return { date, ...dateParts(date), count: upcoming.filter((e) => e.date === date).length };
+  });
+  const next = upcoming[0];
+  const jumpTo = (date) => list.current?.querySelector(`[data-date="${date}"]`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  return (
+    <section className="your-events" aria-labelledby="your-events-title">
+      <header className="ye-band">
+        <p className="ye-kicker">Going and from your clubs</p>
+        <h2 id="your-events-title">Your events</h2>
+        <p className="ye-summary">
+          {next ? (
+            <>
+              <strong>{upcoming.length}</strong> coming up · next: {dayLabel(next.date)}
+              {next.start ? `, ${formatTime(next.start)}` : ""}
+            </>
+          ) : (
+            "Nothing saved yet. Your week is wide open."
+          )}
+        </p>
+        <ol className="ye-week" aria-label="This week">
+          {week.map((d, i) => (
+            <li key={d.date}>
+              <button
+                className={["ye-weekday", i === 0 && "today", d.count > 0 && "busy"].filter(Boolean).join(" ")}
+                disabled={!d.count}
+                onClick={() => jumpTo(d.date)}
+                aria-label={`${fullDay(d.date)}: ${d.count ? `${d.count} event${d.count === 1 ? "" : "s"}` : "nothing"}`}
+              >
+                <span>{i === 0 ? "Today" : d.weekday}</span>
+                <strong>{d.day}</strong>
+                <i aria-hidden="true">
+                  {Array.from({ length: Math.min(d.count, 3) }, (_, k) => (
+                    <b key={k} />
+                  ))}
+                </i>
+              </button>
+            </li>
+          ))}
+        </ol>
+      </header>
+
+      {days.length > 0 ? (
+        <ol className="ye-agenda" ref={list}>
+          {days.map(({ date, events: dayEvents }) => {
+            const p = dateParts(date);
+            const label = dayLabel(date);
+            return (
+              <li key={date} className="ye-day" data-date={date}>
+                <div className={label === "Today" ? "ye-date today" : "ye-date"} aria-label={fullDay(date)}>
+                  <span>{label === "Today" ? label : p.weekday}</span>
+                  <strong>{p.day}</strong>
+                  <span>{p.month}</span>
+                </div>
+                <ul className="ye-tickets">
+                  {dayEvents.map((e) => (
+                    <li key={e.id} className="ye-ticket" style={{ "--c": eventColor(e) }}>
+                      <button className="ye-pic" onClick={() => onSelect(e)} tabIndex={-1} aria-hidden="true">
+                        <Thumb src={eventPicture(e)} label={e.title} color={eventColor(e)} className="ye-thumb" />
+                      </button>
+                      <div className="ye-info">
+                        <p className="ye-time">
+                          {e.start ? `${formatTime(e.start)}${e.end ? `–${formatTime(e.end)}` : ""}` : "All day"}
+                          <StartsTag event={e} />
+                        </p>
+                        <button className="ye-title" onClick={() => onSelect(e)}>
+                          {e.title}
+                        </button>
+                        <p className="ye-host">
+                          <span className="dot" style={{ background: eventColor(e) }} title={eventGroup(e).name} />
+                          <span>{hostName(e)}</span>
+                        </p>
+                        {e.where && (
+                          <p className="ye-where">
+                            <Plate where={e.where} />
+                            {!placeCode(e.where) && <span>{e.where}</span>}
+                          </p>
+                        )}
+                      </div>
+                      <GoingToggle event={e} j={j} color={eventColor(e)} />
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })}
+        </ol>
+      ) : (
+        <div className="ye-empty">
+          <div className="ye-empty-art" aria-hidden="true">
+            <span className="ye-stub back" />
+            <span className="ye-stub mid" />
+            <span className="ye-stub front">
+              <Icon d={PLUS_ICON} />
+            </span>
+          </div>
+          <h3>You have no events</h3>
+          <p>
+            Tap I'm going on an event to save it here, or join a club and every event it posts, and any application it opens, shows up
+            here on its own.
+          </p>
+          <div className="empty-actions">
+            <button className="join" onClick={onBrowse}>
+              Browse events
+            </button>
+            <button className="join secondary" onClick={onFindClubs}>
+              Find clubs
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function MyEventsPage({ all, everything = all, clubList, j, clubs, applications, profile, onBrowse, onFindClubs }) {
   const mine = useMemo(() => myEventsFor(all, clubList, j, clubs), [all, clubList, j, clubs]);
   const [selected, setSelected] = useState(null);
@@ -2552,36 +2645,8 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
   const today = localDate(0);
   const beenTo = everything.filter((e) => e.date && e.date < today && j.joined.includes(String(e.id))).length;
   const recs = <Recommendations all={all} profile={profile} j={j} clubs={clubs} myClubs={myClubs} exclude={exclude} onSelect={setSelected} />;
-  // The events you're going to and your clubs' events, always above the suggestions (empty: says so).
-  const yourEvents = (
-    <section className="your-events" aria-labelledby="your-events-title">
-      <header className="recs-head">
-        <p className="recs-kicker">Going and from your clubs</p>
-        <h2 id="your-events-title">Your events</h2>
-      </header>
-      {mine.length > 0 ? (
-        <div className="your-events-days">
-          <EventList events={mine} j={j} onSelect={setSelected} columns={3} />
-        </div>
-      ) : (
-        <div className="empty-card">
-          <h3>You have no events</h3>
-          <p>
-            Tap I'm going on an event to save it here, or join a club and every event it posts, and any application it opens, shows up
-            here on its own.
-          </p>
-          <div className="empty-actions">
-            <button className="join" onClick={onBrowse}>
-              Browse events
-            </button>
-            <button className="join secondary" onClick={onFindClubs}>
-              Find clubs
-            </button>
-          </div>
-        </div>
-      )}
-    </section>
-  );
+  // The events you're going to and your clubs' events, beside the suggestions (empty: says so).
+  const yourEvents = <YourEvents events={mine} j={j} now={now} onSelect={setSelected} onBrowse={onBrowse} onFindClubs={onFindClubs} />;
   // Your events on the left half, the suggestions on the right (stacked on narrow screens).
   const split = (
     <div className="mine-split">
