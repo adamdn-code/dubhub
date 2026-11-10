@@ -44,6 +44,7 @@ REPO = HERE.parent
 STATE = HERE / "state"
 LOGS = STATE / "logs"
 LOCK = STATE / "scheduled_scrape.lock"
+STEP_PID = STATE / "scheduled_step.pid"
 DAILY_STAMP = STATE / "scheduled_daily.txt"
 SNAPSHOT = STATE / "before_scheduled_run"
 BRANCH = "main"
@@ -105,12 +106,17 @@ def step(name):
     args, minutes = STEPS[name]
     log(f"--- {name}: python {' '.join(args)}")
     started = time.time()
+    p = subprocess.Popen([PY, "-u", *args], cwd=HERE, stdout=log_file, stderr=subprocess.STDOUT,
+                         creationflags=NO_WINDOW, env=ENV)
+    STEP_PID.write_text(str(p.pid))
     try:
-        p = subprocess.run([PY, "-u", *args], cwd=HERE, stdout=log_file, stderr=subprocess.STDOUT,
-                           creationflags=NO_WINDOW, env=ENV, timeout=minutes * 60)
-        code = p.returncode
+        code = p.wait(timeout=minutes * 60)
     except subprocess.TimeoutExpired:
+        p.kill()
+        p.wait()
         code = f"stopped after {minutes} minutes"
+    finally:
+        STEP_PID.unlink(missing_ok=True)
     log(f"--- {name} done in {(time.time() - started) / 60:.1f} min (exit {code})")
     return code == 0
 
@@ -200,9 +206,27 @@ def lock_holder_running():
         return False
     if os.name != "nt":
         return True  # can't check cheaply here; the lock expires after 3 hours anyway
-    out = subprocess.run(["tasklist", "/FI", f"PID eq {pid}", "/NH"], capture_output=True, text=True,
-                         creationflags=NO_WINDOW).stdout
-    return str(pid) in out
+    return "python" in process_name(pid)
+
+
+def process_name(pid):
+    """The program running as this process id ("" if none), so a reused id isn't mistaken for ours."""
+    out = subprocess.run(["tasklist", "/FI", f"PID eq {pid}", "/NH", "/FO", "CSV"], capture_output=True,
+                         text=True, creationflags=NO_WINDOW).stdout.strip()
+    return out.split(",")[0].strip('"').lower() if out.startswith('"') else ""
+
+
+def stop_leftover_step():
+    """Task Scheduler stops a run after 3 hours, time asleep included, but not the step it was on,
+    which then keeps scraping on its own and writes over the next run's files. Stop that step."""
+    try:
+        pid = int(STEP_PID.read_text().strip())
+    except (OSError, ValueError):
+        return
+    STEP_PID.unlink(missing_ok=True)
+    if os.name == "nt" and "python" in process_name(pid):
+        subprocess.run(["taskkill", "/PID", str(pid), "/T", "/F"], capture_output=True, creationflags=NO_WINDOW)
+        log(f"Stopped a step (process {pid}) left running by an earlier run that was cut off.")
 
 
 def get_latest_main(dry=False):
@@ -308,6 +332,8 @@ def main():
         return
     LOCK.write_text(str(os.getpid()))
     try:
+        if not dry:
+            stop_leftover_step()
         why = get_latest_main(dry)
         if why:
             log(f"Skipping this run: {why}.")
