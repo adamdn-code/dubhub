@@ -2151,7 +2151,7 @@ function EventDetail({ event, j, onClose }) {
         <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
           <Icon d={CLOSE_ICON} />
         </button>
-        {event.image && <HeroImage src={event.image} />}
+        {eventPicture(event) && <HeroImage key={eventPicture(event)} src={eventPicture(event)} />}
         <h2 id="event-detail-title">{event.title}</h2>
         <p className="detail-tags">
           <StartsTag event={event} />
@@ -2311,7 +2311,7 @@ function EventList({ events, j, onSelect, columns = 2 }) {
                 {e.end && <span>{formatTime(e.end)}</span>}
                 <StartsTag event={e} />
               </div>
-              <Thumb src={e.image} label={e.title} color={eventColor(e)} className="event-thumb" />
+              <Thumb src={eventPicture(e)} label={e.title} color={eventColor(e)} className="event-thumb" />
               <div className="grow">
                 <EventTitle event={e} onSelect={onSelect} />
                 <div className="meta">
@@ -2377,7 +2377,10 @@ function sectionOf(e, now = Date.now()) {
 // One event on the board: the club's flyer first, with the going toggle on its corner, then the
 // time, the title, the host and where, set as plain text under it. The flyer and title open it.
 function EventTile({ event: e, section, j, onSelect, index = 0, children }) {
-  const [broken, setBroken] = useState(false);
+  // The flyer, else the club's picture; if one won't load, the next; none left, the title card.
+  const pictures = eventPictures(e);
+  const [broken, setBroken] = useState(0);
+  const picture = pictures[broken];
   const live = section === "now";
   const soon = section === "soon" ? startsIn(e) : null;
   const day = section === "later";
@@ -2386,8 +2389,8 @@ function EventTile({ event: e, section, j, onSelect, index = 0, children }) {
     <li className={live ? "tile live" : "tile"} style={{ "--i": Math.min(index, 12) }}>
       <div className="tile-art">
         <button className="tile-flyer" onClick={() => onSelect(e)} tabIndex={-1} aria-hidden="true">
-          {e.image && !broken ? (
-            <FitImg src={e.image} loading="lazy" decoding="async" onError={() => setBroken(true)} />
+          {picture ? (
+            <FitImg key={picture} src={picture} loading="lazy" decoding="async" onError={() => setBroken((n) => n + 1)} />
           ) : (
             <span className="tile-noflyer" style={{ background: eventColor(e) }}>
               {e.title}
@@ -2779,6 +2782,16 @@ function pastHostedBy(everything, club) {
     .sort((a, b) => b.date.localeCompare(a.date) || (b.start ?? "").localeCompare(a.start ?? ""));
 }
 
+// The pictures an event can show, best first: its flyer, then its club's picture.
+function eventPictures(e) {
+  return [e.image, e.club?.logo].filter(Boolean);
+}
+
+// An event's picture: its flyer, or failing that its club's picture (null when it has neither).
+function eventPicture(e) {
+  return eventPictures(e)[0] ?? null;
+}
+
 // A club's cover: the flyer from its next event, or failing that its most recent one.
 function clubCover(club, all, everything) {
   return hostedBy(all, club).find((e) => e.image)?.image ?? pastHostedBy(everything, club).find((e) => e.image)?.image ?? null;
@@ -3058,7 +3071,7 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
               <span className="mine-next-label">Your next event</span>
               <strong>{nextUp.title}</strong>
               <span>{[formatWhen(nextUp), nextUp.where].filter(Boolean).join(" · ")}</span>
-              {nextUp.image && <img src={nextUp.image} alt="" loading="lazy" decoding="async" />}
+              {eventPicture(nextUp) && <img src={eventPicture(nextUp)} alt="" loading="lazy" decoding="async" />}
             </button>
           ) : (
             <FlyerFan events={all.filter((e) => sectionOf(e, now))} now={now} onSelect={setSelected} />
