@@ -11,6 +11,9 @@ It's kept apart from the regular scrapers on purpose, so it can't break them:
   - It only touches the site's events (public/events.json): it writes them again with its findings
     laid over the regular ones. Delete state/flyers.json, or just run a regular scraper again,
     and the site is back to what the regular scrapers found.
+  - It only writes them when this computer's copy of the posts is current (it ran a regular
+    scraper since anyone else did). Otherwise it would bring back older versions of other clubs'
+    posts, so it saves what it read and waits.
   - It never replaces a post's events with fewer ones: if reading the flyer finds fewer upcoming
     events than the regular scraper did, the regular ones stay.
   - It asks the AI with a different model than the regular scrapers (Groq's free limits are per
@@ -30,10 +33,11 @@ Other ways to run it:
 """
 
 import hashlib
+import json
 import re
 import sys
 import time
-from datetime import date
+from datetime import date, datetime, timedelta
 
 import requests
 
@@ -188,7 +192,39 @@ def main():
         print("Dry run: nothing written.")
         return
     ec._save(FLYERS_FILE, flyers)
+    if not changed:
+        print("Nothing to add to the site.")
+        return
+    why = site_is_newer()
+    if why:
+        print(f"Not writing the site's events: {why}. The flyers read are saved (state/flyers.json) "
+              "and go on the site after this computer next runs a regular scraper.")
+        return
     ec.write_site_events(merged)
+    WROTE_FILE.write_text(json.loads(ec.SITE_EVENTS_FILE.read_text(encoding="utf-8"))["updated"])
+
+
+# When this scraper last wrote the site's events (their "updated" time), to tell its own writes
+# from another computer's.
+WROTE_FILE = ec.STATE_DIR / "flyers_wrote.txt"
+
+
+def site_is_newer():
+    """Why the site's events are newer than this computer's copy of the posts (another computer
+    ran the scrapers since this one did), or None. Writing them from an older copy would bring
+    back old versions of other clubs' posts, so then this scraper doesn't write them."""
+    try:
+        updated = datetime.fromisoformat(json.loads(ec.SITE_EVENTS_FILE.read_text(encoding="utf-8"))["updated"])
+    except (OSError, ValueError, KeyError):
+        return None  # no site events yet: nothing to overwrite
+    saved = datetime.fromtimestamp(ec.POSTS_FILE.stat().st_mtime)
+    # (a regular scraper saves the posts, then writes the site's events a moment later)
+    if updated <= saved + timedelta(minutes=15):
+        return None
+    if WROTE_FILE.exists() and WROTE_FILE.read_text().strip() == updated.isoformat(timespec="minutes"):
+        return None  # this scraper's own last write
+    return (f"they were written {updated:%b %d %H:%M}, after this computer last ran a regular scraper "
+            f"({saved:%b %d %H:%M})")
 
 
 if __name__ == "__main__":
