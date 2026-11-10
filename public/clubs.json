@@ -147,13 +147,13 @@
    "handle": "uwaslclub",
    "instagram": "https://www.instagram.com/uwaslclub/",
    "website": "https://linktr.ee/uwaslclub",
-   "category": "Service",
-   "about": "ASL club offering lessons, social gatherings, and events for Deaf and hearing students.",
-   "description": "The ASL Club meets weekly to teach American Sign Language, host movie nights, and run social activities. It provides a welcoming space for both Deaf and hearing students to practice and connect.",
+   "category": "Cultural",
+   "about": "Learns and practices American Sign Language with beginner lessons and socials.",
+   "description": "The ASL Club meets every Monday from 5‑7 pm in HUB 332 for beginner lessons and a social hour. They also host occasional events like trivia nights at the Kelly Ethnic Cultural Center. Join to practice sign language and meet fellow learners.",
    "logo": "/ig/clubs/uwaslclub.jpg",
    "discord": "https://discord.gg/8j3Av2SMQd",
    "discord_server": "UW ASL Club",
-   "last_event": "2026-11-04",
+   "last_event": "2026-11-09",
    "fields": []
   },
   {
@@ -228,8 +228,8 @@
    "instagram": "https://www.instagram.com/uwaacf/",
    "website": "https://www.flowcode.com/page/uwaacf",
    "category": "Faith & Spirituality",
-   "about": "Asian American Christian fellowship offering worship, study, and community events.",
-   "description": "AACF UW brings together Asian American Christian students for weekly worship gatherings and fellowship. They host campus worship nights, winter retreats, and small‑group meetings to deepen faith and community.",
+   "about": "Asian American Christian fellowship meeting Wednesdays for worship and fellowship.",
+   "description": "AACF gathers Asian American students for weekly worship, Bible study, and community retreats, fostering spiritual growth and friendships. Join the group to share faith and support.",
    "logo": "/ig/clubs/uwaacf.jpg",
    "last_event": "2027-01-10",
    "fields": []
@@ -365,8 +365,8 @@
    "instagram": "https://www.instagram.com/barbellclubuw/",
    "website": "https://discord.gg/6MmpCFWCE",
    "category": "Sports",
-   "about": "Social lifting club with workouts and events.",
-   "description": "Barbell Club at UW blends fitness with fun, offering social workouts, board games, and themed lifting sessions. Whether you’re a seasoned lifter or just starting, our welcoming environment encourages progress and camaraderie. Join us for a workout that’s both challenging and enjoyable.",
+   "about": "Social lifting club that meets Tuesdays for workouts, games, and themed events.",
+   "description": "Barbell Club at UW brings together students for free workout sessions and fun socials like board games and costume lifts. Join the community to stay active and meet new friends on campus.",
    "logo": "/ig/clubs/barbellclubuw.jpg",
    "last_event": "2026-12-01",
    "fields": []
@@ -726,8 +726,8 @@
    "instagram": "https://www.instagram.com/uw_ecc/",
    "website": "https://linktr.ee/uw_ecc",
    "category": "Cultural",
-   "about": "Campus center fostering multicultural inclusion and events since 1972.",
-   "description": "The Ethnic Cultural Center (ECC) provides a welcoming space for diverse cultures, offering programs, panels, and resources for students. It hosts events like alumni advisory board panels and community gatherings.",
+   "about": "Campus center promoting cultural inclusion and community events.",
+   "description": "The Ethnic Cultural Center provides a welcoming hub for students of all backgrounds, offering free cocoa, advisory panels, and multicultural programming. Visit to connect and celebrate diversity.",
    "logo": "/ig/clubs/uw_ecc.jpg",
    "last_event": "2026-11-30",
    "fields": []
@@ -738,11 +738,41 @@
    "instagram": "https://www.instagram.com/fasasauw/",
    "website": "https://linktr.ee/fasasauw",
    "category": "Cultural",
-   "about": "Filipino American student group promoting culture and charitable events.",
-   "description": "FASA at UW brings Filipino heritage to campus through games, fundraisers and cultural celebrations. Participate in game nights, talent shows and support charitable causes.",
+   "about": "Filipino American Student Association celebrating culture and community.",
+   "description": "FASA hosts bi‑weekly gatherings, game nights, talent shows, and a student magazine to showcase Filipino heritage. Get involved for cultural events and creative opportunities.",
    "logo": "/ig/clubs/fasasauw.jpg",
    "last_event": "2026-11-12",
    "fields": []
+  },
+  {
+   "name": "Filipinx Association for Health Careers",
+   "handle": "fahcuw",
+   "instagram": "https://www.instagram.com/fahcuw/",
+   "website": "https://linktr.ee/fahcuw",
+   "category": "Academic",
+   "about": "Filipinx Association supporting students pursuing health careers.",
+   "description": "FAHC connects Filipinx students interested in health professions through mentorship, networking, and cultural events. Participate to build community and explore career pathways.",
+   "logo": "/ig/clubs/fahcuw.jpg",
+   "last_event": "2026-11-09",
+   "fields": [
+    "Health"
+   ]
+  },
+  {
+   "name": "Film Club at the UW",
+   "handle": "filmclubuw",
+   "instagram": "https://www.instagram.com/filmclubuw/",
+   "website": "http://linktr.ee/uwfilmclub",
+   "category": "Arts",
+   "about": "Film club screening and discussing movies every Thursday.",
+   "description": "UW Film Club meets weekly to watch a variety of films and hold lively discussions with fellow cinephiles. Come enjoy classic and contemporary movies together.",
+   "logo": "/ig/clubs/filmclubuw.jpg",
+   "discord": "https://discord.gg/bdCuHxTC5w",
+   "discord_server": "UW Film Club",
+   "last_event": "2026-11-12",
+   "fields": [
+    "Arts & Humanities"
+   ]
   },
   {
    "name": "First Nations at UW",
@@ -854,8 +884,8 @@
    "instagram": "https://www.instagram.com/huskyhillel/",
    "website": "http://linktr.ee/HillelUW",
    "category": "Faith & Spirituality",
-   "about": "Fosters Jewish community and cultural events for UW students.",
-   "description": "Hillel UW creates a welcoming space for Jewish students, offering Shabbat meals, cultural outings, and community gatherings. The organization celebrates heritage and builds connections among members.",
+   "about": "Jewish student organization offering Shabbat, charity, and community events.",
+   "description": "Hillel UW creates a welcoming space for Jewish life on campus with Shabbat dinners, challah baking for charity, and social gatherings. Join to connect and celebrate traditions.",
    "logo": "/ig/clubs/huskyhillel.jpg",
    "last_event": "2026-11-15",
    "fields": []
@@ -1005,15 +1035,14 @@
   },
   {
    "name": "Husky Winter Sports",
-   "website": "https://www.huskywintersports.org/become-an-instructor",
-   "category": "Sports",
-   "about": "Provide fun, safe, high quality and affordable mountain experiences to skiers and snowboarders of all ability levels,…",
-   "description": "Provide fun, safe, high quality and affordable mountain experiences to skiers and snowboarders of all ability levels, and to foster friendships among likeminded winter sports enthusiasts.",
-   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_636152_logo_5848209b-72c7-40bf-a9d5-a2cd12b7797f_922143513.png",
    "handle": "huskywintersports",
    "instagram": "https://www.instagram.com/huskywintersports/",
-   "source": "huskylink",
-   "last_event": "2026-11-02",
+   "website": "https://linktr.ee/huskywintersports",
+   "category": "Outdoors",
+   "about": "Winter sports club teaching skiing and snowboarding on campus.",
+   "description": "Husky Winter Sports offers dry‑land sessions and instruction for beginners and seasoned riders, fostering a fun environment to improve snow sport skills. Join the crew to hit the slopes together.",
+   "logo": "/ig/clubs/huskywintersports.jpg",
+   "last_event": "2026-11-10",
    "fields": []
   },
   {
@@ -1052,6 +1081,20 @@
    "fields": [
     "Computing & Math",
     "Business"
+   ]
+  },
+  {
+   "name": "Institute of Industrial and Systems Engineers",
+   "handle": "uwisengineering",
+   "instagram": "https://www.instagram.com/uwisengineering/",
+   "website": "https://uwiise.weebly.com/",
+   "category": "Engineering",
+   "about": "Connects ISE students with info sessions, game nights, and fundraising events.",
+   "description": "UW Industrial & Systems Engineering shares department news, info sessions, and community activities. Events include an ISE info session in MEB 106, game nights after sessions, and a campus‑wide bingo fundraiser. It’s a hub for students to connect with peers and faculty.",
+   "logo": "/ig/clubs/uwisengineering.jpg",
+   "last_event": "2026-11-09",
+   "fields": [
+    "Engineering"
    ]
   },
   {

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T15:51",
+ "updated": "2026-11-09T18:21",
  "applications": [
   {
    "id": "De9jfVIm6Yn",
@@ -26,6 +26,18 @@
    "category": "Cultural"
   },
   {
+   "id": "DffbrK2ypWJ",
+   "host": "Rainy Dawg Radio (@rainydawgradio)",
+   "for": "Radio DJ",
+   "kind": "Team & staff",
+   "deadline": "2026-11-09",
+   "link": "http://linktr.ee/rainydawg",
+   "post": "https://www.instagram.com/p/DffbrK2ypWJ/",
+   "posted": "2026-11-08",
+   "logo": "/ig/clubs/rainydawgradio.jpg",
+   "category": "Service"
+  },
+  {
    "id": "DfOPFhKm-YD",
    "host": "Delta Delta Sigma (@uw.dds)",
    "for": "General membership",
@@ -35,6 +47,18 @@
    "post": "https://www.instagram.com/p/DfOPFhKm-YD/",
    "posted": "2026-11-01",
    "logo": "/ig/clubs/uw.dds.jpg",
+   "category": "Academic"
+  },
+  {
+   "id": "DfgkTL4NVsG",
+   "host": "Makers@UW (@makers_uw)",
+   "for": "Makers officer positions",
+   "kind": "Officer & board",
+   "deadline": "2026-11-13",
+   "link": "https://linktr.ee/Makersuw",
+   "post": "https://www.instagram.com/p/DfgkTL4NVsG/",
+   "posted": "2026-11-08",
+   "logo": "/ig/clubs/makers_uw.jpg",
    "category": "Academic"
   },
   {
@@ -71,6 +95,18 @@
    "post": "https://www.instagram.com/p/De5hKvmGiiR/",
    "posted": "2026-10-24",
    "logo": "/ig/clubs/vsauw.jpg",
+   "category": "Cultural"
+  },
+  {
+   "id": "DffZ6ComXPt",
+   "host": "FASA sa UW (@fasasauw)",
+   "for": "2026-27 KUMUSTA committee",
+   "kind": "Team & staff",
+   "deadline": "2026-11-30",
+   "link": "https://linktr.ee/fasasauw",
+   "post": "https://www.instagram.com/p/DffZ6ComXPt/",
+   "posted": "2026-11-08",
+   "logo": "/ig/clubs/fasasauw.jpg",
    "category": "Cultural"
   },
   {
