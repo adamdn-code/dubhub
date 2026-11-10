@@ -7180,31 +7180,102 @@ body {
   }
 }
 
-/* Your events: a heading, then your events or a note that there are none */
-.mine-page .your-events {
+/* The two halves: Your events on the left, the suggestions on the right, as two matching panels
+   the same height. On narrower screens they stack, Your events first. */
+.mine-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
   margin-top: 28px;
 }
 
-.mine-page .now-body > .your-events:first-child {
+.mine-page .now-body > .mine-split:first-child {
   margin-top: 8px;
 }
 
-.mine-page .your-events .empty-card {
-  margin-top: 12px;
+.mine-split > :only-child {
+  grid-column: 1 / -1;
 }
 
-/* On wide screens the days sit side by side (up to three across) instead of each row stretching
-   across the whole page */
-.your-events-days {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr));
-  gap: 0 24px;
-  align-items: start;
+.mine-split > .recs {
+  margin: 0;
+}
+
+/* Side by side, the two panels are the same fixed height, about a screenful, and scroll inside
+   when there's more (the suggestions usually run long) */
+@media (min-width: 1001px) {
+  .mine-split > * {
+    height: min(calc(100dvh - var(--nav-h) - 56px), 920px);
+    min-height: 480px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+}
+
+/* Your events: the same kind of panel as the suggestions, in the site's plain surface color */
+.your-events {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 28px clamp(16px, 3vw, 32px) 32px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sheet);
+  background: var(--surface);
+}
+
+.your-events h2 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+}
+
+.your-events .day:first-child .day-label {
+  margin-top: 0;
+}
+
+/* (inside the panel the day headings stick to the panel's own top, not the page's) */
+.mine-split .your-events .day-label {
+  top: 0;
+}
+
+/* No events: the note sits in the middle of the panel, not boxed again */
+.your-events .empty-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 32px 8px;
+  border: none;
+  background: none;
+  text-align: center;
+}
+
+.your-events .empty-card p {
+  max-width: 42ch;
+}
+
+.your-events .empty-actions {
+  justify-content: center;
 }
 
 .page .empty-card h3 {
   margin: 0 0 6px;
-  font-size: 20px;
+  font-size: 22px;
+}
+
+@media (max-width: 1000px) {
+  .mine-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .your-events h2 {
+    font-size: 24px;
+  }
 }
 
 /* ===================================================== My Events: your clubs, as cover cards */

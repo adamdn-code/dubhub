@@ -2555,7 +2555,10 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
   // The events you're going to and your clubs' events, always above the suggestions (empty: says so).
   const yourEvents = (
     <section className="your-events" aria-labelledby="your-events-title">
-      <h2 id="your-events-title">Your events</h2>
+      <header className="recs-head">
+        <p className="recs-kicker">Going and from your clubs</p>
+        <h2 id="your-events-title">Your events</h2>
+      </header>
       {mine.length > 0 ? (
         <div className="your-events-days">
           <EventList events={mine} j={j} onSelect={setSelected} columns={3} />
@@ -2578,6 +2581,13 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
         </div>
       )}
     </section>
+  );
+  // Your events on the left half, the suggestions on the right (stacked on narrow screens).
+  const split = (
+    <div className="mine-split">
+      {yourEvents}
+      {recs}
+    </div>
   );
   const nextUp = [...upcomingMine].sort((a, b) => eventSpan(a).start - eventSpan(b).start)[0];
   return (
@@ -2620,9 +2630,8 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
         </div>
       </section>
       <div className="now-body">
-      {/* Nothing of your own yet: say so first, then suggestions as the way in */}
-      {mine.length === 0 && yourEvents}
-      {mine.length === 0 && recs}
+      {/* Nothing of your own yet: the two halves first, saying so beside the suggestions */}
+      {mine.length === 0 && split}
       {myClubs.length > 0 && (
         <section className="my-clubs" aria-labelledby="my-clubs-title">
           <h2 id="my-clubs-title">Clubs</h2>
@@ -2675,8 +2684,7 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
       {clubs.joined.length > 0 && myApps.length === 0 && (
         <p className="count">None of your clubs are taking applications right now. When one opens, it shows up here.</p>
       )}
-      {mine.length > 0 && yourEvents}
-      {mine.length > 0 && recs}
+      {mine.length > 0 && split}
       </div>
       {selected && <EventDetail event={selected} j={j} onClose={() => setSelected(null)} />}
       {openClub && (
