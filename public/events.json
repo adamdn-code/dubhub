@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T18:21",
+ "updated": "2026-11-09T20:21",
  "events": [
   {
    "id": "DexTf2RknR_-1",
@@ -1319,6 +1319,33 @@
     "DfISSAwvQLe": [
      8,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Dfi9HtHDVdG-0",
+   "title": "Sisters Hot Cocoa & Pumpkin Painting",
+   "type": "Hangout",
+   "host": "MSA UW (@msauw)",
+   "where": "HUB 214",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-12",
+   "start": "16:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/Dfi9HtHDVdG/",
+   "source": "instagram",
+   "description": "Salam, sisters! \n\nYou’re invited to our Sisters Hot Cocoa & Pumpkin Painting night!\n\n- Thursday, November 12th\n- 4:30 PM\n- HUB 214\n- Sisters only\n\nCome warm up with free hot cocoa and paint your own pumpkin to take home. Bring a friend, and we hope to see you there!\n\n#PumpkinPainting #HotCocoa #SistersEvent #MSA #MSAUW",
+   "image": "/ig/posts/Dfi9HtHDVdG.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Dfi9HtHDVdG": [
+     null,
+     null
     ]
    },
    "posts": 1
