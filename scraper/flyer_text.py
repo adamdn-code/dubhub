@@ -1,6 +1,6 @@
 """
-Reads the text on a post's flyer, so the event finder (events_common.py) sees the date, time and
-room that clubs often put only on the picture, not in the caption.
+Reads the text on a post's flyer, for the image scraper (flyer_scraper.py), so the date, time and
+room that clubs often put only on the picture, not in the caption, make it onto the site.
 
 Instagram used to describe each picture, flyer text included ("May be an image of text that says
 'GBM THURS 7PM HUB 145'"), but its public pages hardly ever include that any more (1 post in 293

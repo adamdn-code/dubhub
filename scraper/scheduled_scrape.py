@@ -14,8 +14,11 @@ Each run:
   3. Reads events from the Discord servers that added the DubHub bot (discord_events.py; nothing
      until the bot is set up), then the next 80 clubs' Instagram posts (instagram_public_scraper.py
      stops on its own if Instagram asks to log in; the clubs left go first next time).
-  4. Checks the result (no clubs lost or renamed, events still there) and pushes the data to main.
-     If something looks wrong it puts the data back the way it was and pushes nothing.
+  4. Checks the result (no clubs lost or renamed, events still there). If something looks wrong it
+     puts the data back the way it was and pushes nothing.
+  5. Reads the text on new flyers (flyer_scraper.py), as its own step: if it fails or its result
+     looks wrong, only its changes are undone, and the regular results from steps 2-4 still go out.
+  6. Pushes the data to main.
 
 Logs: scraper/state/logs/ (one file per run, the last 60 kept).
 Run once by hand (from this folder):
@@ -63,7 +66,11 @@ STEPS = {
     "Discord servers": (["find_discord_servers.py"], 30),
     "Discord events": (["discord_events.py"], 30),  # does nothing until the DubHub bot is set up
     "Instagram": (["instagram_public_scraper.py"], 120),
+    # Reads the text on flyers, after the regular scrapers and kept apart from them (see main).
+    "Flyers": (["flyer_scraper.py"], 30),
 }
+# Saved just before the flyer step, so a flyer step that goes wrong can be undone on its own.
+BEFORE_FLYERS = STATE / "before_flyer_step"
 
 NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 GIT = shutil.which("git") or r"C:\Program Files\Git\cmd\git.exe"
@@ -155,6 +162,35 @@ def restore():
     git("checkout", "--", "public/ig")  # pictures this run deleted come back; new ones are harmless
 
 
+# What the flyer step (flyer_scraper.py) can change: the site's events, its own findings, and the
+# saved event pictures (it drops the ones no event uses any more, like the regular scrapers do).
+FLYER_FILES = [REPO / "public/events.json", STATE / "flyers.json"]
+POST_PICTURES = REPO / "public/ig/posts"
+
+
+def save_before_flyers():
+    shutil.rmtree(BEFORE_FLYERS, ignore_errors=True)
+    (BEFORE_FLYERS / "posts").mkdir(parents=True)
+    for f in FLYER_FILES:
+        if f.exists():
+            shutil.copy2(f, BEFORE_FLYERS / f.name)
+    for picture in POST_PICTURES.glob("*.jpg"):
+        shutil.copy2(picture, BEFORE_FLYERS / "posts" / picture.name)
+
+
+def undo_flyers():
+    """Put back what the flyer step changed, leaving the regular scrapers' results of this run."""
+    for f in FLYER_FILES:
+        saved = BEFORE_FLYERS / f.name
+        if saved.exists():
+            shutil.copy2(saved, f)
+        else:
+            f.unlink(missing_ok=True)
+    for picture in (BEFORE_FLYERS / "posts").glob("*.jpg"):
+        if not (POST_PICTURES / picture.name).exists():
+            shutil.copy2(picture, POST_PICTURES / picture.name)
+
+
 def lock_holder_running():
     """Whether the run that left the lock file is still going. A run that was stopped or crashed
     (or a computer that restarted) leaves its lock behind, which shouldn't block later runs."""
@@ -238,6 +274,27 @@ def commit_and_push(before, after):
     log(f"Pushed: {after['events']} events, {after['clubs']} clubs (events {delta('events')}, clubs {delta('clubs')}).")
 
 
+def flyer_step(after):
+    """Read flyers (flyer_scraper.py) on top of the regular scrapers' results, which are already
+    checked by now. If this step fails, or its result looks wrong, only its own changes are undone,
+    and the run goes on to push the regular results. Returns the site's counts to push."""
+    try:
+        save_before_flyers()
+    except OSError as e:
+        log(f"Skipping the flyer step: couldn't save a copy to undo it with ({e}).")
+        return after
+    finished = step("Flyers")
+    with_flyers = site_counts()
+    ok, why = looks_right(after, with_flyers) if finished else (False, "it didn't finish")
+    if ok and with_flyers["events"] < after["events"] - 3:
+        ok, why = False, f"events went from {after['events']} to {with_flyers['events']}"
+    if ok:
+        return with_flyers
+    undo_flyers()
+    log(f"Undid the flyer step ({why}); pushing the regular scrapers' results without it.")
+    return after
+
+
 def main():
     global log_file
     dry = "--dry-run" in sys.argv
@@ -279,6 +336,7 @@ def main():
             restore()
             log(f"Not pushing: {why}. Put the data back the way it was.")
             return
+        after = flyer_step(after)
         commit_and_push(before, after)
     except Exception as e:  # keep the log useful whatever went wrong
         log(f"Run failed: {e!r}")

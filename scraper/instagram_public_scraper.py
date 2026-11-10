@@ -21,8 +21,6 @@ SOURCES.md lists the other scrapers we compared and why these two fit DubHub bes
 
 Setup (one time):
     pip install --pre -U instaloader requests
-  and, on Windows, so the text on each flyer is read too (see flyer_text.py):
-    pip install winrt-runtime winrt-Windows.Media.Ocr winrt-Windows.Graphics.Imaging winrt-Windows.Storage.Streams winrt-Windows.Foundation winrt-Windows.Foundation.Collections winrt-Windows.Globalization
 
 Every run (from this folder):
     python instagram_public_scraper.py            # 80 clubs, the ones checked longest ago first
