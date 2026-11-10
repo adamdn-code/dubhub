@@ -582,7 +582,8 @@ function useJoined(key) {
     [key]
   );
 
-  return { joined, toggle, add };
+  // The same object until the list changes, so pages that take it can skip redrawing.
+  return useMemo(() => ({ joined, toggle, add }), [joined, toggle, add]);
 }
 
 // Going to an event makes you a member of the club that hosts it. Each event only does this once
@@ -1862,66 +1863,72 @@ function FlyerFan({ events, now, onSelect }) {
   );
 }
 
-// ------------------------------------------------------------------------------ the day strip
-// Today drawn as a timeline: each event a bar from its start to its end in its category's color,
-// stacked into as few rows as fit, with the red now marker crossing them. Tap a bar to open it.
-const STRIP_FROM = 8; // 8 AM
-const STRIP_TO = 24; // midnight
-const STRIP_LANES = 4;
-function DayStrip({ events, now, onSelect }) {
-  const today = localDate(0);
-  const hours = (hhmm) => {
-    const [h, m] = hhmm.split(":").map(Number);
-    return h + m / 60;
-  };
-  const bars = events
-    .filter((e) => e.date === today && e.start)
-    .map((e) => ({ e, from: Math.max(hours(e.start), STRIP_FROM), to: Math.min(e.end ? hours(e.end) : hours(e.start) + 1, STRIP_TO) }))
-    .filter((x) => x.to > STRIP_FROM && x.from < STRIP_TO)
-    .sort((x, y) => x.from - y.from);
-  // Greedy lanes: each bar takes the first lane that's free by its start.
-  const laneEnds = [];
-  for (const bar of bars) {
-    let lane = laneEnds.findIndex((end) => end <= bar.from);
-    if (lane < 0 && laneEnds.length < STRIP_LANES) lane = laneEnds.length;
-    if (lane < 0) lane = laneEnds.indexOf(Math.min(...laneEnds));
-    laneEnds[lane] = bar.to;
-    bar.lane = lane;
+// ------------------------------------------------------------------------- trending clubs
+// The clubs people are talking about, beside the headline: each club's upcoming events (the same
+// ones the board shows, so the type, club and how-far-ahead filters apply), scored by how much
+// interest they've drawn and how soon they are (the ranking the old Trending row used, added up
+// per club). Tap one to open the club.
+//   interest = 8 per RSVP + 1 per Instagram like + 3 per comment + 5 per extra post promoting it
+//   an event's score = (1/4 + log2(1 + interest)) / (1 + days until it / 3)
+// The log keeps one viral post from swamping everything, and the second part halves an event's
+// weight three days out. The small 1/4 means a club with lots coming up still places when nobody
+// has liked anything yet, without outranking one whose event people are actually excited about.
+const TRENDING_CLUBS = 5;
+
+function interest(e) {
+  const rsvps = e.rsvps ?? e.going ?? 0; // sample events have "going" instead of RSVPs
+  return 8 * rsvps + (e.likes ?? 0) + 3 * (e.comments ?? 0) + 5 * ((e.posts ?? 1) - 1);
+}
+
+function trendingClubs(events, now) {
+  const today = Date.parse(localDate(0));
+  const byClub = new Map();
+  for (const e of events) {
+    const span = eventSpan(e);
+    if (!e.club || !span || span.end < now) continue;
+    const days = Math.max(0, (Date.parse(e.date) - today) / 864e5);
+    const t = byClub.get(e.club) ?? { club: e.club, score: 0, events: 0, likes: 0, going: 0 };
+    t.score += (0.25 + Math.log2(1 + interest(e))) / (1 + days / 3);
+    t.events += 1;
+    t.likes += e.likes ?? 0;
+    t.going += e.rsvps ?? e.going ?? 0;
+    byClub.set(e.club, t);
   }
-  const lanes = Math.max(1, laneEnds.length);
-  const pct = (h) => ((h - STRIP_FROM) / (STRIP_TO - STRIP_FROM)) * 100;
-  const d = new Date(now);
-  const nowH = d.getHours() + d.getMinutes() / 60;
-  const ticks = [];
-  for (let h = STRIP_FROM; h <= STRIP_TO; h += 2) ticks.push(h);
-  const tickLabel = (h) => (h === 12 ? "Noon" : h === 24 ? "12 AM" : `${h % 12} ${h < 12 ? "AM" : "PM"}`);
-  if (!bars.length) return null;
+  return [...byClub.values()].sort((a, b) => b.score - a.score || a.club.name.localeCompare(b.club.name)).slice(0, TRENDING_CLUBS);
+}
+
+// "4 events · 168 likes"
+function trendLine(t) {
+  const plural = (n, word) => `${n.toLocaleString()} ${word}${n === 1 ? "" : "s"}`;
+  return [plural(t.events, "event"), t.going > 0 && `${t.going.toLocaleString()} going`, t.likes > 0 && plural(t.likes, "like")].filter(Boolean).join(" · ");
+}
+
+// `when`: the board's how-far-ahead choice, for the heading ("this week").
+function TrendingClubs({ events, when, now, onSelect }) {
+  const top = useMemo(() => trendingClubs(events, now), [events, now]);
+  if (!top.length) return null;
   return (
-    <div className="day-strip" style={{ "--lanes": lanes }} aria-label="Today's events on a timeline">
-      <div className="day-strip-track">
-        {ticks.map((h) => (
-          <span key={h} className={h === STRIP_FROM ? "strip-tick first" : h === STRIP_TO ? "strip-tick last" : "strip-tick"} style={{ left: `${pct(h)}%` }}>
-            <span>{tickLabel(h)}</span>
-          </span>
+    <section className="trending-clubs" aria-labelledby="trending-clubs-title">
+      <h2 id="trending-clubs-title">
+        Trending clubs <span>{when === "Any time" ? "coming up" : when.toLowerCase()}</span>
+      </h2>
+      <ol>
+        {top.map((t, i) => (
+          <li key={t.club.name} style={{ "--k": i }}>
+            <button className="trend-club" onClick={() => onSelect(t.club)}>
+              <span className="trend-rank" aria-hidden="true">
+                {i + 1}
+              </span>
+              <Thumb src={t.club.logo} label={t.club.name} color={clubColor(t.club)} className="trend-logo" />
+              <span className="trend-text">
+                <strong>{t.club.name}</strong>
+                <span>{trendLine(t)}</span>
+              </span>
+            </button>
+          </li>
         ))}
-        {bars.map(({ e, from, to, lane }) => (
-          <button
-            key={e.id}
-            className={from <= nowH && nowH < to ? "strip-bar live" : "strip-bar"}
-            style={{
-              left: `${pct(from)}%`,
-              width: `max(${pct(to) - pct(from)}%, 10px)`,
-              top: `calc(${lane} * var(--lane-h))`,
-              background: eventColor(e),
-            }}
-            title={`${e.title}, ${formatTime(e.start)}`}
-            aria-label={`${e.title}, ${formatTime(e.start)}`}
-            onClick={() => onSelect(e)}
-          />
-        ))}
-        {nowH >= STRIP_FROM && nowH <= STRIP_TO && <span className="strip-now" style={{ left: `${pct(nowH)}%` }} />}
-      </div>
-    </div>
+      </ol>
+    </section>
   );
 }
 
@@ -2059,8 +2066,9 @@ function headline(date) {
 
 // The front page. Only redrawn when its own events, filters or going list change (not when, say,
 // an event's pop-up opens over it).
-const NowPage = memo(function NowPage({ f, updated, j, onSelect }) {
+const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, applications, clubList }) {
   const [query, setQuery] = useState("");
+  const [openClub, setOpenClub] = useState(null); // a club picked from Trending
   const now = useNow();
   // The search box shows each letter right away; the board (about a hundred flyers) follows as
   // soon as the browser has a free moment, so typing never waits on it.
@@ -2068,7 +2076,7 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect }) {
   const q = searched.trim().toLowerCase();
 
   // What the board shows, worked out again only when the events, the search or the minute changes.
-  const { unique, sections } = useMemo(() => {
+  const { sections } = useMemo(() => {
     const events = q
       ? f.events.filter((e) => [e.title, e.host, e.club?.name, e.where, e.description].some((s) => s?.toLowerCase().includes(q)))
       : f.events;
@@ -2112,7 +2120,7 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect }) {
           <header className="now-head">
             <h1>{headline(clock)}</h1>
             <p className="now-date">{clock.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</p>
-            <DayStrip events={unique} now={now} onSelect={onSelect} />
+            <TrendingClubs events={f.events} when={f.when} now={now} onSelect={setOpenClub} />
           </header>
           <FlyerFan events={sections.flatMap((sec) => sec.events)} now={now} onSelect={onSelect} />
         </div>
@@ -2201,6 +2209,16 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect }) {
         </div>
       )}
       </div>
+      {openClub && (
+        <ClubDetail
+          club={openClub}
+          hosted={hostedBy(all, openClub)}
+          apps={openApplications(applications, clubList).filter((a) => a.club?.name === openClub.name)}
+          j={j}
+          clubs={clubs}
+          onClose={() => setOpenClub(null)}
+        />
+      )}
     </main>
   );
 });
@@ -5259,7 +5277,9 @@ export default function DubHub() {
       </header>
 
       {view === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} palette={MAP_PALETTES[theme.theme]} showSlider={showSlider} />}
-      {view === "Events" && <NowPage f={f} updated={updated} j={j} onSelect={openEvent} />}
+      {view === "Events" && (
+        <NowPage f={f} updated={updated} j={j} onSelect={openEvent} all={all} clubs={clubs} applications={applications} clubList={clubList} />
+      )}
       {view === "My Events" && (
         <MyEventsPage
           all={all}
