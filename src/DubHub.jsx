@@ -2194,11 +2194,78 @@ function EventDetail({ event, j, onClose }) {
   );
 }
 
+// The color around a picture's edges (cached per picture), to fill the space beside it when it's
+// fitted into a frame of another shape, so the gap looks like part of the picture. Sampled from a
+// tiny copy; pictures from other sites that don't allow it get no color (null).
+const edgeColors = new Map();
+function edgeColor(img) {
+  if (edgeColors.has(img.src)) return edgeColors.get(img.src);
+  let color = null;
+  try {
+    const n = 24;
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = n;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    ctx.drawImage(img, 0, 0, n, n);
+    const px = ctx.getImageData(0, 0, n, n).data;
+    let r = 0;
+    let g = 0;
+    let b = 0;
+    let count = 0;
+    for (let y = 0; y < n; y++) {
+      for (let x = 0; x < n; x++) {
+        if (x > 1 && x < n - 2 && y > 1 && y < n - 2) continue; // just the outer two pixels
+        const i = (y * n + x) * 4;
+        r += px[i];
+        g += px[i + 1];
+        b += px[i + 2];
+        count++;
+      }
+    }
+    color = `rgb(${Math.round(r / count)}, ${Math.round(g / count)}, ${Math.round(b / count)})`;
+  } catch {
+    // A picture from another site that doesn't allow reading it
+  }
+  edgeColors.set(img.src, color);
+  return color;
+}
+
+// A picture that fills its frame when it's about the frame's shape, and otherwise is shown whole
+// (not zoomed and cropped), on its own edge color. Pictures from sites that don't let us read
+// their colors (HuskyLink) sit on a blurred, zoomed-in copy of themselves instead, unless
+// `backdrop` is off (then they get the frame's own background). `whole` always shows it whole.
+function FitImg({ src, whole = false, backdrop = true, className, onError, ...rest }) {
+  const [fit, setFit] = useState(null); // null, or { color } (color null: use the blurred copy)
+  const onLoad = (ev) => {
+    const img = ev.currentTarget;
+    const frame = img.clientWidth / img.clientHeight;
+    const pic = img.naturalWidth / img.naturalHeight;
+    if (!frame || !pic) return;
+    // More than about 15% off the frame's shape: cropping would cut off too much
+    if (whole || Math.abs(Math.log(pic / frame)) > 0.14) setFit({ color: edgeColor(img) });
+  };
+  const blurred = fit && !fit.color && backdrop;
+  return (
+    <>
+      {blurred && <span className="fit-backdrop" style={{ backgroundImage: `url(${JSON.stringify(src)})` }} aria-hidden="true" />}
+      <img
+        {...rest}
+        src={src}
+        alt=""
+        className={fit ? [className, "fitted"].filter(Boolean).join(" ") : className}
+        style={fit ? { objectFit: "contain", backgroundColor: fit.color ?? (blurred ? "transparent" : undefined) } : undefined}
+        onLoad={onLoad}
+        onError={onError}
+      />
+    </>
+  );
+}
+
 // The event's flyer at the top of its pop-up, shown whole (flyers often have text on them).
 function HeroImage({ src }) {
   const [failed, setFailed] = useState(false);
   if (failed) return null;
-  return <img className="event-hero" src={src} alt="" decoding="async" onError={() => setFailed(true)} />;
+  return <FitImg className="event-hero" src={src} whole backdrop={false} decoding="async" onError={() => setFailed(true)} />;
 }
 
 // "Today", "Tomorrow", or "Wed, Nov 4" for an event's "2026-11-04" date.
@@ -2320,7 +2387,7 @@ function EventTile({ event: e, section, j, onSelect, index = 0, children }) {
       <div className="tile-art">
         <button className="tile-flyer" onClick={() => onSelect(e)} tabIndex={-1} aria-hidden="true">
           {e.image && !broken ? (
-            <img src={e.image} alt="" loading="lazy" decoding="async" onError={() => setBroken(true)} />
+            <FitImg src={e.image} loading="lazy" decoding="async" onError={() => setBroken(true)} />
           ) : (
             <span className="tile-noflyer" style={{ background: eventColor(e) }}>
               {e.title}
@@ -2404,7 +2471,7 @@ function FlyerFan({ events, now, onSelect }) {
             onClick={() => onSelect(e)}
             aria-label={`${e.title}, ${e.start ? formatTime(e.start) : "all day"}`}
           >
-            <img src={e.image} alt="" loading={i === 0 ? "eager" : "lazy"} decoding="async" />
+            <FitImg src={e.image} loading={i === 0 ? "eager" : "lazy"} decoding="async" />
           </button>
         ))}
       </div>
@@ -3013,7 +3080,7 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
                 <li key={c.name} style={{ "--i": Math.min(i, 12) }}>
                   <button className="club-cover" onClick={() => !c.gone && setOpenClub(c)} disabled={c.gone}>
                     <span className="club-cover-art" style={{ "--club": c.gone ? NO_FIELD_COLOR : clubColor(c) }}>
-                      {cover && <img src={cover} alt="" loading="lazy" decoding="async" />}
+                      {cover && <FitImg src={cover} loading="lazy" decoding="async" />}
                       <Thumb src={c.logo} label={c.name} color={c.gone ? NO_FIELD_COLOR : clubColor(c)} className="club-cover-logo" />
                     </span>
                     <span className="club-cover-text">

@@ -7233,3 +7233,30 @@ body {
     animation: none;
   }
 }
+
+/* A picture fitted whole into a frame of another shape: the gap is filled with its edge color
+   (set inline), or with a blurred, zoomed-in copy of itself behind it */
+.tile-flyer,
+.club-cover-art {
+  position: relative;
+}
+
+.tile-flyer,
+.fan-card,
+.club-cover-art {
+  isolation: isolate; /* (fan cards are already positioned) */
+}
+
+.fit-backdrop {
+  position: absolute;
+  inset: -24px;
+  z-index: -1;
+  background: center / cover no-repeat;
+  filter: blur(20px) saturate(1.3);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+img.fitted {
+  position: relative;
+}
