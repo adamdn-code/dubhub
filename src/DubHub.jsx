@@ -2552,6 +2552,33 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
   const today = localDate(0);
   const beenTo = everything.filter((e) => e.date && e.date < today && j.joined.includes(String(e.id))).length;
   const recs = <Recommendations all={all} profile={profile} j={j} clubs={clubs} myClubs={myClubs} exclude={exclude} onSelect={setSelected} />;
+  // The events you're going to and your clubs' events, always above the suggestions (empty: says so).
+  const yourEvents = (
+    <section className="your-events" aria-labelledby="your-events-title">
+      <h2 id="your-events-title">Your events</h2>
+      {mine.length > 0 ? (
+        <div className="your-events-days">
+          <EventList events={mine} j={j} onSelect={setSelected} columns={3} />
+        </div>
+      ) : (
+        <div className="empty-card">
+          <h3>You have no events</h3>
+          <p>
+            Tap I'm going on an event to save it here, or join a club and every event it posts, and any application it opens, shows up
+            here on its own.
+          </p>
+          <div className="empty-actions">
+            <button className="join" onClick={onBrowse}>
+              Browse events
+            </button>
+            <button className="join secondary" onClick={onFindClubs}>
+              Find clubs
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
+  );
   const nextUp = [...upcomingMine].sort((a, b) => eventSpan(a).start - eventSpan(b).start)[0];
   return (
     <main className="page now-page mine-page">
@@ -2593,7 +2620,8 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
         </div>
       </section>
       <div className="now-body">
-      {/* Nothing of your own yet: suggestions first, as the way in */}
+      {/* Nothing of your own yet: say so first, then suggestions as the way in */}
+      {mine.length === 0 && yourEvents}
       {mine.length === 0 && recs}
       {myClubs.length > 0 && (
         <section className="my-clubs" aria-labelledby="my-clubs-title">
@@ -2647,26 +2675,7 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
       {clubs.joined.length > 0 && myApps.length === 0 && (
         <p className="count">None of your clubs are taking applications right now. When one opens, it shows up here.</p>
       )}
-      {mine.length > 0 && (myApps.length > 0 || myClubs.length > 0) && <h2>Your events</h2>}
-      {mine.length > 0 ? (
-        <EventList events={mine} j={j} onSelect={setSelected} columns={3} />
-      ) : (
-        <div className="empty-card">
-          <h2>Nothing here yet</h2>
-          <p>
-            Tap I'm going on an event to save it here, or join a club and every event it posts, and any application it opens, shows up
-            here on its own.
-          </p>
-          <div className="empty-actions">
-            <button className="join" onClick={onBrowse}>
-              Browse events
-            </button>
-            <button className="join secondary" onClick={onFindClubs}>
-              Find clubs
-            </button>
-          </div>
-        </div>
-      )}
+      {mine.length > 0 && yourEvents}
       {mine.length > 0 && recs}
       </div>
       {selected && <EventDetail event={selected} j={j} onClose={() => setSelected(null)} />}

@@ -6928,8 +6928,8 @@ body {
 }
 
 /* ===================================================== My Events: the hero band, and suggestions */
+/* (the full width, like the Now page's board, so the flyers fill the screen) */
 .mine-page .now-body {
-  width: min(1120px, 100%);
   padding-top: 8px;
 }
 
@@ -7180,13 +7180,31 @@ body {
   }
 }
 
-/* Suggestions sitting first (nothing of your own yet) don't need the gap above */
-.mine-page .now-body > .recs:first-child {
+/* Your events: a heading, then your events or a note that there are none */
+.mine-page .your-events {
+  margin-top: 28px;
+}
+
+.mine-page .now-body > .your-events:first-child {
   margin-top: 8px;
 }
 
-.mine-page .recs + .empty-card {
-  margin-top: 28px;
+.mine-page .your-events .empty-card {
+  margin-top: 12px;
+}
+
+/* On wide screens the days sit side by side (up to three across) instead of each row stretching
+   across the whole page */
+.your-events-days {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr));
+  gap: 0 24px;
+  align-items: start;
+}
+
+.page .empty-card h3 {
+  margin: 0 0 6px;
+  font-size: 20px;
 }
 
 /* ===================================================== My Events: your clubs, as cover cards */
