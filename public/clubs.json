@@ -20,7 +20,7 @@
    "description": "The Afghanistan Student Union(ASU) fosters a vibrant community that celebrates Afghanistan’s culture,heritage,and leadership. We unite Afghanistan students, inspire collaboration, and empower individuals to honor our roots while shaping a brighter future",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_614919_IMG_6172jpg_f881360f-c32c-4c93-b968-8c98588cdb6a_10532621.jpeg",
    "source": "huskylink",
-   "last_event": "2026-11-21",
+   "last_event": "2026-12-01",
    "fields": []
   },
   {
@@ -55,13 +55,11 @@
    "instagram": "https://www.instagram.com/alpfauw/",
    "website": "https://linktr.ee/alpfauw",
    "category": "Business",
-   "about": "Latino professional network empowering future leaders.",
-   "description": "ALPFA UW connects Latino and Latinx students with professional development opportunities and cultural celebrations. Events include Día de Muertos ofrendas and collaborations with other student groups, creating a welcoming space for all majors.",
+   "about": "Latino professional network empowering future leaders at UW.",
+   "description": "ALPFA UW is the Association of Latino Professionals for America chapter at UW, empowering future leaders across all majors. They host professional networking events, cultural celebrations like Día de Muertos, and career‑building activities.",
    "logo": "/ig/clubs/alpfauw.jpg",
    "last_event": "2026-11-13",
-   "fields": [
-    "Business"
-   ]
+   "fields": []
   },
   {
    "name": "Alpha Phi Alpha Fraternity Incorporated",
@@ -69,8 +67,8 @@
    "instagram": "https://www.instagram.com/uwalphas/",
    "website": "http://www.apa1906.net/",
    "category": "Greek Life",
-   "about": "Alpha Xi Chapter of Alpha Phi Alpha, a fraternity promoting brotherhood, mentorship, and service.",
-   "description": "Alpha Xi is the UW chapter of Alpha Phi Alpha, the historic Black fraternity. Members mentor youth through the Alpha Youth Mentorship Program and host events like Alpha Week to build brotherhood. The chapter also honors service achievements, such as the Help, Hope, Change Award.",
+   "about": "Alpha Phi Alpha fraternity chapter promoting brotherhood, scholarship, and service.",
+   "description": "The Alpha Xi Chapter honors academic achievement, runs youth mentorship programs, and hosts social events like Alpha Week. Members emphasize giving back to the Black community and upholding fraternity values.",
    "logo": "/ig/clubs/uwalphas.jpg",
    "last_event": "2026-11-16",
    "fields": []
@@ -81,26 +79,23 @@
    "instagram": "https://www.instagram.com/apoga/",
    "website": "http://linktr.ee/uwapoga",
    "category": "Service",
-   "about": "Co‑ed service fraternity promoting volunteerism and community impact.",
-   "description": "Alpha Phi Omega at UW is a national co‑ed service fraternity that connects members with volunteer opportunities. They organize events like blood drives and service fairs, offering freebies and community fellowship. Join to give back and meet fellow Huskies.",
+   "about": "Co‑ed service fraternity focused on leadership and community aid.",
+   "description": "Alpha Phi Omega is a co‑ed service fraternity dedicated to leadership and community service. Members run bake sales, blood drives, and service fairs to give back to the UW community.",
    "logo": "/ig/clubs/apoga.jpg",
    "last_event": "2026-11-20",
    "fields": []
   },
   {
    "name": "Alpha Theta Delta",
-   "website": "http://alphathetadelta.org",
-   "category": "Academic",
-   "about": "We're a coed professional design fraternity.",
-   "description": "We're a coed professional design fraternity. We welcome anyone with an interest in creative work or design to develop our professional network between student creatives and designers in relevant fields to create a welcoming design community.",
-   "logo": "/ig/clubs/alphathetadeltauw.jpg",
    "handle": "alphathetadeltauw",
    "instagram": "https://www.instagram.com/alphathetadeltauw/",
-   "source": "huskylink",
-   "last_event": "2026-10-07",
-   "fields": [
-    "Engineering"
-   ]
+   "website": "http://alphathetadelta.org",
+   "category": "Arts",
+   "about": "Interdisciplinary design fraternity for creative projects.",
+   "description": "ATD UW is a professional interdisciplinary design fraternity that blends creativity and engineering. Members showcase projects such as themed pastry sales and host events that explore design and storytelling.",
+   "logo": "/ig/clubs/alphathetadeltauw.jpg",
+   "last_event": "2026-11-18",
+   "fields": []
   },
   {
    "name": "American Cancer Society On Campus",
@@ -123,8 +118,8 @@
    "instagram": "https://www.instagram.com/uw_ama/",
    "website": "https://linktr.ee/uw.ama",
    "category": "Business",
-   "about": "Student chapter focused on marketing education, projects, and industry trends.",
-   "description": "American Marketing Association’s UW chapter focuses on marketing skills and industry insights. They host agency kickoffs, fundraisers like the Chipotle event, and weekly Trend Talk sessions discussing current market topics.",
+   "about": "Student organization linking members with marketing trends and industry professionals.",
+   "description": "AMA hosts weekly Trend Talk sessions on brand strategies, M&M Monday panels with marketing pros, and an agency kickoff for student consultants. The group celebrates top chapter rankings while fostering networking and skill‑building.",
    "logo": "/ig/clubs/uw_ama.jpg",
    "last_event": "2026-11-20",
    "fields": [
@@ -162,8 +157,8 @@
    "instagram": "https://www.instagram.com/uw_asce/",
    "website": "https://urldefense.com/v3/__https://forms.cloud.microsoft/r/9d30Ueviw9__;!!K-Hz7m0Vt54!g9RG40RM2jzWnncCDqtrZo7N2JzrVn6FPj896BOkL0z07jk_3l1RUzTr1PLpclT0h7oyyVPNPHYS5_-YjSp4NdjAWMSc$",
    "category": "Engineering",
-   "about": "Civil engineering student chapter with industry talks.",
-   "description": "UW’s ASCE student chapter links civil engineering students with industry professionals via lunch‑and‑learn sessions and project showcases. Partners like Delve Underground, CPL, and HDR share insights on transportation, seismic, and water engineering.",
+   "about": "UW civil engineering chapter offering industry talks and project experiences.",
+   "description": "The ASCE student chapter hosts lunch‑and‑learn events with agencies like WSDOT, Shimmick Construction, and Delve Underground, highlighting transportation, water, and energy infrastructure. Members gain insight into geotechnical, structural, and construction management careers.",
    "logo": "/ig/clubs/uw_asce.jpg",
    "last_event": "2026-11-12",
    "fields": [
@@ -176,12 +171,12 @@
    "instagram": "https://www.instagram.com/animenationuw/",
    "website": "http://linktr.ee/anuw",
    "category": "Gaming",
-   "about": "Anime Nation UW unites the campus anime, manga, and gaming community.",
-   "description": "Anime Nation UW brings together fans of anime, manga, and games through events like scavenger hunts and cosplay gatherings. The group hosts meet‑ups and gaming sessions across campus.",
+   "about": "Community for UW anime, manga, and gaming enthusiasts.",
+   "description": "Anime Nation UW unites the campus anime, manga, and gaming community. They collaborate with other clubs for events, organize meet‑ups at local venues, and run gaming outings for members.",
    "logo": "/ig/clubs/animenationuw.jpg",
    "discord": "https://discord.gg/JSBdQfM",
    "discord_server": "Anime Nation UW",
-   "last_event": "2026-11-14",
+   "last_event": "2026-11-16",
    "fields": []
   },
   {
@@ -240,12 +235,12 @@
    "instagram": "https://www.instagram.com/ace_uw/",
    "website": "https://linktr.ee/ACE_UW",
    "category": "Academic",
-   "about": "Club for students interested in computing education.",
-   "description": "ACE is a student group for anyone interested in computing education. They host fun events such as a Computing Bee and monthly TA socials with games and snacks, fostering a supportive community for learning and networking.",
+   "about": "Club for those passionate about computing education.",
+   "description": "ACE is a UW club for anyone interested in computing education. They organize book‑club style discussions on papers and host a Computing Bee competition, providing a welcoming environment for learning.",
    "logo": "/ig/clubs/ace_uw.jpg",
    "discord": "https://discord.gg/Fy9DfTxaTK",
    "discord_server": "Association for Computing Education (ACE)",
-   "last_event": "2026-12-01",
+   "last_event": "2026-12-02",
    "fields": [
     "Computing & Math"
    ]
@@ -354,7 +349,7 @@
    "source": "huskylink",
    "discord": "https://discord.gg/VhTfFMNv9A",
    "discord_server": "AWS Cloud Club (UW + GTA)",
-   "last_event": "2026-11-24",
+   "last_event": "2026-12-01",
    "fields": [
     "Computing & Math"
    ]
@@ -566,14 +561,13 @@
    "instagram": "https://www.instagram.com/claude.uofwa/",
    "website": "https://discord.gg/ggZrNu55F",
    "category": "Tech",
-   "about": "Learns to build AI‑powered applications using Claude.",
-   "description": "Claude Builder Club teaches students how to develop AI‑powered code using Claude’s coding agent. Collaborative workshops with groups like NSBE and ColorStack let participants build projects alongside the AI assistant.",
+   "about": "Learn and build AI projects with Claude.",
+   "description": "Claude Builder Club lets members learn and build AI projects with Claude. They host builder nights where students can work on personal or team projects and get hands‑on experience with Claude Code.",
    "logo": "/ig/clubs/claude.uofwa.jpg",
    "discord": "https://discord.gg/ggZrNu55F",
    "discord_server": "Claude Builder Club @ UW Seattle",
-   "last_event": "2026-11-09",
+   "last_event": "2026-11-17",
    "fields": [
-    "Engineering",
     "Computing & Math"
    ]
   },
@@ -725,15 +719,15 @@
    "instagram": "https://www.instagram.com/dubstechuw/",
    "website": "https://linktr.ee/dubstech",
    "category": "Tech",
-   "about": "Student tech community hosting workshops, hackathons, and talks on design & engineering.",
-   "description": "Dubstech is UW’s largest tech community, offering workshops, hackathons, and speaker series on design, data science, and software engineering. Recent events include a Women in Tech panel featuring UX researchers and product managers. It’s a great place to learn and network with fellow tech enthusiasts.",
+   "about": "UW’s largest tech community hosting workshops and industry panels.",
+   "description": "Dubstech is UW’s largest tech community, offering workshops, hackathons, and speaker panels. Recent events include a Women in Tech panel featuring industry professionals sharing their career journeys.",
    "logo": "/ig/clubs/dubstechuw.jpg",
    "discord": "https://discord.gg/RJQNJmuCcw",
    "discord_server": "DubsTech",
    "last_event": "2026-11-13",
    "fields": [
-    "Engineering",
-    "Computing & Math"
+    "Computing & Math",
+    "Engineering"
    ]
   },
   {
@@ -787,6 +781,22 @@
    "discord_server": "UW Film Club",
    "last_event": "2026-11-12",
    "fields": []
+  },
+  {
+   "name": "First Generation Business Leaders",
+   "handle": "uw_fgbl",
+   "instagram": "https://www.instagram.com/uw_fgbl/",
+   "website": "https://linktr.ee/uw_fgbl",
+   "category": "Business",
+   "about": "First‑generation UW students focused on business leadership and community.",
+   "description": "First Gen Business Leaders celebrates and supports first‑gen students through events such as pie‑an‑exec fundraisers and campus‑wide recognitions. The group builds a network that highlights resilience and fresh perspectives in business.",
+   "logo": "/ig/clubs/uw_fgbl.jpg",
+   "discord": "https://discord.gg/trgDr9w6a4",
+   "discord_server": "First Generation Business Leaders",
+   "last_event": "2026-11-17",
+   "fields": [
+    "Business"
+   ]
   },
   {
    "name": "First Nations at UW",
@@ -976,8 +986,8 @@
    "instagram": "https://www.instagram.com/huskyculinaryclub/",
    "website": "https://linktr.ee/huskyculinaryclub",
    "category": "Arts",
-   "about": "Student culinary club offering cooking demos, food games, and waste‑reduction tips.",
-   "description": "Husky Culinary Club (HCCUW) shares cooking experiences through demos, food‑guessing games, and market stalls. Recent activities include a farmers‑market cooking demo focused on food waste reduction and a spanakopita workshop. Join to learn new recipes and meet fellow food lovers.",
+   "about": "Student club exploring cooking, food culture, and sustainable kitchen practices.",
+   "description": "The Husky Culinary Club partners with other food groups for fun events like Foodguesser and collaborative cooking demos. Members share tips on reducing food waste and cooking on a budget, often showcasing at local markets.",
    "logo": "/ig/clubs/huskyculinaryclub.jpg",
    "last_event": "2026-11-07",
    "fields": []
@@ -1634,6 +1644,19 @@
    "fields": []
   },
   {
+   "name": "Smash Club",
+   "website": "https://discord.gg/v6WeGzHRx9",
+   "category": "Gaming",
+   "about": "The purpose of this club is to provide a social outlet for and to foster the growth of the Super Smash Bros.",
+   "description": "The purpose of this club is to provide a social outlet for and to foster the growth of the Super Smash Bros. scene in the greater Seattle area, primarily focused towards University of Washington students. The club will throw",
+   "logo": "/ig/clubs/uwsmash.jpg",
+   "handle": "uwsmash",
+   "instagram": "https://www.instagram.com/uwsmash/",
+   "source": "huskylink",
+   "last_event": "2027-06-08",
+   "fields": []
+  },
+  {
    "name": "Society of Asian Scientists and Engineers",
    "handle": "saseuw",
    "instagram": "https://www.instagram.com/saseuw/",
@@ -2074,8 +2097,8 @@
    "instagram": "https://www.instagram.com/vsauw/",
    "website": "https://linktr.ee/vsauw",
    "category": "Cultural",
-   "about": "Vietnamese student association fostering community and culture.",
-   "description": "VSAUW is the Vietnamese Student Association at UW, offering cultural events, info nights, and community gatherings. Members celebrate Vietnamese heritage, connect with peers, and enjoy activities throughout the semester.",
+   "about": "Vietnamese student community fostering culture and connections.",
+   "description": "VSAUW is the official Vietnamese Student Association at UW, creating a space for Vietnamese culture and community. They hold general meetings, social events, and info nights to connect members and celebrate traditions.",
    "logo": "/ig/clubs/vsauw.jpg",
    "last_event": "2026-12-01",
    "fields": []

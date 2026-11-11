@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T01:28",
+ "updated": "2026-11-11T02:06",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -2677,8 +2677,8 @@
    "name": "Emergency Medicine Interest Group",
    "website": null,
    "category": "Academic",
-   "about": "EMIG is a student run organization within UWSOM whose goals are to introduce students to emergency medicine and to…",
-   "description": "EMIG is a student run organization within UWSOM whose goals are to introduce students to emergency medicine and to stimulate interest in this exciting field. In general, the club's activities consist of organizing skills, leadership, and emergency medicine.",
+   "about": "The Emergency Medicine Interest Group (EMIG) is a medical student-led organization dedicated to fostering interest,…",
+   "description": "The Emergency Medicine Interest Group (EMIG) is a medical student-led organization dedicated to fostering interest, education, and professional development in emergency medicine. Through clinical skills development, mentorship, teamwork, leadership training, physician engagement, and educational opportunities, our purpose is to provide current medical students with meaningful exposure to the specialty while cultivating a collaborative community.",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_602540_Emergency_Medicine_Interest_Groupjpg_6f777246-9cdf-41f4-8761-42d500dc8335_1028164147.jpeg"
   },
   {
@@ -9355,7 +9355,7 @@
   },
   {
    "name": "Young Democratic Socialists of America at UW",
-   "website": "https://discord.gg/5XgwmE2n",
+   "website": "https://discord.gg/D7s6b28rsD",
    "category": "Service",
    "about": "We are the Young Democratic Socialists of America chapter at the University of Washington, Seattle.",
    "description": "We are the Young Democratic Socialists of America chapter at the University of Washington, Seattle. We are a leftist student group seeking to spread the tenets of democratic socialism on campus through activism, education and campus outreach.",
@@ -9435,137 +9435,6 @@
   }
  ],
  "events": [
-  {
-   "id": "hl-375404",
-   "title": "Video Game Party",
-   "type": "Game night",
-   "host": "New Student & Transfer Programs",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-10",
-   "start": "14:00",
-   "end": "15:00",
-   "url": "https://huskylink.washington.edu/NSTP/rsvp?id=375404",
-   "source": "huskylink",
-   "description": "Get your game on with the CTC!\nMario Kart\nSuper Smash Bros\nJust Dance\nAnd free popcorn!\nWe play every Tuesday from 2-4PM!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_653212_CTC_Logo_2024_1_340a4878-48de-404e-b908-fc1c4763a198_102017247.png",
-   "rsvps": 1
-  },
-  {
-   "id": "hl-375160",
-   "title": "Graphic Novels Club Meeting",
-   "type": "Club",
-   "host": "Graphic Novels Club at UW",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-10",
-   "start": "17:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/gnc/rsvp?id=375160",
-   "source": "huskylink",
-   "description": "Want to talk about comics, learn how to draw them, or just hang out in a chill and artsy space to draw and make friends? Then this club is for you! Art supplies is available, and we provide free snacks at the first and last meeting of the quarter. :)",
-   "image": null,
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375054",
-   "title": "UNA UW Chapter Meeting",
-   "type": "Club",
-   "host": "United Nations Association University of Washington Chapter",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-10",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/unauw/rsvp?id=375054",
-   "source": "huskylink",
-   "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!",
-   "image": null,
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375101",
-   "title": "General Meeting",
-   "type": "Club",
-   "host": "NMDP UW",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-10",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375101",
-   "source": "huskylink",
-   "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_643287_Screenshot_20260928_182241_06deb2ab-c655-430a-bc8a-e2e8bf3041cc_928212314.png",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375300",
-   "title": "Barbell Club Caffeine Lift",
-   "type": "Hangout",
-   "host": "Barbell Club at the University of Washington",
-   "where": "IMA",
-   "pos": [
-    47.65374,
-    -122.30123
-   ],
-   "date": "2026-11-10",
-   "start": "18:00",
-   "end": "19:30",
-   "url": "https://huskylink.washington.edu/barbellclub/rsvp?id=375300",
-   "source": "huskylink",
-   "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375486",
-   "title": "DEI: First-Generation Speaker Event",
-   "type": "Study",
-   "host": "The Women's Network at UW",
-   "where": "Deloitte Commons",
-   "pos": null,
-   "date": "2026-11-10",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/thewomensnetwork/rsvp?id=375486",
-   "source": "huskylink",
-   "description": "Join TWN for our First-Generation Speaker Panel, where we’ll celebrate first-gen experiences, hear from inspiring voices, and explore the different journeys that shape our communities.\nCome listen, connect, and be part of the conversation!\nBusiness casual clothing is encouraged but not required!\nWe hope to see you there!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_608695_DEI_Event_Post_TWN_2026_Fall_5594b25f-bbdb-4ba1-8737-742112862590_115181253.png",
-   "rsvps": 1
-  },
-  {
-   "id": "hl-375455",
-   "title": "Open Gym",
-   "type": "Hangout",
-   "host": "Men's Basketball Club @ UW",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-10",
-   "start": "18:30",
-   "end": "19:30",
-   "url": "https://huskylink.washington.edu/mensclubbasketball/rsvp?id=375455",
-   "source": "huskylink",
-   "description": "Pull up to Gym A to meet each other and play casual pickup basketball",
-   "image": null,
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375492",
-   "title": "11/10 Huskids General Meeting: Care Kit Making + UW CELE Guest Speaker",
-   "type": "Club",
-   "host": "Huskies for Kids",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-10",
-   "start": "19:00",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/huskids/rsvp?id=375492",
-   "source": "huskylink",
-   "description": "Assemble care kits to donate to the Ronald McDonald House & Guest speaker from UW CELE",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_614633_71e812761e124c758c428ba86a5128a8_6ce6dc4e-2ddb-49d3-a158-04d282b3f118_11812710.jpeg",
-   "rsvps": 0
-  },
   {
    "id": "hl-375371",
    "title": "Worship Night",
@@ -9729,7 +9598,7 @@
    "source": "huskylink",
    "description": "Join the Washington Gaming Association’s annual Trading Card Game event at the University of Washington featuring the MTG Club and Pokémon Trainers club. Featuring vendors, artists, give aways, and open play, this event brings together students, collectors, and TCG enthusiasts for a full day of gaming and community in the Husky Union Building.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_611982_eventpreviewphoto_9b0fdba0-2398-43b3-af96-d7170569e004_101416752.png",
-   "rsvps": 2
+   "rsvps": 3
   },
   {
    "id": "hl-375484",
@@ -9802,6 +9671,38 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375405",
+   "title": "Video Game Party",
+   "type": "Game night",
+   "host": "New Student & Transfer Programs",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-17",
+   "start": "14:00",
+   "end": "15:00",
+   "url": "https://huskylink.washington.edu/NSTP/rsvp?id=375405",
+   "source": "huskylink",
+   "description": "Get your game on with the CTC!\nMario Kart\nSuper Smash Bros\nJust Dance\nAnd free popcorn!\nWe play every Tuesday from 2-4PM!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_653212_CTC_Logo_2024_1_49c4603a-864f-466d-9260-4902ea7b7e71_102017516.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375161",
+   "title": "Graphic Novels Club Meeting",
+   "type": "Club",
+   "host": "Graphic Novels Club at UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-17",
+   "start": "17:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/gnc/rsvp?id=375161",
+   "source": "huskylink",
+   "description": "Want to talk about comics, learn how to draw them, or just hang out in a chill and artsy space to draw and make friends? Then this club is for you! Art supplies is available, and we provide free snacks at the first and last meeting of the quarter. :)",
+   "image": null,
+   "rsvps": 0
+  },
+  {
    "id": "hl-375450",
    "title": "Food & Friends",
    "type": "Hangout",
@@ -9834,6 +9735,54 @@
    "source": "huskylink",
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375498",
+   "title": "Weekly Smash Club Tournament",
+   "type": "Game night",
+   "host": "Smash Club",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-17",
+   "start": "18:00",
+   "end": "22:00",
+   "url": "https://huskylink.washington.edu/smashuw/rsvp?id=375498",
+   "source": "huskylink",
+   "description": "Come play Super Smash Bros. Melee with us every Tuesday!",
+   "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375456",
+   "title": "Open Gym",
+   "type": "Hangout",
+   "host": "Men's Basketball Club @ UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-17",
+   "start": "18:30",
+   "end": "19:30",
+   "url": "https://huskylink.washington.edu/mensclubbasketball/rsvp?id=375456",
+   "source": "huskylink",
+   "description": "Pull up to Gym A to meet each other and play casual pickup basketball",
+   "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375055",
+   "title": "UNA UW Chapter Meeting",
+   "type": "Club",
+   "host": "United Nations Association University of Washington Chapter",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-18",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/unauw/rsvp?id=375055",
+   "source": "huskylink",
+   "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!",
+   "image": null,
    "rsvps": 0
   },
   {
@@ -9901,7 +9850,7 @@
    "source": "huskylink",
    "description": "Interested in healthcare? We can connect you!\nOur mission is to break down barriers to healthcare experiences at UW by connecting students with meaningful opportunities and equipping them with the skills to succeed in empathetic, compassionate healthcare.\nWhether you’re pre-med, pre-nursing, pre-PA, pre-pharmacy, or simply interested in getting involved in healthcare, we’re here to help guide you toward your goals.\nCome meet fellow students, learn about upcoming clinical, volunteering, shadowing, and research opportunities, and discover how MedConnect can help you take the next step in your healthcare journey!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_601449_medconnect_15e58cb6-04f9-49b7-9718-e0f3c8577367_102610374.png",
-   "rsvps": 2
+   "rsvps": 4
   },
   {
    "id": "hl-375479",
@@ -9952,6 +9901,38 @@
    "source": "huskylink",
    "description": "It is nearly the end of the quarter, and it is time to see how strong you have become! Join us at the IMA for a day dedicated to beating personal records. Spotters will be available, and blood will be pumping.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375526",
+   "title": "Cafe Social",
+   "type": "Hangout",
+   "host": "Afghanistan Student Union at the University of Washington",
+   "where": null,
+   "pos": null,
+   "date": "2026-12-01",
+   "start": "15:30",
+   "end": "17:00",
+   "url": "https://huskylink.washington.edu/asuatuwseattle/rsvp?id=375526",
+   "source": "huskylink",
+   "description": "Social gathering to bring students together in a relaxed cafe setting, providing an opportunity to connect, network, and build meaningful friendships.",
+   "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375527",
+   "title": "Winter Snowcial",
+   "type": "Hangout",
+   "host": "AWS Cloud Club at the University of Washington",
+   "where": null,
+   "pos": null,
+   "date": "2026-12-01",
+   "start": "17:00",
+   "end": "18:00",
+   "url": "https://huskylink.washington.edu/awscloudclubatuw/rsvp?id=375527",
+   "source": "huskylink",
+   "description": "Let’s get creative before cramming season! ❄️\nBefore the finals freeze takes over, join us for our Winter Snowcial! Bring your friends, get crafty, and spend an hour making something other than another study guide.\nTake a break from your study grind and spend an hour getting crafty with us!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_633611_finalized_snowcial_post_79b3da68-cdb8-4d1e-91e9-0412f14d3c21_111123454.png",
    "rsvps": 0
   },
   {
@@ -10006,6 +9987,22 @@
    "source": "huskylink",
    "description": "Emerald City Card Show – UW Seattle presented by the Washington Gaming Association at UW is bringing the ultimate collector experience to the heart of campus! Join us at the UW Husky Union Building (HUB) Ballrooms (2nd Floor) for a full day of buying, selling, trading, and connecting with the PNW community. This is a show built by collectors, for collectors.\nBrowse 145+ vendor tables featuring Pokémon, Magic: The Gathering, sports cards, Riftbound, custom art, handcrafted items, sealed products, slabs, accessories, and more. Whether you’re a student hobbyist, a seasoned collector, or brand new to the game, there’s something for everyone.\nWhat to expect:\nMassive Variety: A wide selection of trusted vendors, local artists, and exclusive finds.\nTrade-Friendly Environment: Bring your trade binders and find your next grail!\nVIP Early Entry: Get in at 10:00 AM — two hours before general admission—to get first dibs on the best inventory and be entered into our raffle for dozens of prizes!\nAccessible Location: Located right in the heart of campus in the spacious 2nd Floor Ballrooms.\nLocation: UW Husky Union Building (HUB)\nRoom: Ballrooms, 2nd Floor East Stevens Way Northeast, Seattle, WA",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_611982_posters1788672548435_5c6dc5a1-8d97-48c8-9b24-126db60ac986_11113250.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375102",
+   "title": "General Meeting",
+   "type": "Club",
+   "host": "NMDP UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-12-08",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375102",
+   "source": "huskylink",
+   "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_643287_Screenshot_20260928_182241_06deb2ab-c655-430a-bc8a-e2e8bf3041cc_928212314.png",
    "rsvps": 0
   }
  ]

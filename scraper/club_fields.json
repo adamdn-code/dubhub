@@ -235,21 +235,19 @@
 },
 "alphaphialphafraternityincorporated": {
 "fields": [],
-"from": "Alpha Phi Alpha Fraternity Incorporated|Alpha Xi Chapter of Alpha Phi Alpha, a fraternity promoting brotherhood, mentorship, and service."
+"from": "Alpha Phi Alpha Fraternity Incorporated|Alpha Phi Alpha fraternity chapter promoting brotherhood, scholarship, and service."
 },
 "alphaphiomegagammaalpha": {
 "fields": [],
-"from": "Alpha Phi Omega Gamma Alpha|Co‑ed service fraternity promoting volunteerism and community impact."
+"from": "Alpha Phi Omega Gamma Alpha|Co‑ed service fraternity focused on leadership and community aid."
 },
 "alphasigmaphi": {
 "fields": [],
 "from": "Alpha Sigma Phi|On Saturday, December 6, 1845, three young men sat down in a small room at Yale College and created a fraternal…"
 },
 "alphathetadelta": {
-"fields": [
-"Engineering"
-],
-"from": "Alpha Theta Delta|We're a coed professional design fraternity."
+"fields": [],
+"from": "Alpha Theta Delta|Interdisciplinary design fraternity for creative projects."
 },
 "americanassociationofpsychiatricpharmacistscollegiate": {
 "fields": [
@@ -316,7 +314,7 @@
 "fields": [
 "Business"
 ],
-"from": "American Marketing Association, UW Chapter|Student chapter focused on marketing education, projects, and industry trends."
+"from": "American Marketing Association, UW Chapter|Student organization linking members with marketing trends and industry professionals."
 },
 "americanmedicalwomensassociationatuwsomgraduate": {
 "fields": [
@@ -360,7 +358,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "American Society of Civil Engineers UW Student Chapter|Civil engineering student chapter with industry talks."
+"from": "American Society of Civil Engineers UW Student Chapter|UW civil engineering chapter offering industry talks and project experiences."
 },
 "americansocietyofhealthsystempharmacists": {
 "fields": [
@@ -440,7 +438,7 @@
 },
 "animenation": {
 "fields": [],
-"from": "Anime Nation at the University of Washington|Anime Nation UW unites the campus anime, manga, and gaming community."
+"from": "Anime Nation at the University of Washington|Community for UW anime, manga, and gaming enthusiasts."
 },
 "anticinemacinemaclub": {
 "fields": [
@@ -607,7 +605,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Association for Computing Education|Club for students interested in computing education."
+"from": "Association for Computing Education|Club for those passionate about computing education."
 },
 "associationforresearchonracialjustice": {
 "fields": [
@@ -634,10 +632,8 @@
 "from": "Association of Information Management Students|To foster a diverse, positive, open and collaborative environment within the MSIM community, as well as to provide…"
 },
 "associationoflatinoprofessionalsforamerica": {
-"fields": [
-"Business"
-],
-"from": "Association of Latino Professionals for America|Latino professional network empowering future leaders."
+"fields": [],
+"from": "Association of Latino Professionals for America|Latino professional network empowering future leaders at UW."
 },
 "associationofmedicalspecialties": {
 "fields": [
@@ -1292,10 +1288,9 @@
 },
 "claudebuilderclub": {
 "fields": [
-"Engineering",
 "Computing & Math"
 ],
-"from": "Claude Builder Club @ UW|Learns to build AI‑powered applications using Claude."
+"from": "Claude Builder Club @ UW|Learn and build AI projects with Claude."
 },
 "climateactionandsustainabilityteamschoolofdentistry": {
 "fields": [
@@ -1721,10 +1716,10 @@
 },
 "dubstech": {
 "fields": [
-"Engineering",
-"Computing & Math"
+"Computing & Math",
+"Engineering"
 ],
-"from": "DubsTech|Student tech community hosting workshops, hackathons, and talks on design & engineering."
+"from": "DubsTech|UW’s largest tech community hosting workshops and industry panels."
 },
 "dubsartclub": {
 "fields": [
@@ -1958,7 +1953,7 @@
 "fields": [
 "Business"
 ],
-"from": "First Generation Business Leaders|Mission: to facilitate transition to college for first generation students through initiatives such as proving…"
+"from": "First Generation Business Leaders|First‑generation UW students focused on business leadership and community."
 },
 "firstgenerationdentalstudentassociation": {
 "fields": [
@@ -2575,7 +2570,7 @@
 },
 "huskyculinaryclub": {
 "fields": [],
-"from": "Husky Culinary Club|Student culinary club offering cooking demos, food games, and waste‑reduction tips."
+"from": "Husky Culinary Club|Student club exploring cooking, food culture, and sustainable kitchen practices."
 },
 "huskycyclingclub": {
 "fields": [],
@@ -5871,7 +5866,7 @@
 },
 "vietnamesestudentassociation": {
 "fields": [],
-"from": "Vietnamese Student Association|Vietnamese student association fostering community and culture."
+"from": "Vietnamese Student Association|Vietnamese student community fostering culture and connections."
 },
 "virtualbedsideconcerts": {
 "fields": [
