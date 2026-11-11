@@ -2625,6 +2625,57 @@ function YourEvents({ events, j, now, onSelect, onBrowse, onFindClubs }) {
   );
 }
 
+// The clubs you're in, as tilted cards scattered across the hero that pop in one after another and
+// float: each is the club's latest flyer with its logo and name along the bottom. Tap one to open it.
+function ClubFan({ clubs, all, everything, now, onOpen }) {
+  const shown = clubs.filter((c) => !c.gone).slice(0, FAN_COUNT);
+  if (!shown.length) return null;
+  const soon = (e) => `${e.date}T${e.start ?? "99"}`;
+  const next = shown
+    .flatMap((c) => hostedBy(all, c).filter((e) => sectionOf(e, now)))
+    .reduce((a, e) => (!a || soon(e) < soon(a) ? e : a), null);
+  const more = clubs.length > FAN_COUNT ? clubs.length - shown.length : 0; // (listed below the hero)
+  return (
+    <div className="club-fan">
+      <div className="club-fan-cards">
+        {shown.map((c, i) => {
+          const cover = clubCover(c, all, everything);
+          const upcoming = hostedBy(all, c).filter((e) => sectionOf(e, now)).length;
+          return (
+            <button
+              key={c.name}
+              className="club-fan-card"
+              style={{ "--k": i, "--club": clubColor(c) }}
+              onClick={() => onOpen(c)}
+              aria-label={`${c.name}, ${upcoming} upcoming event${upcoming === 1 ? "" : "s"}`}
+            >
+              {cover ? <FitImg src={cover} loading={i === 0 ? "eager" : "lazy"} decoding="async" /> : <span className="club-fan-blank" />}
+              <span className="club-fan-label">
+                <Thumb src={c.logo} label={c.name} color={clubColor(c)} className="club-fan-logo" />
+                <span>
+                  <strong>{c.name}</strong>
+                  <small>{upcoming ? `${upcoming} upcoming` : "Nothing coming up"}</small>
+                </span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+      <p className="fan-caption">
+        {next ? (
+          <>
+            Next from your clubs: <strong>{next.title}</strong>, {dayLabel(next.date)}
+            {next.start ? ` ${formatTime(next.start)}` : ""}
+          </>
+        ) : (
+          "None of your clubs have anything coming up yet."
+        )}
+        {more > 0 && ` · and ${more} more club${more === 1 ? "" : "s"} below`}
+      </p>
+    </div>
+  );
+}
+
 function MyEventsPage({ all, everything = all, clubList, j, clubs, applications, profile, onBrowse, onFindClubs }) {
   const mine = useMemo(() => myEventsFor(all, clubList, j, clubs), [all, clubList, j, clubs]);
   const [selected, setSelected] = useState(null);
@@ -2654,7 +2705,6 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
       {recs}
     </div>
   );
-  const nextUp = [...upcomingMine].sort((a, b) => eventSpan(a).start - eventSpan(b).start)[0];
   return (
     <main className="page now-page mine-page">
       <section className="now-hero mine-hero">
@@ -2662,11 +2712,11 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
         <img className="hero-photo" src="/hero-redsquare.jpg" alt="" aria-hidden="true" />
         <div className="now-hero-inner">
           <header className="now-head">
-            <h1>My Events</h1>
+            <h1>My Clubs</h1>
             <p className="now-date">
               {clubs.joined.length > 0
-                ? `Events you joined, plus everything from ${clubs.joined.length === 1 ? clubs.joined[0] : `your ${clubs.joined.length} clubs`}`
-                : "Your week on campus, and what you might like next"}
+                ? `The ${clubs.joined.length === 1 ? "club" : `${clubs.joined.length} clubs`} you're in, and everything they have coming up`
+                : "Join clubs and they show up here, with all their events and applications"}
             </p>
             {(mine.length > 0 || clubs.joined.length > 0 || beenTo > 0) && (
             <ul className="mine-stats">
@@ -2682,25 +2732,24 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
             </ul>
             )}
           </header>
-          {nextUp ? (
-            <button className="mine-next" onClick={() => setSelected(nextUp)}>
-              <span className="mine-next-label">Your next event</span>
-              <strong>{nextUp.title}</strong>
-              <span>{[formatWhen(nextUp), nextUp.where].filter(Boolean).join(" · ")}</span>
-              {eventPicture(nextUp) && <img src={eventPicture(nextUp)} alt="" loading="lazy" decoding="async" />}
-            </button>
+          {myClubs.some((c) => !c.gone) ? (
+            <ClubFan clubs={myClubs} all={all} everything={everything} now={now} onOpen={setOpenClub} />
           ) : (
-            <FlyerFan events={all.filter((e) => sectionOf(e, now))} now={now} onSelect={setSelected} />
+            <div className="mine-join">
+              <FlyerFan events={all.filter((e) => sectionOf(e, now))} now={now} onSelect={setSelected} />
+              <button className="join mine-find" onClick={onFindClubs}>
+                Find clubs to join
+              </button>
+            </div>
           )}
         </div>
       </section>
       <div className="now-body">
       {/* Nothing of your own yet: the two halves first, saying so beside the suggestions */}
       {mine.length === 0 && split}
-      {myClubs.length > 0 && (
+      {myClubs.length > FAN_COUNT && (
         <section className="my-clubs" aria-labelledby="my-clubs-title">
-          <h2 id="my-clubs-title">Clubs</h2>
-          <p className="my-clubs-sub">Clubs you joined, and the ones hosting events you're going to.</p>
+          <h2 id="my-clubs-title">All your clubs</h2>
           <ul className="club-covers">
             {myClubs.map((c, i) => {
               const upcoming = c.gone ? 0 : hostedBy(all, c).length;
