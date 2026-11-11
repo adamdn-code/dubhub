@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T14:23",
+ "updated": "2026-11-10T20:08",
  "events": [
   {
    "id": "Dfh5h7xPLwk-0",
@@ -214,6 +214,33 @@
    "posts": 1
   },
   {
+   "id": "Dff0ffnvTT0-0",
+   "title": "Utilizing Claude",
+   "type": "Club",
+   "host": "UWiB (UW) (@uw_uwib)",
+   "where": "Paccar 294",
+   "pos": [
+    47.65909,
+    -122.30867
+   ],
+   "date": "2026-11-10",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/Dff0ffnvTT0/",
+   "source": "instagram",
+   "description": "Upcoming Skill Series: Utilizing Claude!\n\nJoin us this week to learn how to use Claude and build your skills. As AI is a bigger part of our futures, we want to build better skills to best utilize AI to grow our careers. Whether you're new to AI or looking to get more comfortable using it, this is a great opportunity to build your skills!\n\n👩‍💻Bring your laptops to work along with us!!\n\n🗓️Tuesday, Nov 10, 6:00-7:00pm\n📍Paccar 294",
+   "image": "/ig/posts/Dff0ffnvTT0.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Dff0ffnvTT0": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "hl-375054",
    "title": "UNA UW Chapter Meeting",
    "type": "Club",
@@ -350,10 +377,10 @@
   },
   {
    "id": "Dfh1B7rvhty-0",
-   "title": "Drylands",
+   "title": "Drylands Session",
    "type": "Club",
    "host": "Husky Winter Sports (@huskywintersports)",
-   "where": "SAVERY 264",
+   "where": "Savery 264",
    "pos": [
     47.65712,
     -122.30842
@@ -561,10 +588,10 @@
   },
   {
    "id": "DfispvMJwV6-0",
-   "title": "Challah Baking",
+   "title": "Challah for Hunger Baking",
    "type": "Food",
    "host": "Hillel UW (@huskyhillel)",
-   "where": null,
+   "where": "Hillel UW",
    "pos": null,
    "date": "2026-11-11",
    "start": "09:00",
@@ -633,6 +660,30 @@
    },
    "likes": 89,
    "comments": 6,
+   "posts": 1
+  },
+  {
+   "id": "Dfigw75h-RG-0",
+   "title": "iGEM Info Session",
+   "type": "Club",
+   "host": "Washington iGEM (@washington_igem)",
+   "where": "Online",
+   "pos": null,
+   "date": "2026-11-11",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/Dfigw75h-RG/",
+   "source": "instagram",
+   "description": "Our in-person information session is tonight, November 9th, from 5:30-6:30pm in Foege N303! Come learn more about Washington iGEM and get to know some current members!\n\nIf you can’t make it today, our online information session will be on November 11th, this Wednesday, from 6:00-7:00pm!\nMeeting ID: 938 8043 6570",
+   "image": "/ig/posts/Dfigw75h-RG.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Dfigw75h-RG": [
+     null,
+     null
+    ]
+   },
    "posts": 1
   },
   {
@@ -841,7 +892,7 @@
   {
    "id": "Dfi9HtHDVdG-0",
    "title": "Sisters Hot Cocoa & Pumpkin Painting",
-   "type": "Hangout",
+   "type": "Food",
    "host": "MSA UW (@msauw)",
    "where": "HUB 214",
    "pos": [
@@ -850,7 +901,7 @@
    ],
    "date": "2026-11-12",
    "start": "16:30",
-   "end": null,
+   "end": "18:30",
    "url": "https://www.instagram.com/p/Dfi9HtHDVdG/",
    "source": "instagram",
    "description": "Salam, sisters! \n\nYou’re invited to our Sisters Hot Cocoa & Pumpkin Painting night!\n\n- Thursday, November 12th\n- 4:30 PM\n- HUB 214\n- Sisters only\n\nCome warm up with free hot cocoa and paint your own pumpkin to take home. Bring a friend, and we hope to see you there!\n\n#PumpkinPainting #HotCocoa #SistersEvent #MSA #MSAUW",
@@ -1463,6 +1514,33 @@
    "rsvps": 0
   },
   {
+   "id": "Dfk3BCBP2MF-0",
+   "title": "Paris is Burning Screening",
+   "type": "Club",
+   "host": "Trans Collective at UW (@uwtranscollective)",
+   "where": "SAV 166",
+   "pos": [
+    47.65712,
+    -122.30842
+   ],
+   "date": "2026-11-13",
+   "start": "16:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/Dfk3BCBP2MF/",
+   "source": "instagram",
+   "description": "This week we will be screening Paris is Burning in SAV 166, at 4PM. We hope to see you there!",
+   "image": "/ig/posts/Dfk3BCBP2MF.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Dfk3BCBP2MF": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfV0REbSeap-0",
    "title": "Belay Techniques Class",
    "type": "Club",
@@ -1558,7 +1636,7 @@
   },
   {
    "id": "Dfh-m6ZGZl6-0",
-   "title": "Onigiri Making Evening",
+   "title": "Onigiri Action",
    "type": "Food",
    "host": "Japanese Student Association (@jsauw)",
    "where": "Social Work Building, Room 305",
@@ -1673,6 +1751,54 @@
     "DfViJgohllB": [
      35,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Dfidi7pF4Jz-0",
+   "title": "Friendsgiving Shabbat Dinner",
+   "type": "Food",
+   "host": "Hillel UW (@huskyhillel)",
+   "where": "Hillel",
+   "pos": null,
+   "date": "2026-11-13",
+   "start": "18:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/Dfidi7pF4Jz/",
+   "source": "instagram",
+   "description": "Gather around the table for Friendsgiving Shabbat! Celebrate the season of gratitude with a delicious Shabbat dinner and plenty of things to be thankful for. 🦃🥧\n\nYou are invited to join us for Shabbat Song Circle at 5:15pm before dinner. 🎶",
+   "image": "/ig/posts/Dfidi7pF4Jz.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Dfidi7pF4Jz": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Dfh_eCVvEGr-0",
+   "title": "Lantern Decorating",
+   "type": "Hangout",
+   "host": "the BASEMENT (@thebasementuw)",
+   "where": "Parnassus",
+   "pos": null,
+   "date": "2026-11-13",
+   "start": "18:30",
+   "end": "20:30",
+   "url": "https://www.instagram.com/p/Dfh_eCVvEGr/",
+   "source": "instagram",
+   "description": "Join us this Friday for lantern decorating and garland making! All are welcome, supplies provided, and a start to the holiday season🌟\n6:30-8:30pm in Parnassus\n\nSee you there! \n\n#art #artcommunity #uwsoa #artstudents #artevent",
+   "image": "/ig/posts/Dfh_eCVvEGr.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Dfh_eCVvEGr": [
+     null,
+     null
     ]
    },
    "posts": 1
@@ -1896,8 +2022,8 @@
   },
   {
    "id": "Dfkby-3A0-g-0",
-   "title": "Home Rugby Game",
-   "type": "Hangout",
+   "title": "UW vs GU Rugby",
+   "type": "Game night",
    "host": "Womxn’s Husky Rugby Club (@uwwomxnsrugby)",
    "where": "IMA Field 1",
    "pos": [
@@ -2233,6 +2359,30 @@
    "posts": 1
   },
   {
+   "id": "DfidusVu16_-0",
+   "title": "YWCA Volunteer Shift",
+   "type": "Club",
+   "host": "WE CARE UW (@wecareuw)",
+   "where": "YWCA Angeline Day Center",
+   "pos": null,
+   "date": "2026-11-15",
+   "start": "11:30",
+   "end": "13:30",
+   "url": "https://www.instagram.com/p/DfidusVu16_/",
+   "source": "instagram",
+   "description": "WECARE is hosting another group volunteer event, and we need some additional volunteers to join us! Your time will go to support women experiencing homelessness in Seattle. \n\nWe’re partnering again with the YWCA’s Angeline Day Center, a space for meals, safety, and healthcare for women experiencing homelessness. We will assist with the lunch shift at the center. \n\nTo apply: use the QR code or URL https://l1nk.dev/zvczwdo \n\n📆 Sunday, November 15th \n⏰ 11:30AM-1:30PM \n\nPlease send us a DM if you have any questions! 💜",
+   "image": "/ig/posts/DfidusVu16_.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfidusVu16_": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "De-TjE_jbWZ-1",
    "title": "Alumni Design Review",
    "type": "Club",
@@ -2282,7 +2432,7 @@
   },
   {
    "id": "DfjILmphCpd-0",
-   "title": "Bake Sale",
+   "title": "Bake Sale Fundraiser",
    "type": "Food",
    "host": "SASE UW (@saseuw)",
    "where": "Red Square",
@@ -2831,7 +2981,7 @@
   },
   {
    "id": "DfjILmphCpd-1",
-   "title": "Bake Sale",
+   "title": "Bake Sale Fundraiser",
    "type": "Food",
    "host": "SASE UW (@saseuw)",
    "where": "Red Square",
@@ -2935,6 +3085,33 @@
    "posts": 1
   },
   {
+   "id": "DfgGCFby218-0",
+   "title": "Conversation with Joe Alterio",
+   "type": "Club",
+   "host": "cseed (@cseeduw)",
+   "where": "CSE2 G10",
+   "pos": [
+    47.65287,
+    -122.30448
+   ],
+   "date": "2026-11-18",
+   "start": "16:30",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/DfgGCFby218/",
+   "source": "instagram",
+   "description": "CSEED is so excited to welcome Joe Alterio into UW! 🎨💻\n\nJoe Alterio is a multidisciplinary creative working at the intersection of art, technology, design, and storytelling. With over 15 years of experience leading design and product teams, he has created digital products and experiences across industries like media, publishing, gaming, and technology.\n\nThroughout his career, Joe has collaborated with major brands including Microsoft, Starbucks, Disney, Nickelodeon, Adobe, and Amazon. His work has received recognition from the Webby, Addy, and Anthem Awards and has been featured in The New York Times, The Atlantic, The Boston Globe, and the BBC.\n\nJoe is also an accomplished speaker, having shared his insights at SXSW, San Diego Comic-Con, and other major events. He co-hosts the design podcast Designer & Designer and is passionate about creativity, collaboration, and building teams where people can do their best work.\n\nJoin us for an exciting conversation about creativity, design, technology, and what it means to build things that matter. Don’t miss this opportunity to learn from someone who has spent over 15 years pushing creative boundaries!\n\nSee you there!! 🌟\n\n📅 Wednesday, November 18\n🕟 4:30–6:30 PM\n📍 CSE2 G10\n\nRSVP now — link in bio!",
+   "image": "/ig/posts/DfgGCFby218.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfgGCFby218": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "Der0ZxinaXk-0",
    "title": "General Senate Meeting",
    "type": "Club",
@@ -2963,7 +3140,7 @@
   },
   {
    "id": "DfiIeixD9D1-0",
-   "title": "Black Student Union Panel",
+   "title": "Diaspora Night Panel",
    "type": "Club",
    "host": "UW Black Student Union (@uwseattlebsu)",
    "where": "HUB 145",
@@ -3077,9 +3254,9 @@
    "posts": 1
   },
   {
-   "id": "DfieSRjGYF6-3",
+   "id": "DfieSRjGYF6-4",
    "title": "Rainbow Circle",
-   "type": "Hangout",
+   "type": "Club",
    "host": "UW Q Center (@uwqcenter)",
    "where": null,
    "pos": null,
@@ -3101,7 +3278,7 @@
    "posts": 1
   },
   {
-   "id": "DfieSRjGYF6-6",
+   "id": "DfieSRjGYF6-5",
    "title": "Free STI Testing",
    "type": "Club",
    "host": "UW Q Center (@uwqcenter)",
@@ -3120,6 +3297,30 @@
     "DfieSRjGYF6": [
      3,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfjZz17BoMG-0",
+   "title": "Diaspora Night Event",
+   "type": "Hangout",
+   "host": "UW Black Student Union (@uwseattlebsu)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-18",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfjZz17BoMG/",
+   "source": "instagram",
+   "description": "see yall next week 😊!!",
+   "image": "/ig/posts/DfjZz17BoMG.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfjZz17BoMG": [
+     null,
+     null
     ]
    },
    "posts": 1
@@ -3205,6 +3406,30 @@
     "DfiUqoZP6G9": [
      null,
      null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Dfkx4iUyyUv-0",
+   "title": "Friendsgiving Potluck",
+   "type": "Food",
+   "host": "Khmer Student Association UW (@khsauw)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-19",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/Dfkx4iUyyUv/",
+   "source": "instagram",
+   "description": "Hey khuties! 🦃🍂\n\nJoin us on Thursday, November 19th for our friendsgiving potluck! Come hang out, enjoy some good food, and spend the evening with everyone before the holidays.\n\nBe sure to RSVP through Partiful on linktree for the location. We hope to see you all there!",
+   "image": "/ig/posts/Dfkx4iUyyUv.jpg",
+   "likes": 13,
+   "comments": 0,
+   "post_counts": {
+    "Dfkx4iUyyUv": [
+     13,
+     0
     ]
    },
    "posts": 1
@@ -3340,30 +3565,6 @@
    "posts": 1
   },
   {
-   "id": "Dfkx4iUyyUv-0",
-   "title": "Friendsgiving Potluck",
-   "type": "Food",
-   "host": "Khmer Student Association UW (@khsauw)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-19",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/Dfkx4iUyyUv/",
-   "source": "instagram",
-   "description": "Hey khuties! 🦃🍂\n\nJoin us on Thursday, November 19th for our friendsgiving potluck! Come hang out, enjoy some good food, and spend the evening with everyone before the holidays.\n\nBe sure to RSVP through Partiful on linktree for the location. We hope to see you all there!",
-   "image": "/ig/posts/Dfkx4iUyyUv.jpg",
-   "likes": 13,
-   "comments": 0,
-   "post_counts": {
-    "Dfkx4iUyyUv": [
-     13,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "DfVbLn2ywCN-0",
    "title": "Service Fair & Blood Drive",
    "type": "Club",
@@ -3392,7 +3593,7 @@
   },
   {
    "id": "DfjILmphCpd-2",
-   "title": "Bake Sale",
+   "title": "Bake Sale Fundraiser",
    "type": "Food",
    "host": "SASE UW (@saseuw)",
    "where": "Red Square",
@@ -3529,10 +3730,10 @@
   },
   {
    "id": "DfkV_tqmoJb-0",
-   "title": "Thrillest Club Night",
+   "title": "Thrillest Dune Theme",
    "type": "Hangout",
    "host": "TSAUW 🇹🇼 (@tsauw)",
-   "where": "Club Sur (2901 1st Ave S, Seattle, WA 98134)",
+   "where": "Club Sur",
    "pos": null,
    "date": "2026-11-20",
    "start": "21:00",
@@ -4010,6 +4211,30 @@
     ]
    },
    "posts": 2
+  },
+  {
+   "id": "Dfk3-FPkrol-0",
+   "title": "LSU Board Elections",
+   "type": "Club",
+   "host": "UW LATINE STUDENT UNION (@uwlsu)",
+   "where": null,
+   "pos": null,
+   "date": "2026-12-01",
+   "start": "17:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/Dfk3-FPkrol/",
+   "source": "instagram",
+   "description": "ELECTIONS ARE HERE!! Are you interested in in getting more involved with LSU and becoming a member of the board or know someone who is?\n\nAPPLICATION LINK IN BIO!!\n\nElections will be held at 5:30 during our regular meeting time. Each applicant will have the opportunity to present a speech to our members on their interest in running for a particular position. UP TO 2 POSITIONS\n\nAPPLICATIONS DUE AT 5:00 DECEMBER 1ST\n\nIf unable to come in person, please dm us!",
+   "image": "/ig/posts/Dfk3-FPkrol.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Dfk3-FPkrol": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "DePafArhcs1-2",

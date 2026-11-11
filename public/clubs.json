@@ -655,12 +655,12 @@
    "instagram": "https://www.instagram.com/cseeduw/",
    "website": "http://cseed.co",
    "category": "Engineering",
-   "about": "Inspires engineering and design students through projects and events.",
-   "description": "cseed empowers engineering and design students at UW through hands‑on programs, demo days, and creator series events. Members build hardware, software, and design projects while connecting with alumni entrepreneurs.",
+   "about": "Inspires UW engineering & design students via projects, workshops, and mentorship.",
+   "description": "cseed connects students with industry mentors, runs build programs like BuildHER, and showcases multidisciplinary creators. Join to collaborate on hardware, software, and design projects.",
    "logo": "/ig/clubs/cseeduw.jpg",
    "discord": "https://discord.gg/mRZ3v7XE5k",
    "discord_server": "🌱cseed🚀",
-   "last_event": "2026-11-17",
+   "last_event": "2026-11-18",
    "fields": [
     "Engineering"
    ]
@@ -1866,6 +1866,20 @@
    "fields": []
   },
   {
+   "name": "the BASEMENT",
+   "handle": "thebasementuw",
+   "instagram": "https://www.instagram.com/thebasementuw/",
+   "website": "https://linktr.ee/thebasementuw",
+   "category": "Arts",
+   "about": "Runs a student‑run gallery and publishes art magazines.",
+   "description": "the BASEMENT offers gallery exhibitions, publishes seasonal art publications, and hosts creative events like lantern decorating. It’s a hub for UW art students to showcase and explore their work.",
+   "logo": "/ig/clubs/thebasementuw.jpg",
+   "last_event": "2026-11-13",
+   "fields": [
+    "Arts & Humanities"
+   ]
+  },
+  {
    "name": "The Foundation for International Understanding Through Students ( FIUTS ) Student Board",
    "website": "https://www.fiuts.org/",
    "category": "Cultural",
@@ -1939,8 +1953,8 @@
    "instagram": "https://www.instagram.com/ubc.uw/",
    "website": "https://linktr.ee/uwubc",
    "category": "Business",
-   "about": "Fosters leadership, collaboration, and mentorship among UW business students.",
-   "description": "The Undergraduate Business Council cultivates leadership and networking for business students. Activities include mentorship pairings, fireside chats with first‑generation professionals, and informal meet‑ups with snacks and peer support.",
+   "about": "Builds leadership and collaboration among UW business students.",
+   "description": "UBC ignites student leadership, runs peer‑to‑peer mentorship, and celebrates first‑generation experiences. It creates an inclusive community for business majors to connect and grow.",
    "logo": "/ig/clubs/ubc.uw.jpg",
    "last_event": "2026-11-09",
    "fields": [
@@ -1959,6 +1973,20 @@
    "last_event": "2026-11-18",
    "fields": [
     "Arts & Humanities"
+   ]
+  },
+  {
+   "name": "Undergraduate Women in Business ( UWiB )",
+   "handle": "uw_uwib",
+   "instagram": "https://www.instagram.com/uw_uwib/",
+   "website": "https://linktr.ee/uwuwib",
+   "category": "Business",
+   "about": "Supports UW women in business through events, speakers, and skill workshops.",
+   "description": "UWiB provides networking, speaker panels, and AI skill series for undergraduate women pursuing business careers. It aims to uplift diverse voices and break barriers in the field.",
+   "logo": "/ig/clubs/uw_uwib.jpg",
+   "last_event": "2026-11-10",
+   "fields": [
+    "Business"
    ]
   },
   {
@@ -2053,13 +2081,27 @@
    "fields": []
   },
   {
+   "name": "Washington iGEM",
+   "handle": "washington_igem",
+   "instagram": "https://www.instagram.com/washington_igem/",
+   "website": "https://forms.gle/1cKqDPtC41ocjEMQ7",
+   "category": "Academic",
+   "about": "Undergraduate team researching synthetic biology for the iGEM competition.",
+   "description": "Washington iGEM is an interdisciplinary student team conducting synthetic biology projects for the global iGEM contest. Members collaborate on research and apply to join the program each year.",
+   "logo": "/ig/clubs/washington_igem.jpg",
+   "last_event": "2026-11-11",
+   "fields": [
+    "Sciences"
+   ]
+  },
+  {
    "name": "Washington Men’s Gymnastics",
    "handle": "washingtonmensgymnastics",
    "instagram": "https://www.instagram.com/washingtonmensgymnastics/",
    "website": "http://wagives.org/organization/wmgf",
    "category": "Sports",
-   "about": "Men's gymnastics team representing UW in competitions and community clinics.",
-   "description": "Washington Men’s Gymnastics showcases the university’s gymnastics talent, sharing training highlights and hosting holiday clinics for the community.",
+   "about": "UW men's gymnastics team competing and training at the collegiate level.",
+   "description": "The Washington Men’s Gymnastics team showcases training highlights, offers holiday clinics for youth, and prepares for the upcoming season. Follow for updates on workouts and competitions.",
    "logo": "/ig/clubs/washingtonmensgymnastics.jpg",
    "last_event": "2026-12-31",
    "fields": []
@@ -2110,15 +2152,14 @@
   },
   {
    "name": "Women Empowerment through Collaborations, Awareness, and Resources for Education",
-   "website": "https://www.instagram.com/wecareuw/",
-   "category": "Service",
-   "about": "WECARE works to empower women globally through expanding resources for health, education, and more.",
-   "description": "WECARE works to empower women globally through expanding resources for health, education, and more. We aim to create an environment where students from all backgrounds and identities can gain a sense of community together between shared values. Through workshops, outreach, and collaborations with community partners, we aim to close knowledge gaps and reduce stigma surrounding topics that are often overlooked in traditional education. We understand that education is empowerment. WECARE is one of the founding RSOs of the Pregnancy Test Access Project, bringing free pregnancy tests to UW's campus, available for all students! More info on our Instagram @wecareuw.",
-   "logo": "/ig/clubs/wecareuw.jpg",
    "handle": "wecareuw",
    "instagram": "https://www.instagram.com/wecareuw/",
-   "source": "huskylink",
-   "last_event": "2026-10-27",
+   "website": "https://huskylink.washington.edu/wecareuw/club_signup",
+   "category": "Service",
+   "about": "Advances women’s health education and volunteers to support women in need.",
+   "description": "WE CARE UW educates students on women’s health topics like endometriosis and partners with the YWCA to volunteer for homeless women. It empowers through collaboration, awareness, and resources.",
+   "logo": "/ig/clubs/wecareuw.jpg",
+   "last_event": "2026-11-15",
    "fields": [
     "Health"
    ]

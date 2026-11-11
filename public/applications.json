@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T14:23",
+ "updated": "2026-11-10T19:56",
  "applications": [
   {
    "id": "DfOPFhKm-YD",
@@ -384,6 +384,18 @@
    "posted": "2026-11-09",
    "logo": "/ig/clubs/uwcareercenter.jpg",
    "category": "Other"
+  },
+  {
+   "id": "DfidusVu16_",
+   "host": "WE CARE UW (@wecareuw)",
+   "for": "Volunteer shift",
+   "kind": "Team & staff",
+   "deadline": null,
+   "link": null,
+   "post": "https://www.instagram.com/p/DfidusVu16_/",
+   "posted": "2026-11-09",
+   "logo": "/ig/clubs/wecareuw.jpg",
+   "category": "Service"
   }
  ]
 }
