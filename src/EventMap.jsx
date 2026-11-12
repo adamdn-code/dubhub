@@ -46,8 +46,9 @@ function MapArea({ area }) {
 const CALLOUT_MAX = 250;
 const CALLOUT_CHROME = 9 + 34 + 10 + 14; // left padding, tile, gap, right padding
 const CARD_H = 68; // a card's height with a one-line name (two lines add 17px)
+const FLYER_EXTRA = 50 + 10; // the flyer's tile and the gap before it (see .callout-flyer)
 let measureCtx;
-function calloutSize(title, sub, group) {
+function calloutSize(title, sub, group, flyer = false) {
   measureCtx ??= document.createElement("canvas").getContext("2d");
   const font = getComputedStyle(document.body).fontFamily;
   measureCtx.font = `700 14px ${font}`;
@@ -56,8 +57,9 @@ function calloutSize(title, sub, group) {
   const subW = measureCtx.measureText(sub).width;
   measureCtx.font = `700 10.5px ${font}`;
   const groupW = measureCtx.measureText(group.toUpperCase()).width + group.length * 0.6 + 13; // spacing, dot
-  const wraps = CALLOUT_CHROME + titleW > CALLOUT_MAX;
-  return { w: Math.min(CALLOUT_MAX, CALLOUT_CHROME + Math.max(titleW, subW, groupW)), h: wraps ? CARD_H + 17 : CARD_H };
+  const extra = flyer ? FLYER_EXTRA : 0;
+  const wraps = CALLOUT_CHROME + extra + titleW > CALLOUT_MAX + extra;
+  return { w: Math.min(CALLOUT_MAX + extra, CALLOUT_CHROME + extra + Math.max(titleW, subW, groupW)), h: wraps ? CARD_H + 17 : CARD_H };
 }
 
 // What sits on top of the map (the filters, the welcome box, the dot colors, the zoom buttons), in
@@ -99,7 +101,7 @@ function IntroLabels({ places, dark }) {
   for (const place of [...places].sort((a, b) => a.when.localeCompare(b.when) || b.count - a.count)) {
     if (shown.length === MAX_INTRO_LABELS) break;
     const pt = map.latLngToContainerPoint(place.pos);
-    const { w, h } = calloutSize(place.title, place.sub, eventGroup(place.event).name);
+    const { w, h } = calloutSize(place.title, place.sub, eventGroup(place.event).name, Boolean(place.event.image));
     const radius = place.lift - STEM;
     for (const dir of ["above", "below"]) {
       const up = dir === "above";
@@ -125,7 +127,7 @@ function IntroLabels({ places, dark }) {
         opacity={1}
         className="event-callout intro-callout"
       >
-        <EventCallout event={p.event} title={p.title} sub={p.sub} dark={dark} />
+        <EventCallout event={p.event} title={p.title} sub={p.sub} dark={dark} flyer />
       </Tooltip>
     </CircleMarker>
   ));
@@ -569,15 +571,17 @@ const brokenLogos = new Set();
 // A card on the map, as in DubHub's cover art: the club's picture (or, if it has none, an icon for
 // the kind of event on white), the event's name, and a line under it, with a stem to the dot.
 // Hovering a dot shows one (with where it is); so do the soonest events when the site opens.
-function EventCallout({ event, title = event.title, sub, dark }) {
+function EventCallout({ event, title = event.title, sub, dark, flyer = false }) {
   const [, setBroken] = useState(false);
+  const [flyerReady, setFlyerReady] = useState(false);
+  const showFlyer = flyer && event.image && !brokenLogos.has(event.image);
   const group = eventGroup(event);
   const code = placeCode(event.where)?.code;
   const logo = event.club?.logo;
   const picture = !code && logo && !brokenLogos.has(logo);
   const line = sub ?? [event.start && formatTime(event.start), event.where ?? hostName(event)].filter(Boolean).join(", ");
   return (
-    <div className="callout">
+    <div className={showFlyer ? "callout has-flyer" : "callout"}>
       <span className={code ? "callout-icon callout-code" : "callout-icon"}>
         {code ? (
           <span className={code.length > 4 ? "small" : undefined}>{code}</span>
@@ -604,6 +608,20 @@ function EventCallout({ event, title = event.title, sub, dark }) {
         <strong>{title}</strong>
         <span>{line}</span>
       </span>
+      {/* The event's flyer pops in once it has loaded (a picture that fails just never shows). */}
+      {showFlyer && (
+        <img
+          className={flyerReady ? "callout-flyer ready" : "callout-flyer"}
+          src={event.image}
+          alt=""
+          decoding="async"
+          onLoad={() => setFlyerReady(true)}
+          onError={() => {
+            brokenLogos.add(event.image);
+            setBroken(true);
+          }}
+        />
+      )}
     </div>
   );
 }
