@@ -2,7 +2,7 @@
 // the site opens. Leaflet and MapLibre are most of the site's JavaScript and the site opens on the
 // Now page, so this file is its own download: DubHub.jsx asks for it when the Map tab is first
 // opened (the browser also fetches it in its spare time after the page loads, see vite.config.js).
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { MapContainer, CircleMarker, Marker, Pane, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
@@ -46,7 +46,8 @@ function MapArea({ area }) {
 const CALLOUT_MAX = 250;
 const CALLOUT_CHROME = 9 + 34 + 10 + 14; // left padding, tile, gap, right padding
 const CARD_H = 68; // a card's height with a one-line name (two lines add 17px)
-const FLYER_EXTRA = 50 + 10; // the flyer's tile and the gap before it (see .callout-flyer)
+const FLYER_W = 120; // the flyer above a plate (see .callout-flyer in DubHub.css): 4:5, plus the gap to the plate
+const FLYER_H = 150 + 8;
 let measureCtx;
 function calloutSize(title, sub, group, flyer = false) {
   measureCtx ??= document.createElement("canvas").getContext("2d");
@@ -57,9 +58,10 @@ function calloutSize(title, sub, group, flyer = false) {
   const subW = measureCtx.measureText(sub).width;
   measureCtx.font = `700 10.5px ${font}`;
   const groupW = measureCtx.measureText(group.toUpperCase()).width + group.length * 0.6 + 13; // spacing, dot
-  const extra = flyer ? FLYER_EXTRA : 0;
-  const wraps = CALLOUT_CHROME + extra + titleW > CALLOUT_MAX + extra;
-  return { w: Math.min(CALLOUT_MAX + extra, CALLOUT_CHROME + extra + Math.max(titleW, subW, groupW)), h: wraps ? CARD_H + 17 : CARD_H };
+  const wraps = CALLOUT_CHROME + titleW > CALLOUT_MAX;
+  const w = Math.min(CALLOUT_MAX, CALLOUT_CHROME + Math.max(titleW, subW, groupW));
+  const h = wraps ? CARD_H + 17 : CARD_H;
+  return flyer ? { w: Math.max(w, FLYER_W), h: h + FLYER_H } : { w, h };
 }
 
 // What sits on top of the map (the filters, the welcome box, the dot colors, the zoom buttons), in
@@ -127,7 +129,7 @@ function IntroLabels({ places, dark }) {
         opacity={1}
         className="event-callout intro-callout"
       >
-        <EventCallout event={p.event} title={p.title} sub={p.sub} dark={dark} flyer />
+        <EventCallout event={p.event} title={p.title} sub={p.sub} dark={dark} flyer={p.dir} />
       </Tooltip>
     </CircleMarker>
   ));
@@ -220,7 +222,7 @@ function labelsInSiteFont(glMap) {
   }
 }
 
-function BaseMap({ palette }) {
+function BaseMap({ palette, onReady }) {
   const map = useMap();
 
   // Redrawn in the new theme's colors when the theme changes.
@@ -237,14 +239,16 @@ function BaseMap({ palette }) {
           attribution: MAP_ATTRIBUTION,
           localIdeographFontFamily: getComputedStyle(document.body).fontFamily,
         }).addTo(map);
-        labelsInSiteFont(layer.getMaplibreMap());
+        const gl = layer.getMaplibreMap();
+        labelsInSiteFont(gl);
+        gl.once("load", onReady); // the first complete picture of the map: time to reveal it
       })
-      .catch(() => {});
+      .catch(() => onReady()); // no map tiles (offline): show the dots on the plain ground
     return () => {
       cancelled = true;
       if (layer) map.removeLayer(layer);
     };
-  }, [map, palette]);
+  }, [map, palette, onReady]);
 
   return null;
 }
@@ -370,7 +374,31 @@ function MapFlair({ events, at, dark }) {
   );
 }
 
-export default function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, palette, at }) {
+// The map starts hidden (.map-pending) while its tiles load, behind the loader Home shows; once the
+// first picture is ready it opens outward from the middle of the screen (.map-reveal) and its dots
+// fade in after it.
+function MapReveal({ ready }) {
+  const map = useMap();
+  useEffect(() => {
+    if (!ready) return;
+    const el = map.getContainer();
+    el.classList.remove("map-pending");
+    el.classList.add("map-reveal");
+  }, [map, ready]);
+  return null;
+}
+
+export default function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, onReady, palette, at }) {
+  const [ready, setReady] = useState(false);
+  const markReady = useCallback(() => setReady(true), []);
+  useEffect(() => {
+    if (ready) onReady?.();
+  }, [ready, onReady]);
+  // If the tiles never arrive, don't leave the loader up forever.
+  useEffect(() => {
+    const t = setTimeout(markReady, 6000);
+    return () => clearTimeout(t);
+  }, [markReady]);
   const located = events.filter((e) => e.pos);
   // Events at the exact same spot draw their dots on top of each other, so hovering any of them
   // shows all of them, and clicking opens the most popular.
@@ -426,12 +454,13 @@ export default function EventMap({ events, area, introLabels, shown, flyTo, onPi
       zoomSnap={0.25} // so UW's campus fits snugly on any screen size, not just at whole zoom steps
       scrollWheelZoom
       zoomControl={false}
-      className="map"
+      className="map map-pending"
     >
+      <MapReveal ready={ready} />
       <ZoomControl position="bottomright" />
       <FlyTo event={flyTo} />
       <MapArea area={area} />
-      <BaseMap palette={palette} />
+      <BaseMap palette={palette} onReady={markReady} />
       <MapFlair events={located} at={moment} dark={palette?.dark} />
       {/* Live and soon: a ring rippling out from the dot. Plain elements in their own layer, so
           the animation runs on the GPU instead of repainting the map's dots every frame. */}
@@ -526,7 +555,7 @@ export default function EventMap({ events, area, introLabels, shown, flyTo, onPi
         </CircleMarker>
       )}
       <MapClicks onClick={onMapClick} />
-      {introLabels && <IntroLabels places={places} dark={palette?.dark} />}
+      {introLabels && ready && <IntroLabels places={places} dark={palette?.dark} />}
     </MapContainer>
   );
 }
@@ -572,6 +601,7 @@ const brokenLogos = new Set();
 // the kind of event on white), the event's name, and a line under it, with a stem to the dot.
 // Hovering a dot shows one (with where it is); so do the soonest events when the site opens.
 function EventCallout({ event, title = event.title, sub, dark, flyer = false }) {
+  // `flyer` is where the card sits ("above" or "below" its dot) when the event's flyer should show too.
   const [, setBroken] = useState(false);
   const [flyerReady, setFlyerReady] = useState(false);
   const showFlyer = flyer && event.image && !brokenLogos.has(event.image);
@@ -580,8 +610,8 @@ function EventCallout({ event, title = event.title, sub, dark, flyer = false }) 
   const logo = event.club?.logo;
   const picture = !code && logo && !brokenLogos.has(logo);
   const line = sub ?? [event.start && formatTime(event.start), event.where ?? hostName(event)].filter(Boolean).join(", ");
-  return (
-    <div className={showFlyer ? "callout has-flyer" : "callout"}>
+  const plate = (
+    <div className="callout">
       <span className={code ? "callout-icon callout-code" : "callout-icon"}>
         {code ? (
           <span className={code.length > 4 ? "small" : undefined}>{code}</span>
@@ -608,20 +638,25 @@ function EventCallout({ event, title = event.title, sub, dark, flyer = false }) 
         <strong>{title}</strong>
         <span>{line}</span>
       </span>
-      {/* The event's flyer pops in once it has loaded (a picture that fails just never shows). */}
-      {showFlyer && (
-        <img
-          className={flyerReady ? "callout-flyer ready" : "callout-flyer"}
-          src={event.image}
-          alt=""
-          decoding="async"
-          onLoad={() => setFlyerReady(true)}
-          onError={() => {
-            brokenLogos.add(event.image);
-            setBroken(true);
-          }}
-        />
-      )}
+    </div>
+  );
+  if (!showFlyer) return plate;
+  // The flyer sits on the far side of the plate from the dot, and pops in once it has loaded
+  // (a picture that fails just never shows).
+  return (
+    <div className={flyer === "below" ? "callout-wrap below" : "callout-wrap"}>
+      <img
+        className={flyerReady ? "callout-flyer ready" : "callout-flyer"}
+        src={event.image}
+        alt=""
+        decoding="async"
+        onLoad={() => setFlyerReady(true)}
+        onError={() => {
+          brokenLogos.add(event.image);
+          setBroken(true);
+        }}
+      />
+      {plate}
     </div>
   );
 }

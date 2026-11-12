@@ -1457,8 +1457,34 @@ function MapLegend({ events, dark }) {
   );
 }
 
+// What shows over the map's place while its code and tiles load: a drifting street grid, a soft
+// shimmer, and a "you are here" dot sending out rings. It fades away as the map opens up.
+function MapLoader({ ready }) {
+  const [gone, setGone] = useState(false);
+  useEffect(() => {
+    if (!ready) return;
+    const t = setTimeout(() => setGone(true), 1000);
+    return () => clearTimeout(t);
+  }, [ready]);
+  if (gone) return null;
+  return (
+    <div className={ready ? "map-loader leaving" : "map-loader"} role="status" aria-label="Loading the map">
+      <span className="map-loader-grid" />
+      <span className="map-loader-shine" />
+      <span className="map-loader-pin">
+        <i />
+        <i />
+        <i />
+        <b />
+      </span>
+    </div>
+  );
+}
+
 function Home({ f, area, introLabels, j, palette, showSlider }) {
   const [at, setAt] = useState(null); // the time slider: null is now
+  const [mapReady, setMapReady] = useState(false);
+  const onMapReady = useCallback(() => setMapReady(true), []);
   const now = useNow();
   const [shown, setShown] = useState(null); // { event, pinned }
   const [flyTo, setFlyTo] = useState(null); // an event picked from the Next up sign
@@ -1481,10 +1507,12 @@ function Home({ f, area, introLabels, j, palette, showSlider }) {
 
   return (
     <main className="home">
-      {/* Until the map's code has arrived, its place shows the map's own ground color. */}
+      {/* Until the map has arrived and drawn its first tiles, its place shows the loader. */}
+      <MapLoader ready={mapReady} />
       <MapGuard>
         <Suspense fallback={<div className="map map-loading" aria-busy="true" />}>
           <EventMap
+            onReady={onMapReady}
             events={f.events}
             area={area}
             introLabels={introLabels}
