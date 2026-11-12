@@ -541,79 +541,147 @@ function readOldJoins() {
   }
 }
 const CLUBS_KEY = "dubhub-clubs";
+const CLUBBED_KEY = "dubhub-going-clubbed";
+const CLUBS_SYNCED_KEY = "dubhub-clubs-synced"; // + ":" + email: this browser's clubs were added to that account
 
-// A saved list of IDs (club names under CLUBS_KEY).
-function useJoined(key) {
-  const [joined, setJoined] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem(key)) ?? [];
-    } catch {
-      return [];
-    }
-  });
+function readList(key) {
+  try {
+    const list = JSON.parse(localStorage.getItem(key));
+    return Array.isArray(list) ? list : [];
+  } catch {
+    return [];
+  }
+}
 
-  const toggle = useCallback((id) => {
-    setJoined((ids) => {
-      const next = ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id];
-      try {
-        localStorage.setItem(key, JSON.stringify(next));
-      } catch {
-        // Storage blocked: joins last for this visit only.
-      }
-      return next;
-    });
-  }, [key]);
+function writeList(key, list) {
+  try {
+    localStorage.setItem(key, JSON.stringify(list));
+  } catch {
+    // Storage blocked: it lasts for this visit only.
+  }
+}
 
-  // Add several at once (no-op for ones already there).
-  const add = useCallback(
-    (ids) => {
-      setJoined((old) => {
-        const fresh = ids.filter((id) => !old.includes(id));
-        if (!fresh.length) return old;
-        const next = [...old, ...fresh];
-        try {
-          localStorage.setItem(key, JSON.stringify(next));
-        } catch {
-          // Storage blocked: joins last for this visit only.
+// The clubs you joined (names). Signed in, they're saved on the server under your account, so they
+// follow you to any browser or device; this browser's copy is kept as a cache. Signed out, they
+// stay in this browser only. The first time an account signs in on a browser, the clubs already
+// saved there are added to the account.
+//
+// Going to an event makes you a member of the club that hosts it. `clubbed` is the events that
+// have already done that, so leaving a club later sticks (on every device, not just this one).
+function useJoined(key, user) {
+  const token = user?.token;
+  const email = user?.email;
+  const [local, setLocal] = useState(() => readList(key));
+  // The server's copy, tagged with the login it belongs to so a different account never sees it.
+  const [remote, setRemote] = useState({ token: null, clubs: [], clubbed: [] });
+  const auth = useMemo(() => ({ "Content-Type": "application/json", Authorization: `Bearer ${token}` }), [token]);
+  const synced = Boolean(token) && remote.token === token;
+
+  useEffect(() => {
+    if (!token) return;
+    let cancelled = false;
+    fetch("/api/clubs", { headers: auth })
+      .then((r) => (r.ok ? r.json() : null))
+      .then(async (d) => {
+        if (cancelled || !d) return;
+        let clubs = d.clubs.map(String);
+        let clubbed = d.clubbed.map(String);
+        // First sign-in of this account on this browser: add what's saved here to the account.
+        const flag = `${CLUBS_SYNCED_KEY}:${email}`;
+        const isFirst = () => {
+          try {
+            return Boolean(email) && !localStorage.getItem(flag);
+          } catch {
+            return false;
+          }
+        };
+        const first = isFirst();
+        if (first) {
+          const add = readList(key).filter((c) => !clubs.includes(c));
+          const done = readList(CLUBBED_KEY).map(String).filter((id) => !clubbed.includes(id));
+          if (add.length || done.length) {
+            const r = await fetch("/api/clubs", { method: "POST", headers: auth, body: JSON.stringify({ add, clubbed: done }) }).catch(() => null);
+            if (cancelled || !r?.ok) return; // try again next visit rather than lose them
+            const merged = await r.json();
+            clubs = merged.clubs.map(String);
+            clubbed = merged.clubbed.map(String);
+          }
+          try {
+            localStorage.setItem(flag, "1");
+          } catch {
+            // Fine: it just checks again next visit.
+          }
         }
-        return next;
-      });
+        if (cancelled) return;
+        setRemote({ token, clubs, clubbed });
+        writeList(key, clubs);
+        setLocal(clubs);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [token, email, auth, key]);
+
+  const joined = synced ? remote.clubs : local;
+  const clubbed = useMemo(() => new Set(synced ? remote.clubbed : readList(CLUBBED_KEY).map(String)), [synced, remote.clubbed]);
+
+  const save = useCallback(
+    (next) => {
+      setLocal(next);
+      writeList(key, next);
+      if (synced) setRemote((r) => ({ ...r, clubs: next }));
     },
-    [key]
+    [key, synced]
+  );
+
+  const toggle = useCallback(
+    (id) => {
+      const on = !joined.includes(id);
+      save(on ? [...joined, id] : joined.filter((x) => x !== id));
+      if (!synced) return;
+      fetch("/api/clubs", { method: "POST", headers: auth, body: JSON.stringify({ club: id, joined: on }) }).catch(() => {});
+    },
+    [joined, save, synced, auth]
+  );
+
+  // Add several at once (no-op for ones already there), and remember the events that did it.
+  const add = useCallback(
+    (ids, eventIds = []) => {
+      const fresh = ids.filter((id) => !joined.includes(id));
+      if (fresh.length) save([...joined, ...fresh]);
+      if (eventIds.length) {
+        if (synced) setRemote((r) => ({ ...r, clubbed: [...new Set([...r.clubbed, ...eventIds])] }));
+        else writeList(CLUBBED_KEY, [...new Set([...readList(CLUBBED_KEY), ...eventIds])]);
+      }
+      if (synced && (fresh.length || eventIds.length)) {
+        fetch("/api/clubs", { method: "POST", headers: auth, body: JSON.stringify({ add: fresh, clubbed: eventIds }) }).catch(() => {});
+      }
+    },
+    [joined, save, synced, auth]
   );
 
   // The same object until the list changes, so pages that take it can skip redrawing.
-  return useMemo(() => ({ joined, toggle, add }), [joined, toggle, add]);
+  return useMemo(() => ({ joined, toggle, add, clubbed, ready: !token || synced }), [joined, toggle, add, clubbed, token, synced]);
 }
 
 // Going to an event makes you a member of the club that hosts it. Each event only does this once
-// (remembered in this browser), so leaving that club later sticks.
-const CLUBBED_KEY = "dubhub-going-clubbed";
+// (remembered on your account, or in this browser when signed out), so leaving that club later sticks.
 function useGoingJoinsClubs(going, events, clubs) {
-  const { add } = clubs;
+  const { add, clubbed, ready } = clubs;
   useEffect(() => {
-    if (!going.length || !events.length) return;
-    let done;
-    try {
-      done = new Set(JSON.parse(localStorage.getItem(CLUBBED_KEY)) ?? []);
-    } catch {
-      done = new Set();
-    }
+    if (!ready || !going.length || !events.length) return; // wait for the account's clubs to load
     const byId = new Map(events.map((e) => [String(e.id), e]));
     const names = [];
+    const eventIds = [];
     for (const id of going) {
       const e = byId.get(String(id));
-      if (!e || done.has(String(id))) continue;
+      if (!e || clubbed.has(String(id))) continue;
       if (e.club?.name) names.push(e.club.name);
-      done.add(String(id));
+      eventIds.push(String(id));
     }
-    if (names.length) add([...new Set(names)]);
-    try {
-      localStorage.setItem(CLUBBED_KEY, JSON.stringify([...done]));
-    } catch {
-      // Storage blocked: fine, it just checks again next visit.
-    }
-  }, [going, events, add]);
+    if (eventIds.length) add([...new Set(names)], eventIds);
+  }, [going, events, add, clubbed, ready]);
 }
 
 // Who's going to each event, and which events you joined. Joining needs a UW sign-in: your Joins
@@ -5371,7 +5439,7 @@ export default function DubHub() {
       pendingJoin.current = null;
     }
   }, [user?.token, join]);
-  const clubs = useJoined(CLUBS_KEY);
+  const clubs = useJoined(CLUBS_KEY, user);
   useGoingJoinsClubs(j.joined, everything, clubs);
   const theme = useTheme();
   const [showSlider, setShowSlider] = useFlag(SLIDER_KEY, false);
