@@ -475,12 +475,11 @@ a:hover {
   overflow: hidden;
   background: #ebeae5; /* the map's ground color */
   pointer-events: none;
-  transition: opacity 700ms ease, transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: opacity 500ms ease 1100ms; /* only once the map has covered it */
 }
 
 .map-loader.leaving {
   opacity: 0;
-  transform: scale(1.03);
 }
 
 /* Streets, faintly: three sets of crossing lines that drift slowly */
@@ -588,18 +587,23 @@ a:hover {
   opacity: 0;
 }
 
+/* The map arrives as a circle in the middle (over the loader's dot), settles for a beat, then
+   opens out until it covers everything. It sits above the loader while it does. */
 .map.map-reveal {
-  animation: map-open 1000ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  z-index: 3;
+  animation: map-open 1500ms both;
 }
 
 .map.map-reveal .leaflet-overlay-pane,
 .map.map-reveal .leaflet-ripples-pane {
-  animation: dots-in 700ms ease-out 550ms both;
+  animation: dots-in 700ms ease-out 1000ms both;
 }
 
 @keyframes map-open {
-  from { clip-path: circle(0% at 50% 50%); opacity: 0.4; }
-  to { clip-path: circle(150% at 50% 50%); opacity: 1; }
+  0% { clip-path: circle(0px at 50% 50%); animation-timing-function: cubic-bezier(0.34, 1.4, 0.5, 1); }
+  28% { clip-path: circle(120px at 50% 50%); animation-timing-function: linear; }
+  36% { clip-path: circle(120px at 50% 50%); animation-timing-function: cubic-bezier(0.65, 0, 0.25, 1); }
+  100% { clip-path: circle(150vmax at 50% 50%); }
 }
 
 @keyframes dots-in {
@@ -618,9 +622,6 @@ a:hover {
   .map-loader-pin i,
   .map-loader-pin b {
     animation: none;
-  }
-  .map-loader.leaving {
-    transform: none;
   }
   .map.map-reveal {
     animation: dots-in 400ms ease-out both;
@@ -2868,7 +2869,8 @@ a.discord-bot-link.join {
 /* The plates over the soonest events when the site opens: in, hold, then a slow fade away. */
 .intro-callout .callout,
 .intro-callout .callout-wrap {
-  animation: intro-callout 4.8s linear forwards;
+  animation: intro-callout 6s linear forwards;
+  will-change: opacity, transform;
 }
 
 /* With a flyer, the wrapper (flyer + plate) fades as one; the plate doesn't fade again inside it. */
@@ -2915,25 +2917,25 @@ a.discord-bot-link.join {
   to { opacity: 1; transform: none; }
 }
 
-/* In over the first ~0.3s, held until 70%, then eased out over the last ~1.4s. */
+/* In over the first ~0.3s, held until 55%, then a long, even fade (about 2.7s) with a slight drift. */
 @keyframes intro-callout {
   0% { opacity: 0; transform: translateY(4px); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
-  6% { opacity: 1; transform: none; }
-  70% { opacity: 1; transform: none; animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); }
-  100% { opacity: 0; transform: translateY(-3px) scale(0.97); }
+  5% { opacity: 1; transform: none; }
+  55% { opacity: 1; transform: none; animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }
+  100% { opacity: 0; transform: translateY(-6px) scale(0.985); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .intro-callout .callout,
   .intro-callout .callout-wrap {
-    animation: intro-callout-fade 4.8s linear forwards;
+    animation: intro-callout-fade 6s linear forwards;
   }
   .callout-flyer.ready {
     animation: none;
     opacity: 1;
   }
   @keyframes intro-callout-fade {
-    0%, 70% { opacity: 1; }
+    0%, 55% { opacity: 1; }
     100% { opacity: 0; }
   }
 }

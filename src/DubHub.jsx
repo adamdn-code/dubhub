@@ -1463,7 +1463,7 @@ function MapLoader({ ready }) {
   const [gone, setGone] = useState(false);
   useEffect(() => {
     if (!ready) return;
-    const t = setTimeout(() => setGone(true), 1000);
+    const t = setTimeout(() => setGone(true), 1800);
     return () => clearTimeout(t);
   }, [ready]);
   if (gone) return null;

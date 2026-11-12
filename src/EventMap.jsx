@@ -78,15 +78,24 @@ function mapOverlays(map) {
 // Space kept between cards (and between a card and anything else it shouldn't cover).
 const CARD_GAP = 6;
 
+// How long the opening cards stay up, fade included (see .intro-callout in DubHub.css).
+const INTRO_MS = 6000;
+
 // At most this many cards when the site opens, the soonest events first, so the map isn't buried.
 const MAX_INTRO_LABELS = 5;
 
 // The cards over the dots when the site opens (then they fade away). Each goes above its dot, or
 // below it if that would cover another card, a labeled dot, or the filters, or run off the map; if
 // neither fits it's skipped (hovering the dot still shows its card).
-function IntroLabels({ places, dark }) {
+function IntroLabels({ places, dark, onDone }) {
   const map = useMap();
   const [, redraw] = useState(0);
+
+  // Gone once the fade has finished (INTRO_MS matches the animation in DubHub.css).
+  useEffect(() => {
+    const t = setTimeout(onDone, INTRO_MS + 200);
+    return () => clearTimeout(t);
+  }, [onDone]);
 
   useEffect(() => {
     const update = () => redraw((n) => n + 1);
@@ -390,7 +399,9 @@ function MapReveal({ ready }) {
 
 export default function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, onReady, palette, at }) {
   const [ready, setReady] = useState(false);
+  const [intro, setIntro] = useState(Boolean(introLabels)); // decided once, when the map opens
   const markReady = useCallback(() => setReady(true), []);
+  const endIntro = useCallback(() => setIntro(false), []); // a stable function, so the cards' clock isn't reset
   useEffect(() => {
     if (ready) onReady?.();
   }, [ready, onReady]);
@@ -555,7 +566,7 @@ export default function EventMap({ events, area, introLabels, shown, flyTo, onPi
         </CircleMarker>
       )}
       <MapClicks onClick={onMapClick} />
-      {introLabels && ready && <IntroLabels places={places} dark={palette?.dark} />}
+      {intro && ready && <IntroLabels places={places} dark={palette?.dark} onDone={endIntro} />}
     </MapContainer>
   );
 }
