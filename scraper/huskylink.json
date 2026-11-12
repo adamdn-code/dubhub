@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T02:06",
+ "updated": "2026-11-11T20:42",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -9436,25 +9436,6 @@
  ],
  "events": [
   {
-   "id": "hl-375371",
-   "title": "Worship Night",
-   "type": "Club",
-   "host": "Asian American Christian Fellowship",
-   "where": "Red Square",
-   "pos": [
-    47.65603,
-    -122.30944
-   ],
-   "date": "2026-11-11",
-   "start": "15:30",
-   "end": "17:30",
-   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375371",
-   "source": "huskylink",
-   "description": "Come join us for a worship night gathering at the Red Square!\nCheck our Instagram @uwaacf for details!",
-   "image": null,
-   "rsvps": 0
-  },
-  {
    "id": "hl-375244",
    "title": "Commander Night at the Hub!",
    "type": "Game night",
@@ -9579,7 +9560,7 @@
    "source": "huskylink",
    "description": "Watch real Japanese Grand Sumo with us in the HUB!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png",
-   "rsvps": 12
+   "rsvps": 13
   },
   {
    "id": "hl-375343",
@@ -9652,7 +9633,7 @@
    "source": "huskylink",
    "description": "Come watch the screening for the powerful documentary Sentient, which explores animal experimentation, ahead of its release along with a Q&A with Dr. Lisa Jones-Engel!\nWhen/where: HUB 334 on November 16th from 6:30-8:30PM\nEveryone is welcome, regardless of diet, lifestyle, or familiarity with animal rights! Free vegan pizza and snacks will be provided.\nFree admission, please RSVP! https://luma.com/5bcotf0s",
    "image": null,
-   "rsvps": 2
+   "rsvps": 3
   },
   {
    "id": "hl-375125",
@@ -9767,6 +9748,22 @@
    "source": "huskylink",
    "description": "Pull up to Gym A to meet each other and play casual pickup basketball",
    "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375528",
+   "title": "Lab Animal Veterinarian Guest Speaker",
+   "type": "Study",
+   "host": "PreVeterinary Society",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-18",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://huskylink.washington.edu/prevet/rsvp?id=375528",
+   "source": "huskylink",
+   "description": "Join us for a special meeting with Dr. Moore, a lab animal veterinarian at UW’s Department of Comparative Medicine! Learn about her career path, experiences in laboratory animal medicine, and what it's like working as a veterinarian at UW.",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639712_PreVeterinary_Society_Logojpg_637b279e-454b-4f14-a127-f59c31d4bc93_113213040.jpeg",
    "rsvps": 0
   },
   {
@@ -9952,6 +9949,22 @@
    "source": "huskylink",
    "description": "Join members and club officers at the Intramural Activities Building (IMA) for a group lift.\nWe typically break into pairs or groups of three and spread out to work on our own routines. It’s a great opportunity to meet new people, find a lifting partner, and get mentorship from more experienced lifters.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_637045_Copy_of_QR_CODES_1_26f94d8c-8f5b-4917-b5a2-463622791ca6_109193954.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375529",
+   "title": "WSU College of Veterinary Medicine - Veterinary Student Panel",
+   "type": "Study",
+   "host": "PreVeterinary Society",
+   "where": null,
+   "pos": null,
+   "date": "2026-12-02",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://huskylink.washington.edu/prevet/rsvp?id=375529",
+   "source": "huskylink",
+   "description": "Join us for a panel with WSU College of Veterinary Medicine student ambassadors! Hear about their experiences navigating vet school, the application process, student life, and advice for aspiring veterinary students. Bring your questions and learn more about the path to becoming a veterinarian!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639712_CVMgenericfeatured720x4751_fe844069-cd3c-4623-9330-d1f708e78567_1111154637.png",
    "rsvps": 0
   },
   {
