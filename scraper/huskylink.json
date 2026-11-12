@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T20:42",
+ "updated": "2026-11-12T00:52",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -9436,22 +9436,6 @@
  ],
  "events": [
   {
-   "id": "hl-375244",
-   "title": "Commander Night at the Hub!",
-   "type": "Game night",
-   "host": "WGA Magic: The Gathering",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-11",
-   "start": "18:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375244",
-   "source": "huskylink",
-   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_Magic_The_Gathering_Commander_2015_logojpg_a7d6e719-41a9-4aa8-9637-b06d03cff3d9_1092025.jpeg",
-   "rsvps": 0
-  },
-  {
    "id": "hl-375338",
    "title": "RSO Drop-In Advising",
    "type": "Study",
@@ -9595,6 +9579,22 @@
    "source": "huskylink",
    "description": "The purpose of this workshop is to guide UW students through all academic matters and to provide an opportunity to hear directly from current seniors about their experiences at UW.",
    "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375245",
+   "title": "Commander Night at the Hub!",
+   "type": "Game night",
+   "host": "WGA Magic: The Gathering",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-16",
+   "start": "18:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375245",
+   "source": "huskylink",
+   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_Magic_The_Gathering_Commander_2015_logojpg_a7d6e719-41a9-4aa8-9637-b06d03cff3d9_1092025.jpeg",
    "rsvps": 0
   },
   {
@@ -9780,6 +9780,22 @@
    "source": "huskylink",
    "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!",
    "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375531",
+   "title": "Thanksgiving Social",
+   "type": "Hangout",
+   "host": "The Women's Network at UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-18",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/thewomensnetwork/rsvp?id=375531",
+   "source": "huskylink",
+   "description": "Come make Thanksgiving thank you cards with us!!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_610611_Thanksgiving_post_1300_x_780_px_49451091-13c1-4d63-8c50-b5a6e2f33a74_11122335.png",
    "rsvps": 0
   },
   {
