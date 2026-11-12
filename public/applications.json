@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T18:01",
+ "updated": "2026-11-11T20:35",
  "applications": [
   {
    "id": "DfOPFhKm-YD",
@@ -48,18 +48,6 @@
    "posted": "2026-11-09",
    "logo": "/ig/clubs/dem_alphakappa.jpg",
    "category": "Academic"
-  },
-  {
-   "id": "De5hKvmGiiR",
-   "host": "@vsauw",
-   "for": "General membership",
-   "kind": "Membership",
-   "deadline": "2026-11-25",
-   "link": "https://linktr.ee/vsauw",
-   "post": "https://www.instagram.com/p/De5hKvmGiiR/",
-   "posted": "2026-10-24",
-   "logo": "/ig/clubs/vsauw.jpg",
-   "category": "Cultural"
   },
   {
    "id": "DffZ6ComXPt",
@@ -192,18 +180,6 @@
    "posted": "2026-10-20",
    "logo": "/ig/clubs/uwgammas.jpg",
    "category": "Greek Life"
-  },
-  {
-   "id": "De0GH4WhdBq",
-   "host": "UW Recycling (@uwrecycling)",
-   "for": "Husky Goods Free Store Student Volunteer",
-   "kind": "Team & staff",
-   "deadline": null,
-   "link": "http://linktr.ee/uwrecycling",
-   "post": "https://www.instagram.com/p/De0GH4WhdBq/",
-   "posted": "2026-10-22",
-   "logo": "/ig/clubs/uwrecycling.jpg",
-   "category": "Service"
   },
   {
    "id": "De2N31bPT3U",
