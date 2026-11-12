@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T14:36",
+ "updated": "2026-11-11T18:12",
  "events": [
   {
    "id": "DfiDE6nsiLS-0",
@@ -43,6 +43,33 @@
    "comments": null,
    "post_counts": {
     "DfispvMJwV6": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfgbVhaMY81-0",
+   "title": "Spam Musubi Sale",
+   "type": "Food",
+   "host": "CSA UW (@csauw)",
+   "where": "Red Square Tabling",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-11",
+   "start": "11:00",
+   "end": "14:00",
+   "url": "https://www.instagram.com/p/DfgbVhaMY81/",
+   "source": "instagram",
+   "description": "Stop by at Red Square this week for a delicious snack to brighten your day😋",
+   "image": "/ig/posts/DfgbVhaMY81.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfgbVhaMY81": [
      null,
      null
     ]
@@ -289,6 +316,33 @@
    "posts": 1
   },
   {
+   "id": "DfgbVhaMY81-1",
+   "title": "Spam Musubi Sale",
+   "type": "Food",
+   "host": "CSA UW (@csauw)",
+   "where": "Red Square Tabling",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-12",
+   "start": "11:00",
+   "end": "14:00",
+   "url": "https://www.instagram.com/p/DfgbVhaMY81/",
+   "source": "instagram",
+   "description": "Stop by at Red Square this week for a delicious snack to brighten your day😋",
+   "image": "/ig/posts/DfgbVhaMY81.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfgbVhaMY81": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DflE_bTPvrv-0",
    "title": "Lunch and Learn with WSDOT",
    "type": "Club",
@@ -498,9 +552,9 @@
   {
    "id": "DfgAfz_C82l-0",
    "title": "Diwali Celebration",
-   "type": "Hangout",
+   "type": "Food",
    "host": "SASA UW (@sasauw)",
-   "where": "SOCC 301",
+   "where": "SOCC 301 (1601 NE Columbia Road)",
    "pos": [
     47.65164,
     -122.31052
@@ -985,6 +1039,33 @@
    "posts": 1
   },
   {
+   "id": "DfgbVhaMY81-2",
+   "title": "Spam Musubi Sale",
+   "type": "Food",
+   "host": "CSA UW (@csauw)",
+   "where": "Red Square Tabling",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-13",
+   "start": "11:00",
+   "end": "14:00",
+   "url": "https://www.instagram.com/p/DfgbVhaMY81/",
+   "source": "instagram",
+   "description": "Stop by at Red Square this week for a delicious snack to brighten your day😋",
+   "image": "/ig/posts/DfgbVhaMY81.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfgbVhaMY81": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfWpR6pBXa7-0",
    "title": "Site Visit: Edward Jones",
    "type": "Club",
@@ -1270,6 +1351,57 @@
    "posts": 1
   },
   {
+   "id": "DfftKk3EuuE-0",
+   "title": "Christian Friendship Lecture",
+   "type": "Club",
+   "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-13",
+   "start": "17:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/DfftKk3EuuE/",
+   "source": "instagram",
+   "description": "✨ This Week at Newman! ✨\n\nWe have a great week ahead! Come join us for fellowship, fun, and faith!\n\n🥧 TUESDAY: First-years are making pies! Come enjoy some delicious treats and good company.\n\n✝️ FRIDAY: Join us for a special lecture on Christian Friendship, given by Thomas Aquinas Pickett, O.P.\n\n☕ SUNDAY: After the 10 AM Mass, head over to Saint Doms Hall for Ask a Friar Anything! Bring your questions and enjoy some great conversation.\n\nWe hope to see you there! God bless! 🙏",
+   "image": "/ig/posts/DfftKk3EuuE.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfftKk3EuuE": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfjDvRbxLhE-0",
+   "title": "Husky Baking Club x Husky Culinary Club",
+   "type": "Club",
+   "host": "HCCUW (@huskyculinaryclub)",
+   "where": "HUB",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-13",
+   "start": "17:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/DfjDvRbxLhE/",
+   "source": "instagram",
+   "description": "This week, Husky Baking Club and Husky Culinary Club are having our first collab! Baking club will bring the bread, and Culinary club will bring the soup. It will outside the HUB cafe at 5:30. As usual, no need to bake anything if you can’t! Just bring yourself and an empty stomach.",
+   "image": "/ig/posts/DfjDvRbxLhE.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfjDvRbxLhE": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfViJgohllB-0",
    "title": "Women in Tech Panel",
    "type": "Club",
@@ -1462,30 +1594,6 @@
     "De8CNY4HVdT": [
      3,
      1
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfftKk3EuuE-1",
-   "title": "Lecture on Christian Friendship",
-   "type": "Club",
-   "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-13",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfftKk3EuuE/",
-   "source": "instagram",
-   "description": "✨ This Week at Newman! ✨\n\nWe have a great week ahead! Come join us for fellowship, fun, and faith!\n\n🥧 TUESDAY: First-years are making pies! Come enjoy some delicious treats and good company.\n\n✝️ FRIDAY: Join us for a special lecture on Christian Friendship, given by Thomas Aquinas Pickett, O.P.\n\n☕ SUNDAY: After the 10 AM Mass, head over to Saint Doms Hall for Ask a Friar Anything! Bring your questions and enjoy some great conversation.\n\nWe hope to see you there! God bless! 🙏",
-   "image": "/ig/posts/DfftKk3EuuE.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfftKk3EuuE": [
-     null,
-     null
     ]
    },
    "posts": 1
@@ -1859,30 +1967,6 @@
    "posts": 1
   },
   {
-   "id": "DfftKk3EuuE-2",
-   "title": "Ask a Friar Anything",
-   "type": "Hangout",
-   "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
-   "where": "Saint Doms Hall",
-   "pos": null,
-   "date": "2026-11-14",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfftKk3EuuE/",
-   "source": "instagram",
-   "description": "✨ This Week at Newman! ✨\n\nWe have a great week ahead! Come join us for fellowship, fun, and faith!\n\n🥧 TUESDAY: First-years are making pies! Come enjoy some delicious treats and good company.\n\n✝️ FRIDAY: Join us for a special lecture on Christian Friendship, given by Thomas Aquinas Pickett, O.P.\n\n☕ SUNDAY: After the 10 AM Mass, head over to Saint Doms Hall for Ask a Friar Anything! Bring your questions and enjoy some great conversation.\n\nWe hope to see you there! God bless! 🙏",
-   "image": "/ig/posts/DfftKk3EuuE.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfftKk3EuuE": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "DffYGQBEhTO-0",
    "title": "Rugby Game vs Gonzaga",
    "type": "Club",
@@ -1982,6 +2066,30 @@
    "posts": 1
   },
   {
+   "id": "DfftKk3EuuE-1",
+   "title": "Ask a Friar Anything",
+   "type": "Club",
+   "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
+   "where": "Saint Doms Hall",
+   "pos": null,
+   "date": "2026-11-15",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfftKk3EuuE/",
+   "source": "instagram",
+   "description": "✨ This Week at Newman! ✨\n\nWe have a great week ahead! Come join us for fellowship, fun, and faith!\n\n🥧 TUESDAY: First-years are making pies! Come enjoy some delicious treats and good company.\n\n✝️ FRIDAY: Join us for a special lecture on Christian Friendship, given by Thomas Aquinas Pickett, O.P.\n\n☕ SUNDAY: After the 10 AM Mass, head over to Saint Doms Hall for Ask a Friar Anything! Bring your questions and enjoy some great conversation.\n\nWe hope to see you there! God bless! 🙏",
+   "image": "/ig/posts/DfftKk3EuuE.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfftKk3EuuE": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfjILmphCpd-0",
    "title": "Bake Sale Fundraiser",
    "type": "Food",
@@ -2023,6 +2131,30 @@
    "description": "The purpose of this workshop is to guide UW students through all academic matters and to provide an opportunity to hear directly from current seniors about their experiences at UW.",
    "image": null,
    "rsvps": 0
+  },
+  {
+   "id": "DfjWqW0h8_P-0",
+   "title": "Pricing and Hedging",
+   "type": "Club",
+   "host": "Husky Math Club at UW (@huskymathclub)",
+   "where": "Online",
+   "pos": null,
+   "date": "2026-11-16",
+   "start": "14:00",
+   "end": "15:00",
+   "url": "https://www.instagram.com/p/DfjWqW0h8_P/",
+   "source": "instagram",
+   "description": null,
+   "image": "/ig/posts/DfjWqW0h8_P.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfjWqW0h8_P": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "DflHTe_vKll-0",
@@ -2233,7 +2365,7 @@
   },
   {
    "id": "Dfgs_NMB6pW-0",
-   "title": "Soot’s Pastry Shop",
+   "title": "Soot's Pastry Shop",
    "type": "Food",
    "host": "ATD UW (@alphathetadeltauw)",
    "where": "Red Square",
@@ -2332,7 +2464,7 @@
   {
    "id": "DffVNvURKQ8-0",
    "title": "CASPer prep session",
-   "type": "Club",
+   "type": "Study",
    "host": "UW Pre-Pharmacy Club (@uwprepharmacy)",
    "where": "STC 0040",
    "pos": [
@@ -2707,7 +2839,7 @@
   },
   {
    "id": "Dfgs_NMB6pW-1",
-   "title": "Soot’s Pastry Shop",
+   "title": "Soot's Pastry Shop",
    "type": "Food",
    "host": "ATD UW (@alphathetadeltauw)",
    "where": "Red Square",
@@ -2812,7 +2944,7 @@
   },
   {
    "id": "DfgGCFby218-0",
-   "title": "Conversation with Joe Alterio",
+   "title": "Joe Alterio Talk",
    "type": "Club",
    "host": "cseed (@cseeduw)",
    "where": "CSE2 G10",
@@ -3362,7 +3494,7 @@
   },
   {
    "id": "DfglfAjMwda-0",
-   "title": "General Community Meeting",
+   "title": "November General Community Meeting",
    "type": "Club",
    "host": "Pup Support | Mental Health (@pupsupport)",
    "where": "HUB 314",
@@ -3417,7 +3549,7 @@
   },
   {
    "id": "DfgK8CvjaHG-0",
-   "title": "Gurpurab Commemoration",
+   "title": "Gurpurab of Sri Guru Nanak Dev Ji",
    "type": "Hangout",
    "host": "Sikh Student Association @ UW (@ssa_uw)",
    "where": "Gurdwara Singh Sabha, Renton, WA",
@@ -3475,6 +3607,33 @@
    "posts": 3
   },
   {
+   "id": "Dfgf1iJgBzn-0",
+   "title": "Tinfoil Hats Night",
+   "type": "Hangout",
+   "host": "Triangle Fraternity | University of Washington (@uw_triangle)",
+   "where": "4706 11th Ave NE",
+   "pos": [
+    47.70749,
+    -122.31652
+   ],
+   "date": "2026-11-20",
+   "start": "19:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/Dfgf1iJgBzn/",
+   "source": "instagram",
+   "description": "GET YOUR TINFOIL H⟁TS OUT !!!! THEYRE W⟁TCHING YOU !!!! THOSE BLUE THINGS IN YOUR SKIN ⟁RE WIRES !!!!\n\nJOIN US UNDER THE SH⟁DOW OF THE GREAT TRIANGLE ON 11/20 AND PR⟁Y OUR OVERLORDS GR⟁NT US PROTECTION FROM THE LIZ⟁RDMEN !!!!\n\nled by conspirators\n@lawndarts.theband \n@koba.band \n@cloverthebandd \n@kimfrasier.official \n\n$10 at 4706 11th Ave NE\n18+ only — the children will be spared\n@uw_triangle x @the.ziggurat production",
+   "image": "/ig/posts/Dfgf1iJgBzn.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Dfgf1iJgBzn": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfkV_tqmoJb-0",
    "title": "Thrillest Dune Theme",
    "type": "Hangout",
@@ -3521,33 +3680,6 @@
     "DfRPoccmylD": [
      24,
      1
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "Dfgf1iJgBzn-0",
-   "title": "Triangle Fraternity Event",
-   "type": "Hangout",
-   "host": "Triangle Fraternity | University of Washington (@uw_triangle)",
-   "where": "4706 11th Ave NE",
-   "pos": [
-    47.70749,
-    -122.31652
-   ],
-   "date": "2026-11-20",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/Dfgf1iJgBzn/",
-   "source": "instagram",
-   "description": "GET YOUR TINFOIL H⟁TS OUT !!!! THEYRE W⟁TCHING YOU !!!! THOSE BLUE THINGS IN YOUR SKIN ⟁RE WIRES !!!!\n\nJOIN US UNDER THE SH⟁DOW OF THE GREAT TRIANGLE ON 11/20 AND PR⟁Y OUR OVERLORDS GR⟁NT US PROTECTION FROM THE LIZ⟁RDMEN !!!!\n\nled by conspirators\n@lawndarts.theband \n@koba.band \n@cloverthebandd \n@kimfrasier.official \n\n$10 at 4706 11th Ave NE\n18+ only — the children will be spared\n@uw_triangle x @the.ziggurat production",
-   "image": "/ig/posts/Dfgf1iJgBzn.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "Dfgf1iJgBzn": [
-     null,
-     null
     ]
    },
    "posts": 1
@@ -3976,7 +4108,7 @@
   },
   {
    "id": "DfiC3kAgrp_-0",
-   "title": "ACE Computing Bee",
+   "title": "BEE there or BEE square",
    "type": "Club",
    "host": "Association for Computing Education (@ace_uw)",
    "where": "Gates Common (CSE1 691)",
