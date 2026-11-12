@@ -314,7 +314,14 @@ def update_site_files():
     SITE_EVENTS_FILE.write_text(json.dumps(site, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote {len(site['events'])} upcoming events to {SITE_EVENTS_FILE}")
 
-    clubs = finish_clubs(merge_huskylink_clubs(current(SITE_CLUBS_FILE, "clubs")["clubs"]))
+    old_clubs = current(SITE_CLUBS_FILE, "clubs")["clubs"]
+    shown = {c["handle"]: c["name"] for c in old_clubs if c.get("handle") and not c["name"].startswith("@")}
+    clubs = finish_clubs(merge_huskylink_clubs(old_clubs))
+    # Joined clubs are remembered by name, so a club keeps the name the site already shows it under
+    # (merge_huskylink_clubs sets HuskyLink's official name; only brand-new clubs should get it).
+    for c in clubs:
+        if c.get("handle") in shown:
+            c["name"] = shown[c["handle"]]
     SITE_CLUBS_FILE.write_text(json.dumps({"clubs": clubs}, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote {len(clubs)} clubs to {SITE_CLUBS_FILE}")
 
