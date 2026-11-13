@@ -444,7 +444,10 @@ function useTheme() {
   const theme = choice ?? (deviceDark ? "dark" : sun);
   // Before the first paint, so the page never flashes the other theme
   useLayoutEffect(() => {
-    document.documentElement.dataset.theme = theme;
+    // The page itself stays in the dark styles; the toggle only changes the map (and the map's own
+    // ground and loader colors, which follow data-map-theme).
+    document.documentElement.dataset.theme = "dark";
+    document.documentElement.dataset.mapTheme = theme;
   }, [theme]);
 
   const pick = (id) => {
@@ -2496,14 +2499,13 @@ function reasonFor(best, cold) {
 
 const THUMB_UP_ICON = "M7 10v11M7 10l4-8a3 3 0 0 1 3 3v4h5.5a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 18 21H7M7 10H4v11h3";
 const THUMB_DOWN_ICON = "M17 14V3M17 14l-4 8a3 3 0 0 1-3-3v-4H4.5a2 2 0 0 1-2-2.3l1.4-8A2 2 0 0 1 6 3h11M17 14h3V3h-3";
-const RECS_PAGE = 8;
+const RECS_MAX = 9; // three rows of three, and no more on the page
 
 // "Picked for you": suggested events as flyer tiles, each with thumbs up and down. A thumbs down
 // hides it (with an undo) and steers the rest away from things like it; a thumbs up steers toward.
 function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect }) {
   const now = useNow();
   const { votes, vote } = useVotes();
-  const [limit, setLimit] = useState(RECS_PAGE);
   const [hidden, setHidden] = useState(null); // the event just thumbed down, for undo
   const { cold, picks } = useMemo(
     () => recommend(all, { profile, joined: j.joined, votes, clubs: myClubs, exclude }, now),
@@ -2543,7 +2545,7 @@ function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect })
         </p>
       )}
       <ul className="tile-grid recs-grid">
-        {picks.slice(0, limit).map(({ event: e, reason }, i) => {
+        {picks.slice(0, RECS_MAX).map(({ event: e, reason }, i) => {
           const v = votes[String(e.id)];
           return (
             <EventTile key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} index={i} now={now}>
@@ -2576,11 +2578,6 @@ function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect })
           );
         })}
       </ul>
-      {picks.length > limit && (
-        <button className="join secondary recs-more" onClick={() => setLimit((n) => n + RECS_PAGE)}>
-          Show more suggestions
-        </button>
-      )}
     </section>
   );
 }
@@ -2601,7 +2598,7 @@ function dateParts(date) {
   };
 }
 
-function YourEvents({ events, j, now, onSelect, onBrowse, onFindClubs }) {
+function YourEvents({ events, apps, j, now, onSelect, onBrowse, onFindClubs }) {
   const list = useRef(null);
   const upcoming = events
     .filter((e) => sectionOf(e, now))
@@ -2724,6 +2721,23 @@ function YourEvents({ events, j, now, onSelect, onBrowse, onFindClubs }) {
           </div>
         </div>
       )}
+      {/* Open applications from the clubs you joined, soonest deadline first (null: no clubs joined yet) */}
+      {apps && (
+        <section className="ye-apps" aria-labelledby="ye-apps-title">
+          <h3 id="ye-apps-title">Applications from your clubs</h3>
+          {apps.length > 0 ? (
+            <ul className="ye-apps-list">
+              {apps.map((a) => (
+                <li key={a.id}>
+                  <ApplicationCard app={a} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="meta">None of your clubs are taking applications right now. When one opens, it shows up here.</p>
+          )}
+        </section>
+      )}
     </section>
   );
 }
@@ -2800,7 +2814,7 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
   const beenTo = everything.filter((e) => e.date && e.date < today && j.joined.includes(String(e.id))).length;
   const recs = <Recommendations all={all} profile={profile} j={j} clubs={clubs} myClubs={myClubs} exclude={exclude} onSelect={setSelected} />;
   // The events you're going to and your clubs' events, beside the suggestions (empty: says so).
-  const yourEvents = <YourEvents events={mine} j={j} now={now} onSelect={setSelected} onBrowse={onBrowse} onFindClubs={onFindClubs} />;
+  const yourEvents = <YourEvents events={mine} apps={clubs.joined.length > 0 ? myApps : null} j={j} now={now} onSelect={setSelected} onBrowse={onBrowse} onFindClubs={onFindClubs} />;
   // Your events on the left half, the suggestions on the right (stacked on narrow screens).
   const split = (
     <div className="mine-split">
@@ -2885,21 +2899,6 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
             Find clubs
           </button>
         </p>
-      )}
-      {myApps.length > 0 && (
-        <section className="my-apps" aria-labelledby="my-apps-title">
-          <h2 id="my-apps-title">Applications from your clubs</h2>
-          <ul className="apply-grid">
-            {myApps.map((a) => (
-              <li key={a.id}>
-                <ApplicationCard app={a} />
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-      {clubs.joined.length > 0 && myApps.length === 0 && (
-        <p className="count">None of your clubs are taking applications right now. When one opens, it shows up here.</p>
       )}
       {mine.length > 0 && split}
       </div>
@@ -5532,7 +5531,7 @@ export default function DubHub() {
           onReopened={reopened}
         />
       )}
-      {view === "Stats" && <StatsPage user={user} events={all} clubs={clubList} dark={MAP_PALETTES[theme.theme]?.dark} />}
+      {view === "Stats" && <StatsPage user={user} events={all} clubs={clubList} dark />}
       {view === "Hiring" && <HiringPage user={user} />}
       {view === "Friends" && <FriendsPage user={user} social={social} events={all} onOpenEvent={setFriendEvent} />}
       {view === "Friends" && friendEvent && <EventDetail event={friendEvent} j={j} onClose={() => setFriendEvent(null)} />}

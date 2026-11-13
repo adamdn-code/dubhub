@@ -573,28 +573,28 @@ a:hover {
   50% { transform: scale(1.15); }
 }
 
-:root[data-theme="dark"] .map-loader { background: #16181b; }
-:root[data-theme="dark"] .map-loader-shine { background-image: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.07) 50%, transparent 65%); }
-:root[data-theme="dark"] .map-loader-grid {
+:root[data-map-theme="dark"] .map-loader { background: #16181b; }
+:root[data-map-theme="dark"] .map-loader-shine { background-image: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.07) 50%, transparent 65%); }
+:root[data-map-theme="dark"] .map-loader-grid {
   background:
     repeating-linear-gradient(32deg, transparent 0 58px, rgba(185, 163, 245, 0.08) 58px 60px),
     repeating-linear-gradient(-58deg, transparent 0 86px, rgba(185, 163, 245, 0.06) 86px 88px),
     repeating-linear-gradient(90deg, transparent 0 140px, rgba(185, 163, 245, 0.05) 140px 142px);
 }
-:root[data-theme="dark"] .map-loader-pin b { background: #b9a3f5; border-color: #16181b; }
-:root[data-theme="dark"] .map-loader-pin i { border-color: #b9a3f5; }
+:root[data-map-theme="dark"] .map-loader-pin b { background: #b9a3f5; border-color: #16181b; }
+:root[data-map-theme="dark"] .map-loader-pin i { border-color: #b9a3f5; }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .map-loader { background: #16181b; }
-  :root:not([data-theme="light"]) .map-loader-shine { background-image: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.07) 50%, transparent 65%); }
-  :root:not([data-theme="light"]) .map-loader-grid {
+  :root:not([data-map-theme="light"]) .map-loader { background: #16181b; }
+  :root:not([data-map-theme="light"]) .map-loader-shine { background-image: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.07) 50%, transparent 65%); }
+  :root:not([data-map-theme="light"]) .map-loader-grid {
     background:
       repeating-linear-gradient(32deg, transparent 0 58px, rgba(185, 163, 245, 0.08) 58px 60px),
       repeating-linear-gradient(-58deg, transparent 0 86px, rgba(185, 163, 245, 0.06) 86px 88px),
       repeating-linear-gradient(90deg, transparent 0 140px, rgba(185, 163, 245, 0.05) 140px 142px);
   }
-  :root:not([data-theme="light"]) .map-loader-pin b { background: #b9a3f5; border-color: #16181b; }
-  :root:not([data-theme="light"]) .map-loader-pin i { border-color: #b9a3f5; }
+  :root:not([data-map-theme="light"]) .map-loader-pin b { background: #b9a3f5; border-color: #16181b; }
+  :root:not([data-map-theme="light"]) .map-loader-pin i { border-color: #b9a3f5; }
 }
 
 /* The map waits, invisible, while its first tiles draw; then it opens outward from the middle of
@@ -2625,14 +2625,14 @@ a.discord-bot-link.join {
   font-family: inherit; /* the site's font, not Leaflet's Helvetica */
 }
 
-:root[data-theme="dark"] .leaflet-container,
-:root[data-theme="dark"] .map-loading {
+:root[data-map-theme="dark"] .leaflet-container,
+:root[data-map-theme="dark"] .map-loading {
   background: #16181b;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .leaflet-container,
-  :root:not([data-theme="light"]) .map-loading {
+  :root:not([data-map-theme="light"]) .leaflet-container,
+  :root:not([data-map-theme="light"]) .map-loading {
     background: #16181b;
   }
 }
@@ -7354,8 +7354,16 @@ body {
   animation: map-card-in 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Smaller flyers, three to a row (two on phones) */
 .recs-grid {
-  gap: 32px 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px 12px;
+}
+
+@media (max-width: 560px) {
+  .recs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .rec-foot {
@@ -7848,6 +7856,35 @@ body {
 }
 
 /* No events: an empty, dashed ticket in front of two faint ones, then the note */
+/* Open applications from your clubs, at the bottom of the Your events panel */
+.ye-apps {
+  margin-top: auto;
+  padding: 18px clamp(12px, 2.4vw, 24px) 22px;
+  border-top: 1px solid var(--line);
+}
+
+.page .ye-apps h3 {
+  margin: 0 0 12px;
+  font-size: 17px;
+}
+
+.ye-apps-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ye-apps-list > li {
+  display: flex;
+  min-width: 0;
+}
+
+.ye-apps .meta {
+  margin: 0;
+}
+
 .ye-empty {
   display: flex;
   flex: 1;
