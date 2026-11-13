@@ -94,13 +94,14 @@ function Plate({ where, size }) {
   );
 }
 
-const TYPE_COLORS = {
-  Study: "#4b2e83",
-  Club: "#c5503a",
-  Food: "#d29a00",
-  Hangout: "#1f8a70",
-  "Game night": "#2e6fbd",
-};
+// The event-type filters (the Now page's chips and the map's menu). "Academic" takes the place of
+// "Study": study sessions, workshops and office hours, plus anything an academic club puts on.
+const TYPE_FILTERS = ["Academic", "Club", "Food", "Hangout", "Game night"];
+function matchesType(e, type) {
+  if (type === "All") return true;
+  if (type === "Academic") return e.type === "Study" || e.club?.category === "Academic";
+  return e.type === type;
+}
 
 const YEARS = ["Freshman", "Sophomore", "Junior", "Senior"];
 // Majors grouped by area so the dropdown stays easy to scan.
@@ -1126,7 +1127,7 @@ function useFilteredEvents(all) {
     return all.filter(
       (e) =>
         inWhen(e, when) &&
-        (type === "All" || e.type === type) &&
+        matchesType(e, type) &&
         (year === "All" || !e.years || e.years.includes(year)) &&
         (!field || e.fields.includes(field)) &&
         (club === ALL_CLUBS || e.club?.category === club)
@@ -1156,7 +1157,7 @@ function Filters({ f }) {
           <span className="filter-label">Event type</span>
           <select value={f.type} onChange={(e) => f.setType(e.target.value)} className={f.type !== "All" ? "set" : undefined}>
             <option value="All">All types</option>
-            {Object.keys(TYPE_COLORS).map((t) => (
+            {TYPE_FILTERS.map((t) => (
               <option key={t}>{t}</option>
             ))}
           </select>
@@ -2285,7 +2286,7 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, app
           onChange={(e) => setQuery(e.target.value)}
         />
         <div className="filter-row">
-          <ChipFilter label="Event type" options={["All", ...Object.keys(TYPE_COLORS)]} value={f.type} onChange={f.setType} />
+          <ChipFilter label="Event type" options={["All", ...TYPE_FILTERS]} value={f.type} onChange={f.setType} />
           <select
             aria-label="Club type"
             className={f.club !== ALL_CLUBS ? "filter-select set" : "filter-select"}
