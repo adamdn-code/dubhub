@@ -622,6 +622,19 @@ a:hover {
   100% { clip-path: circle(150vmax at 50% 50%); }
 }
 
+/* The way back out when the theme changes: the map shrinks to a circle, then closes to nothing,
+   with the loader showing behind it (the reverse of map-open). It stays shut until redrawn. */
+.map.map-closing {
+  z-index: 3;
+  animation: map-close 650ms both;
+}
+
+@keyframes map-close {
+  0% { clip-path: circle(150vmax at 50% 50%); animation-timing-function: cubic-bezier(0.65, 0, 0.25, 1); }
+  72% { clip-path: circle(120px at 50% 50%); animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.6); }
+  100% { clip-path: circle(0px at 50% 50%); }
+}
+
 @keyframes dots-in {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -633,6 +646,10 @@ a:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .map.map-closing {
+    animation: none;
+    opacity: 0;
+  }
   .map-loader-grid,
   .map-loader-shine,
   .map-loader-pin i,
@@ -7152,6 +7169,62 @@ body {
 
 .mine-hero .hero-photo {
   object-position: center 60%;
+}
+
+/* My Events' hero is a slimmer band than the Now page's: a smaller headline, tighter padding and
+   smaller cards in the fan (these beat the Now page's hero sizes, which are set per screen width) */
+.mine-page .mine-hero {
+  padding: 24px 20px 22px;
+}
+
+.mine-page .mine-hero .now-hero-inner {
+  gap: 24px;
+}
+
+.mine-page .mine-hero h1 {
+  font-size: clamp(32px, 3vw, 50px);
+}
+
+.mine-page .mine-hero .now-date {
+  font-size: 16px;
+}
+
+.mine-page .mine-hero .mine-stats {
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.mine-page .mine-hero .mine-stats li {
+  padding: 4px 12px;
+  font-size: 13px;
+}
+
+.mine-page .mine-hero .club-fan {
+  gap: 10px;
+}
+
+.mine-page .mine-hero .club-fan-cards {
+  gap: 12px 10px;
+  padding: 4px 0;
+}
+
+.mine-page .mine-hero .club-fan-card {
+  --w: clamp(88px, 7vw, 112px);
+  border-width: 3px;
+}
+
+/* With no clubs yet, the flyer fan (and its button) are shown smaller too */
+.mine-page .mine-hero .mine-join .fan-cards {
+  zoom: 0.7;
+}
+
+@media (max-width: 700px) {
+  .mine-page .mine-hero {
+    padding: 18px 16px 16px;
+  }
+  .mine-page .mine-hero h1 {
+    font-size: 30px;
+  }
 }
 
 /* Little counts under the title, as frosted chips */

@@ -82,11 +82,15 @@ const CARD_GAP = 6;
 // dots to finish fading in: the opening cards pop up after that.
 const REVEAL_MS = 1700;
 
+// The opening cards play once per visit: the first time the map opens, never again until the page
+// is reloaded (this lives outside the component, so leaving the Map tab and coming back keeps it).
+let introPlayed = false;
+
 // How long the opening cards stay up, fade included (see .intro-callout in DubHub.css).
 const INTRO_MS = 6000;
 
 // At most this many cards when the site opens, the soonest events first, so the map isn't buried.
-const MAX_INTRO_LABELS = 5;
+const MAX_INTRO_LABELS = 4;
 
 // The cards over the dots when the site opens (then they fade away). Each goes above its dot, or
 // below it if that would cover another card, a labeled dot, or the filters, or run off the map; if
@@ -376,20 +380,58 @@ function MapFlair({ events, at }) {
 // The map starts hidden (.map-pending) while its tiles load, behind the loader Home shows; once the
 // first picture is ready it opens outward from the middle of the screen (.map-reveal) and its dots
 // fade in after it.
-function MapReveal({ ready }) {
+function MapReveal({ ready, again }) {
   const map = useMap();
   useEffect(() => {
     if (!ready) return;
     const el = map.getContainer();
-    el.classList.remove("map-pending");
+    el.classList.remove("map-pending", "map-closing", "map-reveal");
+    void el.offsetWidth; // so the opening animation starts over when this runs again
     el.classList.add("map-reveal");
-  }, [map, ready]);
+  }, [map, ready, again]);
   return null;
 }
 
-export default function EventMap({ events, area, introLabels, shown, flyTo, onPin, onMapClick, onReady, palette, at }) {
+// How long the circle takes to close when the theme changes (map-close in DubHub.css).
+const CLOSE_MS = 650;
+
+// When the theme changes the map doesn't just flip colors: the circle closes (the loader shows
+// behind it), the map is redrawn in the new theme's colors while it's shut (`onSwap`), and then it
+// opens again like the first time (MapReveal, run again once the new picture is ready).
+function ThemeSwap({ live, current, onSwap, onBusy, onReopen }) {
+  const map = useMap();
+  const waiting = useRef(false); // closing, and the swap hasn't happened yet
+  useEffect(() => {
+    const el = map.getContainer();
+    if (live === current) {
+      // Either it just swapped (nothing to do: it opens when the new picture is ready), or the theme
+      // went back to what the map still shows before the swap, so just open it again.
+      if (waiting.current) {
+        waiting.current = false;
+        onReopen();
+      }
+      return;
+    }
+    waiting.current = true;
+    el.classList.remove("map-reveal");
+    el.classList.add("map-closing");
+    onBusy();
+    const t = setTimeout(() => {
+      waiting.current = false;
+      onSwap(live);
+    }, CLOSE_MS);
+    return () => clearTimeout(t);
+  }, [map, live, current, onSwap, onBusy, onReopen]);
+  return null;
+}
+
+export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick, onReady, onBusy, palette: livePalette, at }) {
+  // The palette the map is drawn with. It trails the theme: see ThemeSwap.
+  const [palette, setPalette] = useState(livePalette);
+  const [reopened, setReopened] = useState(0); // counts reopenings after a theme change
+  const swapping = useRef(false);
   const [ready, setReady] = useState(false);
-  const [intro, setIntro] = useState(Boolean(introLabels)); // decided once, when the map opens
+  const [intro, setIntro] = useState(() => !introPlayed); // decided once, when the map opens
   const markReady = useCallback(() => setReady(true), []);
   const endIntro = useCallback(() => setIntro(false), []); // a stable function, so the cards' clock isn't reset
   // The opening cards wait until the circle has finished opening (REVEAL_MS, matching map-open in DubHub.css).
@@ -399,9 +441,32 @@ export default function EventMap({ events, area, introLabels, shown, flyTo, onPi
     const t = setTimeout(() => setOpened(true), REVEAL_MS);
     return () => clearTimeout(t);
   }, [ready]);
+  // Once the cards have come up, they don't come up again this visit.
+  useEffect(() => {
+    if (intro && opened) introPlayed = true;
+  }, [intro, opened]);
   useEffect(() => {
     if (ready) onReady?.();
   }, [ready, onReady]);
+  // The map's picture is ready again after a theme change: open the circle (and tell Home).
+  const reopen = useCallback(() => {
+    swapping.current = false;
+    setReopened((n) => n + 1);
+    onReady?.();
+  }, [onReady]);
+  const busy = useCallback(() => {
+    swapping.current = true;
+    onBusy?.();
+  }, [onBusy]);
+  const swapTo = useCallback(
+    (next) => {
+      setPalette(next);
+      setTimeout(() => swapping.current && reopen(), 6000); // if the new tiles never arrive, open anyway
+    },
+    [reopen]
+  );
+  // BaseMap says so when a drawn picture is ready: the first one, or the one after a theme change.
+  const pictureReady = useCallback(() => (swapping.current ? reopen() : markReady()), [reopen, markReady]);
   // If the tiles never arrive, don't leave the loader up forever.
   useEffect(() => {
     const t = setTimeout(markReady, 6000);
@@ -464,11 +529,12 @@ export default function EventMap({ events, area, introLabels, shown, flyTo, onPi
       zoomControl={false}
       className="map map-pending"
     >
-      <MapReveal ready={ready} />
+      <MapReveal ready={ready} again={reopened} />
       <ZoomControl position="bottomright" />
       <FlyTo event={flyTo} />
       <MapArea area={area} />
-      <BaseMap palette={palette} onReady={markReady} />
+      <BaseMap palette={palette} onReady={pictureReady} />
+      <ThemeSwap live={livePalette} current={palette} onSwap={swapTo} onBusy={busy} onReopen={reopen} />
       <MapFlair events={located} at={moment} />
       {/* Live and soon: a ring rippling out from the dot. Plain elements in their own layer, so
           the animation runs on the GPU instead of repainting the map's dots every frame. */}

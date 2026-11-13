@@ -1483,10 +1483,15 @@ function MapLoader({ ready }) {
   );
 }
 
-function Home({ f, area, introLabels, j, palette, showSlider }) {
+function Home({ f, area, j, palette, showSlider }) {
   const [at, setAt] = useState(null); // the time slider: null is now
   const [mapReady, setMapReady] = useState(false);
+  const [mapCycle, setMapCycle] = useState(0); // a new loader each time the map closes and reopens
   const onMapReady = useCallback(() => setMapReady(true), []);
+  const onMapBusy = useCallback(() => {
+    setMapReady(false);
+    setMapCycle((n) => n + 1);
+  }, []);
   const now = useNow();
   const [shown, setShown] = useState(null); // { event, pinned }
   const [flyTo, setFlyTo] = useState(null); // an event picked from the Next up sign
@@ -1510,14 +1515,14 @@ function Home({ f, area, introLabels, j, palette, showSlider }) {
   return (
     <main className="home">
       {/* Until the map has arrived and drawn its first tiles, its place shows the loader. */}
-      <MapLoader ready={mapReady} />
+      <MapLoader key={mapCycle} ready={mapReady} />
       <MapGuard>
         <Suspense fallback={<div className="map map-loading" aria-busy="true" />}>
           <EventMap
             onReady={onMapReady}
+            onBusy={onMapBusy}
             events={f.events}
             area={area}
-            introLabels={introLabels}
             shown={event}
             flyTo={flyTo}
             onPin={(e) => show(e, true)}
@@ -5404,12 +5409,6 @@ export default function DubHub() {
   const all = useMemo(() => withFields(loaded, clubList), [loaded, clubList]);
   const everything = useMemo(() => withFields(loadedEverything, clubList), [loadedEverything, clubList]);
   const f = useFilteredEvents(all);
-  // Event names flash over their dots for a few seconds when the site first opens.
-  const [introLabels, setIntroLabels] = useState(true);
-  useEffect(() => {
-    const t = setTimeout(() => setIntroLabels(false), 5000);
-    return () => clearTimeout(t);
-  }, []);
   // A few seconds after the site opens, in a quiet moment, the map's code is fetched and made
   // ready in the background, so the first tap on the Map tab doesn't have to wait for it.
   // (Not when the browser has been asked to save data.)
@@ -5505,7 +5504,7 @@ export default function DubHub() {
         </div>
       </header>
 
-      {view === "Home" && <Home f={f} area={mapArea} introLabels={introLabels} j={j} palette={MAP_PALETTES[theme.theme]} showSlider={showSlider} />}
+      {view === "Home" && <Home f={f} area={mapArea} j={j} palette={MAP_PALETTES[theme.theme]} showSlider={showSlider} />}
       {view === "Events" && (
         <NowPage f={f} updated={updated} j={j} onSelect={openEvent} all={all} clubs={clubs} applications={applications} clubList={clubList} />
       )}
