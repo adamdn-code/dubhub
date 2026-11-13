@@ -444,10 +444,7 @@ function useTheme() {
   const theme = choice ?? (deviceDark ? "dark" : sun);
   // Before the first paint, so the page never flashes the other theme
   useLayoutEffect(() => {
-    // The page itself stays in the dark styles; the toggle only changes the map (and the map's own
-    // ground and loader colors, which follow data-map-theme).
-    document.documentElement.dataset.theme = "dark";
-    document.documentElement.dataset.mapTheme = theme;
+    document.documentElement.dataset.theme = theme;
   }, [theme]);
 
   const pick = (id) => {
@@ -2767,6 +2764,11 @@ function ClubFan({ clubs, all, everything, now, onOpen }) {
               aria-label={`${c.name}, ${upcoming} upcoming event${upcoming === 1 ? "" : "s"}`}
             >
               {cover ? <FitImg src={cover} loading={i === 0 ? "eager" : "lazy"} decoding="async" /> : <span className="club-fan-blank" />}
+              {upcoming > 0 && (
+                <span className="club-fan-count" title={`${upcoming} upcoming`} aria-hidden="true">
+                  {upcoming}
+                </span>
+              )}
               <span className="club-fan-label">
                 <Thumb src={c.logo} label={c.name} color={clubColor(c)} className="club-fan-logo" />
                 <span>
@@ -5531,7 +5533,7 @@ export default function DubHub() {
           onReopened={reopened}
         />
       )}
-      {view === "Stats" && <StatsPage user={user} events={all} clubs={clubList} dark />}
+      {view === "Stats" && <StatsPage user={user} events={all} clubs={clubList} dark={MAP_PALETTES[theme.theme]?.dark} />}
       {view === "Hiring" && <HiringPage user={user} />}
       {view === "Friends" && <FriendsPage user={user} social={social} events={all} onOpenEvent={setFriendEvent} />}
       {view === "Friends" && friendEvent && <EventDetail event={friendEvent} j={j} onClose={() => setFriendEvent(null)} />}

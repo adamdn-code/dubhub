@@ -573,28 +573,28 @@ a:hover {
   50% { transform: scale(1.15); }
 }
 
-:root[data-map-theme="dark"] .map-loader { background: #16181b; }
-:root[data-map-theme="dark"] .map-loader-shine { background-image: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.07) 50%, transparent 65%); }
-:root[data-map-theme="dark"] .map-loader-grid {
+:root[data-theme="dark"] .map-loader { background: #16181b; }
+:root[data-theme="dark"] .map-loader-shine { background-image: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.07) 50%, transparent 65%); }
+:root[data-theme="dark"] .map-loader-grid {
   background:
     repeating-linear-gradient(32deg, transparent 0 58px, rgba(185, 163, 245, 0.08) 58px 60px),
     repeating-linear-gradient(-58deg, transparent 0 86px, rgba(185, 163, 245, 0.06) 86px 88px),
     repeating-linear-gradient(90deg, transparent 0 140px, rgba(185, 163, 245, 0.05) 140px 142px);
 }
-:root[data-map-theme="dark"] .map-loader-pin b { background: #b9a3f5; border-color: #16181b; }
-:root[data-map-theme="dark"] .map-loader-pin i { border-color: #b9a3f5; }
+:root[data-theme="dark"] .map-loader-pin b { background: #b9a3f5; border-color: #16181b; }
+:root[data-theme="dark"] .map-loader-pin i { border-color: #b9a3f5; }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-map-theme="light"]) .map-loader { background: #16181b; }
-  :root:not([data-map-theme="light"]) .map-loader-shine { background-image: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.07) 50%, transparent 65%); }
-  :root:not([data-map-theme="light"]) .map-loader-grid {
+  :root:not([data-theme="light"]) .map-loader { background: #16181b; }
+  :root:not([data-theme="light"]) .map-loader-shine { background-image: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.07) 50%, transparent 65%); }
+  :root:not([data-theme="light"]) .map-loader-grid {
     background:
       repeating-linear-gradient(32deg, transparent 0 58px, rgba(185, 163, 245, 0.08) 58px 60px),
       repeating-linear-gradient(-58deg, transparent 0 86px, rgba(185, 163, 245, 0.06) 86px 88px),
       repeating-linear-gradient(90deg, transparent 0 140px, rgba(185, 163, 245, 0.05) 140px 142px);
   }
-  :root:not([data-map-theme="light"]) .map-loader-pin b { background: #b9a3f5; border-color: #16181b; }
-  :root:not([data-map-theme="light"]) .map-loader-pin i { border-color: #b9a3f5; }
+  :root:not([data-theme="light"]) .map-loader-pin b { background: #b9a3f5; border-color: #16181b; }
+  :root:not([data-theme="light"]) .map-loader-pin i { border-color: #b9a3f5; }
 }
 
 /* The map waits, invisible, while its first tiles draw; then it opens outward from the middle of
@@ -2625,14 +2625,14 @@ a.discord-bot-link.join {
   font-family: inherit; /* the site's font, not Leaflet's Helvetica */
 }
 
-:root[data-map-theme="dark"] .leaflet-container,
-:root[data-map-theme="dark"] .map-loading {
+:root[data-theme="dark"] .leaflet-container,
+:root[data-theme="dark"] .map-loading {
   background: #16181b;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-map-theme="light"]) .leaflet-container,
-  :root:not([data-map-theme="light"]) .map-loading {
+  :root:not([data-theme="light"]) .leaflet-container,
+  :root:not([data-theme="light"]) .map-loading {
     background: #16181b;
   }
 }
@@ -7182,7 +7182,7 @@ body {
 }
 
 .mine-page .mine-hero h1 {
-  font-size: clamp(32px, 3vw, 50px);
+  font-size: clamp(36px, 3.6vw, 58px);
 }
 
 .mine-page .mine-hero .now-date {
@@ -7199,18 +7199,98 @@ body {
   font-size: 13px;
 }
 
+/* The clubs you're in, as one overlapping row of cards (wide enough for all five, and for names you
+   can read), each with a gold count of what it has coming up */
+@media (min-width: 901px) {
+  .mine-page .mine-hero .now-hero-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, clamp(480px, 44vw, 780px));
+  }
+}
+
 .mine-page .mine-hero .club-fan {
-  gap: 10px;
+  gap: 8px;
 }
 
 .mine-page .mine-hero .club-fan-cards {
-  gap: 12px 10px;
-  padding: 4px 0;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 0;
+  padding: 18px 0 6px;
 }
 
 .mine-page .mine-hero .club-fan-card {
-  --w: clamp(88px, 7vw, 112px);
+  --w: clamp(104px, 8.6vw, 132px);
+  margin-left: calc(var(--w) * -0.12);
   border-width: 3px;
+}
+
+.mine-page .mine-hero .club-fan-card:first-child {
+  margin-left: 0;
+}
+
+.mine-page .mine-hero .club-fan-card:nth-child(2n) {
+  --lift: 8px;
+}
+
+.mine-page .mine-hero .club-fan-card:nth-child(3n) {
+  --lift: -4px;
+}
+
+.mine-page .mine-hero .club-fan-card:nth-child(5n) {
+  --lift: 5px;
+}
+
+.mine-page .mine-hero .club-fan-label {
+  align-items: flex-end;
+  gap: 6px;
+  padding: 24px 7px 8px;
+}
+
+.mine-page .mine-hero .club-fan-label strong {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  font-size: 11.5px;
+  white-space: normal;
+}
+
+.mine-page .mine-hero .club-fan-label small {
+  display: none; /* the gold count on the card says it */
+}
+
+.mine-page .mine-hero .club-fan-card .club-fan-logo {
+  width: 26px;
+  height: 26px;
+}
+
+.club-fan-count {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  z-index: 1;
+  min-width: 22px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--gold-brand);
+  color: #2a1a4f;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.3;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(16, 6, 36, 0.35);
+}
+
+@media (max-width: 900px) {
+  .mine-page .mine-hero .club-fan-card {
+    --w: clamp(66px, 17vw, 104px);
+  }
+}
+
+@media (max-width: 560px) {
+  .mine-page .mine-hero .club-fan-label strong {
+    display: none; /* too narrow to read: the logo and count stay */
+  }
 }
 
 /* With no clubs yet, the flyer fan (and its button) are shown smaller too */
