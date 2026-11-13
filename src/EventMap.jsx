@@ -516,7 +516,7 @@ export default function EventMap({ events, area, introLabels, shown, flyTo, onPi
             radius={radius}
             pathOptions={{
               color: on ? "#fff" : soon ? (palette?.dark ? "#ff5c6c" : "#d0263d") : palette?.dark ? "#16181b" : "#fff",
-              weight: on ? 3 : soon ? 4 : 2,
+              weight: on ? 3 : 2, // live and soon dots keep the same thin outline, in red
               fillColor: eventColor(e, palette?.dark),
               fillOpacity: faded ? 0.18 : 1,
               opacity: faded ? 0.3 : 1,

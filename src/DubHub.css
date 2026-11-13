@@ -6266,14 +6266,20 @@ body {
   box-sizing: border-box;
 }
 
-/* Live and soon: a ring that ripples out from the dot (transform and opacity only, so it stays on the GPU) */
+/* Live and soon: a thin ring that ripples out from the dot. The ring grows by changing its size,
+   not by scaling it, so its line stays the same thin width from start to finish (a scaled border
+   swells to nearly three times as thick). */
 .ripple {
   pointer-events: none;
 }
 
 .ripple span {
-  border: 3px solid #4b2e83;
-  will-change: transform, opacity;
+  position: absolute;
+  inset: 0;
+  width: auto; /* sized by `inset`, which the animation changes */
+  height: auto;
+  border: 1.5px solid #4b2e83;
+  contain: layout paint style;
   animation: dot-ripple 3.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
@@ -6292,11 +6298,11 @@ body {
 
 @keyframes dot-ripple {
   0% {
-    transform: scale(1);
+    inset: 0;
     opacity: 0.9;
   }
   100% {
-    transform: scale(2.6);
+    inset: -80%; /* the same 2.6 times the dot's size as before */
     opacity: 0;
   }
 }
@@ -6414,7 +6420,7 @@ body {
   .ripple span {
     animation: none;
     opacity: 0.6;
-    transform: scale(1.6);
+    inset: -30%;
   }
 }
 
