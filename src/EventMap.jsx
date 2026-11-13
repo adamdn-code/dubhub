@@ -380,11 +380,15 @@ function MapFlair({ events, at }) {
 // The map starts hidden (.map-pending) while its tiles load, behind the loader Home shows; once the
 // first picture is ready it opens outward from the middle of the screen (.map-reveal) and its dots
 // fade in after it.
+// Where the circle animations go: the stage holding the map and the panels floating over it (see
+// Home in DubHub.jsx), or the map alone if it isn't in one.
+const stageOf = (map) => map.getContainer().closest(".map-stage") ?? map.getContainer();
+
 function MapReveal({ ready, again }) {
   const map = useMap();
   useEffect(() => {
     if (!ready) return;
-    const el = map.getContainer();
+    const el = stageOf(map);
     el.classList.remove("map-pending", "map-closing", "map-reveal");
     void el.offsetWidth; // so the opening animation starts over when this runs again
     el.classList.add("map-reveal");
@@ -402,7 +406,7 @@ function ThemeSwap({ live, current, onSwap, onBusy, onReopen }) {
   const map = useMap();
   const waiting = useRef(false); // closing, and the swap hasn't happened yet
   useEffect(() => {
-    const el = map.getContainer();
+    const el = stageOf(map);
     if (live === current) {
       // Either it just swapped (nothing to do: it opens when the new picture is ready), or the theme
       // went back to what the map still shows before the swap, so just open it again.
@@ -536,7 +540,7 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
       zoomSnap={0.25} // so UW's campus fits snugly on any screen size, not just at whole zoom steps
       scrollWheelZoom
       zoomControl={false}
-      className="map map-pending"
+      className="map"
     >
       <MapReveal ready={ready} again={reopened} />
       <ZoomControl position="bottomright" />

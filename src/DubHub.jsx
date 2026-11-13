@@ -1534,6 +1534,9 @@ function Home({ f, area, j, palette, showSlider }) {
     <main className="home">
       {/* Until the map has arrived and drawn its first tiles, its place shows the loader. */}
       <MapLoader key={mapCycle} ready={mapReady} />
+      {/* The map and the panels floating over it, opened and closed together by the circle
+          (EventMap's MapReveal and ThemeSwap); the loader stays outside, underneath. */}
+      <div className="map-stage map-pending">
       <MapGuard>
         <Suspense fallback={<div className="map map-loading" aria-busy="true" />}>
           <EventMap
@@ -1579,6 +1582,7 @@ function Home({ f, area, j, palette, showSlider }) {
           }}
         />
       )}
+      </div>
     </main>
   );
 }
