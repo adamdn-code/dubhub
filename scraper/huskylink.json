@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T00:52",
+ "updated": "2026-11-12T16:36",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -1941,8 +1941,8 @@
    "name": "Circle K International at the University of Washington",
    "website": "https://www.uwcki.com/",
    "category": "Social",
-   "about": "Internationally recognized studentled volunteer organization, sponsored by Kiwanis.",
-   "description": "Internationally recognized studentled volunteer organization, sponsored by Kiwanis. We are a communityservice organization at the University of Washington that specializes in volunteer work and community outreach in the Greater Seattle area.",
+   "about": "Internationally recognized student led volunteer organization, sponsored by Kiwanis.",
+   "description": "Internationally recognized student led volunteer organization, sponsored by Kiwanis. We are a community service organization at the University of Washington that specializes in volunteer work and community outreach in the Greater Seattle area.",
    "logo": null
   },
   {
@@ -7711,7 +7711,7 @@
    "category": "Service",
    "about": "Our club wants to create an educated community full of mushroom enthusiasts and people who care about the environment.",
    "description": "Our club wants to create an educated community full of mushroom enthusiasts and people who care about the environment.",
-   "logo": null
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_604976_Screenshot_20261112_145523_2f1c0c7e-ea72-4b68-945b-c5ecaf0806e8_1112175610.png"
   },
   {
    "name": "Student National Dental Association at University of Washington",
@@ -9436,25 +9436,6 @@
  ],
  "events": [
   {
-   "id": "hl-375338",
-   "title": "RSO Drop-In Advising",
-   "type": "Study",
-   "host": "Student Activities Office",
-   "where": "HUB",
-   "pos": [
-    47.65537,
-    -122.3051
-   ],
-   "date": "2026-11-12",
-   "start": "13:00",
-   "end": "16:00",
-   "url": "https://huskylink.washington.edu/SAO/rsvp?id=375338",
-   "source": "huskylink",
-   "description": "The Student Activities Office (SAO) offers RSO Drop-In Advising hours in HUB 111B, located within the RSO Resource Center. These drop-in hours provide RSOs with an opportunity to connect with an SAO Advisor, ask questions, and receive guidance and support on a variety of topics.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_599699_RSO_DropIn_Advising_760_x_380_px_2658fc33-3cfa-474a-9df2-4b99c30a1a5b_101413143.png",
-   "rsvps": 0
-  },
-  {
    "id": "hl-375477",
    "title": "Trans Day of Remembrance Panel",
    "type": "Study",
@@ -9544,7 +9525,7 @@
    "source": "huskylink",
    "description": "Watch real Japanese Grand Sumo with us in the HUB!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png",
-   "rsvps": 13
+   "rsvps": 14
   },
   {
    "id": "hl-375343",
@@ -9579,6 +9560,22 @@
    "source": "huskylink",
    "description": "The purpose of this workshop is to guide UW students through all academic matters and to provide an opportunity to hear directly from current seniors about their experiences at UW.",
    "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375532",
+   "title": "Poker and Popcorn!",
+   "type": "Hangout",
+   "host": "Applied Mathematics Club",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-16",
+   "start": "17:00",
+   "end": "18:00",
+   "url": "https://huskylink.washington.edu/amathclub/rsvp?id=375532",
+   "source": "huskylink",
+   "description": "AMATH Club is going ALL IN for the next meeting! ♣️♦️♠️♥️ Join us at poker night for your chance to win a $25 Chipotle gift card!!! Don’t forget to RSVP: https://docs.google.com/forms/d/e/1FAIpQLScC5Ja_uCE3xEH4WCW6SpXTc8XoidnwTFAMQkOIbGkF3oYWtQ/viewform",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_645865_AMATH_Club_Profilejpg_f604803d-7d0e-4e9c-9c4f-8da00c92126e_11121372.jpeg",
    "rsvps": 0
   },
   {
@@ -9649,6 +9646,22 @@
    "source": "huskylink",
    "description": "A meeting usually includes an icebreaker, a short freewrite, and a feedback session.\nRegistration not required :) Feel free to drop in and say hi",
    "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375533",
+   "title": "We Are Blood Drive",
+   "type": "Club",
+   "host": "NMDP UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-17",
+   "start": "10:00",
+   "end": "15:00",
+   "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375533",
+   "source": "huskylink",
+   "description": "Donor drive during an on campus We Are Blood drive.",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_643287_Screenshot_20260928_182241_06deb2ab-c655-430a-bc8a-e2e8bf3041cc_928212314.png",
    "rsvps": 0
   },
   {
@@ -9815,6 +9828,25 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375339",
+   "title": "RSO Drop-In Advising",
+   "type": "Study",
+   "host": "Student Activities Office",
+   "where": "HUB",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-19",
+   "start": "13:00",
+   "end": "16:00",
+   "url": "https://huskylink.washington.edu/SAO/rsvp?id=375339",
+   "source": "huskylink",
+   "description": "The Student Activities Office (SAO) offers RSO Drop-In Advising hours in HUB 111B, located within the RSO Resource Center. These drop-in hours provide RSOs with an opportunity to connect with an SAO Advisor, ask questions, and receive guidance and support on a variety of topics.",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_599699_RSO_DropIn_Advising_760_x_380_px_2658fc33-3cfa-474a-9df2-4b99c30a1a5b_101413143.png",
+   "rsvps": 0
+  },
+  {
    "id": "hl-375478",
    "title": "Trans Day of Remembrance Vigil",
    "type": "Club",
@@ -9831,6 +9863,22 @@
    "source": "huskylink",
    "description": "Join us as we honor the lives of Transgender and gender-diverse people who have been lost to anti-trans violence during Trans Day of Remembrance.\nWe will be walking to Drumheller Fountain with your choosing of real/battery powered tea-lights.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615660_option_b__cb92a180-f25f-4a9b-8900-ec674338a2a0_11217332.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375536",
+   "title": "SMC: Weekend Foray",
+   "type": "Club",
+   "host": "Student Mycology Club",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-21",
+   "start": "13:00",
+   "end": "15:00",
+   "url": "https://huskylink.washington.edu/studentmycology/rsvp?id=375536",
+   "source": "huskylink",
+   "description": "Join us for an afternoon out looking for local fungi at the Redmond Watershed! No foraging experience necessary!\nPlease register here: https://forms.gle/FHiMuQ5hWogBHypE6",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_604976_Screenshot_20261112_154011_4a1edc7b-d91c-4a87-a858-08148272b2f0_1112184039.png",
    "rsvps": 0
   },
   {
@@ -9883,7 +9931,7 @@
   },
   {
    "id": "hl-375103",
-   "title": "General Meeting (Tentative)",
+   "title": "Healthcare Panel with Fostermed",
    "type": "Club",
    "host": "NMDP UW",
    "where": null,
@@ -9893,7 +9941,7 @@
    "end": "19:00",
    "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375103",
    "source": "huskylink",
-   "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!",
+   "description": "Speakers in Healthcare information that will be sharing their experiences and how they got to their position",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_643287_Screenshot_20260928_182241_06deb2ab-c655-430a-bc8a-e2e8bf3041cc_928212314.png",
    "rsvps": 0
   },

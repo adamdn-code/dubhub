@@ -1,15 +1,27 @@
 {
- "updated": "2026-11-12T13:27",
+ "updated": "2026-11-12T17:00",
  "applications": [
   {
    "id": "DfgkTL4NVsG",
    "host": "Makers@UW (@makers_uw)",
-   "for": "Makers officer positions",
+   "for": "Officer positions",
    "kind": "Officer & board",
    "deadline": "2026-11-13",
    "link": "https://linktr.ee/Makersuw",
    "post": "https://www.instagram.com/p/DfgkTL4NVsG/",
    "posted": "2026-11-08",
+   "logo": "/ig/clubs/makers_uw.jpg",
+   "category": "Academic"
+  },
+  {
+   "id": "DfjO8atmyEm",
+   "host": "Makers@UW (@makers_uw)",
+   "for": "LOCK-IN team",
+   "kind": "Team & staff",
+   "deadline": "2026-11-13",
+   "link": "https://forms.gle/MHF3BDzt2nXTEZTr5",
+   "post": "https://www.instagram.com/p/DfjO8atmyEm/",
+   "posted": "2026-11-09",
    "logo": "/ig/clubs/makers_uw.jpg",
    "category": "Academic"
   },
@@ -52,12 +64,12 @@
   {
    "id": "De5hKvmGiiR",
    "host": "@vsauw",
-   "for": "General membership",
+   "for": "Club membership",
    "kind": "Membership",
    "deadline": "2026-11-25",
    "link": "https://linktr.ee/vsauw",
    "post": "https://www.instagram.com/p/De5hKvmGiiR/",
-   "posted": "2026-10-24",
+   "posted": "2026-10-25",
    "logo": "/ig/clubs/vsauw.jpg",
    "category": "Cultural"
   },
@@ -86,21 +98,9 @@
    "category": "Cultural"
   },
   {
-   "id": "DevbqCqFMXr",
-   "host": "Circle K International at UW Seattle (@uwcki)",
-   "for": "Official membership",
-   "kind": "Membership",
-   "deadline": "2026-12-01",
-   "link": null,
-   "post": "https://www.instagram.com/p/DevbqCqFMXr/",
-   "posted": "2026-10-20",
-   "logo": "/ig/clubs/uwcki.jpg",
-   "category": "Social"
-  },
-  {
    "id": "Dfk3-FPkrol",
    "host": "UW LATINE STUDENT UNION (@uwlsu)",
-   "for": "Officer positions",
+   "for": "Board positions",
    "kind": "Officer & board",
    "deadline": "2026-12-01",
    "link": "https://linktr.ee/uwlatine",
@@ -117,7 +117,7 @@
    "deadline": "2026-12-31",
    "link": "http://linktr.ee/bricolageuw",
    "post": "https://www.instagram.com/p/DeiQCYesjVY/",
-   "posted": "2026-10-15",
+   "posted": "2026-10-16",
    "logo": "/ig/clubs/bricolageuw.jpg",
    "category": "Social"
   },
@@ -144,18 +144,6 @@
    "posted": "2026-10-17",
    "logo": "/ig/clubs/uwimprov.jpg",
    "category": "Arts"
-  },
-  {
-   "id": "Der1GjVGb1k",
-   "host": "Rainy Dawg Radio (@rainydawgradio)",
-   "for": "DJ applications",
-   "kind": "Team & staff",
-   "deadline": null,
-   "link": null,
-   "post": "https://www.instagram.com/p/Der1GjVGb1k/",
-   "posted": "2026-10-19",
-   "logo": "/ig/clubs/rainydawgradio.jpg",
-   "category": "Service"
   },
   {
    "id": "Der8aVrD-ta",
@@ -208,7 +196,7 @@
   {
    "id": "De0GH4WhdBq",
    "host": "UW Recycling (@uwrecycling)",
-   "for": "Husky Goods Free Store Student Volunteer",
+   "for": "Husky Goods Free Store volunteer",
    "kind": "Team & staff",
    "deadline": null,
    "link": "http://linktr.ee/uwrecycling",
@@ -230,18 +218,6 @@
    "category": "Engineering"
   },
   {
-   "id": "De3Kk0vOz9M",
-   "host": "HCCUW (@huskyculinaryclub)",
-   "for": "spanakopita cooking class",
-   "kind": "Programs",
-   "deadline": null,
-   "link": "https://docs.google.com/forms/d/e/1FAIpQLSdB7yfFusVss79rbQ28vm1vcvVBy9tpb6SkUicg5MsH5rS9Kg/viewform?pli=1",
-   "post": "https://www.instagram.com/p/De3Kk0vOz9M/",
-   "posted": "2026-10-23",
-   "logo": "/ig/clubs/huskyculinaryclub.jpg",
-   "category": "Social"
-  },
-  {
    "id": "De46YqOhGWy",
    "host": "The Garden Of Ideas (@gardenofideasuw)",
    "for": "Staff writers",
@@ -256,7 +232,7 @@
   {
    "id": "De8U-IgosUe",
    "host": "COM²: Computing Community at UW (@uwcom2)",
-   "for": "Associate Officer apps",
+   "for": "Associate Officer",
    "kind": "Officer & board",
    "deadline": null,
    "link": null,
@@ -268,7 +244,7 @@
   {
    "id": "De8hgqJRnlj",
    "host": "UW Husky Table Tennis Club (@uwhuskyttc)",
-   "for": "NCTTA tryouts",
+   "for": "Table tennis tryouts",
    "kind": "Auditions & tryouts",
    "deadline": null,
    "link": "https://linktr.ee/uwhuskyttc",
@@ -280,8 +256,8 @@
   {
    "id": "De-urQeg-8Z",
    "host": "ASUW Latine Student Commission (@asuwlsc)",
-   "for": "Intern positions",
-   "kind": "Team & staff",
+   "for": "Latine Student Commission intern spots",
+   "kind": "Programs",
    "deadline": null,
    "link": "https://forms.cloud.microsoft/r/EbDzSFBCf1",
    "post": "https://www.instagram.com/p/De-urQeg-8Z/",
@@ -292,7 +268,7 @@
   {
    "id": "DfA3pNukliu",
    "host": "Husky Wrestling Team 🐺 (@huskywrestlingclub)",
-   "for": "Officer positions",
+   "for": "Wrestling officer positions",
    "kind": "Officer & board",
    "deadline": null,
    "link": null,
@@ -304,7 +280,7 @@
   {
    "id": "DfDGi62j11K",
    "host": "UW GPSS (@gpssuw)",
-   "for": "committee positions",
+   "for": "Graduate committee positions",
    "kind": "Officer & board",
    "deadline": null,
    "link": "http://linktr.ee/gpssuw",
@@ -316,7 +292,7 @@
   {
    "id": "DfI0NsIj4S6",
    "host": "Kappa Delta Chi Sorority, Inc. (@uwkdchi)",
-   "for": "join Kappa Delta Chi",
+   "for": "Sorority membership",
    "kind": "Membership",
    "deadline": null,
    "link": null,
@@ -324,6 +300,18 @@
    "posted": "2026-10-30",
    "logo": "/ig/clubs/uwkdchi.jpg",
    "category": "Greek Life"
+  },
+  {
+   "id": "DfQf5ZxvCv3",
+   "host": "University of Washington Army ROTC (@uwarmyrotc)",
+   "for": "ROTC scholarships",
+   "kind": "Programs",
+   "deadline": null,
+   "link": "https://www.goarmy.com/careers-and-jobs/find-your-path/army-officers/rotc/scholarships",
+   "post": "https://www.instagram.com/p/DfQf5ZxvCv3/",
+   "posted": "2026-11-02",
+   "logo": "/ig/clubs/uwarmyrotc.jpg",
+   "category": "Social"
   },
   {
    "id": "DfQDO3iBmaP",
@@ -338,18 +326,6 @@
    "category": "Engineering"
   },
   {
-   "id": "DfWFYlKm2yG",
-   "host": "Origami Club at UW (@uw_origamiclub)",
-   "for": "General membership",
-   "kind": "Membership",
-   "deadline": null,
-   "link": null,
-   "post": "https://www.instagram.com/p/DfWFYlKm2yG/",
-   "posted": "2026-11-04",
-   "logo": "/ig/clubs/uw_origamiclub.jpg",
-   "category": "Sports"
-  },
-  {
    "id": "DfWc1yAm6rz",
    "host": "Phi Alpha Delta | UW (@uw_pad)",
    "for": "Fall recruitment",
@@ -362,16 +338,16 @@
    "category": "Academic"
   },
   {
-   "id": "DfaQxXIj5We",
-   "host": "Costume Club at UW (@uwcostumeclub)",
-   "for": "Cosplayer & staff",
-   "kind": "Team & staff",
+   "id": "DfYZgBUI438",
+   "host": "FAHC at UW (@fahcuw)",
+   "for": "Mentorship program",
+   "kind": "Programs",
    "deadline": null,
    "link": null,
-   "post": "https://www.instagram.com/p/DfaQxXIj5We/",
-   "posted": "2026-11-06",
-   "logo": "/ig/clubs/uwcostumeclub.jpg",
-   "category": "Arts"
+   "post": "https://www.instagram.com/p/DfYZgBUI438/",
+   "posted": "2026-11-05",
+   "logo": "/ig/clubs/fahcuw.jpg",
+   "category": "Academic"
   },
   {
    "id": "DfdMF54ksQu",
@@ -408,6 +384,30 @@
    "posted": "2026-11-09",
    "logo": "/ig/clubs/wecareuw.jpg",
    "category": "Service"
+  },
+  {
+   "id": "DfoEsDqyaia",
+   "host": "华大课友 (@uwclassmates)",
+   "for": "Scavenger Hunt Officers",
+   "kind": "Officer & board",
+   "deadline": null,
+   "link": "http://uwclassmate.com/",
+   "post": "https://www.instagram.com/p/DfoEsDqyaia/",
+   "posted": "2026-11-11",
+   "logo": "/ig/clubs/uwclassmates.jpg",
+   "category": "Academic"
+  },
+  {
+   "id": "DfpqHDkoJp9",
+   "host": "MAPS @ Univ. of Washington (@mapsuw)",
+   "for": "Winter shadowing cohort",
+   "kind": "Programs",
+   "deadline": null,
+   "link": null,
+   "post": "https://www.instagram.com/p/DfpqHDkoJp9/",
+   "posted": "2026-11-12",
+   "logo": "/ig/clubs/mapsuw.jpg",
+   "category": "Academic"
   },
   {
    "id": "DfppltniBGA",
