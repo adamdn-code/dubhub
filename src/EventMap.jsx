@@ -78,6 +78,10 @@ function mapOverlays(map) {
 // Space kept between cards (and between a card and anything else it shouldn't cover).
 const CARD_GAP = 6;
 
+// How long the map takes to open out from its circle (map-open in DubHub.css), plus a beat for the
+// dots to finish fading in: the opening cards pop up after that.
+const REVEAL_MS = 1700;
+
 // How long the opening cards stay up, fade included (see .intro-callout in DubHub.css).
 const INTRO_MS = 6000;
 
@@ -350,24 +354,10 @@ function hotPlaces(events, at) {
 
 const LABELS_SHOWN = 3;
 
-function MapFlair({ events, at, dark }) {
+function MapFlair({ events, at }) {
   const places = hotPlaces(events, at);
   return (
     <>
-      {/* Hotspots: a soft glow under each busy building, bigger the more is on there. A CSS
-          gradient on a plain element, not a blurred SVG circle, so panning and the pulsing rings
-          never have to re-blur it. */}
-      <Pane name="hot-glows" style={{ zIndex: 350 }}>
-        {places.map((p) => (
-          <Marker
-            key={`hot|${p.pos.join()}`}
-            position={p.pos}
-            interactive={false}
-            keyboard={false}
-            icon={cssIcon(`hot-glow ${p.events.length > 1 ? "hot-ink" : "hot-gold"}${dark ? " dark" : ""}`, 2 * (34 + Math.min(p.events.length, 6) * 12))}
-          />
-        ))}
-      </Pane>
       {/* Labels: the busiest buildings named, with how many events are on there today */}
       {places.slice(0, LABELS_SHOWN).map((p) => (
         <CircleMarker key={`label|${p.pos.join()}`} center={p.pos} radius={0} stroke={false} fill={false} interactive={false}>
@@ -402,6 +392,13 @@ export default function EventMap({ events, area, introLabels, shown, flyTo, onPi
   const [intro, setIntro] = useState(Boolean(introLabels)); // decided once, when the map opens
   const markReady = useCallback(() => setReady(true), []);
   const endIntro = useCallback(() => setIntro(false), []); // a stable function, so the cards' clock isn't reset
+  // The opening cards wait until the circle has finished opening (REVEAL_MS, matching map-open in DubHub.css).
+  const [opened, setOpened] = useState(false);
+  useEffect(() => {
+    if (!ready) return;
+    const t = setTimeout(() => setOpened(true), REVEAL_MS);
+    return () => clearTimeout(t);
+  }, [ready]);
   useEffect(() => {
     if (ready) onReady?.();
   }, [ready, onReady]);
@@ -472,7 +469,7 @@ export default function EventMap({ events, area, introLabels, shown, flyTo, onPi
       <FlyTo event={flyTo} />
       <MapArea area={area} />
       <BaseMap palette={palette} onReady={markReady} />
-      <MapFlair events={located} at={moment} dark={palette?.dark} />
+      <MapFlair events={located} at={moment} />
       {/* Live and soon: a ring rippling out from the dot. Plain elements in their own layer, so
           the animation runs on the GPU instead of repainting the map's dots every frame. */}
       <Pane name="ripples" style={{ zIndex: 390 }}>
@@ -566,7 +563,7 @@ export default function EventMap({ events, area, introLabels, shown, flyTo, onPi
         </CircleMarker>
       )}
       <MapClicks onClick={onMapClick} />
-      {intro && ready && <IntroLabels places={places} dark={palette?.dark} onDone={endIntro} />}
+      {intro && opened && <IntroLabels places={places} dark={palette?.dark} onDone={endIntro} />}
     </MapContainer>
   );
 }

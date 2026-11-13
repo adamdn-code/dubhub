@@ -6257,35 +6257,13 @@ body {
 }
 
 
-/* ============================================================== the map: hotspots, pulses, slider */
-/* Hotspots: a soft glow under busy buildings (a soft-edged gradient, so it reads as warmth, not shapes) */
-.hot-glow {
-  pointer-events: none;
-}
-
-.hot-glow span,
+/* ============================================================== the map: pulses, slider */
 .ripple span {
   display: block;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   box-sizing: border-box;
-}
-
-.hot-ink span {
-  background: radial-gradient(closest-side, rgba(75, 46, 131, 0.28) 62%, rgba(75, 46, 131, 0));
-}
-
-.hot-ink.dark span {
-  background: radial-gradient(closest-side, rgba(185, 163, 245, 0.28) 62%, rgba(185, 163, 245, 0));
-}
-
-.hot-gold span {
-  background: radial-gradient(closest-side, rgba(183, 165, 122, 0.28) 62%, rgba(183, 165, 122, 0));
-}
-
-.hot-gold.dark span {
-  background: radial-gradient(closest-side, rgba(214, 195, 143, 0.28) 62%, rgba(214, 195, 143, 0));
 }
 
 /* Live and soon: a ring that ripples out from the dot (transform and opacity only, so it stays on the GPU) */
