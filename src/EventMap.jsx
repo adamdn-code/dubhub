@@ -549,8 +549,8 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
       <BaseMap palette={palette} onReady={pictureReady} />
       <ThemeSwap live={livePalette} current={palette} onSwap={swapTo} onBusy={busy} onReopen={reopen} />
       <MapFlair events={located} at={moment} />
-      {/* Live and soon: a ring rippling out from the dot. Plain elements in their own layer, so
-          the animation runs on the GPU instead of repainting the map's dots every frame. */}
+      {/* Live and soon: a soft glow behind the dot (red now, purple soon). Plain elements in their
+          own layer, under the dots, so the map's dots never have to be repainted for it. */}
       <Pane name="ripples" style={{ zIndex: 390 }}>
         {located.map((e) => {
           const state = stateAt(e, moment);
