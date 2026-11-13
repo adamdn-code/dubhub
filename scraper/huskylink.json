@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T16:36",
+ "updated": "2026-11-13T15:03",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -3362,6 +3362,14 @@
    "logo": null
   },
   {
+   "name": "Google Developer Groups on Campus at UW",
+   "website": "https://huskylink.washington.edu/gdguwseattle/",
+   "category": "Engineering",
+   "about": "Google Developer Groups on Campus at UW is a student-led developer community focused on making technology accessible…",
+   "description": "Google Developer Groups on Campus at UW is a student-led developer community focused on making technology accessible through hands-on learning, collaboration, and networking. Our mission is to provide an inclusive environment where UW Seattle students of all majors and experience levels can develop technical skills, collaborate on projects, explore emerging technologies, and connect with the broader developer community.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_611864_Copy_of_Copy_of_GDG_On_Campus_Stacked_Lightjpg_2c023856-5d0c-4e61-8b58-7f7e57ea9aeb_117145156.jpeg"
+  },
+  {
    "name": "Graduate and Professional Student Senate of the University of Washington",
    "website": "http://depts.washington.edu/gpss/",
    "category": "Service",
@@ -5031,7 +5039,7 @@
    "category": "Academic",
    "about": "It shall be the purpose of this organization to promote intellectual growth and discussion through the shared…",
    "description": "It shall be the purpose of this organization to promote intellectual growth and discussion through the shared exploration of literature.",
-   "logo": null
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_612955_047B64F0500943C7939C821EAC8EC648_d9a9881d-6ff5-49b2-a556-4bec2b85bc17_111316316.jpeg"
   },
   {
    "name": "Lithuanian Student Organization",
@@ -6776,6 +6784,14 @@
    "about": "We meet as a group to blow bubbles and make people happy.",
    "description": "We meet as a group to blow bubbles and make people happy.",
    "logo": null
+  },
+  {
+   "name": "Google Developer Groups on Campus at UW",
+   "website": "https://huskylink.washington.edu/gdguwseattle/",
+   "category": "Engineering",
+   "about": "Google Developer Groups on Campus at UW is a student-led developer community focused on making technology accessible…",
+   "description": "Google Developer Groups on Campus at UW is a student-led developer community focused on making technology accessible through hands-on learning, collaboration, and networking. Our mission is to provide an inclusive environment where UW Seattle students of all majors and experience levels can develop technical skills, collaborate on projects, explore emerging technologies, and connect with the broader developer community.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_611864_Copy_of_Copy_of_GDG_On_Campus_Stacked_Lightjpg_2c023856-5d0c-4e61-8b58-7f7e57ea9aeb_117145156.jpeg"
   },
   {
    "name": "Happy Harry Club",
@@ -9436,22 +9452,6 @@
  ],
  "events": [
   {
-   "id": "hl-375477",
-   "title": "Trans Day of Remembrance Panel",
-   "type": "Study",
-   "host": "ASUW Gender Equity Commission",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-12",
-   "start": "18:00",
-   "end": "19:30",
-   "url": "https://huskylink.washington.edu/GEC/rsvp?id=375477",
-   "source": "huskylink",
-   "description": "During this event, we will be recognizing the higher rates of violence and inequality that trans-folk face; sharing information about your rights, advocacy and access to resources on UW campus and within Seattle. The event will also include an open Q&A portion.\nPanelist from:\nQ Center\nSchool of Social Work\nTRANSITION",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615660_OID_approved_version_74113d72-80bc-411e-a131-678df7a7a1d3_112173549.png",
-   "rsvps": 0
-  },
-  {
    "id": "hl-375434",
    "title": "Chinese Translation Club Meeting",
    "type": "Club",
@@ -9525,7 +9525,7 @@
    "source": "huskylink",
    "description": "Watch real Japanese Grand Sumo with us in the HUB!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png",
-   "rsvps": 14
+   "rsvps": 15
   },
   {
    "id": "hl-375343",
@@ -9544,7 +9544,7 @@
    "source": "huskylink",
    "description": "Join the Washington Gaming Association’s annual Trading Card Game event at the University of Washington featuring the MTG Club and Pokémon Trainers club. Featuring vendors, artists, give aways, and open play, this event brings together students, collectors, and TCG enthusiasts for a full day of gaming and community in the Husky Union Building.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_611982_eventpreviewphoto_9b0fdba0-2398-43b3-af96-d7170569e004_101416752.png",
-   "rsvps": 3
+   "rsvps": 4
   },
   {
    "id": "hl-375484",
@@ -9576,7 +9576,7 @@
    "source": "huskylink",
    "description": "AMATH Club is going ALL IN for the next meeting! ♣️♦️♠️♥️ Join us at poker night for your chance to win a $25 Chipotle gift card!!! Don’t forget to RSVP: https://docs.google.com/forms/d/e/1FAIpQLScC5Ja_uCE3xEH4WCW6SpXTc8XoidnwTFAMQkOIbGkF3oYWtQ/viewform",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_645865_AMATH_Club_Profilejpg_f604803d-7d0e-4e9c-9c4f-8da00c92126e_11121372.jpeg",
-   "rsvps": 0
+   "rsvps": 1
   },
   {
    "id": "hl-375245",
@@ -9748,6 +9748,25 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375538",
+   "title": "Yoga Class Fundraiser",
+   "type": "Club",
+   "host": "Women Empowerment through Collaborations, Awareness, and Resources for Education",
+   "where": "HUB 145",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-17",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/wecareuw/rsvp?id=375538",
+   "source": "huskylink",
+   "description": "Join WECARE and SARVA for an instructor-led beginner-friendly flexibility and strength training class to get towards your front splits!\nRSVP form: https://forms.gle/t1UHrnhqLbFNkmh86\nThis is a great opportunity to take a class for a reduced price while supporting women globally! Tickets are only $15, with the option to donate more towards HPV vaccines for girls in India. Make sure to fill out the RSVP form to secure your spot!\nTuesday, Nov 17\n⏰ 6:00--7:00PM\nHUB 145\nAll students are welcome, as well as guests after filling out the RSVP.",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_616457_Yoga_event_post_6eaa7a74-68a3-4401-91c4-39c40f632cfd_1113144042.png",
+   "rsvps": 0
+  },
+  {
    "id": "hl-375456",
    "title": "Open Gym",
    "type": "Hangout",
@@ -9844,6 +9863,22 @@
    "source": "huskylink",
    "description": "The Student Activities Office (SAO) offers RSO Drop-In Advising hours in HUB 111B, located within the RSO Resource Center. These drop-in hours provide RSOs with an opportunity to connect with an SAO Advisor, ask questions, and receive guidance and support on a variety of topics.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_599699_RSO_DropIn_Advising_760_x_380_px_2658fc33-3cfa-474a-9df2-4b99c30a1a5b_101413143.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375539",
+   "title": "iYouth November Meeting",
+   "type": "Club",
+   "host": "iYouth",
+   "where": "Online Event",
+   "pos": null,
+   "date": "2026-11-19",
+   "start": "20:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/iyouthuw/rsvp?id=375539",
+   "source": "huskylink",
+   "description": "This month, we will be hearing from Washington State Library's Youth Consultant, Sara White! She is a former Husky and iYouth member and will come prepared to answer questions about working in the Washington state library for all who are curious. We are very excited to have her and to see you all again.",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_631572_iyouth_logo_1c936978-2916-4e67-947e-1b912b5e0371_1113154527.png",
    "rsvps": 0
   },
   {

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T18:50",
+ "updated": "2026-11-13T15:32",
  "applications": [
   {
    "id": "DfgkTL4NVsG",
@@ -16,7 +16,7 @@
   {
    "id": "DfjO8atmyEm",
    "host": "Makers@UW (@makers_uw)",
-   "for": "LOCK-IN team",
+   "for": "Lock-IN project team",
    "kind": "Team & staff",
    "deadline": "2026-11-13",
    "link": "https://forms.gle/MHF3BDzt2nXTEZTr5",
@@ -36,6 +36,18 @@
    "posted": "2026-11-11",
    "logo": "/ig/clubs/uwwomenslax.jpg",
    "category": "Sports"
+  },
+  {
+   "id": "DfnHKfssrtL",
+   "host": "@tedxuofw",
+   "for": "Conference speakers",
+   "kind": "Team & staff",
+   "deadline": "2026-11-15",
+   "link": "https://tinyurl.com/TEDxUofW-speaker-26-27",
+   "post": "https://www.instagram.com/p/DfnHKfssrtL/",
+   "posted": "2026-11-11",
+   "logo": "/ig/clubs/tedxuofw.jpg",
+   "category": "Arts"
   },
   {
    "id": "DfZC1L5m8jD",

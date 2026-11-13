@@ -1080,10 +1080,8 @@
 "from": "Call of Duty @ UW|A place for people to play and talk about Call of Duty!"
 },
 "campkesem": {
-"fields": [
-"Health"
-],
-"from": "Camp Kesem at UW Seattle|Camp Kesem is a national nonprofit organization providing a free summer camp for children whose parents have been…"
+"fields": [],
+"from": "Camp Kesem at UW Seattle|Provides free camps and peer support for kids affected by a parent's cancer"
 },
 "cannaclub": {
 "fields": [
@@ -2251,7 +2249,7 @@
 },
 "graduateandprofessionalstudentsenateof": {
 "fields": [],
-"from": "Graduate and Professional Student Senate of the University of Washington|Graduate student government representing UW graduate voices."
+"from": "Graduate and Professional Student Senate of the University of Washington|Official graduate student government representing UW graduate students"
 },
 "graduatechristianfellowship": {
 "fields": [],
@@ -2776,7 +2774,7 @@
 },
 "huskywintersports": {
 "fields": [],
-"from": "Husky Winter Sports|Winter sports club teaching skiing and snowboarding on campus."
+"from": "Husky Winter Sports|Teaches skiing, snowboarding, and hosts winter sports community events"
 },
 "huskywrestlingclub": {
 "fields": [],
@@ -2790,7 +2788,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "HuskyADAPT|Our mission is to foster an inclusive, sustainable, and multidisciplinary community supporting accessible design and…"
+"from": "HuskyADAPT|Student org adapting toys for accessibility using design and technology"
 },
 "icehockeyclub": {
 "fields": [],
@@ -3366,7 +3364,7 @@
 "Engineering",
 "Computing & Math"
 ],
-"from": "Makers at UW|Student‑run club building real engineering projects and prototypes."
+"from": "Makers at UW|Student‑led club building real projects, prototypes, and ideas"
 },
 "malaysianstudentassociation": {
 "fields": [],
@@ -3562,7 +3560,7 @@
 "fields": [
 "Health"
 ],
-"from": "Minority Association of PreMedical Students at UW|Minority pre‑med association supporting students with research and networking."
+"from": "Minority Association of PreMedical Students at UW|A UW pre‑medical group supporting minority students."
 },
 "minoritylawstudentsassociation": {
 "fields": [
@@ -3658,7 +3656,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Music for Charity at the University of Washington|Musicians performing to raise awareness and funds for nonprofits."
+"from": "Music for Charity at the University of Washington|Student musicians raising awareness and funds for nonprofits"
 },
 "musicinmedicinewwamianchorage": {
 "fields": [
@@ -3688,7 +3686,7 @@
 },
 "muslimstudentsassociation": {
 "fields": [],
-"from": "Muslim Students Association at the University of Washington|Muslim Student Association fostering community, service, and cultural events."
+"from": "Muslim Students Association at the University of Washington|Muslim Student Association fostering community, culture, and service"
 },
 "muslimsatfoster": {
 "fields": [],
@@ -3770,7 +3768,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Natya at UW|Premier Indian classical dance team performing Bharatanatyam at UW."
+"from": "Natya at UW|Premier Indian classical dance team at UW"
 },
 "ncoda": {
 "fields": [
@@ -3792,7 +3790,7 @@
 "fields": [
 "Business"
 ],
-"from": "Net Impact UW Undergraduate Chapter|Net Impact UW is a sustainable business club, aiming to inspire environmental action and increase awareness through…"
+"from": "Net Impact UW Undergraduate Chapter|Student group promoting sustainable business practices and career development."
 },
 "networkai": {
 "fields": [
@@ -3918,7 +3916,7 @@
 "fields": [
 "Sciences"
 ],
-"from": "Organic Steps|Organic Steps is UW's only organic chemistry tutor club."
+"from": "Organic Steps|Organic chemistry tutoring club offering study sessions and workshops."
 },
 "organizationofhuaclassmates": {
 "fields": [],
@@ -4229,7 +4227,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Portraits of Humanity|Capturing the lived experiences of those living with chronic illness through storytelling."
+"from": "Portraits of Humanity|📍Medical Humanities Project based at @uofwa "
 },
 "predentalclub": {
 "fields": [
@@ -4589,7 +4587,7 @@
 },
 "sapphicsocialclub": {
 "fields": [],
-"from": "Sapphic Social Club|We strive to create community through shared experiences with the sapphic identity, facilitate education and…"
+"from": "Sapphic Social Club|Social club for sapphic‑identifying students at UW."
 },
 "saudistudentassociation": {
 "fields": [],
@@ -4758,7 +4756,7 @@
 },
 "sigmapsizeta": {
 "fields": [],
-"from": "Sigma Psi Zeta|Sigma Psi Zeta is a progressive, multicultural Greek Organization that provides a means to success and support for…"
+"from": "Sigma Psi Zeta|A UW sorority fostering sisterhood and community with red and gold colors."
 },
 "sikhstudentassociation": {
 "fields": [],
@@ -5354,8 +5352,10 @@
 "from": "Technology Law Society|The Technology Law Society works to bring the technology related legal resources of both the law school and…"
 },
 "tedxatuofw": {
-"fields": [],
-"from": "TEDx at UofW|TEDxUofW is established to bring inspirational and informative TED style talks to the University of Washington."
+"fields": [
+"Arts & Humanities"
+],
+"from": "TEDx at UofW|Student‑run TEDx chapter hosting talks and idea‑sharing events."
 },
 "thaistudentassociation": {
 "fields": [],

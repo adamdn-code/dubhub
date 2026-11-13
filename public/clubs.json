@@ -469,6 +469,18 @@
    ]
   },
   {
+   "name": "Camp Kesem at UW Seattle",
+   "handle": "kesem_uw",
+   "instagram": "https://www.instagram.com/kesem_uw/",
+   "website": "https://linktr.ee/uwashington",
+   "category": "Service",
+   "about": "Provides free camps and peer support for kids affected by a parent's cancer",
+   "description": "Kesem UW runs free summer camps and provides year‑round peer support for kids whose parents have cancer. Members organize community days, alumni outreach, and volunteer coordination to keep families connected.",
+   "logo": "/ig/clubs/kesem_uw.jpg",
+   "last_event": "2026-12-05",
+   "fields": []
+  },
+  {
    "name": "Career and Internship Center",
    "handle": "uwcareercenter",
    "instagram": "https://www.instagram.com/uwcareercenter/",
@@ -968,8 +980,8 @@
    "instagram": "https://www.instagram.com/gpssuw/",
    "website": "http://linktr.ee/gpssuw",
    "category": "Service",
-   "about": "Graduate student government representing UW graduate voices.",
-   "description": "GPSS is the official graduate student government at UW, giving grad students a voice on campus. Senators and committees work on advocacy, grant funding, diversity initiatives, and handling grievances. They also organize programming for the graduate community.",
+   "about": "Official graduate student government representing UW graduate students",
+   "description": "GPSS is the graduate student government that amplifies grad voices across campus. They host focus groups, senate meetings, and manage diversity grants to support financial and academic wellbeing.",
    "logo": "/ig/clubs/gpssuw.jpg",
    "last_event": "2026-12-02",
    "fields": []
@@ -1152,12 +1164,26 @@
    "handle": "huskywintersports",
    "instagram": "https://www.instagram.com/huskywintersports/",
    "website": "https://linktr.ee/huskywintersports",
-   "category": "Outdoors",
-   "about": "Winter sports club teaching skiing and snowboarding on campus.",
-   "description": "Husky Winter Sports offers dry‑land sessions and instruction for beginners and seasoned riders, fostering a fun environment to improve snow sport skills. Join the crew to hit the slopes together.",
+   "category": "Sports",
+   "about": "Teaches skiing, snowboarding, and hosts winter sports community events",
+   "description": "Husky Winter Sports teaches skiing and snowboarding during the winter quarter and keeps the community active year‑round with dry‑land bike events. Join their lessons or social rides to improve your skills and meet fellow outdoor enthusiasts.",
    "logo": "/ig/clubs/huskywintersports.jpg",
-   "last_event": "2026-11-10",
+   "last_event": "2026-11-19",
    "fields": []
+  },
+  {
+   "name": "HuskyADAPT",
+   "handle": "huskyadapt",
+   "instagram": "https://www.instagram.com/huskyadapt/",
+   "website": "https://linktr.ee/huskyadapt",
+   "category": "Tech",
+   "about": "Student org adapting toys for accessibility using design and technology",
+   "description": "HuskyADAPT adapts toys and games so children with disabilities can play independently, offering hands‑on workshops in soldering and circuitry. The club welcomes all skill levels and runs an online Discord for collaboration and announcements.",
+   "logo": "/ig/clubs/huskyadapt.jpg",
+   "last_event": "2026-12-05",
+   "fields": [
+    "Engineering"
+   ]
   },
   {
    "name": "Ice Hockey Club at the UW",
@@ -1247,7 +1273,7 @@
    "description": "We are the youth services student organization and resource network at the iSchool, aiming to prepare and connect students to their future careers.",
    "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_641156_iYouth_logo_3_a470d3b4-6693-40e4-9653-726a9fba8da9_10717116.png",
    "source": "huskylink",
-   "last_event": "2026-10-13",
+   "last_event": "2026-11-19",
    "fields": [
     "Computing & Math"
    ]
@@ -1321,10 +1347,10 @@
    "instagram": "https://www.instagram.com/makers_uw/",
    "website": "https://linktr.ee/Makersuw",
    "category": "Engineering",
-   "about": "Student‑run club building real engineering projects and prototypes.",
-   "description": "Makers@UW is a student‑led engineering group that creates tangible projects and prototypes. They recruit officers, host a Bioengineering Community Connect event, and organize fun socials like a Halloween movie night. Join to turn ideas into hands‑on builds.",
+   "about": "Student‑led club building real projects, prototypes, and ideas",
+   "description": "Makers@UW is a student‑run engineering hub where ideas become prototypes, from mechanical design to embedded software. The club hosts meetings, project collaborations, and recruits officers to drive creative engineering projects.",
    "logo": "/ig/clubs/makers_uw.jpg",
-   "last_event": "2026-11-17",
+   "last_event": "2026-11-19",
    "fields": [
     "Engineering",
     "Computing & Math"
@@ -1401,8 +1427,8 @@
    "instagram": "https://www.instagram.com/mapsuw/",
    "website": "https://linktr.ee/Mapsuw",
    "category": "Academic",
-   "about": "Minority pre‑med association supporting students with research and networking.",
-   "description": "MAPS (Minority Association of Pre‑Med Students) meets Thursdays for talks and panels on research opportunities. Members can apply for PHC intern roles and help plan the annual Pre‑Health Conference. The group fosters community and professional growth for underrepresented pre‑med students.",
+   "about": "A UW pre‑medical group supporting minority students.",
+   "description": "The Minority Association of Pre‑Med Students (MAPS) connects underrepresented pre‑med students through meetings, shadowing opportunities, and panels. They host tours of the UW School of Medicine, research talks, and provide resources like shadowing cohorts.",
    "logo": "/ig/clubs/mapsuw.jpg",
    "last_event": "2026-11-12",
    "fields": [
@@ -1414,9 +1440,9 @@
    "handle": "musicforcharityatuw",
    "instagram": "https://www.instagram.com/musicforcharityatuw/",
    "website": "https://linktr.ee/musicforcharityatuw",
-   "category": "Service",
-   "about": "Musicians performing to raise awareness and funds for nonprofits.",
-   "description": "Music for Charity at UW brings together musicians to perform concerts that support nonprofit causes. They organize chamber concerts and seasonal events, inviting students to play and help fundraise. Join to make music that makes a difference.",
+   "category": "Arts",
+   "about": "Student musicians raising awareness and funds for nonprofits",
+   "description": "Music for Charity brings together UW musicians to perform concerts that raise awareness and funds for nonprofits. They host themed shows, collaborative crafting sessions, and invite students to join performances.",
    "logo": "/ig/clubs/musicforcharityatuw.jpg",
    "discord": "https://discord.gg/DPzkpFhzm2",
    "discord_server": "Music for Charity at UW",
@@ -1431,8 +1457,8 @@
    "instagram": "https://www.instagram.com/msauw/",
    "website": "https://linktr.ee/msauw",
    "category": "Faith & Spirituality",
-   "about": "Muslim Student Association fostering community, service, and cultural events.",
-   "description": "MSA UW brings Muslim students together through social gatherings, cultural celebrations, and volunteer opportunities. Join their Discord, attend events like hot cocoa nights and culture fests, and connect with the broader UW community.",
+   "about": "Muslim Student Association fostering community, culture, and service",
+   "description": "The Muslim Student Association at UW builds a supportive community through cultural festivals, hygiene‑kit drives, and dawah discussions. Open to all students, they offer events that celebrate Muslim heritage and service.",
    "logo": "/ig/clubs/msauw.jpg",
    "discord": "https://discord.gg/wb56SYhaF6",
    "discord_server": "MSA UW Seattle",
@@ -1444,13 +1470,27 @@
    "handle": "natyauw",
    "instagram": "https://www.instagram.com/natyauw/",
    "website": "https://linktr.ee/natyauw",
-   "category": "Arts",
-   "about": "Premier Indian classical dance team performing Bharatanatyam at UW.",
-   "description": "Natya at UW showcases Indian classical dance, focusing on Bharatanatyam performances and artist spotlights. The team shares the art form through concerts and educational outreach.",
+   "category": "Cultural",
+   "about": "Premier Indian classical dance team at UW",
+   "description": "Natya at UW showcases Indian classical dance through workshops, performances, and artist spotlights. The team welcomes beginners and experienced dancers to explore Bharatanatyam and share the art with the Seattle community.",
    "logo": "/ig/clubs/natyauw.jpg",
    "last_event": "2026-11-16",
    "fields": [
     "Arts & Humanities"
+   ]
+  },
+  {
+   "name": "Net Impact UW Undergraduate Chapter",
+   "handle": "netimpactuw",
+   "instagram": "https://www.instagram.com/netimpactuw/",
+   "website": "https://linktr.ee/netimpactuw",
+   "category": "Business",
+   "about": "Student group promoting sustainable business practices and career development.",
+   "description": "Net Impact UW connects students across majors with sustainability‑focused business education, activism, and career resources. Events include alumni panels, speed‑networking with ESG professionals, and speaker sessions on sustainable practices. Join to learn how to launch a career that makes a positive environmental impact.",
+   "logo": "/ig/clubs/netimpactuw.jpg",
+   "last_event": "2026-11-17",
+   "fields": [
+    "Business"
    ]
   },
   {
@@ -1492,14 +1532,13 @@
   },
   {
    "name": "Organic Steps",
-   "website": "https://huskylink.washington.edu/organicsteps/",
-   "category": "Academic",
-   "about": "Organic Steps is UW's only organic chemistry tutor club.",
-   "description": "Organic Steps is UW's only organic chemistry tutor club. Our goal is to provide academic help that is specific to student's needs.",
-   "logo": "/ig/clubs/ostepsuw.jpg",
    "handle": "ostepsuw",
    "instagram": "https://www.instagram.com/ostepsuw/",
-   "source": "huskylink",
+   "website": "https://discord.gg/nNk6pq92Pa",
+   "category": "Academic",
+   "about": "Organic chemistry tutoring club offering study sessions and workshops.",
+   "description": "Organic Steps UW provides peer‑led tutoring and workshops for students tackling organic chemistry concepts. Regular meetings in the General Chemistry Study Center offer a space to ask questions and practice nomenclature. Connect via Discord for extra help and resources.",
+   "logo": "/ig/clubs/ostepsuw.jpg",
    "discord": "https://discord.gg/nNk6pq92Pa",
    "discord_server": "Organic Steps",
    "last_event": "2026-11-13",
@@ -1626,6 +1665,20 @@
    "last_event": "2026-11-02",
    "fields": [
     "Health"
+   ]
+  },
+  {
+   "name": "Portraits of Humanity",
+   "handle": "uw.poh",
+   "instagram": "https://www.instagram.com/uw.poh/",
+   "website": "https://linktr.ee/portraitsofhumanity",
+   "category": "Academic",
+   "about": "📍Medical Humanities Project based at @uofwa ",
+   "description": "📍Medical Humanities Project based at @uofwa \n❤️‍🩹 Humanising Healthcare Through Storytelling\n👇🏻Learn More / Join the Team!",
+   "logo": "/ig/clubs/uw.poh.jpg",
+   "last_event": "2026-11-16",
+   "fields": [
+    "Arts & Humanities"
    ]
   },
   {
@@ -1781,6 +1834,18 @@
    ]
   },
   {
+   "name": "Sapphic Social Club",
+   "handle": "sapphicsocialclubuw",
+   "instagram": "https://www.instagram.com/sapphicsocialclubuw/",
+   "website": "https://linktr.ee/sapphicsocialclubuw",
+   "category": "Social",
+   "about": "Social club for sapphic‑identifying students at UW.",
+   "description": "The Sapphic Social Club creates a welcoming space for queer‑identified students to connect through games, movies, and crafts. Bi‑weekly meetings feature board games, film screenings, and creative workshops. Come share, relax, and build community with fellow sapphics.",
+   "logo": "/ig/clubs/sapphicsocialclubuw.jpg",
+   "last_event": "2026-11-17",
+   "fields": []
+  },
+  {
    "name": "SherePunjab Society at University of Washington",
    "handle": "spsuw",
    "instagram": "https://www.instagram.com/spsuw/",
@@ -1790,6 +1855,18 @@
    "description": "The Sher‑E‑Punjab Society promotes Punjabi heritage on campus through cultural events. Members enjoy traditions like mango lassi socials, gol gappa contests, and game nights that bring the community together.",
    "logo": "/ig/clubs/spsuw.jpg",
    "last_event": "2026-11-10",
+   "fields": []
+  },
+  {
+   "name": "Sigma Psi Zeta",
+   "handle": "uwsyz",
+   "instagram": "https://www.instagram.com/uwsyz/",
+   "website": "http://linktr.ee/uwsyz",
+   "category": "Greek Life",
+   "about": "A UW sorority fostering sisterhood and community with red and gold colors.",
+   "description": "Sigma Psi Zeta (Rho Chapter) is a UW sorority that celebrates sisterhood with red and gold colors. Members host events like cookie and tea sales and lead recruitment efforts, highlighting leadership and community spirit.",
+   "logo": "/ig/clubs/uwsyz.jpg",
+   "last_event": "2026-11-16",
    "fields": []
   },
   {
@@ -2039,6 +2116,20 @@
    ]
   },
   {
+   "name": "TEDx at UofW",
+   "handle": "tedxuofw",
+   "instagram": "https://www.instagram.com/tedxuofw/",
+   "website": "https://linktr.ee/tedxuofw_",
+   "category": "Arts",
+   "about": "Student‑run TEDx chapter hosting talks and idea‑sharing events.",
+   "description": "TEDxUofW brings together students, faculty, and community members to share inspiring ideas through live talks and performances. The organization seeks speakers who can spark change and spark conversation. Participate as an audience member or presenter to engage with cutting‑edge perspectives.",
+   "logo": "/ig/clubs/tedxuofw.jpg",
+   "last_event": "2027-04-10",
+   "fields": [
+    "Arts & Humanities"
+   ]
+  },
+  {
    "name": "Thai Student Association at University of Washington",
    "handle": "thaisauw",
    "instagram": "https://www.instagram.com/thaisauw/",
@@ -2211,7 +2302,7 @@
    "about": "University recreation department offering activities for student wellbeing.",
    "description": "UW Recreation provides a wide range of activities to support student health and fun, from climbing classes to paddle‑board events. They offer a one‑day Belay Techniques class and seasonal events like the Witches Paddle with equipment supplied. All programs aim to be safe, accessible, and welcoming.",
    "logo": "/ig/clubs/uwrecreation.jpg",
-   "last_event": "2026-11-13",
+   "last_event": "2026-11-17",
    "fields": []
   },
   {
@@ -2356,7 +2447,7 @@
    "about": "Advances women’s health education and volunteers to support women in need.",
    "description": "WE CARE UW educates students on women’s health topics like endometriosis and partners with the YWCA to volunteer for homeless women. It empowers through collaboration, awareness, and resources.",
    "logo": "/ig/clubs/wecareuw.jpg",
-   "last_event": "2026-11-15",
+   "last_event": "2026-11-17",
    "fields": [
     "Health"
    ]
