@@ -1469,8 +1469,10 @@ function MapLoader({ ready }) {
   if (gone) return null;
   return (
     <div className={ready ? "map-loader leaving" : "map-loader"} role="status" aria-label="Loading the map">
-      <span className="map-loader-grid" />
-      <span className="map-loader-shine" />
+      <span className="map-loader-streets">
+        <span className="map-loader-grid" />
+        <span className="map-loader-shine" />
+      </span>
       <span className="map-loader-pin">
         <i />
         <i />
