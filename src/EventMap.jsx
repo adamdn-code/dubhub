@@ -451,6 +451,7 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
   // The map's picture is ready again after a theme change: open the circle (and tell Home).
   const reopen = useCallback(() => {
     swapping.current = false;
+    setReady(true); // (the theme changed before the first picture: open now, not at the 6 s fallback)
     setReopened((n) => n + 1);
     onReady?.();
   }, [onReady]);
@@ -458,13 +459,21 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
     swapping.current = true;
     onBusy?.();
   }, [onBusy]);
+  // If the new tiles never arrive, open anyway. One fallback at a time, so an earlier switch's
+  // can't open a later one early.
+  const swapTimer = useRef(null);
   const swapTo = useCallback(
     (next) => {
       setPalette(next);
-      setTimeout(() => swapping.current && reopen(), 6000); // if the new tiles never arrive, open anyway
+      clearTimeout(swapTimer.current);
+      swapTimer.current = setTimeout(() => swapping.current && reopen(), 6000);
     },
     [reopen]
   );
+  useEffect(() => {
+    const timer = swapTimer;
+    return () => clearTimeout(timer.current);
+  }, []);
   // BaseMap says so when a drawn picture is ready: the first one, or the one after a theme change.
   const pictureReady = useCallback(() => (swapping.current ? reopen() : markReady()), [reopen, markReady]);
   // If the tiles never arrive, don't leave the loader up forever.

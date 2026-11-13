@@ -607,12 +607,12 @@ a:hover {
    opens out until it covers everything. It sits above the loader while it does. */
 .map.map-reveal {
   z-index: 3;
-  animation: map-open 1500ms both;
+  animation: map-open 1500ms backwards; /* nothing stays clipped once it has opened */
 }
 
 .map.map-reveal .leaflet-overlay-pane,
 .map.map-reveal .leaflet-ripples-pane {
-  animation: dots-in 700ms ease-out 1000ms both;
+  animation: dots-in 700ms ease-out 1000ms backwards;
 }
 
 @keyframes map-open {
@@ -2182,6 +2182,49 @@ a.discord-bot-link.join {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   gap: 16px;
+}
+
+/* About: the same faint campus drawing as the Now and Clubs pages, under a soft purple glow at
+   the top right and a touch of gold at the top left */
+.page.about-page {
+  background:
+    radial-gradient(900px 420px at 88% -60px, rgba(75, 46, 131, 0.16), transparent 70%),
+    radial-gradient(640px 340px at 0% 0%, rgba(183, 165, 122, 0.18), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)),
+    var(--campus-lines) center 160px / 1500px auto repeat-y,
+    #ffffff;
+  background-attachment: local, local, local, local, local;
+}
+
+:root[data-theme="dark"] .page.about-page {
+  background:
+    radial-gradient(900px 420px at 88% -60px, rgba(185, 163, 245, 0.18), transparent 70%),
+    radial-gradient(640px 340px at 0% 0%, rgba(214, 195, 143, 0.1), transparent 70%),
+    linear-gradient(rgba(18, 14, 28, 0.88), rgba(18, 14, 28, 0.88)),
+    var(--campus-lines-dark) center 160px / 1500px auto repeat-y,
+    var(--bg);
+  background-attachment: local, local, local, local, local;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page.about-page {
+    background:
+      radial-gradient(900px 420px at 88% -60px, rgba(185, 163, 245, 0.18), transparent 70%),
+      radial-gradient(640px 340px at 0% 0%, rgba(214, 195, 143, 0.1), transparent 70%),
+      linear-gradient(rgba(18, 14, 28, 0.88), rgba(18, 14, 28, 0.88)),
+      var(--campus-lines-dark) center 160px / 1500px auto repeat-y,
+      var(--bg);
+    background-attachment: local, local, local, local, local;
+  }
+}
+
+/* The page title with the Founders / Full team switch at its right */
+.about-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
 }
 
 .about-lead {
@@ -4928,6 +4971,166 @@ body {
 }
 
 /* The now line: the current time in red, a dot, and a rule across the list */
+/* The layout button on the Now page: Flyers (the grid), List (rows), By club (grouped) */
+.layout-toggle {
+  display: inline-flex;
+  margin-left: auto;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.layout-toggle button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.layout-toggle button .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.layout-toggle button.on {
+  background: var(--action);
+  color: var(--on-action);
+}
+
+.layout-toggle button:focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 2px;
+}
+
+@media (max-width: 560px) {
+  .layout-toggle {
+    margin-left: 0;
+  }
+  .layout-toggle span {
+    display: none;
+  }
+}
+
+/* The list layout: one compact row per event, two columns on wide screens */
+.row-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row-list > .now-line {
+  grid-column: 1 / -1;
+}
+
+.event-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px 10px 10px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--c);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.er-pic {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.er-thumb {
+  display: block;
+  width: 64px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.er-info {
+  min-width: 0;
+}
+
+.er-info p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.er-time {
+  color: var(--action);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.er-title {
+  display: block;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+  cursor: pointer;
+}
+
+.er-title:hover {
+  text-decoration: underline;
+}
+
+.er-host,
+.er-where {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.er-host span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The by-club layout: each club's heading, with its logo and how many events */
+.club-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.club-head small {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.club-head .club-head-logo {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 13px;
+}
+
 .now-line {
   display: grid;
   grid-template-columns: 84px minmax(0, 1fr);

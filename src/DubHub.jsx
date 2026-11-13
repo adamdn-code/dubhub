@@ -569,8 +569,14 @@ function writeList(key, list) {
 // Going to an event makes you a member of the club that hosts it. `clubbed` is the events that
 // have already done that, so leaving a club later sticks (on every device, not just this one).
 function useJoined(key, user) {
-  const token = user?.token;
+  // A login the server turned down (expired) counts as signed out here until the next sign-in, so
+  // joining keeps working in this browser instead of waiting on a sync that won't come.
+  const [rejected, setRejected] = useState(null);
+  const token = user?.token && user.token !== rejected ? user.token : null;
   const email = user?.email;
+  // Joins and leaves made while the account's clubs are still loading, sent once they've arrived
+  // (otherwise the account's list would land on top of them and undo them).
+  const pending = useRef([]);
   const [local, setLocal] = useState(() => readList(key));
   // The server's copy, tagged with the login it belongs to so a different account never sees it.
   const [remote, setRemote] = useState({ token: null, clubs: [], clubbed: [] });
@@ -581,7 +587,10 @@ function useJoined(key, user) {
     if (!token) return;
     let cancelled = false;
     fetch("/api/clubs", { headers: auth })
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) => {
+        if (r.status === 401) setRejected(token);
+        return r.ok ? r.json() : null;
+      })
       .then(async (d) => {
         if (cancelled || !d) return;
         let clubs = d.clubs.map(String);
@@ -613,6 +622,10 @@ function useJoined(key, user) {
           }
         }
         if (cancelled) return;
+        for (const { id, on } of pending.current.splice(0)) {
+          clubs = on ? [...new Set([...clubs, id])] : clubs.filter((x) => x !== id);
+          fetch("/api/clubs", { method: "POST", headers: auth, body: JSON.stringify({ club: id, joined: on }) }).catch(() => {});
+        }
         setRemote({ token, clubs, clubbed });
         writeList(key, clubs);
         setLocal(clubs);
@@ -639,10 +652,15 @@ function useJoined(key, user) {
     (id) => {
       const on = !joined.includes(id);
       save(on ? [...joined, id] : joined.filter((x) => x !== id));
-      if (!synced) return;
-      fetch("/api/clubs", { method: "POST", headers: auth, body: JSON.stringify({ club: id, joined: on }) }).catch(() => {});
+      if (!synced) {
+        if (token) pending.current.push({ id, on }); // still loading the account's clubs
+        return;
+      }
+      fetch("/api/clubs", { method: "POST", headers: auth, body: JSON.stringify({ club: id, joined: on }) })
+        .then((r) => r.status === 401 && setRejected(token))
+        .catch(() => {});
     },
-    [joined, save, synced, auth]
+    [joined, save, synced, token, auth]
   );
 
   // Add several at once (no-op for ones already there), and remember the events that did it.
@@ -2119,9 +2137,75 @@ function headline(date) {
 
 // The front page. Only redrawn when its own events, filters or going list change (not when, say,
 // an event's pop-up opens over it).
+// Three ways to lay out the Now page's events: the flyers as a grid (as it always was), a compact
+// list of rows, or grouped under each club. The choice is remembered in this browser.
+const NOW_LAYOUTS = [
+  { id: "grid", label: "Flyers", title: "Flyers in a grid", icon: "M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" },
+  { id: "list", label: "List", title: "A compact list", icon: "M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" },
+  {
+    id: "clubs",
+    label: "By club",
+    title: "Grouped by club",
+    icon: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8",
+  },
+];
+const NOW_LAYOUT_KEY = "dubhub-now-layout";
+
+function useNowLayout() {
+  const [layout, setLayout] = useState(() => {
+    try {
+      const saved = localStorage.getItem(NOW_LAYOUT_KEY);
+      return NOW_LAYOUTS.some((l) => l.id === saved) ? saved : "grid";
+    } catch {
+      return "grid";
+    }
+  });
+  const pick = useCallback((id) => {
+    setLayout(id);
+    try {
+      localStorage.setItem(NOW_LAYOUT_KEY, id);
+    } catch {
+      // Storage blocked: it lasts for this visit only.
+    }
+  }, []);
+  return [layout, pick];
+}
+
+// One event as a row in the list layout: its picture, when, what, who hosts it and where.
+function EventRow({ event: e, j, onSelect }) {
+  return (
+    <li className="event-row" style={{ "--c": eventColor(e) }}>
+      <button className="er-pic" onClick={() => onSelect(e)} tabIndex={-1} aria-hidden="true">
+        <Thumb src={eventPicture(e)} label={e.title} color={eventColor(e)} className="er-thumb" />
+      </button>
+      <div className="er-info">
+        <p className="er-time">
+          {e.start ? `${formatTime(e.start)}${e.end ? `–${formatTime(e.end)}` : ""}` : "All day"}
+          <StartsTag event={e} />
+        </p>
+        <button className="er-title" onClick={() => onSelect(e)}>
+          {e.title}
+        </button>
+        <p className="er-host">
+          <span className="dot" style={{ background: eventColor(e) }} title={eventGroup(e).name} />
+          <span>{hostName(e)}</span>
+        </p>
+        {e.where && (
+          <p className="er-where">
+            <Plate where={e.where} />
+            {!placeCode(e.where) && <span>{e.where}</span>}
+          </p>
+        )}
+      </div>
+      <GoingToggle event={e} j={j} color={eventColor(e)} />
+    </li>
+  );
+}
+
 const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, applications, clubList }) {
   const [query, setQuery] = useState("");
   const [openClub, setOpenClub] = useState(null); // a club picked from Trending
+  const [layout, setLayout] = useNowLayout();
   const now = useNow();
   // The search box shows each letter right away; the board (about a hundred flyers) follows as
   // soon as the browser has a free moment, so typing never waits on it.
@@ -2129,7 +2213,7 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, app
   const q = searched.trim().toLowerCase();
 
   // What the board shows, worked out again only when the events, the search or the minute changes.
-  const { sections } = useMemo(() => {
+  const { sections, byClub } = useMemo(() => {
     const events = q
       ? f.events.filter((e) => [e.title, e.host, e.club?.name, e.where, e.description].some((s) => s?.toLowerCase().includes(q)))
       : f.events;
@@ -2147,7 +2231,15 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, app
       const id = sectionOf(e, now);
       if (id) sections.find((sec) => sec.id === id).events.push(e);
     }
-    return { unique, sections };
+    // For the "By club" layout: each club's events, the club with the soonest one first.
+    const groups = new Map();
+    for (const e of sections.flatMap((sec) => sec.events)) {
+      const name = hostName(e);
+      const g = groups.get(name) ?? { name, club: e.club, events: [] };
+      g.events.push(e);
+      groups.set(name, g);
+    }
+    return { unique, sections, byClub: [...groups.values()] };
   }, [f.events, q, now]);
   const shown = sections.filter((sec) => sec.events.length);
   const clock = new Date(now);
@@ -2202,6 +2294,14 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, app
             ))}
           </select>
           <WhenSelect aria-label="How far ahead" className="filter-select" value={f.when} onChange={f.setWhen} />
+          <div className="layout-toggle" role="group" aria-label="Layout">
+            {NOW_LAYOUTS.map((l) => (
+              <button key={l.id} className={l.id === layout ? "on" : undefined} aria-pressed={l.id === layout} title={l.title} onClick={() => setLayout(l.id)}>
+                <Icon d={l.icon} />
+                <span>{l.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
       {shown.length === 0 && (
@@ -2216,6 +2316,57 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, app
       )}
       {shown.length > 0 && (
         <div className="agenda">
+          {layout === "list" && (
+            <>
+              {sections.slice(0, 3).some((sec) => sec.events.length) && (
+                <section aria-labelledby="day-today">
+                  <h2 id="day-today" className="agenda-head">
+                    Today
+                  </h2>
+                  <ol className="row-list">
+                    {sections[0].events.map((e) => (
+                      <EventRow key={e.id} event={e} j={j} onSelect={onSelect} />
+                    ))}
+                    <NowLine now={now} />
+                    {[...sections[1].events, ...sections[2].events].map((e) => (
+                      <EventRow key={e.id} event={e} j={j} onSelect={onSelect} />
+                    ))}
+                  </ol>
+                </section>
+              )}
+              {sections.slice(3).filter((sec) => sec.events.length).map((sec) => (
+                <section key={sec.id} aria-labelledby={`day-${sec.id}`}>
+                  <h2 id={`day-${sec.id}`} className="agenda-head">
+                    {sec.title}
+                  </h2>
+                  <ol className="row-list">
+                    {sec.events.map((e) => (
+                      <EventRow key={e.id} event={e} j={j} onSelect={onSelect} />
+                    ))}
+                  </ol>
+                </section>
+              ))}
+            </>
+          )}
+          {layout === "clubs" &&
+            byClub.map((g) => (
+              <section key={g.name} aria-label={g.name}>
+                <h2 className="agenda-head club-head">
+                  <Thumb src={g.club?.logo} label={g.name} color={g.club ? clubColor(g.club) : eventColor(g.events[0])} className="club-head-logo" />
+                  <span>{g.name}</span>
+                  <small>
+                    {g.events.length} event{g.events.length === 1 ? "" : "s"}
+                  </small>
+                </h2>
+                <ol className="tile-grid">
+                  {g.events.map((e, i) => (
+                    <EventTile key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} index={i} now={now} />
+                  ))}
+                </ol>
+              </section>
+            ))}
+          {layout === "grid" && (
+            <>
           {/* Today: on now, the now line, then starting soon and later today, as one list */}
           {sections.slice(0, 3).some((sec) => sec.events.length) && (
             <section aria-labelledby="day-today">
@@ -2245,6 +2396,8 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, app
               </ol>
             </section>
           ))}
+            </>
+          )}
           {updated && (
             <p className="agenda-source">
               Events come from HuskyLink, club Instagram posts and club Discord servers. Last updated{" "}
@@ -5339,27 +5492,52 @@ function DiscordBotLink({ className = "join", children = "Add DubHub to your Dis
   );
 }
 
+// The two people who built DubHub (by their GitHub names in TEAM): the About page opens on just them.
+const FOUNDER_GITHUBS = ["adamdn-code", "nitneuqqq"];
+
 function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, onReopened }) {
+  // "founders": just the two of us, no hiring. "all": the whole team and the Careers section. Coming
+  // back from signing in to apply for a role puts you on "all", where that application is.
+  const [view, setView] = useState(reopenJobId ? "all" : "founders");
+  const [seenJob, setSeenJob] = useState(reopenJobId);
+  if (reopenJobId && reopenJobId !== seenJob) {
+    setSeenJob(reopenJobId);
+    setView("all");
+  }
+  const founders = view === "founders";
+  const people = founders ? TEAM.filter((m) => FOUNDER_GITHUBS.includes(m.github)) : TEAM;
   return (
-    <main className="page">
-      <h1>About DubHub</h1>
+    <main className="page about-page">
+      <div className="about-head">
+        <h1>About DubHub</h1>
+        <div className="layout-toggle about-toggle" role="group" aria-label="Who to show">
+          <button className={founders ? "on" : undefined} aria-pressed={founders} onClick={() => setView("founders")}>
+            Founders
+          </button>
+          <button className={founders ? undefined : "on"} aria-pressed={!founders} onClick={() => setView("all")}>
+            Full team
+          </button>
+        </div>
+      </div>
       <p className="about-lead">
         DubHub puts every student event at UW on one campus map. Club events come in on their own from HuskyLink, club
         Instagram posts and club Discord servers, so no one has to post anything twice.
       </p>
       <p>Sign in with your UW ID to mark the events you're going to and see which friends are going too.</p>
-      <p>
-        Want to help build it?{" "}
-        <button
-          className="link-button"
-          onClick={() => document.getElementById("careers")?.scrollIntoView({ behavior: "smooth", block: "start" })}
-        >
-          See open roles
-        </button>
-      </p>
+      {!founders && (
+        <p>
+          Want to help build it?{" "}
+          <button
+            className="link-button"
+            onClick={() => document.getElementById("careers")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+          >
+            See open roles
+          </button>
+        </p>
+      )}
       <h2>Made by</h2>
       <ul className="team">
-        {TEAM.map((m) => (
+        {people.map((m) => (
           <TeamMember key={m.name} {...m} />
         ))}
       </ul>
@@ -5376,14 +5554,16 @@ function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, o
         </p>
         <DiscordBotLink />
       </section>
-      <Careers
-        user={user}
-        moderator={moderator}
-        onNeedSignIn={onNeedSignIn}
-        onOpenHiring={onOpenHiring}
-        reopenJobId={reopenJobId}
-        onReopened={onReopened}
-      />
+      {!founders && (
+        <Careers
+          user={user}
+          moderator={moderator}
+          onNeedSignIn={onNeedSignIn}
+          onOpenHiring={onOpenHiring}
+          reopenJobId={reopenJobId}
+          onReopened={onReopened}
+        />
+      )}
     </main>
   );
 }
