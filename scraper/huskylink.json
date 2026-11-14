@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T15:03",
+ "updated": "2026-11-14T03:28",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -9367,7 +9367,7 @@
    "category": "Service",
    "about": "We are Young Americans for Liberty (YAL) at the University of Washington.",
    "description": "We are Young Americans for Liberty (YAL) at the University of Washington. Our group is dedicated to advancing individual liberties, freedom from government oppression, peace, and free markets. YAL at UW seeks to educate the youth about the philosophy of liberty, property, capitalism, economics, and the dangers of war. Get involved with us today!",
-   "logo": null
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_626478_yal_logo_41202917-c87c-4d0b-9032-066f3e703882_1113193259.jpeg"
   },
   {
    "name": "Young Democratic Socialists of America at UW",
@@ -9451,82 +9451,6 @@
   }
  ],
  "events": [
-  {
-   "id": "hl-375434",
-   "title": "Chinese Translation Club Meeting",
-   "type": "Club",
-   "host": "Chinese Translation Club @ UW",
-   "where": "Gowen Hall",
-   "pos": [
-    47.65633,
-    -122.3077
-   ],
-   "date": "2026-11-13",
-   "start": "15:00",
-   "end": "16:00",
-   "url": "https://huskylink.washington.edu/chinesetranslationclub/rsvp?id=375434",
-   "source": "huskylink",
-   "description": "Meet at Fridays at 3pm in the Asian Languages & Literature Department Lounge (M218) of Gowen Hall. All are welcome!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_quillauchina2542574_1920jpg_97356529-b868-49c1-9194-fb50579f127b_1016184932.jpeg",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375494",
-   "title": "Organic Steps - Meeting",
-   "type": "Club",
-   "host": "Organic Steps",
-   "where": "General Chemistry Study Center Break Out Room (BAG 330)",
-   "pos": [
-    47.65349,
-    -122.30885
-   ],
-   "date": "2026-11-13",
-   "start": "16:30",
-   "end": "18:30",
-   "url": "https://huskylink.washington.edu/organicsteps/rsvp?id=375494",
-   "source": "huskylink",
-   "description": "We will provide help for students with any concepts, questions, or assignments they have.",
-   "image": null,
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375487",
-   "title": "Let's Talk: Mandarin",
-   "type": "Club",
-   "host": "The Foundation for International Understanding Through Students (FIUTS) Student Board",
-   "where": "Ethnic Cultural Center",
-   "pos": [
-    47.65509,
-    -122.31484
-   ],
-   "date": "2026-11-13",
-   "start": "17:00",
-   "end": "18:00",
-   "url": "https://huskylink.washington.edu/fiutssb/rsvp?id=375487",
-   "source": "huskylink",
-   "description": "A space to invite people to practice, learn, and meet other Mandarin speakers!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_641444_Lets_Talk_All_Posters_e3c8cd83-be99-4e0f-8d04-c3f8f2fc087c_116123443.png",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375474",
-   "title": "Sumo Usual Match Observation",
-   "type": "Hangout",
-   "host": "Sumo Union Membership Organization",
-   "where": "HUB",
-   "pos": [
-    47.65537,
-    -122.3051
-   ],
-   "date": "2026-11-13",
-   "start": "20:00",
-   "end": "21:30",
-   "url": "https://huskylink.washington.edu/sumounionmembershiporganization/rsvp?id=375474",
-   "source": "huskylink",
-   "description": "Watch real Japanese Grand Sumo with us in the HUB!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png",
-   "rsvps": 15
-  },
   {
    "id": "hl-375343",
    "title": "TCG Event",
@@ -9647,6 +9571,25 @@
    "description": "A meeting usually includes an icebreaker, a short freewrite, and a feedback session.\nRegistration not required :) Feel free to drop in and say hi",
    "image": null,
    "rsvps": 0
+  },
+  {
+   "id": "hl-375475",
+   "title": "Sumo Usual Match Observation",
+   "type": "Hangout",
+   "host": "Sumo Union Membership Organization",
+   "where": "HUB",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-16",
+   "start": "20:00",
+   "end": "21:30",
+   "url": "https://huskylink.washington.edu/sumounionmembershiporganization/rsvp?id=375475",
+   "source": "huskylink",
+   "description": "Watch real Japanese Grand Sumo with us in the HUB!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png",
+   "rsvps": 1
   },
   {
    "id": "hl-375533",
@@ -9879,6 +9822,25 @@
    "source": "huskylink",
    "description": "This month, we will be hearing from Washington State Library's Youth Consultant, Sara White! She is a former Husky and iYouth member and will come prepared to answer questions about working in the Washington state library for all who are curious. We are very excited to have her and to see you all again.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_631572_iyouth_logo_1c936978-2916-4e67-947e-1b912b5e0371_1113154527.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375435",
+   "title": "Chinese Translation Club Meeting",
+   "type": "Club",
+   "host": "Chinese Translation Club @ UW",
+   "where": "Gowen Hall",
+   "pos": [
+    47.65633,
+    -122.3077
+   ],
+   "date": "2026-11-20",
+   "start": "15:00",
+   "end": "16:00",
+   "url": "https://huskylink.washington.edu/chinesetranslationclub/rsvp?id=375435",
+   "source": "huskylink",
+   "description": "Meet at Fridays at 3pm in the Asian Languages & Literature Department Lounge (M218) of Gowen Hall. All are welcome!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_quillauchina2542574_1920jpg_97356529-b868-49c1-9194-fb50579f127b_1016184932.jpeg",
    "rsvps": 0
   },
   {

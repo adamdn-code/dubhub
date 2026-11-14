@@ -2340,6 +2340,11 @@
   "from": null,
   "checked": "2026-11-07"
  },
+ "@greenevans.uw": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-14"
+ },
  "Grey Matters Journal": {
   "invite": "https://discord.gg/4rvZtsQFdW",
   "guild_id": "855979831060594709",
@@ -2348,6 +2353,15 @@
   "icon": "https://cdn.discordapp.com/icons/855979831060594709/ed5d533ffcca7ff2b2b629bc00e70b66.png?size=128",
   "from": "website",
   "checked": "2026-11-07"
+ },
+ "@gridatuw": {
+  "invite": "https://discord.gg/aEQEx6bUQM",
+  "guild_id": "1235271130646843444",
+  "server": "GRID",
+  "members": 100,
+  "icon": "https://cdn.discordapp.com/icons/1235271130646843444/0ef7cd08ab9d1b4737b98bc650f684ac.png?size=128",
+  "from": "instagram-link",
+  "checked": "2026-11-14"
  },
  "GRIT LIFT Bodybuilding Club @UW": {
   "invite": null,
@@ -2897,6 +2911,11 @@
   "invite": null,
   "from": "expired",
   "checked": "2026-11-07"
+ },
+ "@huskyboxing": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-14"
  },
  "@huskypowerliftingclub": {
   "invite": null,
@@ -5907,10 +5926,35 @@
   "from": null,
   "checked": "2026-11-07"
  },
+ "@uw_seed": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-14"
+ },
  "@uwaephi": {
   "invite": null,
   "from": null,
   "checked": "2026-11-07"
+ },
+ "@uwalphasig": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-14"
+ },
+ "@uwccm": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-14"
+ },
+ "@uwequestrian": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-14"
+ },
+ "@uwfslc": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-14"
  },
  "@uwlambdachi": {
   "invite": null,
@@ -5931,6 +5975,20 @@
   "invite": null,
   "from": null,
   "checked": "2026-11-07"
+ },
+ "@uwseha": {
+  "invite": "https://discord.gg/bJDsF44b8",
+  "guild_id": "1561476719771132018",
+  "server": "UW SEHA",
+  "members": 11,
+  "icon": "https://cdn.discordapp.com/icons/1561476719771132018/0e1fad572671d04f353b1c485b6fac23.png?size=128",
+  "from": "instagram",
+  "checked": "2026-11-14"
+ },
+ "@uwtekes": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-14"
  },
  "UX @ UW": {
   "invite": null,

@@ -716,8 +716,8 @@
    "instagram": "https://www.instagram.com/cseeduw/",
    "website": "http://cseed.co",
    "category": "Engineering",
-   "about": "Inspires UW engineering & design students via projects, workshops, and mentorship.",
-   "description": "cseed connects students with industry mentors, runs build programs like BuildHER, and showcases multidisciplinary creators. Join to collaborate on hardware, software, and design projects.",
+   "about": "Inspires engineering and design students with workshops and project builds.",
+   "description": "cseed runs workshops and project cohorts that help engineering and design students turn ideas into reality. Events feature mentors from diverse technical fields, from hardware to AI, and showcase student creations at demo days.",
    "logo": "/ig/clubs/cseeduw.jpg",
    "discord": "https://discord.gg/mRZ3v7XE5k",
    "discord_server": "🌱cseed🚀",
@@ -746,10 +746,10 @@
    "instagram": "https://www.instagram.com/data_science_society_uw/",
    "website": "https://data-science-society-at-uw.github.io/club-website/",
    "category": "Tech",
-   "about": "Student group exploring data science, AI, and LLM research.",
-   "description": "The Data Science Society brings together undergrad and graduate students interested in data science, AI, and large‑language‑model research. They host talks on how AI impacts learning and run collaborative projects across applied math, statistics, informatics, and more.",
+   "about": "Connects students interested in data science, ML, and AI through workshops and research.",
+   "description": "The Data Science Society brings together students passionate about data, machine learning, and AI. They host internship workshops, speaker events, and collaborative research projects across disciplines.",
    "logo": "/ig/clubs/data_science_society_uw.jpg",
-   "last_event": "2026-11-09",
+   "last_event": "2026-11-19",
    "fields": [
     "Computing & Math"
    ]
@@ -2020,13 +2020,12 @@
    "instagram": "https://www.instagram.com/uwswe/",
    "website": "https://linktr.ee/sweuw",
    "category": "Engineering",
-   "about": "Supports women and nonbinary students in engineering and tech through events.",
-   "description": "Society of Women Engineers at UW supports women and nonbinary students in engineering and tech through social events, networking, and creative activities like gingerbread house decorating and campus treat booths.",
+   "about": "Supports women and nonbinary engineering students with networking, panels, and fun events.",
+   "description": "SWE UW supports women and nonbinary students in engineering through panels, networking socials, and creative activities. Their events help members build careers, friendships, and confidence.",
    "logo": "/ig/clubs/uwswe.jpg",
-   "last_event": "2026-11-12",
+   "last_event": "2026-11-19",
    "fields": [
-    "Engineering",
-    "Computing & Math"
+    "Engineering"
    ]
   },
   {
@@ -2089,8 +2088,8 @@
    "instagram": "https://www.instagram.com/uwsls/",
    "website": "https://linktr.ee/uwsls",
    "category": "Service",
-   "about": "Free legal advice and low‑cost representation for UW students.",
-   "description": "UW Student Legal Services offers 40‑minute free consultations and affordable representation across campuses. They run workshops on work authorization, renters’ rights, and sexual assault resources.",
+   "about": "Offers free legal consultations and low‑cost representation for UW students.",
+   "description": "UW Student Legal Services provides free 40‑minute legal consultations and affordable representation for students. They also run workshops on topics like work authorization and student rights.",
    "logo": "/ig/clubs/uwsls.jpg",
    "last_event": "2026-11-19",
    "fields": [
@@ -2162,13 +2161,25 @@
    "fields": []
   },
   {
+   "name": "Taiwanese Overseas Student Association",
+   "handle": "tosauw",
+   "instagram": "https://www.instagram.com/tosauw/",
+   "website": "https://linktr.ee/tosauw",
+   "category": "Cultural",
+   "about": "Taiwanese student group hosting cultural events, games, and fundraisers.",
+   "description": "TOSA_UW celebrates Taiwanese heritage with fun events like Mahjong nights and seasonal fundraisers. Members enjoy games, snacks, and opportunities to connect with fellow students.",
+   "logo": "/ig/clubs/tosauw.jpg",
+   "last_event": "2026-11-21",
+   "fields": []
+  },
+  {
    "name": "Taiwanese Student Association",
    "handle": "tsauw",
    "instagram": "https://www.instagram.com/tsauw/",
-   "website": "https://docs.google.com/forms/d/e/1FAIpQLScg226J8Mcuby8PDAFlkr5_oakCIJJd2iUMPS-DAlbNly8dTA/viewform?usp=dialog",
+   "website": "https://docs.google.com/forms/d/e/1FAIpQLSdPqJ9kXFMTrgtS2UtALPDrW-42abLKW4la44c-LumNvOCQLg/viewform",
    "category": "Cultural",
-   "about": "Taiwanese Student Association shares Taiwan’s culture via night markets, trivia, and social gatherings.",
-   "description": "Taiwanese Student Association shares Taiwanese culture through night markets, trivia, and snack booths. Events include themed club nights and fun gatherings for students.",
+   "about": "Taiwanese Student Association organizing cultural nights, fundraisers, and socials.",
+   "description": "TSAUW organizes cultural nights, night markets, and social gatherings for Taiwanese students on campus. Their events blend entertainment, food, and community outreach.",
    "logo": "/ig/clubs/tsauw.jpg",
    "last_event": "2026-11-20",
    "fields": []
@@ -2284,14 +2295,13 @@
   },
   {
    "name": "The Women’s Network at UW",
-   "website": "https://www.thewomens.network/",
-   "category": "Social",
-   "about": "The Women’s Network is an organization that encourages and promotes the empowerment of women.",
-   "description": "The Women’s Network is an organization that encourages and promotes the empowerment of women. The mission of the club is to inspire and empower women of all ages, backgrounds and interests to act on their own ambitions.",
-   "logo": "/ig/clubs/thewomensnetwork_uw.jpg",
    "handle": "thewomensnetwork_uw",
    "instagram": "https://www.instagram.com/thewomensnetwork_uw/",
-   "source": "huskylink",
+   "website": "https://linktr.ee/thewomensnetworkuw",
+   "category": "Social",
+   "about": "Women-led network fostering ambition, mentorship, and community on campus.",
+   "description": "The Women’s Network offers a supportive community for women at UW, featuring speaker panels, podcasts, and resources for academic balance. Their events encourage mentorship and celebrate diverse voices.",
+   "logo": "/ig/clubs/thewomensnetwork_uw.jpg",
    "last_event": "2026-11-18",
    "fields": []
   },
@@ -2464,8 +2474,8 @@
    "instagram": "https://www.instagram.com/vsauw/",
    "website": "https://linktr.ee/vsauw",
    "category": "Cultural",
-   "about": "Vietnamese student community fostering culture and connections.",
-   "description": "VSAUW is the official Vietnamese Student Association at UW, creating a space for Vietnamese culture and community. They hold general meetings, social events, and info nights to connect members and celebrate traditions.",
+   "about": "Celebrates Vietnamese culture and community for UW students.",
+   "description": "VSAUW creates a welcoming space for Vietnamese students and allies to share culture, celebrate traditions, and make new friends. Regular general meetings feature social activities and community building.",
    "logo": "/ig/clubs/vsauw.jpg",
    "last_event": "2026-12-01",
    "fields": []
@@ -2544,10 +2554,10 @@
    "instagram": "https://www.instagram.com/womeninux_uw/",
    "website": "https://womeninux.framer.website",
    "category": "Tech",
-   "about": "Connects and empowers women in UX and related fields via workshops and networking.",
-   "description": "Women in User Experience creates a network for women interested in UX at UW. They offer virtual workshops on portfolio planning, personal branding, and design skills, and host regular events to share tips and support each other.",
+   "about": "UW community connecting women in UX and related design fields.",
+   "description": "Women in User Experience creates networking and learning events for women studying or working in UX, including panels, portfolio workshops, and skill‑building sessions. The group helps members explore career paths and showcase their work.",
    "logo": "/ig/clubs/womeninux_uw.jpg",
-   "last_event": "2026-11-13",
+   "last_event": "2026-11-20",
    "fields": [
     "Computing & Math"
    ]
@@ -2558,8 +2568,8 @@
    "instagram": "https://www.instagram.com/wecareuw/",
    "website": "https://huskylink.washington.edu/wecareuw/club_signup",
    "category": "Service",
-   "about": "Advances women’s health education and volunteers to support women in need.",
-   "description": "WE CARE UW educates students on women’s health topics like endometriosis and partners with the YWCA to volunteer for homeless women. It empowers through collaboration, awareness, and resources.",
+   "about": "Women’s health education and empowerment group at UW.",
+   "description": "WE CARE UW builds awareness and resources for women’s health locally and globally, partnering with organizations like the YWCA. Members lead fundraisers, fitness classes, and volunteer shifts supporting women experiencing homelessness.",
    "logo": "/ig/clubs/wecareuw.jpg",
    "last_event": "2026-11-17",
    "fields": [
@@ -2595,13 +2605,25 @@
    ]
   },
   {
+   "name": "Women’s Ice Hockey Club UW Chapter",
+   "handle": "womenshockeyuw",
+   "instagram": "https://www.instagram.com/womenshockeyuw/",
+   "website": "https://linktr.ee/whockeyuw",
+   "category": "Sports",
+   "about": "UW women’s ice hockey club competing and promoting the sport.",
+   "description": "The Women’s Ice Hockey Club fields a house team that competes against local clubs and university rivals, with games streamed and shared on Instagram. Players and fans gather for home openers and celebrate victories together.",
+   "logo": "/ig/clubs/womenshockeyuw.jpg",
+   "last_event": "2026-11-14",
+   "fields": []
+  },
+  {
    "name": "Women’s Rugby at UW",
    "handle": "uwwomxnsrugby",
    "instagram": "https://www.instagram.com/uwwomxnsrugby/",
    "website": "http://linktr.ee/uwwomxnsrugby",
    "category": "Sports",
-   "about": "Inclusive women's rugby club welcoming all skill levels.",
-   "description": "Womxn’s Husky Rugby Club fields a competitive team and welcomes anyone interested in rugby. Home games, practices, and community support make it a vibrant part of campus athletics.",
+   "about": "Inclusive UW rugby club for womxn, open to all skill levels.",
+   "description": "The Womxn’s Husky Rugby Club welcomes anyone interested in playing or cheering on the field. They host home games at IMA Field and share highlights from matches across the region.",
    "logo": "/ig/clubs/uwwomxnsrugby.jpg",
    "last_event": "2026-11-14",
    "fields": []

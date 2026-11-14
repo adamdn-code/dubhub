@@ -1458,7 +1458,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "cseed|Inspires UW engineering & design students via projects, workshops, and mentorship."
+"from": "cseed|Inspires engineering and design students with workshops and project builds."
 },
 "cseeduw": {
 "fields": [],
@@ -1510,7 +1510,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Data Science Society at UW|Student group exploring data science, AI, and LLM research."
+"from": "Data Science Society at UW|Connects students interested in data science, ML, and AI through workshops and research."
 },
 "dawgpack": {
 "fields": [],
@@ -4882,10 +4882,9 @@
 },
 "societyofwomenengineers": {
 "fields": [
-"Engineering",
-"Computing & Math"
+"Engineering"
 ],
-"from": "Society of Women Engineers at UW|Supports women and nonbinary students in engineering and tech through events."
+"from": "Society of Women Engineers at UW|Supports women and nonbinary engineering students with networking, panels, and fun events."
 },
 "softwareengineeringcareerclub": {
 "fields": [
@@ -5096,7 +5095,7 @@
 "fields": [
 "Social Sciences"
 ],
-"from": "Student Legal Services|Free legal advice and low‑cost representation for UW students."
+"from": "Student Legal Services|Offers free legal consultations and low‑cost representation for UW students."
 },
 "studentmycologyclub": {
 "fields": [
@@ -5276,11 +5275,11 @@
 },
 "taiwaneseoverseasstudentassociation": {
 "fields": [],
-"from": "Taiwanese Overseas Student Association|Taiwanese Overseas Student Association (TOSA) is a nonprofit,"
+"from": "Taiwanese Overseas Student Association|Taiwanese student group hosting cultural events, games, and fundraisers."
 },
 "taiwanesestudentassociation": {
 "fields": [],
-"from": "Taiwanese Student Association|Taiwanese Student Association shares Taiwan’s culture via night markets, trivia, and social gatherings."
+"from": "Taiwanese Student Association|Taiwanese Student Association organizing cultural nights, fundraisers, and socials."
 },
 "taiwaneseyouthallianceofpacificnorthwest": {
 "fields": [],
@@ -5577,7 +5576,7 @@
 },
 "womensnetwork": {
 "fields": [],
-"from": "The Women’s Network at UW|The Women’s Network is an organization that encourages and promotes the empowerment of women."
+"from": "The Women’s Network at UW|Women-led network fostering ambition, mentorship, and community on campus."
 },
 "xochimehofnorth": {
 "fields": [],
@@ -5883,7 +5882,7 @@
 },
 "vietnamesestudentassociation": {
 "fields": [],
-"from": "Vietnamese Student Association|Vietnamese student community fostering culture and connections."
+"from": "Vietnamese Student Association|Celebrates Vietnamese culture and community for UW students."
 },
 "virtualbedsideconcerts": {
 "fields": [
@@ -6084,13 +6083,13 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "WiUX: Women in User Experience|Connects and empowers women in UX and related fields via workshops and networking."
+"from": "WiUX: Women in User Experience|UW community connecting women in UX and related design fields."
 },
 "womenempowermentthroughcollaborationsawarenessandresourcesforeducation": {
 "fields": [
 "Health"
 ],
-"from": "Women Empowerment through Collaborations, Awareness, and Resources for Education|Advances women’s health education and volunteers to support women in need."
+"from": "Women Empowerment through Collaborations, Awareness, and Resources for Education|Women’s health education and empowerment group at UW."
 },
 "womeninchemicalengineering": {
 "fields": [
@@ -6162,7 +6161,7 @@
 },
 "womensicehockeyclub": {
 "fields": [],
-"from": "Women’s Ice Hockey Club UW Chapter|Our purpose is to provide a competitive and fun environment for women who wish to play the sport of ice hockey."
+"from": "Women’s Ice Hockey Club UW Chapter|UW women’s ice hockey club competing and promoting the sport."
 },
 "womenslawcaucus": {
 "fields": [
@@ -6172,7 +6171,7 @@
 },
 "womensrugby": {
 "fields": [],
-"from": "Women’s Rugby at UW|Inclusive women's rugby club welcoming all skill levels."
+"from": "Women’s Rugby at UW|Inclusive UW rugby club for womxn, open to all skill levels."
 },
 "womensrunclub": {
 "fields": [],
