@@ -40,6 +40,7 @@ CLUB_ALIASES_FILE = HERE / "club_aliases.txt"     # Instagram handle -> HuskyLin
 HUSKYLINK_FILE = HERE / "huskylink.json"  # huskylink_scraper.py output; on GitHub so every scraper sees it
 CLUB_INSTAGRAM_FILE = HERE / "club_instagram.json"  # find_instagram_handles.py output: club name -> handle
 CLUB_DISCORD_FILE = HERE / "club_discord.json"      # find_discord_servers.py output: club -> Discord server
+UNLISTED_CLUBS_FILE = HERE / "unlisted_clubs.json"  # find_unlisted_clubs.py output: UW clubs not on HuskyLink
 DISCORD_EVENTS_FILE = HERE / "discord.json"         # discord_events.py output: events from club servers
 # Instagram's picture links expire after a few days, so the site serves its own copies (on GitHub).
 IG_POST_IMAGES = HERE.parent / "public" / "ig" / "posts"  # <post code>.jpg, only posts with upcoming events
@@ -744,11 +745,15 @@ def parse_host(host):
 
 
 def read_club_handles():
+    """Clubs read straight from Instagram: clubs.txt, plus the UW clubs not on HuskyLink that
+    find_unlisted_clubs.py confirmed."""
     try:
         lines = CLUBS_FILE.read_text(encoding="utf-8").splitlines()
     except FileNotFoundError:
-        return []
-    return [h.lower() for h in (line.split("#")[0].strip().lstrip("@") for line in lines) if h]
+        lines = []
+    handles = [h.lower() for h in (line.split("#")[0].strip().lstrip("@") for line in lines) if h]
+    unlisted = _load(UNLISTED_CLUBS_FILE, {})
+    return list(dict.fromkeys(handles + [h for h, v in unlisted.items() if v.get("status") == "club"]))
 
 
 _profiles = None

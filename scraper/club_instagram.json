@@ -640,9 +640,9 @@
   "checked": "2026-11-07"
  },
  "ASUW Bean Basket": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "asuwbeanbasket",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "ASUW Bike Shop": {
   "handle": "asuwbikeshop",
@@ -785,9 +785,9 @@
   "checked": "2026-11-05"
  },
  "Bartering Club at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "bartering_club_at_uw_",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Batman’s Kitchen": {
   "handle": "bkatuw",
@@ -795,9 +795,9 @@
   "checked": "2026-10-24"
  },
  "BeautifyUdub": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "beautifyudub",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Beekeeping Club at University of Washington": {
   "handle": null,
@@ -1300,9 +1300,9 @@
   "checked": "2026-10-24"
  },
  "Community Health Outreach": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_cho",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Community Organizers of Genome Sciences ( COGS )": {
   "handle": null,
@@ -1475,9 +1475,9 @@
   "checked": "2026-10-24"
  },
  "Delta Chi Fraternity at the University of Washington": {
-  "handle": null,
-  "from": "guess-none",
-  "checked": "2026-11-07"
+  "handle": "uw_deltachi",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Delta Delta Delta": {
   "handle": "uwtridelta",
@@ -1505,9 +1505,9 @@
   "checked": "2026-10-24"
  },
  "Delta Kappa Epsilon": {
-  "handle": null,
-  "from": "guess-none",
-  "checked": "2026-11-07"
+  "handle": "uwdke",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Delta Lambda Phi": {
   "handle": null,
@@ -1525,9 +1525,9 @@
   "checked": "2026-10-24"
  },
  "Delta Tau Delta": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwdelts",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Delta Upsilon": {
   "handle": "deltaupsilonuw",
@@ -1735,9 +1735,9 @@
   "checked": "2026-10-24"
  },
  "Environmental Policy Student Association": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "epsauw",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "ESS GeoClub at UW": {
   "handle": "uwessgeoclub",
@@ -2080,9 +2080,9 @@
   "checked": "2026-10-24"
  },
  "Global Medical and Dental Brigades UW Chapter": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwbrigades",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Global Medical Missions Alliance UW Chapter": {
   "handle": null,
@@ -2145,14 +2145,14 @@
   "checked": "2026-10-24"
  },
  "Greeks Take Action": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "greekstakeactionuw",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Green Greek Representative Program": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "greengreeksuw",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Green Pastures College Fellowship": {
   "handle": null,
@@ -2770,9 +2770,9 @@
   "checked": "2026-10-24"
  },
  "Institutional Climate Action UW Chapter": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "ica_uwchapter",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Interaction Design Association at University of Washington ( IxDA UW )": {
   "handle": "uw.ixda",
@@ -2920,9 +2920,9 @@
   "checked": "2026-10-24"
  },
  "Kannagara Aikido club at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_kannagara_aikido",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Kappa Alpha Pi": {
   "handle": null,
@@ -3035,9 +3035,9 @@
   "checked": "2026-10-24"
  },
  "Kung Fu slash Tai Chi Club at the University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "kungfu_uw",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Kyokushin Karate Washington Club": {
   "handle": null,
@@ -3795,9 +3795,9 @@
   "checked": "2026-10-24"
  },
  "Partners in Health Engage at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "pihengageuw",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Peaks and Professors at UW": {
   "handle": "peaksandprofessorsuw",
@@ -3870,9 +3870,9 @@
   "checked": "2026-10-24"
  },
  "Phi Delta Epsilon International Medical Fraternity": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "phideuw",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Phi Delta Theta": {
   "handle": "uwphidelt",
@@ -4235,9 +4235,9 @@
   "checked": "2026-10-24"
  },
  "Regeneration Field Institute UW Chapter": {
-  "handle": null,
-  "from": "guess-none",
-  "checked": "2026-11-07"
+  "handle": "uw_rfi",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "Registered Student Organization Accounts": {
   "handle": null,
@@ -5140,9 +5140,9 @@
   "checked": "2026-10-24"
  },
  "The Dirty Dozen Student Farm Club": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwfarmdirtydozen",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "The Dwelling Place": {
   "handle": null,
@@ -5270,9 +5270,9 @@
   "checked": "2026-11-07"
  },
  "The Wildlife Society UW Student Chapter": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_wildlifesociety",
+  "from": "mentioned",
+  "checked": "2026-11-13"
  },
  "The Women’s Network at UW": {
   "handle": "thewomensnetwork_uw",
