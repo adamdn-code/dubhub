@@ -5,8 +5,9 @@ through the Instagram accounts that UW clubs and UW's own pages point to, and ad
 ones to the list instagram_public_scraper.py reads.
 
 Where the accounts to check come from (none of this asks Instagram for anything):
-  1. @mentions in the posts and bios of the UW clubs DubHub already reads (a co-hosted event,
-     a sister club, "follow @..."), and in HuskyLink club missions and event descriptions.
+  1. @mentions in the bios and posts of the UW clubs DubHub already reads (a co-hosted event,
+     a sister club, "follow @..."): instagram_public_scraper.py notes them from every club page it
+     reads (all 12 posts), plus the posts it saved, HuskyLink club missions and event descriptions.
   2. Instagram links on UW pages that list student groups (LISTING_PAGES below: Rec Clubs, the
      fraternity and sorority councils, ...), read again every LISTING_DAYS days.
   3. Accounts given by hand: python find_unlisted_clubs.py --add handle1,handle2
@@ -33,8 +34,8 @@ Results go to unlisted_clubs.json (on GitHub): handle -> {"status": ...}
   new        found, not checked yet
 To decide one by hand, set its "status" to "club" or "not" and add "from": "manual".
 
-Every run (from this folder):
-    python find_unlisted_clubs.py               # gather accounts, check up to 15
+Every run (from this folder; scheduled_scrape.py runs it before each Instagram run):
+    python find_unlisted_clubs.py               # gather accounts, check up to 10
     python find_unlisted_clubs.py --limit 5
     python find_unlisted_clubs.py --add uwsundodgers,uwelement
     python find_unlisted_clubs.py --pages       # read the UW listing pages again now
@@ -61,6 +62,8 @@ from events_common import (
     CLUB_PROFILES_FILE,
     GROQ_KEY,
     HUSKYLINK_FILE,
+    MENTION,
+    MENTIONS_FILE,
     POSTS_FILE,
     SITE_CLUBS_FILE,
     STATE_DIR,
@@ -77,7 +80,7 @@ from find_instagram_handles import NOT_ACCOUNTS, name_match
 from guess_instagram_handles import OTHER_SCHOOL, STRONG_UW_SIGN, UW_SIGN, UW_USERNAME, is_the_club
 from instagram_public_scraper import SlowDown, StopOnTooManyRequests, caption_of, club_page
 
-CHECKS_PER_RUN = 15
+CHECKS_PER_RUN = 10  # each scheduled run: about 40 a day
 MIN_WAIT, MAX_WAIT = 6, 12
 RECHECK_DAYS = 60
 LISTING_DAYS = 30
@@ -111,7 +114,6 @@ LISTING_SITES = {
     "dance.washington.edu": "UW Dance's list of student dance groups",
 }
 
-MENTION = re.compile(r"(?<![\w.@/])@([A-Za-z0-9_](?:[A-Za-z0-9_.]{0,28}[A-Za-z0-9_])?)")
 IG_LINK = re.compile(r"instagram\.com/(?!p/|reels?/|explore/|accounts/|stories/|tv/)([A-Za-z0-9_.]{2,30})", re.I)
 # UW Bothell's and UW Tacoma's groups ("uwb_...", "uwt.whatever").
 OTHER_CAMPUS = re.compile(r"^uw[bt][._]|uwbothell|uwtacoma", re.I)
@@ -139,9 +141,13 @@ def known_handles():
 
 
 def mentions():
-    """handle -> the accounts and places that mention it: posts and bios of the clubs DubHub reads,
-    and HuskyLink missions and event descriptions."""
+    """handle -> the accounts and places that mention it: the club pages instagram_public_scraper.py
+    read, the posts it saved, and HuskyLink missions and event descriptions."""
     found = defaultdict(set)
+    for handle, v in _load(MENTIONS_FILE, {}).items():
+        h = clean(handle)
+        if h:
+            found[h].update(v.get("by", []))
 
     def note(text, where, own=None):
         for m in MENTION.findall(text or ""):

@@ -41,6 +41,7 @@ HUSKYLINK_FILE = HERE / "huskylink.json"  # huskylink_scraper.py output; on GitH
 CLUB_INSTAGRAM_FILE = HERE / "club_instagram.json"  # find_instagram_handles.py output: club name -> handle
 CLUB_DISCORD_FILE = HERE / "club_discord.json"      # find_discord_servers.py output: club -> Discord server
 UNLISTED_CLUBS_FILE = HERE / "unlisted_clubs.json"  # find_unlisted_clubs.py output: UW clubs not on HuskyLink
+MENTIONS_FILE = STATE_DIR / "instagram_mentions.json"  # account -> the clubs whose page mentions it
 DISCORD_EVENTS_FILE = HERE / "discord.json"         # discord_events.py output: events from club servers
 # Instagram's picture links expire after a few days, so the site serves its own copies (on GitHub).
 IG_POST_IMAGES = HERE.parent / "public" / "ig" / "posts"  # <post code>.jpg, only posts with upcoming events
@@ -754,6 +755,29 @@ def read_club_handles():
     handles = [h.lower() for h in (line.split("#")[0].strip().lstrip("@") for line in lines) if h]
     unlisted = _load(UNLISTED_CLUBS_FILE, {})
     return list(dict.fromkeys(handles + [h for h, v in unlisted.items() if v.get("status") == "club"]))
+
+
+# "@uwasa", "@husky.climbing" in a caption or bio (not an email address).
+MENTION = re.compile(r"(?<![\w.@/])@([A-Za-z0-9_](?:[A-Za-z0-9_.]{0,28}[A-Za-z0-9_])?)")
+MENTIONS_KEEP_DAYS = 180  # an account no club has mentioned in this long is forgotten
+
+
+def mentioned_accounts(text):
+    """The @accounts a caption or bio names, lowercased."""
+    return {m.lower() for m in MENTION.findall(text or "")}
+
+
+def note_mentions(seen):
+    """Remember which club pages mention which accounts, for find_unlisted_clubs.py.
+    seen: {mentioned account: {"post by @club", "bio of @club", ...}}"""
+    saved = _load(MENTIONS_FILE, {})
+    today = TODAY.isoformat()
+    for handle, places in seen.items():
+        entry = saved.setdefault(handle, {"by": []})
+        entry["by"] = (entry["by"] + sorted(p for p in places if p not in entry["by"]))[-12:]
+        entry["seen"] = today
+    cutoff = (TODAY - timedelta(days=MENTIONS_KEEP_DAYS)).isoformat()
+    _save(MENTIONS_FILE, {h: v for h, v in sorted(saved.items()) if v.get("seen", "") >= cutoff})
 
 
 _profiles = None

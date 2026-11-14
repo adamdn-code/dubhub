@@ -23,7 +23,7 @@ Setup (one time):
     pip install --pre -U instaloader requests
 
 Every run (from this folder):
-    python instagram_public_scraper.py            # 80 clubs, the ones checked longest ago first
+    python instagram_public_scraper.py            # 70 clubs, the ones checked longest ago first
     python instagram_public_scraper.py --limit 10 # fewer clubs
     python instagram_public_scraper.py --only uwasa,uwpct  # just these accounts, now
 Then push the website: public/events.json, public/clubs.json and the pictures in public/ig/.
@@ -31,6 +31,11 @@ Then push the website: public/events.json, public/clubs.json and the pictures in
 To stay polite (and not get this computer's internet address blocked): one page per club, a
 10-20 second pause between clubs, and it stops the moment Instagram asks it to slow down or
 to log in. The clubs it didn't get to go first next run.
+
+Accounts that haven't posted in QUIET_DAYS (or are private or gone) are only checked every
+QUIET_EVERY_DAYS, which leaves Instagram's patience for the active clubs and for
+find_unlisted_clubs.py. Each page it reads also notes which accounts the club mentions (in its
+bio and all 12 posts), so find_unlisted_clubs.py can look for clubs at no extra cost.
 """
 
 import json
@@ -50,6 +55,7 @@ from instaloader.exceptions import (
 )
 
 from events_common import (
+    _load,
     IG_CLUB_IMAGES,
     LOOKBACK_DAYS,
     STATE_DIR,
@@ -58,6 +64,8 @@ from events_common import (
     instagram_post_date,
     find_applications,
     load_store,
+    mentioned_accounts,
+    note_mentions,
     picture_text,
     picture_url,
     process_posts,
@@ -72,7 +80,10 @@ from events_common import (
 from uw_event_scraper import format_club
 
 CHECKED_FILE = STATE_DIR / "instagram_public_checked.json"  # handle -> when it was last checked
-CLUBS_PER_RUN = 80  # about 20-25 minutes; it still stops the moment Instagram objects
+LATEST_FILE = STATE_DIR / "instagram_latest_post.json"  # handle -> its newest post's date, or "none"/"private"/"missing"
+CLUBS_PER_RUN = 70  # about 20 minutes; it still stops the moment Instagram objects
+QUIET_DAYS = 60        # an account with no post in this long is quiet...
+QUIET_EVERY_DAYS = 14  # ...and is only checked this often
 MIN_WAIT, MAX_WAIT = 10, 20     # seconds between clubs
 DETAILS_PER_RUN = 15            # single-post lookups per run (likes, filling in Google snippets)
 PICTURE_MAX_AGE_DAYS = 14       # re-download a club's profile picture this often
@@ -100,6 +111,19 @@ def load_checked():
         return json.loads(CHECKED_FILE.read_text(encoding="utf-8"))
     except (FileNotFoundError, ValueError):
         return {}
+
+
+def quiet_waiting(every, checked, latest):
+    """Quiet accounts (no post in QUIET_DAYS, private, or gone) checked in the past
+    QUIET_EVERY_DAYS: they sit this run out. Accounts not seen since this was added count as active."""
+    quiet_if_before = (TODAY - timedelta(days=QUIET_DAYS)).isoformat()
+    recently = (datetime.now() - timedelta(days=QUIET_EVERY_DAYS)).isoformat(timespec="minutes")
+
+    def quiet(h):
+        seen = latest.get(h)
+        return bool(seen) and (not seen[:1].isdigit() or seen < quiet_if_before)
+
+    return {h for h in every if quiet(h) and checked.get(h, "") > recently}
 
 
 def club_page(L, handle):
@@ -163,15 +187,21 @@ def scrape_clubs(L, store, limit, only=None):
     """Read this run's clubs (or just the accounts in `only`). Returns (new posts, stopped early?)."""
     every = read_clubs()
     checked = load_checked()
+    latest = _load(LATEST_FILE, {})
+    waiting = set()
     if only:
         handles = [h for h in only if h in every][:limit]
     else:
-        handles = sorted(every, key=lambda h: checked.get(h, ""))[:limit]
-    print(f"Checking {len(handles)} of {len(every)} clubs this run, without logging in; "
-          "the rest get their turn on later runs.", flush=True)
+        waiting = quiet_waiting(every, checked, latest)
+        handles = sorted((h for h in every if h not in waiting), key=lambda h: checked.get(h, ""))[:limit]
+    print(f"Checking {len(handles)} of {len(every)} clubs this run, without logging in"
+          + (f" ({len(waiting)} that haven't posted in {QUIET_DAYS} days wait for their every-"
+             f"{QUIET_EVERY_DAYS}-days check)" if waiting else "")
+          + "; the rest get their turn on later runs.", flush=True)
 
     cutoff = TODAY - timedelta(days=LOOKBACK_DAYS)
     posts, empty_pages, stopped = [], 0, False
+    mentions = {}  # account -> where clubs mention it
     for i, handle in enumerate(handles, 1):
         if i > 1:
             time.sleep(random.uniform(MIN_WAIT, MAX_WAIT))
@@ -184,6 +214,7 @@ def scrape_clubs(L, store, limit, only=None):
         except QueryReturnedNotFoundException:
             print(f"[{i}/{len(handles)}] {handle}: account not found, skipping", flush=True)
             user, nodes = None, []
+            latest[handle] = "missing"
         except (ConnectionException, BadResponseException) as e:
             print(f"[{i}/{len(handles)}] {handle}: couldn't load ({str(e)[:100]}), skipping", flush=True)
             continue  # try again next run
@@ -203,8 +234,17 @@ def scrape_clubs(L, store, limit, only=None):
                               (links[0].get("url") if links else None) or user.get("external_url"))
             save_club_picture(handle, user.get("profile_pic_url"))
             if user.get("is_private"):
+                latest[handle] = "private"
                 print(f"[{i}/{len(handles)}] {handle}: private account, skipping", flush=True)
             else:
+                dates = [d for d in (instagram_post_date(n.get("pk") or n.get("id")) for n in nodes) if d]
+                latest[handle] = max(dates).isoformat() if dates else "none"
+                # Who the club mentions, in its bio and all 12 posts (old ones too), for
+                # find_unlisted_clubs.py: free, since the page is already here.
+                for text, where in [(user.get("biography"), f"bio of @{handle}")] + \
+                        [(caption_of(n), f"post by @{handle}") for n in nodes]:
+                    for m in mentioned_accounts(text) - {handle}:
+                        mentions.setdefault(m, set()).add(where)
                 club = format_club(user.get("full_name") or None, handle)
                 new = [post_from_node(n, club) for n in nodes if n.get("code") and n["code"] not in store]
                 # Pinned posts come first and can be old, so check every post's date rather than
@@ -216,6 +256,8 @@ def scrape_clubs(L, store, limit, only=None):
 
     STATE_DIR.mkdir(exist_ok=True)
     CHECKED_FILE.write_text(json.dumps(checked, indent=1), encoding="utf-8")
+    LATEST_FILE.write_text(json.dumps(dict(sorted(latest.items())), indent=1), encoding="utf-8")
+    note_mentions(mentions)
     return posts, stopped
 
 

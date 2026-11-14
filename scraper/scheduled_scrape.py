@@ -9,12 +9,13 @@ Each run:
      aren't on GitHub yet, and only touches the scraped data files, so code you're editing is left
      alone. If it can't update cleanly it skips the run and says why in the log.
   2. Once a day: refreshes HuskyLink's clubs and events, looks for new clubs' Instagram accounts
-     on their websites, checks a few accounts seen on club websites, checks a few accounts of UW
-     clubs that aren't on HuskyLink (find_unlisted_clubs.py), and looks for clubs' Discord servers
-     (find_discord_servers.py).
+     on their websites, checks a few accounts seen on club websites, and looks for clubs'
+     Discord servers (find_discord_servers.py).
   3. Reads events from the Discord servers that added the DubHub bot (discord_events.py; nothing
-     until the bot is set up), then the next 80 clubs' Instagram posts (instagram_public_scraper.py
-     stops on its own if Instagram asks to log in; the clubs left go first next time).
+     until the bot is set up), checks 10 accounts of UW clubs that aren't on HuskyLink
+     (find_unlisted_clubs.py), then the next 70 clubs' Instagram posts (instagram_public_scraper.py
+     checks accounts that haven't posted in two months only every two weeks, and stops on its own
+     if Instagram asks to log in; the clubs left go first next time).
   4. Checks the result (no clubs lost or renamed, events still there). If something looks wrong it
      puts the data back the way it was and pushes nothing.
   5. Reads the text on new flyers (flyer_scraper.py), as its own step: if it fails or its result
@@ -52,12 +53,13 @@ BRANCH = "main"
 KEEP_LOGS = 60
 FETCH_TRIES, FETCH_WAIT = 10, 30  # up to ~5 minutes for the internet to come back after waking
 
-# Files the scrapers write. GENERATED ones are rebuilt every run, so leftovers can be thrown away
-# when they'd block getting the latest main; club_instagram.json is partly typed by hand, so it's
-# never thrown away.
+# Files the scrapers write. GENERATED ones are rebuilt every run (or, like unlisted_clubs.json,
+# just redone), so leftovers can be thrown away when they'd block getting the latest main;
+# club_instagram.json is partly typed by hand, so it's never thrown away.
 GENERATED = ["public/events.json", "public/clubs.json", "public/applications.json", "public/ig",
-             "scraper/club_activity.json", "scraper/club_fields.json", "scraper/huskylink.json", "scraper/discord.json"]
-DATA = GENERATED + ["scraper/club_instagram.json", "scraper/club_discord.json", "scraper/unlisted_clubs.json"]
+             "scraper/club_activity.json", "scraper/club_fields.json", "scraper/huskylink.json", "scraper/discord.json",
+             "scraper/unlisted_clubs.json"]
+DATA = GENERATED + ["scraper/club_instagram.json", "scraper/club_discord.json"]
 SNAPSHOT_FILES = [p for p in DATA if p.endswith(".json")]
 
 # Most a step may take before it's stopped (minutes).
@@ -65,7 +67,7 @@ STEPS = {
     "HuskyLink": (["huskylink_scraper.py", "--skip-past"], 20),
     "Instagram accounts on club websites": (["find_instagram_handles.py"], 20),
     "Check accounts seen on club websites": (["guess_instagram_handles.py", "--maybe-only", "--limit", "15"], 30),
-    "Clubs not on HuskyLink": (["find_unlisted_clubs.py", "--limit", "15"], 30),
+    "Clubs not on HuskyLink": (["find_unlisted_clubs.py", "--limit", "10"], 20),
     "Discord servers": (["find_discord_servers.py"], 30),
     "Discord events": (["discord_events.py"], 30),  # does nothing until the DubHub bot is set up
     "Instagram": (["instagram_public_scraper.py"], 120),
@@ -259,7 +261,8 @@ def get_latest_main(dry=False):
     if code:
         # Usually last run's data that never got pushed: rebuild it instead of keeping it.
         log("Couldn't update main with the data files as they are; throwing away last run's leftovers and retrying.")
-        git("checkout", "--", *GENERATED)
+        # (staged ones too: a push that was turned away leaves its data staged)
+        git("restore", "--source=HEAD", "--staged", "--worktree", "--", *GENERATED)
         git("clean", "-fdq", "--", "public/ig")
         code, out = git("merge", "--ff-only", "--quiet", f"origin/{BRANCH}")
         if code:
@@ -353,10 +356,10 @@ def main():
             step("HuskyLink")
             step("Instagram accounts on club websites")
             step("Check accounts seen on club websites")
-            step("Clubs not on HuskyLink")
             step("Discord servers")
             DAILY_STAMP.write_text(date.today().isoformat())
         step("Discord events")
+        step("Clubs not on HuskyLink")
         step("Instagram")
 
         after = site_counts()
