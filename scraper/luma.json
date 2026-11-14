@@ -1,0 +1,62 @@
+{
+ "updated": "2026-11-14T04:32",
+ "events": [
+  {
+   "id": "lm-evt-1YquHa5Puj5Llmb",
+   "title": "Sentient Film Screening with Animal Advocacy at UW",
+   "type": "Club",
+   "host": "Viable Veganism at UW",
+   "where": "Husky Union Building",
+   "pos": [
+    47.65539,
+    -122.30508
+   ],
+   "date": "2026-11-16",
+   "start": "18:30",
+   "end": "20:30",
+   "url": "https://luma.com/5bcotf0s",
+   "source": "luma",
+   "description": "Come watch the screening for the powerful documentary Sentient, which explores animal experimentation, ahead of its release along with a Q&A with Dr. Lisa Jones-Engel!\nWhen/where: HUB 334 on November 16th from 6:30-8:30 PM, Doors open 6:15 PM.\nEveryone is welcome, regardless of diet, lifestyle, or familiarity with animal rights! Free vegan pizza and snacks will be provided.\nFree admission, please RSVP!",
+   "image": "https://images.unsplash.com/photo-1548496310-5cf0545a63f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwxOXx8c2VudGllbnQlMjBtb25rZXl8ZW58MHx8fHwxNzkyMjYyMTQzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+   "rsvps": null
+  },
+  {
+   "id": "lm-evt-w5iWewhrhFvH1tV",
+   "title": "Buildspace C6 Demo Day",
+   "type": "Club",
+   "host": "cseed (@cseeduw)",
+   "where": "Zillow Commons",
+   "pos": [
+    47.653,
+    -122.30476
+   ],
+   "date": "2026-11-17",
+   "start": "17:30",
+   "end": "20:00",
+   "url": "https://luma.com/ys4m5lvp",
+   "source": "luma",
+   "description": "🚀 cseed buildspace demo day is here!!! 🚀\nFor the past 5 weeks, cseed buildspace cohort 6 members have been working hard on their passion projects for up to 2 hours per week! Now is the time to show off what they've built!\nJoin us with celebrating the incredible work and dedication of projects with a mix of hardware, design, creator, and software project!\nCome out to support our builders, get inspired, and learn about cseed. See you there!\nP.S. Dinner, snacks, and drinks will be provided!\n\n[If you need an accommodation or have any questions or concerns, email us at questions@cseed.co]",
+   "image": "https://images.lumacdn.com/uploads/u8/2f1fa951-6568-4646-86e9-33eb7c0e6a6c.png",
+   "rsvps": 111
+  },
+  {
+   "id": "lm-evt-WraCRZIUFuHqu6K",
+   "title": "BuildHer Expo",
+   "type": "Club",
+   "host": "cseed (@cseeduw)",
+   "where": "PACCAR Hall",
+   "pos": [
+    47.65938,
+    -122.30901
+   ],
+   "date": "2026-11-18",
+   "start": "17:30",
+   "end": "19:00",
+   "url": "https://luma.com/mel1nc3d",
+   "source": "luma",
+   "description": "cseed buildHER is hosting our last event of fall quarter - buildHER fall EXPO!!!\nCome join us to explore Arduino, 3D modeling, Figma and more surrounded by a community of builders in a welcoming and inquisitive environment.\nThe expo will feature hands-on booths where you can dive into exploring these technologies, and leave having learned something new.\nWe hope to see you there!",
+   "image": "https://images.lumacdn.com/uploads/b7/f727062b-2629-4878-969c-c503463fe7e9.jpg",
+   "rsvps": 41
+  }
+ ]
+}

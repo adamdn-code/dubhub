@@ -1478,30 +1478,31 @@
    "rsvps": 0
   },
   {
-   "id": "DfT69kvG4fn-0",
-   "title": "CSEED Demo Day",
+   "id": "lm-evt-w5iWewhrhFvH1tV",
+   "title": "Buildspace C6 Demo Day",
    "type": "Club",
    "host": "cseed (@cseeduw)",
    "where": "Zillow Commons",
    "pos": [
-    47.65303,
-    -122.3048
+    47.653,
+    -122.30476
    ],
    "date": "2026-11-17",
    "start": "17:30",
-   "end": "19:30",
-   "url": "https://www.instagram.com/p/DfT69kvG4fn/",
-   "source": "instagram",
-   "description": "🚀 CSEED BUILDSPACE DEMO DAY IS HERE 🚀\n\nOver the past 5 weeks, our Cohort 6 builders have poured their passion into creating some incredible projects across hardware, software, design, and creator tracks! Now it’s time to show them off 🔥\n\nCome celebrate the dedication of our builders, get inspired, and learn more about CSEED! \n\n📅 November 17th, 5:30-7:30 pm at ZILLOW COMMONS\n🥪 FREE dinner, snacks, and drinks provided!\n📍RSVP: https://tinyurl.com/cseed2026demoday \n\nFor accommodations, questions, or concerns, please reach out to questions@cseed.co",
-   "image": "/ig/posts/DfT69kvG4fn.jpg",
-   "likes": 55,
-   "comments": null,
+   "end": "20:00",
+   "url": "https://luma.com/ys4m5lvp",
+   "source": "luma",
+   "description": "🚀 cseed buildspace demo day is here!!! 🚀\nFor the past 5 weeks, cseed buildspace cohort 6 members have been working hard on their passion projects for up to 2 hours per week! Now is the time to show off what they've built!\nJoin us with celebrating the incredible work and dedication of projects with a mix of hardware, design, creator, and software project!\nCome out to support our builders, get inspired, and learn about cseed. See you there!\nP.S. Dinner, snacks, and drinks will be provided!\n\n[If you need an accommodation or have any questions or concerns, email us at questions@cseed.co]",
+   "image": "https://images.lumacdn.com/uploads/u8/2f1fa951-6568-4646-86e9-33eb7c0e6a6c.png",
+   "rsvps": 111,
    "post_counts": {
     "DfT69kvG4fn": [
      55,
      null
     ]
    },
+   "likes": 55,
+   "comments": null,
    "posts": 1
   },
   {
@@ -2351,33 +2352,6 @@
    "posts": 1
   },
   {
-   "id": "DfplF1sGtgj-0",
-   "title": "BuildHER Multimodal Expo",
-   "type": "Club",
-   "host": "cseed (@cseeduw)",
-   "where": "PACCAR 295",
-   "pos": [
-    47.65909,
-    -122.30867
-   ],
-   "date": "2026-11-18",
-   "start": "17:30",
-   "end": "19:00",
-   "url": "https://www.instagram.com/p/DfplF1sGtgj/",
-   "source": "instagram",
-   "description": "Come to BuildHER’s Multimodal Expo! 💻🎨 \n\nEver had an idea you wanted to build, but didn’t know where to start? Come learn the skills to bring it to life! ⚡️\n\nJoin us for an evening of mini workshops led by women and non-binary student mentors across all kinds of technical fields. From hardware to AI, design to software, there’s something for everyone!\n\nLearn skills like:\n🔌 Arduino + hardware\n🎨 Figma + design\n🤖 Claude + AI\n💻 Software + coding\n…and more!\n\nWhether you’re completely new to building or just want to add another tool to your toolkit, come get more comfortable with the skills that can sometimes become a roadblock to turning your ideas into reality. 🛠️✨\n\nMeet other builders, learn from our community, and leave with a new skill you can use to build something of your own! 💗\n\n📅 Wednesday, Nov 18\n⏰ 5:30-7\n📍 PACCAR 295\n\n✨ RSVP with the link in our bio!",
-   "image": "/ig/posts/DfplF1sGtgj.jpg",
-   "likes": 66,
-   "comments": 3,
-   "post_counts": {
-    "DfplF1sGtgj": [
-     66,
-     3
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "hl-375528",
    "title": "Lab Animal Veterinarian Guest Speaker",
    "type": "Study",
@@ -2392,6 +2366,34 @@
    "description": "Join us for a special meeting with Dr. Moore, a lab animal veterinarian at UW’s Department of Comparative Medicine! Learn about her career path, experiences in laboratory animal medicine, and what it's like working as a veterinarian at UW.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639712_PreVeterinary_Society_Logojpg_637b279e-454b-4f14-a127-f59c31d4bc93_113213040.jpeg",
    "rsvps": 0
+  },
+  {
+   "id": "lm-evt-WraCRZIUFuHqu6K",
+   "title": "BuildHer Expo",
+   "type": "Club",
+   "host": "cseed (@cseeduw)",
+   "where": "PACCAR Hall",
+   "pos": [
+    47.65938,
+    -122.30901
+   ],
+   "date": "2026-11-18",
+   "start": "17:30",
+   "end": "19:00",
+   "url": "https://luma.com/mel1nc3d",
+   "source": "luma",
+   "description": "cseed buildHER is hosting our last event of fall quarter - buildHER fall EXPO!!!\nCome join us to explore Arduino, 3D modeling, Figma and more surrounded by a community of builders in a welcoming and inquisitive environment.\nThe expo will feature hands-on booths where you can dive into exploring these technologies, and leave having learned something new.\nWe hope to see you there!",
+   "image": "https://images.lumacdn.com/uploads/b7/f727062b-2629-4878-969c-c503463fe7e9.jpg",
+   "rsvps": 41,
+   "post_counts": {
+    "DfplF1sGtgj": [
+     66,
+     3
+    ]
+   },
+   "likes": 66,
+   "comments": 3,
+   "posts": 1
   },
   {
    "id": "DfnkN_lh8WT-0",

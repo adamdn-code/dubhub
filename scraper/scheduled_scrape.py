@@ -12,7 +12,7 @@ Each run:
      on their websites, checks a few accounts seen on club websites, and looks for clubs'
      Discord servers (find_discord_servers.py).
   3. Reads events from the Discord servers that added the DubHub bot (discord_events.py; nothing
-     until the bot is set up), checks 10 accounts of UW clubs that aren't on HuskyLink
+     until the bot is set up) and UW clubs' events on Luma (luma_events.py), checks 10 accounts of UW clubs that aren't on HuskyLink
      (find_unlisted_clubs.py), then the next 70 clubs' Instagram posts (instagram_public_scraper.py
      checks accounts that haven't posted in two months only every two weeks, and stops on its own
      if Instagram asks to log in; the clubs left go first next time).
@@ -58,7 +58,7 @@ FETCH_TRIES, FETCH_WAIT = 10, 30  # up to ~5 minutes for the internet to come ba
 # club_instagram.json is partly typed by hand, so it's never thrown away.
 GENERATED = ["public/events.json", "public/clubs.json", "public/applications.json", "public/ig",
              "scraper/club_activity.json", "scraper/club_fields.json", "scraper/huskylink.json", "scraper/discord.json",
-             "scraper/unlisted_clubs.json"]
+             "scraper/unlisted_clubs.json", "scraper/luma.json", "scraper/club_luma.json"]
 DATA = GENERATED + ["scraper/club_instagram.json", "scraper/club_discord.json"]
 SNAPSHOT_FILES = [p for p in DATA if p.endswith(".json")]
 
@@ -70,6 +70,7 @@ STEPS = {
     "Clubs not on HuskyLink": (["find_unlisted_clubs.py", "--limit", "10"], 20),
     "Discord servers": (["find_discord_servers.py"], 30),
     "Discord events": (["discord_events.py"], 30),  # does nothing until the DubHub bot is set up
+    "Luma": (["luma_events.py"], 20),
     "Instagram": (["instagram_public_scraper.py"], 120),
     # Reads the text on flyers, after the regular scrapers and kept apart from them (see main).
     "Flyers": (["flyer_scraper.py"], 30),
@@ -359,6 +360,7 @@ def main():
             step("Discord servers")
             DAILY_STAMP.write_text(date.today().isoformat())
         step("Discord events")
+        step("Luma")
         step("Clubs not on HuskyLink")
         step("Instagram")
 

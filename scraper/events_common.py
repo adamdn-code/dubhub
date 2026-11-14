@@ -43,6 +43,8 @@ CLUB_DISCORD_FILE = HERE / "club_discord.json"      # find_discord_servers.py ou
 UNLISTED_CLUBS_FILE = HERE / "unlisted_clubs.json"  # find_unlisted_clubs.py output: UW clubs not on HuskyLink
 MENTIONS_FILE = STATE_DIR / "instagram_mentions.json"  # account -> the clubs whose page mentions it
 DISCORD_EVENTS_FILE = HERE / "discord.json"         # discord_events.py output: events from club servers
+LUMA_EVENTS_FILE = HERE / "luma.json"               # luma_events.py output: UW clubs' events on Luma
+LUMA_CALENDARS_FILE = HERE / "club_luma.json"       # luma_events.py: which Luma calendars are UW clubs'
 # Instagram's picture links expire after a few days, so the site serves its own copies (on GitHub).
 IG_POST_IMAGES = HERE.parent / "public" / "ig" / "posts"  # <post code>.jpg, only posts with upcoming events
 IG_CLUB_IMAGES = HERE.parent / "public" / "ig" / "clubs"  # <handle>.jpg, each club's profile picture
@@ -717,7 +719,8 @@ def write_site_events(store):
                 "comments": share(post.get("comments")),
                 "post_counts": {key: [share(post.get("likes")), share(post.get("comments"))]},
             })
-    events = merge_discord_events(merge_huskylink_events(drop_duplicate_events(events + others_events(site, store, mine))))
+    events = merge_luma_events(merge_discord_events(merge_huskylink_events(
+        drop_duplicate_events(events + others_events(site, store, mine)))))
     for e in events:  # an event keywords couldn't name is shown as its club's ("ALPFA UW event")
         if e["title"] == GENERIC_TITLE:
             name, handle = parse_host(e["host"])
@@ -942,6 +945,48 @@ def merge_discord_events(events):
     today = TODAY.isoformat()
     events = [e for e in events if not str(e["id"]).startswith("dc-")]
     events += [e for e in data.get("events", []) if e["date"] >= today]
+    events.sort(key=lambda e: (e["date"], e["start"] or "99"))
+    return events
+
+
+def merge_luma_events(events):
+    """Swap in the latest events from UW clubs' Luma pages (luma_events.py writes luma.json;
+    without it, the site's earlier ones stay). A club's Instagram post of the same event (same
+    club and day, and the same title or start time) is folded into the Luma copy, which has the
+    exact time, place and RSVP count; one that's also on HuskyLink keeps the HuskyLink copy."""
+    data = _load(LUMA_EVENTS_FILE, None)
+    if data is None:
+        return events
+    today = TODAY.isoformat()
+    events = [e for e in events if not str(e["id"]).startswith("lm-")]
+    tidy = lambda title: re.sub(r"[^a-z0-9]", "", (title or "").lower())
+
+    def same_club(a, b):
+        (an, ah), (bn, bh) = parse_host(a), parse_host(b)
+        return bool(ah and ah == bh) or (club_key(an or a) == club_key(bn or b) != "")
+
+    def same_event(a, b):
+        return a["date"] == b["date"] and same_club(a["host"], b["host"]) and (
+            tidy(a["title"]) == tidy(b["title"]) or bool(a["start"] and a["start"] == b["start"]))
+
+    folded, luma = set(), []
+    for lm in data.get("events", []):
+        if lm["date"] < today or any(e.get("source") == "huskylink" and same_event(e, lm) for e in events):
+            continue
+        lm, counts = dict(lm), {}
+        for e in events:
+            if e.get("source") == "instagram" and same_event(e, lm):
+                counts.update(post_counts(e))
+                lm["image"] = lm.get("image") or e.get("image")
+                folded.add(id(e))
+        if counts:
+            lm["post_counts"] = counts
+            for field, i in (("likes", 0), ("comments", 1)):
+                found = [c[i] for c in counts.values() if c[i] is not None]
+                lm[field] = sum(found) if found else None
+            lm["posts"] = len(counts)
+        luma.append(lm)
+    events = [e for e in events if id(e) not in folded] + luma
     events.sort(key=lambda e: (e["date"], e["start"] or "99"))
     return events
 

@@ -93,3 +93,26 @@ Most Discord scrapers on GitHub log in with a person's account (a user token, a 
 read any server that account is in. Discord's terms forbid self-bots and scraping, and it bans
 accounts for it ([Discord: protecting your data](https://support.discord.com/hc/en-us/articles/360039598252)).
 DubHub only reads servers whose admins added the DubHub bot.
+
+# Luma sources
+
+`luma_events.py` reads UW clubs' events from [Luma](https://luma.com) (formerly lu.ma), the RSVP
+site many clubs use. We compared the open-source Luma scrapers on GitHub (November 2026). Most
+read events' guest lists, which DubHub doesn't do; these read events, and are what we built on:
+
+| Project | What we took from it |
+| --- | --- |
+| [dsec-hub/event_api_scraper](https://github.com/dsec-hub/event_api_scraper) (MIT), a student club's event scraper | Luma's public `discover/get-paginated-events` endpoint with a latitude and longitude: every public event near a place, no login. We ask for events near UW. |
+| [KShivendu/event-radar](https://github.com/KShivendu/event-radar) | Paging through that feed with `pagination_cursor`, and reading one organizer's calendar with `calendar/get-items?period=future`. We read UW clubs' calendars this way. |
+| [mayckolco/luma-event-scraper](https://github.com/mayckolco/luma-event-scraper) | Pausing between requests and backing off when Luma says to slow down. |
+| [mwanjeronie/luma-events-scraper](https://github.com/mwanjeronie/luma-events-scraper) | The same nearby-events approach, used to confirm which fields hold the place and its map coordinates (`geo_address_info`, `coordinate`). |
+
+## How we combined them
+
+1. Calendars: from the Luma links UW clubs post (captions, bios, websites, HuskyLink) and the
+   events near UW whose calendar says UW or that happen on campus. A calendar counts when its
+   Instagram or name matches a club DubHub knows, or the AI says it's run by UW students.
+2. Events: each UW club calendar's upcoming events, plus the events clubs link to (many sit on an
+   officer's personal calendar). `event/get` adds each one's description and how many are going.
+3. Only in-person events in Seattle go on the site. An Instagram post of the same event folds
+   into the Luma copy, which has the exact time and place.

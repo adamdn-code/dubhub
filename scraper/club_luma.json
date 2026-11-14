@@ -1,0 +1,164 @@
+{
+ "calendars": {
+  "cal-wo0hC1fb640GqRN": {
+   "name": "cseed",
+   "slug": "uwcseed",
+   "found": [
+    "events near UW",
+    "linked by cseed"
+   ],
+   "status": "club",
+   "club": "cseed (@cseeduw)",
+   "why": "matches a club DubHub knows",
+   "checked": "2026-11-14"
+  },
+  "cal-4sCzh3E6Dr5ORFx": {
+   "name": "Haulvana",
+   "slug": "Hulvana",
+   "found": [
+    "events near UW"
+   ],
+   "status": "not",
+   "club": null,
+   "why": "Haulvana is a company/startup, not a student group",
+   "checked": "2026-11-14"
+  },
+  "cal-r2NHx9ZOMIHRoKz": {
+   "name": "iStartup Lab",
+   "slug": null,
+   "found": [
+    "events near UW"
+   ],
+   "status": "maybe",
+   "club": null,
+   "why": "Insufficient info to confirm student ownership",
+   "checked": "2026-11-14"
+  },
+  "cal-cM9m3eZtQygkLqe": {
+   "name": "North American Fintech Coalition",
+   "slug": "namfintech",
+   "found": [
+    "events near UW"
+   ],
+   "status": "not",
+   "club": null,
+   "why": "Nonprofit of startups and professionals, not student‑run",
+   "checked": "2026-11-14"
+  },
+  "cal-GiZDao88NH4g7A3": {
+   "name": "OpenAI Student Collective at UW Seattle",
+   "slug": "openai-collective-UWSeattle",
+   "found": [
+    "linked by UW Software Engineering Career Club (@swecc.uw)"
+   ],
+   "status": "club",
+   "club": "OpenAI Student Collective at UW Seattle",
+   "why": "Student collective clearly run by UW students",
+   "checked": "2026-11-14"
+  },
+  "cal-OEAQbYKP20wCQ7t": {
+   "name": "SMC",
+   "slug": null,
+   "found": [
+    "events near UW"
+   ],
+   "status": "maybe",
+   "club": null,
+   "why": "Name ambiguous, no clear indication of student run",
+   "checked": "2026-11-14"
+  },
+  "cal-1siSJNKBohV8e2w": {
+   "name": "UW Buerk Center for Entrepreneurship",
+   "slug": "BuerkCenterforEntrepreneurship",
+   "found": [
+    "events near UW"
+   ],
+   "status": "not",
+   "club": null,
+   "why": "Buerk Center is a university office/center, staff‑run",
+   "checked": "2026-11-14"
+  }
+ },
+ "links": {
+  "3ep2e6kp": {
+   "kind": "event",
+   "event": "evt-RP9IMpqX7SHhQZQ",
+   "calendar": "cal-yjO3qWapFy5yK9V",
+   "personal": true,
+   "start": "2026-10-30",
+   "by": [
+    "UW Husky Table Tennis Club (@uwhuskyttc)"
+   ]
+  },
+  "hherku01": {
+   "kind": "event",
+   "event": "evt-AlksFFbZvyRhh5t",
+   "calendar": "cal-dmN4p0pRFYrg80p",
+   "personal": true,
+   "start": "2026-10-29",
+   "by": [
+    "MSA UW (@msauw)"
+   ]
+  },
+  "pjh92xlk": {
+   "kind": "event",
+   "event": "evt-3x1kS3jDiZDqPMh",
+   "calendar": "cal-GiZDao88NH4g7A3",
+   "personal": false,
+   "start": "2026-10-29",
+   "by": [
+    "UW Software Engineering Career Club (@swecc.uw)"
+   ]
+  },
+  "ycafdz95": {
+   "kind": "event",
+   "event": "evt-dkgoQs9FR0C0CtV",
+   "calendar": "cal-hGfLGy9HfTg8tky",
+   "personal": true,
+   "start": "2026-11-06",
+   "by": [
+    "Product Management Club at UW (@pmclubuw)"
+   ]
+  },
+  "nkjbn4jj": {
+   "kind": "event",
+   "event": "evt-hnfZlUXh03BAFes",
+   "calendar": "cal-wo0hC1fb640GqRN",
+   "personal": false,
+   "start": "2026-10-28",
+   "by": [
+    "cseed"
+   ]
+  },
+  "m7u880vs": {
+   "kind": "event",
+   "event": "evt-rThhwtajdkq393I",
+   "calendar": "cal-wo0hC1fb640GqRN",
+   "personal": false,
+   "start": "2026-10-20",
+   "by": [
+    "cseed"
+   ]
+  },
+  "cbnseattlejune": {
+   "kind": "event",
+   "event": "evt-nDhlygQQ0yXYaxG",
+   "calendar": "cal-audYA24RHlUsV9T",
+   "personal": true,
+   "start": "2026-06-03",
+   "by": [
+    "Blockchain Society at the University of Washington (@uwblockchain)"
+   ]
+  },
+  "5bcotf0s": {
+   "kind": "event",
+   "event": "evt-1YquHa5Puj5Llmb",
+   "calendar": "cal-ID81DPwDHgkWLvI",
+   "personal": true,
+   "start": "2026-11-17",
+   "by": [
+    "Viable Veganism at UW"
+   ]
+  }
+ }
+}
