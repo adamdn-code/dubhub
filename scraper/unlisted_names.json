@@ -1,9 +1,11 @@
 {
  "SARVA": {
-  "status": "new",
+  "status": "none",
   "by": [
    "WE CARE UW (@wecareuw)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-14"
  },
  "UW MIC": {
   "status": "none",

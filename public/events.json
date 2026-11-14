@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14T04:29",
+ "updated": "2026-11-14T13:32",
  "events": [
   {
    "id": "DfdG4goSkUm-0",
@@ -129,7 +129,7 @@
   },
   {
    "id": "DftApg0m9Cu-0",
-   "title": "Home Game vs Gonzaga",
+   "title": "UW vs Gonzaga Women's Rugby",
    "type": "Game night",
    "host": "Womxn’s Husky Rugby Club (@uwwomxnsrugby)",
    "where": "IMA Field 1",
@@ -617,6 +617,33 @@
     "DfsW76vk5Ql": [
      null,
      null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfGOAKhGkyB-0",
+   "title": "Museum Day",
+   "type": "Hangout",
+   "host": "Students of Color in LIS at UW (@soc_in_lis_uw)",
+   "where": "Burke Museum",
+   "pos": [
+    47.66052,
+    -122.31156
+   ],
+   "date": "2026-11-14",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfGOAKhGkyB/",
+   "source": "instagram",
+   "description": "Join SOCLIS on November 14  for Museum Day at the Burke Museum located on UW campus! As a group we'll explore the various collections hosted at the Burke.\nWe'll be meeting in front of the main entrance of the Burke beforehand. Stay posted for more details!\n𓆝 𓆟 𓆞 𓆝 𓆟𓆝 𓆟 𓆞 𓆝 𓆟𓆝 𓆟 𓆞 𓆝 𓆟\nNO RSVP REQUIRED.\nHUSKYID IS REQUIRED FOR FREE ADMISSION.",
+   "image": "/ig/posts/DfGOAKhGkyB.jpg",
+   "likes": 17,
+   "comments": 0,
+   "post_counts": {
+    "DfGOAKhGkyB": [
+     17,
+     0
     ]
    },
    "posts": 1
@@ -1478,6 +1505,60 @@
    "rsvps": 0
   },
   {
+   "id": "Dfqod8KvSER-0",
+   "title": "SQL Workshop",
+   "type": "Club",
+   "host": "BITS at UW (@bitsatuw)",
+   "where": "PCAR 190",
+   "pos": [
+    47.65909,
+    -122.30867
+   ],
+   "date": "2026-11-17",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/Dfqod8KvSER/",
+   "source": "instagram",
+   "description": "Join us for a workshop with SQL queries! Featuring a friendly group competition and prizes. Hope to see you there!\n\n📆 Nov 17, Tuesday\n🕐 5:30 - 6:30 PM\n📍 PCAR 190",
+   "image": "/ig/posts/Dfqod8KvSER.jpg",
+   "likes": 21,
+   "comments": 0,
+   "post_counts": {
+    "Dfqod8KvSER": [
+     21,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DftT0fApH_x-0",
+   "title": "Self-Care Coloring Event",
+   "type": "Hangout",
+   "host": "Asian Alliance 4 Mental Health (@aamhuw)",
+   "where": "HUB 238",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-17",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/DftT0fApH_x/",
+   "source": "instagram",
+   "description": "AAMH want to invite you to . . . ♡︎\nSelf-Care Coloring Event🖍️✨\n\nJoin AAMH for our first event of the year! Take a break from your busy week and spend some time getting creative, relaxing, and connecting with others. 💖\n\n🗓️Tuesday, Nov 17\n🕓5:30-6:30 PM\n📍HUB 238\n\nBring yourself, and we'll bring the colors! Can't wait to see you theres ♡︎\n\n#AAMH #SelfCare #asianmentalhealth #mentalhealthmatters",
+   "image": "/ig/posts/DftT0fApH_x.jpg",
+   "likes": 8,
+   "comments": 0,
+   "post_counts": {
+    "DftT0fApH_x": [
+     8,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "lm-evt-w5iWewhrhFvH1tV",
    "title": "Buildspace C6 Demo Day",
    "type": "Club",
@@ -1494,7 +1575,7 @@
    "source": "luma",
    "description": "🚀 cseed buildspace demo day is here!!! 🚀\nFor the past 5 weeks, cseed buildspace cohort 6 members have been working hard on their passion projects for up to 2 hours per week! Now is the time to show off what they've built!\nJoin us with celebrating the incredible work and dedication of projects with a mix of hardware, design, creator, and software project!\nCome out to support our builders, get inspired, and learn about cseed. See you there!\nP.S. Dinner, snacks, and drinks will be provided!\n\n[If you need an accommodation or have any questions or concerns, email us at questions@cseed.co]",
    "image": "https://images.lumacdn.com/uploads/u8/2f1fa951-6568-4646-86e9-33eb7c0e6a6c.png",
-   "rsvps": 111,
+   "rsvps": 112,
    "post_counts": {
     "DfT69kvG4fn": [
      55,
@@ -2384,7 +2465,7 @@
    "source": "luma",
    "description": "cseed buildHER is hosting our last event of fall quarter - buildHER fall EXPO!!!\nCome join us to explore Arduino, 3D modeling, Figma and more surrounded by a community of builders in a welcoming and inquisitive environment.\nThe expo will feature hands-on booths where you can dive into exploring these technologies, and leave having learned something new.\nWe hope to see you there!",
    "image": "https://images.lumacdn.com/uploads/b7/f727062b-2629-4878-969c-c503463fe7e9.jpg",
-   "rsvps": 41,
+   "rsvps": 43,
    "post_counts": {
     "DfplF1sGtgj": [
      66,
@@ -2505,7 +2586,7 @@
   },
   {
    "id": "DfplURJilrU-0",
-   "title": "Thanksgiving Card Social",
+   "title": "Thanksgiving Thank You Card Social",
    "type": "Hangout",
    "host": "The Women's Network: UW (@thewomensnetwork_uw)",
    "where": "Founders Hall 180",
@@ -2526,6 +2607,33 @@
     "DfplURJilrU": [
      34,
      5
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfngdmahiNa-0",
+   "title": "Product Design Workshop",
+   "type": "Club",
+   "host": "UW Women in Informatics (@uwwinfo)",
+   "where": "HUB 334",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-18",
+   "start": "18:00",
+   "end": "19:30",
+   "url": "https://www.instagram.com/p/DfngdmahiNa/",
+   "source": "instagram",
+   "description": "Join REACH and WINFO in exploring how to make products mean more for the people they’re meant for 🪩 \n\nWorking in teams, you’ll take an everyday product and reimagine how to make it more appealing, convenient, and relevant to college students. Whether you’re interested in marketing, design, or technology, you’ll get to put your creativity and strategy to the test!\n\n📅 Wednesday, Nov. 18th\n⏰ 6PM to 7:30PM\n📍 HUB 334\n⭐️ with free food sponsored by Uber One",
+   "image": "/ig/posts/DfngdmahiNa.jpg",
+   "likes": 44,
+   "comments": 0,
+   "post_counts": {
+    "DfngdmahiNa": [
+     44,
+     0
     ]
    },
    "posts": 1
@@ -2585,6 +2693,33 @@
     "Dfnu9jYTEVO": [
      null,
      null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfsC12dpxQn-0",
+   "title": "Portfolio Workshop",
+   "type": "Club",
+   "host": "American Marketing Association (@uw_ama)",
+   "where": "PACCAR 390",
+   "pos": [
+    47.65909,
+    -122.30867
+   ],
+   "date": "2026-11-18",
+   "start": "18:30",
+   "end": "19:30",
+   "url": "https://www.instagram.com/p/DfsC12dpxQn/",
+   "source": "instagram",
+   "description": "AMA Portfolio Workshop! 💼✨\n\nJoin us for our Portfolio Workshop: Building a Portfolio & Personal Brand in the AI Era, led by our Senior Board Advisor, Daya! During this interactive workshop, you’ll learn how to build a standout marketing portfolio, strengthen your personal brand, and explore how to use AI as a tool in the creative process 💚\n\nYou will also have the opportunity to review real portfolios that have landed interviews and discover what makes a candidate stand out to recruiters. Make sure to bring your laptop and come ready to start building your own portfolio in Canva, we can’t wait to see you there! ✒️\n\n📌Join us on: \nWednesday, November 18th\n6:30-7:30 PM\nPACCAR 390\n\n*This workshop is exclusive to paid AMA members. Not a member yet? Check out the link in our bio to join!",
+   "image": "/ig/posts/DfsC12dpxQn.jpg",
+   "likes": 32,
+   "comments": 1,
+   "post_counts": {
+    "DfsC12dpxQn": [
+     32,
+     1
     ]
    },
    "posts": 1
@@ -3037,6 +3172,30 @@
    "posts": 1
   },
   {
+   "id": "DfuqpecOqlD-0",
+   "title": "Special Guest Meeting",
+   "type": "Club",
+   "host": "Hosa UW Chapter (@officialuwhosa)",
+   "where": "Magnuson Health Science Center, T-wing, 5th floor, Room T530",
+   "pos": null,
+   "date": "2026-11-19",
+   "start": "18:30",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DfuqpecOqlD/",
+   "source": "instagram",
+   "description": "Hey UW HOSA members 💜 We’ll be having a special guest at our upcoming meeting from the Office of Undergraduate Research! \n\nWhen: Thursday, November 19th\nTime: 6:30PM-8:00PM\nWhere: Magnuson Health Science Center, T-wing, 5th floor, Room T530\n\n(GUIDE TO NAVIGATE MEETING LOCATION IS PROVIDED IN OUR BIO⬆️⬆️)",
+   "image": "/ig/posts/DfuqpecOqlD.jpg",
+   "likes": 12,
+   "comments": 0,
+   "post_counts": {
+    "DfuqpecOqlD": [
+     12,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfX2A5vS6Zm-0",
    "title": "3v3 Charity Basketball Tournament",
    "type": "Game night",
@@ -3077,7 +3236,16 @@
    "source": "huskylink",
    "description": "This month, we will be hearing from Washington State Library's Youth Consultant, Sara White! She is a former Husky and iYouth member and will come prepared to answer questions about working in the Washington state library for all who are curious. We are very excited to have her and to see you all again.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_631572_iyouth_logo_1c936978-2916-4e67-947e-1b912b5e0371_1113154527.png",
-   "rsvps": 0
+   "rsvps": 0,
+   "post_counts": {
+    "Dfs9Imvqco0": [
+     6,
+     0
+    ]
+   },
+   "likes": 6,
+   "comments": 0,
+   "posts": 1
   },
   {
    "id": "DfSegPhEgBb-3",
@@ -3177,6 +3345,30 @@
    "post_counts": {
     "DfRPoccmylD": [
      24,
+     1
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfC5xLxGI-O-0",
+   "title": "Fall Social",
+   "type": "Hangout",
+   "host": "@imuslimsuw",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-19",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfC5xLxGI-O/",
+   "source": "instagram",
+   "description": "If you are a first year, this is your chance to get involved! 💜\n\niMuslims First-Year Rep applications are officially OPEN! Join our board, represent your fellow students, and help us build community within the iSchool!\n\nOpen to all first-year students and students planning to enter Informatics, including transfers.\n\n📅 Apply by November 20th at 11:59 PM!\n\nInterested in applying? Come meet the board at our Fall Social on November 19th!\n\nWe can’t wait to meet you! ❤️‍🔥",
+   "image": "/ig/posts/DfC5xLxGI-O.jpg",
+   "likes": 22,
+   "comments": 1,
+   "post_counts": {
+    "DfC5xLxGI-O": [
+     22,
      1
     ]
    },
@@ -3432,8 +3624,8 @@
    "source": "instagram",
    "description": "M&M Monday: Industry Professionals Round 2 💼🙌\n\nAMA is excited to introduce our next round of professionals attending our 14th annual Marketing & Mocktails event! Their insights will be directly connected to this year’s M&M theme of “Connection Powers People,” so bring your questions and curiosity to the event 🤝\n\n🖼️ Kat Bryant Flaherty, Director of Marketing & Communications at Seattle Art Museum\n\n👗 Tanya Nguyen, Brand PR Specialist at Nordstrom\n\n⚽️ Kelley Myers, Director of Social Media at Seattle Reign\n\n📲 Samriddhi Simlai, Marketing Manager at Contact.One\n\n📌Buy your ticket:\nFriday, November 20th\n6:00 - 8:00 PM\nAnthony’s Forum, Dempsey Hall\n\n*Purchase tickets at the link in our bio!",
    "image": "/ig/posts/DfQf192GaeW.jpg",
-   "likes": 150,
-   "comments": 0,
+   "likes": 223,
+   "comments": 10,
    "post_counts": {
     "DfQf192GaeW": [
      42,
@@ -3446,9 +3638,17 @@
     "DfiawMLmZq3": [
      37,
      0
+    ],
+    "DftQoTQpdJE": [
+     39,
+     4
+    ],
+    "Dfp5lUuyd_z": [
+     34,
+     6
     ]
    },
-   "posts": 3
+   "posts": 5
   },
   {
    "id": "DfoLr_HEVRb-0",
@@ -3469,6 +3669,33 @@
    "post_counts": {
     "DfoLr_HEVRb": [
      30,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfvDqa1JsvH-0",
+   "title": "Marketing and Mocktails",
+   "type": "Club",
+   "host": "American Marketing Association (@uw_ama)",
+   "where": "Anthony’s Forum, Dempsey Hall",
+   "pos": [
+    47.65911,
+    -122.30781
+   ],
+   "date": "2026-11-20",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DfvDqa1JsvH/",
+   "source": "instagram",
+   "description": "We’d love to give you a gentle push towards our 14th annual Marketing and Mocktails event! Join us for an incredible evening of networking, valuable marketing insights, and new connections. \n\n🗓️Mark your calendar:\nFriday, November 20th\n6:00-8:00 PM \nAnthony’s Forum, Dempsey Hall \n\nMake sure to purchase your tickets from the link in our bio. We can’t wait to see you on Friday! 💚🧡",
+   "image": "/ig/posts/DfvDqa1JsvH.jpg",
+   "likes": 11,
+   "comments": 0,
+   "post_counts": {
+    "DfvDqa1JsvH": [
+     11,
      0
     ]
    },
@@ -3576,9 +3803,9 @@
   {
    "id": "DfqL-YihF9s-0",
    "title": "Thrillest",
-   "type": "Hangout",
+   "type": "Club",
    "host": "TSAUW 🇹🇼 (@tsauw)",
-   "where": "Club Sur (2901 1st Ave S, Seattle, WA 98134)",
+   "where": "Club Sur (2901 1st Ave S, Seattle, WA  98134)",
    "pos": null,
    "date": "2026-11-20",
    "start": "21:00",

@@ -192,7 +192,7 @@
   ]
  },
  "aka_betatheta1933": {
-  "status": "maybe",
+  "status": "huskylink",
   "found": [
    "bio of @uwnphc",
    "https://uwnphc.wordpress.com/aka/"
@@ -200,7 +200,8 @@
   "name": "Beta Theta Chapter",
   "bio": "The Beautiful Beta Theta Chapter of @akasorority1908 Inc®. Award winning, 2x @uwnphc D9 Chapter of the Year. Serving Seattle since 1933. #AKABΘ",
   "latest": "2026-11-03",
-  "checked": "2026-11-14"
+  "checked": "2026-11-14",
+  "why": "Alpha Kappa Alpha Sorority, Incorporated Beta Theta Chapter"
  },
  "alex.ciccanti": {
   "status": "new",
@@ -317,7 +318,7 @@
   ]
  },
  "ao_dst": {
-  "status": "maybe",
+  "status": "club",
   "found": [
    "bio of @uwnphc",
    "https://uwnphc.wordpress.com/delta-sigma-theta-sorority-inc/"
@@ -325,7 +326,8 @@
   "name": "Alpha Omicron Chapter of ΔΣΘ",
   "bio": "The Always Owt Alpha Omicron Chapter of Delta Sigma Theta Sorority, Inc. \n⠀\nChartered in 1933 - First D9 Organization in the PNW. @uofwa",
   "latest": "2026-10-22",
-  "checked": "2026-11-14"
+  "checked": "2026-11-14",
+  "why": "UW sorority chapter"
  },
  "aphiooz": {
   "status": "new",
@@ -453,10 +455,13 @@
   ]
  },
  "autonomousroboticsteam": {
-  "status": "new",
+  "status": "inactive",
   "found": [
    "https://www.cs.washington.edu/academics/undergraduate/undergrad-student-life/student-organizations"
-  ]
+  ],
+  "name": null,
+  "why": "latest post none",
+  "checked": "2026-11-14"
  },
  "ayaelkd": {
   "status": "new",
@@ -862,10 +867,13 @@
   ]
  },
  "dlp_psi": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "https://qsc.asuw.org/oncampus/"
-  ]
+  ],
+  "name": "UW Delta Lambda Phi",
+  "why": "Delta Lambda Phi",
+  "checked": "2026-11-14"
  },
  "dormchair_therapist": {
   "status": "new",
@@ -2079,10 +2087,13 @@
   ]
  },
  "ostemuw": {
-  "status": "new",
+  "status": "inactive",
   "found": [
    "https://qsc.asuw.org/oncampus/"
-  ]
+  ],
+  "name": "oSTEM@University of Washington",
+  "why": "latest post 2025-05-31",
+  "checked": "2026-11-14"
  },
  "osuclubsoccer": {
   "status": "new",
@@ -2534,10 +2545,13 @@
   ]
  },
  "soc_in_lis_uw": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "https://ischool.uw.edu/current/student-groups"
-  ]
+  ],
+  "name": "Students of Color in LIS at UW",
+  "why": "Students of Color in LIS at the University of Washington",
+  "checked": "2026-11-14"
  },
  "sofia.richart": {
   "status": "new",
@@ -3089,10 +3103,13 @@
   "checked": "2026-11-13"
  },
  "uwbcse": {
-  "status": "new",
+  "status": "inactive",
   "found": [
    "https://www.cs.washington.edu/academics/undergraduate/undergrad-student-life/student-organizations"
-  ]
+  ],
+  "name": "Black in Computer Science and Engineering @ UW",
+  "why": "latest post none",
+  "checked": "2026-11-14"
  },
  "uwbrigades": {
   "found": [

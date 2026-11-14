@@ -195,9 +195,9 @@
   "checked": "2026-10-24"
  },
  "Alpha Kappa Alpha Sorority, Incorporated Beta Theta Chapter": {
-  "handle": null,
-  "from": "guess-none",
-  "checked": "2026-11-07"
+  "handle": "aka_betatheta1933",
+  "from": "mentioned",
+  "checked": "2026-11-14"
  },
  "alpha Kappa Delta Phi at University of Washington": {
   "handle": "uw_akdphi",
@@ -1510,9 +1510,9 @@
   "checked": "2026-11-13"
  },
  "Delta Lambda Phi": {
-  "handle": null,
-  "from": "guess-none",
-  "checked": "2026-11-07"
+  "handle": "dlp_psi",
+  "from": "mentioned",
+  "checked": "2026-11-14"
  },
  "Delta Pi Zeta": {
   "handle": null,
@@ -4915,9 +4915,9 @@
   "checked": "2026-11-07"
  },
  "Students of Color in LIS at the University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "soc_in_lis_uw",
+  "from": "mentioned",
+  "checked": "2026-11-14"
  },
  "StudentsCare at UW": {
   "handle": null,

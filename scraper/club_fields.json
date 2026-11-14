@@ -316,7 +316,7 @@
 "fields": [
 "Business"
 ],
-"from": "American Marketing Association, UW Chapter|Student organization linking members with marketing trends and industry professionals."
+"from": "American Marketing Association, UW Chapter|Student chapter focused on marketing skills, networking, and portfolio building."
 },
 "americanmedicalwomensassociationatuwsomgraduate": {
 "fields": [
@@ -515,7 +515,7 @@
 "fields": [
 "Health"
 ],
-"from": "Asian Alliance for Mental Health|We strive to promote discussions and destigmatize mental health within the Asian community through open dialogue and…"
+"from": "Asian Alliance for Mental Health|UW group raising awareness of Asian mental health."
 },
 "asianamericanchristianfellowship": {
 "fields": [],
@@ -523,7 +523,7 @@
 },
 "asianamericanintervarsitychristianfellowship": {
 "fields": [],
-"from": "Asian American Intervarsity Christian Fellowship|Christian fellowship empowering Asian American students on campus."
+"from": "Asian American Intervarsity Christian Fellowship|Asian American Christian fellowship at UW."
 },
 "asianboardgameclub": {
 "fields": [],
@@ -634,10 +634,8 @@
 "from": "Association of Information Management Students|To foster a diverse, positive, open and collaborative environment within the MSIM community, as well as to provide…"
 },
 "associationoflatinoprofessionalsforamerica": {
-"fields": [
-"Business"
-],
-"from": "Association of Latino Professionals for America|Latino professional network empowering future leaders at UW."
+"fields": [],
+"from": "Association of Latino Professionals for America|Latino professional association supporting UW students across majors."
 },
 "associationofmedicalspecialties": {
 "fields": [
@@ -1717,7 +1715,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "DubsTech|UW’s largest tech community hosting workshops and industry panels."
+"from": "DubsTech|UW's largest tech community offering workshops, hackathons, and talks."
 },
 "dubsartclub": {
 "fields": [
@@ -2455,7 +2453,7 @@
 "fields": [
 "Health"
 ],
-"from": "HOSA: Future Health Professionals, UW Chapter|HOSA chapter for future health professionals offering service and leadership opportunities."
+"from": "HOSA: Future Health Professionals, UW Chapter|Student chapter preparing future health professionals through meetings and volunteer work."
 },
 "houndsofmusicacappella": {
 "fields": [
@@ -2827,8 +2825,10 @@
 "from": "implement at UW|Implement at UW is a studentrun club where UW students from all majors work on real projects, gain handson experience…"
 },
 "imuslims": {
-"fields": [],
-"from": "iMuslims|iMuslims is dedicated to providing Muslim students at the iSchool with professional support while fostering an…"
+"fields": [
+"Computing & Math"
+],
+"from": "iMuslims|Group empowering Muslim students in tech at UW."
 },
 "incarceratedmothersadvocacyproject": {
 "fields": [
@@ -3001,10 +3001,8 @@
 "from": "Italian Language and Culture Club at UW|Italian Club at UW is a place for Students interested in all things Italian from language, culture and more!"
 },
 "iyouth": {
-"fields": [
-"Computing & Math"
-],
-"from": "iYouth|We are the youth services student organization and resource network at the iSchool, aiming to prepare and connect…"
+"fields": [],
+"from": "iYouth|Student org linking youth services resources and career preparation at UW iSchool."
 },
 "jacksonschooljournalofinternationalstudies": {
 "fields": [
@@ -5195,9 +5193,9 @@
 },
 "studentsofcolorinlis": {
 "fields": [
-"Social Sciences"
+"Computing & Math"
 ],
-"from": "Students of Color in LIS at the University of Washington|The purpose of this organization shall be to help support students of color in the Masters of Library"
+"from": "Students of Color in LIS at the University of Washington|Community supporting students of color in UW's Library and Information Science program."
 },
 "studentscare": {
 "fields": [
@@ -6113,7 +6111,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Women in Informatics|WINFO is dedicated to uplifting women and underrepresented voices in technology."
+"from": "Women in Informatics|Organization empowering women and all students in tech leadership and skill development."
 },
 "womeninlawsociety": {
 "fields": [
@@ -6346,5 +6344,12 @@
 "foodsystemsleadershipcoalition": {
 "fields": [],
 "from": "Food Systems Leadership Coalition|Student coalition addressing food system challenges at UW."
+},
+"bits": {
+"fields": [
+"Business",
+"Computing & Math"
+],
+"from": "BITS at UW|Student group linking business and technology at UW."
 }
 }

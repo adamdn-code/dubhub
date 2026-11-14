@@ -6,8 +6,8 @@
    "instagram": "https://www.instagram.com/aaivuw/",
    "website": "https://linktr.ee/aaivuw",
    "category": "Faith & Spirituality",
-   "about": "Christian fellowship empowering Asian American students on campus.",
-   "description": "AAIV UW is a Christian fellowship that brings together Asian American students to grow in faith and build community on campus. They host events like Fall Con and leadership introductions, encouraging friendships across the Pacific Northwest.",
+   "about": "Asian American Christian fellowship at UW.",
+   "description": "AAIV UW provides a faith‑based community for Asian American students, encouraging spiritual growth, leadership, and service. Through worship, retreats, and team ministries, members deepen their relationship with God and each other.",
    "logo": "/ig/clubs/aaivuw.jpg",
    "last_event": "2026-11-08",
    "fields": []
@@ -55,13 +55,11 @@
    "instagram": "https://www.instagram.com/alpfauw/",
    "website": "https://linktr.ee/alpfauw",
    "category": "Business",
-   "about": "Latino professional network empowering future leaders at UW.",
-   "description": "ALPFA UW is the Association of Latino Professionals for America chapter at UW, empowering future leaders across all majors. They host professional networking events, cultural celebrations like Día de Muertos, and career‑building activities.",
+   "about": "Latino professional association supporting UW students across majors.",
+   "description": "ALPFA UW empowers Latino and Latinx students to become future leaders through networking, cultural celebrations, and career development. Events range from Día de Muertos gatherings to alumni panels and professional workshops.",
    "logo": "/ig/clubs/alpfauw.jpg",
    "last_event": "2026-11-13",
-   "fields": [
-    "Business"
-   ]
+   "fields": []
   },
   {
    "name": "Alpha Phi Alpha Fraternity Incorporated",
@@ -122,8 +120,8 @@
    "instagram": "https://www.instagram.com/uw_ama/",
    "website": "https://linktr.ee/uw.ama",
    "category": "Business",
-   "about": "Student organization linking members with marketing trends and industry professionals.",
-   "description": "AMA hosts weekly Trend Talk sessions on brand strategies, M&M Monday panels with marketing pros, and an agency kickoff for student consultants. The group celebrates top chapter rankings while fostering networking and skill‑building.",
+   "about": "Student chapter focused on marketing skills, networking, and portfolio building.",
+   "description": "UW AMA helps students develop marketing expertise through events like the annual Marketing & Mocktails networking night and portfolio workshops. The chapter offers insights on personal branding and AI‑era marketing, and celebrates building connections.",
    "logo": "/ig/clubs/uw_ama.jpg",
    "last_event": "2026-11-20",
    "fields": [
@@ -219,6 +217,22 @@
    "last_event": "2026-11-09",
    "fields": [
     "Computing & Math"
+   ]
+  },
+  {
+   "name": "Asian Alliance for Mental Health",
+   "handle": "aamhuw",
+   "instagram": "https://www.instagram.com/aamhuw/",
+   "website": "https://linktr.ee/aamhuw",
+   "category": "Service",
+   "about": "UW group raising awareness of Asian mental health.",
+   "description": "Asian Alliance for Mental Health creates a safe, supportive environment for Asian students to discuss mental‑wellness. Through storytelling, events like self‑care coloring, and community building, they work to break stigma.",
+   "logo": "/ig/clubs/aamhuw.jpg",
+   "discord": "https://discord.gg/cnyxqtzB77",
+   "discord_server": "UW Asian Alliance for Mental Health",
+   "last_event": "2026-11-17",
+   "fields": [
+    "Health"
    ]
   },
   {
@@ -441,6 +455,21 @@
    "fields": [
     "Engineering",
     "Sciences"
+   ]
+  },
+  {
+   "name": "BITS at UW",
+   "handle": "bitsatuw",
+   "instagram": "https://www.instagram.com/bitsatuw/",
+   "website": "https://linktr.ee/uwbits",
+   "category": "Business",
+   "about": "Student group linking business and technology at UW.",
+   "description": "BITS empowers students at the intersection of business and tech through workshops, competitions, and career panels. Join to build skills, network with professionals, and explore consulting and entrepreneurship.",
+   "logo": "/ig/clubs/bitsatuw.jpg",
+   "last_event": "2026-11-17",
+   "fields": [
+    "Business",
+    "Computing & Math"
    ]
   },
   {
@@ -826,8 +855,8 @@
    "instagram": "https://www.instagram.com/dubstechuw/",
    "website": "https://linktr.ee/dubstech",
    "category": "Tech",
-   "about": "UW’s largest tech community hosting workshops and industry panels.",
-   "description": "Dubstech is UW’s largest tech community, offering workshops, hackathons, and speaker panels. Recent events include a Women in Tech panel featuring industry professionals sharing their career journeys.",
+   "about": "UW's largest tech community offering workshops, hackathons, and talks.",
+   "description": "Dubstech connects students passionate about design, data science, and software engineering through panels, hackathons, and skill‑building workshops. Meet industry professionals and collaborate on tech projects.",
    "logo": "/ig/clubs/dubstechuw.jpg",
    "discord": "https://discord.gg/RJQNJmuCcw",
    "discord_server": "DubsTech",
@@ -1081,10 +1110,10 @@
    "instagram": "https://www.instagram.com/officialuwhosa/",
    "website": "https://linktr.ee/uwhosa",
    "category": "Service",
-   "about": "HOSA chapter for future health professionals offering service and leadership opportunities.",
-   "description": "HOSA UW connects students interested in health careers through volunteering, workshops, and leadership conferences. The chapter also holds meetings to discuss competitions and professional development.",
+   "about": "Student chapter preparing future health professionals through meetings and volunteer work.",
+   "description": "HOSA UW brings together students interested in health careers. The chapter offers guest speakers, volunteer projects such as clothing boutique clean‑ups, and information on competitions and leadership conferences. It’s a great way to gain experience and network in the health field.",
    "logo": "/ig/clubs/officialuwhosa.jpg",
-   "last_event": "2026-11-14",
+   "last_event": "2026-11-19",
    "fields": [
     "Health"
    ]
@@ -1246,6 +1275,20 @@
    "fields": []
   },
   {
+   "name": "iMuslims",
+   "handle": "imuslimsuw",
+   "instagram": "https://www.instagram.com/imuslimsuw/",
+   "website": "http://linktr.ee/imuslims",
+   "category": "Tech",
+   "about": "Group empowering Muslim students in tech at UW.",
+   "description": "iMuslims UW builds community for Muslim students in informatics and tech, offering socials, leadership roles, and technical workshops like Microsoft Copilot sessions. All are welcome to join and thrive.",
+   "logo": "/ig/clubs/imuslimsuw.jpg",
+   "last_event": "2026-11-19",
+   "fields": [
+    "Computing & Math"
+   ]
+  },
+  {
    "name": "Indian Student Association at University of Washington",
    "handle": "uwisa",
    "instagram": "https://www.instagram.com/uwisa/",
@@ -1315,16 +1358,15 @@
   },
   {
    "name": "iYouth",
-   "website": "https://huskylink.washington.edu/iyouthuw/",
-   "category": "Academic",
-   "about": "We are the youth services student organization and resource network at the iSchool, aiming to prepare and connect…",
-   "description": "We are the youth services student organization and resource network at the iSchool, aiming to prepare and connect students to their future careers.",
-   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_641156_iYouth_logo_3_a470d3b4-6693-40e4-9653-726a9fba8da9_10717116.png",
-   "source": "huskylink",
+   "handle": "iyouth_uw",
+   "instagram": "https://www.instagram.com/iyouth_uw/",
+   "website": "http://huskylink.washington.edu/iyouthuw/club_signup",
+   "category": "Service",
+   "about": "Student org linking youth services resources and career preparation at UW iSchool.",
+   "description": "iYouth connects UW iSchool students with youth services resources and career guidance. They host virtual meetings with professionals like library consultants and share information about relevant courses. Join to learn about skill‑building opportunities through the Washington State Library.",
+   "logo": "/ig/clubs/iyouth_uw.jpg",
    "last_event": "2026-11-19",
-   "fields": [
-    "Computing & Math"
-   ]
+   "fields": []
   },
   {
    "name": "Japanese Student Association at the University of Washington",
@@ -2110,6 +2152,20 @@
    ]
   },
   {
+   "name": "Students of Color in LIS at the University of Washington",
+   "handle": "soc_in_lis_uw",
+   "instagram": "https://www.instagram.com/soc_in_lis_uw/",
+   "website": "https://linktr.ee/SOCLISUW",
+   "category": "Cultural",
+   "about": "Community supporting students of color in UW's Library and Information Science program.",
+   "description": "SOCLIS creates a supportive network for MLIS students of color, hosting events like museum visits and board introductions. Members can get involved in leadership, plan activities, and vote for board positions. It fosters connection and representation within the iSchool.",
+   "logo": "/ig/clubs/soc_in_lis_uw.jpg",
+   "last_event": "2026-11-14",
+   "fields": [
+    "Computing & Math"
+   ]
+  },
+  {
    "name": "Sumo Union Membership Organization",
    "website": "https://huskylink.washington.edu/sumounionmembershiporganization/",
    "category": "Sports",
@@ -2600,6 +2656,20 @@
    "description": "Women in Computing at UW provides a community for female and non‑binary CSE students, offering mentorship panels, career workshops, and social gatherings like Friendsgiving. Members can join committees and connect via RSVPs and socials.",
    "logo": "/ig/clubs/uw.wic.jpg",
    "last_event": "2026-11-17",
+   "fields": [
+    "Computing & Math"
+   ]
+  },
+  {
+   "name": "Women in Informatics",
+   "handle": "uwwinfo",
+   "instagram": "https://www.instagram.com/uwwinfo/",
+   "website": "http://linktr.ee/uwwinfo",
+   "category": "Tech",
+   "about": "Organization empowering women and all students in tech leadership and skill development.",
+   "description": "UW Women in Informatics (WINFO) promotes diversity in technology by offering workshops, resume reviews, and collaborative design challenges. Events like Crumbs & Connections and product‑reimagining sessions help members build technical and professional skills. All majors and genders are welcome.",
+   "logo": "/ig/clubs/uwwinfo.jpg",
+   "last_event": "2026-11-18",
    "fields": [
     "Computing & Math"
    ]

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14T04:21",
+ "updated": "2026-11-14T13:17",
  "applications": [
   {
    "id": "DfhKZFymwHW",
@@ -48,6 +48,18 @@
    "posted": "2026-11-05",
    "logo": "/ig/clubs/ceramicsclubatuw.jpg",
    "category": "Social"
+  },
+  {
+   "id": "DfC5xLxGI-O",
+   "host": "@imuslimsuw",
+   "for": "First-Year Rep",
+   "kind": "Officer & board",
+   "deadline": "2026-11-20",
+   "link": null,
+   "post": "https://www.instagram.com/p/DfC5xLxGI-O/",
+   "posted": "2026-10-28",
+   "logo": "/ig/clubs/imuslimsuw.jpg",
+   "category": "Academic"
   },
   {
    "id": "Dfd8qY_JnSc",
@@ -540,6 +552,18 @@
    "posted": "2026-11-12",
    "logo": "/ig/clubs/mapsuw.jpg",
    "category": "Academic"
+  },
+  {
+   "id": "DfqHD9HD8d-",
+   "host": "AAIV UW | Asian American InterVarsity (@aaivuw)",
+   "for": "AAIV Teams",
+   "kind": "Team & staff",
+   "deadline": null,
+   "link": "https://linktr.ee/aaivuw",
+   "post": "https://www.instagram.com/p/DfqHD9HD8d-/",
+   "posted": "2026-11-12",
+   "logo": "/ig/clubs/aaivuw.jpg",
+   "category": "Faith & Spirituality"
   }
  ]
 }
