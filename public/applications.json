@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T15:32",
+ "updated": "2026-11-13T18:52",
  "applications": [
   {
    "id": "DfgkTL4NVsG",
@@ -23,6 +23,18 @@
    "post": "https://www.instagram.com/p/DfjO8atmyEm/",
    "posted": "2026-11-09",
    "logo": "/ig/clubs/makers_uw.jpg",
+   "category": "Academic"
+  },
+  {
+   "id": "DfhKZFymwHW",
+   "host": "Partners in Health Engage UW (@pihengageuw)",
+   "for": "Board leadership",
+   "kind": "Officer & board",
+   "deadline": "2026-11-15",
+   "link": "https://tinyurl.com/uwpihe-leadership",
+   "post": "https://www.instagram.com/p/DfhKZFymwHW/",
+   "posted": "2026-11-09",
+   "logo": "/ig/clubs/pihengageuw.jpg",
    "category": "Academic"
   },
   {
@@ -60,6 +72,18 @@
    "posted": "2026-11-05",
    "logo": "/ig/clubs/ceramicsclubatuw.jpg",
    "category": "Social"
+  },
+  {
+   "id": "Dfd8qY_JnSc",
+   "host": "Community Health Outreach (@uw_cho)",
+   "for": "Officer applications",
+   "kind": "Officer & board",
+   "deadline": "2026-11-20",
+   "link": null,
+   "post": "https://www.instagram.com/p/Dfd8qY_JnSc/",
+   "posted": "2026-11-07",
+   "logo": "/ig/clubs/uw_cho.jpg",
+   "category": "Academic"
   },
   {
    "id": "DfiGjPzD-l6",
@@ -278,6 +302,18 @@
    "category": "Social"
   },
   {
+   "id": "De2OKezPKjn",
+   "host": "The Bean Basket (@asuwbeanbasket)",
+   "for": "Manager position",
+   "kind": "Team & staff",
+   "deadline": null,
+   "link": "https://asuweb2.wixsite.com/beanbasket",
+   "post": "https://www.instagram.com/p/De2OKezPKjn/",
+   "posted": "2026-10-23",
+   "logo": "/ig/clubs/asuwbeanbasket.jpg",
+   "category": "Service"
+  },
+  {
    "id": "De46YqOhGWy",
    "host": "The Garden Of Ideas (@gardenofideasuw)",
    "for": "Staff writers",
@@ -314,6 +350,18 @@
    "category": "Sports"
   },
   {
+   "id": "De76TggPTrw",
+   "host": "Neurobiology Club @ UWashington (@uwneurobiologyclub)",
+   "for": "Volunteer opportunity",
+   "kind": "Team & staff",
+   "deadline": null,
+   "link": null,
+   "post": "https://www.instagram.com/p/De76TggPTrw/",
+   "posted": "2026-10-25",
+   "logo": "/ig/clubs/uwneurobiologyclub.jpg",
+   "category": "Academic"
+  },
+  {
    "id": "De-urQeg-8Z",
    "host": "ASUW Latine Student Commission (@asuwlsc)",
    "for": "Intern positions",
@@ -336,6 +384,18 @@
    "posted": "2026-10-27",
    "logo": "/ig/clubs/huskywrestlingclub.jpg",
    "category": "Sports"
+  },
+  {
+   "id": "DfA8jhMgf8B",
+   "host": "Food Systems Leadership Coalition (@uwfslc)",
+   "for": "Membership application",
+   "kind": "Membership",
+   "deadline": null,
+   "link": null,
+   "post": "https://www.instagram.com/p/DfA8jhMgf8B/",
+   "posted": "2026-10-27",
+   "logo": "/ig/clubs/uwfslc.jpg",
+   "category": null
   },
   {
    "id": "DfDGi62j11K",
@@ -374,6 +434,18 @@
    "category": "Engineering"
   },
   {
+   "id": "DfSjmzBmy0X",
+   "host": "UW Delta Tau Delta | ΔΤΔ (@uwdelts)",
+   "for": "Winter Rush interest",
+   "kind": "Membership",
+   "deadline": null,
+   "link": "https://docs.google.com/forms/d/e/1FAIpQLScPiPOWRacdf5gRRQKtZi6_WfYZyq5ZjwHlaHKgKynaqQ4Q-Q/viewform",
+   "post": "https://www.instagram.com/p/DfSjmzBmy0X/",
+   "posted": "2026-11-03",
+   "logo": "/ig/clubs/uwdelts.jpg",
+   "category": "Greek Life"
+  },
+  {
    "id": "DfWFYlKm2yG",
    "host": "Origami Club at UW (@uw_origamiclub)",
    "for": "General membership",
@@ -395,6 +467,18 @@
    "post": "https://www.instagram.com/p/DfWc1yAm6rz/",
    "posted": "2026-11-04",
    "logo": "/ig/clubs/uw_pad.jpg",
+   "category": "Academic"
+  },
+  {
+   "id": "DfWK6r6FArn",
+   "host": "Community Health Outreach (@uw_cho)",
+   "for": "Executive Board and Writing Team",
+   "kind": "Officer & board",
+   "deadline": null,
+   "link": "https://linktr.ee/UWCHO",
+   "post": "https://www.instagram.com/p/DfWK6r6FArn/",
+   "posted": "2026-11-04",
+   "logo": "/ig/clubs/uw_cho.jpg",
    "category": "Academic"
   },
   {

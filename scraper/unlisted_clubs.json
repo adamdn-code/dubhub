@@ -1657,10 +1657,13 @@
   "why": "student‑run food system coalition"
  },
  "uwgreekstakeaction": {
-  "status": "new",
+  "status": "inactive",
   "found": [
    "https://uwpanhellenic.com/physical-health"
-  ]
+  ],
+  "name": "UW Greeks Take Action",
+  "why": "latest post 2021-01-20",
+  "checked": "2026-11-13"
  },
  "uwischool": {
   "status": "new",
@@ -1675,16 +1678,26 @@
   ]
  },
  "uwmenswp": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "https://www.washington.edu/ima/rec-clubs/club-offerings/"
-  ]
+  ],
+  "name": "UW Men’s Water Polo",
+  "bio": "University of Washington Men’s Water Polo Club🤽‍♂️\n10X CWPA Northwest Division Champions🏆 \nContact: uwmenswp@gmail.com",
+  "latest": "2026-10-12",
+  "checked": "2026-11-13",
+  "why": "Husky Water Polo"
  },
  "uwneurobiologyclub": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "https://health.asuw.org/rsos-2/"
-  ]
+  ],
+  "name": "Neurobiology Club @ UWashington",
+  "bio": "Events for undergraduate students interested and seeking mentorship in Neuroscience or related fields 🧠 Follow us to stay updated!",
+  "latest": "2026-11-08",
+  "checked": "2026-11-13",
+  "why": "Neurobiology Club"
  },
  "uwnightmarket": {
   "status": "new",
@@ -1693,16 +1706,22 @@
   ]
  },
  "uwprepa": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "https://health.asuw.org/rsos-2/"
-  ]
+  ],
+  "name": "UW Pre-PA Club 🩺",
+  "why": "PrePA Club at UW",
+  "checked": "2026-11-13"
  },
  "uwpsiu": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "https://uwifc.squarespace.com/psi-upsilon"
-  ]
+  ],
+  "name": "Psi Upsilon ΨΥ | UW",
+  "why": "Psi Upsilon",
+  "checked": "2026-11-13"
  },
  "uwrcys": {
   "status": "new",
@@ -1711,16 +1730,24 @@
   ]
  },
  "uwseha": {
-  "status": "new",
+  "status": "club",
   "found": [
    "https://sustainability.uw.edu/action/students/groups"
-  ]
+  ],
+  "name": "SEHA University of Washington",
+  "bio": "The Student Environmental Health Association is committed to providing community engagement, education, and professional development opportunities.",
+  "latest": "2026-11-10",
+  "checked": "2026-11-13",
+  "why": "Student Environmental Health Association run by undergrads"
  },
  "uwsigmanu": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "https://uwifc.squarespace.com/sigma-nu"
-  ]
+  ],
+  "name": "UW Sigma Nu",
+  "why": "Sigma Nu",
+  "checked": "2026-11-13"
  },
  "uwsoa": {
   "status": "new",
@@ -1729,22 +1756,33 @@
   ]
  },
  "uwtekes": {
-  "status": "new",
+  "status": "club",
   "found": [
    "https://uwifc.squarespace.com/tau-kappa-epsilon"
-  ]
+  ],
+  "name": "UW Tau Kappa Epsilon",
+  "bio": "Chi Chapter @ The University of Washington 🔻 \nLongest standing TKE Chapter\nBetter Men for a Better World.\n•••\nSam’s Law Compliance - first link in bio",
+  "latest": "2026-08-17",
+  "checked": "2026-11-13",
+  "why": "Tau Kappa Epsilon fraternity chapter at UW"
  },
  "uwthetadelts": {
-  "status": "new",
+  "status": "missing",
   "found": [
    "https://uwifc.squarespace.com/theta-delta-chi"
-  ]
+  ],
+  "checked": "2026-11-13"
  },
  "uwthetaxi": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "https://uwifc.squarespace.com/theta-xi"
-  ]
+  ],
+  "name": "Theta Xi",
+  "bio": "To Lead. To Serve.\nUpsilon Chapter | Est. 1915 \nUniversity of Washington\nSam’s Law: 0 violations in the past 5 years",
+  "latest": "2026-11-06",
+  "checked": "2026-11-13",
+  "why": "Theta Xi Fraternity"
  },
  "uwtimber": {
   "status": "new",

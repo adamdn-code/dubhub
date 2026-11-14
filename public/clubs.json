@@ -387,6 +387,18 @@
    ]
   },
   {
+   "name": "BeautifyUdub",
+   "handle": "beautifyudub",
+   "instagram": "https://www.instagram.com/beautifyudub/",
+   "website": "https://open.spotify.com/show/6UK4oBgPw86rsbbr6d0w7a?si=2Lyd3REySUOhuzfxgxuxvg",
+   "category": "Service",
+   "about": "Organizes campus clean‑ups and encourages weekly trash‑pick‑up participation.",
+   "description": "BeautifyUdub rallies students to keep campus clean by organizing weekly trash pickups and larger clean‑up events, like the recent Greek Row collaboration. The club also runs leadership initiatives and fun activities to keep members engaged.",
+   "logo": "/ig/clubs/beautifyudub.jpg",
+   "last_event": "2026-11-15",
+   "fields": []
+  },
+  {
    "name": "Bengali Students Association",
    "handle": "bsa.uw",
    "instagram": "https://www.instagram.com/bsa.uw/",
@@ -773,6 +785,18 @@
    ]
   },
   {
+   "name": "Delta Tau Delta",
+   "handle": "uwdelts",
+   "instagram": "https://www.instagram.com/uwdelts/",
+   "website": "https://docs.google.com/forms/d/e/1FAIpQLScPiPOWRacdf5gRRQKtZi6_WfYZyq5ZjwHlaHKgKynaqQ4Q-Q/viewform",
+   "category": "Greek Life",
+   "about": "Brotherhood focused on truth, courage, faith, and service.",
+   "description": "Delta Tau Delta is a historic fraternity that emphasizes truth, courage, faith, and power. Brothers host social gatherings, live music events, and philanthropy nights for the UW community.",
+   "logo": "/ig/clubs/uwdelts.jpg",
+   "last_event": "2026-11-14",
+   "fields": []
+  },
+  {
    "name": "Disability and Deaf Cultural Center",
    "handle": "uwdcenter",
    "instagram": "https://www.instagram.com/uwdcenter/",
@@ -907,6 +931,18 @@
    "fields": []
   },
   {
+   "name": "Food Systems Leadership Coalition",
+   "handle": "uwfslc",
+   "instagram": "https://www.instagram.com/uwfslc/",
+   "website": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=W9229i_wGkSZoBYqxQYL0g-1luRnWlJOmAHj6j-RGAlUOEhHQjdWTUFMNkJTM0pGMVRVVDg2QzhOMy4u",
+   "category": "Service",
+   "about": "Student coalition addressing food system challenges at UW.",
+   "description": "The Food Systems Leadership Coalition unites students to improve the UW food system. Through workshops, discussions, and events they highlight topics like Black farmers’ challenges and campus nutrition. Get involved to advocate for equitable and sustainable food practices.",
+   "logo": "/ig/clubs/uwfslc.jpg",
+   "last_event": "2026-11-19",
+   "fields": []
+  },
+  {
    "name": "Formula Motorsports",
    "handle": "uwformula",
    "instagram": "https://www.instagram.com/uwformula/",
@@ -1002,6 +1038,18 @@
    ]
   },
   {
+   "name": "Green Greek Representative Program",
+   "handle": "greengreeksuw",
+   "instagram": "https://www.instagram.com/greengreeksuw/",
+   "website": "https://groupme.com/join_group/110003433/JM19NAT7",
+   "category": "Service",
+   "about": "Promotes sustainability on campus through meetings, events, and clean‑ups.",
+   "description": "Green Greeks is a UW environmental RSO that promotes sustainability through regular meetings and campus clean‑ups. They partner with groups like BeautifyUdub to tackle larger projects such as Greek Row clean‑ups.",
+   "logo": "/ig/clubs/greengreeksuw.jpg",
+   "last_event": "2026-11-15",
+   "fields": []
+  },
+  {
    "name": "Hillel at the UW: Jewish Center for Campus Life",
    "handle": "huskyhillel",
    "instagram": "https://www.instagram.com/huskyhillel/",
@@ -1047,10 +1095,10 @@
    "instagram": "https://www.instagram.com/hawaiiclubatuw/",
    "website": "https://linktr.ee/hawaiiclubatuw",
    "category": "Cultural",
-   "about": "UW club connecting students through Hawaiian culture, socials, tailgates, and games.",
-   "description": "The Hawai‘i Club brings UW students together for Hawaiian‑themed socials, tailgates, and fun activities like scavenger‑hunt races around Seattle. Join to meet new friends and celebrate island culture.",
+   "about": "Celebrates Hawaiian culture and community with events and gatherings.",
+   "description": "Hui Hoaloha Ulana brings Hawaiian culture to campus with meetings, mixers, and spirited tailgate gatherings. The club offers a welcoming space for students to share traditions and have fun together.",
    "logo": "/ig/clubs/hawaiiclubatuw.jpg",
-   "last_event": "2026-11-07",
+   "last_event": "2026-11-14",
    "fields": []
   },
   {
@@ -1203,8 +1251,8 @@
    "instagram": "https://www.instagram.com/uwisa/",
    "website": "https://linktr.ee/UWISA",
    "category": "Cultural",
-   "about": "Indian student organization hosting cultural socials and events.",
-   "description": "The Indian Student Association celebrates Indian culture with ticketed socials, live DJs, and vibrant gatherings. Members enjoy music, dance, and community connections on campus.",
+   "about": "Celebrates Indian culture with festivals, music, and community gatherings.",
+   "description": "The Indian Student Association celebrates Indian heritage with festivals, dance, and music events. They promote cultural pride and community through concerts, ticketed parties, and student‑run activities.",
    "logo": "/ig/clubs/uwisa.jpg",
    "last_event": "2026-11-13",
    "fields": []
@@ -1551,9 +1599,9 @@
    "handle": "uwclassmates",
    "instagram": "https://www.instagram.com/uwclassmates/",
    "website": "http://uwclassmate.com/",
-   "category": "Cultural",
-   "about": "Chinese student network connecting classmates and sharing campus resources.",
-   "description": "华大课友 connects UW international and Chinese‑speaking students through a shared resource wall and fun campus events. Activities include tea‑talks, treasure hunts, and giveaways of tech and toy prizes.",
+   "category": "Social",
+   "about": "Connects UW international students with classmates and campus resources.",
+   "description": "华大课友 helps UW international students find classmates and campus resources, offering a “classmate wall” and fun activities like scavenger hunts. It’s a friendly hub for meeting peers and exploring campus together.",
    "logo": "/ig/clubs/uwclassmates.jpg",
    "last_event": "2026-11-13",
    "fields": []
@@ -1604,8 +1652,8 @@
    "instagram": "https://www.instagram.com/uwpersiancircle/",
    "website": "https://linktr.ee/uwpersiancircle",
    "category": "Cultural",
-   "about": "Persian cultural and social community hosting gatherings, baking contests, and fun events.",
-   "description": "The Persian Circle creates a vibrant cultural community with events like baking competitions and bowling nights. It welcomes anyone interested in Persian food, music, and friendship.",
+   "about": "Fosters Persian culture through social events, cooking, and community.",
+   "description": "UW Persian Circle creates a vibrant Persian community with social and cultural events, like baking competitions. Members share food, traditions, and friendship on campus.",
    "logo": "/ig/clubs/uwpersiancircle.jpg",
    "last_event": "2026-11-10",
    "fields": []
@@ -1668,17 +1716,43 @@
    ]
   },
   {
+   "name": "Polynesian Student Alliance",
+   "handle": "psa_uw",
+   "instagram": "https://www.instagram.com/psa_uw/",
+   "website": "https://urldefense.com/v3/__https://uwnetid-my.sharepoint.com/:x:/g/personal/rlemisio_uw_edu/cQp3aD7fDU-aTpmsW2X8F9BqEgUCfaOTHZBwCdFNe-aHfxeCNQ__;!!K-Hz7m0Vt54!g7rvH_CHCB5OQ-TvMr741-Jwn_0d5MHkdPcQ6BRHfgX0C23DCUAgrRDdndQAL5QIbFqjlO67N1SKBnE$",
+   "category": "Cultural",
+   "about": "Fosters Pacific Islander pride through cultural events, community service, and gatherings.",
+   "description": "The UW Polynesian Student Alliance empowers Pacific Islander students through cultural celebrations, community meals, and service fundraisers. They host events like Thanksgiving gatherings and museum trips to strengthen pride and connection.",
+   "logo": "/ig/clubs/psa_uw.jpg",
+   "last_event": "2026-11-19",
+   "fields": []
+  },
+  {
    "name": "Portraits of Humanity",
    "handle": "uw.poh",
    "instagram": "https://www.instagram.com/uw.poh/",
    "website": "https://linktr.ee/portraitsofhumanity",
-   "category": "Academic",
-   "about": "📍Medical Humanities Project based at @uofwa ",
-   "description": "📍Medical Humanities Project based at @uofwa \n❤️‍🩹 Humanising Healthcare Through Storytelling\n👇🏻Learn More / Join the Team!",
+   "category": "Service",
+   "about": "Uses storytelling to humanize healthcare and support patients.",
+   "description": "Portraits of Humanity blends medicine and the arts to humanize healthcare through storytelling. Members meet for creative activities like card‑making for hospitalized kids and discuss ways to support patients.",
    "logo": "/ig/clubs/uw.poh.jpg",
    "last_event": "2026-11-16",
    "fields": [
-    "Arts & Humanities"
+    "Health"
+   ]
+  },
+  {
+   "name": "PrePA Club at UW",
+   "handle": "uwprepa",
+   "instagram": "https://www.instagram.com/uwprepa/",
+   "website": "https://linktr.ee/uwprepa",
+   "category": "Academic",
+   "about": "Provides resources and networking for students pursuing a PA career.",
+   "description": "UW Pre‑PA Club supports students interested in physician assistant careers through Q&A sessions, networking, and skill‑building games. They share application tips, clinical experience advice, and peer support.",
+   "logo": "/ig/clubs/uwprepa.jpg",
+   "last_event": "2026-11-17",
+   "fields": [
+    "Health"
    ]
   },
   {
@@ -1875,8 +1949,8 @@
    "instagram": "https://www.instagram.com/ssa_uw/",
    "website": "https://linktr.ee/uwssa",
    "category": "Faith & Spirituality",
-   "about": "Sikh Student Association educates on Sikhism and hosts cultural celebrations and community events.",
-   "description": "The Sikh Student Association educates about Sikhism and hosts cultural celebrations, game nights, and community service. All are welcome to learn and participate.",
+   "about": "Promotes Sikh heritage, education, and community events on campus.",
+   "description": "The Sikh Student Association shares Sikh history, holidays, and values with the campus. They host cultural celebrations like Gurpurab and social events such as game nights, welcoming anyone interested.",
    "logo": "/ig/clubs/ssa_uw.jpg",
    "last_event": "2026-11-20",
    "fields": []
@@ -1907,6 +1981,20 @@
    "fields": [
     "Engineering",
     "Sciences"
+   ]
+  },
+  {
+   "name": "Society of Hispanic Professional Engineers",
+   "handle": "shpeuw",
+   "instagram": "https://www.instagram.com/shpeuw/",
+   "website": "https://linktr.ee/shpeuw",
+   "category": "Tech",
+   "about": "Supports Latinx students in STEM with networking, events, and service opportunities.",
+   "description": "SHPE UW empowers Latinx students in STEM by offering networking events, cultural nights, and service projects. Activities include food‑focused gatherings, NASA‑themed Lotería, and trips to conferences.",
+   "logo": "/ig/clubs/shpeuw.jpg",
+   "last_event": "2026-11-18",
+   "fields": [
+    "Engineering"
    ]
   },
   {
@@ -1976,8 +2064,8 @@
    "instagram": "https://www.instagram.com/sasauw/",
    "website": "https://linktr.ee/sasauw",
    "category": "Cultural",
-   "about": "South Asian Student Association hosting festivals, food, and creative cultural events.",
-   "description": "SASA celebrates South Asian heritage with festivals, food, and creative activities like diya painting. The group also introduces new student leaders and fosters campus connections.",
+   "about": "Celebrates South Asian heritage with food, festivals, and community activities.",
+   "description": "SASA UW celebrates South Asian culture with festivals, food, and creative activities such as diya painting during Diwali. The organization provides a vibrant community for students to share heritage and make friends.",
    "logo": "/ig/clubs/sasauw.jpg",
    "last_event": "2026-11-12",
    "fields": []
@@ -2156,6 +2244,20 @@
    ]
   },
   {
+   "name": "The Dirty Dozen Student Farm Club",
+   "handle": "uwfarmdirtydozen",
+   "instagram": "https://www.instagram.com/uwfarmdirtydozen/",
+   "website": "https://linktr.ee/uw_dirty_dozen",
+   "category": "Outdoors",
+   "about": "Engages students in all stages of the food system through campus farming.",
+   "description": "The Dirty Dozen runs a student‑run farm, letting members experience the full food cycle from planting to harvest. Volunteers gather for plot work, craft nights, and farm service shifts on campus.",
+   "logo": "/ig/clubs/uwfarmdirtydozen.jpg",
+   "last_event": "2026-11-13",
+   "fields": [
+    "Sciences"
+   ]
+  },
+  {
    "name": "The Foundation for International Understanding Through Students ( FIUTS ) Student Board",
    "website": "https://www.fiuts.org/",
    "category": "Cultural",
@@ -2191,6 +2293,18 @@
    "instagram": "https://www.instagram.com/thewomensnetwork_uw/",
    "source": "huskylink",
    "last_event": "2026-11-18",
+   "fields": []
+  },
+  {
+   "name": "Theta Xi Fraternity",
+   "handle": "uwthetaxi",
+   "instagram": "https://www.instagram.com/uwthetaxi/",
+   "website": "https://uwthetaxi.com",
+   "category": "Greek Life",
+   "about": "Fraternity dedicated to leadership, service, and brotherhood.",
+   "description": "Theta Xi is the Upsilon Chapter at UW, founded in 1915 and upholding a record of zero violations. The fraternity emphasizes leading and serving its members and community. Social events like Casino Night bring brothers together for fun.",
+   "logo": "/ig/clubs/uwthetaxi.jpg",
+   "last_event": "2026-11-13",
    "fields": []
   },
   {
@@ -2299,8 +2413,8 @@
    "instagram": "https://www.instagram.com/uwrecreation/",
    "website": "http://linktr.ee/uwrecreation",
    "category": "Outdoors",
-   "about": "University recreation department offering activities for student wellbeing.",
-   "description": "UW Recreation provides a wide range of activities to support student health and fun, from climbing classes to paddle‑board events. They offer a one‑day Belay Techniques class and seasonal events like the Witches Paddle with equipment supplied. All programs aim to be safe, accessible, and welcoming.",
+   "about": "Offers safe, accessible recreation like climbing, paddling, and wellness programs.",
+   "description": "UW Recreation creates dynamic experiences for student growth and wellbeing. They run belay technique classes for rock climbing and host fun events such as Halloween paddling outings. All activities aim to be safe and inclusive.",
    "logo": "/ig/clubs/uwrecreation.jpg",
    "last_event": "2026-11-17",
    "fields": []
