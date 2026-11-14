@@ -58,7 +58,8 @@ FETCH_TRIES, FETCH_WAIT = 10, 30  # up to ~5 minutes for the internet to come ba
 # club_instagram.json is partly typed by hand, so it's never thrown away.
 GENERATED = ["public/events.json", "public/clubs.json", "public/applications.json", "public/ig",
              "scraper/club_activity.json", "scraper/club_fields.json", "scraper/huskylink.json", "scraper/discord.json",
-             "scraper/unlisted_clubs.json", "scraper/luma.json", "scraper/club_luma.json"]
+             "scraper/unlisted_clubs.json", "scraper/unlisted_names.json", "scraper/luma.json",
+             "scraper/club_luma.json"]
 DATA = GENERATED + ["scraper/club_instagram.json", "scraper/club_discord.json"]
 SNAPSHOT_FILES = [p for p in DATA if p.endswith(".json")]
 

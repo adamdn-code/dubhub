@@ -10,7 +10,12 @@ Where the accounts to check come from (none of this asks Instagram for anything)
      reads (all 12 posts), plus the posts it saved, HuskyLink club missions and event descriptions.
   2. Instagram links on UW pages that list student groups (LISTING_PAGES below: Rec Clubs, the
      fraternity and sorority councils, ...), read again every LISTING_DAYS days.
-  3. Accounts given by hand: python find_unlisted_clubs.py --add handle1,handle2
+  3. Clubs named in posts without an @ ("co-hosted with the Korean Student Association"): the AI
+     reads the posts the scrapers saved and HuskyLink event descriptions for other student groups
+     they name. For a name that isn't a club DubHub knows, it tries the usernames UW clubs usually
+     pick (guess_instagram_handles.py) and keeps an account only if its profile says UW and names
+     the club. Names and what came of them: unlisted_names.json (on GitHub).
+  4. Accounts given by hand: python find_unlisted_clubs.py --add handle1,handle2
 
 Each account is then checked once on its public Instagram page (one page, no login) and kept
 only when all of these hold:
@@ -77,10 +82,14 @@ from events_common import (
     read_club_handles,
 )
 from find_instagram_handles import NOT_ACCOUNTS, name_match
-from guess_instagram_handles import OTHER_SCHOOL, STRONG_UW_SIGN, UW_SIGN, UW_USERNAME, is_the_club
+from guess_instagram_handles import OTHER_SCHOOL, STRONG_UW_SIGN, UW_SIGN, UW_USERNAME, guesses, is_the_club
 from instagram_public_scraper import SlowDown, StopOnTooManyRequests, caption_of, club_page
 
-CHECKS_PER_RUN = 10  # each scheduled run: about 40 a day
+CHECKS_PER_RUN = 10  # Instagram pages each scheduled run: about 40 a day
+NAME_PAGES_PER_RUN = 4  # of those, at most this many go to trying usernames for named clubs
+NAMES_FILE = UNLISTED_CLUBS_FILE.with_name("unlisted_names.json")  # club names found in posts
+NAMES_READ_FILE = STATE_DIR / "unlisted_names_read.txt"  # posts already read for club names
+POSTS_PER_RUN = 60  # posts the AI reads for club names each run (20 per request)
 MIN_WAIT, MAX_WAIT = 6, 12
 RECHECK_DAYS = 60
 LISTING_DAYS = 30
@@ -100,6 +109,13 @@ LISTING_PAGES = {
     "https://sustainability.uw.edu/action/students/groups": r"^/action/students/groups",
     "https://health.asuw.org/": r"^/[a-z0-9-]+/?$",
     "https://dance.washington.edu/organizations": r"^/organizations",
+    "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/student-organizations/":
+        r"^/academics/degree-programs/undergraduate-programs/student-organizations",
+    "https://ischool.uw.edu/current/student-groups": r"^/(current/student-groups|diversity/resources/student-groups)",
+    "https://www.cs.washington.edu/academics/undergraduate/undergrad-student-life/student-organizations":
+        r"^/academics/undergraduate/undergrad-student-life/student-organizations",
+    "https://www.me.washington.edu/students/clubs-competitions": r"^/students/(clubs|engineering)",
+    "https://qsc.asuw.org/": r"^/",
 }
 PAGES_PER_LISTING = 60
 # What each of those sites is, for the AI (the site an account was linked from says a lot).
@@ -112,6 +128,11 @@ LISTING_SITES = {
     "sustainability.uw.edu": "UW Sustainability's list of student sustainability groups",
     "health.asuw.org": "ASUW's list of student health organizations",
     "dance.washington.edu": "UW Dance's list of student dance groups",
+    "foster.uw.edu": "the Foster School of Business's list of student organizations",
+    "ischool.uw.edu": "the iSchool's list of student groups",
+    "cs.washington.edu": "the Allen School's list of student organizations",
+    "me.washington.edu": "Mechanical Engineering's list of student clubs and teams",
+    "qsc.asuw.org": "ASUW Queer Student Commission",
 }
 
 IG_LINK = re.compile(r"instagram\.com/(?!p/|reels?/|explore/|accounts/|stories/|tv/)([A-Za-z0-9_.]{2,30})", re.I)
@@ -207,7 +228,7 @@ def worth_checking(handle, entry):
     """Ones likely to be UW groups: linked from a UW page, sounding like UW, or mentioned by two or
     more clubs. (Most mentions are people and brands.)"""
     found = entry.get("found", [])
-    if "added by hand" in found:
+    if "added by hand" in found or any(f.startswith("named ") for f in found):
         return True
     if UNIVERSITY_ACCOUNT.search(handle) or OTHER_SCHOOL.search(handle) or OTHER_CAMPUS.search(handle):
         return False
@@ -421,6 +442,135 @@ def check(L, handle, entry, huskylink_clubs, saved_instagram, today):
     }}
 
 
+def ai_named_clubs(batch):
+    """Ask Groq which other student groups each post names. A list of name lists, or None."""
+    if not GROQ_KEY or not pick_model():
+        return None
+    listing = "\n\n".join(f"POST {i + 1}\nPosted by: {who}\n{text[:700]}" for i, (key, who, text) in enumerate(batch))
+    prompt = f"""Below are posts by University of Washington student clubs and HuskyLink event listings. For each
+post, list the OTHER UW Seattle student organizations it names by name: co-hosts, partners,
+sister clubs, groups it thanks or invites. Write each name as the post writes it ("Korean Student
+Association", "SASA"), not @usernames. Leave out the club that posted it; teams and clubs from
+other schools (opponents, visiting teams, other universities' chapters); companies and brands;
+university departments and offices; people; and places. Most posts name none: give an empty list.
+
+Reply with ONLY JSON: {{"posts": [{{"post": 1, "names": []}}]}}
+
+{listing}"""
+    for _ in range(6):
+        try:
+            r = requests.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={"Authorization": f"Bearer {GROQ_KEY}"},
+                json={"model": pick_model(), "temperature": 0, "response_format": {"type": "json_object"},
+                      "messages": [{"role": "user", "content": prompt}],
+                      **({"reasoning_effort": "low"} if "gpt-oss" in pick_model() else {})},
+                timeout=120,
+            )
+        except Exception as e:
+            print(f"  Groq request failed ({e}).", flush=True)
+            return None
+        if r.status_code == 429:
+            if not handle_rate_limit(r):
+                return None
+            continue
+        if r.status_code == 400 and "json_validate_failed" in r.text:
+            continue
+        if r.status_code != 200:
+            print(f"  Groq error {r.status_code}: {r.text[:200]}", flush=True)
+            return None
+        try:
+            got = {int(x["post"]): x.get("names") or [] for x in json.loads(r.json()["choices"][0]["message"]["content"])["posts"]}
+        except (KeyError, TypeError, ValueError):
+            continue
+        return [[n.strip() for n in got.get(i + 1, []) if isinstance(n, str) and n.strip()] for i in range(len(batch))]
+    return None
+
+
+def initials(name):
+    """'Korean Student Association at UW' -> 'ksa' (what clubs usually shorten their name to)."""
+    words = [w for w in re.findall(r"[A-Za-z]+", name) if w.lower() not in ("at", "the", "of", "and", "for", "in", "uw",
+                                                                            "university", "washington", "seattle")]
+    return "".join(w[0] for w in words).lower()
+
+
+def read_names(names, known_keys, dry, known_initials=frozenset()):
+    """Have the AI read posts it hasn't read yet for other clubs' names; note the unknown ones."""
+    done = set(NAMES_READ_FILE.read_text(encoding="utf-8").split()) if NAMES_READ_FILE.exists() else set()
+    todo = []
+    for key, post in sorted(_load(POSTS_FILE, {}).items(), key=lambda kv: kv[1].get("posted") or "", reverse=True):
+        if key not in done and post.get("source") in ("instagram", "discord") and len(post.get("caption") or "") > 40:
+            todo.append((key, post.get("club") or "a UW club", post["caption"]))
+    for e in _load(HUSKYLINK_FILE, {"events": []})["events"]:
+        key = f"hl-{e['id']}"
+        if key not in done and len(e.get("description") or "") > 40:
+            todo.append((key, e.get("host") or "a UW club", f"{e['title']}\n{e['description']}"))
+    todo = todo[:POSTS_PER_RUN]
+    added = 0
+    for i in range(0, len(todo), 20):
+        batch = todo[i:i + 20]
+        found = ai_named_clubs(batch)
+        if found is None:
+            break
+        for (key, who, _), found_names in zip(batch, found):
+            done.add(key)
+            for name in found_names:
+                if name.startswith("@") or (" " not in name and name.islower()):
+                    continue  # an @username: the mentions already cover those
+                k = club_key(name)
+                poster = re.sub(r"[^a-z0-9]", "", who.lower())  # its name and @username
+                if len(k) < 3 or k in known_keys or k in poster:
+                    continue  # a club DubHub knows, or the poster itself ("TSA" in a post by @tsauw)
+                if name.isupper() and k in known_initials:
+                    continue  # most likely a known club's initials ("KSA": Korean Student Association)
+                entry = names.setdefault(name, {"status": "new", "by": []})
+                if who not in entry["by"] and len(entry["by"]) < 8:
+                    entry["by"].append(who)
+                added += 1
+    if todo:
+        print(f"Read {len(done & {k for k, _, _ in todo})} post(s) for other clubs' names; {added} mention(s) of clubs DubHub doesn't know.", flush=True)
+    if not dry:
+        NAMES_READ_FILE.parent.mkdir(exist_ok=True)
+        NAMES_READ_FILE.write_text("\n".join(sorted(done)), encoding="utf-8")
+
+
+def try_names(L, names, saved, known, today, pages):
+    """Try the usual usernames for the most-named unknown clubs, using at most `pages` pages.
+    A match goes into `saved` as an account to check. Returns how many pages it used."""
+    used = 0
+    again = (today - timedelta(days=RECHECK_DAYS)).isoformat()
+    todo = sorted((n for n, e in names.items() if e.get("status") == "new"
+                   or (e.get("status") == "none" and e.get("checked", "") <= again)),
+                  key=lambda n: len(names[n].get("by", [])), reverse=True)
+    for name in todo:
+        tries = [h for h in guesses(name) if h not in known and h not in saved][:NAME_PAGES_PER_RUN]
+        if not tries or used + len(tries) > pages:
+            if not tries:
+                names[name].update(status="none", checked=today.isoformat())
+            continue
+        match = None
+        for handle in tries:
+            if used:
+                time.sleep(random.uniform(MIN_WAIT, MAX_WAIT))
+            used += 1
+            try:
+                user, _ = club_page(L, handle)
+            except (QueryReturnedNotFoundException, BadResponseException):
+                continue
+            if user and is_the_club(user, name)[0]:
+                match = handle
+                break
+        names[name].update(status="found" if match else "none", handle=match, checked=today.isoformat())
+        print(f"  named club {name!r}: {'@' + match if match else 'no account found'}", flush=True)
+        if match:
+            entry = saved.setdefault(match, {"status": "new", "found": []})
+            for who in names[name]["by"][:3]:
+                note = f"named as {name!r} by {who}"
+                if note not in entry["found"]:
+                    entry["found"].append(note)
+    return used
+
+
 def main():
     sys.stdout.reconfigure(errors="replace")  # club names with emoji, in a console that can't show them
     dry = "--dry-run" in sys.argv
@@ -454,16 +604,30 @@ def main():
             if h:
                 add(h, "added by hand")
 
-    todo = sorted((h for h, e in saved.items() if h not in known and due(e, today) and worth_checking(h, e)),
-                  key=lambda h: priority(h, saved[h]), reverse=True)
-    print(f"{len(saved)} accounts noted; {len(todo)} worth a look; checking {min(limit, len(todo))} now"
-          f"{' (dry run: nothing saved)' if dry else ''}.", flush=True)
-
     huskylink_clubs = _load(HUSKYLINK_FILE, {"clubs": []})["clubs"]
     saved_instagram = _load(CLUB_INSTAGRAM_FILE, {})
+    names = _load(NAMES_FILE, {})
+    known_keys = {club_key(c["name"]) for c in huskylink_clubs} | {club_key(n) for n in names}
+    try:
+        known_keys |= {club_key(c["name"]) for c in json.loads(SITE_CLUBS_FILE.read_text(encoding="utf-8"))["clubs"]}
+    except (FileNotFoundError, ValueError, KeyError):
+        pass
+    known_keys |= {club_key(e["name"]) for e in saved.values() if e.get("name")}
+    known_initials = {initials(c["name"]) for c in huskylink_clubs}
+    read_names(names, known_keys, dry, known_initials)
+
     L = instaloader.Instaloader(quiet=True, max_connection_attempts=1, request_timeout=30,
                                 rate_controller=lambda context: StopOnTooManyRequests(context))
     checked, ask = [], []
+    try:
+        limit -= try_names(L, names, saved, known, today, min(NAME_PAGES_PER_RUN, limit))
+    except SlowDown as e:
+        print(f"Stopping: {e}.", flush=True)
+        limit = 0
+    todo = sorted((h for h, e in saved.items() if h not in known and due(e, today) and worth_checking(h, e)),
+                  key=lambda h: priority(h, saved[h]), reverse=True)
+    print(f"{len(saved)} accounts noted; {len(todo)} worth a look; checking {max(0, min(limit, len(todo)))} now"
+          f"{' (dry run: nothing saved)' if dry else ''}.", flush=True)
     try:
         for i, handle in enumerate(todo[:limit]):
             if i:
@@ -517,6 +681,8 @@ def main():
     if dry:
         return
     UNLISTED_CLUBS_FILE.write_text(json.dumps(dict(sorted(saved.items())), indent=1, ensure_ascii=False), encoding="utf-8")
+    NAMES_FILE.write_text(json.dumps(dict(sorted(names.items(), key=lambda kv: kv[0].lower())), indent=1, ensure_ascii=False),
+                          encoding="utf-8")
     if new_links:
         CLUB_INSTAGRAM_FILE.write_text(json.dumps(dict(sorted(saved_instagram.items(), key=lambda kv: kv[0].lower())),
                                                   indent=1, ensure_ascii=False), encoding="utf-8")

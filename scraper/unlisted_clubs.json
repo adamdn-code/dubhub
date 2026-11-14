@@ -47,10 +47,22 @@
    "post by @uw_akdphi"
   ]
  },
+ "_ianjang_": {
+  "status": "new",
+  "found": [
+   "post by @uwzetapsi"
+  ]
+ },
  "_isabelcabrera_": {
   "status": "new",
   "found": [
    "post by @uwpsiu"
+  ]
+ },
+ "_jillianhatch": {
+  "status": "new",
+  "found": [
+   "post by @uwalphagam"
   ]
  },
  "_ria_guptaa": {
@@ -81,6 +93,12 @@
   "status": "new",
   "found": [
    "post by @analogclubuw"
+  ]
+ },
+ "aartikhannaa": {
+  "status": "new",
+  "found": [
+   "post by @uwalphagam"
   ]
  },
  "abby.mlopez": {
@@ -119,10 +137,22 @@
    "post by @huskysailingteam"
   ]
  },
+ "addison_atk": {
+  "status": "new",
+  "found": [
+   "post by @uwalphagam"
+  ]
+ },
  "adellemchinni": {
   "status": "new",
   "found": [
    "post by @analogclubuw"
+  ]
+ },
+ "adrianfacundo11": {
+  "status": "new",
+  "found": [
+   "post by @washingtonmensgymnastics"
   ]
  },
  "ahengyucius": {
@@ -137,10 +167,22 @@
    "bio of @dbf_uw"
   ]
  },
+ "aidan.e.smith": {
+  "status": "new",
+  "found": [
+   "post by @uwzetapsi"
+  ]
+ },
  "aidencostanti": {
   "status": "new",
   "found": [
    "post by @uwdelts"
+  ]
+ },
+ "aisc": {
+  "status": "new",
+  "found": [
+   "post by @uwsteelbridge"
   ]
  },
  "aivywa": {
@@ -212,6 +254,12 @@
   "status": "new",
   "found": [
    "post by @uw_ssa"
+  ]
+ },
+ "amandaablerbooks": {
+  "status": "new",
+  "found": [
+   "post by @writersinprogressuw"
   ]
  },
  "amelia.tripp": {
@@ -297,16 +345,34 @@
    "post by @huskysailingteam"
   ]
  },
+ "arcroboticscompetition": {
+  "status": "new",
+  "found": [
+   "post by @uwadvancedrobotics"
+  ]
+ },
  "ariellemmiller": {
   "status": "new",
   "found": [
    "post by @uwzeta"
   ]
  },
+ "ascension_robotics": {
+  "status": "new",
+  "found": [
+   "post by @uwadvancedrobotics"
+  ]
+ },
  "ashegeurtsphotography": {
   "status": "new",
   "found": [
    "post by @analogclubuw"
+  ]
+ },
+ "asuw_sarva": {
+  "status": "new",
+  "found": [
+   "post by @wecareuw"
   ]
  },
  "asuwbeanbasket": {
@@ -386,6 +452,12 @@
    "post by @analogclubuw"
   ]
  },
+ "autonomousroboticsteam": {
+  "status": "new",
+  "found": [
+   "https://www.cs.washington.edu/academics/undergraduate/undergrad-student-life/student-organizations"
+  ]
+ },
  "ayaelkd": {
   "status": "new",
   "found": [
@@ -463,10 +535,33 @@
   "why": "latest post 2024-12-10",
   "checked": "2026-11-14"
  },
+ "bitsatuw": {
+  "status": "club",
+  "found": [
+   "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/student-organizations/"
+  ],
+  "name": "BITS at UW",
+  "bio": "Empowering students through business + tech! \n@uwfosterschool | @uofwa",
+  "latest": "2026-11-12",
+  "checked": "2026-11-14",
+  "why": "Student org with events and board"
+ },
  "bledwith2": {
   "status": "new",
   "found": [
    "post by @uwmensvball"
+  ]
+ },
+ "boilerbots": {
+  "status": "new",
+  "found": [
+   "post by @uwadvancedrobotics"
+  ]
+ },
+ "brodsky_": {
+  "status": "new",
+  "found": [
+   "post by @uxuw.club"
   ]
  },
  "brody_luskuw": {
@@ -523,6 +618,12 @@
    "post by @uwthetaxi"
   ]
  },
+ "campbell_ressler": {
+  "status": "new",
+  "found": [
+   "post by @uwalphagam"
+  ]
+ },
  "capillariesjournaluw": {
   "status": "inactive",
   "found": [
@@ -562,7 +663,9 @@
   "found": [
    "bio of @uwhuskycricketclub",
    "post by @uw_uwib",
-   "post by @geodat.uw"
+   "post by @geodat.uw",
+   "post by @data_science_society_uw",
+   "post by @uwswe"
   ]
  },
  "chambered_geckos.band": {
@@ -661,6 +764,12 @@
    "bio of @communistsatuw"
   ]
  },
+ "creaturecoffeeco": {
+  "status": "new",
+  "found": [
+   "post by @uwadpi"
+  ]
+ },
  "crimsonandgraywomensrugby": {
   "status": "new",
   "found": [
@@ -679,10 +788,22 @@
    "post by @uwpkmn"
   ]
  },
+ "dancingwiththestars": {
+  "status": "new",
+  "found": [
+   "post by @womenshockeyuw"
+  ]
+ },
  "daniel_feng18": {
   "status": "new",
   "found": [
    "post by @huskyboxing"
+  ]
+ },
+ "daniel_mints": {
+  "status": "new",
+  "found": [
+   "post by @claude.uofwa"
   ]
  },
  "danny_mcgee.07": {
@@ -706,7 +827,8 @@
  "decobun_": {
   "status": "new",
   "found": [
-   "post by @jsauw"
+   "post by @jsauw",
+   "post by @tosauw"
   ]
  },
  "deltasonfilm": {
@@ -721,6 +843,12 @@
    "post by @uwhhsa"
   ]
  },
+ "dingteaseattle": {
+  "status": "new",
+  "found": [
+   "post by @tsauw"
+  ]
+ },
  "dj_mccall_4": {
   "status": "new",
   "found": [
@@ -731,6 +859,12 @@
   "status": "new",
   "found": [
    "post by @uwdke"
+  ]
+ },
+ "dlp_psi": {
+  "status": "new",
+  "found": [
+   "https://qsc.asuw.org/oncampus/"
   ]
  },
  "dormchair_therapist": {
@@ -745,10 +879,28 @@
    "bio of @uwsigmakappa"
   ]
  },
+ "drewjsallen": {
+  "status": "new",
+  "found": [
+   "post by @washingtonmensgymnastics"
+  ]
+ },
+ "drinkpoppi": {
+  "status": "new",
+  "found": [
+   "post by @uwadpi"
+  ]
+ },
  "drinkzaila": {
   "status": "new",
   "found": [
    "post by @uw_ssa"
+  ]
+ },
+ "drronpaul": {
+  "status": "new",
+  "found": [
+   "post by @yalatuw"
   ]
  },
  "dugoni_admissions": {
@@ -763,6 +915,14 @@
    "post by @uw.dds"
   ]
  },
+ "e_truck_uw": {
+  "status": "missing",
+  "found": [
+   "post by @uwetruck",
+   "https://www.me.washington.edu/students/clubs-competitions"
+  ],
+  "checked": "2026-11-14"
+ },
  "ecobuilduw": {
   "status": "new",
   "found": [
@@ -775,6 +935,12 @@
    "post by @uwpsiu"
   ]
  },
+ "eghseattle": {
+  "status": "new",
+  "found": [
+   "post by @washpirg_uw"
+  ]
+ },
  "eh.lee.ah.nuh": {
   "status": "new",
   "found": [
@@ -785,6 +951,18 @@
   "status": "new",
   "found": [
    "post by @uwzeta"
+  ]
+ },
+ "elideehr": {
+  "status": "new",
+  "found": [
+   "post by @washingtonmensgymnastics"
+  ]
+ },
+ "elixirdessertandbar": {
+  "status": "new",
+  "found": [
+   "post by @claude.uofwa"
   ]
  },
  "elizad_99": {
@@ -874,6 +1052,12 @@
    "a club's post"
   ]
  },
+ "ezra.sosa": {
+  "status": "new",
+  "found": [
+   "post by @womenshockeyuw"
+  ]
+ },
  "ezraphotooo": {
   "status": "new",
   "found": [
@@ -884,6 +1068,12 @@
   "status": "new",
   "found": [
    "post by @huskyboxing"
+  ]
+ },
+ "frameratuw": {
+  "status": "new",
+  "found": [
+   "post by @uxuw.club"
   ]
  },
  "frameworkseattle": {
@@ -941,6 +1131,18 @@
   ],
   "checked": "2026-11-13"
  },
+ "glossier": {
+  "status": "new",
+  "found": [
+   "post by @uwadpi"
+  ]
+ },
+ "golemis.photo": {
+  "status": "new",
+  "found": [
+   "post by @uwelement"
+  ]
+ },
  "gonzagawomensrugby": {
   "status": "new",
   "found": [
@@ -990,6 +1192,12 @@
   "why": "Green Greek Representative Program",
   "checked": "2026-11-13"
  },
+ "greenseattlepartnership": {
+  "status": "new",
+  "found": [
+   "post by @uwzetapsi"
+  ]
+ },
  "gridatuw": {
   "found": [
    "https://sustainability.uw.edu/action/students/groups"
@@ -1005,6 +1213,12 @@
   "status": "new",
   "found": [
    "bio of @fitnesstech_uw"
+  ]
+ },
+ "haddocksportperformance": {
+  "status": "new",
+  "found": [
+   "post by @sundodgers"
   ]
  },
  "harmank.aur": {
@@ -1079,6 +1293,12 @@
    "bio of @uwhhsa"
   ]
  },
+ "hirschmanvisuals": {
+  "status": "new",
+  "found": [
+   "post by @washingtonmensgymnastics"
+  ]
+ },
  "hocine_mm": {
   "status": "new",
   "found": [
@@ -1129,6 +1349,17 @@
    "post by @ssa_uw"
   ]
  },
+ "imuslimsuw": {
+  "status": "huskylink",
+  "found": [
+   "https://ischool.uw.edu/current/student-groups"
+  ],
+  "name": null,
+  "bio": "empowering muslim students at the @uwischool and beyond to thrive in tech 📈 💫 | events are open to all!!\nfill out the interest form below!",
+  "latest": "2026-10-30",
+  "checked": "2026-11-14",
+  "why": "iMuslims"
+ },
  "inarakik": {
   "status": "new",
   "found": [
@@ -1139,7 +1370,8 @@
   "status": "new",
   "found": [
    "post by @uw_ssa",
-   "post by @jsauw"
+   "post by @jsauw",
+   "post by @tosauw"
   ]
  },
  "intervarsityusa": {
@@ -1154,6 +1386,15 @@
    "post by @uwpsiu"
   ]
  },
+ "iyouth_uw": {
+  "status": "huskylink",
+  "found": [
+   "https://ischool.uw.edu/current/student-groups"
+  ],
+  "name": "iYouth @ University of Washington",
+  "why": "iYouth",
+  "checked": "2026-11-14"
+ },
  "jack__spangler": {
   "status": "new",
   "found": [
@@ -1164,6 +1405,18 @@
   "status": "new",
   "found": [
    "post by @huskyflying"
+  ]
+ },
+ "jane_vds1": {
+  "status": "new",
+  "found": [
+   "post by @uwalphagam"
+  ]
+ },
+ "jcreyesian": {
+  "status": "new",
+  "found": [
+   "post by @writersinprogressuw"
   ]
  },
  "jellographyy": {
@@ -1196,6 +1449,12 @@
    "post by @uwmensvball"
   ]
  },
+ "jonathan.liu_": {
+  "status": "new",
+  "found": [
+   "post by @tcduw"
+  ]
+ },
  "joolapickleball": {
   "status": "new",
   "found": [
@@ -1212,6 +1471,12 @@
   "status": "new",
   "found": [
    "bio of @jsauw"
+  ]
+ },
+ "judahhirschman": {
+  "status": "new",
+  "found": [
+   "post by @washingtonmensgymnastics"
   ]
  },
  "julie.c.photography": {
@@ -1295,10 +1560,22 @@
    "bio of @uwkappadelta"
   ]
  },
+ "kenestocorp": {
+  "status": "new",
+  "found": [
+   "post by @solarvehicleteamuw"
+  ]
+ },
  "kenstagram9": {
   "status": "new",
   "found": [
    "post by @uwmensvball"
+  ]
+ },
+ "keonacozzatti": {
+  "status": "new",
+  "found": [
+   "post by @uwadpi"
   ]
  },
  "kesem": {
@@ -1306,6 +1583,18 @@
   "found": [
    "bio of @kesem_uw",
    "post by @kesem_uw"
+  ]
+ },
+ "khaliyasidi": {
+  "status": "new",
+  "found": [
+   "post by @womenshockeyuw"
+  ]
+ },
+ "khloudfoods": {
+  "status": "new",
+  "found": [
+   "post by @uwadpi"
   ]
  },
  "kian.schmeer": {
@@ -1457,10 +1746,22 @@
    "post by @uwpiphi"
   ]
  },
+ "marlee.schoeffler": {
+  "status": "new",
+  "found": [
+   "post by @uwalphagam"
+  ]
+ },
  "marleygelb": {
   "status": "new",
   "found": [
    "post by @uwhhsa"
+  ]
+ },
+ "mateo._.bonta": {
+  "status": "new",
+  "found": [
+   "post by @uwzetapsi"
   ]
  },
  "matteo.lisi8128": {
@@ -1521,7 +1822,8 @@
  "meitu.app": {
   "status": "new",
   "found": [
-   "post by @jsauw"
+   "post by @jsauw",
+   "post by @tosauw"
   ]
  },
  "micaelamjackson": {
@@ -1530,10 +1832,22 @@
    "post by @uwzeta"
   ]
  },
+ "michaelsic5": {
+  "status": "new",
+  "found": [
+   "post by @uwzetapsi"
+  ]
+ },
  "mikeynugget": {
   "status": "new",
   "found": [
    "post by @uwpsiu"
+  ]
+ },
+ "mimilwang": {
+  "status": "new",
+  "found": [
+   "post by @uwthetatau"
   ]
  },
  "minasmatchacafe": {
@@ -1546,6 +1860,12 @@
   "status": "new",
   "found": [
    "post by @analogclubuw"
+  ]
+ },
+ "missjuliastiles": {
+  "status": "new",
+  "found": [
+   "post by @womenshockeyuw"
   ]
  },
  "mor3ga": {
@@ -1566,6 +1886,17 @@
   "found": [
    "post by @msauw"
   ]
+ },
+ "muser_uw": {
+  "status": "maybe",
+  "found": [
+   "https://ischool.uw.edu/current/student-groups"
+  ],
+  "name": null,
+  "bio": null,
+  "latest": "2026-11-13",
+  "checked": "2026-11-14",
+  "why": "No clear description, ambiguous name"
  },
  "nainoa.akiona": {
   "status": "new",
@@ -1624,13 +1955,33 @@
  "nicobun.station": {
   "status": "new",
   "found": [
-   "post by @jsauw"
+   "post by @jsauw",
+   "post by @tosauw",
+   "post by @tsauw"
+  ]
+ },
+ "nikki.taleghani": {
+  "status": "new",
+  "found": [
+   "post by @uwthetatau"
   ]
  },
  "nikocarste": {
   "status": "new",
   "found": [
    "post by @uwtekes"
+  ]
+ },
+ "nina.ry.liu": {
+  "status": "new",
+  "found": [
+   "post by @tcduw"
+  ]
+ },
+ "nkolakovic": {
+  "status": "new",
+  "found": [
+   "post by @sundodgers"
   ]
  },
  "nolan_t_martin": {
@@ -1727,6 +2078,12 @@
    "post by @climbuw"
   ]
  },
+ "ostemuw": {
+  "status": "new",
+  "found": [
+   "https://qsc.asuw.org/oncampus/"
+  ]
+ },
  "osuclubsoccer": {
   "status": "new",
   "found": [
@@ -1816,6 +2173,12 @@
    "post by @huskywrestlingclub"
   ]
  },
+ "piebirdbakeshop": {
+  "status": "new",
+  "found": [
+   "post by @uwadpi"
+  ]
+ },
  "pihengage": {
   "status": "new",
   "found": [
@@ -1848,6 +2211,12 @@
   "status": "new",
   "found": [
    "post by @uwcostumeclub"
+  ]
+ },
+ "preston.lazaro": {
+  "status": "new",
+  "found": [
+   "post by @uwsteelbridge"
   ]
  },
  "projectindoorfarm": {
@@ -1888,6 +2257,12 @@
   "status": "new",
   "found": [
    "post by @uwequestrian"
+  ]
+ },
+ "reaganejjackson": {
+  "status": "new",
+  "found": [
+   "post by @writersinprogressuw"
   ]
  },
  "redbull": {
@@ -1995,6 +2370,12 @@
   "status": "new",
   "found": [
    "post by @huskysnowclub"
+  ]
+ },
+ "sabrina.rocke": {
+  "status": "new",
+  "found": [
+   "post by @uwalphagam"
   ]
  },
  "sahasra.kakani": {
@@ -2130,7 +2511,8 @@
  "simple_and_soft": {
   "status": "new",
   "found": [
-   "post by @jsauw"
+   "post by @jsauw",
+   "post by @tosauw"
   ]
  },
  "sionetnickerson": {
@@ -2151,10 +2533,28 @@
    "post by @uwjunoon"
   ]
  },
+ "soc_in_lis_uw": {
+  "status": "new",
+  "found": [
+   "https://ischool.uw.edu/current/student-groups"
+  ]
+ },
  "sofia.richart": {
   "status": "new",
   "found": [
    "post by @uwzeta"
+  ]
+ },
+ "sophia.toussaint_": {
+  "status": "new",
+  "found": [
+   "post by @uwalphagam"
+  ]
+ },
+ "sophiepierce40": {
+  "status": "new",
+  "found": [
+   "post by @uwalphagam"
   ]
  },
  "sreekar.kom": {
@@ -2187,6 +2587,12 @@
    "post by @uwfslc"
   ]
  },
+ "sujinwitherspoon": {
+  "status": "new",
+  "found": [
+   "post by @writersinprogressuw"
+  ]
+ },
  "super_familia": {
   "status": "new",
   "found": [
@@ -2199,11 +2605,18 @@
    "post by @uw.dds"
   ]
  },
+ "susangkomen": {
+  "status": "new",
+  "found": [
+   "post by @uwzetapsi"
+  ]
+ },
  "sustainableuw": {
   "status": "not",
   "found": [
    "https://sustainability.uw.edu/action/students/groups",
-   "post by @beautifyudub"
+   "post by @beautifyudub",
+   "post by @uwrecycling"
   ],
   "name": "UW Sustainability",
   "checked": "2026-11-13",
@@ -2213,6 +2626,18 @@
   "status": "new",
   "found": [
    "post by @uwfslc"
+  ]
+ },
+ "t_swammy": {
+  "status": "new",
+  "found": [
+   "post by @uwetruck"
+  ]
+ },
+ "tacawa_info": {
+  "status": "new",
+  "found": [
+   "post by @uw_tsa"
   ]
  },
  "tarobreaad": {
@@ -2232,6 +2657,12 @@
   "found": [
    "post by @uw_deltachi",
    "post by @uwalphasig"
+  ]
+ },
+ "teamroboto": {
+  "status": "new",
+  "found": [
+   "post by @uwadvancedrobotics"
   ]
  },
  "tejasvini.vijay": {
@@ -2258,6 +2689,12 @@
    "post by @uwalphasig"
   ]
  },
+ "teslapratt": {
+  "status": "new",
+  "found": [
+   "post by @womenshockeyuw"
+  ]
+ },
  "thatking.g.1": {
   "status": "new",
   "found": [
@@ -2279,7 +2716,9 @@
  "thealleyuw": {
   "status": "new",
   "found": [
-   "post by @jsauw"
+   "post by @jsauw",
+   "post by @tosauw",
+   "post by @tsauw"
   ]
  },
  "thebondsuw": {
@@ -2304,7 +2743,8 @@
   "status": "new",
   "found": [
    "post by @jsauw",
-   "post by @uwfslc"
+   "post by @uwfslc",
+   "post by @tosauw"
   ]
  },
  "thepicklr": {
@@ -2352,13 +2792,16 @@
  "tt_supermarket_usa": {
   "status": "new",
   "found": [
-   "post by @jsauw"
+   "post by @jsauw",
+   "post by @tosauw",
+   "post by @tsauw"
   ]
  },
  "ubecrochets": {
   "status": "new",
   "found": [
-   "post by @jsauw"
+   "post by @jsauw",
+   "post by @tosauw"
   ]
  },
  "ucsdzor": {
@@ -2465,6 +2908,17 @@
   "checked": "2026-11-13",
   "why": "Official academic department"
  },
+ "uw.mib": {
+  "status": "club",
+  "found": [
+   "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/student-organizations/"
+  ],
+  "name": "Muslim in Business at the University of Washington",
+  "bio": "Welcome to the official Instagram page for Muslims in Business — a community for all students interested in business! 🐾 🌙 💜",
+  "latest": "2026-11-04",
+  "checked": "2026-11-14",
+  "why": "Student community with board and events"
+ },
  "uw_alphadelts": {
   "found": [
    "https://uwifc.squarespace.com/alpha-delta-phi"
@@ -2479,7 +2933,8 @@
  "uw_cee": {
   "status": "new",
   "found": [
-   "bio of @uwsteelbridge"
+   "bio of @uwsteelbridge",
+   "post by @uwsteelbridge"
   ]
  },
  "uw_cho": {
@@ -2501,6 +2956,12 @@
   "latest": "2026-10-01",
   "checked": "2026-11-13",
   "why": "Delta Chi Fraternity at the University of Washington"
+ },
+ "uw_football": {
+  "status": "new",
+  "found": [
+   "post by @washingtonmensgymnastics"
+  ]
  },
  "uw_kannagara_aikido": {
   "status": "huskylink",
@@ -2576,6 +3037,12 @@
   "checked": "2026-11-13",
   "why": "a second account of Women’s Club Soccer at UW (@uwclubwsoc)"
  },
+ "uw_xra": {
+  "status": "new",
+  "found": [
+   "post by @cseeduw"
+  ]
+ },
  "uwadpi.dei": {
   "status": "new",
   "found": [
@@ -2585,7 +3052,8 @@
  "uwallenschool": {
   "status": "new",
   "found": [
-   "bio of @minoritiesintech"
+   "bio of @minoritiesintech",
+   "https://www.cs.washington.edu/academics/undergraduate/undergrad-student-life/student-organizations"
   ]
  },
  "uwalphasig": {
@@ -2620,6 +3088,12 @@
   "why": "UW Bothell",
   "checked": "2026-11-13"
  },
+ "uwbcse": {
+  "status": "new",
+  "found": [
+   "https://www.cs.washington.edu/academics/undergraduate/undergrad-student-life/student-organizations"
+  ]
+ },
  "uwbrigades": {
   "found": [
    "https://sustainability.uw.edu/action/students/groups"
@@ -2630,6 +3104,12 @@
   "latest": "2026-11-03",
   "checked": "2026-11-13",
   "why": "Global Medical and Dental Brigades UW Chapter"
+ },
+ "uwcampuscommunitysafety": {
+  "status": "new",
+  "found": [
+   "post by @uwtranscollective"
+  ]
  },
  "uwccm": {
   "found": [
@@ -2648,10 +3128,17 @@
    "bio of @uwclassmates"
   ]
  },
+ "uwcounseling": {
+  "status": "new",
+  "found": [
+   "post by @uwtranscollective"
+  ]
+ },
  "uwdawgdaze": {
   "status": "new",
   "found": [
-   "bio of @uwnstp"
+   "bio of @uwnstp",
+   "post by @uwrecycling"
   ]
  },
  "uwdelts": {
@@ -2687,7 +3174,8 @@
  "uwengineering": {
   "status": "new",
   "found": [
-   "bio of @me_at_uw"
+   "bio of @me_at_uw",
+   "post by @uwsteelbridge"
   ]
  },
  "uwequestrian": {
@@ -2731,6 +3219,13 @@
   "why": "The Dirty Dozen Student Farm Club",
   "checked": "2026-11-13"
  },
+ "uwfoodpantry": {
+  "status": "new",
+  "found": [
+   "post by @uwrecycling",
+   "post by @wecareuw"
+  ]
+ },
  "uwfostermba": {
   "status": "new",
   "found": [
@@ -2747,7 +3242,8 @@
    "bio of @uw_ama",
    "bio of @uw_cbc",
    "bio of @uw_uwib",
-   "bio of @uwpma"
+   "bio of @uwpma",
+   "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/student-organizations/"
   ]
  },
  "uwfslc": {
@@ -2779,7 +3275,9 @@
  "uwischool": {
   "status": "new",
   "found": [
-   "bio of @uwpma"
+   "bio of @uwpma",
+   "https://ischool.uw.edu/current/student-groups",
+   "https://ischool.uw.edu/diversity/resources/student-groups/aliss"
   ]
  },
  "uwjunoonouttakes": {
@@ -2872,6 +3370,12 @@
    "post by @uw_seed"
   ]
  },
+ "uwstudentlife": {
+  "status": "new",
+  "found": [
+   "post by @uwtranscollective"
+  ]
+ },
  "uwtekes": {
   "status": "club",
   "found": [
@@ -2904,7 +3408,8 @@
  "uwtimber": {
   "status": "new",
   "found": [
-   "bio of @uw_asce"
+   "bio of @uw_asce",
+   "post by @uwsteelbridge"
   ]
  },
  "uwtimmy": {
@@ -2922,6 +3427,12 @@
    "bio of @uwtridelta"
   ]
  },
+ "uwuaa": {
+  "status": "new",
+  "found": [
+   "post by @uwtranscollective"
+  ]
+ },
  "uwundivided": {
   "status": "new",
   "found": [
@@ -2935,10 +3446,14 @@
   ]
  },
  "uwwinfo": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
-   "post by @binfouw"
-  ]
+   "post by @binfouw",
+   "https://ischool.uw.edu/current/student-groups"
+  ],
+  "name": "UW Women in Informatics",
+  "why": "Women in Informatics",
+  "checked": "2026-11-14"
  },
  "vanessalking": {
   "status": "new",
@@ -2985,7 +3500,14 @@
  "weee_korean": {
   "status": "new",
   "found": [
-   "post by @jsauw"
+   "post by @jsauw",
+   "post by @tosauw"
+  ]
+ },
+ "wethydration": {
+  "status": "new",
+  "found": [
+   "post by @uwalphagam"
   ]
  },
  "will_mcdonald34": {
@@ -3006,7 +3528,8 @@
  "woodscoffee": {
   "status": "new",
   "found": [
-   "post by @geodat.uw"
+   "post by @geodat.uw",
+   "post by @data_science_society_uw"
   ]
  },
  "wp1911": {
@@ -3067,6 +3590,18 @@
   "status": "new",
   "found": [
    "post by @uwjunoon"
+  ]
+ },
+ "yourstruly.nhi": {
+  "status": "new",
+  "found": [
+   "post by @vsauw"
+  ]
+ },
+ "yumisdesserts": {
+  "status": "new",
+  "found": [
+   "post by @claude.uofwa"
   ]
  },
  "zappybatz": {
