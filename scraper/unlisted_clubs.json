@@ -1,4 +1,10 @@
 {
+ "0.mizi": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
+  ]
+ },
  "10": {
   "status": "new",
   "found": [
@@ -51,6 +57,12 @@
   "status": "new",
   "found": [
    "post by @uwarmyrotc"
+  ]
+ },
+ "_adoravi": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
   ]
  },
  "_alisonschmidt": {
@@ -141,6 +153,12 @@
   "status": "new",
   "found": [
    "post by @huskyboxing"
+  ]
+ },
+ "a.musicing": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
   ]
  },
  "a_wild_snivy": {
@@ -324,6 +342,12 @@
    "post by @uwpsiu"
   ]
  },
+ "alexaplayshine": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
+  ]
+ },
  "alexre.n": {
   "status": "new",
   "found": [
@@ -435,10 +459,22 @@
    "post by @uwtridelta"
   ]
  },
+ "annavannoy05": {
+  "status": "new",
+  "found": [
+   "post by @uwsigmakappa"
+  ]
+ },
  "anniee.doo": {
   "status": "new",
   "found": [
    "post by @uwzeta"
+  ]
+ },
+ "annmarie.johnsonn": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
   ]
  },
  "antonia.kwan": {
@@ -532,10 +568,13 @@
   ]
  },
  "asuw_sarva": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @wecareuw"
-  ]
+  ],
+  "name": "Sexual Assault and Relationship Violence Activists",
+  "why": "doesn't say UW",
+  "checked": "2026-11-15"
  },
  "asuwbeanbasket": {
   "status": "huskylink",
@@ -609,10 +648,13 @@
   "checked": "2026-11-13"
  },
  "asuwt": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @asuwogr"
-  ]
+  ],
+  "name": "Associated Students of University of Washington Tacoma",
+  "why": "names another school",
+  "checked": "2026-11-15"
  },
  "aubrey.gardiner": {
   "status": "new",
@@ -641,6 +683,12 @@
    "post by @uwclubwsoc"
   ]
  },
+ "axebat": {
+  "status": "new",
+  "found": [
+   "post by @uwwomensclubbaseball"
+  ]
+ },
  "ayaelkd": {
   "status": "new",
   "found": [
@@ -661,6 +709,12 @@
   "name": "Bartering Club at UW",
   "why": "Bartering Club at UW",
   "checked": "2026-11-13"
+ },
+ "baseballforall": {
+  "status": "new",
+  "found": [
+   "post by @uwwomensclubbaseball"
+  ]
  },
  "baylor_lund": {
   "status": "new",
@@ -789,6 +843,12 @@
    "post by @uwalphasig"
   ]
  },
+ "bts.bighitofficial": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
+  ]
+ },
  "bundlehalal": {
   "status": "new",
   "found": [
@@ -837,6 +897,12 @@
    "post by @uwalphagam"
   ]
  },
+ "campkorey": {
+  "status": "new",
+  "found": [
+   "post by @uwphikappatau"
+  ]
+ },
  "campreadarama": {
   "status": "new",
   "found": [
@@ -851,6 +917,12 @@
   "name": "UW Capillaries Journal",
   "why": "latest post 2025-01-19",
   "checked": "2026-11-13"
+ },
+ "carly.crooks": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
+  ]
  },
  "carrotxake": {
   "status": "new",
@@ -913,6 +985,12 @@
    "post by @uwpsiu"
   ]
  },
+ "chance__bates__": {
+  "status": "new",
+  "found": [
+   "post by @huskysailingteam"
+  ]
+ },
  "chappnewsom": {
   "status": "new",
   "found": [
@@ -923,6 +1001,12 @@
   "status": "new",
   "found": [
    "post by @uwtheta"
+  ]
+ },
+ "charlie.grimm730": {
+  "status": "new",
+  "found": [
+   "post by @dem_alphakappa"
   ]
  },
  "chef.twig": {
@@ -1051,6 +1135,12 @@
    "post by @uwtdx"
   ]
  },
+ "cryp.tofamilie": {
+  "status": "new",
+  "found": [
+   "post by @uwblockchain"
+  ]
+ },
  "cyclocrosscrusade": {
   "status": "new",
   "found": [
@@ -1117,6 +1207,12 @@
    "post by @gh_nupes"
   ]
  },
+ "deagonpotong": {
+  "status": "new",
+  "found": [
+   "post by @huskypowerliftingclub"
+  ]
+ },
  "decobun_": {
   "status": "new",
   "found": [
@@ -1128,6 +1224,12 @@
   "status": "new",
   "found": [
    "post by @uw.dsa"
+  ]
+ },
+ "dejapo_lifts": {
+  "status": "new",
+  "found": [
+   "post by @huskypowerliftingclub"
   ]
  },
  "deltasonfilm": {
@@ -1146,6 +1248,12 @@
   "status": "new",
   "found": [
    "post by @dubstechuw"
+  ]
+ },
+ "dhuang53": {
+  "status": "new",
+  "found": [
+   "post by @huskypowerliftingclub"
   ]
  },
  "dingteaseattle": {
@@ -1180,6 +1288,12 @@
   "name": "UW Delta Lambda Phi",
   "why": "Delta Lambda Phi",
   "checked": "2026-11-14"
+ },
+ "dodgersacademy": {
+  "status": "new",
+  "found": [
+   "post by @uwwomensclubbaseball"
+  ]
  },
  "dormchair_therapist": {
   "status": "new",
@@ -1222,6 +1336,12 @@
   "status": "new",
   "found": [
    "post by @yalatuw"
+  ]
+ },
+ "ducks_on_fire": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
   ]
  },
  "dugoni_admissions": {
@@ -1464,6 +1584,12 @@
    "post by @asuwmesc"
   ]
  },
+ "forest_dmg": {
+  "status": "new",
+  "found": [
+   "post by @uw_triangle"
+  ]
+ },
  "foundry10": {
   "status": "new",
   "found": [
@@ -1533,7 +1659,8 @@
  "girlzcanbcruel2": {
   "status": "new",
   "found": [
-   "post by @asuwae"
+   "post by @asuwae",
+   "post by @uwdawgdaze"
   ]
  },
  "globalbrigades": {
@@ -1555,6 +1682,12 @@
    "post by @uwadpi"
   ]
  },
+ "gofundme": {
+  "status": "new",
+  "found": [
+   "post by @uwwomensclubbaseball"
+  ]
+ },
  "golemis.photo": {
   "status": "new",
   "found": [
@@ -1565,6 +1698,12 @@
   "status": "new",
   "found": [
    "post by @uwwomxnsrugby"
+  ]
+ },
+ "gotimeathletics": {
+  "status": "new",
+  "found": [
+   "post by @uwwomensclubbaseball"
   ]
  },
  "gpss": {
@@ -1669,6 +1808,12 @@
    "post by @sundodgers"
   ]
  },
+ "halloffameprez": {
+  "status": "new",
+  "found": [
+   "post by @uwwomensclubbaseball"
+  ]
+ },
  "harmank.aur": {
   "status": "new",
   "found": [
@@ -1753,6 +1898,12 @@
    "post by @uwhhsa"
   ]
  },
+ "hollystauffer": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
+  ]
+ },
  "hosafhp": {
   "status": "new",
   "found": [
@@ -1802,6 +1953,12 @@
   "status": "new",
   "found": [
    "post by @ica_uwchapter"
+  ]
+ },
+ "iheardaruemor": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
   ]
  },
  "ilhanmn": {
@@ -1860,6 +2017,12 @@
    "post by @uwtdx"
   ]
  },
+ "isha.k029": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
+  ]
+ },
  "ishoopmovies": {
   "status": "new",
   "found": [
@@ -1876,6 +2039,18 @@
   "status": "new",
   "found": [
    "post by @uwgphi"
+  ]
+ },
+ "iuga.uw": {
+  "status": "new",
+  "found": [
+   "post by @ability_cse"
+  ]
+ },
+ "iv_ywang": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
   ]
  },
  "iyouth_uw": {
@@ -1897,6 +2072,12 @@
   "status": "new",
   "found": [
    "post by @huskyflying"
+  ]
+ },
+ "jacob_f23_": {
+  "status": "new",
+  "found": [
+   "post by @uw_triangle"
   ]
  },
  "jane_vds1": {
@@ -1921,6 +2102,12 @@
   "status": "new",
   "found": [
    "post by @writersinprogressuw"
+  ]
+ },
+ "jeanfruthimages": {
+  "status": "new",
+  "found": [
+   "post by @uwwomensclubbaseball"
   ]
  },
  "jellographyy": {
@@ -2220,6 +2407,12 @@
   "checked": "2026-11-13",
   "why": "Kung Fu slash Tai Chi Club at the University of Washington"
  },
+ "kwizzdubs_42": {
+  "status": "new",
+  "found": [
+   "post by @huskypowerliftingclub"
+  ]
+ },
  "kyleeee77": {
   "status": "new",
   "found": [
@@ -2292,6 +2485,12 @@
    "post by @animenationuw"
   ]
  },
+ "livenationpnw": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
+  ]
+ },
  "loganboyyd": {
   "status": "new",
   "found": [
@@ -2334,10 +2533,22 @@
    "post by @uwzeta"
   ]
  },
+ "m1.chu": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
+  ]
+ },
  "macenjoystaley": {
   "status": "new",
   "found": [
    "post by @uwtridelta"
+  ]
+ },
+ "maddishom": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
   ]
  },
  "maeee.robinson": {
@@ -2406,6 +2617,12 @@
    "post by @uwrov"
   ]
  },
+ "mariners": {
+  "status": "new",
+  "found": [
+   "post by @uwwomensclubbaseball"
+  ]
+ },
  "marlee.schoeffler": {
   "status": "new",
   "found": [
@@ -2422,6 +2639,12 @@
   "status": "new",
   "found": [
    "post by @uwgphi"
+  ]
+ },
+ "martinberthiaume": {
+  "status": "new",
+  "found": [
+   "post by @uwwomensclubbaseball"
   ]
  },
  "mateo._.bonta": {
@@ -2504,6 +2727,18 @@
    "post by @uwrov"
   ]
  },
+ "metamask.io": {
+  "status": "new",
+  "found": [
+   "post by @uwblockchain"
+  ]
+ },
+ "miafarr_": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
+  ]
+ },
  "micaelamjackson": {
   "status": "new",
   "found": [
@@ -2520,6 +2755,12 @@
   "status": "new",
   "found": [
    "post by @uwalphaxidelta"
+  ]
+ },
+ "mikeohearn": {
+  "status": "new",
+  "found": [
+   "post by @huskypowerliftingclub"
   ]
  },
  "mikeylahg": {
@@ -2558,6 +2799,12 @@
    "post by @womenshockeyuw"
   ]
  },
+ "mlbya": {
+  "status": "new",
+  "found": [
+   "post by @uwwomensclubbaseball"
+  ]
+ },
  "mollymoonicecream": {
   "status": "new",
   "found": [
@@ -2583,10 +2830,14 @@
   "why": "UW student Muslim organization"
  },
  "msauwb": {
-  "status": "new",
+  "status": "not",
   "found": [
-   "post by @msauw"
-  ]
+   "post by @msauw",
+   "post by @msauw.vc"
+  ],
+  "name": "MSA UWB",
+  "why": "names another school",
+  "checked": "2026-11-15"
  },
  "muser_uw": {
   "status": "maybe",
@@ -2610,6 +2861,12 @@
   "status": "new",
   "found": [
    "post by @uwpsiu"
+  ]
+ },
+ "natalya.bale": {
+  "status": "new",
+  "found": [
+   "post by @dem_alphakappa"
   ]
  },
  "nate.eala": {
@@ -3075,6 +3332,12 @@
    "bio of @thewomensnetwork_uw"
   ]
  },
+ "reeseewho": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
+  ]
+ },
  "regenerationfieldinstitute": {
   "status": "new",
   "found": [
@@ -3085,7 +3348,8 @@
   "status": "new",
   "found": [
    "post by @uwpsiu",
-   "post by @asuwae"
+   "post by @asuwae",
+   "post by @uwdawgdaze"
   ]
  },
  "repjayapal": {
@@ -3213,6 +3477,12 @@
    "post by @uwalphagam"
   ]
  },
+ "sahana.samrat": {
+  "status": "new",
+  "found": [
+   "post by @eedramasociety"
+  ]
+ },
  "sahasra.kakani": {
   "status": "new",
   "found": [
@@ -3235,6 +3505,12 @@
   "status": "new",
   "found": [
    "post by @uwmensvball"
+  ]
+ },
+ "sarahqpan": {
+  "status": "new",
+  "found": [
+   "post by @huskypowerliftingclub"
   ]
  },
  "sashwath281": {
@@ -3368,6 +3644,12 @@
    "post by @asa.uw"
   ]
  },
+ "shivneil3": {
+  "status": "new",
+  "found": [
+   "post by @dem_alphakappa"
+  ]
+ },
  "shoukanghealth": {
   "status": "new",
   "found": [
@@ -3483,7 +3765,8 @@
  "starheartsmileyface": {
   "status": "new",
   "found": [
-   "post by @asuwae"
+   "post by @asuwae",
+   "post by @uwdawgdaze"
   ]
  },
  "starlightsupermeep": {
@@ -3514,6 +3797,12 @@
   "status": "new",
   "found": [
    "post by @writersinprogressuw"
+  ]
+ },
+ "sunlu_official": {
+  "status": "new",
+  "found": [
+   "post by @washingtonsuperbike"
   ]
  },
  "super_familia": {
@@ -3582,6 +3871,12 @@
    "post by @uw_smc"
   ]
  },
+ "tangemwallet": {
+  "status": "new",
+  "found": [
+   "post by @uwblockchain"
+  ]
+ },
  "tarobreaad": {
   "status": "new",
   "found": [
@@ -3605,6 +3900,12 @@
   "found": [
    "post by @uw_deltachi",
    "post by @uwalphasig"
+  ]
+ },
+ "taynanea": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
   ]
  },
  "teamroboto": {
@@ -3715,6 +4016,12 @@
    "post by @huskypickleballclub"
   ]
  },
+ "theridgemotorsportspark": {
+  "status": "new",
+  "found": [
+   "post by @washingtonsuperbike"
+  ]
+ },
  "theta.talks": {
   "status": "new",
   "found": [
@@ -3745,10 +4052,22 @@
    "post by @uwdelts"
   ]
  },
+ "tmobilepark": {
+  "status": "new",
+  "found": [
+   "post by @uwwomensclubbaseball"
+  ]
+ },
  "toasted.seattle": {
   "status": "new",
   "found": [
    "post by @montlake.consulting"
+  ]
+ },
+ "tracktime.bike": {
+  "status": "new",
+  "found": [
+   "post by @washingtonsuperbike"
   ]
  },
  "troyy.kelsch": {
@@ -4225,11 +4544,16 @@
   ]
  },
  "uwfarm": {
-  "status": "new",
+  "status": "club",
   "found": [
    "bio of @uwfarmdirtydozen",
    "post by @uwfarmdirtydozen"
-  ]
+  ],
+  "name": "The UW Farm",
+  "bio": "We are a certified organic educational farm on the University of Washington, Seattle campus. Check out the link below for more info!",
+  "latest": "2026-11-12",
+  "checked": "2026-11-15",
+  "why": "student‑run farm organization on campus"
  },
  "uwfarmdirtydozen": {
   "status": "huskylink",
@@ -4241,11 +4565,16 @@
   "checked": "2026-11-13"
  },
  "uwfoodpantry": {
-  "status": "new",
+  "status": "club",
   "found": [
    "post by @uwrecycling",
    "post by @wecareuw"
-  ]
+  ],
+  "name": "UW Food Pantry",
+  "bio": "Providing food assistance to UW students, staff, and faculty experiencing food insecurity.\nVisit us, volunteer, donate, and learn more ⬇️",
+  "latest": "2026-11-12",
+  "checked": "2026-11-15",
+  "why": "student‑operated food‑pantry service for UW community"
  },
  "uwfostermba": {
   "status": "new",
@@ -4282,11 +4611,16 @@
   "why": "student‑run food system coalition"
  },
  "uwfsnh": {
-  "status": "new",
+  "status": "not",
   "found": [
    "bio of @uwfslc",
    "post by @huskyculinaryclub"
-  ]
+  ],
+  "name": "UW Food Systems, Nutrition, and Health",
+  "bio": "Preparing future leaders in food systems and nutritional sciences to address challenges in population health.",
+  "latest": "2026-11-11",
+  "checked": "2026-11-15",
+  "why": "appears to be an academic program/department, not a student club"
  },
  "uwgammaphi": {
   "status": "new",
@@ -4411,11 +4745,16 @@
   ]
  },
  "uwstudentlife": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwtranscollective",
    "post by @uwarmyrotc"
-  ]
+  ],
+  "name": "UW Student Life",
+  "bio": "The Division of Student life supports students in their path to explore, learn and grow at UW. Tag us or use #UWStudentLife to share your photos!",
+  "latest": "2026-11-12",
+  "checked": "2026-11-15",
+  "why": "official university division, not a student‑run club"
  },
  "uwtekes": {
   "status": "club",
@@ -4656,6 +4995,12 @@
    "post by @analogclubuw"
   ]
  },
+ "xinelie": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
+  ]
+ },
  "xisonfilm": {
   "status": "new",
   "found": [
@@ -4690,6 +5035,12 @@
   "status": "new",
   "found": [
    "post by @uwpkmn"
+  ]
+ },
+ "zhy.smitisa": {
+  "status": "new",
+  "found": [
+   "post by @thekompanyuw"
   ]
  },
  "zoeyangelinaa": {

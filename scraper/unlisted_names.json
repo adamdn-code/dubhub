@@ -1,8 +1,22 @@
 {
  "ASUW": {
-  "status": "new",
+  "status": "none",
   "by": [
    "UW Student Legal Services (@uwsls)"
+  ],
+  "handle": null,
+  "checked": "2026-11-15"
+ },
+ "Brothers of Zeta Pi Lambda Chapter": {
+  "status": "new",
+  "by": [
+   "Alpha Xi (AΞ) Chapter of AΦA (@uwalphas)"
+  ]
+ },
+ "CBDC": {
+  "status": "new",
+  "by": [
+   "UW Case Club (C²) (@uw_csquared)"
   ]
  },
  "Gamma Eta chapter of Kappa Alpha Psi fraternity inc.": {
@@ -20,6 +34,12 @@
   ],
   "handle": null,
   "checked": "2026-11-14"
+ },
+ "Seattle Alpha Education Foundation": {
+  "status": "new",
+  "by": [
+   "Alpha Xi (AΞ) Chapter of AΦA (@uwalphas)"
+  ]
  },
  "TheWomensNetwork": {
   "status": "new",
@@ -40,6 +60,12 @@
   ],
   "handle": null,
   "checked": "2026-11-14"
+ },
+ "UW Consulting & Business Development (CBDC) Advisory Board": {
+  "status": "new",
+  "by": [
+   "UW Women in Informatics (@uwwinfo)"
+  ]
  },
  "UW Foster": {
   "status": "new",

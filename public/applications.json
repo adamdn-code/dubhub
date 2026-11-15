@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T02:47",
+ "updated": "2026-11-15T06:26",
  "applications": [
   {
    "id": "DfhKZFymwHW",
@@ -348,6 +348,18 @@
    "posted": "2026-10-25",
    "logo": "/ig/clubs/uwneurobiologyclub.jpg",
    "category": "Academic"
+  },
+  {
+   "id": "De7hInmEnYx",
+   "host": "UW Food Pantry (@uwfoodpantry)",
+   "for": "Food drive host",
+   "kind": "Team & staff",
+   "deadline": null,
+   "link": "https://linktr.ee/uwpantry",
+   "post": "https://www.instagram.com/p/De7hInmEnYx/",
+   "posted": "2026-10-25",
+   "logo": "/ig/clubs/uwfoodpantry.jpg",
+   "category": null
   },
   {
    "id": "De-urQeg-8Z",
