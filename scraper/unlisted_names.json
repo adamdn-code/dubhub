@@ -1,4 +1,18 @@
 {
+ "ASUW": {
+  "status": "new",
+  "by": [
+   "UW Student Legal Services (@uwsls)"
+  ]
+ },
+ "Gamma Eta chapter of Kappa Alpha Psi fraternity inc.": {
+  "status": "none",
+  "by": [
+   "University Of Washington Nupes (@gh_nupes)"
+  ],
+  "handle": null,
+  "checked": "2026-11-15"
+ },
  "SARVA": {
   "status": "none",
   "by": [
@@ -6,6 +20,18 @@
   ],
   "handle": null,
   "checked": "2026-11-14"
+ },
+ "TheWomensNetwork": {
+  "status": "new",
+  "by": [
+   "UWiB (UW) (@uw_uwib)"
+  ]
+ },
+ "TheWomensNetworkUW": {
+  "status": "new",
+  "by": [
+   "UWiB (UW) (@uw_uwib)"
+  ]
  },
  "Tikkun Olam Committee": {
   "status": "none",
@@ -15,6 +41,12 @@
   "handle": null,
   "checked": "2026-11-14"
  },
+ "UW Foster": {
+  "status": "new",
+  "by": [
+   "Certificate of International Studies in Business (@cisbuw)"
+  ]
+ },
  "UW MIC": {
   "status": "none",
   "by": [
@@ -22,5 +54,11 @@
   ],
   "handle": null,
   "checked": "2026-11-14"
+ },
+ "Zeta Phi Beta Sorority, Incorporated": {
+  "status": "new",
+  "by": [
+   "RAVISHING Rho Lambda Zeta 💙 (@rlz1920)"
+  ]
  }
 }

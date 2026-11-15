@@ -4075,9 +4075,9 @@
   "checked": "2026-11-07"
  },
  "Project IF": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "projectindoorfarm",
+  "from": "mentioned",
+  "checked": "2026-11-14"
  },
  "Project Link": {
   "handle": null,
@@ -5200,9 +5200,9 @@
   "checked": "2026-10-24"
  },
  "THE KOMPANY": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "thekompanyuw",
+  "from": "mentioned",
+  "checked": "2026-11-15"
  },
  "The Lettuce Eating Club at the University of Washington": {
   "handle": null,
