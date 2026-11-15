@@ -3193,11 +3193,6 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
   );
 }
 
-// A club's fields, without the one its category already says ("Business", "Business").
-function extraFields(club) {
-  return (club.fields ?? []).filter((field) => field !== club.category);
-}
-
 // `onSelectEvent` opens one of the club's upcoming events (over this pop-up).
 function ClubDetail({ club, hosted, past = [], j, apps = [], clubs, onSelectEvent, onClose }) {
   const [showPast, setShowPast] = useState(false);
