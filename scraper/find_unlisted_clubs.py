@@ -43,8 +43,16 @@ Every run (from this folder; scheduled_scrape.py runs it before each Instagram r
     python find_unlisted_clubs.py               # gather accounts, check up to 10
     python find_unlisted_clubs.py --limit 5
     python find_unlisted_clubs.py --add uwsundodgers,uwelement
+    python find_unlisted_clubs.py --following following.json   # the clubs you follow (see below)
     python find_unlisted_clubs.py --pages       # read the UW listing pages again now
     python find_unlisted_clubs.py --dry-run     # show what it would do, save nothing
+--following: your own Instagram following list, from Instagram's "Download your information"
+(Settings > Accounts Center > Your information and permissions > Download your information >
+Some of your information > Followers and following, format JSON). Give it the .zip, or the
+following.json / following.html inside it, or a text file with one username per line. Only
+accounts whose username sounds like UW are kept (most of anyone's list is friends); the rest of
+the list is not saved anywhere. Each kept account still has to pass the usual checks.
+
 To stay polite: 6-12 seconds between Instagram pages, and it stops the moment Instagram objects.
 """
 
@@ -53,8 +61,10 @@ import random
 import re
 import sys
 import time
+import zipfile
 from collections import defaultdict
 from datetime import date, timedelta
+from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
 import instaloader
@@ -251,7 +261,7 @@ def on_uw_page(entry):
 
 def priority(handle, entry):
     found = entry.get("found", [])
-    return (any(f.startswith(("http", "added by hand")) for f in found), bool(UW_USERNAME.search(handle)), len(found))
+    return (any(f.startswith(("http", "added by hand", FOLLOWED)) for f in found), bool(UW_USERNAME.search(handle)), len(found))
 
 
 def says_uw(user):
@@ -571,6 +581,29 @@ def try_names(L, names, saved, known, today, pages):
     return used
 
 
+FOLLOWED = "followed by a DubHub teammate"
+
+
+def following_handles(path):
+    """Usernames in an Instagram "Download your information" following list (the .zip, or its
+    following.json / following.html), or in a text file with one username per line."""
+    path = Path(path)
+    if path.suffix.lower() == ".zip":
+        with zipfile.ZipFile(path) as z:
+            texts = [z.read(n).decode("utf-8", "replace") for n in z.namelist()
+                     if re.search(r"(^|/)following[^/]*\.(json|html)$", n)]
+        if not texts:
+            raise SystemExit(f"No following.json or following.html in {path.name}: when asking Instagram for "
+                             "the download, tick \"Followers and following\".")
+        text = "\n".join(texts)
+    else:
+        text = path.read_text(encoding="utf-8", errors="replace")
+    found = re.findall(r"instagram\.com/(?:_u/)?([A-Za-z0-9._]{2,30})", text)
+    if not found:
+        found = [line.strip().lstrip("@") for line in text.splitlines()]
+    return list(dict.fromkeys(h.lower() for h in found if re.fullmatch(r"[A-Za-z0-9._]{2,30}", h)))
+
+
 def main():
     sys.stdout.reconfigure(errors="replace")  # club names with emoji, in a console that can't show them
     dry = "--dry-run" in sys.argv
@@ -603,6 +636,16 @@ def main():
             h = clean(h.strip().lstrip("@"))
             if h:
                 add(h, "added by hand")
+
+    if "--following" in sys.argv:
+        followed = [h for h in map(clean, following_handles(sys.argv[sys.argv.index("--following") + 1])) if h]
+        fresh = [h for h in followed if h not in known and h not in saved and UW_USERNAME.search(h)
+                 and not (UNIVERSITY_ACCOUNT.search(h) or OTHER_SCHOOL.search(h) or OTHER_CAMPUS.search(h))]
+        for h in fresh:
+            add(h, FOLLOWED)
+        print(f"{len(followed)} accounts in the following list: {sum(h in known for h in followed)} DubHub already "
+              f"reads, {len(fresh)} new ones sound like UW and will be checked. The rest aren't saved; if "
+              f"one of them is a UW club, add it with --add.", flush=True)
 
     huskylink_clubs = _load(HUSKYLINK_FILE, {"clubs": []})["clubs"]
     saved_instagram = _load(CLUB_INSTAGRAM_FILE, {})

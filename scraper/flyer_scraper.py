@@ -18,8 +18,12 @@ It's kept apart from the regular scrapers on purpose, so it can't break them:
     events than the regular scraper did, the regular ones stay.
   - It asks the AI with a different model than the regular scrapers (Groq's free limits are per
     model), so it can't use up their daily allowance.
-  - It reads at most PER_RUN posts a run, newest first, and if the AI isn't available it leaves
-    those posts for the next run instead of guessing.
+  - It reads at most PER_RUN posts a run (PER_RUN_WINDOWS with Windows' own reader, which has no
+    daily limit), newest first, and if the AI isn't available it leaves those posts for the next
+    run instead of guessing. It saves what it has read after every AI request and stops asking
+    after MINUTES, so a long run can't lose its work to scheduled_scrape.py's time limit.
+  - A flyer whose text has no date or time on it isn't sent to the AI: it has nothing to add to
+    what the regular scraper found in the caption.
   - scheduled_scrape.py runs it as its own step after the regular ones; if it fails or its result
     looks wrong, that run's regular data is pushed without it.
 
@@ -45,7 +49,12 @@ import events_common as ec  # the regular scrapers' code, used as is (nothing in
 from flyer_text import ReaderUnavailable, can_read, read_flyer, reader_name
 
 FLYERS_FILE = ec.STATE_DIR / "flyers.json"
-PER_RUN = 60
+PER_RUN = 60           # with the Groq picture model (flyer_text.py has its own cap too)
+PER_RUN_WINDOWS = 240  # with Windows' reader: it runs on this computer and has no daily limit
+MINUTES = 20           # stop asking the AI after this long; the rest wait for the next run
+# Text that could tell when something is: a time, a date, a month or a weekday.
+WHEN = re.compile(r"\d\s?[ap]\.?m\b|\d{1,2}[:.]\d\d|\d{1,2}\s?/\s?\d{1,2}|\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)"
+                  r"|\b(mon|tue|wed|thu|fri|sat|sun)|\b(today|tonight|tomorrow|noon)\b|\d(st|nd|rd|th)\b", re.I)
 # Not the regular scrapers' model (ec.PREFERRED_MODELS starts with the one they use), so the two
 # don't share a daily limit. Both of these are on Groq's free plan.
 MODELS = ["qwen/qwen3.8-27b", "openai/gpt-oss-20b"]
@@ -131,11 +140,13 @@ def read_flyers(store, flyers, limit):
             text = read_flyer(picture)
         except ReaderUnavailable:
             continue
-        if not text:
-            flyers[key] = {"of": fingerprint(post), "read": True, "text": None}
+        if not text or not WHEN.search(text):
+            flyers[key] = {"of": fingerprint(post), "read": True, "text": text or None}
             continue
         with_text.append((key, post, text))
-    print(f"{len(with_text)} flyer(s) had text.")
+    print(f"{len(with_text)} flyer(s) had a date or time on them.", flush=True)
+    save_flyers(flyers)
+    stop_at = time.time() + MINUTES * 60
 
     for i in range(0, len(with_text), ec.AI_BATCH):
         chunk = with_text[i:i + ec.AI_BATCH]
@@ -147,8 +158,17 @@ def read_flyers(store, flyers, limit):
             return
         for (key, post, text), events in zip(chunk, found):
             flyers[key] = {"of": fingerprint(post), "read": True, "text": text, "events": events}
+        save_flyers(flyers)
         if i + ec.AI_BATCH < len(with_text):
+            if time.time() > stop_at:
+                print(f"{MINUTES} minutes are up; {len(with_text) - i - ec.AI_BATCH} flyer(s) wait for the next run.")
+                return
             time.sleep(3)  # stay under Groq's free per-minute limit
+
+
+def save_flyers(flyers):
+    if not DRY:
+        ec._save(FLYERS_FILE, flyers)
 
 
 def post_picture(key, post):
@@ -170,10 +190,15 @@ def ec_post(key, v):
             "posted": date.fromisoformat(v["posted"]) if v.get("posted") else None}
 
 
+DRY = False
+
+
 def main():
+    global DRY
     args = sys.argv[1:]
-    dry = "--dry-run" in args
-    limit = int(args[args.index("--limit") + 1]) if "--limit" in args else PER_RUN
+    dry = DRY = "--dry-run" in args
+    limit = int(args[args.index("--limit") + 1]) if "--limit" in args else \
+        (PER_RUN_WINDOWS if reader_name() == "Windows OCR" else PER_RUN)
     store = ec.load_store()
     flyers = ec._load(FLYERS_FILE, {})
     flyers = {k: v for k, v in flyers.items() if k in store}  # forget posts the regular scrapers forgot

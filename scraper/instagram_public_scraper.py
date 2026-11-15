@@ -32,6 +32,10 @@ To stay polite (and not get this computer's internet address blocked): one page 
 10-20 second pause between clubs, and it stops the moment Instagram asks it to slow down or
 to log in. The clubs it didn't get to go first next run.
 
+Clubs that are posting get checked most: how often an account's turn comes depends on how long
+ago it last posted (CHECK_EVERY: daily if it posted this week, every 2 days if in the past three
+weeks, every 4 days after that). Each run reads the accounts furthest past their turn, so when
+Instagram allows fewer pages every account waits longer by the same share.
 Accounts that haven't posted in QUIET_DAYS (or are private or gone) are only checked every
 QUIET_EVERY_DAYS, which leaves Instagram's patience for the active clubs and for
 find_unlisted_clubs.py. Each page it reads also notes which accounts the club mentions (in its
@@ -43,7 +47,7 @@ import random
 import re
 import sys
 import time
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 import instaloader
 import requests
@@ -84,6 +88,10 @@ LATEST_FILE = STATE_DIR / "instagram_latest_post.json"  # handle -> its newest p
 CLUBS_PER_RUN = 70  # about 20 minutes; it still stops the moment Instagram objects
 QUIET_DAYS = 60        # an account with no post in this long is quiet...
 QUIET_EVERY_DAYS = 14  # ...and is only checked this often
+# Days between checks for the rest, by how long ago the account last posted:
+# (newest post at most this many days old, days between checks).
+CHECK_EVERY = [(7, 1), (21, 2), (QUIET_DAYS, 4)]
+NOT_SEEN_YET_EVERY = 2  # accounts whose newest post isn't known yet
 MIN_WAIT, MAX_WAIT = 10, 20     # seconds between clubs
 DETAILS_PER_RUN = 15            # single-post lookups per run (likes, filling in Google snippets)
 PICTURE_MAX_AGE_DAYS = 14       # re-download a club's profile picture this often
@@ -124,6 +132,26 @@ def quiet_waiting(every, checked, latest):
         return bool(seen) and (not seen[:1].isdigit() or seen < quiet_if_before)
 
     return {h for h in every if quiet(h) and checked.get(h, "") > recently}
+
+
+def check_every(handle, latest):
+    """How many days should pass between checks of this account."""
+    seen = latest.get(handle)
+    if not seen:
+        return NOT_SEEN_YET_EVERY
+    if not seen[:1].isdigit():
+        return QUIET_EVERY_DAYS  # private, gone, or no posts
+    age = (TODAY - date.fromisoformat(seen[:10])).days
+    return next((every for newest, every in CHECK_EVERY if age <= newest), QUIET_EVERY_DAYS)
+
+
+def overdue(handle, checked, latest, now):
+    """How far past its turn an account is: 1 is exactly due, 2 has waited twice as long as it
+    should. Accounts never checked come first."""
+    last = checked.get(handle)
+    if not last:
+        return float("inf")
+    return (now - datetime.fromisoformat(last)).total_seconds() / 86400 / check_every(handle, latest)
 
 
 def club_page(L, handle):
@@ -193,8 +221,12 @@ def scrape_clubs(L, store, limit, only=None):
         handles = [h for h in only if h in every][:limit]
     else:
         waiting = quiet_waiting(every, checked, latest)
-        handles = sorted((h for h in every if h not in waiting), key=lambda h: checked.get(h, ""))[:limit]
+        now = datetime.now()
+        handles = sorted((h for h in every if h not in waiting),
+                         key=lambda h: overdue(h, checked, latest, now), reverse=True)[:limit]
+    daily = sum(1 for h in handles if check_every(h, latest) == 1)
     print(f"Checking {len(handles)} of {len(every)} clubs this run, without logging in"
+          + (f" ({daily} of them posted in the past week)" if daily else "")
           + (f" ({len(waiting)} that haven't posted in {QUIET_DAYS} days wait for their every-"
              f"{QUIET_EVERY_DAYS}-days check)" if waiting else "")
           + "; the rest get their turn on later runs.", flush=True)
