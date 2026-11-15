@@ -270,15 +270,37 @@ function BaseMap({ palette, onReady }) {
   return null;
 }
 
-// Pans the map to an event picked from the Next up sign.
-function FlyTo({ event }) {
+// On a phone the open event's card comes up over the lower half of the map (on a wide screen it
+// sits off to the side). How far down the map still shows above the card, or null when the card
+// isn't in the way.
+function clearOfCard(map) {
+  if (map.getSize().x > 700) return null;
+  const card = stageOf(map).querySelector(".map-card");
+  return card && card.offsetTop >= 90 ? card.offsetTop : null;
+}
+
+// Pans the map to an event picked from the Next up sign (`flyTo`). And on a phone, a dot that was
+// tapped where the event's card then covers it slides up to where it still shows.
+function ShowOnMap({ flyTo, shown }) {
   const map = useMap();
+  const last = useRef({}); // what this last acted on, so each pick or tap moves the map once
   useEffect(() => {
-    if (!event?.pos) return;
+    const was = last.current;
+    last.current = { flyTo, shown };
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (calm) map.setView(event.pos, Math.max(map.getZoom(), 17));
-    else map.flyTo(event.pos, Math.max(map.getZoom(), 17), { duration: 1.1 });
-  }, [map, event]);
+    const clear = clearOfCard(map);
+    if (flyTo?.pos && flyTo !== was.flyTo) {
+      const zoom = Math.max(map.getZoom(), 17);
+      // The middle of the map, or of the part of it showing above the card.
+      const center = clear ? map.unproject(map.project(flyTo.pos, zoom).add([0, (map.getSize().y - clear) / 2]), zoom) : flyTo.pos;
+      if (calm) map.setView(center, zoom);
+      else map.flyTo(center, zoom, { duration: 1.1 });
+      return;
+    }
+    if (!clear || !shown?.pos || shown === was.shown) return;
+    const dot = map.latLngToContainerPoint(shown.pos);
+    if (dot.y > clear - 28) map.panBy([0, dot.y - clear / 2], { animate: !calm, duration: 0.45 });
+  }, [map, flyTo, shown]);
   return null;
 }
 
@@ -544,7 +566,7 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
     >
       <MapReveal ready={ready} again={reopened} />
       <ZoomControl position="bottomright" />
-      <FlyTo event={flyTo} />
+      <ShowOnMap flyTo={flyTo} shown={shown} />
       <MapArea area={area} />
       <BaseMap palette={palette} onReady={pictureReady} />
       <ThemeSwap live={livePalette} current={palette} onSwap={swapTo} onBusy={busy} onReopen={reopen} />

@@ -1,4 +1,4 @@
-import { Component, Suspense, lazy, memo, useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { Component, Suspense, lazy, memo, useCallback, useDeferredValue, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 // The map's styles stay here, ahead of DubHub.css, which restyles parts of them (the later file
 // wins a tie). Only the map's code is downloaded separately (see EventMap below).
 import "leaflet/dist/leaflet.css";
@@ -81,6 +81,16 @@ const SHARE_ICON = "M12 3v12M7 8l5-5 5 5M5 14v7h14v-7";
 const PLUS_ICON = "M12 5v14M5 12h14";
 const SUN_ICON = "M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4";
 const MOON_ICON = "M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z";
+const CALENDAR_ICON = "M4 6h16v15H4zM4 10h16M8 3v4M16 3v4";
+const LINK_OUT_ICON = "M14 4h6v6M20 4l-9 9M18 13v6H5V6h6";
+const FORWARD_ICON = "M9 5l7 7-7 7";
+
+// Whether a place's name says no more than its plate does ("MEB 237" beside a plate reading MEB 237),
+// so the two aren't shown side by side.
+function plateSaysItAll(where) {
+  const p = placeCode(where);
+  return Boolean(p) && where.trim().toLowerCase() === [p.code, p.room].filter(Boolean).join(" ").toLowerCase();
+}
 
 // A building-code plate, like the ones on campus signs: "MGH 241". Nothing for places with no code.
 function Plate({ where, size }) {
@@ -946,6 +956,18 @@ function GoogleSignIn({ onSignIn }) {
   );
 }
 
+// Your Google picture, or your initials when there isn't one (or it won't load). On a phone the
+// top bar has no room for your name, so this is the whole button for your profile.
+function UserPicture({ user }) {
+  const [failed, setFailed] = useState(false);
+  if (user.picture && !failed) return <img src={user.picture} alt="" referrerPolicy="no-referrer" onError={() => setFailed(true)} />;
+  return (
+    <span className="user-initials" aria-hidden="true">
+      {initials(user.name)}
+    </span>
+  );
+}
+
 // Top-right corner: "Sign in" (opens the sign-in page), or your name and Sign out.
 function Account({ user, onOpenSignIn, onSignOut, onOpenProfile }) {
   if (!user) {
@@ -958,7 +980,7 @@ function Account({ user, onOpenSignIn, onSignOut, onOpenProfile }) {
   return (
     <div className="user">
       <button className="user-button" onClick={onOpenProfile} title="Your profile">
-        {user.picture && <img src={user.picture} alt="" referrerPolicy="no-referrer" />}
+        <UserPicture user={user} />
         <span className="wide-only">{user.name}</span>
       </button>
       <button className="signout wide-only" onClick={onSignOut}>
@@ -1270,11 +1292,22 @@ function going(event, j) {
   return count > 0 ? `${count} going` : null;
 }
 
+// A link to where the event was posted. On a phone it's one of the small buttons beside "I'm
+// going" (an icon over a short name: "HuskyLink"); the icon only shows there (see DubHub.css).
 function PostLink({ event }) {
   if (!event.url) return null;
+  const site = { huskylink: "HuskyLink", discord: "Discord", luma: "Luma" }[event.source] ?? null;
   return (
-    <a className="post-link" href={event.url} target="_blank" rel="noreferrer">
-      {event.source === "huskylink" ? "View on HuskyLink" : event.source === "discord" ? "View on Discord" : "View post"}
+    <a className="post-link" href={event.url} target="_blank" rel="noreferrer" aria-label={site ? `View on ${site}` : "View post"}>
+      <Icon d={LINK_OUT_ICON} />
+      {site ? (
+        <>
+          <span className="wide-only">View on </span>
+          {site}
+        </>
+      ) : (
+        "View post"
+      )}
     </a>
   );
 }
@@ -1306,8 +1339,9 @@ function CalendarLink({ event }) {
   const url = googleCalendarUrl(event);
   if (!url) return null;
   return (
-    <a className="post-link" href={url} target="_blank" rel="noreferrer">
-      Add to Google Calendar
+    <a className="post-link" href={url} target="_blank" rel="noreferrer" aria-label="Add to Google Calendar">
+      <Icon d={CALENDAR_ICON} />
+      <span className="wide-only">Add to Google </span>Calendar
     </a>
   );
 }
@@ -1329,7 +1363,7 @@ function MapEventCard({ event, j, alsoHere = [], onPick, onEnter, onLeave, onClo
     <aside className="map-card" aria-label={`${e.title}, hosted by ${hostName(e)}`} onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <header className="map-card-sign">
         <Plate where={e.where} size="lg" />
-        <span className="map-card-where">{e.where ?? "Location not listed"}</span>
+        {!plateSaysItAll(e.where) && <span className="map-card-where">{e.where ?? "Location not listed"}</span>}
         <button className="map-card-close" aria-label="Close" onClick={onClose}>
           <Icon d={CLOSE_ICON} />
         </button>
@@ -1593,17 +1627,89 @@ function Home({ f, area, j, palette, showSlider }) {
   );
 }
 
-function EventDetail({ event, j, onClose }) {
+// ------------------------------------------------------------------------------------ pop-ups
+// What every pop-up (an event, a club, a role) shares:
+//  - Escape closes it; when one is open over another (an event opened from a club), only the top one.
+//  - Tab stays inside it, and closing it puts the keyboard back on whatever opened it.
+//  - With `backCloses`, the phone's Back button (or swipe) closes it instead of leaving DubHub:
+//    opening adds a step to the browser's history, and closing it by hand takes that step away
+//    again. (An event's pop-up doesn't need this: it's in the address already, see openEvent.)
+// Returns a ref for the pop-up's box.
+const openDialogs = []; // the pop-ups open right now, the newest last
+const VISIT = Date.now().toString(36); // so a step left over from before a reload is never taken for a new pop-up's
+const CAN_FOCUS =
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+function useDialog(onClose, backCloses = false) {
+  const box = useRef(null);
+  const id = VISIT + useId();
+  const latest = useRef(onClose);
   useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && onClose();
+    latest.current = onClose;
+  });
+  // What had the keyboard's focus before the pop-up took it (noted before the pop-up is drawn).
+  const [opener] = useState(() => document.activeElement);
+  // React runs effects twice in development (set up, undo, set up again). Undoing waits a moment
+  // and setting up again calls it off, so the history step is only added and taken away once.
+  const undo = useRef(null);
+  const hasStep = useRef(false);
+
+  useEffect(() => {
+    clearTimeout(undo.current);
+    openDialogs.push(id);
+    if (backCloses && !hasStep.current) {
+      history.pushState({ ...history.state, dubhubDialogs: [...(history.state?.dubhubDialogs ?? []), id] }, "");
+      hasStep.current = true;
+    }
+
+    const onKey = (e) => {
+      if (openDialogs.at(-1) !== id) return;
+      if (e.key === "Escape") {
+        latest.current();
+        return;
+      }
+      if (e.key !== "Tab" || !box.current) return;
+      const stops = [...box.current.querySelectorAll(CAN_FOCUS)].filter((el) => el.getClientRects().length > 0);
+      const at = document.activeElement;
+      const edge = e.shiftKey ? stops[0] : stops.at(-1);
+      if (!stops.length || at === edge || !box.current.contains(at)) {
+        e.preventDefault();
+        (e.shiftKey ? stops.at(-1) : stops[0])?.focus();
+      }
+    };
+    // The Back button took this pop-up's step away: close it.
+    const onPop = () => {
+      if (hasStep.current && !history.state?.dubhubDialogs?.includes(id)) {
+        hasStep.current = false;
+        latest.current();
+      }
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
+    window.addEventListener("popstate", onPop);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("popstate", onPop);
+      openDialogs.splice(openDialogs.lastIndexOf(id), 1);
+      undo.current = setTimeout(() => {
+        // Closed some other way (the X, Escape, a tap outside): take its step away.
+        if (hasStep.current && history.state?.dubhubDialogs?.at(-1) === id) history.back();
+        hasStep.current = false;
+        if (opener?.isConnected) opener.focus({ preventScroll: true });
+      }, 0);
+    };
+  }, [id, backCloses, opener]);
+
+  return box;
+}
+
+function EventDetail({ event, j, onClose }) {
+  const box = useDialog(onClose);
 
   return (
     <div className="club-backdrop" onClick={onClose}>
       <div
-        className="club-modal"
+        ref={box}
+        className="club-modal event-modal"
         role="dialog"
         aria-modal="true"
         aria-labelledby="event-detail-title"
@@ -1612,7 +1718,7 @@ function EventDetail({ event, j, onClose }) {
         <button className="club-close" aria-label="Close" onClick={onClose} autoFocus>
           <Icon d={CLOSE_ICON} />
         </button>
-        {eventPicture(event) && <HeroImage key={eventPicture(event)} src={eventPicture(event)} />}
+        {eventPicture(event) && <HeroImage key={eventPicture(event)} src={eventPicture(event)} logo={!event.image} />}
         <h2 id="event-detail-title">{event.title}</h2>
         <p className="detail-tags">
           <StartsTag event={event} />
@@ -1624,7 +1730,7 @@ function EventDetail({ event, j, onClose }) {
           <dt>Where</dt>
           <dd>
             <Plate where={event.where} />
-            {event.where ?? "Location not listed"}
+            {!plateSaysItAll(event.where) && (event.where ?? "Location not listed")}
           </dd>
           <dt>Host</dt>
           <dd>{hostName(event)}</dd>
@@ -1786,11 +1892,15 @@ function FitImg({ src, whole = false, backdrop = true, className, onError, ...re
   );
 }
 
-// The event's flyer at the top of its pop-up, shown whole (flyers often have text on them).
-function HeroImage({ src }) {
+// The event's flyer at the top of its pop-up, shown whole (flyers often have text on them). With no
+// flyer it's the club's picture (`logo`), which is small, so it gets a shorter band instead of
+// being blown up until it blurs.
+function HeroImage({ src, logo = false }) {
   const [failed, setFailed] = useState(false);
   if (failed) return null;
-  return <FitImg className="event-hero" src={src} whole backdrop={false} decoding="async" onError={() => setFailed(true)} />;
+  return (
+    <FitImg className={logo ? "event-hero is-logo" : "event-hero"} src={src} whole backdrop={false} decoding="async" onError={() => setFailed(true)} />
+  );
 }
 
 // Pill buttons for picking one option (filters shared with the map use these too).
@@ -2432,6 +2542,7 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, app
           apps={openApplications(applications, clubList).filter((a) => a.club?.name === openClub.name)}
           j={j}
           clubs={clubs}
+          onSelectEvent={onSelect}
           onClose={() => setOpenClub(null)}
         />
       )}
@@ -2958,9 +3069,8 @@ function ClubFan({ clubs, all, everything, now, onOpen }) {
   );
 }
 
-function MyEventsPage({ all, everything = all, clubList, j, clubs, applications, profile, onBrowse, onFindClubs }) {
+function MyEventsPage({ all, everything = all, clubList, j, clubs, applications, profile, onSelect, onBrowse, onFindClubs }) {
   const mine = useMemo(() => myEventsFor(all, clubList, j, clubs), [all, clubList, j, clubs]);
-  const [selected, setSelected] = useState(null);
   const [openClub, setOpenClub] = useState(null);
   // Open applications from the clubs you joined, soonest deadline first.
   const open = useMemo(() => openApplications(applications, clubList), [applications, clubList]);
@@ -2977,9 +3087,9 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
   const upcomingMine = mine.filter((e) => sectionOf(e, now));
   const today = localDate(0);
   const beenTo = everything.filter((e) => e.date && e.date < today && j.joined.includes(String(e.id))).length;
-  const recs = <Recommendations all={all} profile={profile} j={j} clubs={clubs} myClubs={myClubs} exclude={exclude} onSelect={setSelected} />;
+  const recs = <Recommendations all={all} profile={profile} j={j} clubs={clubs} myClubs={myClubs} exclude={exclude} onSelect={onSelect} />;
   // The events you're going to and your clubs' events, beside the suggestions (empty: says so).
-  const yourEvents = <YourEvents events={mine} apps={clubs.joined.length > 0 ? myApps : null} j={j} now={now} onSelect={setSelected} onBrowse={onBrowse} onFindClubs={onFindClubs} />;
+  const yourEvents = <YourEvents events={mine} apps={clubs.joined.length > 0 ? myApps : null} j={j} now={now} onSelect={onSelect} onBrowse={onBrowse} onFindClubs={onFindClubs} />;
   // Your events on the left half, the suggestions on the right (stacked on narrow screens).
   const split = (
     <div className="mine-split">
@@ -3018,7 +3128,7 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
             <ClubFan clubs={myClubs} all={all} everything={everything} now={now} onOpen={setOpenClub} />
           ) : (
             <div className="mine-join">
-              <FlyerFan events={all.filter((e) => sectionOf(e, now))} now={now} onSelect={setSelected} />
+              <FlyerFan events={all.filter((e) => sectionOf(e, now))} now={now} onSelect={onSelect} />
               <button className="join mine-find" onClick={onFindClubs}>
                 Find clubs to join
               </button>
@@ -3067,7 +3177,6 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
       )}
       {mine.length > 0 && split}
       </div>
-      {selected && <EventDetail event={selected} j={j} onClose={() => setSelected(null)} />}
       {openClub && (
         <ClubDetail
           club={openClub}
@@ -3076,6 +3185,7 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
           j={j}
           apps={open.filter((a) => a.club?.name === openClub.name)}
           clubs={clubs}
+          onSelectEvent={onSelect}
           onClose={() => setOpenClub(null)}
         />
       )}
@@ -3083,17 +3193,20 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
   );
 }
 
-function ClubDetail({ club, hosted, past = [], j, apps = [], clubs, onClose }) {
+// A club's fields, without the one its category already says ("Business", "Business").
+function extraFields(club) {
+  return (club.fields ?? []).filter((field) => field !== club.category);
+}
+
+// `onSelectEvent` opens one of the club's upcoming events (over this pop-up).
+function ClubDetail({ club, hosted, past = [], j, apps = [], clubs, onSelectEvent, onClose }) {
   const [showPast, setShowPast] = useState(false);
-  useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  const box = useDialog(onClose, true);
 
   return (
     <div className="club-backdrop" onClick={onClose}>
       <div
+        ref={box}
         className="club-modal"
         role="dialog"
         aria-modal="true"
@@ -3158,8 +3271,13 @@ function ClubDetail({ club, hosted, past = [], j, apps = [], clubs, onClose }) {
           <ul className="club-events">
             {hosted.map((e) => (
               <li key={e.id}>
-                <strong>{e.title}</strong>
-                <div className="meta">{[formatWhen(e), e.where].filter(Boolean).join(", ")}</div>
+                <button className="club-event" onClick={() => onSelectEvent(e)}>
+                  <span>
+                    <strong>{e.title}</strong>
+                    <span className="meta">{[formatWhen(e), e.where].filter(Boolean).join(", ")}</span>
+                  </span>
+                  <Icon d={FORWARD_ICON} />
+                </button>
               </li>
             ))}
           </ul>
@@ -3371,7 +3489,7 @@ function LogoWall({ clubs, all, onSelect }) {
   );
 }
 
-function ClubsPage({ all, clubList, clubs: membership, applications }) {
+function ClubsPage({ all, clubList, clubs: membership, applications, onSelectEvent }) {
   const [view, setView] = useState("Clubs");
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
@@ -3495,6 +3613,7 @@ function ClubsPage({ all, clubList, clubs: membership, applications }) {
           hosted={hostedBy(all, selected)}
           apps={open.filter((a) => a.club?.name === selected.name)}
           clubs={membership}
+          onSelectEvent={onSelectEvent}
           onClose={() => setSelected(null)}
         />
       )}
@@ -3998,15 +4117,12 @@ function ApplicationForm({ job, user, onApplied, onNeedSignIn }) {
 function JobDialog({ job, user, applied, myApp, startOnForm, onApplied, onNeedSignIn, onClose }) {
   const signedIn = Boolean(user?.token);
   const [applying, setApplying] = useState(startOnForm && signedIn && !applied);
-  useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  const box = useDialog(onClose, true);
 
   return (
     <div className="club-backdrop" onClick={onClose}>
       <div
+        ref={box}
         className="club-modal job-modal"
         role="dialog"
         aria-modal="true"
@@ -4466,7 +4582,6 @@ function FriendsPage({ user, social, events, onOpenEvent }) {
 const STATUS_LABELS = { new: "New", reviewing: "Reviewing", interview: "Interview", offer: "Offer", declined: "Not moving forward" };
 // What applicants see for each status.
 const APPLICANT_STATUS = { new: "Applied", reviewing: "Applied", interview: "Interview", offer: "Offer", declined: "Closed" };
-const CALENDAR_ICON = "M4 6h16v15H4zM4 10h16M8 3v4M16 3v4";
 const firstName = (name) => (name || "").trim().split(/\s+/)[0] || "there";
 
 // Ready-made responses: each fills in the message and the status it moves the application to.
@@ -5578,6 +5693,12 @@ function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, o
   );
 }
 
+// Back to the top of the page that's showing (each page scrolls on its own, not the window).
+function scrollPageToTop() {
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelector(".app > main.page")?.scrollTo({ top: 0, behavior: calm ? "auto" : "smooth" });
+}
+
 export default function DubHub() {
   const [tab, setTab] = useState("Events");
   const [linkedId, setLinkedId] = useState(linkedEventId);
@@ -5586,12 +5707,17 @@ export default function DubHub() {
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
+  // Opening an event adds a step to the browser's history (its own address), so the Back button
+  // closes it. Closing it by hand goes back over that step, so Back doesn't bring the event up
+  // again afterwards. An event opened from a shared link has no step behind it: closing that one
+  // just takes it out of the address.
   const openEvent = useCallback((e) => {
-    history.pushState(null, "", `#event=${encodeURIComponent(e.id)}`);
+    history.pushState({ ...history.state, dubhubEvent: true }, "", `#event=${encodeURIComponent(e.id)}`);
     setLinkedId(String(e.id));
   }, []);
   const closeEvent = useCallback(() => {
-    history.pushState(null, "", location.pathname + location.search);
+    if (history.state?.dubhubEvent) history.back();
+    else history.replaceState(history.state, "", location.pathname + location.search);
     setLinkedId(null);
   }, []);
   const { events: loaded, everything: loadedEverything, updated } = useEvents();
@@ -5625,7 +5751,6 @@ export default function DubHub() {
   // Stats and Hiring are for moderators only, and Friends needs a sign-in.
   const view =
     ((tab === "Stats" || tab === "Hiring") && !moderator) || (tab === "Friends" && !user?.token) ? "Home" : tab;
-  const [friendEvent, setFriendEvent] = useState(null);
   const { profile, update: updateProfile } = useProfile(user);
 
   // The sign-in page remembers where you came from and the event you tried to join (or the role
@@ -5663,11 +5788,20 @@ export default function DubHub() {
   useGoingJoinsClubs(j.joined, everything, clubs);
   const theme = useTheme();
   const [showSlider, setShowSlider] = useFlag(SLIDER_KEY, false);
+  const linkedEvent = linkedId ? all.find((e) => String(e.id) === linkedId) : null;
+  // Tapping the tab you're already on goes back to the top of its page, as phone apps do. And
+  // leaving the sign-in page for another tab puts away the event that sent you there (signing in,
+  // or its Back link, returns to that event instead).
+  const goTo = (t) => {
+    if (t === view) return scrollPageToTop();
+    if (view === "Sign in" && linkedEvent) closeEvent();
+    setTab(t);
+  };
 
   return (
     <div className="app">
       <header className="nav">
-        <button className="logo" onClick={() => setTab("Events")} aria-label="DubHub, what's on now">
+        <button className="logo" onClick={() => goTo("Events")} aria-label="DubHub, what's on now">
           DubHub
         </button>
         <nav className="tabs" role="tablist">
@@ -5677,7 +5811,7 @@ export default function DubHub() {
               role="tab"
               aria-selected={view === t}
               className={view === t ? "tab active" : "tab"}
-              onClick={() => setTab(t)}
+              onClick={() => goTo(t)}
               // Reaching for the Map tab starts fetching the map's code, so it's there by the click.
               onPointerEnter={t === "Home" ? warmUpEventMap : undefined}
               onFocus={t === "Home" ? warmUpEventMap : undefined}
@@ -5708,11 +5842,12 @@ export default function DubHub() {
           clubs={clubs}
           applications={applications}
           profile={profile}
+          onSelect={openEvent}
           onBrowse={() => setTab("Events")}
           onFindClubs={() => setTab("Clubs")}
         />
       )}
-      {view === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} applications={applications} />}
+      {view === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} applications={applications} onSelectEvent={openEvent} />}
       {view === "About" && (
         <AboutPage
           user={user}
@@ -5725,11 +5860,10 @@ export default function DubHub() {
       )}
       {view === "Stats" && <StatsPage user={user} events={all} clubs={clubList} dark={MAP_PALETTES[theme.theme]?.dark} />}
       {view === "Hiring" && <HiringPage user={user} />}
-      {view === "Friends" && <FriendsPage user={user} social={social} events={all} onOpenEvent={setFriendEvent} />}
-      {view === "Friends" && friendEvent && <EventDetail event={friendEvent} j={j} onClose={() => setFriendEvent(null)} />}
-      {linkedId && all.find((e) => String(e.id) === linkedId) && (
-        <EventDetail event={all.find((e) => String(e.id) === linkedId)} j={j} onClose={closeEvent} />
-      )}
+      {view === "Friends" && <FriendsPage user={user} social={social} events={all} onOpenEvent={openEvent} />}
+      {/* The open event, over whichever page it was opened from. It steps aside for the sign-in
+          page ("I'm going" while signed out goes there) and is back once you've signed in. */}
+      {linkedEvent && view !== "Sign in" && <EventDetail event={linkedEvent} j={j} onClose={closeEvent} />}
       {view === "Sign in" && (
         <SignInPage
           user={user}

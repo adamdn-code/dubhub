@@ -2665,9 +2665,6 @@ a.discord-bot-link.join {
     padding: 10px 30px 10px 12px;
     font-size: 16px;
   }
-  .leaflet-bottom.leaflet-right {
-    bottom: 170px;
-  }
 }
 
 /* Leaflet's zoom buttons and ground follow light/dark mode. (.map-loading stands in the map's
@@ -2742,6 +2739,15 @@ a.discord-bot-link.join {
 
 .leaflet-bottom.leaflet-right {
   bottom: 12px;
+}
+
+/* On a phone the filters are a panel along the bottom of the map: the zoom buttons sit just above
+   it (this comes after the rule above, so it wins; the phone rule further up came before it and
+   lost, which left the buttons hidden behind the panel) */
+@media (max-width: 700px) {
+  .leaflet-bottom.leaflet-right {
+    bottom: 214px;
+  }
 }
 
 /* Sign-in page */
@@ -6368,8 +6374,11 @@ body {
   grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
 }
 
-.tile-grid {
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+/* (wider than a phone only: phones keep their two columns of flyers, set above) */
+@media (min-width: 701px) {
+  .tile-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
 }
 
 /* ========================================================================= the map, with flair */
@@ -8643,6 +8652,494 @@ img.fitted {
 
 @media (prefers-reduced-motion: reduce) {
   .mine-find {
+    animation: none;
+  }
+}
+
+/* ============================================================ phones and fingers: easier to use
+   Sizes and layouts for small screens (700px and under, where the tabs sit along the bottom) and
+   for touch screens of any size ("pointer: coarse": a finger, not a mouse). Last in the file, so
+   it holds over the sections above. */
+
+/* ---- Every screen: small fixes ---- */
+
+/* "Now" on the map's Next up sign is live red like everywhere else (it was near-black, which
+   disappeared on the dark panel) */
+.next-up .starts.now {
+  color: var(--live);
+}
+
+/* In the list layout, the host's color dot stays beside the name, however long the name runs */
+.er-info .er-host {
+  flex-wrap: nowrap;
+}
+
+.er-host .dot {
+  margin: 0;
+}
+
+.er-host span:last-child {
+  min-width: 0;
+}
+
+/* A club's upcoming events open from its pop-up: each one is a row to tap */
+.club-event {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: calc(100% + 16px);
+  margin: -8px;
+  padding: 8px;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.club-event > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.club-event .icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+}
+
+.club-event:hover {
+  background: var(--tint);
+}
+
+.club-event:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 0;
+}
+
+/* An event with no flyer shows its club's picture instead. That's a small picture, so it gets a
+   shorter band rather than being blown up until it blurs */
+.event-hero.is-logo {
+  max-height: 168px;
+}
+
+/* The map card's close button keeps to the right when there's only a plate beside it (a place's
+   name isn't repeated when the plate already says it all) */
+.map-card-close {
+  margin-left: auto;
+}
+
+/* The icons in "Calendar" and "View post" only show in a phone's row of actions (below) */
+.post-link .icon {
+  display: none;
+}
+
+/* Your initials in the top bar, when your account has no picture */
+.user-initials {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--purple);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ---- Touch screens: everything you tap is big enough for a fingertip ---- */
+@media (pointer: coarse) {
+  /* Text in a field is at least 16px: an iPhone zooms the whole page in when a smaller one is
+     tapped, and doesn't zoom back out. (The one rule here that overrides everything on purpose.) */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* No double-tap zoom on controls, so a tap acts at once; the site shows its own pressed look */
+  a,
+  button,
+  select,
+  summary,
+  label {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* 44px is about the smallest thing a fingertip hits every time */
+  .chip-btn,
+  .filter-select,
+  .major-select,
+  .join,
+  .show-more,
+  .profile-form select,
+  .apply-form input:not([type="file"]),
+  .apply-form select,
+  .add-friend-row input,
+  .convo-send input {
+    min-height: 44px;
+  }
+
+  .chip-btn {
+    padding: 8px 15px;
+  }
+
+  .join {
+    padding: 8px 18px;
+    font-size: 15px;
+  }
+
+  /* (these sit in a pill with 3 to 4px of padding around them: 44px in all) */
+  .layout-toggle button {
+    min-width: 44px;
+    min-height: 38px;
+    justify-content: center;
+  }
+
+  .view-switch button {
+    min-height: 40px;
+  }
+
+  .going-toggle,
+  .tile-art .going-toggle,
+  .rec-vote,
+  .theme-toggle,
+  .club-modal .club-close,
+  .map-card-close {
+    width: 44px;
+    height: 44px;
+  }
+
+  .logo,
+  .user-button {
+    min-height: 44px;
+  }
+
+  /* The map's zoom buttons */
+  .leaflet-touch .leaflet-bar a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
+
+  .signin {
+    min-height: 40px;
+  }
+
+  /* Text links ("Decline", "See post", a club's website): a taller place to tap. Where a link is
+     its own box, the padding and the margin cancel out, so nothing around it moves. */
+  .link-button,
+  .club-link,
+  .club-links .post-link {
+    padding-block: 10px;
+    margin-block: -10px;
+  }
+
+  .post-link {
+    padding-block: 10px;
+  }
+
+  .hiring-back {
+    margin-bottom: 0; /* (it had 10px under it: that's the padding now) */
+  }
+
+  /* (the GitHub and LinkedIn links under each person on the About page) */
+  .member-links {
+    gap: 0;
+    margin-top: 0;
+  }
+
+  .member-links a {
+    padding-block: 9px;
+  }
+
+  /* ("See post" beside an Apply button: the same height as the button, so they stay level) */
+  .apply-actions .post-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 0;
+  }
+
+  .ye-weekday {
+    min-height: 60px;
+  }
+
+  /* Rows you swipe sideways don't tug the whole page (or the browser's Back) at their ends */
+  .chip-row,
+  .next-up ol,
+  .trending-clubs ol {
+    overscroll-behavior-x: contain;
+  }
+}
+
+/* A quick press-in on the main buttons, so a tap is felt */
+@media (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+  .join:active,
+  .chip-btn:active,
+  .signin:active,
+  .show-more:active,
+  .rec-vote:active,
+  .layout-toggle button:active,
+  .view-switch button:active {
+    transform: scale(0.96);
+  }
+
+  .tile-flyer:active {
+    transform: scale(0.98);
+  }
+
+  .tab:active .icon {
+    transform: scale(0.9);
+  }
+}
+
+@media (pointer: coarse) {
+  .club-main:active,
+  .club-event:active,
+  .next-up-row:active,
+  .map-card-also button:active,
+  button.person:active {
+    background: var(--tint);
+  }
+}
+
+/* ---- Phones ---- */
+@media (max-width: 700px) {
+  /* The top bar: its buttons are bigger now, so they sit closer together */
+  .nav-end {
+    gap: 2px;
+  }
+
+  /* (your picture or initials: with no room for your name here, it's the whole button) */
+  .user-button {
+    min-width: 44px;
+    justify-content: center;
+    padding: 4px;
+  }
+
+  /* The settings menu hangs under the top bar, across the screen (hung from its gear, it ran off
+     the left edge) */
+  .settings-menu {
+    position: fixed;
+    top: calc(var(--nav-h) + 8px);
+    left: 10px;
+    right: 10px;
+    width: auto;
+  }
+
+  /* Dark mode: the current tab is the white pill behind its icon, as in light mode (the whole
+     tab was turning white) */
+  :root[data-theme="dark"] .tab.active {
+    background: none;
+    color: #fff;
+  }
+
+  /* Now: the two dropdowns share a row evenly (the layout buttons go under them) */
+  .filter-row .filter-select {
+    flex: 1 1 40%;
+    min-width: 0;
+  }
+
+  /* By club: the club's name at a phone's size, its count kept on one line */
+  .page .club-head {
+    font-size: 19px;
+    line-height: 1.2;
+  }
+
+  .club-head > span {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .club-head small {
+    white-space: nowrap;
+  }
+
+  /* Suggested for you: why it's suggested gets its own line above the thumbs, instead of being
+     cut down to "Popular ..." beside them */
+  .rec-foot {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+    gap: 8px;
+  }
+
+  .rec-reason {
+    max-width: 100%;
+  }
+
+  /* Your events: a long title runs onto the next line instead of being cut off */
+  .ye-title {
+    white-space: normal;
+  }
+
+  /* ---- Pop-ups become sheets that slide up from the bottom, the full width of the phone ---- */
+  .club-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .club-modal {
+    max-width: none;
+    max-height: calc(100vh - 24px);
+    max-height: calc(100dvh - 24px); /* (what's really showing, under the browser's own bars) */
+    padding: 20px 16px calc(24px + env(safe-area-inset-bottom, 0px));
+    border-radius: 18px 18px 0 0;
+    overscroll-behavior: contain;
+    animation: sheet-up 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* The page underneath stays put while a sheet is open */
+  .app:has(.club-backdrop) .page {
+    overflow: hidden;
+  }
+
+  /* The close button stays in the sheet's corner while you scroll (it takes up no room: the
+     margins add up to its height) */
+  .club-modal .club-close {
+    position: sticky;
+    top: 8px;
+    right: auto;
+    width: 44px;
+    height: 44px;
+    margin: -8px -4px -36px auto;
+    border-radius: 50%;
+    box-shadow: 0 1px 6px rgba(29, 21, 48, 0.25);
+  }
+
+  .club-modal h2,
+  .detail-head {
+    margin-right: 48px;
+  }
+
+  .club-modal .detail-head h2 {
+    margin-right: 0;
+  }
+
+  /* An event's sheet: the flyer runs edge to edge, and the actions stay along the bottom however
+     far you scroll */
+  .event-modal {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0; /* (the row of actions is its bottom edge) */
+  }
+
+  .event-modal > * {
+    flex-shrink: 0;
+  }
+
+  .event-modal .club-close {
+    align-self: flex-end;
+  }
+
+  .event-modal .event-hero {
+    width: calc(100% + 32px);
+    max-width: none;
+    margin: -20px -16px 14px;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .event-modal .event-hero:not(.is-logo) {
+    max-height: min(360px, 44vh);
+  }
+
+  .event-modal .event-hero + h2 {
+    margin-right: 0;
+  }
+
+  /* (in a column like this, margins add up instead of overlapping, so the gaps are set here) */
+  .event-modal .detail-tags:empty {
+    display: none;
+  }
+
+  .event-modal .facts {
+    margin-top: 8px;
+  }
+
+  .event-modal .detail-actions {
+    order: 1; /* after the description */
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    margin: 4px -16px 0;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  /* The row of actions for an event (in its sheet and on the map's card): "I'm going" takes the
+     room, and Share, Calendar and the post are small buttons beside it, an icon over a word */
+  .detail-actions,
+  .map-card-actions {
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .detail-actions .join,
+  .map-card-actions .join {
+    flex: 1 1 auto;
+    min-height: 48px;
+    margin-right: 4px;
+    font-size: 16px;
+  }
+
+  .detail-actions .share-button,
+  .detail-actions .post-link,
+  .map-card-actions .share-button,
+  .map-card-actions .post-link {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-width: 60px;
+    margin: 0;
+    padding: 4px 5px;
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.15;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .detail-actions .share-button .icon,
+  .detail-actions .post-link .icon,
+  .map-card-actions .share-button .icon,
+  .map-card-actions .post-link .icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+
+  .detail-actions .share-button:active,
+  .detail-actions .post-link:active,
+  .map-card-actions .share-button:active,
+  .map-card-actions .post-link:active {
+    background: var(--tint);
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .club-modal,
+  .map-card {
     animation: none;
   }
 }
