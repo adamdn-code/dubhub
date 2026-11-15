@@ -188,6 +188,11 @@ function clubColor(club) {
   return FIELD_COLORS[club.fields?.[0]] ?? "#4b2e83";
 }
 
+// A club's fields, without the one its category already says ("Engineering", "Engineering").
+function extraFields(club) {
+  return (club.fields ?? []).filter((field) => field !== club.category);
+}
+
 function FieldTag({ field }) {
   const color = FIELD_COLORS[field] ?? "#6a5f85";
   return (
@@ -3104,7 +3109,7 @@ function ClubDetail({ club, hosted, past = [], j, apps = [], clubs, onClose }) {
         </div>
         <p className="tags">
           <span className={club.category === "Greek Life" ? "tag tag-greek" : "tag"}>{club.category}</span>
-          {club.fields?.map((field) => (
+          {extraFields(club).map((field) => (
             <FieldTag key={field} field={field} />
           ))}
         </p>
@@ -3454,7 +3459,7 @@ function ClubsPage({ all, clubList, clubs: membership, applications }) {
                   <span className="club-name">{c.name}</span>
                   <span className={c.category === "Greek Life" ? "tag tag-greek" : "tag"}>{c.category}</span>
                   {applying.has(c.name) && <span className="tag tag-apply">Applications open</span>}
-                  {c.fields?.map((f) => (
+                  {extraFields(c).map((f) => (
                     <FieldTag key={f} field={f} />
                   ))}
                 </span>
