@@ -230,7 +230,8 @@
  "aliciaahuangg": {
   "status": "new",
   "found": [
-   "post by @homeroomuw"
+   "post by @homeroomuw",
+   "post by @huskyculinaryclub"
   ]
  },
  "alikade.pics": {
@@ -242,7 +243,8 @@
  "aliyasunhee": {
   "status": "new",
   "found": [
-   "post by @homeroomuw"
+   "post by @homeroomuw",
+   "post by @huskyculinaryclub"
   ]
  },
  "allyrileyw": {
@@ -1371,7 +1373,8 @@
  "inarakik": {
   "status": "new",
   "found": [
-   "post by @homeroomuw"
+   "post by @homeroomuw",
+   "post by @huskyculinaryclub"
   ]
  },
  "indomieus": {
@@ -1730,6 +1733,12 @@
    "post by @uwcostumeclub"
   ]
  },
+ "makeawishamerica": {
+  "status": "new",
+  "found": [
+   "bio of @uwchiomega"
+  ]
+ },
  "malavikas04": {
   "status": "new",
   "found": [
@@ -2017,14 +2026,15 @@
   ]
  },
  "nsbhp_": {
-  "status": "maybe",
+  "status": "club",
   "found": [
    "https://health.asuw.org/rsos-2/"
   ],
   "name": "NSBHP",
   "bio": "Official University of Washington Seattle chapter of the National Society of Black Health Professionals 👩🏾‍🔬👨🏾‍⚕️",
   "latest": "2026-11-10",
-  "checked": "2026-11-14"
+  "checked": "2026-11-14",
+  "why": "official UW student chapter of a professional society"
  },
  "nudibranchcoffee": {
   "status": "new",
@@ -2231,14 +2241,15 @@
   ]
  },
  "projectindoorfarm": {
-  "status": "maybe",
+  "status": "club",
   "found": [
    "https://sustainability.uw.edu/action/students/groups"
   ],
   "name": "Project Indoor Farm",
   "bio": "🌱 Student-run indoor hydroponic farm at UW \n🥬 Meetings Thursdays 4-5pm Condon Hall CDH 135/115",
   "latest": "2026-11-11",
-  "checked": "2026-11-14"
+  "checked": "2026-11-14",
+  "why": "student‑run indoor farm listed among UW student groups"
  },
  "psyfe_official": {
   "status": "new",
@@ -2320,14 +2331,15 @@
   ]
  },
  "rlz1920": {
-  "status": "maybe",
+  "status": "club",
   "found": [
    "https://uwnphc.wordpress.com/zeta-phi-beta-sorority-inc/"
   ],
   "name": "RAVISHING Rho Lambda Zeta 💙",
   "bio": "💙 Zeta Phi Beta Sorority, Incorporated\n🤍 Rho Lambda Zeta Chapter \n🕊 Chartered 09/1999 in SeaTac, WA",
   "latest": "2026-11-11",
-  "checked": "2026-11-14"
+  "checked": "2026-11-14",
+  "why": "UW chapter of Zeta Phi Beta sorority, a student organization"
  },
  "rmk.deathray": {
   "status": "new",
@@ -2468,14 +2480,15 @@
   ]
  },
  "sernursery": {
-  "status": "maybe",
+  "status": "club",
   "found": [
    "https://sustainability.uw.edu/action/students/groups"
   ],
   "name": "SER-UW Native Plant Nursery",
   "bio": "Society for Ecological Restoration Native Plant Nursery at the University of Washington",
   "latest": "2026-10-18",
-  "checked": "2026-11-14"
+  "checked": "2026-11-14",
+  "why": "student society operating a native plant nursery on campus"
  },
  "shallowfitness": {
   "status": "new",
@@ -2728,12 +2741,17 @@
   ]
  },
  "thealleyuw": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @jsauw",
    "post by @tosauw",
    "post by @tsauw"
-  ]
+  ],
+  "name": "The Alley UW",
+  "bio": "🧋 Boba & fresh fruit teas in U-District\n📍 4515 Brooklyn Ave Seattle WA 98105\n✨ IT’S TIME FOR TEA.\n👇 Order ahead & menu",
+  "latest": "2026-10-30",
+  "checked": "2026-11-14",
+  "why": "commercial boba shop, not a student‑run group"
  },
  "thebondsuw": {
   "status": "new",
@@ -2843,10 +2861,13 @@
   ]
  },
  "unionbayrowing": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "https://www.washington.edu/ima/rec-clubs/club-offerings/"
-  ]
+  ],
+  "name": "Union Bay Rowing Club",
+  "why": "Union Bay Rowing Club",
+  "checked": "2026-11-14"
  },
  "uofwa": {
   "status": "new",
