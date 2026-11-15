@@ -208,9 +208,10 @@ function clubColor(club) {
   return FIELD_COLORS[club.fields?.[0]] ?? "#4b2e83";
 }
 
-// A club's fields, without the one its category already says ("Engineering", "Engineering").
+// A club's fields, without the one its category already says ("Engineering" twice, or "Arts"
+// beside "Arts & Humanities").
 function extraFields(club) {
-  return (club.fields ?? []).filter((field) => field !== club.category);
+  return (club.fields ?? []).filter((field) => field !== club.category && !field.startsWith(`${club.category} `));
 }
 
 function FieldTag({ field }) {
@@ -3525,6 +3526,13 @@ function openApplications(apps, clubList) {
     .sort((a, b) => a.due.days - b.due.days || (b.posted ?? "").localeCompare(a.posted ?? ""));
 }
 
+// "Posted today", "Posted yesterday", "Posted 5 days ago" (null when the post's date isn't known).
+function postedAgo(app) {
+  if (!app.posted) return null;
+  const days = Math.round((new Date(new Date().toDateString()) - new Date(`${app.posted}T00:00`)) / 864e5);
+  return days <= 0 ? "Posted today" : days === 1 ? "Posted yesterday" : `Posted ${days} days ago`;
+}
+
 function ApplyLinks({ app }) {
   return (
     <span className="apply-actions">
@@ -3586,6 +3594,7 @@ function ApplicationCard({ app, onSelectClub }) {
           app.due.text
         )}
       </span>
+      {postedAgo(app) && <span className="meta apply-posted">{postedAgo(app)}</span>}
       <ApplyLinks app={app} />
     </article>
   );
@@ -3593,6 +3602,18 @@ function ApplicationCard({ app, onSelectClub }) {
 
 const ANY_KIND = "All kinds";
 const DEADLINES = ["Any deadline", "Due this week", "No deadline"];
+const APP_ORDERS = ["Soonest deadline", "Newest posted"];
+
+// One of the Applications view's dropdowns; outlined once it's set to something other than its first option.
+function AppSelect({ label, options, value, onChange }) {
+  return (
+    <select aria-label={label} className={value !== options[0] ? "filter-select set" : "filter-select"} value={value} onChange={(e) => onChange(e.target.value)}>
+      {options.map((o) => (
+        <option key={o}>{o}</option>
+      ))}
+    </select>
+  );
+}
 
 // The Applications view of the Clubs tab: every open application, soonest deadline first, with
 // filters for what it's for, when it's due and the kind of club.
@@ -3601,6 +3622,7 @@ function ApplicationsView({ open, onSelectClub }) {
   const [kind, setKind] = useState(ANY_KIND);
   const [deadline, setDeadline] = useState(DEADLINES[0]);
   const [clubType, setClubType] = useState(ALL_CLUBS);
+  const [order, setOrder] = useState(APP_ORDERS[0]);
   const kinds = [ANY_KIND, ...APPLICATION_KINDS.filter((k) => open.some((a) => kindOf(a) === k))];
   const clubTypes = [ALL_CLUBS, ...[...new Set(open.map(appCategory).filter(Boolean))].sort()];
 
@@ -3612,10 +3634,12 @@ function ApplicationsView({ open, onSelectClub }) {
       (clubType === ALL_CLUBS || appCategory(a) === clubType) &&
       (!q || [hostName(a), a.for, kindOf(a)].some((s) => s?.toLowerCase().includes(q)))
   );
+  // `open` comes soonest deadline first; newest posted puts the latest posts on top instead.
+  if (order === "Newest posted") shown.sort((a, b) => (b.posted ?? "").localeCompare(a.posted ?? "") || a.due.days - b.due.days);
 
   return (
     <>
-      <p className="page-sub">Clubs taking applications right now, found in their Instagram posts. Soonest deadline first.</p>
+      <p className="page-sub">Clubs taking applications right now, found in their Instagram posts. {order === "Newest posted" ? "Newest posts first." : "Soonest deadline first."}</p>
       <div className="toolbar">
         <input
           type="search"
@@ -3625,9 +3649,12 @@ function ApplicationsView({ open, onSelectClub }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <ChipFilter label="Kind" options={kinds} value={kind} onChange={setKind} />
-        <ChipFilter label="Deadline" options={DEADLINES} value={deadline} onChange={setDeadline} />
-        {clubTypes.length > 2 && <ChipFilter label="Club type" options={clubTypes} value={clubType} onChange={setClubType} />}
+        <div className="filter-row apply-filters">
+          <AppSelect label="Kind of application" options={kinds} value={kind} onChange={setKind} />
+          {clubTypes.length > 2 && <AppSelect label="Club type" options={clubTypes} value={clubType} onChange={setClubType} />}
+          <AppSelect label="Deadline" options={DEADLINES} value={deadline} onChange={setDeadline} />
+          <AppSelect label="Sort by" options={APP_ORDERS} value={order} onChange={setOrder} />
+        </div>
       </div>
       <p className="count">
         {shown.length} open application{shown.length === 1 ? "" : "s"}
