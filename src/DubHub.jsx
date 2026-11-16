@@ -375,6 +375,8 @@ const TEAM = [
 ];
 
 const THEME_KEY = "dubhub-theme";
+// How long the map's circle takes to close when the theme changes (CLOSE_MS in EventMap.jsx).
+const MAP_CLOSE_MS = 650;
 
 // Light or dark. Once someone flips the switch in the top bar, that choice sticks (it's remembered
 // in this browser). Until then: dark if the device is set to dark, and otherwise it follows the
@@ -459,9 +461,21 @@ function useTheme() {
   }, [sun]);
 
   const theme = choice ?? (deviceDark ? "dark" : sun);
-  // Before the first paint, so the page never flashes the other theme
+  // Before the first paint, so the page never flashes the other theme. On the map, though, the
+  // page waits until the map's circle has closed (MAP_CLOSE_MS) before it changes colors, so the
+  // panels over the map don't change ahead of the map they sit on.
+  const firstTheme = useRef(true);
   useLayoutEffect(() => {
-    document.documentElement.dataset.theme = theme;
+    const apply = () => {
+      document.documentElement.dataset.theme = theme;
+    };
+    if (firstTheme.current || !document.querySelector(".map-stage")) {
+      firstTheme.current = false;
+      apply();
+      return;
+    }
+    const t = setTimeout(apply, MAP_CLOSE_MS);
+    return () => clearTimeout(t);
   }, [theme]);
 
   const pick = (id) => {
@@ -1173,9 +1187,28 @@ function useFilteredEvents(all) {
   );
 }
 
+// (a sliders icon, for the Filters button on phones)
+const FILTER_ICON = "M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6";
+
 function Filters({ f, mine }) {
+  // On a phone the panel folds into a small Filters button over the map (with how many filters are
+  // set); tapping it opens the panel as a sheet. Wider screens always show it and hide the button.
+  const [open, setOpen] = useState(false);
+  const set = [f.when !== DEFAULT_WHEN, f.type !== "All", f.year !== "All", f.major !== "Any major", f.club !== ALL_CLUBS, Boolean(mine?.on)].filter(Boolean)
+    .length;
   return (
-    <aside className="filters" aria-label="Event filters">
+    <aside className={open ? "filters open" : "filters"} aria-label="Event filters">
+      <button className="filters-toggle" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+        {open ? (
+          "Done"
+        ) : (
+          <>
+            <Icon d={FILTER_ICON} />
+            Filters
+            {set > 0 && <b aria-label={`${set} set`}>{set}</b>}
+          </>
+        )}
+      </button>
       <h2>Filter the map</h2>
       {mine && (
         <label className="filter-check">
@@ -2072,66 +2105,71 @@ function FlyerFan({ events, now, onSelect }) {
   );
 }
 
-// ------------------------------------------------------------------------- trending clubs
-// The clubs people are talking about, beside the headline: each club's upcoming events (the same
-// ones the board shows, so the type, club and how-far-ahead filters apply), scored by how much
-// interest they've drawn and how soon they are (the ranking the old Trending row used, added up
-// per club). Tap one to open the club.
+// ------------------------------------------------------------------------ trending events
+// The events people are most into, beside the headline: the board's upcoming events (so the
+// type, club and how-far-ahead filters apply), scored by how much interest each has drawn and how
+// soon it is. Tap one to open it.
 //   interest = 8 per RSVP + 1 per Instagram like + 3 per comment + 5 per extra post promoting it
 //   an event's score = (1/4 + log2(1 + interest)) / (1 + days until it / 3)
 // The log keeps one viral post from swamping everything, and the second part halves an event's
-// weight three days out. The small 1/4 means a club with lots coming up still places when nobody
-// has liked anything yet, without outranking one whose event people are actually excited about.
-const TRENDING_CLUBS = 5;
+// weight three days out. The small 1/4 lets a soon event place when nobody has reacted to anything
+// yet, without outranking one people are actually excited about.
+const TRENDING_EVENTS = 5;
 
 function interest(e) {
   const rsvps = e.rsvps ?? e.going ?? 0; // sample events have "going" instead of RSVPs
   return 8 * rsvps + (e.likes ?? 0) + 3 * (e.comments ?? 0) + 5 * ((e.posts ?? 1) - 1);
 }
 
-function trendingClubs(events, now) {
+function trendingEvents(events, now) {
   const today = Date.parse(localDate(0));
-  const byClub = new Map();
-  for (const e of events) {
-    const span = eventSpan(e);
-    if (!e.club || !span || span.end < now) continue;
-    const days = Math.max(0, (Date.parse(e.date) - today) / 864e5);
-    const t = byClub.get(e.club) ?? { club: e.club, score: 0, events: 0, likes: 0, going: 0 };
-    t.score += (0.25 + Math.log2(1 + interest(e))) / (1 + days / 3);
-    t.events += 1;
-    t.likes += e.likes ?? 0;
-    t.going += e.rsvps ?? e.going ?? 0;
-    byClub.set(e.club, t);
-  }
-  return [...byClub.values()].sort((a, b) => b.score - a.score || a.club.name.localeCompare(b.club.name)).slice(0, TRENDING_CLUBS);
+  const seen = new Set(); // one copy of an event posted twice
+  return events
+    .filter((e) => {
+      const span = eventSpan(e);
+      return span && span.end >= now;
+    })
+    .map((e) => ({ e, score: (0.25 + Math.log2(1 + interest(e))) / (1 + Math.max(0, (Date.parse(e.date) - today) / 864e5) / 3) }))
+    .sort((a, b) => b.score - a.score || `${a.e.date}T${a.e.start ?? "99"}`.localeCompare(`${b.e.date}T${b.e.start ?? "99"}`))
+    .filter(({ e }) => {
+      const key = `${hostName(e)}|${e.title.toLowerCase()}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, TRENDING_EVENTS)
+    .map(({ e }) => e);
 }
 
-// "4 events · 168 likes"
-function trendLine(t) {
+// "Tonight 7:00 PM · 168 likes · Husky Snow Club"
+function trendLine(e) {
   const plural = (n, word) => `${n.toLocaleString()} ${word}${n === 1 ? "" : "s"}`;
-  return [plural(t.events, "event"), t.going > 0 && `${t.going.toLocaleString()} going`, t.likes > 0 && plural(t.likes, "like")].filter(Boolean).join(" · ");
+  const when = e.date === localDate(0) ? (e.start ? formatTime(e.start) : "Today") : `${dayLabel(e.date)}${e.start ? `, ${formatTime(e.start)}` : ""}`;
+  const going = e.rsvps ?? e.going ?? 0;
+  return [when, going > 0 && `${going.toLocaleString()} going`, (e.likes ?? 0) > 0 && plural(e.likes, "like"), hostName(e)]
+    .filter(Boolean)
+    .join(" · ");
 }
 
-// `when`: the board's how-far-ahead choice, for the heading ("this week").
-function TrendingClubs({ events, when, now, onSelect }) {
-  const top = useMemo(() => trendingClubs(events, now), [events, now]);
+function TrendingEvents({ events, when, now, onSelect }) {
+  const top = useMemo(() => trendingEvents(events, now), [events, now]);
   if (!top.length) return null;
   return (
-    <section className="trending-clubs" aria-labelledby="trending-clubs-title">
-      <h2 id="trending-clubs-title">
-        Trending clubs <span>{when === "Any time" ? "coming up" : when.toLowerCase()}</span>
+    <section className="trending-clubs trending-events" aria-labelledby="trending-title">
+      <h2 id="trending-title">
+        Trending events <span>{when === "Any time" ? "coming up" : when.toLowerCase()}</span>
       </h2>
       <ol>
-        {top.map((t, i) => (
-          <li key={t.club.name} style={{ "--k": i }}>
-            <button className="trend-club" onClick={() => onSelect(t.club)}>
+        {top.map((e, i) => (
+          <li key={e.id} style={{ "--k": i }}>
+            <button className="trend-club" onClick={() => onSelect(e)}>
               <span className="trend-rank" aria-hidden="true">
                 {i + 1}
               </span>
-              <Thumb src={t.club.logo} label={t.club.name} color={clubColor(t.club)} className="trend-logo" />
+              <Thumb src={eventPicture(e)} label={e.title} color={eventColor(e)} className="trend-logo trend-flyer" />
               <span className="trend-text">
-                <strong>{t.club.name}</strong>
-                <span>{trendLine(t)}</span>
+                <strong>{e.title}</strong>
+                <span>{trendLine(e)}</span>
               </span>
             </button>
           </li>
@@ -2340,9 +2378,8 @@ function EventRow({ event: e, j, onSelect }) {
   );
 }
 
-const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, applications, clubList }) {
+const NowPage = memo(function NowPage({ f, updated, j, onSelect }) {
   const [query, setQuery] = useState("");
-  const [openClub, setOpenClub] = useState(null); // a club picked from Trending
   const [layout, setLayout] = useNowLayout();
   const now = useNow();
   // The search box shows each letter right away; the board (about a hundred flyers) follows as
@@ -2403,7 +2440,7 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, app
           <header className="now-head">
             <h1>{headline(clock)}</h1>
             <p className="now-date">{clock.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</p>
-            <TrendingClubs events={f.events} when={f.when} now={now} onSelect={setOpenClub} />
+            <TrendingEvents events={f.events} when={f.when} now={now} onSelect={onSelect} />
           </header>
           <FlyerFan events={sections.flatMap((sec) => sec.events)} now={now} onSelect={onSelect} />
         </div>
@@ -2553,17 +2590,6 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect, all, clubs, app
         </div>
       )}
       </div>
-      {openClub && (
-        <ClubDetail
-          club={openClub}
-          hosted={hostedBy(all, openClub)}
-          apps={openApplications(applications, clubList).filter((a) => a.club?.name === openClub.name)}
-          j={j}
-          clubs={clubs}
-          onSelectEvent={onSelect}
-          onClose={() => setOpenClub(null)}
-        />
-      )}
     </main>
   );
 });
@@ -3064,45 +3090,32 @@ function YourEvents({ events, apps, j, now, onSelect, onBrowse, onFindClubs }) {
 
 // The clubs you're in, as tilted cards scattered across the hero that pop in one after another and
 // float: each is the club's latest flyer with its logo and name along the bottom. Tap one to open it.
-function ClubFan({ clubs, all, everything, now, onOpen }) {
-  const shown = clubs.filter((c) => !c.gone).slice(0, FAN_COUNT);
+// The clubs you're in, as round logos like the Clubs page's: the fewer there are, the bigger they
+// are (one to three fill the space; up to MY_WALL_MOST pack in rows of seven).
+const MY_WALL_MOST = 21;
+
+function ClubFan({ clubs, all, now, onOpen }) {
+  const shown = clubs.filter((c) => !c.gone).slice(0, MY_WALL_MOST);
   if (!shown.length) return null;
   const soon = (e) => `${e.date}T${e.start ?? "99"}`;
   const next = shown
     .flatMap((c) => hostedBy(all, c).filter((e) => sectionOf(e, now)))
     .reduce((a, e) => (!a || soon(e) < soon(a) ? e : a), null);
-  const more = clubs.length > FAN_COUNT ? clubs.length - shown.length : 0; // (listed below the hero)
+  const more = clubs.filter((c) => !c.gone).length - shown.length; // (listed below the hero)
+  const n = shown.length;
+  const cols = n <= 3 ? n : n <= 8 ? 4 : n <= 12 ? 6 : 7;
+  const size = n <= 3 ? 120 : n <= 8 ? 92 : n <= 12 ? 76 : 64;
   return (
     <div className="club-fan">
-      <div className="club-fan-cards">
-        {shown.map((c, i) => {
-          const cover = clubCover(c, all, everything);
-          const upcoming = hostedBy(all, c).filter((e) => sectionOf(e, now)).length;
-          return (
-            <button
-              key={c.name}
-              className="club-fan-card"
-              style={{ "--k": i, "--club": clubColor(c) }}
-              onClick={() => onOpen(c)}
-              aria-label={`${c.name}, ${upcoming} upcoming event${upcoming === 1 ? "" : "s"}`}
-            >
-              {cover ? <FitImg src={cover} loading={i === 0 ? "eager" : "lazy"} decoding="async" /> : <span className="club-fan-blank" />}
-              {upcoming > 0 && (
-                <span className="club-fan-count" title={`${upcoming} upcoming`} aria-hidden="true">
-                  {upcoming}
-                </span>
-              )}
-              <span className="club-fan-label">
-                <Thumb src={c.logo} label={c.name} color={clubColor(c)} className="club-fan-logo" />
-                <span>
-                  <strong>{c.name}</strong>
-                  <small>{upcoming ? `${upcoming} upcoming` : "Nothing coming up"}</small>
-                </span>
-              </span>
+      <ul className="logo-wall my-wall" style={{ "--cols": cols, "--size": `${size}px` }} aria-label="Your clubs">
+        {shown.map((c, i) => (
+          <li key={c.name} style={{ "--k": i, "--shift": Math.floor(i / cols) % 2 ? `${Math.round(size * 0.3)}px` : "0px" }}>
+            <button onClick={() => onOpen(c)} title={c.name} aria-label={c.name}>
+              {c.logo ? <img src={c.logo} alt="" loading="lazy" decoding="async" /> : <Thumb label={c.name} color={clubColor(c)} className="my-wall-initials" />}
             </button>
-          );
-        })}
-      </div>
+          </li>
+        ))}
+      </ul>
       <p className="fan-caption">
         {next ? (
           <>
@@ -3174,7 +3187,7 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
             )}
           </header>
           {myClubs.some((c) => !c.gone) ? (
-            <ClubFan clubs={myClubs} all={all} everything={everything} now={now} onOpen={setOpenClub} />
+            <ClubFan clubs={myClubs} all={all} now={now} onOpen={setOpenClub} />
           ) : (
             <div className="mine-join">
               <FlyerFan events={all.filter((e) => sectionOf(e, now))} now={now} onSelect={onSelect} />
@@ -5943,7 +5956,7 @@ export default function DubHub() {
   };
 
   return (
-    <div className="app">
+    <div className={view === "Home" ? "app on-map" : "app"}>
       <header className="nav">
         <button className="logo" onClick={() => goTo("Events")} aria-label="DubHub, what's on now">
           DubHub
@@ -5975,7 +5988,7 @@ export default function DubHub() {
 
       {view === "Home" && <Home f={f} area={mapArea} j={j} clubs={clubs} clubList={clubList} palette={MAP_PALETTES[theme.theme]} showSlider={showSlider} />}
       {view === "Events" && (
-        <NowPage f={f} updated={updated} j={j} onSelect={openEvent} all={all} clubs={clubs} applications={applications} clubList={clubList} />
+        <NowPage f={f} updated={updated} j={j} onSelect={openEvent} />
       )}
       {view === "My Events" && (
         <MyEventsPage

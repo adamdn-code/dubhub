@@ -9278,3 +9278,270 @@ img.fitted {
     animation: none;
   }
 }
+
+/* ================================================== trending events, My Events circles, and phones */
+/* (last in the file on purpose: these override the earlier rules for the same things) */
+
+/* Trending events: each row's picture is the event's flyer, a small portrait card, not a circle */
+.trend-logo.trend-flyer {
+  width: 34px;
+  height: 42px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* My Events: your clubs as circles, as many columns and as big as the count allows (ClubFan) */
+.logo-wall.my-wall {
+  grid-template-columns: repeat(var(--cols), minmax(0, var(--size)));
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.logo-wall.my-wall li:nth-child(n) {
+  transform: translateX(var(--shift, 0px));
+}
+
+.my-wall .my-wall-initials {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  color: #fff;
+  font-size: calc(var(--size) * 0.3);
+  font-weight: 800;
+}
+
+/* The map's Filters button only shows on phones */
+.filters-toggle {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  /* ---- Now: trending is a list down the page, not a strip to swipe */
+  .trending-clubs ol {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+
+  /* ---- Now: three flyers to a row, with smaller type */
+  .tile-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px 8px;
+  }
+  .tile-title {
+    font-size: 13px;
+    line-height: 1.25;
+  }
+  .tile-when,
+  .tile-host,
+  .tile-where {
+    font-size: 11px;
+  }
+  .tile-noflyer {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  /* ---- The map fills the screen: no top bar (the tabs stay along the bottom), and no + and −
+     buttons (pinch to zoom) */
+  .app.on-map .nav {
+    height: 0;
+    padding: 0;
+    border: 0;
+  }
+  .app.on-map .nav > :not(.tabs),
+  .app.on-map .nav::before,
+  .app.on-map .nav::after {
+    display: none;
+  }
+  .leaflet-control-zoom {
+    display: none;
+  }
+  .map-card {
+    top: calc(10px + env(safe-area-inset-top, 0px));
+  }
+
+  /* ---- Filters: a small button at the top left; tapping it opens a short sheet from the bottom */
+  .filters:not(.open) {
+    top: calc(12px + env(safe-area-inset-top, 0px));
+    right: auto;
+    bottom: auto;
+    left: 12px;
+    width: auto;
+    padding: 0;
+    gap: 0;
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(15, 17, 20, 0.28);
+  }
+  .filters:not(.open) > :not(.filters-toggle) {
+    display: none;
+  }
+  .filters-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 15px;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .filters-toggle .icon {
+    width: 16px;
+    height: 16px;
+  }
+  .filters-toggle b {
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: var(--action);
+    color: var(--on-action);
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+  }
+  .filters.open {
+    z-index: 700;
+    padding: 12px 12px 14px;
+    border-radius: 16px 16px 0 0;
+  }
+  .filters.open .filters-toggle {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    padding: 6px 12px;
+    color: var(--action);
+  }
+  .filters.open h2 {
+    font-size: 13px;
+  }
+  .filters.open .filter-grid {
+    gap: 6px;
+  }
+  .filters.open select {
+    padding: 8px 28px 8px 12px;
+    font-size: 16px; /* (16px or iPhones zoom in on it) */
+  }
+  .filters .filter-check {
+    margin: 2px 0;
+  }
+
+  /* ---- Next up: cards along the bottom of the map, swiped sideways, the next event first */
+  .next-up {
+    top: auto;
+    right: 0;
+    bottom: 12px;
+    left: 0;
+    width: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .next-up h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .next-up ol {
+    display: flex;
+    gap: 10px;
+    padding: 0 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 12px;
+    scrollbar-width: none;
+  }
+  .next-up ol::-webkit-scrollbar {
+    display: none;
+  }
+  .next-up li {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+  }
+  .next-up li + li {
+    border: 0;
+  }
+  .next-up-row,
+  .next-up-row.no-plate {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "time plate"
+      "text text";
+    align-content: start;
+    gap: 6px 10px;
+    height: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--nav-line);
+    border-radius: 16px;
+    background: var(--panel);
+    box-shadow: 0 6px 20px rgba(15, 17, 20, 0.3);
+  }
+  .next-up-row.no-plate {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "time"
+      "text";
+  }
+  .next-up-time {
+    grid-area: time;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .next-up-plate {
+    grid-area: plate;
+    justify-self: end;
+    padding-top: 0;
+  }
+  .next-up-text {
+    grid-area: text;
+  }
+  .next-up-text strong {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    font-size: 16px;
+  }
+  .next-up-text span {
+    overflow: hidden;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .next-up-empty {
+    margin: 0 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--nav-line);
+    border-radius: 16px;
+    background: var(--panel);
+  }
+}
+
+@media (max-width: 700px) {
+  /* Smaller "I'm going" buttons on the smaller flyers */
+  .tile .going-toggle {
+    width: 32px;
+    height: 32px;
+  }
+  .tile .going-toggle .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
