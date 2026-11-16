@@ -1183,16 +1183,8 @@ function shortText(text, max = 150) {
   return flat.length <= max ? flat : `${flat.slice(0, max).replace(/\s+\S*$/, "")}…`;
 }
 
-// "Club type" choices: the categories of clubs hosting events, Greek Life first (fraternity and
-// sorority events are a big part of campus life), then the rest by how many events they have.
+// "Club type" on the Hiring page: every kind of club.
 const ALL_CLUBS = "All clubs";
-function clubTypesOf(events) {
-  const counts = {};
-  for (const e of events) if (e.club?.category) counts[e.club.category] = (counts[e.club.category] ?? 0) + 1;
-  return Object.keys(counts).sort(
-    (a, b) => (b === "Greek Life") - (a === "Greek Life") || counts[b] - counts[a] || a.localeCompare(b)
-  );
-}
 
 // Scraped events have no class year, so they're open to every year. A major (or field) choice
 // shows events in that major's field, e.g. Mechanical Engineering -> Engineering.
@@ -1201,8 +1193,6 @@ function useFilteredEvents(all) {
   const [type, setType] = useState("All");
   const [year, setYear] = useState("All");
   const [major, setMajor] = useState("Any major");
-  const [club, setClub] = useState(ALL_CLUBS);
-  const clubTypes = useMemo(() => clubTypesOf(all), [all]);
 
   const events = useMemo(() => {
     const field = major === "Any major" ? null : fieldOf(major);
@@ -1211,16 +1201,15 @@ function useFilteredEvents(all) {
         inWhen(e, when) &&
         matchesType(e, type) &&
         (year === "All" || !e.years || e.years.includes(year)) &&
-        (!field || e.fields.includes(field)) &&
-        (club === ALL_CLUBS || e.club?.category === club)
+        (!field || e.fields.includes(field))
     );
-  }, [all, when, type, year, major, club]);
+  }, [all, when, type, year, major]);
 
   // The same object until a filter or the events change, so the pages that take `f` can skip
   // redrawing when something unrelated re-renders the site (the setters never change).
   return useMemo(
-    () => ({ events, when, setWhen, type, setType, year, setYear, major, setMajor, club, setClub, clubTypes }),
-    [events, when, type, year, major, club, clubTypes]
+    () => ({ events, when, setWhen, type, setType, year, setYear, major, setMajor }),
+    [events, when, type, year, major]
   );
 }
 
@@ -1231,7 +1220,7 @@ function Filters({ f, mine }) {
   // On a phone the panel folds into a small Filters button over the map (with how many filters are
   // set); tapping it opens the panel as a sheet. Wider screens always show it and hide the button.
   const [open, setOpen] = useState(false);
-  const set = [f.when !== DEFAULT_WHEN, f.type !== "All", f.year !== "All", f.major !== "Any major", f.club !== ALL_CLUBS, Boolean(mine?.on)].filter(Boolean)
+  const set = [f.when !== DEFAULT_WHEN, f.type !== "All", f.year !== "All", f.major !== "Any major", Boolean(mine?.on)].filter(Boolean)
     .length;
   return (
     <aside className={open ? "filters open" : "filters"} aria-label="Event filters">
@@ -1284,16 +1273,6 @@ function Filters({ f, mine }) {
         <label>
           <span className="filter-label">Major</span>
           <MajorSelect value={f.major} onChange={f.setMajor} className={f.major !== "Any major" ? "set" : undefined} />
-        </label>
-
-        <label className="filter-wide">
-          <span className="filter-label">Club type</span>
-          <select value={f.club} onChange={(e) => f.setClub(e.target.value)} className={f.club !== ALL_CLUBS ? "set" : undefined}>
-            <option>{ALL_CLUBS}</option>
-            {f.clubTypes.map((c) => (
-              <option key={c}>{c}</option>
-            ))}
-          </select>
         </label>
       </div>
       {f.major !== "Any major" && (
@@ -2519,17 +2498,6 @@ const NowPage = memo(function NowPage({ f, updated, j, onSelect }) {
         />
         <div className="filter-row">
           <ChipFilter label="Event type" options={["All", ...TYPE_FILTERS]} value={f.type} onChange={f.setType} />
-          <select
-            aria-label="Club type"
-            className={f.club !== ALL_CLUBS ? "filter-select set" : "filter-select"}
-            value={f.club}
-            onChange={(e) => f.setClub(e.target.value)}
-          >
-            <option>{ALL_CLUBS}</option>
-            {f.clubTypes.map((c) => (
-              <option key={c}>{c}</option>
-            ))}
-          </select>
           <WhenSelect aria-label="How far ahead" className="filter-select" value={f.when} onChange={f.setWhen} />
           <div className="layout-toggle" role="group" aria-label="Layout">
             {NOW_LAYOUTS.map((l) => (
