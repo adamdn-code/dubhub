@@ -476,6 +476,9 @@ function useTheme() {
 
 // A yes/no preference kept in this browser.
 const SLIDER_KEY = "dubhub-map-slider";
+// Stats and hiring (the moderators' Stats and Hiring tabs, and Careers on About) are switched off
+// for now; the switch on the About page turns them back on.
+const EXTRAS_KEY = "dubhub-stats-hiring";
 function useFlag(key, initial) {
   const [on, setOn] = useState(() => {
     try {
@@ -1169,10 +1172,17 @@ function useFilteredEvents(all) {
   );
 }
 
-function Filters({ f }) {
+function Filters({ f, mine }) {
   return (
     <aside className="filters" aria-label="Event filters">
       <h2>Filter the map</h2>
+      {mine && (
+        <label className="filter-check">
+          <input type="checkbox" checked={mine.on} onChange={(e) => mine.set(e.target.checked)} />
+          <span>My Events</span>
+          {mine.on && <small>{mine.count} event{mine.count === 1 ? "" : "s"}</small>}
+        </label>
+      )}
 
       <div className="filter-grid">
         <label>
@@ -1221,6 +1231,9 @@ function Filters({ f }) {
         </p>
       )}
 
+      {mine?.on && mine.count === 0 && (
+        <p className="count">None of your events match. Tap I'm going on an event, or join a club, and it shows up here.</p>
+      )}
       {/* Only when the filters hide everything: a nudge to look further ahead. */}
       {f.events.length === 0 && f.when !== "Any time" && (
         <p className="count">
@@ -1541,7 +1554,7 @@ function MapLoader({ ready }) {
   );
 }
 
-function Home({ f, area, j, palette, showSlider }) {
+function Home({ f, area, j, clubs, clubList, palette, showSlider }) {
   const [at, setAt] = useState(null); // the time slider: null is now
   const [mapReady, setMapReady] = useState(false);
   const [mapCycle, setMapCycle] = useState(0); // a new loader each time the map closes and reopens
@@ -1551,6 +1564,10 @@ function Home({ f, area, j, palette, showSlider }) {
     setMapCycle((n) => n + 1);
   }, []);
   const now = useNow();
+  // "My Events" in the filter panel: only the events you're going to and your clubs' events, along
+  // with whatever the other filters say.
+  const [mineOnly, setMineOnly] = useState(false);
+  const events = useMemo(() => (mineOnly ? myEventsFor(f.events, clubList, j, clubs) : f.events), [mineOnly, f.events, clubList, j, clubs]);
   const [shown, setShown] = useState(null); // { event, pinned }
   const [flyTo, setFlyTo] = useState(null); // an event picked from the Next up sign
   const hideTimer = useRef();
@@ -1568,7 +1585,7 @@ function Home({ f, area, j, palette, showSlider }) {
     setShown(null);
   }, []);
   // If filters remove the shown event from the map, drop the panel too.
-  const event = shown && f.events.find((e) => e.id === shown.event.id);
+  const event = shown && events.find((e) => e.id === shown.event.id);
 
   return (
     <main className="home">
@@ -1582,7 +1599,7 @@ function Home({ f, area, j, palette, showSlider }) {
           <EventMap
             onReady={onMapReady}
             onBusy={onMapBusy}
-            events={f.events}
+            events={events}
             area={area}
             shown={event}
             flyTo={flyTo}
@@ -1594,8 +1611,8 @@ function Home({ f, area, j, palette, showSlider }) {
         </Suspense>
       </MapGuard>
       {showSlider && <TimeSlider at={at} setAt={setAt} now={now} />}
-      <MapLegend events={f.events} dark={palette?.dark} />
-      <Filters f={f} />
+      <MapLegend events={events} dark={palette?.dark} />
+      <Filters f={f} mine={{ on: mineOnly, set: setMineOnly, count: events.length }} />
       <h1 className="visually-hidden">Events on the UW campus map</h1>
       {event ? (
         <MapEventCard
@@ -1603,7 +1620,7 @@ function Home({ f, area, j, palette, showSlider }) {
           j={j}
           alsoHere={
             event.pos
-              ? f.events
+              ? events
                   .filter((x) => x.id !== event.id && x.pos?.join() === event.pos.join())
                   .sort(popularFirst)
               : []
@@ -1615,7 +1632,7 @@ function Home({ f, area, j, palette, showSlider }) {
         />
       ) : (
         <NextUp
-          events={f.events}
+          events={events}
           onPick={(e) => {
             setFlyTo(e);
             show(e, true);
@@ -5615,7 +5632,7 @@ function DiscordBotLink({ className = "join", children = "Add DubHub to your Dis
 // The two people who built DubHub (by their GitHub names in TEAM): the About page opens on just them.
 const FOUNDER_GITHUBS = ["adamdn-code", "nitneuqqq"];
 
-function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, onReopened }) {
+function AboutPage({ user, moderator, extras, onExtras, onNeedSignIn, onOpenHiring, reopenJobId, onReopened }) {
   // "founders": just the two of us, no hiring. "all": the whole team and the Careers section. Coming
   // back from signing in to apply for a role puts you on "all", where that application is.
   const [view, setView] = useState(reopenJobId ? "all" : "founders");
@@ -5626,6 +5643,8 @@ function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, o
   }
   const founders = view === "founders";
   const people = founders ? TEAM.filter((m) => FOUNDER_GITHUBS.includes(m.github)) : TEAM;
+  // Careers shows with the Stats & hiring switch on (or when coming back from signing in to apply).
+  const careers = extras || Boolean(reopenJobId);
   return (
     <main className="page about-page">
       <div className="about-head">
@@ -5638,13 +5657,19 @@ function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, o
             Full team
           </button>
         </div>
+        <button className="about-switch" role="switch" aria-checked={Boolean(extras)} onClick={() => onExtras(!extras)}>
+          <span className="about-switch-track" aria-hidden="true">
+            <span />
+          </span>
+          Stats &amp; hiring
+        </button>
       </div>
       <p className="about-lead">
         DubHub puts every student event at UW on one campus map. Club events come in on their own from HuskyLink, club
         Instagram posts and club Discord servers, so no one has to post anything twice.
       </p>
       <p>Sign in with your UW ID to mark the events you're going to and see which friends are going too.</p>
-      {!founders && (
+      {careers && (
         <p>
           Want to help build it?{" "}
           <button
@@ -5674,7 +5699,7 @@ function AboutPage({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, o
         </p>
         <DiscordBotLink />
       </section>
-      {!founders && (
+      {careers && (
         <Careers
           user={user}
           moderator={moderator}
@@ -5740,12 +5765,13 @@ export default function DubHub() {
   const mapArea = useMemo(() => mapAreaFor(all), [all]);
   const { user, signIn, signOut } = useUser();
   const moderator = useModerator(user);
-  const tabs = moderator ? [...TABS, "Stats", "Hiring"] : TABS;
+  const [extras, setExtras] = useFlag(EXTRAS_KEY, false);
+  const tabs = moderator && extras ? [...TABS, "Stats", "Hiring"] : TABS;
   // Stats and Hiring are for moderators only.
   const social = useSocial(user, tab === "Friends");
   // Stats and Hiring are for moderators only, and Friends needs a sign-in.
   const view =
-    ((tab === "Stats" || tab === "Hiring") && !moderator) || (tab === "Friends" && !user?.token) ? "Home" : tab;
+    ((tab === "Stats" || tab === "Hiring") && !(moderator && extras)) || (tab === "Friends" && !user?.token) ? "Home" : tab;
   const { profile, update: updateProfile } = useProfile(user);
 
   // The sign-in page remembers where you came from and the event you tried to join (or the role
@@ -5824,7 +5850,7 @@ export default function DubHub() {
         </div>
       </header>
 
-      {view === "Home" && <Home f={f} area={mapArea} j={j} palette={MAP_PALETTES[theme.theme]} showSlider={showSlider} />}
+      {view === "Home" && <Home f={f} area={mapArea} j={j} clubs={clubs} clubList={clubList} palette={MAP_PALETTES[theme.theme]} showSlider={showSlider} />}
       {view === "Events" && (
         <NowPage f={f} updated={updated} j={j} onSelect={openEvent} all={all} clubs={clubs} applications={applications} clubList={clubList} />
       )}
@@ -5848,6 +5874,8 @@ export default function DubHub() {
           user={user}
           moderator={moderator}
           onOpenHiring={() => setTab("Hiring")}
+          extras={extras}
+          onExtras={setExtras}
           onNeedSignIn={applyFor}
           reopenJobId={user?.token ? signInFrom.jobId : null}
           onReopened={reopened}
