@@ -82,6 +82,7 @@ const PERSON_ICON = "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21v-1a8 8 0 0 1 16 0v
 const TAB_LABELS = { Events: "Now", Home: "Map" };
 
 const CLOSE_ICON = "M6 6l12 12M18 6 6 18";
+const TRASH_ICON = "M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3";
 const CHECK_ICON = "M4.5 12.5l5 5L19.5 7";
 const BACK_ICON = "M15 5l-7 7 7 7";
 const SHARE_ICON = "M12 3v12M7 8l5-5 5 5M5 14v7h14v-7";
@@ -4391,14 +4392,15 @@ function useSocial(user, often) {
     };
   }, [token, often, tick]);
   const refresh = useCallback(() => setTick((t) => t + 1), []);
-  // Sends a request, an answer, or a message. Resolves to an error message, or null when it worked.
+  // Sends a request, an answer, or a message, or deletes one of yours (`at`). Resolves to an error
+  // message, or null when it worked.
   const act = useCallback(
-    async (action, email, text) => {
+    async (action, email, text, at) => {
       try {
         const r = await fetch("/api/social", {
           method: "POST",
           headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-          body: JSON.stringify({ action, email, text }),
+          body: JSON.stringify({ action, email, text, at }),
         });
         const d = await r.json().catch(() => ({}));
         if (!r.ok) return d.error || "That didn't work. Try again.";
@@ -4514,12 +4516,15 @@ function Avatar({ person }) {
 }
 
 // One conversation, checked every few seconds while it's open.
-function Conversation({ user, friend, isFriend, onSend }) {
+function Conversation({ user, friend, isFriend, onSend, onUnsend }) {
   const token = user.token;
   const [state, setState] = useState({ with: null, messages: [] });
   const [tick, setTick] = useState(0);
   const [text, setText] = useState("");
   const [error, setError] = useState(null);
+  // Your message showing its Delete button (phones: tap it; with a mouse, hovering shows it too).
+  const [picked, setPicked] = useState(null);
+  const [gone, setGone] = useState(() => new Set()); // deleted here, while the list catches up
   const end = useRef(null);
   useEffect(() => {
     let cancelled = false;
@@ -4533,7 +4538,7 @@ function Conversation({ user, friend, isFriend, onSend }) {
       clearTimeout(timer);
     };
   }, [token, friend.email, tick]);
-  const messages = state.with === friend.email ? state.messages : [];
+  const messages = (state.with === friend.email ? state.messages : []).filter((m) => !(m.from === "me" && gone.has(m.at)));
   useEffect(() => {
     end.current?.scrollIntoView({ block: "nearest" });
   }, [messages.length]);
@@ -4549,16 +4554,47 @@ function Conversation({ user, friend, isFriend, onSend }) {
     }
   };
 
+  const unsend = async (m) => {
+    if (!window.confirm("Delete this message? It's deleted for both of you.")) return;
+    setGone((g) => new Set(g).add(m.at));
+    setPicked(null);
+    const err = await onUnsend(friend.email, m.at);
+    setError(err);
+    if (err) {
+      setGone((g) => {
+        const next = new Set(g);
+        next.delete(m.at);
+        return next;
+      });
+    } else setTick((t) => t + 1);
+  };
+
   return (
     <div className="convo">
       <ul className="convo-list" aria-live="polite">
         {messages.length === 0 && <li className="meta convo-empty">No messages yet. Say hi!</li>}
-        {messages.map((m, i) => (
-          <li key={i} className={m.from === "me" ? "bubble mine" : "bubble"}>
-            <span>{m.text}</span>
-            <time>{dateTime(m.at)}</time>
-          </li>
-        ))}
+        {messages.map((m) =>
+          m.from === "me" ? (
+            <li
+              key={`me|${m.at}`}
+              className={picked === m.at ? "bubble mine picked" : "bubble mine"}
+              onClick={(e) => !e.target.closest("button") && setPicked((p) => (p === m.at ? null : m.at))}
+            >
+              <span>{m.text}</span>
+              <span className="bubble-foot">
+                <time>{dateTime(m.at)}</time>
+                <button type="button" className="bubble-delete" onClick={() => unsend(m)} aria-label={`Delete your message: ${m.text.slice(0, 40)}`}>
+                  <Icon d={TRASH_ICON} /> Delete
+                </button>
+              </span>
+            </li>
+          ) : (
+            <li key={`them|${m.at}`} className="bubble">
+              <span>{m.text}</span>
+              <time>{dateTime(m.at)}</time>
+            </li>
+          )
+        )}
         <li ref={end} aria-hidden="true" />
       </ul>
       {isFriend ? (
@@ -4768,7 +4804,14 @@ function FriendsPage({ user, social, events, onOpenEvent }) {
                   </>
                 )}
                 <h3>Messages</h3>
-                <Conversation key={open.email} user={user} friend={open} isFriend={open.isFriend} onSend={(to, text) => act("message", to, text)} />
+                <Conversation
+                  key={open.email}
+                  user={user}
+                  friend={open}
+                  isFriend={open.isFriend}
+                  onSend={(to, text) => act("message", to, text)}
+                  onUnsend={(to, at) => act("unsend", to, undefined, at)}
+                />
               </article>
             ) : (
               <>

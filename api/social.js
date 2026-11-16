@@ -11,6 +11,7 @@
 //      "accept" / "decline"  answer a request
 //      "remove"   unfriend (the conversation stays, but neither of you can send more)
 //      "message"  send a friend a message (text, up to 1000 characters)
+//      "unsend"   delete a message you sent (`at`, its time): it's gone for both of you
 //
 // Only friends see each other's events and can message each other, so nobody gets messages from
 // strangers, and an email address is only shown to that person's friends.
@@ -98,7 +99,7 @@ async function conversation(res, me, other) {
 }
 
 async function act(req, res, me, myName) {
-  const { action, text } = req.body || {};
+  const { action, text, at: sentAt } = req.body || {};
   const other = String(req.body?.email || "").trim().toLowerCase();
   if (!EMAIL.test(other)) return json(res, 400, { error: "Use their UW email (NetID@uw.edu)" });
   if (other === me) return json(res, 400, { error: "That's you!" });
@@ -143,6 +144,20 @@ async function act(req, res, me, myName) {
     await r.hset(key.convos(other), { [me]: at });
     await r.hincrby(key.unread(other), me, 1);
     return json(res, 200, { ok: true, message: { from: "me", text: body, at } });
+  }
+  if (action === "unsend") {
+    // Only your own messages, picked by the time they were sent. Still works after unfriending.
+    const dm = key.dm(me, other);
+    const list = (await r.lrange(dm, 0, -1)) || [];
+    const mine = list.filter((m) => m?.from === me);
+    const found = mine.find((m) => m.at === String(sentAt || ""));
+    if (!found) return json(res, 404, { error: "That message is already gone" });
+    // (The list holds each message as JSON; the same object read back matches it exactly.)
+    if (!(await r.lrem(dm, 1, found))) return json(res, 409, { error: "Couldn't delete that. Try again." });
+    // If they hadn't read it yet, it no longer counts toward their unread messages.
+    const unread = Number((await r.hget(key.unread(other), me)) || 0);
+    if (unread > 0 && mine.slice(-unread).includes(found)) await r.hincrby(key.unread(other), me, -1);
+    return json(res, 200, { ok: true });
   }
   return json(res, 400, { error: "Unknown action" });
 }

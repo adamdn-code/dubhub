@@ -89,13 +89,16 @@ let introPlayed = false;
 // How long the opening cards stay up, fade included (see .intro-callout in DubHub.css).
 const INTRO_MS = 6000;
 
+// Hovering a dot while the opening cards are up fades them all out over this long (see .intro-leave).
+const INTRO_LEAVE_MS = 320;
+
 // At most this many cards when the site opens, the soonest events first, so the map isn't buried.
 const MAX_INTRO_LABELS = 4;
 
 // The cards over the dots when the site opens (then they fade away). Each goes above its dot, or
 // below it if that would cover another card, a labeled dot, or the filters, or run off the map; if
 // neither fits it's skipped (hovering the dot still shows its card).
-function IntroLabels({ places, dark, onDone }) {
+function IntroLabels({ places, dark, leaving, onDone }) {
   const map = useMap();
   const [, redraw] = useState(0);
 
@@ -104,6 +107,13 @@ function IntroLabels({ places, dark, onDone }) {
     const t = setTimeout(onDone, INTRO_MS + 200);
     return () => clearTimeout(t);
   }, [onDone]);
+
+  // You've hovered a dot: the cards go now, from wherever they are in their own fade.
+  useEffect(() => {
+    if (!leaving) return;
+    const t = setTimeout(onDone, INTRO_LEAVE_MS);
+    return () => clearTimeout(t);
+  }, [leaving, onDone]);
 
   useEffect(() => {
     const update = () => redraw((n) => n + 1);
@@ -146,7 +156,9 @@ function IntroLabels({ places, dark, onDone }) {
         opacity={1}
         className="event-callout intro-callout"
       >
-        <EventCallout event={p.event} title={p.title} sub={p.sub} dark={dark} flyer={p.dir} />
+        <div className={leaving ? "intro-leave gone" : "intro-leave"}>
+          <EventCallout event={p.event} title={p.title} sub={p.sub} dark={dark} flyer={p.dir} />
+        </div>
       </Tooltip>
     </CircleMarker>
   ));
@@ -551,6 +563,7 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
   const [intro, setIntro] = useState(() => !introPlayed); // decided once, when the map opens
   const markReady = useCallback(() => setReady(true), []);
   const endIntro = useCallback(() => setIntro(false), []); // a stable function, so the cards' clock isn't reset
+  const [introCut, setIntroCut] = useState(false); // a dot was hovered: the opening cards fade out now
   // The opening cards wait until the circle has finished opening (REVEAL_MS, matching map-open in DubHub.css).
   const [opened, setOpened] = useState(false);
   useEffect(() => {
@@ -723,6 +736,7 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
               },
               // Hover: a small card above the dot for each event at this spot.
               mouseover: () => {
+                if (intro) setIntroCut(true);
                 keepHover();
                 setHoverSpot(e.pos.join());
               },
@@ -765,7 +779,7 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
         })()}
       <FriendFaces events={events} friends={friends} onPick={onPin} />
       <MapClicks onClick={onMapClick} />
-      {intro && opened && <IntroLabels places={places} dark={palette?.dark} onDone={endIntro} />}
+      {intro && opened && <IntroLabels places={places} dark={palette?.dark} leaving={introCut} onDone={endIntro} />}
     </MapContainer>
   );
 }
