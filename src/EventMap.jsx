@@ -23,6 +23,33 @@ function panelPadding(map) {
     : { paddingBottomRight: [0, panel.offsetHeight + 8] };
 }
 
+// Changing a filter: the dots (and their glows, and friends' faces) it takes away fade out over
+// FADE_MS instead of vanishing, and the ones it brings back fade in (see .dot-in / .dot-out in
+// DubHub.css). Give it the list as it is now; it gives back what has just left (still to be drawn,
+// fading out, for a moment) and the keys that have just come back.
+const FADE_MS = 220;
+function useFading(list, keyOf) {
+  const keys = list.map(keyOf).join("\n");
+  const [seen, setSeen] = useState({ keys, list, entering: new Set() });
+  const [gone, setGone] = useState([]);
+  if (keys !== seen.keys) {
+    const now = new Set(list.map(keyOf));
+    const before = new Set(seen.list.map(keyOf));
+    const left = seen.list.filter((x) => !now.has(keyOf(x)));
+    const leftKeys = new Set(left.map(keyOf));
+    // (When the list was empty, it's the map's first dots: the map's own opening shows those.)
+    setSeen({ keys, list, entering: seen.list.length ? new Set([...now].filter((k) => !before.has(k))) : new Set() });
+    setGone((g) => [...g.filter((x) => !now.has(keyOf(x)) && !leftKeys.has(keyOf(x))), ...left]);
+  }
+  useEffect(() => {
+    if (!gone.length) return;
+    const t = setTimeout(() => setGone([]), FADE_MS + 80);
+    return () => clearTimeout(t);
+  }, [gone]);
+  return { gone, entering: seen.entering };
+}
+const eventKey = (e) => String(e.id);
+
 // Opens the map on UW's campus. You can zoom out and pan as far as the area that holds every
 // event, but not past it.
 function MapArea({ area }) {
@@ -495,7 +522,7 @@ const faceInitials = (name) =>
     .join("");
 
 // The stack as a map icon, set off to the upper right of a dot `lift` pixels across (radius).
-function facesIcon(people, lift) {
+function facesIcon(people, lift, fade = "") {
   const shown = people.slice(0, MOST_FACES);
   const extra = people.length - shown.length;
   const count = shown.length + (extra > 0 ? 1 : 0);
@@ -510,7 +537,7 @@ function facesIcon(people, lift) {
   const more = extra > 0 ? `<span class="face-more" style="${at(shown.length)}">+${extra}</span>` : "";
   const off = Math.round(lift * 0.45);
   return L.divIcon({
-    className: "friend-faces",
+    className: fade ? `friend-faces ${fade}` : "friend-faces",
     html: faces + more,
     iconSize: [FACE + (count - 1) * FACE_STEP, FACE],
     iconAnchor: [-off, FACE + off],
@@ -522,6 +549,13 @@ function whoIsGoing(people) {
   if (people.length === 1) return `${people[0].name} is going`;
   if (people.length === 2) return `${first(people[0])} and ${first(people[1])} are going`;
   return `${first(people[0])}, ${first(people[1])} and ${people.length - 2} more friend${people.length === 3 ? "" : "s"} are going`;
+}
+
+const spotKey = (s) => s.key;
+const leavingIcons = new WeakMap(); // one icon per leaving stack, so its fade isn't restarted
+function leavingFaces(s) {
+  if (!leavingIcons.has(s)) leavingIcons.set(s, facesIcon(s.people, s.lift, "out"));
+  return leavingIcons.get(s);
 }
 
 function FriendFaces({ events, friends, onPick }) {
@@ -541,14 +575,19 @@ function FriendFaces({ events, friends, onPick }) {
     }
     return [...bySpot.values()].map((s) => {
       const people = [...s.people.values()];
-      return { ...s, icon: facesIcon(people, s.lift), title: whoIsGoing(people) };
+      return { ...s, people, icon: facesIcon(people, s.lift), title: whoIsGoing(people) };
     });
   }, [events, friends]);
-  if (!spots.length) return null;
+  const { gone } = useFading(spots, spotKey);
+  if (!spots.length && !gone.length) return null;
   return (
     <Pane name="friend-faces" style={{ zIndex: 620 }}>
       {spots.map((s) => (
         <Marker key={`faces|${s.key}`} position={s.pos} icon={s.icon} title={s.title} keyboard={false} eventHandlers={{ click: () => onPick(s.event) }} />
+      ))}
+      {/* Ones a filter just took away, fading out */}
+      {gone.map((s) => (
+        <Marker key={`faces-out|${s.key}`} position={s.pos} icon={leavingFaces(s)} interactive={false} keyboard={false} />
       ))}
     </Pane>
   );
@@ -612,6 +651,7 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
     return () => clearTimeout(t);
   }, [markReady]);
   const located = events.filter((e) => e.pos);
+  const fading = useFading(located, eventKey);
   // Events at the exact same spot draw their dots on top of each other, so hovering any of them
   // shows all of them, and clicking opens the most popular.
   const atSpot = new Map();
@@ -679,15 +719,15 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
       {/* Live and soon: a soft glow behind the dot (red now, purple soon). Plain elements in their
           own layer, under the dots, so the map's dots never have to be repainted for it. */}
       <Pane name="ripples" style={{ zIndex: 390 }}>
-        {located.map((e) => {
+        {[...located.map((e) => [e, fading.entering.has(eventKey(e)) ? " fade-in" : ""]), ...fading.gone.map((e) => [e, " fade-out"])].map(([e, fade]) => {
           const state = stateAt(e, moment);
           return state === "live" || state === "soon" ? (
             <Marker
-              key={`pulse|${e.id}`}
+              key={`pulse${fade}|${e.id}`}
               position={e.pos}
               interactive={false}
               keyboard={false}
-              icon={cssIcon(`ripple ripple-${state}${palette?.dark ? " dark" : ""}`, 2 * dotRadius(e))}
+              icon={cssIcon(`ripple ripple-${state}${palette?.dark ? " dark" : ""}${fade}`, 2 * dotRadius(e))}
             />
           ) : null;
         })}
@@ -708,6 +748,17 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
           }}
         />
       )}
+      {/* Dots a filter just took away, fading out (under the others) */}
+      {fading.gone.map((e) => (
+        <CircleMarker
+          key={`out|${e.id}`}
+          center={e.pos}
+          radius={dotRadius(e)}
+          interactive={false}
+          className="dot-out"
+          pathOptions={{ color: palette?.dark ? "#16181b" : "#fff", weight: 2, fillColor: eventColor(e, palette?.dark), fillOpacity: 1 }}
+        />
+      ))}
       {located.map((e) => {
         const on = shown?.id === e.id;
         const state = stateAt(e, moment);
@@ -720,6 +771,7 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
             key={e.id}
             center={e.pos}
             radius={radius}
+            className={fading.entering.has(eventKey(e)) ? "dot-in" : undefined}
             pathOptions={{
               color: on ? "#fff" : soon ? (palette?.dark ? "#ff5c6c" : "#d0263d") : palette?.dark ? "#16181b" : "#fff",
               weight: 2, // one thin outline for every dot, whatever its state (only its color changes)

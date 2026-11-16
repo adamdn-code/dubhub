@@ -6762,6 +6762,74 @@ body {
   background: radial-gradient(closest-side, rgba(255, 92, 108, 0.5), rgba(255, 92, 108, 0.18) 55%, rgba(255, 92, 108, 0));
 }
 
+/* A filter change: the dots it takes away (and their glows, and friends' faces) fade out instead of
+   vanishing, and the ones it brings back fade in (FADE_MS in EventMap.jsx). Dots also shrink a
+   little; glows and faces only fade, since the map positions those with transform. */
+path.dot-in {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dot-in 220ms cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+path.dot-out {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dot-out 220ms cubic-bezier(0.3, 0.6, 0.6, 1) forwards;
+  pointer-events: none;
+}
+
+.ripple.fade-in {
+  animation: fade-in 220ms cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.ripple.fade-out,
+.friend-faces.out {
+  animation: fade-out 220ms cubic-bezier(0.3, 0.6, 0.6, 1) forwards;
+  pointer-events: none;
+}
+
+/* (the faces' own pop-in doesn't play again on the way out) */
+.friend-faces.out img,
+.friend-faces.out .face-initials,
+.friend-faces.out .face-more {
+  animation: none;
+}
+
+@keyframes dot-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@keyframes dot-out {
+  to {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  path.dot-in {
+    animation-name: fade-in;
+  }
+  path.dot-out {
+    animation-name: fade-out;
+  }
+}
+
 /* Building labels: a small white tag with the name, and how many events */
 .leaflet-tooltip.place-label {
   display: flex;
