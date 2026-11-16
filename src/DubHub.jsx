@@ -3501,7 +3501,66 @@ function LogoWall({ clubs, all, onSelect }) {
   );
 }
 
-function ClubsPage({ all, clubList, clubs: membership, applications, onSelectEvent }) {
+// "Missing a club?": students give a club's Instagram, and the scraper's club finder checks it's a UW
+// Seattle student group (api/suggest.js). It needs a sign-in, so it can't be filled with junk.
+function SuggestClub({ user, onNeedSignIn }) {
+  const [handle, setHandle] = useState("");
+  const [state, setState] = useState(null); // null, "sending", "done", or what went wrong
+  const submit = async (e) => {
+    e.preventDefault();
+    const h = handle
+      .trim()
+      .replace(/^https?:\/\/(www\.)?instagram\.com\//i, "")
+      .replace(/^@/, "")
+      .replace(/[/?#].*$/, "")
+      .toLowerCase();
+    if (!/^[a-z0-9._]{1,30}$/.test(h)) return setState("That doesn't look like an Instagram username.");
+    if (!user?.token) return onNeedSignIn();
+    setState("sending");
+    try {
+      const r = await fetch("/api/suggest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${user.token}` },
+        body: JSON.stringify({ handle: h }),
+      });
+      const d = await r.json().catch(() => ({}));
+      if (r.status === 401) {
+        setState(null);
+        return onNeedSignIn();
+      }
+      if (!r.ok) return setState(d.error || "Couldn't send that. Try again later.");
+      setHandle("");
+      setState("done");
+    } catch {
+      setState("Couldn't send that. Check your connection.");
+    }
+  };
+  return (
+    <form className="suggest-club" onSubmit={submit}>
+      <label htmlFor="suggest-club">Missing a club? Suggest its Instagram</label>
+      <div className="suggest-club-row">
+        <input
+          id="suggest-club"
+          placeholder="@clubhandle"
+          value={handle}
+          autoComplete="off"
+          spellCheck={false}
+          onChange={(e) => {
+            setHandle(e.target.value);
+            if (state !== "sending") setState(null);
+          }}
+        />
+        <button className="join" disabled={state === "sending" || !handle.trim()}>
+          {user?.token ? "Suggest" : "Sign in to suggest"}
+        </button>
+      </div>
+      {state === "done" && <p role="status">Thanks! We'll check it's a UW club, and it shows up here once it has an event.</p>}
+      {state && state !== "done" && state !== "sending" && <p role="alert">{state}</p>}
+    </form>
+  );
+}
+
+function ClubsPage({ all, clubList, clubs: membership, applications, onSelectEvent, user, onNeedSignIn }) {
   const [view, setView] = useState("Clubs");
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
@@ -3536,6 +3595,7 @@ function ClubsPage({ all, clubList, clubs: membership, applications, onSelectEve
             <p className="now-date">
               {clubList.length ? `${clubList.length.toLocaleString()} student organizations at UW Seattle` : "Student organizations at UW Seattle"}
             </p>
+            <SuggestClub user={user} onNeedSignIn={onNeedSignIn} />
           </header>
           <LogoWall clubs={clubList} all={all} onSelect={setSelected} />
         </div>
@@ -5868,7 +5928,7 @@ export default function DubHub() {
           onFindClubs={() => setTab("Clubs")}
         />
       )}
-      {view === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} applications={applications} onSelectEvent={openEvent} />}
+      {view === "Clubs" && <ClubsPage all={all} clubList={clubList} clubs={clubs} applications={applications} onSelectEvent={openEvent} user={user} onNeedSignIn={() => openSignIn()} />}
       {view === "About" && (
         <AboutPage
           user={user}

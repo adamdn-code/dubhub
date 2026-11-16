@@ -2294,6 +2294,57 @@ a.discord-bot-link.join {
   border-radius: 6px;
 }
 
+/* "Missing a club?" under the Clubs headline, on the purple band */
+.suggest-club {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 460px;
+  margin-top: 20px;
+}
+
+.suggest-club label {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.suggest-club-row {
+  display: flex;
+  gap: 8px;
+}
+
+.suggest-club input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+}
+
+.suggest-club input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.suggest-club input:focus-visible {
+  outline: 2px solid var(--gold-brand);
+  outline-offset: 1px;
+}
+
+.suggest-club .join {
+  flex-shrink: 0;
+}
+
+.suggest-club p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 13px;
+}
+
 .about-lead {
   max-width: 62ch;
   margin: 8px 0 12px;
