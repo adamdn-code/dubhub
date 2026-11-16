@@ -720,7 +720,7 @@ function useGoingJoinsClubs(going, events, clubs) {
     const eventIds = [];
     for (const id of going) {
       const e = byId.get(String(id));
-      if (!e || clubbed.has(String(id))) continue;
+      if (!e || clubbed.has(String(id)) || (e.aliases || []).some((a) => clubbed.has(String(a)))) continue;
       if (e.club?.name) names.push(e.club.name);
       eventIds.push(String(id));
     }
@@ -731,12 +731,29 @@ function useGoingJoinsClubs(going, events, clubs) {
 // Who's going to each event, and which events you joined. Joining needs a UW sign-in: your Joins
 // are saved on the server under your account (so they follow you to any device), and signed out,
 // Join doesn't change anything; it sends you to the sign-in page instead (`onNeedSignIn`).
-function useGoing(user, events, onNeedSignIn) {
+// An event's id can change between scrapes (a club reposts it, or a post's events come out in
+// another order), so each event lists the ids it had before in `aliases` (see carry_aliases in
+// scraper/events_common.py). This maps those old ids to the event's id now, so RSVPs saved under an
+// old id still find their event. An old id that's some other event's id now isn't mapped.
+function currentIds(events) {
+  const now = new Set(events.map((e) => String(e.id)));
+  const map = new Map();
+  for (const e of events) {
+    for (const a of e.aliases || []) {
+      if (!now.has(String(a)) && !map.has(String(a))) map.set(String(a), String(e.id));
+    }
+  }
+  return map;
+}
+
+function useGoing(user, events, onNeedSignIn, known = events) {
   const [names, setNames] = useState({});
   // Your joined event ids, tagged with the login they belong to, so a different account (or
-  // signing out) never shows someone else's.
+  // signing out) never shows someone else's. These are the ids as saved, old ones included.
   const [mine, setMine] = useState({ token: null, ids: [] });
-  const ids = useMemo(() => events.map((e) => e.id).join(","), [events]);
+  const idOf = useMemo(() => currentIds(known), [known]);
+  // Who's going is asked for under every id an event has had, and added up under its id now.
+  const ids = useMemo(() => [...new Set(events.flatMap((e) => [String(e.id), ...(e.aliases || []).map(String)]))].join(","), [events]);
 
   useEffect(() => {
     let cancelled = false;
@@ -748,14 +765,21 @@ function useGoing(user, events, onNeedSignIn) {
           // Usually nobody's going to most events yet: with nothing to add, the list is left
           // alone, so the page isn't redrawn for no reason.
           if (cancelled || !d?.going || Object.keys(d.going).length === 0) return;
-          setNames((n) => ({ ...n, ...d.going }));
+          setNames((n) => {
+            const next = { ...n };
+            for (const [id, list] of Object.entries(d.going)) {
+              const at = idOf.get(id) ?? id;
+              next[at] = [...new Set([...(next[at] || []), ...list])];
+            }
+            return next;
+          });
         })
         .catch(() => {});
     }
     return () => {
       cancelled = true;
     };
-  }, [ids]);
+  }, [ids, idOf]);
 
   // A token the server turned down (expired) counts as signed out until the next sign-in.
   const [rejected, setRejected] = useState(null);
@@ -801,11 +825,25 @@ function useGoing(user, events, onNeedSignIn) {
     }
   }, [token, ids, auth]);
 
+  const mineRef = useRef(mine);
+  useEffect(() => {
+    mineRef.current = mine;
+  }, [mine]);
+
   const setGoing = useCallback(
     (id, going) => {
       if (!token) return onNeedSignIn(going ? id : null);
-      const update = (list) => (going ? [...new Set([...list, String(id)])] : list.filter((x) => x !== String(id)));
+      // Leaving: the same event saved under an old id goes too, or it would come back on reload.
+      const olds = going ? [] : (mineRef.current.ids || []).map(String).filter((x) => x !== String(id) && idOf.get(x) === String(id));
+      const update = (list) => (going ? [...new Set([...list, String(id)])] : list.filter((x) => x !== String(id) && !olds.includes(x)));
       setMine((m) => ({ token, ids: update(m.token === token ? m.ids : []) }));
+      for (const old of olds) {
+        fetch("/api/going", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", ...auth },
+          body: JSON.stringify({ eventId: old, going: false }),
+        }).catch(() => {});
+      }
       fetch("/api/going", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...auth },
@@ -822,10 +860,14 @@ function useGoing(user, events, onNeedSignIn) {
         .then((d) => d && setNames((n) => ({ ...n, [id]: d.going })))
         .catch(() => {});
     },
-    [token, auth, onNeedSignIn]
+    [token, auth, onNeedSignIn, idOf]
   );
 
-  const joined = useMemo(() => (token && mine.token === token ? mine.ids : []), [token, mine]);
+  // Your joined events by their ids now.
+  const joined = useMemo(
+    () => (token && mine.token === token ? [...new Set(mine.ids.map((id) => idOf.get(String(id)) ?? String(id)))] : []),
+    [token, mine, idOf]
+  );
   const toggle = useCallback((id) => setGoing(id, !joined.includes(String(id))), [setGoing, joined]);
   const join = useCallback((id) => setGoing(id, true), [setGoing]);
   const signedIn = Boolean(token);
@@ -6050,7 +6092,14 @@ export default function DubHub() {
     },
     [tab, signInFrom.tab]
   );
-  const j = useGoing(user, all, openSignIn);
+  const j = useGoing(user, all, openSignIn, everything);
+  // Friends' plans by their events' ids now (they may have joined under an old id).
+  const idsNow = useMemo(() => currentIds(everything), [everything]);
+  const friendsNow = useMemo(
+    () => social.data?.friends?.map((f) => ({ ...f, going: [...new Set((f.going || []).map((id) => idsNow.get(String(id)) ?? String(id)))] })),
+    [social.data, idsNow]
+  );
+  const socialNow = social.data ? { ...social, data: { ...social.data, friends: friendsNow } } : social;
   const applyFor = useCallback((jobId) => openSignIn(null, jobId), [openSignIn]);
   const reopened = useCallback(() => setSignInFrom((s) => (s.jobId ? { ...s, jobId: null } : s)), []);
   const pendingEvent = all.find((e) => String(e.id) === String(signInFrom.eventId));
@@ -6147,7 +6196,7 @@ export default function DubHub() {
         />
       )}
 
-      {view === "Home" && <Home f={f} area={mapArea} j={j} clubs={clubs} clubList={clubList} friends={social.data?.friends} palette={MAP_PALETTES[theme.theme]} showSlider={showSlider} />}
+      {view === "Home" && <Home f={f} area={mapArea} j={j} clubs={clubs} clubList={clubList} friends={friendsNow} palette={MAP_PALETTES[theme.theme]} showSlider={showSlider} />}
       {view === "Events" && (
         <NowPage f={f} updated={updated} j={j} onSelect={openEvent} />
       )}
@@ -6181,7 +6230,7 @@ export default function DubHub() {
       )}
       {view === "Stats" && <StatsPage user={user} events={all} clubs={clubList} dark={MAP_PALETTES[theme.theme]?.dark} />}
       {view === "Hiring" && <HiringPage user={user} />}
-      {view === "Friends" && <FriendsPage user={user} social={social} events={all} onOpenEvent={openEvent} />}
+      {view === "Friends" && <FriendsPage user={user} social={socialNow} events={all} onOpenEvent={openEvent} />}
       {/* The open event, over whichever page it was opened from. It steps aside for the sign-in
           page ("I'm going" while signed out goes there) and is back once you've signed in. */}
       {linkedEvent && view !== "Sign in" && <EventDetail event={linkedEvent} j={j} onClose={closeEvent} />}
