@@ -1696,10 +1696,15 @@
   ]
  },
  "frameratuw": {
-  "status": "new",
+  "status": "club",
   "found": [
    "post by @uxuw.club"
-  ]
+  ],
+  "name": "Framer × UW",
+  "bio": "@framer at @uofwa\nLet’s build something.",
+  "latest": "2026-05-01",
+  "checked": "2026-11-15",
+  "why": "student-run design workshops with UW branding"
  },
  "frameworkseattle": {
   "status": "new",
@@ -1916,10 +1921,13 @@
   ]
  },
  "gutgurus_udub": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @huskyclubcrawlers"
-  ]
+  ],
+  "name": null,
+  "why": "doesn't say UW",
+  "checked": "2026-11-15"
  },
  "gwrfxj": {
   "status": "new",
@@ -2059,10 +2067,13 @@
   "why": "Official UW club‑sport boxing team run by students"
  },
  "huskygeoguessr": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @huskyclubcrawlers"
-  ]
+  ],
+  "name": "Husky Geoguessr Club!",
+  "why": "Husky Geoguessr Club",
+  "checked": "2026-11-15"
  },
  "ian.haga": {
   "status": "new",
@@ -2185,10 +2196,11 @@
   ]
  },
  "iuga.uw": {
-  "status": "new",
+  "status": "missing",
   "found": [
    "post by @ability_cse"
-  ]
+  ],
+  "checked": "2026-11-15"
  },
  "iv_ywang": {
   "status": "new",
@@ -2338,10 +2350,15 @@
   ]
  },
  "jsauw_career": {
-  "status": "new",
+  "status": "club",
   "found": [
    "bio of @jsauw"
-  ]
+  ],
+  "name": "JSA UW Career",
+  "bio": "Career page for @jsauw 🇯🇵🇺🇸\nワシントン大学シアトル校JSAのキャリアページ、就職活動やインターン探しの情報はここから\nFaceBook ↓\nBig4による海外大生向けキャリアイベント用リンク↓",
+  "latest": "2026-11-04",
+  "checked": "2026-11-15",
+  "why": "Japanese Student Association career group run by UW students"
  },
  "judahhirschman": {
   "status": "new",
@@ -2350,10 +2367,12 @@
   ]
  },
  "judouw": {
-  "status": "new",
+  "status": "private",
   "found": [
    "post by @judo.uw"
-  ]
+  ],
+  "name": "Julia Souza",
+  "checked": "2026-11-15"
  },
  "julie.c.photography": {
   "status": "new",
@@ -2461,10 +2480,15 @@
   ]
  },
  "kchenguw": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @figmaatuw"
-  ]
+  ],
+  "name": "Karen Cheng",
+  "bio": "UW Design Professor and author of Designing Type. Passionate about upcycling weird materials into bags.",
+  "latest": "2026-11-09",
+  "checked": "2026-11-15",
+  "why": "faculty member, not a student-run club"
  },
  "kdjusticeandequity": {
   "status": "new",
@@ -2577,10 +2601,13 @@
   ]
  },
  "kpopclubuw": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @animenationuw"
-  ]
+  ],
+  "name": "Kpop Club @ UW",
+  "why": "Kpop Club @ UW",
+  "checked": "2026-11-15"
  },
  "krakeniceplex": {
   "status": "new",
@@ -2606,10 +2633,13 @@
   "why": "Kung Fu slash Tai Chi Club at the University of Washington"
  },
  "kwizzdubs_42": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @huskypowerliftingclub"
-  ]
+  ],
+  "name": "Christopher J. Wang",
+  "why": "doesn't say UW",
+  "checked": "2026-11-15"
  },
  "kyle.jhong": {
   "status": "new",
@@ -2840,10 +2870,13 @@
   ]
  },
  "mariachi.uw": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @asuwlsc"
-  ]
+  ],
+  "name": "Mariachi Quinto Sol en UW",
+  "why": "Mariachi Quinto Sol en UW",
+  "checked": "2026-11-15"
  },
  "marine.institute": {
   "status": "new",
@@ -2943,10 +2976,13 @@
   ]
  },
  "mchuskins": {
-  "status": "new",
+  "status": "inactive",
   "found": [
    "post by @huskysailingteam"
-  ]
+  ],
+  "name": "Matthew Huskins",
+  "why": "latest post 2025-09-10",
+  "checked": "2026-11-15"
  },
  "medicalbrigades": {
   "status": "new",
@@ -3177,10 +3213,11 @@
   ]
  },
  "next.dubhacks": {
-  "status": "new",
+  "status": "missing",
   "found": [
    "post by @dubhacks.next"
-  ]
+  ],
+  "checked": "2026-11-15"
  },
  "nicalexander06": {
   "status": "new",
@@ -3251,10 +3288,13 @@
   ]
  },
  "novelwritingcohortuw": {
-  "status": "new",
+  "status": "not",
   "found": [
    "bio of @writersinprogressuw"
-  ]
+  ],
+  "name": "Novel Writing Cohort",
+  "why": "doesn't say UW",
+  "checked": "2026-11-15"
  },
  "nsbhp_": {
   "status": "club",
@@ -3508,10 +3548,15 @@
   ]
  },
  "pisigmaalphauw": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @uw_pad"
-  ]
+  ],
+  "name": "Political Science Association at UW",
+  "bio": "The Political Science Association at UW! \nWeekly Meetings: Wednesdays @ 6pm Smith 305\nJoin our Discord👇",
+  "latest": "2026-11-04",
+  "checked": "2026-11-15",
+  "why": "Pi Sigma Alpha, Nu Chapter"
  },
  "pnsn1": {
   "status": "new",
@@ -3912,10 +3957,15 @@
   ]
  },
  "sefs_uw": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwfarm"
-  ]
+  ],
+  "name": "UW SEFS",
+  "bio": "@uofwa School of Environmental and Forest Sciences - stewarding environments through field-based, hands-on learning and research.",
+  "latest": "2026-10-22",
+  "checked": "2026-11-15",
+  "why": "Official school/department, not a student-run club"
  },
  "sernursery": {
   "status": "club",
@@ -4179,10 +4229,13 @@
   ]
  },
  "swingkidsuw": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @huskyclubcrawlers"
-  ]
+  ],
+  "name": "SwingKidsatUW",
+  "why": "Swing Kids at UW",
+  "checked": "2026-11-15"
  },
  "t_skip05": {
   "status": "new",
@@ -4319,10 +4372,15 @@
   "why": "commercial boba shop, not a student‑run group"
  },
  "thebondsuw": {
-  "status": "new",
+  "status": "club",
   "found": [
    "post by @uwpsiu"
-  ]
+  ],
+  "name": "The Bonds",
+  "bio": "Indie Band @ UW",
+  "latest": "2026-10-16",
+  "checked": "2026-11-15",
+  "why": "Student indie band representing UW"
  },
  "thedapperdc": {
   "status": "new",
@@ -4453,10 +4511,15 @@
   ]
  },
  "ucbi_uw": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @huskyculinaryclub"
-  ]
+  ],
+  "name": "UCBI @ UW",
+  "bio": "Undergraduate Community Based Internships helps students explore, contribute, and grow as they work in, with, and for local communities.",
+  "latest": "2026-10-09",
+  "checked": "2026-11-15",
+  "why": "University program/office, not a student organization"
  },
  "ucla": {
   "status": "new",

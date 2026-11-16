@@ -43,6 +43,8 @@ Results go to unlisted_clubs.json (on GitHub): handle -> {"status": ...}
   private / inactive / missing   checked again after RECHECK_DAYS
   new        found, not checked yet
 To decide one by hand, set its "status" to "club" or "not" and add "from": "manual".
+Club names found in posts (unlisted_names.json) are matched against the clubs DubHub already has,
+short names included ("AIC @ UW" is @aic.uw, "MSAUW" is MSA): those get "known" and aren't looked up.
 
 Every run (from this folder; scheduled_scrape.py runs it before each Instagram run):
     python find_unlisted_clubs.py               # gather accounts, check up to 10
@@ -522,7 +524,44 @@ def initials(name):
     return "".join(w[0] for w in words).lower()
 
 
-def read_names(names, known_keys, dry, known_initials=frozenset()):
+# A club's name, short name or username with the "UW" taken off ("AIC @ UW", "MSAUW", "@aic.uw" and
+# "figmaatuw" -> "aic", "msa", "aic", "figma"), to tell when a name found in a post is a club DubHub
+# already has under a longer name or as an account it reads.
+UW_PART = re.compile(r"\b(?:at|@)\s*(?:the\s+)?(?:uw|university of washington)\b|\buniversity of washington\b|\buw\b|@", re.I)
+
+
+def name_cores(name):
+    core = re.sub(r"[^a-z0-9]", "", UW_PART.sub(" ", name.lower()))
+    return {c for c in (core, re.sub(r"^uw|uw$", "", core), re.sub(r"atuw$", "", core)) if len(c) >= 3}
+
+
+def handle_core(handle):
+    return re.sub(r"[^a-z0-9]", "", re.sub(r"^uw[._]?|[._]?(?:at)?uw$", "", handle.lower()))
+
+
+def known_cores(known, clubs):
+    """name/initials/username cores -> the club DubHub already has: the accounts it reads, and the
+    names, initials and accounts of the clubs on the site and on HuskyLink."""
+    cores = {}
+    for h in known:
+        cores.setdefault(handle_core(h), f"@{h}")
+    for c in clubs:
+        for core in name_cores(c["name"]):
+            cores.setdefault(core, c["name"])
+        if len(initials(c["name"])) >= 3:
+            cores.setdefault(initials(c["name"]), c["name"])
+        if c.get("handle"):
+            cores.setdefault(handle_core(c["handle"]), c["name"])
+    cores.pop("", None)
+    return cores
+
+
+def already_known(name, cores):
+    """The club DubHub already has by this name, short name or username, or None."""
+    return next((cores[c] for c in name_cores(name) if c in cores), None)
+
+
+def read_names(names, known_keys, dry, known_initials=frozenset(), cores=None):
     """Have the AI read posts it hasn't read yet for other clubs' names; note the unknown ones."""
     done = set(NAMES_READ_FILE.read_text(encoding="utf-8").split()) if NAMES_READ_FILE.exists() else set()
     todo = []
@@ -558,6 +597,8 @@ def read_names(names, known_keys, dry, known_initials=frozenset()):
                     continue  # a club DubHub knows, or the poster itself ("TSA" in a post by @tsauw)
                 if name.isupper() and k in known_initials:
                     continue  # most likely a known club's initials ("KSA": Korean Student Association)
+                if cores and already_known(name, cores):
+                    continue  # a club DubHub has, by a shorter name ("AIC @ UW": @aic.uw)
                 entry = names.setdefault(name, {"status": "new", "by": []})
                 if who not in entry["by"] and len(entry["by"]) < 8:
                     entry["by"].append(who)
@@ -702,10 +743,21 @@ def main():
         pass
     known_keys |= {club_key(e["name"]) for e in saved.values() if e.get("name")}
     known_initials = {initials(c["name"]) for c in huskylink_clubs}
-    read_names(names, known_keys, dry, known_initials)
+    try:
+        site_clubs = json.loads(SITE_CLUBS_FILE.read_text(encoding="utf-8"))["clubs"]
+    except (FileNotFoundError, ValueError, KeyError):
+        site_clubs = []
+    cores = known_cores(known, site_clubs + huskylink_clubs)
+    read_names(names, known_keys, dry, known_initials, cores)
     for program in CAMPUS_PROGRAMS:
-        if program not in names and club_key(program) not in known_keys:
+        if program not in names and club_key(program) not in known_keys and not already_known(program, cores):
             names[program] = {"status": "new", "by": [CAMPUS_LIST]}
+    # Names waiting their turn that turn out to be clubs DubHub already has: no usernames to try.
+    for name, entry in names.items():
+        same = entry.get("status") == "new" and already_known(name, cores)
+        if same:
+            entry.update(status="known", same_as=same, checked=today.isoformat())
+            print(f"  named club {name!r}: already on DubHub as {same}", flush=True)
 
     L = instaloader.Instaloader(quiet=True, max_connection_attempts=1, request_timeout=30,
                                 rate_controller=lambda context: StopOnTooManyRequests(context))
