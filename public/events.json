@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T17:48",
+ "updated": "2026-11-15T17:51",
  "events": [
   {
    "id": "DfngUZ6PtLn-0",
@@ -176,8 +176,8 @@
    "posts": 1
   },
   {
-   "id": "De-TjE_jbWZ-1",
-   "title": "Alumni Design Review",
+   "id": "De-TjE_jbWZ-0",
+   "title": "Alumni Design Reviews",
    "type": "Club",
    "host": "UWashington Formula Motorsports (@uwformula)",
    "where": null,
@@ -189,12 +189,12 @@
    "source": "instagram",
    "description": "If you are an alumni of our team, come join us for Alumni Design Reviews on November 14th and 15th! Alumni feedback is crucial to this team's success so any and all review is appreciated. Please check your inbox or email for an email from uwformula@uw.edu for more information.\n\nRSVP link in bio.",
    "image": "/ig/posts/De-TjE_jbWZ.jpg",
-   "likes": 40,
-   "comments": 2,
+   "likes": 79,
+   "comments": 5,
    "post_counts": {
     "De-TjE_jbWZ": [
-     40,
-     2
+     79,
+     5
     ]
    },
    "posts": 1
@@ -1174,6 +1174,33 @@
    "posts": 1
   },
   {
+   "id": "DfAtr4Ky5UR-0",
+   "title": "MiT X Microsoft Panel",
+   "type": "Club",
+   "host": "Minorities In Tech @ UW (@minoritiesintech)",
+   "where": "CSE2 G01",
+   "pos": [
+    47.65287,
+    -122.30448
+   ],
+   "date": "2026-11-17",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DfAtr4Ky5UR/",
+   "source": "instagram",
+   "description": "Join Minorities in Tech for our first company panel of the school year in collaboration with Microsoft! \nHear from Microsoft professionals from underrepresented backgrounds as they share their journeys in tech, experiences in the industry, and how they’ve found community along the way.\nThe evening will feature a panel discussion followed by an opportunity to connect and network with Microsoft professionals!\n📅 Date: Nov 17th 📍 Location: CSE2 G01 👔 Dress Code: Smart Casual 🍽️ Catering Provided! 🔗 RSVP by November 10th!\n\nWe hope to see you there! 💙",
+   "image": "/ig/posts/DfAtr4Ky5UR.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfAtr4Ky5UR": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfkuCwFyoM8-0",
    "title": "Builders Night",
    "type": "Club",
@@ -1607,33 +1634,6 @@
    "posts": 1
   },
   {
-   "id": "DfAtr4Ky5UR-0",
-   "title": "Company Panel",
-   "type": "Club",
-   "host": "Minorities In Tech @ UW (@minoritiesintech)",
-   "where": "CSE2 G01",
-   "pos": [
-    47.65287,
-    -122.30448
-   ],
-   "date": "2026-11-17",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfAtr4Ky5UR/",
-   "source": "instagram",
-   "description": "Join Minorities in Tech for our first company panel of the school year in collaboration with Microsoft! \nHear from Microsoft professionals from underrepresented backgrounds as they share their journeys in tech, experiences in the industry, and how they’ve found community along the way.\nThe evening will feature a panel discussion followed by an opportunity to connect and network with Microsoft professionals!\n📅 Date: Nov 17th 📍 Location: CSE2 G01 👔 Dress Code: Smart Casual 🍽️ Catering Provided! 🔗 RSVP by November 10th!\n\nWe hope to see you there! 💙",
-   "image": "/ig/posts/DfAtr4Ky5UR.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "DfAtr4Ky5UR": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "DfO2-sLlp7z-0",
    "title": "Weekly Halaqa and Office Hours",
    "type": "Club",
@@ -1843,7 +1843,7 @@
   },
   {
    "id": "DfGANVLSYWa-0",
-   "title": "Game Night",
+   "title": "CS Game Night",
    "type": "Game night",
    "host": "COM²: Computing Community at UW (@uwcom2)",
    "where": "CSE2 G01",
