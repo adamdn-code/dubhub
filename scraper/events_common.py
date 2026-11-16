@@ -786,12 +786,14 @@ def note_mentions(seen):
 _profiles = None
 
 
-def save_club_profile(handle, name, bio, website=None):
-    """Remember a club's real Instagram name, bio and profile link (the Instagram scraper calls this)."""
+def save_club_profile(handle, name, bio, website=None, links=None):
+    """Remember a club's real Instagram name, bio and profile link, plus every link in its bio
+    (`links`; luma_events.py looks for Luma calendars there). The Instagram scraper calls this."""
     global _profiles
     if _profiles is None:
         _profiles = _load(CLUB_PROFILES_FILE, {})
-    _profiles[handle.lower()] = {"name": name or None, "bio": bio or None, "website": website or None}
+    _profiles[handle.lower()] = {"name": name or None, "bio": bio or None, "website": website or None,
+                                 "links": links or None}
     _save(CLUB_PROFILES_FILE, _profiles)
 
 

@@ -167,7 +167,8 @@ def links():
         if post.get("source") in ("instagram", "discord"):
             note(post.get("caption"), post.get("club"))
     for handle, prof in _load(CLUB_PROFILES_FILE, {}).items():
-        note(" ".join(filter(None, [prof.get("bio"), prof.get("website")])), by_handle.get(handle) or f"@{handle}")
+        note(" ".join(filter(None, [prof.get("bio"), prof.get("website"), *(prof.get("links") or [])])),
+             by_handle.get(handle) or f"@{handle}")
     huskylink = _load(HUSKYLINK_FILE, {"clubs": [], "events": []})
     for c in huskylink["clubs"]:
         note(" ".join(filter(None, [c.get("website"), c.get("description")])), c["name"])

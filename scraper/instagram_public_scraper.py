@@ -261,9 +261,11 @@ def scrape_clubs(L, store, limit, only=None):
                 break
         else:
             empty_pages = 0
-            links = user.get("bio_links") or []
+            # Every link in the bio, not just the first: clubs often put their Luma (or sign-up)
+            # link second or third, after their website.
+            links = [l.get("url") for l in user.get("bio_links") or [] if l.get("url")]
             save_club_profile(handle, user.get("full_name"), user.get("biography"),
-                              (links[0].get("url") if links else None) or user.get("external_url"))
+                              (links[0] if links else None) or user.get("external_url"), links)
             save_club_picture(handle, user.get("profile_pic_url"))
             if user.get("is_private"):
                 latest[handle] = "private"
