@@ -1650,9 +1650,9 @@
   "checked": "2026-11-07"
  },
  "Earthquake Engineering Research Institute at UW": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "eeriatuw",
+  "from": "mentioned",
+  "checked": "2026-11-15"
  },
  "East African Student Association at UW": {
   "handle": "uweasa",
@@ -1665,9 +1665,9 @@
   "checked": "2026-10-24"
  },
  "EcoBuild at the University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "ecobuilduw",
+  "from": "mentioned",
+  "checked": "2026-11-15"
  },
  "Education for Washington Youth": {
   "handle": null,
@@ -5475,9 +5475,9 @@
   "checked": "2026-10-24"
  },
  "UW Counseling Center": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-11-09"
+  "handle": "uwcounseling",
+  "from": "mentioned",
+  "checked": "2026-11-15"
  },
  "UW Recreation": {
   "handle": "uwrecreation",

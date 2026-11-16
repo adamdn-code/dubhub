@@ -8,10 +8,12 @@
   "checked": "2026-11-15"
  },
  "Brothers of Zeta Pi Lambda Chapter": {
-  "status": "new",
+  "status": "none",
   "by": [
    "Alpha Xi (AΞ) Chapter of AΦA (@uwalphas)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-15"
  },
  "CBDC": {
   "status": "new",

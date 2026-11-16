@@ -221,6 +221,18 @@
    "post by @uwzeta"
   ]
  },
+ "adamagaray": {
+  "status": "new",
+  "found": [
+   "post by @uwpks"
+  ]
+ },
+ "adamgaray": {
+  "status": "new",
+  "found": [
+   "post by @uwpks"
+  ]
+ },
  "adamsresnick": {
   "status": "new",
   "found": [
@@ -273,6 +285,12 @@
   "status": "new",
   "found": [
    "post by @uwzetapsi"
+  ]
+ },
+ "aidan_kendall21": {
+  "status": "new",
+  "found": [
+   "post by @uwphipsi"
   ]
  },
  "aidencostanti": {
@@ -683,6 +701,12 @@
    "post by @uwclubwsoc"
   ]
  },
+ "avi.matti": {
+  "status": "new",
+  "found": [
+   "post by @uwpks"
+  ]
+ },
  "axebat": {
   "status": "new",
   "found": [
@@ -757,6 +781,12 @@
    "post by @uwzeta"
   ]
  },
+ "ben.nopps": {
+  "status": "new",
+  "found": [
+   "post by @uwphipsi"
+  ]
+ },
  "bencoc0": {
   "status": "new",
   "found": [
@@ -826,10 +856,13 @@
   ]
  },
  "brody_luskuw": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @washingtonmensgymnastics"
-  ]
+  ],
+  "name": "Brody Lusk",
+  "why": "doesn't say UW",
+  "checked": "2026-11-15"
  },
  "bruno_fish_liang": {
   "status": "new",
@@ -976,7 +1009,8 @@
    "post by @data_science_society_uw",
    "post by @uwswe",
    "post by @uw.wic",
-   "post by @uwwinfo"
+   "post by @uwwinfo",
+   "post by @projectmeduw"
   ]
  },
  "chambered_geckos.band": {
@@ -1371,10 +1405,13 @@
   "checked": "2026-11-14"
  },
  "ecobuilduw": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @uw_seed"
-  ]
+  ],
+  "name": "Eco-Build at University of Washington",
+  "why": "EcoBuild at the University of Washington",
+  "checked": "2026-11-15"
  },
  "ecologywa": {
   "status": "new",
@@ -1389,10 +1426,13 @@
   ]
  },
  "eeriatuw": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @huskyclubcrawlers"
-  ]
+  ],
+  "name": "Earthquake Engineering Research Institute at UW",
+  "why": "Earthquake Engineering Research Institute at UW",
+  "checked": "2026-11-15"
  },
  "eghseattle": {
   "status": "new",
@@ -1626,10 +1666,22 @@
    "post by @uwdelts"
   ]
  },
+ "gaberoggen": {
+  "status": "new",
+  "found": [
+   "post by @uw.poh"
+  ]
+ },
  "gabriel_v_c": {
   "status": "new",
   "found": [
    "post by @deltaupsilonuw"
+  ]
+ },
+ "gavin_craw": {
+  "status": "new",
+  "found": [
+   "post by @uwpks"
   ]
  },
  "genesis_garibay": {
@@ -1961,6 +2013,12 @@
    "post by @thekompanyuw"
   ]
  },
+ "ikdene": {
+  "status": "new",
+  "found": [
+   "post by @uw.poh"
+  ]
+ },
  "ilhanmn": {
   "status": "new",
   "found": [
@@ -2108,6 +2166,12 @@
   "status": "new",
   "found": [
    "post by @uwwomensclubbaseball"
+  ]
+ },
+ "jeffyy.lin": {
+  "status": "new",
+  "found": [
+   "post by @uwpma"
   ]
  },
  "jellographyy": {
@@ -2269,6 +2333,12 @@
    "post by @uwkappa"
   ]
  },
+ "katherinehulka": {
+  "status": "new",
+  "found": [
+   "post by @uwphimu"
+  ]
+ },
  "katiababko": {
   "status": "new",
   "found": [
@@ -2334,6 +2404,12 @@
   "status": "new",
   "found": [
    "post by @uwadpi"
+  ]
+ },
+ "khushi.loomba": {
+  "status": "new",
+  "found": [
+   "post by @uwpma"
   ]
  },
  "kian.schmeer": {
@@ -2503,6 +2579,12 @@
    "post by @uwalphasig"
   ]
  },
+ "loganplautz_": {
+  "status": "new",
+  "found": [
+   "post by @uwphipsi"
+  ]
+ },
  "lorhades": {
   "status": "new",
   "found": [
@@ -2665,6 +2747,12 @@
    "post by @uwalphasig"
   ]
  },
+ "matthewchiu_": {
+  "status": "new",
+  "found": [
+   "post by @uwpma"
+  ]
+ },
  "maura.b25": {
   "status": "new",
   "found": [
@@ -2781,6 +2869,12 @@
    "post by @uwthetatau"
   ]
  },
+ "mina._.w_": {
+  "status": "new",
+  "found": [
+   "post by @uwpma"
+  ]
+ },
  "minasmatchacafe": {
   "status": "new",
   "found": [
@@ -2815,6 +2909,12 @@
   "status": "new",
   "found": [
    "post by @huskyboxing"
+  ]
+ },
+ "mrpaolors": {
+  "status": "new",
+  "found": [
+   "post by @uwphipsi"
   ]
  },
  "msauw.vc": {
@@ -3489,6 +3589,12 @@
    "post by @uwjunoon"
   ]
  },
+ "sahil._.saksena3": {
+  "status": "new",
+  "found": [
+   "post by @uwphipsi"
+  ]
+ },
  "sailsandpoint": {
   "status": "new",
   "found": [
@@ -3748,6 +3854,12 @@
   "status": "new",
   "found": [
    "post by @uwalphagam"
+  ]
+ },
+ "sree.pratti": {
+  "status": "new",
+  "found": [
+   "post by @uwpma"
   ]
  },
  "sreekar.kom": {
@@ -4434,10 +4546,16 @@
   "why": "Global Medical and Dental Brigades UW Chapter"
  },
  "uwcampuscommunitysafety": {
-  "status": "new",
+  "status": "not",
   "found": [
-   "post by @uwtranscollective"
-  ]
+   "post by @uwtranscollective",
+   "post by @uwqcenter"
+  ],
+  "name": "UW Campus Community Safety",
+  "bio": "The Division of Campus Community Safety leads leads planning, prevention, response and recovery for the UW.",
+  "latest": "2026-11-02",
+  "checked": "2026-11-15",
+  "why": "university division, not student-run"
  },
  "uwccm": {
   "found": [
@@ -4457,10 +4575,14 @@
   ]
  },
  "uwcounseling": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
-   "post by @uwtranscollective"
-  ]
+   "post by @uwtranscollective",
+   "post by @uwqcenter"
+  ],
+  "name": "UW Counseling Center",
+  "why": "UW Counseling Center",
+  "checked": "2026-11-15"
  },
  "uwdawgdaze": {
   "status": "club",
@@ -4654,6 +4776,12 @@
    "bio of @uwjunoon"
   ]
  },
+ "uwmedicine": {
+  "status": "new",
+  "found": [
+   "post by @uwppsc"
+  ]
+ },
  "uwmenswp": {
   "status": "huskylink",
   "found": [
@@ -4748,7 +4876,8 @@
   "status": "not",
   "found": [
    "post by @uwtranscollective",
-   "post by @uwarmyrotc"
+   "post by @uwarmyrotc",
+   "post by @uwqcenter"
   ],
   "name": "UW Student Life",
   "bio": "The Division of Student life supports students in their path to explore, learn and grow at UW. Tag us or use #UWStudentLife to share your photos!",
@@ -4819,10 +4948,16 @@
   ]
  },
  "uwuaa": {
-  "status": "new",
+  "status": "not",
   "found": [
-   "post by @uwtranscollective"
-  ]
+   "post by @uwtranscollective",
+   "post by @uwqcenter"
+  ],
+  "name": "UW Undergrad Academic Affairs",
+  "bio": "Undergraduate Academic Affairs shapes, advances and stewards a world-class academic experience for undergrads at the University of Washington.",
+  "latest": "2026-11-12",
+  "checked": "2026-11-15",
+  "why": "university office, not a student club"
  },
  "uwundivided": {
   "status": "new",
