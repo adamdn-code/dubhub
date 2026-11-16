@@ -28,3 +28,4 @@ uwlambdas  # Lambda Phi Epsilon
 uwphikappatau  # Phi Kappa Tau
 huskypowerliftingclub  # Husky Powerlifting Club (mentioned by Barbell Club; not on HuskyLink)
 huskysnowclub  # Husky Snow Club (ski and snowboard trips; not on HuskyLink)
+figmaatuw  # Figma at UW
