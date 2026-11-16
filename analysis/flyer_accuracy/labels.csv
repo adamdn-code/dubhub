@@ -1,0 +1,101 @@
+n,event_id,post_url,extracted_date,extracted_start,extracted_where,true_date,true_start,where_ok,note
+0,DftT0fApH_x-0,https://www.instagram.com/p/DftT0fApH_x/,2026-11-17,17:30,HUB 238,2026-11-17,17:30,1,
+1,DfiUqoZP6G9-0,https://www.instagram.com/p/DfiUqoZP6G9/,2026-11-19,17:00,HUB Lyceum,2026-11-19,17:00,1,
+2,DfoDPRMFOTS-1,https://www.instagram.com/p/DfoDPRMFOTS/,2026-11-23,,Benson Hall,2026-11-23,,1,time TBD in the post
+3,DflIJZNPEPT-0,https://www.instagram.com/p/DflIJZNPEPT/,2026-11-24,18:00,HUB Room 145,2026-11-24,18:00,1,
+4,DfaQxXIj5We-0,https://www.instagram.com/p/DfaQxXIj5We/,2027-02-13,15:00,Cowgirls Inc.,2027-02-13,15:00,1,
+5,Dfd2SFdunqj-0,https://www.instagram.com/p/Dfd2SFdunqj/,2026-11-17,17:00,STC 0040,2026-11-17,17:00,1,
+6,DfgGCFby218-0,https://www.instagram.com/p/DfgGCFby218/,2026-11-18,16:30,CSE2 G10,2026-11-18,16:30,1,
+7,Dfq_m8jx75T-0,https://www.instagram.com/p/Dfq_m8jx75T/,2026-12-05,13:00,Husky Union Building,2026-12-05,13:00,1,
+8,DfWlu4XG2mW-1,https://www.instagram.com/p/DfWlu4XG2mW/,2027-01-09,,Lake Retreat Camps,2027-01-09,,1,Jan 8-10 retreat; the scraper makes one event per day by design
+9,DfoWyIDNQVz-0,https://www.instagram.com/p/DfoWyIDNQVz/,2026-12-02,16:30,CSE1 403,2026-12-02,16:30,1,
+10,DfvDqa1JsvH-0,https://www.instagram.com/p/DfvDqa1JsvH/,2026-11-20,18:00,"Anthony’s Forum, Dempsey Hall",2026-11-20,18:00,1,
+11,Dfk0btuymUP-1,https://www.instagram.com/p/Dfk0btuymUP/,2026-12-02,,SIG Room 228,2026-12-02,17:30,1,flyer gives 5:30-7pm; time missed
+12,DfA85MuhM0V-0,https://www.instagram.com/p/DfA85MuhM0V/,2026-12-01,16:00,Gates Common (CSE1 691),2026-12-01,16:00,1,
+13,DfobDJBgX-w-0,https://www.instagram.com/p/DfobDJBgX-w/,2026-11-21,,Spartan 313,2026-11-21,18:30,0,"flyer 6:30-9:30 missed; flyer says 'Spartlen 313', extracted 'Spartan 313'"
+14,DfkxbTeyFUO-6,https://www.instagram.com/p/DfkxbTeyFUO/,2026-12-05,10:00,RCF Powerbottom,2026-12-05,10:00,1,
+15,DfkV_tqmoJb-0,https://www.instagram.com/p/DfkV_tqmoJb/,2026-11-20,21:00,Club Sur,2026-11-20,21:00,1,
+16,DfsYvHnmOGz-0,https://www.instagram.com/p/DfsYvHnmOGz/,2026-11-18,17:30,Birrieria Pepe El Toro,2026-11-18,17:30,1,
+17,DfngUZ6PtLn-0,https://www.instagram.com/p/DfngUZ6PtLn/,2026-11-15,09:30,New Beginnings Christian Fellowship,2026-11-15,09:30,1,
+18,DfRPoccmylD-0,https://www.instagram.com/p/DfRPoccmylD/,2026-11-16,,,2026-11-16,,1,time and place TBD in the post
+19,DfXhueLOhdk-0,https://www.instagram.com/p/DfXhueLOhdk/,2026-11-17,17:00,CSE1 Atrium (1st Floor),2026-11-17,17:00,1,
+20,Dfsj3sESXT--0,https://www.instagram.com/p/Dfsj3sESXT-/,2026-11-18,19:00,Samuel E. Kelly Cultural Center,2026-11-18,19:00,1,flyer says ECC Rm 106 = Samuel E. Kelly Ethnic Cultural Center; room left out
+21,DfnGKtKPIBo-0,https://www.instagram.com/p/DfnGKtKPIBo/,2026-11-17,16:30,Islamic House,2026-11-17,16:30,1,
+22,DfkxbTeyFUO-3,https://www.instagram.com/p/DfkxbTeyFUO/,2026-11-21,10:00,RCF,2026-11-21,10:00,1,
+23,DfidusVu16_-0,https://www.instagram.com/p/DfidusVu16_/,2026-11-15,11:30,"2030 3rd Avenue Seattle, WA 98121",2026-11-15,11:30,1,
+24,DfWlu4XG2mW-2,https://www.instagram.com/p/DfWlu4XG2mW/,2027-01-10,,Lake Retreat Camps,2027-01-10,,1,third day of the Jan 8-10 retreat
+25,DfsUT6fJI6B-0,https://www.instagram.com/p/DfsUT6fJI6B/,2026-11-19,17:00,"Trailside Student Living, Phase 1 Lounge",2026-11-19,17:00,1,
+26,DfoDPRMFOTS-0,https://www.instagram.com/p/DfoDPRMFOTS/,2026-11-18,16:15,South Lake Union,2026-11-18,16:15,1,
+27,Dfp8OsnhZE8-0,https://www.instagram.com/p/Dfp8OsnhZE8/,2026-11-20,16:00,HUB Games Pool Hall (Basement),2026-11-20,16:00,1,
+28,DfkjDsBBWft-0,https://www.instagram.com/p/DfkjDsBBWft/,2026-11-18,18:00,Schmitz Hall 250,2026-11-18,18:00,1,
+29,DfkOykCtsIO-0,https://www.instagram.com/p/DfkOykCtsIO/,2026-11-19,18:00,HUB 340,2026-11-19,18:00,1,
+30,DfrIlj9ix42-0,https://www.instagram.com/p/DfrIlj9ix42/,2026-11-19,18:30,MEB 238,2026-11-19,18:30,1,
+31,DfC5xLxGI-O-0,https://www.instagram.com/p/DfC5xLxGI-O/,2026-11-19,,,2026-11-19,,1,no time or place given
+32,DfkpjDjvJRW-0,https://www.instagram.com/p/DfkpjDjvJRW/,2027-04-15,,"Seattle, Washington",2027-04-15,,1,"Apr 15-18 conference, first day"
+33,De5qm3ym0Y3-4,https://www.instagram.com/p/De5qm3ym0Y3/,2026-11-16,19:06,Brooklyn Trails Building,2026-11-16,19:06,1,
+34,DflNEHbh3Ka-0,https://www.instagram.com/p/DflNEHbh3Ka/,2026-11-19,17:30,Avote on the Ave 4555 University way NE,2026-11-19,17:30,1,spelled 'Avote' for 'Avole on the Ave'; same place
+35,DflLGfamc3A-0,https://www.instagram.com/p/DflLGfamc3A/,2026-11-17,10:00,Red Square,2026-11-17,10:00,1,
+36,DfYsTHBmzpk-0,https://www.instagram.com/p/DfYsTHBmzpk/,2026-11-30,17:00,ECC Unity Suite,2026-11-30,17:00,1,
+37,DfRPoccmylD-2,https://www.instagram.com/p/DfRPoccmylD/,2026-11-18,,,2026-11-18,,1,"Nov 16-18 drop-off, time/place TBD"
+38,DfaQxXIj5We-0,https://www.instagram.com/p/DfaQxXIj5We/,2027-02-13,15:00,"Cowgirls Inc. | 421 1st Ave S, Seattle, WA",2027-02-13,15:00,1,
+39,DfL5IUojRMD-0,https://www.instagram.com/p/DfL5IUojRMD/,2026-11-21,16:30,HUB Ballroom,2026-11-21,16:30,1,
+40,DfqEdQwhAzB-0,https://www.instagram.com/p/DfqEdQwhAzB/,2026-11-17,18:00,,2026-11-17,18:00,1,no place in the post
+41,DfnIO-cktG--0,https://www.instagram.com/p/DfnIO-cktG-/,2026-11-19,15:30,Cowen Park,2026-11-19,15:30,1,"caption says 3:30, flyer says 3 PM; scraper followed the caption"
+42,De-TjE_jbWZ-0,https://www.instagram.com/p/De-TjE_jbWZ/,2026-11-15,,,2026-11-15,,1,"Nov 14-15, second day; no time/place"
+43,DfRPoccmylD-4,https://www.instagram.com/p/DfRPoccmylD/,2026-11-19,,Red Square / Quad,2026-11-19,,1,"Nov 19-21 swap, place TBD between Red Square and the Quad"
+44,DfX2A5vS6Zm-0,https://www.instagram.com/p/DfX2A5vS6Zm/,2026-11-19,20:00,IMA Gym D,2026-11-19,20:00,1,
+45,DfZVFCluRHU-0,https://www.instagram.com/p/DfZVFCluRHU/,2026-11-21,16:30,HUB Ballroom,2026-11-21,16:30,1,
+46,DfoCUSxo5Kd-0,https://www.instagram.com/p/DfoCUSxo5Kd/,2026-11-20,18:30,Trailside Building 1 Rooftop,2026-11-20,18:30,1,
+47,DflHTe_vKll-0,https://www.instagram.com/p/DflHTe_vKll/,2026-11-16,17:00,Sieg 225,2026-11-16,17:00,1,
+48,Dfgs_NMB6pW-1,https://www.instagram.com/p/Dfgs_NMB6pW/,2026-11-18,11:00,Red Square,2026-11-18,11:00,1,"Nov 17-18 sale, second day"
+49,DfbZt2QG1wD-0,https://www.instagram.com/p/DfbZt2QG1wD/,2026-11-21,10:00,the Cut,2026-11-21,10:00,1,
+50,Dfp92pTkiCx-1,https://www.instagram.com/p/Dfp92pTkiCx/,2026-11-27,,,,,,"EXCLUDED: 'sold at Rising Up for Relief today' - the date depends on the post date, which isn't stored"
+51,DfngdmahiNa-0,https://www.instagram.com/p/DfngdmahiNa/,2026-11-18,18:00,HUB 334,2026-11-18,18:00,1,
+52,DfplTV4IMqE-0,https://www.instagram.com/p/DfplTV4IMqE/,2026-11-18,17:30,HSEB 101,2026-11-18,17:30,1,
+53,DfqL-YihF9s-0,https://www.instagram.com/p/DfqL-YihF9s/,2026-11-20,21:00,Club Sur,2026-11-20,21:00,1,
+54,DfVd9Q6BtDN-0,https://www.instagram.com/p/DfVd9Q6BtDN/,2026-11-16,17:30,HSB T530,2026-11-16,17:30,1,
+55,DfGANVLSYWa-0,https://www.instagram.com/p/DfGANVLSYWa/,2026-11-18,16:30,CSE2 G01,2026-11-18,16:30,1,
+56,DfkxbTeyFUO-5,https://www.instagram.com/p/DfkxbTeyFUO/,2026-12-02,18:00,IMA,2026-12-02,18:00,1,
+57,DfglfAjMwda-0,https://www.instagram.com/p/DfglfAjMwda/,2026-11-20,17:00,HUB 314,2026-11-20,17:00,1,
+58,Dfpiuzwm1TF-0,https://www.instagram.com/p/Dfpiuzwm1TF/,2027-02-06,10:00,UW IMA,2027-02-06,10:00,1,
+59,Dfgf1iJgBzn-0,https://www.instagram.com/p/Dfgf1iJgBzn/,2026-11-20,19:00,4706 11th Ave NE,2026-11-20,19:00,1,"doors 7pm, music 7:30"
+60,DfVv22_G68--0,https://www.instagram.com/p/DfVv22_G68-/,2026-11-18,,,2026-11-18,,1,opening night; no time/place in the post
+61,DfWlu4XG2mW-0,https://www.instagram.com/p/DfWlu4XG2mW/,2027-01-08,,Lake Retreat Camps,2027-01-08,,1,first day of the Jan 8-10 retreat
+62,Dfk0btuymUP-0,https://www.instagram.com/p/Dfk0btuymUP/,2026-11-18,17:30,Smith Hall Room 105,2026-11-18,17:30,1,
+63,DfjILmphCpd-1,https://www.instagram.com/p/DfjILmphCpd/,2026-11-18,11:00,Red Square,2026-11-18,11:00,1,Nov 16-20 MWF sale; Wednesday
+64,DfkxbTeyFUO-2,https://www.instagram.com/p/DfkxbTeyFUO/,2026-11-18,18:00,IMA,2026-11-18,18:00,1,
+65,DfAtr4Ky5UR-0,https://www.instagram.com/p/DfAtr4Ky5UR/,2026-11-17,18:00,CSE2 G01,2026-11-17,18:00,1,time only on the flyer
+66,Dfk0btuymUP-2,https://www.instagram.com/p/Dfk0btuymUP/,2026-12-04,,HRC 101,2026-12-04,,1,time TBD
+67,Dfxxr5SS5ai-0,https://www.instagram.com/p/Dfxxr5SS5ai/,2026-11-18,19:00,SAV 138,2026-11-18,19:00,1,"caption says 19th, flyer and 'this Wednesday' say Nov 18"
+68,DenkLcPFKOB-2,https://www.instagram.com/p/DenkLcPFKOB/,2026-12-31,,Emerald City Gym WA,2026-12-31,09:00,1,"Dec 29-31, 9AM-1PM on the flyer; time missed"
+69,Dfvd_gWmady-0,https://www.instagram.com/p/Dfvd_gWmady/,2026-11-18,18:00,Standard Apartments South Tower rooftop,2026-11-18,18:00,1,
+70,DfnkN_lh8WT-0,https://www.instagram.com/p/DfnkN_lh8WT/,2026-11-18,18:00,Savery Hall 155,2026-11-18,18:00,1,everything only on the flyer
+71,DfsgeanSDBn-0,https://www.instagram.com/p/DfsgeanSDBn/,2026-11-15,14:00,Median of 18th Ave,2026-11-15,14:00,1,
+72,Dfp92pTkiCx-0,https://www.instagram.com/p/Dfp92pTkiCx/,2026-11-26,,,,,,"EXCLUDED: same FASA merch post as #50; dated Nov 26 (Thanksgiving), looks wrong but the post date isn't stored"
+73,DfpmOYdRG1A-2,https://www.instagram.com/p/DfpmOYdRG1A/,2026-12-12,,,2026-12-12,,1,"Dec 12/13 series, Saturday's Teddy Bear Toss; no time/place in post"
+74,DfVbLn2ywCN-0,https://www.instagram.com/p/DfVbLn2ywCN/,2026-11-20,11:00,UW HUB Lyceum,2026-11-20,11:00,1,
+75,Dfp5_DOyLZl-0,https://www.instagram.com/p/Dfp5_DOyLZl/,2026-11-16,17:30,FNDRS Commons,2026-11-16,17:30,1,time and place only on the flyer
+76,DfiC3kAgrp_-0,https://www.instagram.com/p/DfiC3kAgrp_/,2026-12-01,16:00,Gates Common (CSE1 691),2026-12-01,16:00,1,
+77,Dfm39oYJCHe-1,https://www.instagram.com/p/Dfm39oYJCHe/,2026-11-19,18:30,IMA Field #3,2026-11-19,18:30,1,tryouts Nov 17 and 19; second day
+78,DfwPaWqy_bG-0,https://www.instagram.com/p/DfwPaWqy_bG/,2026-11-20,17:30,Gurdwara Singh Sabha,2026-11-20,17:30,1,
+79,DfI-UoiPpTc-0,https://www.instagram.com/p/DfI-UoiPpTc/,2026-11-19,17:30,Denny Hall 212,2026-11-19,17:30,1,date and time only on the flyer
+80,DfnrcebvaJw-0,https://www.instagram.com/p/DfnrcebvaJw/,2026-11-16,17:20,ECC 308,2026-11-16,17:20,1,place only on the flyer
+81,Der0ZxinaXk-1,https://www.instagram.com/p/Der0ZxinaXk/,2026-12-02,17:00,HUB 332,2026-12-02,17:00,1,
+82,Der0ZxinaXk-3,https://www.instagram.com/p/Der0ZxinaXk/,2026-11-25,17:30,HUB 314,2026-11-25,17:30,1,from the second slide's image description
+83,DfkpjDjvJRW-1,https://www.instagram.com/p/DfkpjDjvJRW/,2027-04-16,,"Seattle, Washington",2027-04-16,,1,"Apr 15-18 conference, second day"
+84,DfiIeixD9D1-0,https://www.instagram.com/p/DfiIeixD9D1/,2026-11-18,17:00,HUB 145,2026-11-18,17:00,1,everything only on the flyer
+85,DfwAbK4oS58-0,https://www.instagram.com/p/DfwAbK4oS58/,2026-11-16,18:30,ECC 207,2026-11-16,18:30,1,
+86,DfQf192GaeW-0,https://www.instagram.com/p/DfQf192GaeW/,2026-11-20,18:00,"Anthony’s Forum, Dempsey Hall",2026-11-20,18:00,1,
+87,Dfqod8KvSER-0,https://www.instagram.com/p/Dfqod8KvSER/,2026-11-17,17:30,PCAR 190,2026-11-17,17:30,1,
+88,DfQ1Hf9oufz-0,https://www.instagram.com/p/DfQ1Hf9oufz/,2026-11-16,17:30,MORE 221,2026-11-16,17:30,1,weekly Monday meeting; next one
+89,DfpmOYdRG1A-1,https://www.instagram.com/p/DfpmOYdRG1A/,2026-12-04,,,2026-12-05,,1,'Greek/Student Night Saturday' of the Dec 4-5 series = Dec 5; extracted Dec 4
+90,DfvjXD8mXAB-0,https://www.instagram.com/p/DfvjXD8mXAB/,2026-11-18,17:00,Gould 436,2026-11-18,17:00,1,
+91,DfkqimbuVp6-0,https://www.instagram.com/p/DfkqimbuVp6/,2026-12-02,17:00,CSE1 403,2026-12-02,17:00,1,
+92,DfplURJilrU-0,https://www.instagram.com/p/DfplURJilrU/,2026-11-18,18:00,Founders Hall 180,2026-11-18,18:00,1,
+93,DfmICFRG58H-0,https://www.instagram.com/p/DfmICFRG58H/,2026-11-17,18:00,The MILL,2026-11-17,18:00,1,weekly Tuesday meeting; next one
+94,DfsC12dpxQn-0,https://www.instagram.com/p/DfsC12dpxQn/,2026-11-18,18:30,PACCAR 390,2026-11-18,18:30,1,
+95,DflMTR1N-An-0,https://www.instagram.com/p/DflMTR1N-An/,2026-12-05,09:00,,2026-12-05,09:00,0,flyer says @ UW IMA; no place extracted
+96,DfqFz7zveYt-0,https://www.instagram.com/p/DfqFz7zveYt/,2026-11-17,18:30,Gould 435,2026-11-17,18:30,1,
+97,DfNoe-CzN0--0,https://www.instagram.com/p/DfNoe-CzN0-/,2026-11-21,22:45,Kraken Community Iceplex,2026-11-21,22:45,1,Nov 21 game from the season schedule
+98,Dfl5jjeBGpH-0,https://www.instagram.com/p/Dfl5jjeBGpH/,2026-11-26,22:20,KRAKEN COMMUNITY ICEPLEX,2026-11-14,22:20,1,flyer says 14 Nov 2026 ('this Saturday'); extracted Nov 26
+99,Dfl6L8GxbiZ-0,https://www.instagram.com/p/Dfl6L8GxbiZ/,2026-11-30,,,2026-12-01,,1,Giving Tuesday 2026 is Dec 1 (Thanksgiving Nov 26); extracted Nov 30
