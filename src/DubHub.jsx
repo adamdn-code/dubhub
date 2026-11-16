@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./DubHub.css";
 import Icon from "./Icon.jsx";
+import { armFor, logExperiment } from "./experiment.js";
 import { APPLY_YEARS, FILE_ACCEPT, FILE_LIMITS, JOBS, SAMPLE_JOBS } from "./jobs.js";
 import { CATEGORY_GROUPS, NO_FIELD_COLOR, OTHER_GROUP, isHostedBy } from "./eventGroups.js";
 import {
@@ -2714,7 +2715,9 @@ function popularity(e) {
 // (your majors and year, the events you've said you're going to, past ones included, your
 // clubs, and your thumbs up and down), scores every upcoming event against it, and blends in how
 // popular and how soon each one is. With nothing to go on, it falls back to what's popular now.
-function recommend(all, { profile, joined, votes, clubs, exclude }, now = Date.now()) {
+// order "date" is the experiment's control arm (src/experiment.js): the same candidates and the
+// same two-per-host limit, sorted by start time instead of by score.
+function recommend(all, { profile, joined, votes, clubs, exclude, order = "score" }, now = Date.now()) {
   const taste = new Map();
   const add = (key, w) => taste.set(key, (taste.get(key) ?? 0) + w);
   const byId = new Map(all.map((e) => [String(e.id), e]));
@@ -2760,7 +2763,10 @@ function recommend(all, { profile, joined, votes, clubs, exclude }, now = Date.n
     const fitScore = cold ? 0 : fit > 0 ? (3 * fit) / (fit + 3) : fit;
     return { event: e, score: fitScore + 1.5 * pop + soon + liked, reason: reasonFor(best, cold) };
   });
-  scored.sort((a, b) => b.score - a.score);
+  if (order === "date") {
+    scored.sort((a, b) => eventSpan(a.event).start - eventSpan(b.event).start);
+    for (const s of scored) s.reason = "Coming up soon";
+  } else scored.sort((a, b) => b.score - a.score);
 
   // Keep it varied: at most two from the same host.
   const perHost = new Map();
@@ -2791,14 +2797,38 @@ const RECS_MAX = 9; // three rows of three, and no more on the page
 
 // "Picked for you": suggested events as flyer tiles, each with thumbs up and down. A thumbs down
 // hides it (with an undo) and steers the rest away from things like it; a thumbs up steers toward.
-function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect }) {
+function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect, user }) {
   const now = useNow();
   const { votes, vote } = useVotes();
   const [hidden, setHidden] = useState(null); // the event just thumbed down, for undo
+  const arm = armFor(user); // the experiment: this ranking, or the same row by date
+  const byDate = arm === "by-date";
   const { cold, picks } = useMemo(
-    () => recommend(all, { profile, joined: j.joined, votes, clubs: myClubs, exclude }, now),
-    [all, profile, j.joined, votes, myClubs, exclude, now]
+    () => recommend(all, { profile, joined: j.joined, votes, clubs: myClubs, exclude, order: byDate ? "date" : "score" }, now),
+    [all, profile, j.joined, votes, myClubs, exclude, now, byDate]
   );
+  // Experiment logging: one view per visit to this row, each event opened from it, and each Join
+  // of an event the row showed.
+  const shown = useRef(new Set());
+  for (const p of picks.slice(0, RECS_MAX)) shown.current.add(String(p.event.id));
+  const viewed = useRef(false);
+  const hasPicks = picks.length > 0;
+  useEffect(() => {
+    if (hasPicks && !viewed.current) {
+      viewed.current = true;
+      logExperiment(user, "view");
+    }
+  }, [hasPicks, user]);
+  const lastJoined = useRef(j.joined);
+  useEffect(() => {
+    const before = new Set(lastJoined.current);
+    for (const id of j.joined) if (!before.has(id) && shown.current.has(String(id))) logExperiment(user, "join");
+    lastJoined.current = j.joined;
+  }, [j.joined, user]);
+  const openFromRow = useCallback((...args) => {
+    logExperiment(user, "open");
+    onSelect(...args);
+  }, [user, onSelect]);
   if (!picks.length) return null;
   const known = [
     profile?.majors?.length > 0 && "your major",
@@ -2810,10 +2840,12 @@ function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect })
   return (
     <section className="recs" aria-labelledby="recs-title">
       <header className="recs-head">
-        <p className="recs-kicker">{cold ? "Start here" : "Picked for you"}</p>
+        <p className="recs-kicker">{byDate ? "Coming up" : cold ? "Start here" : "Picked for you"}</p>
         <h2 id="recs-title">Suggested for you</h2>
         <p className="recs-sub">
-          {cold
+          {byDate
+            ? "The soonest events on campus. Thumbs down hides one."
+            : cold
             ? "For now, what the most people are going to. Thumbs up the ones you like and these turn into picks for you. Adding your major in your profile helps too."
             : `Based on ${basis}. Thumbs up or down to tune them.`}
         </p>
@@ -2836,7 +2868,7 @@ function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect })
         {picks.slice(0, RECS_MAX).map(({ event: e, reason }, i) => {
           const v = votes[String(e.id)];
           return (
-            <EventTile key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={onSelect} index={i} now={now}>
+            <EventTile key={e.id} event={e} section={sectionOf(e, now)} j={j} onSelect={openFromRow} index={i} now={now}>
               <div className="rec-foot">
                 <span className={v === 1 ? "rec-reason liked" : "rec-reason"}>{v === 1 ? "You liked this" : reason}</span>
                 <span className="rec-votes">
@@ -3086,7 +3118,7 @@ function ClubFan({ clubs, all, everything, now, onOpen }) {
   );
 }
 
-function MyEventsPage({ all, everything = all, clubList, j, clubs, applications, profile, onSelect, onBrowse, onFindClubs }) {
+function MyEventsPage({ all, everything = all, clubList, j, clubs, applications, profile, user, onSelect, onBrowse, onFindClubs }) {
   const mine = useMemo(() => myEventsFor(all, clubList, j, clubs), [all, clubList, j, clubs]);
   const [openClub, setOpenClub] = useState(null);
   // Open applications from the clubs you joined, soonest deadline first.
@@ -3104,7 +3136,7 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
   const upcomingMine = mine.filter((e) => sectionOf(e, now));
   const today = localDate(0);
   const beenTo = everything.filter((e) => e.date && e.date < today && j.joined.includes(String(e.id))).length;
-  const recs = <Recommendations all={all} profile={profile} j={j} clubs={clubs} myClubs={myClubs} exclude={exclude} onSelect={onSelect} />;
+  const recs = <Recommendations all={all} profile={profile} j={j} clubs={clubs} myClubs={myClubs} exclude={exclude} onSelect={onSelect} user={user} />;
   // The events you're going to and your clubs' events, beside the suggestions (empty: says so).
   const yourEvents = <YourEvents events={mine} apps={clubs.joined.length > 0 ? myApps : null} j={j} now={now} onSelect={onSelect} onBrowse={onBrowse} onFindClubs={onFindClubs} />;
   // Your events on the left half, the suggestions on the right (stacked on narrow screens).
@@ -5418,9 +5450,9 @@ function BarList({ rows }) {
 }
 
 // Every chart's numbers, for reading without the chart.
-function ChartTable({ head, rows }) {
+function ChartTable({ head, rows, open = false }) {
   return (
-    <details className="chart-table">
+    <details className="chart-table" open={open}>
       <summary>Show as a table</summary>
       <div className="table-scroll">
         <table>
@@ -5539,6 +5571,36 @@ function MembersList({ members }) {
   );
 }
 
+// The "Suggested for you" test (api/exp.js): the recommender against the same row sorted by
+// date. Each visitor stays in one arm; the rates are per person, not per view.
+function ExperimentCard({ exp }) {
+  const pct = (x) => (x == null ? "–" : `${(100 * x).toFixed(1)}%`);
+  const pts = (x) => (x == null ? "–" : `${x >= 0 ? "+" : "−"}${Math.abs(100 * x).toFixed(1)} pts`);
+  const [t, c] = [exp.arms.recommender, exp.arms["by-date"]];
+  const verdict = (test, what) => {
+    if (!test) return `Not enough people yet to compare ${what}.`;
+    const sig = test.p < 0.05;
+    return `${pts(test.diff)} for the recommender (95% interval ${pts(test.low)} to ${pts(test.high)}, p = ${test.p.toFixed(3)})${sig ? "" : ": not a clear difference yet"}.`;
+  };
+  const row = (name, a) => [name, fmt(a.people), fmt(a.views), pct(a.people ? a.opened / a.people : null), fmt(a.signedIn), pct(a.signedIn ? a.joinedSignedIn / a.signedIn : null), fmt(a.joins)];
+  return (
+    <section className="chart-card wide">
+      <h2>Experiment: does the recommender beat sorting by date?</h2>
+      <p className="chart-sub">
+        Half of visitors see "Suggested for you" ranked by the recommender, half see the same events by date. Opened: share of
+        people who opened an event from the row. Joined: share of signed-in people who joined an event the row showed.
+      </p>
+      <ChartTable
+        head={["Arm", "People", "Row views", "Opened one", "Signed in", "Joined one", "Joins"]}
+        rows={[row("Recommender", t), row("By date (control)", c)]}
+        open
+      />
+      <p className="meta">Opened: {verdict(exp.openTest, "opens")}</p>
+      <p className="meta">Joined: {verdict(exp.joinTest, "joins")}</p>
+    </section>
+  );
+}
+
 function StatsPage({ user, events, clubs, dark }) {
   const { data, error } = useStats(user);
   const snapshots = useMemo(() => fillGaps(data?.snapshots ?? []), [data]);
@@ -5645,6 +5707,7 @@ function StatsPage({ user, events, clubs, dark }) {
           <BarList rows={roles} />
         </section>
       </div>
+      {live?.experiment && <ExperimentCard exp={live.experiment} />}
       {live?.members && <MembersList members={live.members} />}
       {recent.length > 0 && (
         <section className="chart-card wide">
@@ -5923,6 +5986,7 @@ export default function DubHub() {
           clubs={clubs}
           applications={applications}
           profile={profile}
+          user={user}
           onSelect={openEvent}
           onBrowse={() => setTab("Events")}
           onFindClubs={() => setTab("Clubs")}

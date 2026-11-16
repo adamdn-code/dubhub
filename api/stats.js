@@ -3,7 +3,8 @@
 // GET /api/stats  (moderators only) ->
 //   { snapshots: [{ sha, at, kind: "scrape" | "change", message, author, upcoming, onMap, clubs,
 //                   clubsOnInstagram, byGroup, bySource, joins?, joiners?, applications? }, ...],
-//     live: { joins, joiners, applications, byRole: { job id: count }, topJoined: [{ id, count }] } }
+//     live: { joins, joiners, applications, byRole: { job id: count }, topJoined: [{ id, count }], members,
+//             experiment: the "Suggested for you" test (api/exp.js) } }
 //
 // Snapshots, oldest first: one for every production deploy (scripts/record-stats.mjs saves them
 // as Vercel builds each push, a change or a scrape), after the ones rebuilt from the git history
@@ -11,6 +12,7 @@
 import HISTORY from "./_stats-history.js";
 import { db, isModerator, json, missingConfig, sessionFrom } from "./_lib.js";
 import { liveCounts, memberEmails } from "../scripts/record-stats.mjs";
+import { experimentResults } from "./exp.js";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") return json(res, 405, { error: "Use GET" });
@@ -50,5 +52,6 @@ export default async function handler(req, res) {
     });
   }
 
-  return json(res, 200, { snapshots, live: { joins, joiners, applications, byRole, topJoined, members } });
+  const experiment = await experimentResults(db());
+  return json(res, 200, { snapshots, live: { joins, joiners, applications, byRole, topJoined, members, experiment } });
 }
