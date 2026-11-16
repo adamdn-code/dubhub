@@ -33,6 +33,7 @@ import requests
 from events_common import (
     HUSKYLINK_FILE,
     SITE_CLUBS_FILE,
+    carry_aliases,
     SITE_EVENTS_FILE,
     ACTIVE_DAYS,
     TODAY,
@@ -309,7 +310,8 @@ def update_site_files():
             return {key: []}
 
     site = current(SITE_EVENTS_FILE, "events")
-    site["events"] = merge_huskylink_events(site["events"])
+    before = json.loads(json.dumps(site["events"]))  # (a copy: the merge can change these)
+    site["events"] = carry_aliases(merge_huskylink_events(site["events"]), before)
     site["updated"] = datetime.now().isoformat(timespec="minutes")
     SITE_EVENTS_FILE.write_text(json.dumps(site, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote {len(site['events'])} upcoming events to {SITE_EVENTS_FILE}")

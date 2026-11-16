@@ -682,6 +682,61 @@ def post_counts(event):
     return event.get("post_counts") or {event["id"].rsplit("-", 1)[0]: [event.get("likes"), event.get("comments")]}
 
 
+# ------------------------------------------------------------ event ids that change ---
+# An event's id can change from one run to the next: a club reposts it (the newer post's id wins),
+# or the AI lists a post's events in another order ("<post>-1" becomes "<post>-2"). The site saves
+# RSVPs by id, so each event keeps the ids it had before in `aliases`, and the site matches RSVPs
+# against those too. Two copies are the same event when they're on the same day, from the same
+# club, with the same title or one title inside the other ("Culture Fest" / "MSA Culture Fest").
+ALIASES_KEPT = 12
+
+
+def _same_event_parts(e):
+    host = re.sub(r"[^a-z0-9]", "", (e.get("host") or "").split(" (@")[0].lower())
+    title = re.sub(r"[^a-z0-9]", "", (e.get("title") or "").lower())
+    return e.get("date"), host, title
+
+
+def same_event(a, b):
+    """Whether two copies of an event (from different runs) are the same event."""
+    date_a, host_a, title_a = _same_event_parts(a)
+    date_b, host_b, title_b = _same_event_parts(b)
+    if not date_a or date_a != date_b or not title_a or not title_b:
+        return False
+    same_host = host_a == host_b or bool(host_a and host_b and (host_a in host_b or host_b in host_a))
+    same_title = title_a == title_b or (min(len(title_a), len(title_b)) >= 5 and (title_a in title_b or title_b in title_a))
+    return same_host and same_title
+
+
+def carry_aliases(events, old_events=None):
+    """Give each event the ids it had in `old_events` (by default, the site's events as they are
+    before this write), plus the ids those had, in `aliases`. An id another event has now isn't
+    kept: it can't point at two events."""
+    if old_events is None:
+        try:
+            old_events = json.loads(SITE_EVENTS_FILE.read_text(encoding="utf-8")).get("events", [])
+        except (FileNotFoundError, ValueError):
+            old_events = []
+    current = {str(e["id"]) for e in events}
+    by_id = {str(o["id"]): o for o in old_events}
+    by_date = {}
+    for o in old_events:
+        by_date.setdefault(o.get("date"), []).append(o)
+    for e in events:
+        found = [str(a) for a in e.get("aliases") or []]
+        same = by_id.get(str(e["id"]))
+        olds = [same] if same and same_event(same, e) else []
+        olds += [o for o in by_date.get(e.get("date"), []) if str(o["id"]) != str(e["id"]) and same_event(o, e)]
+        for o in olds:
+            found += [str(o["id"])] + [str(a) for a in o.get("aliases") or []]
+        aliases = [a for a in dict.fromkeys(found) if a != str(e["id"]) and a not in current][:ALIASES_KEPT]
+        if aliases:
+            e["aliases"] = aliases
+        else:
+            e.pop("aliases", None)
+    return events
+
+
 def write_site_events(store):
     """Write every upcoming event to public/events.json for the website."""
     not_uw = not_uw_clubs(store)
@@ -730,6 +785,7 @@ def write_site_events(store):
             e["title"] = f"{(name or '@' + (handle or 'club')).split(' | ')[0]} event"
             e["generic"] = True
     drop_unused_post_images(events)
+    carry_aliases(events)  # (before the file is written over: it reads the ids events had)
     SITE_EVENTS_FILE.parent.mkdir(exist_ok=True)
     SITE_EVENTS_FILE.write_text(
         json.dumps({"updated": datetime.now().isoformat(timespec="minutes"), "events": events},

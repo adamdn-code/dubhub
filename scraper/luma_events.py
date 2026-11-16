@@ -62,6 +62,7 @@ from events_common import (
     TYPE_KEYWORDS,
     UNLISTED_CLUBS_FILE,
     _load,
+    carry_aliases,
     club_key,
     handle_rate_limit,
     merge_luma_events,
@@ -471,7 +472,8 @@ def main():
         site = json.loads(SITE_EVENTS_FILE.read_text(encoding="utf-8"))
     except (FileNotFoundError, ValueError):
         return
-    site["events"] = merge_luma_events(site["events"])
+    before = json.loads(json.dumps(site["events"]))  # (a copy: the merge can change these)
+    site["events"] = carry_aliases(merge_luma_events(site["events"]), before)
     SITE_EVENTS_FILE.write_text(json.dumps(site, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"The site now has {len(site['events'])} upcoming events.")
 
