@@ -49,6 +49,7 @@ import requests
 from events_common import (
     CLUB_INSTAGRAM_FILE,
     CLUB_PROFILES_FILE,
+    LUMA_CAMPUS_FILE,
     GROQ_KEY,
     HUSKYLINK_FILE,
     LUMA_CALENDARS_FILE,
@@ -369,6 +370,21 @@ def main():
         print(f"{len(nearby)} public events near UW on Luma; {len(seen)} calendars worth a look.", flush=True)
     except SlowDown as e:
         print(f"Stopping early: {e}.", flush=True)
+
+    # Events on campus, with their hosts: often a club the site doesn't know yet, posting from an
+    # officer's own Luma ("University of Washington: Boba & Cafe", hosted by Figma). The club finder
+    # (find_unlisted_clubs.py) reads these for club names and looks for their Instagram.
+    campus = {}
+    for eid, entry in nearby.items():
+        ev = entry.get("event") or {}
+        if eid and ev.get("name") and on_campus(ev):
+            campus[eid] = {"title": ev["name"], "start": (ev.get("start_at") or "")[:10],
+                           "calendar": (entry.get("calendar") or {}).get("name"),
+                           "hosts": [h["name"] for h in entry.get("hosts") or [] if h.get("name")][:6]}
+    if not dry and nearby:
+        LUMA_CAMPUS_FILE.parent.mkdir(exist_ok=True)
+        LUMA_CAMPUS_FILE.write_text(json.dumps(campus, indent=1, ensure_ascii=False), encoding="utf-8")
+    print(f"{len(campus)} of them on campus, for the club finder to read.", flush=True)
 
     # 3. Which calendars are UW clubs'.
     ask = []

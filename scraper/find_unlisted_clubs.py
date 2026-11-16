@@ -16,6 +16,11 @@ Where the accounts to check come from (none of this asks Instagram for anything)
      pick (guess_instagram_handles.py) and keeps an account only if its profile says UW and names
      the club. Names and what came of them: unlisted_names.json (on GitHub).
   4. Accounts given by hand: python find_unlisted_clubs.py --add handle1,handle2
+  5. Accounts students suggest on DubHub (the box on the Clubs page; /api/suggest on the site).
+  6. Events on campus on Luma (luma_events.py saves them): the AI reads their titles and hosts
+     for the club running them, as in 3. That's how clubs on no list and in no one's posts turn
+     up, like Figma at UW, whose events are on an officer's own Luma.
+  7. Companies' student programs ("Figma at UW", "Notion at UW": CAMPUS_PROGRAMS), tried as in 3.
 
 Each account is then checked once on its public Instagram page (one page, no login) and kept
 only when all of these hold:
@@ -77,6 +82,7 @@ from events_common import (
     CLUB_PROFILES_FILE,
     GROQ_KEY,
     HUSKYLINK_FILE,
+    LUMA_CAMPUS_FILE,
     MENTION,
     MENTIONS_FILE,
     POSTS_FILE,
@@ -102,6 +108,14 @@ NAMES_READ_FILE = STATE_DIR / "unlisted_names_read.txt"  # posts already read fo
 POSTS_PER_RUN = 60  # posts the AI reads for club names each run (20 per request)
 MIN_WAIT, MAX_WAIT = 6, 12
 RECHECK_DAYS = 60
+SITE = "https://dubhub-test.vercel.app"  # where students suggest clubs (/api/suggest)
+SUGGESTED = "suggested on DubHub"
+LUMA_POSTER = "an event on Luma, on the UW campus"
+CAMPUS_LIST = "the list of companies' campus programs"
+# Companies that run student clubs or campus-leader programs named "<Company> at <school>". Each is
+# tried like a club named in a post: the usual usernames, kept only if the account says UW.
+CAMPUS_PROGRAMS = ["Figma", "Notion", "GitHub", "Cursor", "Perplexity", "Canva", "Framer", "Replit",
+                   "Claude Builder Club", "Microsoft Learn Student Ambassadors", "Google Developer Groups"]
 LISTING_DAYS = 30
 LISTING_STAMP = STATE_DIR / "unlisted_listing_pages.txt"  # when the UW listing pages were last read
 HEADERS = {"User-Agent": "Mozilla/5.0 (DubHub club finder; github.com/adamxlegend/dubhub)"}
@@ -238,7 +252,7 @@ def worth_checking(handle, entry):
     """Ones likely to be UW groups: linked from a UW page, sounding like UW, or mentioned by two or
     more clubs. (Most mentions are people and brands.)"""
     found = entry.get("found", [])
-    if "added by hand" in found or any(f.startswith("named ") for f in found):
+    if "added by hand" in found or SUGGESTED in found or any(f.startswith("named ") for f in found):
         return True
     if UNIVERSITY_ACCOUNT.search(handle) or OTHER_SCHOOL.search(handle) or OTHER_CAMPUS.search(handle):
         return False
@@ -261,7 +275,8 @@ def on_uw_page(entry):
 
 def priority(handle, entry):
     found = entry.get("found", [])
-    return (any(f.startswith(("http", "added by hand", FOLLOWED)) for f in found), bool(UW_USERNAME.search(handle)), len(found))
+    return (any(f.startswith(("http", "added by hand", FOLLOWED, SUGGESTED)) for f in found), bool(UW_USERNAME.search(handle)),
+            len(found))
 
 
 def says_uw(user):
@@ -463,6 +478,9 @@ sister clubs, groups it thanks or invites. Write each name as the post writes it
 Association", "SASA"), not @usernames. Leave out the club that posted it; teams and clubs from
 other schools (opponents, visiting teams, other universities' chapters); companies and brands;
 university departments and offices; people; and places. Most posts name none: give an empty list.
+When "Posted by" says it's an event on Luma, also list the student group running it, if its title,
+calendar or hosts name one ("Figma" for an event hosted by Figma on campus). A host that's a
+person's name isn't a group, and neither is a company running an event of its own.
 
 Reply with ONLY JSON: {{"posts": [{{"post": 1, "names": []}}]}}
 
@@ -515,7 +533,14 @@ def read_names(names, known_keys, dry, known_initials=frozenset()):
         key = f"hl-{e['id']}"
         if key not in done and len(e.get("description") or "") > 40:
             todo.append((key, e.get("host") or "a UW club", f"{e['title']}\n{e['description']}"))
-    todo = todo[:POSTS_PER_RUN]
+    # Events on campus on Luma go first: they're the only place some clubs show up at all.
+    luma = []
+    for eid, ev in _load(LUMA_CAMPUS_FILE, {}).items():
+        key = f"luma-{eid}"
+        if key not in done and ev.get("title"):
+            luma.append((key, LUMA_POSTER, f"{ev['title']}\nCalendar: {ev.get('calendar') or 'a personal one'}\n"
+                                           f"Hosted by: {', '.join(ev.get('hosts') or []) or 'not shown'}"))
+    todo = (luma + todo)[:POSTS_PER_RUN]
     added = 0
     for i in range(0, len(todo), 20):
         batch = todo[i:i + 20]
@@ -584,6 +609,20 @@ def try_names(L, names, saved, known, today, pages):
 FOLLOWED = "followed by a DubHub teammate"
 
 
+def suggested_handles():
+    """Instagram usernames students suggested on DubHub (the box on the Clubs page). The site only
+    gives out the usernames, never who suggested them."""
+    try:
+        r = requests.get(f"{SITE}/api/suggest", headers=HEADERS, timeout=20)
+        if r.status_code != 200:
+            print(f"Couldn't get clubs suggested on DubHub (HTTP {r.status_code}).", flush=True)
+            return []
+        return [h for h in (clean(x) for x in r.json().get("handles", []) if isinstance(x, str)) if h]
+    except (requests.RequestException, ValueError) as e:
+        print(f"Couldn't get clubs suggested on DubHub ({str(e)[:80]}).", flush=True)
+        return []
+
+
 def following_handles(path):
     """Usernames in an Instagram "Download your information" following list (the .zip, or its
     following.json / following.html), or in a text file with one username per line."""
@@ -637,6 +676,12 @@ def main():
             if h:
                 add(h, "added by hand")
 
+    suggested = suggested_handles()
+    for h in suggested:
+        add(h, SUGGESTED)
+    if suggested:
+        print(f"{len(suggested)} club(s) suggested on DubHub.", flush=True)
+
     if "--following" in sys.argv:
         followed = [h for h in map(clean, following_handles(sys.argv[sys.argv.index("--following") + 1])) if h]
         fresh = [h for h in followed if h not in known and h not in saved and UW_USERNAME.search(h)
@@ -658,6 +703,9 @@ def main():
     known_keys |= {club_key(e["name"]) for e in saved.values() if e.get("name")}
     known_initials = {initials(c["name"]) for c in huskylink_clubs}
     read_names(names, known_keys, dry, known_initials)
+    for program in CAMPUS_PROGRAMS:
+        if program not in names and club_key(program) not in known_keys:
+            names[program] = {"status": "new", "by": [CAMPUS_LIST]}
 
     L = instaloader.Instaloader(quiet=True, max_connection_attempts=1, request_timeout=30,
                                 rate_controller=lambda context: StopOnTooManyRequests(context))

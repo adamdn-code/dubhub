@@ -27,6 +27,9 @@ from uw_buildings import find_building
 
 HERE = Path(__file__).resolve().parent
 STATE_DIR = HERE / "state"
+# On-campus Luma events not on a calendar DubHub knows (luma_events.py writes it, find_unlisted_clubs.py
+# reads it for the names of clubs DubHub doesn't know yet).
+LUMA_CAMPUS_FILE = STATE_DIR / "luma_campus.json"
 POSTS_FILE = STATE_DIR / "posts.json"
 GEOCODE_FILE = STATE_DIR / "geocode.json"
 SITE_EVENTS_FILE = HERE.parent / "public" / "events.json"

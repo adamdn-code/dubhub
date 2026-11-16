@@ -91,7 +91,7 @@ def guesses(name):
     for a in acronyms[:2]:
         out += [a] if a.startswith("uw") else [f"uw{a}", f"{a}.uw", f"{a}uw"]
     if len(compact) <= 26:
-        out += [f"uw{compact}", compact, f"{compact}uw"]
+        out += [f"uw{compact}", compact, f"{compact}uw", f"{compact}atuw"]  # ("figmaatuw": "X at UW")
     for a in acronyms[:2]:
         out += [f"uw_{a}", f"{a}_uw", f"uw.{a}"]
     return list(dict.fromkeys(out))
