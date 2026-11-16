@@ -2677,11 +2677,6 @@ function eventPicture(e) {
   return eventPictures(e)[0] ?? null;
 }
 
-// A club's cover: the flyer from its next event, or failing that its most recent one.
-function clubCover(club, all, everything) {
-  return hostedBy(all, club).find((e) => e.image)?.image ?? pastHostedBy(everything, club).find((e) => e.image)?.image ?? null;
-}
-
 // Events you joined plus every event hosted by a club you're in.
 function myEventsFor(all, clubList, j, clubs) {
   const myClubs = clubList.filter((c) => clubs.joined.includes(c.name));
@@ -3105,7 +3100,7 @@ function ClubFan({ clubs, all, now, onOpen }) {
   const next = shown
     .flatMap((c) => hostedBy(all, c).filter((e) => sectionOf(e, now)))
     .reduce((a, e) => (!a || soon(e) < soon(a) ? e : a), null);
-  const more = clubs.filter((c) => !c.gone).length - shown.length; // (listed below the hero)
+  const more = clubs.filter((c) => !c.gone).length - shown.length; // (past the most the hero shows)
   const n = shown.length;
   const cols = n <= 3 ? n : n <= 8 ? 4 : n <= 12 ? 6 : 7;
   const size = n <= 3 ? 120 : n <= 8 ? 92 : n <= 12 ? 76 : 64;
@@ -3129,7 +3124,7 @@ function ClubFan({ clubs, all, now, onOpen }) {
         ) : (
           "None of your clubs have anything coming up yet."
         )}
-        {more > 0 && ` · and ${more} more club${more === 1 ? "" : "s"} below`}
+        {more > 0 && ` · and ${more} more club${more === 1 ? "" : "s"}`}
       </p>
     </div>
   );
@@ -3205,34 +3200,6 @@ function MyEventsPage({ all, everything = all, clubList, j, clubs, applications,
       <div className="now-body">
       {/* Nothing of your own yet: the two halves first, saying so beside the suggestions */}
       {mine.length === 0 && split}
-      {myClubs.length > FAN_COUNT && (
-        <section className="my-clubs" aria-labelledby="my-clubs-title">
-          <h2 id="my-clubs-title">All your clubs</h2>
-          <ul className="club-covers">
-            {myClubs.map((c, i) => {
-              const upcoming = c.gone ? 0 : hostedBy(all, c).length;
-              const cover = c.gone ? null : clubCover(c, all, everything);
-              return (
-                <li key={c.name} style={{ "--i": Math.min(i, 12) }}>
-                  <button className="club-cover" onClick={() => !c.gone && setOpenClub(c)} disabled={c.gone}>
-                    <span className="club-cover-art" style={{ "--club": c.gone ? NO_FIELD_COLOR : clubColor(c) }}>
-                      {cover && <FitImg src={cover} loading="lazy" decoding="async" />}
-                      <Thumb src={c.logo} label={c.name} color={c.gone ? NO_FIELD_COLOR : clubColor(c)} className="club-cover-logo" />
-                    </span>
-                    <span className="club-cover-text">
-                      <span className="club-cover-name">{c.name}</span>
-                      <span className="meta">
-                        {c.gone ? "No recent events" : upcoming ? `${upcoming} upcoming event${upcoming === 1 ? "" : "s"}` : "No upcoming events"}
-                      </span>
-                      {myApps.some((a) => a.club?.name === c.name) && <span className="tag tag-apply">Applications open</span>}
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      )}
       {clubs.joined.length === 0 && mine.length > 0 && (
         <p className="count">
           Join clubs to see all their events and applications here.{" "}
