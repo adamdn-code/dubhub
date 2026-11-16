@@ -70,7 +70,13 @@ const TAB_ICONS = {
   About: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 16v-5M12 8h.01",
   Stats: "M4 20V11M10 20V5M16 20v-6M2 20h20",
   Hiring: "M3 7h18v13H3zM8 7V4h8v3M3 12h18",
+  Friends: "M8.5 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM2 20v-.5A6.5 6.5 0 0 1 12.6 14.4M16 11.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12.5 20v-.5a4.5 4.5 0 0 1 9 0v.5",
 };
+
+// The tabs a phone's bottom bar shows; the rest (Friends, About, the moderators' pages) are in the
+// sheet behind its You button, with the theme, the settings and your account.
+const PHONE_TABS = ["Events", "Home", "My Events", "Clubs"];
+const PERSON_ICON = "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21v-1a8 8 0 0 1 16 0v1";
 
 // What each tab is called on screen ("Home" is the map).
 const TAB_LABELS = { Events: "Now", Home: "Map" };
@@ -1574,7 +1580,7 @@ function MapLoader({ ready }) {
   );
 }
 
-function Home({ f, area, j, clubs, clubList, palette, showSlider }) {
+function Home({ f, area, j, clubs, clubList, friends, palette, showSlider }) {
   const [at, setAt] = useState(null); // the time slider: null is now
   const [mapReady, setMapReady] = useState(false);
   const [mapCycle, setMapCycle] = useState(0); // a new loader each time the map closes and reopens
@@ -1619,6 +1625,7 @@ function Home({ f, area, j, clubs, clubList, palette, showSlider }) {
           <EventMap
             onReady={onMapReady}
             onBusy={onMapBusy}
+            friends={friends}
             events={events}
             area={area}
             shown={event}
@@ -4322,7 +4329,6 @@ function Careers({ user, moderator, onNeedSignIn, onOpenHiring, reopenJobId, onR
 // going to, and message them. The mailbox in the top bar shows how many messages and friend
 // requests are waiting.
 
-const MAIL_ICON = "M3 6h18v12H3zM3 7l9 6 9-6";
 
 // Your friends, requests, and conversations, checked every so often (more often on the Friends page).
 function useSocial(user, often) {
@@ -4367,17 +4373,93 @@ function useSocial(user, often) {
   return { data, waiting, act, refresh };
 }
 
-function MailButton({ count, active, onClick }) {
+// Phones: the sheet behind the bottom bar's You button. Your account, then the pages that aren't
+// one of the four main tabs, then the theme and the map setting.
+function YouSheet({ user, waiting, view, extraTabs, theme, showSlider, setShowSlider, onGo, onSignIn, onSignOut, onClose }) {
+  useEffect(() => {
+    const esc = (e) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", esc);
+    return () => document.removeEventListener("keydown", esc);
+  }, [onClose]);
+  const go = (t) => {
+    onClose();
+    onGo(t);
+  };
+  const row = (t, label, icon, badge) => (
+    <li key={t}>
+      <button className={view === t ? "on" : undefined} onClick={() => go(t)}>
+        <Icon d={icon} />
+        <span>{label}</span>
+        {badge > 0 && <b className="tab-badge">{badge > 9 ? "9+" : badge}</b>}
+      </button>
+    </li>
+  );
   return (
-    <button
-      className={active ? "theme-toggle mail-button on" : "theme-toggle mail-button"}
-      onClick={onClick}
-      aria-label={count ? `Friends and messages, ${count} new` : "Friends and messages"}
-      title="Friends and messages"
-    >
-      <Icon d={MAIL_ICON} />
-      {count > 0 && <span className="mail-count">{count > 9 ? "9+" : count}</span>}
-    </button>
+    <div className="you-sheet-wrap" onClick={onClose}>
+      <div className="you-sheet" role="dialog" aria-label="You" onClick={(e) => e.stopPropagation()}>
+        <div className="you-head">
+          {user ? (
+            <>
+              <span className="you-face big">
+                <UserPicture user={user} />
+              </span>
+              <span className="you-who">
+                <strong>{user.name}</strong>
+                <span>{user.email}</span>
+              </span>
+            </>
+          ) : (
+            <>
+              <span className="you-who">
+                <strong>DubHub</strong>
+                <span>Sign in to say you're going, and see your friends'.</span>
+              </span>
+              <button
+                className="join"
+                onClick={() => {
+                  onClose();
+                  onSignIn();
+                }}
+              >
+                Sign in
+              </button>
+            </>
+          )}
+        </div>
+        <ul className="you-list">
+          {user?.token && row("Friends", "Friends", TAB_ICONS.Friends, waiting)}
+          {user && row("Profile", "Profile", PERSON_ICON)}
+          {row("About", "About DubHub", TAB_ICONS.About)}
+          {extraTabs.map((t) => row(t, t, TAB_ICONS[t]))}
+        </ul>
+        <div className="you-settings">
+          <label className="settings-row">
+            <span>
+              <strong>Dark mode</strong>
+            </span>
+            <input type="checkbox" role="switch" checked={theme.theme === "dark"} onChange={(e) => theme.pick(e.target.checked ? "dark" : "light")} />
+          </label>
+          <label className="settings-row">
+            <span>
+              <strong>Time slider on the map</strong>
+              <span>Scrub ahead to see what's on later today</span>
+            </span>
+            <input type="checkbox" role="switch" checked={showSlider} onChange={(e) => setShowSlider(e.target.checked)} />
+          </label>
+        </div>
+        {user && (
+          <button
+            className="link-button you-signout"
+            onClick={() => {
+              onClose();
+              onSignOut();
+            }}
+          >
+            Sign out
+          </button>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -4458,11 +4540,36 @@ function Conversation({ user, friend, isFriend, onSend }) {
   );
 }
 
+// Friends: what your friends are going to, soonest first with their faces (the reason to have
+// friends here), then the people: requests to answer, your friends with their latest message, and
+// a chat with whoever you pick. Same band and ground as the Clubs page.
+const FRIEND_FACES = 4;
+
 function FriendsPage({ user, social, events, onOpenEvent }) {
   const { data, act } = social;
   const [email, setEmail] = useState("");
   const [note, setNote] = useState(null);
   const [openEmail, setOpenEmail] = useState(null);
+  const now = useNow();
+
+  // Upcoming events at least one friend is going to, soonest first, each with who's going.
+  const goingList = useMemo(() => {
+    if (!data) return [];
+    const byId = new Map(events.map((e) => [String(e.id), e]));
+    const byEvent = new Map();
+    for (const f of data.friends) {
+      for (const id of f.going || []) {
+        const e = byId.get(String(id));
+        if (!e || !sectionOf(e, now)) continue;
+        const entry = byEvent.get(e.id) ?? { event: e, friends: [] };
+        entry.friends.push(f);
+        byEvent.set(e.id, entry);
+      }
+    }
+    return [...byEvent.values()].sort((a, b) =>
+      `${a.event.date}T${a.event.start ?? "99"}`.localeCompare(`${b.event.date}T${b.event.start ?? "99"}`)
+    );
+  }, [data, events, now]);
 
   const add = async (e) => {
     e.preventDefault();
@@ -4472,14 +4579,40 @@ function FriendsPage({ user, social, events, onOpenEvent }) {
     if (!err) setEmail("");
   };
 
+  const hero = (faces) => (
+    <section className="now-hero clubs-hero friends-hero">
+      {/* The Quad in spring (public domain, Wikimedia Commons), faint under the purple */}
+      <img className="hero-photo" src="/hero-quad.jpg" alt="" aria-hidden="true" />
+      <div className="now-hero-inner">
+        <header className="now-head">
+          <h1>Friends</h1>
+          <p className="now-date">
+            {data
+              ? data.friends.length
+                ? `${data.friends.length} friend${data.friends.length === 1 ? "" : "s"} · going to ${goingList.length} event${goingList.length === 1 ? "" : "s"} coming up`
+                : "Add friends to see what they're going to"
+              : "Loading…"}
+          </p>
+          <form className="suggest-club add-friend-hero" onSubmit={add}>
+            <label htmlFor="add-friend">Add a friend</label>
+            <div className="suggest-club-row">
+              <input id="add-friend" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Their NetID or UW email" autoComplete="off" spellCheck={false} />
+              <button className="join" disabled={!email.trim() || !data}>
+                Add
+              </button>
+            </div>
+            {note && <p role={note.error ? "alert" : "status"}>{note.error || note.ok}</p>}
+          </form>
+        </header>
+        {faces}
+      </div>
+    </section>
+  );
+
   if (!data) {
-    return (
-      <main className="page friends-page">
-        <h1>Friends</h1>
-        <p className="meta">Loading…</p>
-      </main>
-    );
+    return <main className="page clubs-page friends-page">{hero(null)}</main>;
   }
+
   const convoOf = (address) => data.conversations.find((c) => c.email === address);
   // Friends, plus anyone you've talked to who isn't a friend anymore (to read the old messages).
   const people = [
@@ -4487,161 +4620,196 @@ function FriendsPage({ user, social, events, onOpenEvent }) {
     ...data.conversations.filter((c) => !data.friends.some((f) => f.email === c.email)).map((c) => ({ ...c, going: [], isFriend: false })),
   ].sort((a, b) => (convoOf(b.email)?.last.at ?? "").localeCompare(convoOf(a.email)?.last.at ?? "") || a.name.localeCompare(b.name));
   const open = people.find((p) => p.email === openEmail);
-  const goingTo = (p) =>
-    p.going
-      .map((id) => events.find((e) => String(e.id) === String(id)))
-      .filter(Boolean)
-      .sort((a, b) => `${a.date}${a.start}`.localeCompare(`${b.date}${b.start}`));
+  const goingTo = (p) => goingList.filter((g) => g.friends.some((f) => f.email === p.email)).map((g) => g.event);
+  const days = [];
+  for (const g of goingList) {
+    if (days.at(-1)?.date !== g.event.date) days.push({ date: g.event.date, items: [] });
+    days.at(-1).items.push(g);
+  }
+
+  const faces = data.friends.length > 0 && (
+    <ul className="friend-wall" aria-label="Your friends">
+      {data.friends.slice(0, 12).map((f) => (
+        <li key={f.email}>
+          <button onClick={() => setOpenEmail(f.email)} title={f.name} aria-label={`${f.name}: their events and messages`}>
+            <Avatar person={f} />
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
-    <main className={open ? "page friends-page reading" : "page friends-page"}>
-      <div className="stats-head">
-        <h1>Friends</h1>
-        <span className="meta">See what your friends are going to, and message them. Only friends can message you.</span>
-      </div>
-      <div className="friends">
-        <div className="friends-side">
-          <form className="add-friend" onSubmit={add}>
-            <label className="field-label" htmlFor="add-friend">
-              Add a friend
-            </label>
-            <div className="add-friend-row">
-              <input
-                id="add-friend"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Their NetID or UW email"
-                autoComplete="off"
-              />
-              <button className="join" disabled={!email.trim()}>
-                Add
-              </button>
-            </div>
-            {note && <p className={note.error ? "form-error" : "meta"}>{note.error || note.ok}</p>}
-          </form>
-
-          {data.incoming.length > 0 && (
-            <section>
-              <h2 className="side-head">Friend requests</h2>
-              <ul className="people">
-                {data.incoming.map((p) => (
-                  <li key={p.email} className="person">
-                    <Avatar person={p} />
-                    <span className="person-text">
-                      <strong>{p.name}</strong>
-                      <span className="meta">{p.email}</span>
-                    </span>
-                    <span className="person-actions">
-                      <button className="join" onClick={() => act("accept", p.email)}>
-                        Accept
-                      </button>
-                      <button className="link-button" onClick={() => act("decline", p.email)}>
-                        Decline
-                      </button>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          <section>
-            <h2 className="side-head">Your friends</h2>
-            {people.length === 0 ? (
-              <p className="meta">No friends yet. Add someone by their UW email above.</p>
+    <main className="page clubs-page friends-page">
+      {hero(faces)}
+      <div className="now-body">
+        <div className={open ? "friends-grid reading" : "friends-grid"}>
+          <section className="friends-going" aria-labelledby="friends-going-title">
+            <h2 id="friends-going-title">Your friends are going</h2>
+            {days.length === 0 ? (
+              <p className="friends-empty">
+                {data.friends.length
+                  ? "None of your friends are going to anything coming up yet. When one taps I'm going, it shows up here."
+                  : "Once you add friends, the events they're going to show up here, with their faces on the map too."}
+              </p>
             ) : (
-              <ul className="people">
-                {people.map((p) => {
-                  const convo = convoOf(p.email);
-                  return (
-                    <li key={p.email}>
-                      <button className={p.email === openEmail ? "person on" : "person"} onClick={() => setOpenEmail(p.email)}>
-                        <Avatar person={p} />
-                        <span className="person-text">
-                          <strong>{p.name}</strong>
-                          <span className="meta">
-                            {convo
-                              ? `${convo.last.from === "me" ? "You: " : ""}${convo.last.text}`
-                              : `Going to ${goingTo(p).length} event${goingTo(p).length === 1 ? "" : "s"}`}
-                          </span>
-                        </span>
-                        {convo?.unread > 0 && <span className="mail-count inline">{convo.unread}</span>}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </section>
-
-          {data.outgoing.length > 0 && (
-            <section>
-              <h2 className="side-head">Waiting for them to accept</h2>
-              <ul className="people">
-                {data.outgoing.map((p) => (
-                  <li key={p.email} className="person">
-                    <Avatar person={p} />
-                    <span className="person-text">
-                      <strong>{p.name}</strong>
-                      <span className="meta">{p.email}</span>
-                    </span>
-                    <button className="link-button" onClick={() => act("remove", p.email)}>
-                      Cancel
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-        </div>
-
-        {open ? (
-          <article className="friend-detail">
-            <button className="link-button hiring-back" onClick={() => setOpenEmail(null)}>
-              <Icon d={BACK_ICON} /> Friends
-            </button>
-            <div className="friend-head">
-              <Avatar person={open} />
-              <div>
-                <h2>{open.name}</h2>
-                <p className="meta">{open.email}</p>
-              </div>
-              {open.isFriend && (
-                <button
-                  className="link-button unfriend"
-                  onClick={() => {
-                    if (window.confirm(`Remove ${open.name} from your friends?`)) act("remove", open.email);
-                  }}
-                >
-                  Unfriend
-                </button>
-              )}
-            </div>
-            {open.isFriend && (
-              <>
-                <h3>Going to</h3>
-                {goingTo(open).length ? (
-                  <ul className="friend-events">
-                    {goingTo(open).map((e) => (
-                      <li key={e.id}>
-                        <button className="club-link" onClick={() => onOpenEvent(e)}>
-                          {e.title}
+              days.map(({ date, items }) => (
+                <div key={date} className="fg-day">
+                  <h3>{dayLabel(date)}</h3>
+                  <ul className="fg-list">
+                    {items.map(({ event: e, friends }) => (
+                      <li key={e.id} className="fg-row">
+                        <button className="fg-pic" onClick={() => onOpenEvent(e)} tabIndex={-1} aria-hidden="true">
+                          <Thumb src={eventPicture(e)} label={e.title} color={eventColor(e)} className="fg-thumb" />
                         </button>
-                        <span className="meta">{[formatWhen(e), e.where].filter(Boolean).join(", ")}</span>
+                        <div className="fg-info">
+                          <p className="fg-when">{e.start ? `${formatTime(e.start)}${e.end ? `–${formatTime(e.end)}` : ""}` : "All day"}</p>
+                          <button className="fg-title" onClick={() => onOpenEvent(e)}>
+                            {e.title}
+                          </button>
+                          <p className="fg-host">{[hostName(e), e.where].filter(Boolean).join(" · ")}</p>
+                        </div>
+                        <div className="fg-faces" title={friends.map((f) => f.name).join(", ")} aria-label={`${friends.map((f) => f.name).join(", ")} going`}>
+                          {friends.slice(0, FRIEND_FACES).map((f) => (
+                            <Avatar key={f.email} person={f} />
+                          ))}
+                          {friends.length > FRIEND_FACES && <span className="friend-avatar initials fg-more">+{friends.length - FRIEND_FACES}</span>}
+                        </div>
                       </li>
                     ))}
                   </ul>
-                ) : (
-                  <p className="meta">Not going to any upcoming events yet.</p>
+                </div>
+              ))
+            )}
+          </section>
+
+          <aside className="friends-people" aria-label="Friends and messages">
+            {open ? (
+              <article className="friend-chat">
+                <button className="link-button friend-back" onClick={() => setOpenEmail(null)}>
+                  <Icon d={BACK_ICON} /> All friends
+                </button>
+                <div className="friend-head">
+                  <Avatar person={open} />
+                  <div>
+                    <h2>{open.name}</h2>
+                    <p className="meta">{open.email}</p>
+                  </div>
+                  {open.isFriend && (
+                    <button
+                      className="link-button unfriend"
+                      onClick={() => {
+                        if (window.confirm(`Remove ${open.name} from your friends?`)) act("remove", open.email);
+                      }}
+                    >
+                      Unfriend
+                    </button>
+                  )}
+                </div>
+                {open.isFriend && (
+                  <>
+                    <h3>Going to</h3>
+                    {goingTo(open).length ? (
+                      <ul className="friend-events">
+                        {goingTo(open).map((e) => (
+                          <li key={e.id}>
+                            <button className="club-link" onClick={() => onOpenEvent(e)}>
+                              {e.title}
+                            </button>
+                            <span className="meta">{[formatWhen(e), e.where].filter(Boolean).join(", ")}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="meta">Not going to anything coming up yet.</p>
+                    )}
+                  </>
+                )}
+                <h3>Messages</h3>
+                <Conversation key={open.email} user={user} friend={open} isFriend={open.isFriend} onSend={(to, text) => act("message", to, text)} />
+              </article>
+            ) : (
+              <>
+                {data.incoming.length > 0 && (
+                  <section className="friends-block">
+                    <h2>Friend requests</h2>
+                    <ul className="people">
+                      {data.incoming.map((p) => (
+                        <li key={p.email} className="person">
+                          <Avatar person={p} />
+                          <span className="person-text">
+                            <strong>{p.name}</strong>
+                            <span className="meta">{p.email}</span>
+                          </span>
+                          <span className="person-actions">
+                            <button className="join" onClick={() => act("accept", p.email)}>
+                              Accept
+                            </button>
+                            <button className="link-button" onClick={() => act("decline", p.email)}>
+                              Decline
+                            </button>
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
+                <section className="friends-block">
+                  <h2>Friends</h2>
+                  {people.length === 0 ? (
+                    <p className="meta">No friends yet. Add someone by their NetID up top.</p>
+                  ) : (
+                    <ul className="people">
+                      {people.map((p) => {
+                        const convo = convoOf(p.email);
+                        const n = goingTo(p).length;
+                        return (
+                          <li key={p.email}>
+                            <button className="person" onClick={() => setOpenEmail(p.email)}>
+                              <Avatar person={p} />
+                              <span className="person-text">
+                                <strong>{p.name}</strong>
+                                <span className="meta">
+                                  {convo
+                                    ? `${convo.last.from === "me" ? "You: " : ""}${convo.last.text}`
+                                    : p.isFriend
+                                    ? n
+                                      ? `Going to ${n} event${n === 1 ? "" : "s"}`
+                                      : "Say hi"
+                                    : "No longer friends"}
+                                </span>
+                              </span>
+                              {convo?.unread > 0 && <span className="mail-count inline">{convo.unread}</span>}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </section>
+                {data.outgoing.length > 0 && (
+                  <section className="friends-block">
+                    <h2>Waiting for them to accept</h2>
+                    <ul className="people">
+                      {data.outgoing.map((p) => (
+                        <li key={p.email} className="person">
+                          <Avatar person={p} />
+                          <span className="person-text">
+                            <strong>{p.name}</strong>
+                            <span className="meta">{p.email}</span>
+                          </span>
+                          <button className="link-button" onClick={() => act("remove", p.email)}>
+                            Cancel
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
                 )}
               </>
             )}
-            <h3>Messages</h3>
-            <Conversation key={open.email} user={user} friend={open} isFriend={open.isFriend} onSend={(to, text) => act("message", to, text)} />
-          </article>
-        ) : (
-          <div className="hiring-empty meta">Pick a friend to see their events and message them.</div>
-        )}
+          </aside>
+        </div>
       </div>
     </main>
   );
@@ -5859,7 +6027,10 @@ export default function DubHub() {
   const { user, signIn, signOut } = useUser();
   const moderator = useModerator(user);
   const [extras, setExtras] = useFlag(EXTRAS_KEY, false);
-  const tabs = moderator && extras ? [...TABS, "Stats", "Hiring"] : TABS;
+  // Friends is a tab once you're signed in, between Clubs and About.
+  const extraTabs = moderator && extras ? ["Stats", "Hiring"] : [];
+  const tabs = [...TABS.slice(0, 4), ...(user?.token ? ["Friends"] : []), ...TABS.slice(4), ...extraTabs];
+  const [youOpen, setYouOpen] = useState(false);
   // Stats and Hiring are for moderators only.
   const social = useSocial(user, tab === "Friends");
   // Stats and Hiring are for moderators only, and Friends needs a sign-in.
@@ -5925,6 +6096,7 @@ export default function DubHub() {
               role="tab"
               aria-selected={view === t}
               className={view === t ? "tab active" : "tab"}
+              data-phone={PHONE_TABS.includes(t) ? "yes" : "no"}
               onClick={() => goTo(t)}
               // Reaching for the Map tab starts fetching the map's code, so it's there by the click.
               onPointerEnter={t === "Home" ? warmUpEventMap : undefined}
@@ -5932,18 +6104,50 @@ export default function DubHub() {
             >
               <Icon d={TAB_ICONS[t]} />
               <span>{TAB_LABELS[t] ?? t}</span>
+              {t === "Friends" && social.waiting > 0 && <b className="tab-badge">{social.waiting > 9 ? "9+" : social.waiting}</b>}
             </button>
           ))}
+          {/* Phones only: everything else, in a sheet */}
+          <button
+            className={youOpen || !PHONE_TABS.includes(view) ? "tab you-tab active" : "tab you-tab"}
+            aria-haspopup="dialog"
+            aria-expanded={youOpen}
+            onClick={() => setYouOpen((o) => !o)}
+          >
+            {user ? (
+              <span className="you-face">
+                <UserPicture user={user} />
+              </span>
+            ) : (
+              <Icon d={PERSON_ICON} />
+            )}
+            <span>You</span>
+            {social.waiting > 0 && <b className="tab-badge">{social.waiting > 9 ? "9+" : social.waiting}</b>}
+          </button>
         </nav>
         <div className="nav-end">
-          {user?.token && <MailButton count={social.waiting} active={view === "Friends"} onClick={() => setTab("Friends")} />}
           <SettingsMenu showSlider={showSlider} setShowSlider={setShowSlider} />
           <ThemeToggle theme={theme.theme} onPick={theme.pick} />
           <Account user={user} onOpenSignIn={() => openSignIn()} onSignOut={signOut} onOpenProfile={() => setTab("Profile")} />
         </div>
       </header>
+      {youOpen && (
+        <YouSheet
+          user={user}
+          waiting={social.waiting}
+          view={view}
+          extraTabs={extraTabs}
+          theme={theme}
+          showSlider={showSlider}
+          setShowSlider={setShowSlider}
+          onGo={goTo}
+          onSignIn={() => openSignIn()}
+          onSignOut={signOut}
+          onClose={() => setYouOpen(false)}
+        />
+      )}
 
-      {view === "Home" && <Home f={f} area={mapArea} j={j} clubs={clubs} clubList={clubList} palette={MAP_PALETTES[theme.theme]} showSlider={showSlider} />}
+      {view === "Home" && <Home f={f} area={mapArea} j={j} clubs={clubs} clubList={clubList} friends={social.data?.friends} palette={MAP_PALETTES[theme.theme]} showSlider={showSlider} />}
       {view === "Events" && (
         <NowPage f={f} updated={updated} j={j} onSelect={openEvent} />
       )}

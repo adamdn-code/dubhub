@@ -2,7 +2,7 @@
 // the site opens. Leaflet and MapLibre are most of the site's JavaScript and the site opens on the
 // Now page, so this file is its own download: DubHub.jsx asks for it when the Map tab is first
 // opened (the browser also fetches it in its spare time after the page loads, see vite.config.js).
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, CircleMarker, Marker, Pane, Tooltip, ZoomControl, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
@@ -464,7 +464,85 @@ function ThemeSwap({ live, current, onSwap, onBusy, onReopen }) {
   return null;
 }
 
-export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick, onReady, onBusy, palette: livePalette, at }) {
+// ---------------------------------------------------------------- friends going
+// Your friends' profile pictures in a little stack beside the dot of an event they're going to (up
+// to MOST_FACES, then "+2"). The site gets them from /api/social, which only ever gives you your own
+// friends' events. Tap the stack to open the event; hover it for who's going.
+const FACE = 24; // each picture, in pixels (see .friend-faces in DubHub.css)
+const FACE_STEP = 16; // how far along each next one sits (they overlap)
+const MOST_FACES = 3;
+
+const escapeHtml = (text) =>
+  String(text).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const faceInitials = (name) =>
+  String(name || "?")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join("");
+
+// The stack as a map icon, set off to the upper right of a dot `lift` pixels across (radius).
+function facesIcon(people, lift) {
+  const shown = people.slice(0, MOST_FACES);
+  const extra = people.length - shown.length;
+  const count = shown.length + (extra > 0 ? 1 : 0);
+  const at = (i) => `left:${i * FACE_STEP}px;z-index:${MOST_FACES + 1 - i}`;
+  const faces = shown
+    .map((p, i) =>
+      p.picture
+        ? `<img src="${escapeHtml(p.picture)}" alt="" referrerpolicy="no-referrer" style="${at(i)}">`
+        : `<span class="face-initials" style="${at(i)}">${escapeHtml(faceInitials(p.name))}</span>`
+    )
+    .join("");
+  const more = extra > 0 ? `<span class="face-more" style="${at(shown.length)}">+${extra}</span>` : "";
+  const off = Math.round(lift * 0.45);
+  return L.divIcon({
+    className: "friend-faces",
+    html: faces + more,
+    iconSize: [FACE + (count - 1) * FACE_STEP, FACE],
+    iconAnchor: [-off, FACE + off],
+  });
+}
+
+function whoIsGoing(people) {
+  const first = (p) => String(p.name || "A friend").split(/\s+/)[0];
+  if (people.length === 1) return `${people[0].name} is going`;
+  if (people.length === 2) return `${first(people[0])} and ${first(people[1])} are going`;
+  return `${first(people[0])}, ${first(people[1])} and ${people.length - 2} more friend${people.length === 3 ? "" : "s"} are going`;
+}
+
+function FriendFaces({ events, friends, onPick }) {
+  const spots = useMemo(() => {
+    if (!friends?.length) return [];
+    const byEvent = new Map(); // event id -> friends going
+    for (const f of friends) for (const id of f.going || []) byEvent.set(String(id), [...(byEvent.get(String(id)) ?? []), f]);
+    const bySpot = new Map(); // events at the same spot share one stack
+    for (const e of events) {
+      const going = e.pos && byEvent.get(String(e.id));
+      if (!going) continue;
+      const key = e.pos.join();
+      const spot = bySpot.get(key) ?? { key, pos: e.pos, event: e, people: new Map(), lift: 0 };
+      for (const f of going) spot.people.set(f.email, f);
+      spot.lift = Math.max(spot.lift, dotRadius(e));
+      bySpot.set(key, spot);
+    }
+    return [...bySpot.values()].map((s) => {
+      const people = [...s.people.values()];
+      return { ...s, icon: facesIcon(people, s.lift), title: whoIsGoing(people) };
+    });
+  }, [events, friends]);
+  if (!spots.length) return null;
+  return (
+    <Pane name="friend-faces" style={{ zIndex: 620 }}>
+      {spots.map((s) => (
+        <Marker key={`faces|${s.key}`} position={s.pos} icon={s.icon} title={s.title} keyboard={false} eventHandlers={{ click: () => onPick(s.event) }} />
+      ))}
+    </Pane>
+  );
+}
+
+export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick, onReady, onBusy, friends, palette: livePalette, at }) {
   // The palette the map is drawn with. It trails the theme: see ThemeSwap.
   const [palette, setPalette] = useState(livePalette);
   const [reopened, setReopened] = useState(0); // counts reopenings after a theme change
@@ -653,30 +731,34 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
           />
         );
       })}
-      {hovered?.length > 0 && (
-        <CircleMarker key={`hover|${hoverSpot}`} center={hovered[0].pos} radius={0} stroke={false} fill={false} interactive={false}>
-          <Tooltip
-            permanent
-            interactive
-            direction="top"
-            offset={[0, -(Math.max(...atSpot.get(hoverSpot).map(dotRadius)) + STEM)]}
-            opacity={1}
-            className="event-callout"
-          >
-            <HoverStack
-              events={hovered}
-              closing={hoverClosing}
-              dark={palette?.dark}
-              onEnter={keepHover}
-              onLeave={leaveHover}
-              onPick={(x) => {
-                setHoverSpot(null);
-                onPin(x);
-              }}
-            />
-          </Tooltip>
-        </CircleMarker>
-      )}
+      {hovered?.length > 0 &&
+        (() => {
+          const lift = Math.max(...atSpot.get(hoverSpot).map(dotRadius)) + STEM;
+          const split = hovered.length > SPLIT_AFTER ? Math.ceil(hovered.length / 2) : hovered.length;
+          const branches = [
+            ["top", hovered.slice(0, split)],
+            ["bottom", hovered.slice(split)],
+          ].filter(([, list]) => list.length);
+          return branches.map(([dir, list]) => (
+            <CircleMarker key={`hover|${hoverSpot}|${dir}`} center={list[0].pos} radius={0} stroke={false} fill={false} interactive={false}>
+              <Tooltip permanent interactive direction={dir} offset={[0, dir === "top" ? -lift : lift]} opacity={1} className="event-callout">
+                <HoverStack
+                  events={list}
+                  below={dir === "bottom"}
+                  closing={hoverClosing}
+                  dark={palette?.dark}
+                  onEnter={keepHover}
+                  onLeave={leaveHover}
+                  onPick={(x) => {
+                    setHoverSpot(null);
+                    onPin(x);
+                  }}
+                />
+              </Tooltip>
+            </CircleMarker>
+          ));
+        })()}
+      <FriendFaces events={events} friends={friends} onPick={onPin} />
       <MapClicks onClick={onMapClick} />
       {intro && opened && <IntroLabels places={places} dark={palette?.dark} onDone={endIntro} />}
     </MapContainer>
@@ -688,7 +770,11 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
 // Each hangs off an invisible point, since a dot's own tooltip is its hover card.
 
 // The hover cards for one spot. Each is a button that opens that event's panel.
-function HoverStack({ events, closing, dark, onEnter, onLeave, onPick }) {
+// More events than this at one dot and the cards split in two: half rise above the dot, half hang
+// below it, so a busy building doesn't throw up a tower of cards.
+const SPLIT_AFTER = 4;
+
+function HoverStack({ events, closing, dark, below = false, onEnter, onLeave, onPick }) {
   const ref = useRef();
   useEffect(() => {
     if (!ref.current) return;
@@ -696,10 +782,11 @@ function HoverStack({ events, closing, dark, onEnter, onLeave, onPick }) {
     L.DomEvent.disableScrollPropagation(ref.current);
   }, []);
   return (
-    <div ref={ref} className={closing ? "callout-stack closing" : "callout-stack"} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+    <div ref={ref} className={["callout-stack", below && "below", closing && "closing"].filter(Boolean).join(" ")} onMouseEnter={onEnter} onMouseLeave={onLeave}>
       {events.map((x, i) => (
-        // --i: how far from the dot, so the cards rise one after another, nearest first
-        <button key={x.id} type="button" className="callout-pick" style={{ "--i": events.length - 1 - i }} onClick={() => onPick(x)}>
+        // --i: how far from the dot, so the cards come out one after another, nearest first (the
+        // last card above the dot is the nearest; below it, the first is)
+        <button key={x.id} type="button" className="callout-pick" style={{ "--i": below ? i : events.length - 1 - i }} onClick={() => onPick(x)}>
           <EventCallout event={x} dark={dark} />
         </button>
       ))}
