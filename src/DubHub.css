@@ -1184,6 +1184,34 @@ a:hover {
   border-color: var(--ink);
 }
 
+/* The RSVP button's label, and "Cancel RSVP" in the same spot, shown while the mouse is on it */
+.join-label {
+  display: inline-grid;
+}
+
+.join-label > span {
+  display: inline-flex;
+  grid-area: 1 / 1;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.join-undo {
+  visibility: hidden;
+}
+
+@media (hover: hover) {
+  .join.joined:hover .join-now,
+  .join.joined:focus-visible .join-now {
+    visibility: hidden;
+  }
+  .join.joined:hover .join-undo,
+  .join.joined:focus-visible .join-undo {
+    visibility: visible;
+  }
+}
+
 .club-links {
   display: flex;
   flex-wrap: wrap;
@@ -4869,6 +4897,14 @@ body {
   background: var(--action-wash);
   border-color: var(--action);
   color: var(--action);
+}
+
+/* Hovering "You're going": it reads "Cancel RSVP", plain and outlined in the text color */
+.join.joined:hover,
+.join.quiet.joined:hover {
+  background: transparent;
+  border-color: var(--text);
+  color: var(--text);
 }
 
 .chip-btn {

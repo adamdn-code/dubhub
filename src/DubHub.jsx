@@ -1301,7 +1301,7 @@ function Filters({ f, mine }) {
       )}
 
       {mine?.on && mine.count === 0 && (
-        <p className="count">None of your events match. Tap I'm going on an event, or join a club, and it shows up here.</p>
+        <p className="count">None of your events match. RSVP to an event, or join a club, and it shows up here.</p>
       )}
       {/* Only when the filters hide everything: a nudge to look further ahead. */}
       {f.events.length === 0 && f.when !== "Any time" && (
@@ -1331,20 +1331,31 @@ function mapAreaFor(events) {
   return MAP_AREAS.find((a) => spots.every((p) => inside(p, a.bounds))) ?? MAP_AREAS.at(-1);
 }
 
-// "Going" for an event. `quiet`: the outlined version for long lists, so a page of events isn't a
-// column of identical filled buttons. Once you're going it turns brick, in lists too.
+// RSVP to an event: "+ RSVP", then "✓ You're going", which says "✕ Cancel RSVP" while the mouse is
+// on it (the two labels share one spot, so the button doesn't change size). `quiet`: the outlined
+// version for long lists, so a page of events isn't a column of identical filled buttons.
 function JoinButton({ event, j, quiet = false }) {
   const isJoined = j.joined.includes(String(event.id));
   return (
     <button
       className={["join", quiet ? "quiet" : "go", isJoined && "joined"].filter(Boolean).join(" ")}
       aria-pressed={isJoined}
-      aria-label={`${isJoined ? "Going to" : "Go to"} ${event.title}`}
-      title={isJoined ? "You're going. Click to take it back" : j.signedIn ? undefined : "Sign in to say you're going"}
+      aria-label={isJoined ? `You're going to ${event.title}. Cancel your RSVP` : `RSVP to ${event.title}`}
+      title={isJoined ? undefined : j.signedIn ? "Saves it to My Events and shows your friends you're going" : "Sign in to RSVP"}
       onClick={() => j.toggle(event.id)}
     >
-      {isJoined && <Icon d={CHECK_ICON} />}
-      {isJoined ? "Going" : "I'm going"}
+      <span className="join-label">
+        <span className="join-now">
+          <Icon d={isJoined ? CHECK_ICON : PLUS_ICON} />
+          {isJoined ? "You're going" : "RSVP"}
+        </span>
+        {isJoined && (
+          <span className="join-undo" aria-hidden="true">
+            <Icon d={CLOSE_ICON} />
+            Cancel RSVP
+          </span>
+        )}
+      </span>
     </button>
   );
 }
@@ -2088,8 +2099,8 @@ function GoingToggle({ event, j, color }) {
     <button
       className={isJoined ? "going-toggle on" : "going-toggle"}
       aria-pressed={isJoined}
-      aria-label={`${isJoined ? "You're going to" : "Go to"} ${event.title}`}
-      title={isJoined ? "You're going. Tap to undo" : j.signedIn ? "I'm going" : "Sign in to say you're going"}
+      aria-label={isJoined ? `You're going to ${event.title}. Cancel your RSVP` : `RSVP to ${event.title}`}
+      title={isJoined ? "You're going. Tap to cancel your RSVP" : j.signedIn ? "RSVP" : "Sign in to RSVP"}
       onClick={() => {
         if (!isJoined && j.signedIn) setBurst((n) => n + 1);
         j.toggle(event.id);
@@ -3089,7 +3100,7 @@ function YourEvents({ events, apps, j, now, onSelect, onBrowse, onFindClubs }) {
           </div>
           <h3>You have no events</h3>
           <p>
-            Tap I'm going on an event to save it here, or join a club and every event it posts, and any application it opens, shows up
+            RSVP to an event to save it here, or join a club and every event it posts, and any application it opens, shows up
             here on its own.
           </p>
           <div className="empty-actions">
@@ -4727,7 +4738,7 @@ function FriendsPage({ user, social, events, onOpenEvent }) {
             {days.length === 0 ? (
               <p className="friends-empty">
                 {data.friends.length
-                  ? "None of your friends are going to anything coming up yet. When one taps I'm going, it shows up here."
+                  ? "None of your friends are going to anything coming up yet. When one RSVPs to an event, it shows up here."
                   : "Once you add friends, the events they're going to show up here, with their faces on the map too."}
               </p>
             ) : (
@@ -6275,7 +6286,7 @@ export default function DubHub() {
       {view === "Hiring" && <HiringPage user={user} />}
       {view === "Friends" && <FriendsPage user={user} social={socialNow} events={all} onOpenEvent={openEvent} />}
       {/* The open event, over whichever page it was opened from. It steps aside for the sign-in
-          page ("I'm going" while signed out goes there) and is back once you've signed in. */}
+          page (RSVP while signed out goes there) and is back once you've signed in. */}
       {linkedEvent && view !== "Sign in" && <EventDetail event={linkedEvent} j={j} onClose={closeEvent} />}
       {view === "Sign in" && (
         <SignInPage
