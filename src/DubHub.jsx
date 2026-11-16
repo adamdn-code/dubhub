@@ -4,6 +4,7 @@ import { Component, Suspense, lazy, memo, useCallback, useDeferredValue, useEffe
 import "leaflet/dist/leaflet.css";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./DubHub.css";
+import { createPortal } from "react-dom";
 import Icon from "./Icon.jsx";
 import { armFor, logExperiment } from "./experiment.js";
 import { APPLY_YEARS, FILE_ACCEPT, FILE_LIMITS, JOBS, SAMPLE_JOBS } from "./jobs.js";
@@ -92,6 +93,7 @@ const MOON_ICON = "M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z";
 const CALENDAR_ICON = "M4 6h16v15H4zM4 10h16M8 3v4M16 3v4";
 const LINK_OUT_ICON = "M14 4h6v6M20 4l-9 9M18 13v6H5V6h6";
 const FORWARD_ICON = "M9 5l7 7-7 7";
+const EXPAND_ICON = "M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7";
 
 // Whether a place's name says no more than its plate does ("MEB 237" beside a plate reading MEB 237),
 // so the two aren't shown side by side.
@@ -1442,7 +1444,7 @@ function MapEventCard({ event, j, alsoHere = [], onPick, onEnter, onLeave, onClo
           <Icon d={CLOSE_ICON} />
         </button>
       </header>
-      {e.image && <MapCardFlyer key={e.image} src={e.image} />}
+      {e.image && <MapCardFlyer key={e.image} src={e.image} title={e.title} />}
       <div className="map-card-body">
         <p className="map-card-when">
           <StartsTag event={e} />
@@ -1483,14 +1485,135 @@ function MapEventCard({ event, j, alsoHere = [], onPick, onEnter, onLeave, onClo
 }
 
 // The event's flyer at the top of the map card, shown whole (on its edge color, or a blurred copy of
-// itself). Gone if it doesn't load.
-function MapCardFlyer({ src }) {
+// itself). Gone if it doesn't load. Click it to see it big (FlyerZoom).
+function MapCardFlyer({ src, title }) {
   const [failed, setFailed] = useState(false);
+  const [zoom, setZoom] = useState(null);
+  const button = useRef(null);
   if (failed) return null;
+  const open = () => {
+    const img = button.current?.querySelector("img");
+    if (img?.naturalWidth) setZoom({ ratio: img.naturalWidth / img.naturalHeight });
+  };
   return (
-    <div className="map-card-flyer">
-      <FitImg src={src} whole decoding="async" onError={() => setFailed(true)} />
-    </div>
+    <>
+      <button
+        ref={button}
+        type="button"
+        className={zoom ? "map-card-flyer zoomed" : "map-card-flyer"}
+        onClick={open}
+        aria-label={`See the flyer for ${title} bigger`}
+      >
+        <FitImg src={src} whole decoding="async" onError={() => setFailed(true)} />
+        <span className="flyer-expand" aria-hidden="true">
+          <Icon d={EXPAND_ICON} />
+        </span>
+      </button>
+      {zoom && <FlyerZoom src={src} title={title} ratio={zoom.ratio} source={button} onClose={() => setZoom(null)} />}
+    </>
+  );
+}
+
+// Where a picture shown whole (object-fit: contain) actually is on screen: its element's box, less
+// the bands on either side.
+function pictureRect(img) {
+  const box = img.getBoundingClientRect();
+  const scale = Math.min(box.width / img.naturalWidth, box.height / img.naturalHeight);
+  const w = img.naturalWidth * scale;
+  const h = img.naturalHeight * scale;
+  return { left: box.left + (box.width - w) / 2, top: box.top + (box.height - h) / 2, width: w, height: h };
+}
+
+// A flyer, big, over everything: it grows out of its place on the map card into the middle of the
+// screen, and shrinks back into it when closed (a click anywhere, Escape, or the close button).
+const ZOOM_IN_MS = 420;
+const ZOOM_OUT_MS = 300;
+function FlyerZoom({ src, title, ratio, source, onClose }) {
+  const pic = useRef(null);
+  const scrim = useRef(null);
+  const closeButton = useRef(null);
+  const closing = useRef(false);
+  const fit = () => {
+    const w = Math.min(window.innerWidth - 32, 1000, (window.innerHeight - 112) * ratio);
+    return { w, h: w / ratio };
+  };
+  const [size, setSize] = useState(fit);
+
+  // The transform that puts the big picture exactly over the small one on the card.
+  const fromCard = () => {
+    const img = source.current?.querySelector("img");
+    // (its place before any transform: the box it's laid out in, which fills the screen from 0, 0)
+    const p = pic.current;
+    const big = p && { left: p.offsetLeft, top: p.offsetTop, width: p.offsetWidth, height: p.offsetHeight };
+    if (!img?.naturalWidth || !big?.width) return null;
+    const small = pictureRect(img);
+    const dx = small.left + small.width / 2 - (big.left + big.width / 2);
+    const dy = small.top + small.height / 2 - (big.top + big.height / 2);
+    return `translate(${dx}px, ${dy}px) scale(${small.width / big.width})`;
+  };
+  const still = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const close = () => {
+    if (closing.current) return;
+    closing.current = true;
+    const to = still() ? null : fromCard();
+    pic.current?.getAnimations().forEach((a) => a.cancel());
+    const done = () => {
+      onClose();
+      source.current?.focus({ preventScroll: true });
+    };
+    const shrink = pic.current?.animate(
+      to ? [{ transform: "none" }, { transform: to, borderRadius: "2px" }] : [{ opacity: 1 }, { opacity: 0 }],
+      { duration: to ? ZOOM_OUT_MS : 160, easing: "cubic-bezier(0.4, 0, 0.2, 1)", fill: "forwards" }
+    );
+    scrim.current?.animate([{ opacity: 1 }, { opacity: 0 }], { duration: ZOOM_OUT_MS, easing: "ease-in", fill: "forwards" });
+    if (shrink) shrink.onfinish = done;
+    else done();
+  };
+  // The keyboard and resize listeners are set up once, and call the latest of these.
+  const latest = useRef({});
+  useEffect(() => {
+    latest.current = { close, fit };
+  });
+
+  // Opening: grow out of the card.
+  useLayoutEffect(() => {
+    const from = still() ? null : fromCard();
+    pic.current?.getAnimations().forEach((a) => a.cancel());
+    pic.current?.animate(
+      from ? [{ transform: from, borderRadius: "2px" }, { transform: "none" }] : [{ opacity: 0 }, { opacity: 1 }],
+      { duration: from ? ZOOM_IN_MS : 200, easing: "cubic-bezier(0.2, 0.9, 0.25, 1)" }
+    );
+    scrim.current?.animate([{ opacity: 0 }, { opacity: 1 }], { duration: ZOOM_IN_MS * 0.8, easing: "ease-out" });
+    closeButton.current?.focus({ preventScroll: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    // (ahead of the map card's own Escape, which would close the card too)
+    const onKey = (e) => {
+      if (e.key !== "Escape") return;
+      e.stopImmediatePropagation();
+      latest.current.close?.();
+    };
+    const onResize = () => setSize(latest.current.fit());
+    window.addEventListener("keydown", onKey, true);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("keydown", onKey, true);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  return createPortal(
+    <div className="flyer-zoom" role="dialog" aria-modal="true" aria-label={`Flyer for ${title}`} onClick={close}>
+      <div ref={scrim} className="flyer-zoom-scrim" aria-hidden="true" />
+      <img ref={pic} className="flyer-zoom-pic" src={src} alt={`Flyer for ${title}`} style={{ width: size.w, height: size.h }} />
+      <button ref={closeButton} type="button" className="flyer-zoom-close" aria-label="Close the flyer" onClick={close}>
+        <Icon d={CLOSE_ICON} />
+      </button>
+    </div>,
+    document.body
   );
 }
 

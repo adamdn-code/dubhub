@@ -986,9 +986,111 @@ a:hover {
 .map-card-flyer {
   position: relative;
   isolation: isolate;
+  display: block;
+  width: 100%;
   overflow: hidden;
   height: 240px;
+  padding: 0;
+  border: 0;
   background: var(--tint);
+  cursor: zoom-in;
+}
+
+.map-card-flyer:focus-visible {
+  outline: 3px solid var(--gold-brand);
+  outline-offset: -3px;
+}
+
+/* While it's open big, the small one is where the big one shrinks back to */
+.map-card-flyer.zoomed img {
+  visibility: hidden;
+}
+
+/* A small "see it bigger" mark in the corner, stronger on hover */
+.flyer-expand {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(16, 6, 36, 0.62);
+  color: #fff;
+  opacity: 0.75;
+  transition: opacity 160ms ease-out, transform 160ms ease-out;
+}
+
+.flyer-expand .icon {
+  width: 15px;
+  height: 15px;
+}
+
+.map-card-flyer:hover .flyer-expand,
+.map-card-flyer:focus-visible .flyer-expand {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* The flyer, big, over everything (FlyerZoom) */
+.flyer-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  padding: 56px 16px;
+  cursor: zoom-out;
+}
+
+.flyer-zoom-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 6, 26, 0.84);
+  backdrop-filter: blur(6px);
+}
+
+.flyer-zoom-pic {
+  position: relative;
+  display: block;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+  object-fit: contain;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.flyer-zoom-close {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top, 0px));
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  cursor: pointer;
+}
+
+.flyer-zoom-close:hover,
+.flyer-zoom-close:focus-visible {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.flyer-zoom-close:focus-visible {
+  outline: 3px solid var(--gold-brand);
+  outline-offset: 2px;
+}
+
+.flyer-zoom-close .icon {
+  width: 20px;
+  height: 20px;
 }
 
 .map-card-flyer img {
