@@ -2835,8 +2835,12 @@ function Recommendations({ all, profile, j, clubs, myClubs, exclude, onSelect, u
   );
   // Experiment logging: one view per visit to this row, each event opened from it, and each Join
   // of an event the row showed.
+  // (The events it showed are noted after each render, not during it, and before the Join check
+  // below runs, so a Join is matched against what was actually on screen.)
   const shown = useRef(new Set());
-  for (const p of picks.slice(0, RECS_MAX)) shown.current.add(String(p.event.id));
+  useEffect(() => {
+    for (const p of picks.slice(0, RECS_MAX)) shown.current.add(String(p.event.id));
+  }, [picks]);
   const viewed = useRef(false);
   const hasPicks = picks.length > 0;
   useEffect(() => {
