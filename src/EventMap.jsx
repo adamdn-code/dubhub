@@ -418,6 +418,19 @@ function MapReveal({ ready, again }) {
   return null;
 }
 
+// The panels over the map (filters, Next up, the legend) take the theme the map is drawn in: the
+// stage gets its own data-theme, which the theme colors at the top of DubHub.css also apply to. So
+// when the theme changes they keep their old colors while the circle closes, and come back in the
+// new ones with the map.
+function StageTheme({ dark }) {
+  const map = useMap();
+  useEffect(() => {
+    const el = map.getContainer().closest(".map-stage");
+    if (el) el.dataset.theme = dark ? "dark" : "light";
+  }, [map, dark]);
+  return null;
+}
+
 // How long the circle takes to close when the theme changes (map-close in DubHub.css).
 const CLOSE_MS = 650;
 
@@ -565,6 +578,7 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
       className="map"
     >
       <MapReveal ready={ready} again={reopened} />
+      <StageTheme dark={Boolean(palette?.dark)} />
       <ZoomControl position="bottomright" />
       <ShowOnMap flyTo={flyTo} shown={shown} />
       <MapArea area={area} />

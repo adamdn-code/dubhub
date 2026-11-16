@@ -3,7 +3,9 @@
    day strip's frame); a faint lavender-grey ground. Signal red stays reserved for what's live
    right now. One family, Familjen Grotesk, with tabular figures for times. Corners have a
    hierarchy: sheets 14px, pictures 8px, controls fully round. */
-:root {
+/* (also on the map's stage when it's drawn in the light theme: see StageTheme in EventMap.jsx) */
+:root,
+.map-stage[data-theme="light"] {
   --font: "Familjen Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: var(--font);
   --display-stretch: 100%;
@@ -97,7 +99,8 @@
   }
 }
 
-:root[data-theme="dark"] {
+:root[data-theme="dark"],
+.map-stage[data-theme="dark"] {
   --bg: #120e1c; /* night on the Quad */
   --surface: #1b1528;
   --tint: #251d36;

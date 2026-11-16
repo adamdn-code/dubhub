@@ -375,8 +375,6 @@ const TEAM = [
 ];
 
 const THEME_KEY = "dubhub-theme";
-// How long the map's circle takes to close when the theme changes (CLOSE_MS in EventMap.jsx).
-const MAP_CLOSE_MS = 650;
 
 // Light or dark. Once someone flips the switch in the top bar, that choice sticks (it's remembered
 // in this browser). Until then: dark if the device is set to dark, and otherwise it follows the
@@ -461,21 +459,9 @@ function useTheme() {
   }, [sun]);
 
   const theme = choice ?? (deviceDark ? "dark" : sun);
-  // Before the first paint, so the page never flashes the other theme. On the map, though, the
-  // page waits until the map's circle has closed (MAP_CLOSE_MS) before it changes colors, so the
-  // panels over the map don't change ahead of the map they sit on.
-  const firstTheme = useRef(true);
+  // Before the first paint, so the page never flashes the other theme
   useLayoutEffect(() => {
-    const apply = () => {
-      document.documentElement.dataset.theme = theme;
-    };
-    if (firstTheme.current || !document.querySelector(".map-stage")) {
-      firstTheme.current = false;
-      apply();
-      return;
-    }
-    const t = setTimeout(apply, MAP_CLOSE_MS);
-    return () => clearTimeout(t);
+    document.documentElement.dataset.theme = theme;
   }, [theme]);
 
   const pick = (id) => {
