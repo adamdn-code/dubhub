@@ -10115,3 +10115,77 @@ img.fitted {
     transform: translateY(-8px) scale(0.94);
   }
 }
+
+/* Branches of hover cards beside a dot (more than eight events there): the cards stacked up and down,
+   a short level stem from the middle of the branch to the dot, and the hit strip across to it */
+.leaflet-tooltip-left.event-callout,
+.leaflet-tooltip-right.event-callout {
+  margin-left: 0; /* Leaflet leaves room for its own arrow; the stem should touch the dot */
+}
+
+.callout-stack.side .callout-pick .callout::after {
+  display: none;
+}
+
+.callout-stack.side::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: var(--reach, 10px);
+  height: 2px;
+  background: var(--slate);
+  transform: translateY(-50%);
+}
+
+.callout-stack.side-left::before {
+  left: 100%;
+}
+
+.callout-stack.side-right::before {
+  right: 100%;
+}
+
+.callout-stack.side::after {
+  top: 0;
+  bottom: 0;
+  width: var(--reach, 12px);
+  height: auto;
+}
+
+.callout-stack.side-left::after {
+  left: 100%;
+  right: auto;
+}
+
+.callout-stack.side-right::after {
+  right: 100%;
+  left: auto;
+}
+
+.callout-stack.side-left .callout-pick {
+  transform-origin: 100% 50%;
+  animation-name: callout-in-left;
+}
+
+.callout-stack.side-right .callout-pick {
+  transform-origin: 0 50%;
+  animation-name: callout-in-right;
+}
+
+.callout-stack.side.closing {
+  transform: none;
+}
+
+@keyframes callout-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(8px) scale(0.94);
+  }
+}
+
+@keyframes callout-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(-8px) scale(0.94);
+  }
+}

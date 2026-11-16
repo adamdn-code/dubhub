@@ -734,17 +734,22 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
       {hovered?.length > 0 &&
         (() => {
           const lift = Math.max(...atSpot.get(hoverSpot).map(dotRadius)) + STEM;
-          const split = hovered.length > SPLIT_AFTER ? Math.ceil(hovered.length / 2) : hovered.length;
-          const branches = [
-            ["top", hovered.slice(0, split)],
-            ["bottom", hovered.slice(split)],
-          ].filter(([, list]) => list.length);
+          const parts = hovered.length > SPLIT_AFTER * 2 ? 4 : hovered.length > SPLIT_AFTER ? 2 : 1;
+          // As even as can be (13 cards: 4, 3, 3, 3), the first branches taking the extra ones.
+          const sizes = BRANCHES.slice(0, parts).map((_, k) => Math.floor(hovered.length / parts) + (k < hovered.length % parts ? 1 : 0));
+          const branches = BRANCHES.slice(0, parts)
+            .map((dir, k) => {
+              const from = sizes.slice(0, k).reduce((a, b) => a + b, 0);
+              return [dir, hovered.slice(from, from + sizes[k])];
+            })
+            .filter(([, list]) => list.length);
+          const offsets = { top: [0, -lift], bottom: [0, lift], left: [-(lift + SIDE_REACH), 0], right: [lift + SIDE_REACH, 0] };
           return branches.map(([dir, list]) => (
             <CircleMarker key={`hover|${hoverSpot}|${dir}`} center={list[0].pos} radius={0} stroke={false} fill={false} interactive={false}>
-              <Tooltip permanent interactive direction={dir} offset={[0, dir === "top" ? -lift : lift]} opacity={1} className="event-callout">
+              <Tooltip permanent interactive direction={dir} offset={offsets[dir]} opacity={1} className="event-callout">
                 <HoverStack
                   events={list}
-                  below={dir === "bottom"}
+                  dir={dir}
                   closing={hoverClosing}
                   dark={palette?.dark}
                   onEnter={keepHover}
@@ -770,11 +775,18 @@ export default function EventMap({ events, area, shown, flyTo, onPin, onMapClick
 // Each hangs off an invisible point, since a dot's own tooltip is its hover card.
 
 // The hover cards for one spot. Each is a button that opens that event's panel.
-// More events than this at one dot and the cards split in two: half rise above the dot, half hang
-// below it, so a busy building doesn't throw up a tower of cards.
+// The most cards one branch takes before the cards at a dot split up: up to 4 rise above the dot;
+// up to 8 split above and below it; more than that go out four ways, above, below, left and right,
+// so a busy building doesn't throw up a tower of cards.
 const SPLIT_AFTER = 4;
+const BRANCHES = ["top", "bottom", "left", "right"];
+// The side branches sit out past the cards above and below the dot (a card is at most
+// CALLOUT_MAX wide, centered on the dot), on a level stem this long reaching back to it.
+const SIDE_REACH = Math.round(CALLOUT_MAX / 2) + 14;
 
-function HoverStack({ events, closing, dark, below = false, onEnter, onLeave, onPick }) {
+function HoverStack({ events, closing, dark, dir = "top", onEnter, onLeave, onPick }) {
+  const below = dir === "bottom";
+  const side = dir === "left" || dir === "right";
   const ref = useRef();
   useEffect(() => {
     if (!ref.current) return;
@@ -782,11 +794,12 @@ function HoverStack({ events, closing, dark, below = false, onEnter, onLeave, on
     L.DomEvent.disableScrollPropagation(ref.current);
   }, []);
   return (
-    <div ref={ref} className={["callout-stack", below && "below", closing && "closing"].filter(Boolean).join(" ")} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+    <div ref={ref} className={["callout-stack", below && "below", side && `side side-${dir}`, closing && "closing"].filter(Boolean).join(" ")}
+      style={side ? { "--reach": `${SIDE_REACH + STEM}px` } : undefined} onMouseEnter={onEnter} onMouseLeave={onLeave}>
       {events.map((x, i) => (
         // --i: how far from the dot, so the cards come out one after another, nearest first (the
         // last card above the dot is the nearest; below it, the first is)
-        <button key={x.id} type="button" className="callout-pick" style={{ "--i": below ? i : events.length - 1 - i }} onClick={() => onPick(x)}>
+        <button key={x.id} type="button" className="callout-pick" style={{ "--i": below || side ? i : events.length - 1 - i }} onClick={() => onPick(x)}>
           <EventCallout event={x} dark={dark} />
         </button>
       ))}
