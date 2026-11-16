@@ -1,4 +1,10 @@
 {
+ "AIC @ UW": {
+  "status": "new",
+  "by": [
+   "an event on Luma, on the UW campus"
+  ]
+ },
  "ASUW": {
   "status": "none",
   "by": [
@@ -15,10 +21,42 @@
   "handle": null,
   "checked": "2026-11-15"
  },
- "CBDC": {
+ "Canva": {
   "status": "new",
   "by": [
+   "the list of companies' campus programs"
+  ]
+ },
+ "CBDC": {
+  "status": "none",
+  "by": [
    "UW Case Club (C²) (@uw_csquared)"
+  ],
+  "handle": null,
+  "checked": "2026-11-15"
+ },
+ "Cursor": {
+  "status": "new",
+  "by": [
+   "the list of companies' campus programs"
+  ]
+ },
+ "Esec Team": {
+  "status": "new",
+  "by": [
+   "an event on Luma, on the UW campus"
+  ]
+ },
+ "Figma": {
+  "status": "new",
+  "by": [
+   "the list of companies' campus programs"
+  ]
+ },
+ "Framer": {
+  "status": "new",
+  "by": [
+   "the list of companies' campus programs"
   ]
  },
  "Gamma Eta chapter of Kappa Alpha Psi fraternity inc.": {
@@ -28,6 +66,54 @@
   ],
   "handle": null,
   "checked": "2026-11-15"
+ },
+ "GitHub": {
+  "status": "new",
+  "by": [
+   "the list of companies' campus programs"
+  ]
+ },
+ "Google Developer Groups": {
+  "status": "new",
+  "by": [
+   "the list of companies' campus programs"
+  ]
+ },
+ "iStartup Lab": {
+  "status": "new",
+  "by": [
+   "an event on Luma, on the UW campus"
+  ]
+ },
+ "Microsoft Learn Student Ambassadors": {
+  "status": "new",
+  "by": [
+   "the list of companies' campus programs"
+  ]
+ },
+ "MSAUW": {
+  "status": "new",
+  "by": [
+   "an event on Luma, on the UW campus"
+  ]
+ },
+ "Notion": {
+  "status": "new",
+  "by": [
+   "the list of companies' campus programs"
+  ]
+ },
+ "Perplexity": {
+  "status": "new",
+  "by": [
+   "the list of companies' campus programs"
+  ]
+ },
+ "Replit": {
+  "status": "new",
+  "by": [
+   "the list of companies' campus programs"
+  ]
  },
  "SARVA": {
   "status": "none",
@@ -82,6 +168,12 @@
   ],
   "handle": null,
   "checked": "2026-11-14"
+ },
+ "Women in User Experience": {
+  "status": "new",
+  "by": [
+   "an event on Luma, on the UW campus"
+  ]
  },
  "Zeta Phi Beta Sorority, Incorporated": {
   "status": "new",
