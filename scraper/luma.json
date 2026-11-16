@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T06:01",
+ "updated": "2026-11-15T18:42",
  "events": [
   {
    "id": "lm-evt-1YquHa5Puj5Llmb",
@@ -37,7 +37,7 @@
    "source": "luma",
    "description": "🚀 cseed buildspace demo day is here!!! 🚀\nFor the past 5 weeks, cseed buildspace cohort 6 members have been working hard on their passion projects for up to 2 hours per week! Now is the time to show off what they've built!\nJoin us with celebrating the incredible work and dedication of projects with a mix of hardware, design, creator, and software project!\nCome out to support our builders, get inspired, and learn about cseed. See you there!\nP.S. Dinner, snacks, and drinks will be provided!\n\n[If you need an accommodation or have any questions or concerns, email us at questions@cseed.co]",
    "image": "https://images.lumacdn.com/uploads/u8/2f1fa951-6568-4646-86e9-33eb7c0e6a6c.png",
-   "rsvps": 125
+   "rsvps": 128
   },
   {
    "id": "lm-evt-WraCRZIUFuHqu6K",
@@ -56,7 +56,7 @@
    "source": "luma",
    "description": "cseed buildHER is hosting our last event of fall quarter - buildHER fall EXPO!!!\nCome join us to explore Arduino, 3D modeling, Figma and more surrounded by a community of builders in a welcoming and inquisitive environment.\nThe expo will feature hands-on booths where you can dive into exploring these technologies, and leave having learned something new.\nWe hope to see you there!",
    "image": "https://images.lumacdn.com/uploads/b7/f727062b-2629-4878-969c-c503463fe7e9.jpg",
-   "rsvps": 43
+   "rsvps": 45
   }
  ]
 }

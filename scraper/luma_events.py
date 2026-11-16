@@ -28,6 +28,9 @@ whenever another scraper writes them (events_common.merge_luma_events). An Insta
 same event folds into the Luma copy, which has the exact time and place; an event that's also on
 HuskyLink keeps its HuskyLink copy.
 
+Setup (one time):
+    pip install requests tzdata         # tzdata: Windows has no time-zone list of its own, and
+                                        # without it this stops at "No time zone found"
 Every run (from this folder):
     python luma_events.py
     python luma_events.py --dry-run     # show what it finds, save nothing
