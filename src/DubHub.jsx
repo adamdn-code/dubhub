@@ -1463,6 +1463,7 @@ function MapEventCard({ event, j, alsoHere = [], onPick, onEnter, onLeave, onClo
           <Icon d={CLOSE_ICON} />
         </button>
       </header>
+      {e.image && <MapCardFlyer key={e.image} src={e.image} />}
       <div className="map-card-body">
         <p className="map-card-when">
           <StartsTag event={e} />
@@ -1499,6 +1500,18 @@ function MapEventCard({ event, j, alsoHere = [], onPick, onEnter, onLeave, onClo
         )}
       </div>
     </aside>
+  );
+}
+
+// The event's flyer at the top of the map card, shown whole (on its edge color, or a blurred copy of
+// itself). Gone if it doesn't load.
+function MapCardFlyer({ src }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) return null;
+  return (
+    <div className="map-card-flyer">
+      <FitImg src={src} whole decoding="async" onError={() => setFailed(true)} />
+    </div>
   );
 }
 
