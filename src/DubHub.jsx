@@ -1129,13 +1129,15 @@ function useEvents() {
   return { events, everything: data.events, updated: data.updated };
 }
 
-// "When" choices: how many days after today each one reaches (rolling, so "This week" is always 7 days).
-const WHEN_DAYS = { Today: 0, "This week": 6, "This month": 30, "Any time": null };
+// "When" choices: the first and last day each one covers, in days after today (rolling, so "This
+// week" is always 7 days).
+const WHEN_DAYS = { Today: [0, 0], Tomorrow: [1, 1], "This week": [0, 6], "This month": [0, 30], "Any time": null };
 const DEFAULT_WHEN = "This week";
 
 function inWhen(event, when) {
   if (WHEN_DAYS[when] == null || !event.date) return true; // sample events have no date
-  return event.date >= localDate(0) && event.date <= localDate(WHEN_DAYS[when]);
+  const [from, to] = WHEN_DAYS[when];
+  return event.date >= localDate(from) && event.date <= localDate(to);
 }
 
 function WhenSelect({ value, onChange, ...props }) {
@@ -1307,8 +1309,8 @@ function Filters({ f, mine }) {
       {f.events.length === 0 && f.when !== "Any time" && (
         <p className="count">
           Nothing {f.when.toLowerCase()} yet.{" "}
-          <button className="link-button" onClick={() => f.setWhen(f.when === "Today" ? "This week" : "Any time")}>
-            Show {f.when === "Today" ? "this week" : "any time"}
+          <button className="link-button" onClick={() => f.setWhen(f.when === "Today" || f.when === "Tomorrow" ? "This week" : "Any time")}>
+            Show {f.when === "Today" || f.when === "Tomorrow" ? "this week" : "any time"}
           </button>
         </p>
       )}
