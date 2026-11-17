@@ -1124,10 +1124,8 @@
 "from": "Catholic Newman Center at the UW|Catholic community fostering faith, fellowship, and service at UW."
 },
 "centerforinternationalrelationsandculturalleadershipexchange": {
-"fields": [
-"Social Sciences"
-],
-"from": "Center for International Relations and Cultural Leadership Exchange|CIRCLE encourages cultural engagement and global connections for UW students."
+"fields": [],
+"from": "Center for International Relations and Cultural Leadership Exchange|Fosters cultural engagement and community through events and resources."
 },
 "centralasianstudentassociation": {
 "fields": [],
@@ -1430,7 +1428,7 @@
 "fields": [
 "Business"
 ],
-"from": "Corporate Law and Business Association|The Corporate Law & Business Association is a UW RSO aimed at educating undergraduates on the intersection of business…"
+"from": "Corporate Law and Business Association|Explores the overlap of business and law for undergraduates."
 },
 "costumeclub": {
 "fields": [
@@ -2275,8 +2273,10 @@
 "from": "Greeks Take Action|Greeks Take Action is a collaborative effort between the UW Interfraternity Council, Panhellenic Council,…"
 },
 "greengreekrepresentativeprogram": {
-"fields": [],
-"from": "Green Greek Representative Program|Promotes sustainability on campus through meetings, events, and clean‑ups."
+"fields": [
+"Sciences"
+],
+"from": "Green Greek Representative Program|Environmental RSO promoting sustainability initiatives at UW."
 },
 "greenpasturescollegefellowship": {
 "fields": [],
@@ -3134,7 +3134,7 @@
 },
 "khmerstudentassociation": {
 "fields": [],
-"from": "Khmer Student Association|Celebrates Khmer heritage with potlucks, game nights, and creative workshops."
+"from": "Khmer Student Association|Student group celebrating Khmer culture and community."
 },
 "kinspire": {
 "fields": [],
@@ -3203,7 +3203,7 @@
 },
 "latinestudentunion": {
 "fields": [],
-"from": "Latine Student Union at the University of Washington|LSU aims to build a welcoming, empowering space for Latine students of all cultural and racial backgrounds."
+"from": "Latine Student Union at the University of Washington|Latinx student union hosting cultural events, meetings, and community projects."
 },
 "latinesunitedforcommunityhealthadvancement": {
 "fields": [
@@ -3508,7 +3508,7 @@
 },
 "menssoccerclub": {
 "fields": [],
-"from": "Men’s Soccer Club at the University of Washington|Competitive men's soccer club representing UW nationally."
+"from": "Men’s Soccer Club at the University of Washington|Student soccer club competing in men's club league."
 },
 "mensvolleyballclub": {
 "fields": [],
@@ -3884,7 +3884,7 @@
 },
 "omegadeltaphifraternityinclambda": {
 "fields": [],
-"from": "Omega Delta Phi Fraternity, Inc. Lambda Chapter|Social fraternity focused on brotherhood, leadership, and community service."
+"from": "Omega Delta Phi Fraternity, Inc. Lambda Chapter|Brotherhood fraternity focusing on service, alumni events, and veteran recognition."
 },
 "omegapsiphifraternityinccampus": {
 "fields": [],
@@ -3894,7 +3894,7 @@
 "fields": [
 "Health"
 ],
-"from": "Operation Smile UW Chapter|As a chapter affiliate, our purpose is to assist Operation Smile in its mission to raise funds and education on…"
+"from": "Operation Smile UW Chapter|Student chapter supporting cleft‑condition care and awareness."
 },
 "operationsandsupplychainmanagementclub": {
 "fields": [
@@ -3929,10 +3929,8 @@
 "from": "Oriental Orthodox Christian Student Assocation|The Oriental Orthodox Christian Student Association (OCSA) serves Oriental Orthodox students from Ethiopian, Syrian,…"
 },
 "origamiclub": {
-"fields": [
-"Arts & Humanities"
-],
-"from": "Origami Club|A student group that teaches and practices origami folding for all skill levels."
+"fields": [],
+"from": "Origami Club|Teaches origami folding to all UW students, no experience needed."
 },
 "originslifeinuniverse": {
 "fields": [
@@ -4564,10 +4562,8 @@
 "from": "Ruth Jackson Orthopaedic Society, UW Chapter|RJOS UW Chapter is a medical studentrun organization that is focused on promoting professional development of…"
 },
 "salsaclub": {
-"fields": [
-"Arts & Humanities"
-],
-"from": "Salsa Club at UW|UW Salsa Club offers weekly salsa and bachata lessons for all skill levels."
+"fields": [],
+"from": "Salsa Club at UW|Salsa club teaching salsa and bachata with weekly lessons for all skill levels."
 },
 "sandsharkmusic": {
 "fields": [
@@ -4851,13 +4847,15 @@
 "Computing & Math",
 "Sciences"
 ],
-"from": "Society of Asian Scientists and Engineers|Society of Asian Scientists & Engineers provides networking, workshops, and fun fundraisers."
+"from": "Society of Asian Scientists and Engineers|Professional society for Asian students in science, tech, and engineering."
 },
 "societyofhispanicprofessionalengineers": {
 "fields": [
-"Engineering"
+"Engineering",
+"Computing & Math",
+"Sciences"
 ],
-"from": "Society of Hispanic Professional Engineers|Supports Latinx students in STEM with networking, events, and service opportunities."
+"from": "Society of Hispanic Professional Engineers|Supports Latinx students in STEM through community, education, and service."
 },
 "societyofmusiceducators": {
 "fields": [
@@ -4914,7 +4912,7 @@
 },
 "somalistudentassociation": {
 "fields": [],
-"from": "Somali Student Association|Somali student community offering academic help and creative events."
+"from": "Somali Student Association|Celebrates Somali culture and supports Somali students at UW."
 },
 "sonmentorship": {
 "fields": [
@@ -5889,7 +5887,7 @@
 "fields": [
 "Health"
 ],
-"from": "VisionEyes PreOptometry Club|VisionEyes PreOptometry seeks to provide community for preoptometry students and works toward equipping UW's future…"
+"from": "VisionEyes PreOptometry Club|Pre‑optometry club offering resources, networking, and insights for future optometrists."
 },
 "visualartssociety": {
 "fields": [
@@ -6097,7 +6095,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Women in Computing|Supports women and non‑binary computing students at UW."
+"from": "Women in Computing|Supports women and non‑binary students in computer science with community and events."
 },
 "womeninconsultingatwashington": {
 "fields": [
@@ -6373,5 +6371,17 @@
 "Health"
 ],
 "from": "UW Counseling Center|UW Counseling Center offers mental health services and community support."
+},
+"msavolunteercorps": {
+"fields": [],
+"from": "MSA Volunteer Corps|Volunteer group organizing charitable projects for the Muslim Student Association."
+},
+"super": {
+"fields": [],
+"from": "SUPER UW|Student organization advocating for Palestinian rights and equality."
+},
+"sds": {
+"fields": [],
+"from": "University of Washington SDS|Student group promoting progressive politics and activism on campus."
 }
 }

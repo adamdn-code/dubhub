@@ -1360,9 +1360,9 @@
   "checked": "2026-10-24"
  },
  "Corporate Law and Business Association": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_clba",
+  "from": "mentioned",
+  "checked": "2026-11-16"
  },
  "Costume Club": {
   "handle": "uwcostumeclub",
@@ -3695,9 +3695,9 @@
   "checked": "2026-10-24"
  },
  "Operation Smile UW Chapter": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "opsmileuw",
+  "from": "mentioned",
+  "checked": "2026-11-16"
  },
  "Operations and Supply Chain Management Club": {
   "handle": null,
@@ -4740,9 +4740,9 @@
   "checked": "2026-11-07"
  },
  "STEM Pals": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "stem_pals_uw",
+  "from": "mentioned",
+  "checked": "2026-11-16"
  },
  "StepUp Dance Crew": {
   "handle": "uw_step_up",

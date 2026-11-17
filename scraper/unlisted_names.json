@@ -47,6 +47,12 @@
   "handle": null,
   "checked": "2026-11-15"
  },
+ "Central Ace": {
+  "status": "new",
+  "by": [
+   "Association for Computing Education (@ace_uw)"
+  ]
+ },
  "Chi Omegas": {
   "status": "none",
   "by": [
@@ -56,10 +62,12 @@
   "checked": "2026-11-16"
  },
  "Civic Health Initiative": {
-  "status": "new",
+  "status": "none",
   "by": [
    "HCDE @ UW (@hcdeuw)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-16"
  },
  "Cursor": {
   "status": "none",
@@ -123,10 +131,22 @@
    "the list of companies' campus programs"
   ]
  },
+ "Informatics Undergradudate Associatiomn": {
+  "status": "new",
+  "by": [
+   "an event on Luma, on the UW campus"
+  ]
+ },
  "iStartup Lab": {
   "status": "new",
   "by": [
    "an event on Luma, on the UW campus"
+  ]
+ },
+ "KHB": {
+  "status": "new",
+  "by": [
+   "University of Washington Army ROTC (@uwarmyrotc)"
   ]
  },
  "LWB": {
@@ -259,6 +279,12 @@
   "status": "new",
   "by": [
    "Gaming Assoc. at UW (@wgauw)"
+  ]
+ },
+ "Women in Cybersecurity": {
+  "status": "new",
+  "by": [
+   "Batman’s Kitchen @ UW (@bkatuw)"
   ]
  },
  "Women in User Experience": {

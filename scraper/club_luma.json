@@ -5,7 +5,8 @@
    "slug": "uwcseed",
    "found": [
     "events near UW",
-    "linked by cseed"
+    "linked by cseed",
+    "linked by cseed (@cseeduw)"
    ],
    "status": "club",
    "club": "cseed (@cseeduw)",
@@ -88,6 +89,17 @@
    "club": null,
    "why": "Buerk Center is a university office/center, staff‑run",
    "checked": "2026-11-14"
+  },
+  "cal-0wT1JUCxfG0cE1W": {
+   "name": "Women in User Experience",
+   "slug": "womeninux",
+   "found": [
+    "linked by WiUX: Women in User Experience (@womeninux_uw)"
+   ],
+   "status": "club",
+   "club": "WiUX: Women in User Experience (@womeninux_uw)",
+   "why": "matches a club DubHub knows",
+   "checked": "2026-11-16"
   }
  },
  "links": {
@@ -188,7 +200,48 @@
    "personal": false,
    "start": "2026-11-19",
    "by": [
-    "cseed"
+    "cseed",
+    "cseed (@cseeduw)"
+   ]
+  },
+  "uwcseed": {
+   "kind": "calendar",
+   "event": null,
+   "calendar": "cal-wo0hC1fb640GqRN",
+   "personal": false,
+   "start": "",
+   "by": [
+    "cseed (@cseeduw)"
+   ]
+  },
+  "womeninux": {
+   "kind": "calendar",
+   "event": null,
+   "calendar": "cal-0wT1JUCxfG0cE1W",
+   "personal": false,
+   "start": "",
+   "by": [
+    "WiUX: Women in User Experience (@womeninux_uw)"
+   ]
+  },
+  "ocgg8euy": {
+   "kind": "event",
+   "event": "evt-XIyWlZpjAZEavfV",
+   "calendar": "cal-G4tgcy5wk6gX2Zw",
+   "personal": true,
+   "start": "2026-11-21",
+   "by": [
+    "WiUX: Women in User Experience (@womeninux_uw)"
+   ]
+  },
+  "mil0fvml": {
+   "kind": "event",
+   "event": "evt-q8Yj3fHnjkFBaR6",
+   "calendar": "cal-G4tgcy5wk6gX2Zw",
+   "personal": true,
+   "start": "2026-11-14",
+   "by": [
+    "WiUX: Women in User Experience (@womeninux_uw)"
    ]
   }
  }

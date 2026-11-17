@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T16:20",
+ "updated": "2026-11-16T18:33",
  "events": [
   {
    "id": "Dfn39PnBXgH-0",
@@ -300,6 +300,33 @@
    "posts": 1
   },
   {
+   "id": "DfybRm_hb-Z-0",
+   "title": "Elevator Pitch 101",
+   "type": "Club",
+   "host": "Corporate Law & Business Association (@uw_clba)",
+   "where": "PACCAR 293",
+   "pos": [
+    47.65909,
+    -122.30867
+   ],
+   "date": "2026-11-16",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/DfybRm_hb-Z/",
+   "source": "instagram",
+   "description": "What even is an elevator pitch? 🫪\n\nThat’s a great question, and we’re glad you asked! To find out, you should stop by PACCAR 293 from 5:30-6:30 tomorrow (Nov. 16th) and join us for our elevator pitch 101 with a fun associated workshop!\n\nExcited to see you there!\n\n🗓️Monday, Nov. 16th\n⏰5:30-6:30\n📌PACCAR 293",
+   "image": "/ig/posts/DfybRm_hb-Z.jpg",
+   "likes": 13,
+   "comments": 1,
+   "post_counts": {
+    "DfybRm_hb-Z": [
+     13,
+     1
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "hl-375245",
    "title": "Commander Night at the Hub!",
    "type": "Game night",
@@ -422,6 +449,30 @@
    "description": "Come watch the screening for the powerful documentary Sentient, which explores animal experimentation, ahead of its release along with a Q&A with Dr. Lisa Jones-Engel!\nWhen/where: HUB 334 on November 16th from 6:30-8:30PM\nEveryone is welcome, regardless of diet, lifestyle, or familiarity with animal rights! Free vegan pizza and snacks will be provided.\nFree admission, please RSVP! https://luma.com/5bcotf0s",
    "image": null,
    "rsvps": 2
+  },
+  {
+   "id": "Dfy3Aoqligc-0",
+   "title": "Salsa Night",
+   "type": "Hangout",
+   "host": "Salsa Club at UW (@uwsalsa)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-16",
+   "start": "19:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/Dfy3Aoqligc/",
+   "source": "instagram",
+   "description": "Salsa is back post social. Come join us this Tuesday @ 7 for another night of Salsa 💃🕺\n\nSalsa ha regresado después del social. Ven a unirte con nosotros @ 7 de la noche para una noche de nuevo de salsa 💃🕺\n\n#uw #uwsalsa #salsa #dance #seattledance #seattle #seattlesalsa #partnerdance #latindance #baila #salsadance #salsaislife",
+   "image": "/ig/posts/Dfy3Aoqligc.jpg",
+   "likes": 12,
+   "comments": 0,
+   "post_counts": {
+    "Dfy3Aoqligc": [
+     12,
+     0
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "hl-375125",
@@ -671,6 +722,33 @@
    "posts": 1
   },
   {
+   "id": "DfyLwZUPklc-0",
+   "title": "Hygiene Kit Making",
+   "type": "Club",
+   "host": "MSA Volunteer Corps (@msauw.vc)",
+   "where": "Islamic House",
+   "pos": [
+    47.6626,
+    -122.3047
+   ],
+   "date": "2026-11-17",
+   "start": "16:30",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/DfyLwZUPklc/",
+   "source": "instagram",
+   "description": "Join us Tuesday Nov. 17th from 4:30-6:30 for our Hygiene Kit Making event at Islamic House! #uwmsa #msavolunteercorps #hygienekits #helpyourneighbor",
+   "image": "/ig/posts/DfyLwZUPklc.jpg",
+   "likes": 34,
+   "comments": 0,
+   "post_counts": {
+    "DfyLwZUPklc": [
+     34,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "De0IAgbD-Le-0",
    "title": "Q Book Club",
    "type": "Club",
@@ -873,6 +951,30 @@
    "posts": 1
   },
   {
+   "id": "Df0f0VIsIih-0",
+   "title": "Jeopardy Night",
+   "type": "Game night",
+   "host": "UW LATINE STUDENT UNION (@uwlsu)",
+   "where": "Chicano Room 206",
+   "pos": null,
+   "date": "2026-11-17",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/Df0f0VIsIih/",
+   "source": "instagram",
+   "description": "Join us at our next club meeting, for a fun night of Jeopardy!\n\nTop 2 players win a Chipotle gift card!\n Chicano Room 206\n@Ecc, 5:30-6:30pm \nTuesday November 17th!",
+   "image": "/ig/posts/Df0f0VIsIih.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df0f0VIsIih": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "lm-evt-w5iWewhrhFvH1tV",
    "title": "Buildspace C6 Demo Day",
    "type": "Club",
@@ -889,7 +991,7 @@
    "source": "luma",
    "description": "🚀 cseed buildspace demo day is here!!! 🚀\nFor the past 5 weeks, cseed buildspace cohort 6 members have been working hard on their passion projects for up to 2 hours per week! Now is the time to show off what they've built!\nJoin us with celebrating the incredible work and dedication of projects with a mix of hardware, design, creator, and software project!\nCome out to support our builders, get inspired, and learn about cseed. See you there!\nP.S. Dinner, snacks, and drinks will be provided!\n\n[If you need an accommodation or have any questions or concerns, email us at questions@cseed.co]",
    "image": "https://images.lumacdn.com/uploads/u8/2f1fa951-6568-4646-86e9-33eb7c0e6a6c.png",
-   "rsvps": 130,
+   "rsvps": 133,
    "post_counts": {
     "DfT69kvG4fn": [
      55,
@@ -1110,6 +1212,33 @@
     "DfxqnzpT7ax": [
      3,
      3
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfqOYDdh6gK-0",
+   "title": "Settler Colonialism Discussion",
+   "type": "Club",
+   "host": "SUPER UW (@super_uw)",
+   "where": "Christ Episcopal Church",
+   "pos": [
+    47.66286,
+    -122.31381
+   ],
+   "date": "2026-11-17",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DfqOYDdh6gK/",
+   "source": "instagram",
+   "description": "As we approach so called “thanksgiving,” join SUPER UW to learn about the strategies and goals of settler colonialism on Turtle Island and in Palestine, and discuss our collective responsibility to fight for land back and a world where we can all live with dignity on our homelands.\n\n📆 Tuesday, 11/17, 6-8pm\n📍Christ Episcopal Church, 4548 Brooklyn Ave NE",
+   "image": "/ig/posts/DfqOYDdh6gK.jpg",
+   "likes": 79,
+   "comments": 1,
+   "post_counts": {
+    "DfqOYDdh6gK": [
+     79,
+     1
     ]
    },
    "posts": 1
@@ -1346,6 +1475,60 @@
    "posts": 1
   },
   {
+   "id": "DflCmQrPSqE-0",
+   "title": "Caterpillar Teach-in",
+   "type": "Club",
+   "host": "University of Washington SDS (@uw_sds)",
+   "where": "UW Seattle campus",
+   "pos": [
+    47.65543,
+    -122.30017
+   ],
+   "date": "2026-11-17",
+   "start": "18:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/DflCmQrPSqE/",
+   "source": "instagram",
+   "description": "Join UW Divest for a teach-in on CATERPILLAR this Tuesday, November 17th at 6:30 p.m.! 🇵🇸 UW is directly invested in the CATERPILLAR construction vehicle manufacturer, a company targeted by the Boycott, Divest, and Sanctions movement. The same bulldozers and excavators used on UW campus are being used by the illegal apartheid state of “israel” to uproot olive trees, expand illegal israeli settlements, destroy Palestinian homes, and kill Palestinians. \n\n🇵🇸 Learn about our campaign to get the University of Washington to divest from companies facilitating apartheid and genocide in Palestine. 🇵🇸 \n\nEvent will be in-person on UW Seattle campus and on zoom! RSVP: tinyurl.com/UWDIVESTFROMCAT\n(Link is case sensitive)",
+   "image": "/ig/posts/DflCmQrPSqE.jpg",
+   "likes": 3,
+   "comments": 1,
+   "post_counts": {
+    "DflCmQrPSqE": [
+     3,
+     1
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfslKE3SuJT-0",
+   "title": "Guest Speaker Event",
+   "type": "Club",
+   "host": "Operation Smile UW Chapter (@opsmileuw)",
+   "where": "HSEB 427",
+   "pos": [
+    47.65164,
+    -122.31052
+   ],
+   "date": "2026-11-17",
+   "start": "18:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/DfslKE3SuJT/",
+   "source": "instagram",
+   "description": "Meet our guest speakers! 🦷\n\nJoin us to hear from Dr. Austin Gaal, an Oral and Maxillofacial Surgeon with a focus on cleft and craniofacial differences, and Dr. Shahd Nawari, an Endodontist at U Village Endodontics.\n\nBoth speaker will share insights into their work and experiences in dentistry.\n\n📅 November 17th | 6:30 PM\n📍 HSEB 427\n\nWe hope to see you there! 💜",
+   "image": "/ig/posts/DfslKE3SuJT.jpg",
+   "likes": 3,
+   "comments": 0,
+   "post_counts": {
+    "DfslKE3SuJT": [
+     3,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "hl-375456",
    "title": "Open Gym",
    "type": "Hangout",
@@ -1563,6 +1746,57 @@
    "comments": null,
    "post_counts": {
     "Df0kWBmDy4o": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfzxWC3muPV-0",
+   "title": "Story Takeover with Sophia",
+   "type": "Club",
+   "host": "UW Pre-Optometry Club (@uwpreoptclub)",
+   "where": "Online",
+   "pos": null,
+   "date": "2026-11-17",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DfzxWC3muPV/",
+   "source": "instagram",
+   "description": "📣 STORY TAKEOVER ALERT! 👁️✨\n\nJoin us tomorrow, Tuesday, November 17th, as Sophia (@optomsoph), a third-year Doctor of Optometry (OD3) student at the University of Waterloo, takes over our Instagram stories! 🎓💙\n\nFollow along as Sophia gives us a glimpse into her day as an optometry student, shares her experiences, and answers your questions about optometry school! 📚👓\n\n💬 Have questions about life as an OD student? This is your chance to ask!",
+   "image": "/ig/posts/DfzxWC3muPV.jpg",
+   "likes": 29,
+   "comments": 1,
+   "post_counts": {
+    "DfzxWC3muPV": [
+     29,
+     1
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df0EBIcGQQ3-0",
+   "title": "Gratitude Postcard Station",
+   "type": "Hangout",
+   "host": "UW CIRCLE (@uwcircle)",
+   "where": "Various (ODE, HUB, CIRCLE, IMA)",
+   "pos": [
+    47.65647,
+    -122.31042
+   ],
+   "date": "2026-11-17",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df0EBIcGQQ3/",
+   "source": "instagram",
+   "description": "Is there someone you’ve been meaning to thank?\n\nA friend?\nA mentor?\nA family member?\nSomeone who could use a little extra love right now?\n\nTell them in this year’s Husky Gratitude Challenge!\nStop by a Gratitude Postcard station and write a note of how you appreciate them. LiveWell covers the postage and mails it for you for FREE!\n\nFind a station at Odegaard Library, the HUB, CIRCLE, and the IMA from Tuesday, Nov. 17 through Thursday, Nov. 19 during regular building hours.\n\nA few minutes of gratitude can make all the difference.💜\n\n#UniversityOfWashington\n#UWLiveWell\n#UOfW\n#UDub\n\nWrite a note of appreciation at one our stations.\nLiveWell will pay for postage & mail for FREE!\n\nGratitude Postcard Stations at:\n- Odegaard Library (ODE)\n- Husky Union Building (HUB)\n- Center for International Relations and Cultural Leadership Exchange (CIRCLE)\n- Intramural Activities Building (IMA)",
+   "image": "/ig/posts/Df0EBIcGQQ3.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df0EBIcGQQ3": [
      null,
      null
     ]
@@ -1820,7 +2054,7 @@
    "source": "luma",
    "description": "CSEED is so excited to welcome Joe Alterio into UW! 🎨💻\nJoe Alterio is a multidisciplinary creative working at the intersection of art, technology, design, and storytelling. With over 15 years of experience leading design and product teams, he has created digital products and experiences across industries like media, publishing, gaming, and technology.\nThroughout his career, Joe has collaborated with major brands including Microsoft, Starbucks, Disney, Nickelodeon, Adobe, and Amazon. His work has received recognition from the Webby, Addy, and Anthem Awards and has been featured in The New York Times, The Atlantic, The Boston Globe, and the BBC.\nJoe is also an accomplished speaker, having shared his insights at SXSW, San Diego Comic-Con, and other major events. He co-hosts the design podcast Designer & Designer and is passionate about creativity, collaboration, and building teams where people can do their best work.\nJoin us for an exciting conversation about creativity, design, technology, and what it means to build things that matter. Don’t miss this opportunity to learn from someone who has spent over 15 years pushing creative boundaries!\nSee you there!! 🌟\n📅 Wednesday, November 18\n🕟 4:30–6:30 PM\n📍 CSE2 G10",
    "image": "https://images.lumacdn.com/uploads/72/17cbc0cd-9631-48aa-9615-9cb9d03b0d76.webp",
-   "rsvps": 26,
+   "rsvps": 28,
    "post_counts": {
     "DfgGCFby218": [
      null,
@@ -1993,6 +2227,33 @@
     "DfsYvHnmOGz": [
      48,
      3
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfwA12_G_e8-0",
+   "title": "Turning Point USA Protest",
+   "type": "Club",
+   "host": "University of Washington SDS (@uw_sds)",
+   "where": "Guggenheim Hall",
+   "pos": [
+    47.65424,
+    -122.30629
+   ],
+   "date": "2026-11-18",
+   "start": "17:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/DfwA12_G_e8/",
+   "source": "instagram",
+   "description": "🚨🚨 TRANSPHOBIC TURNING POINT USA SPEAKER COMING TO UW SEATTLE NOV 18TH🚨🚨 Protest the alt-right anti-trans hate group! Bring trans flags, megaphones, drums, anything to make noise, and a buddy! Wear a mask! 🚨5:30 P.M.🚨 WEDNESDAY NOVEMBER 18TH OUTSIDE GUGGENHEIM HALL! 🚨5:30 P.M.🚨\n\nContact UW President Robert Jones to demand TPUSA be banned from campus! Stand in solidarity with trans workers and students! \nEmail: president@uw.edu\nPhone: 206-543-5010\n\nTRANSPHOBES NOT WELCOME HERE!\n🚨NOV 18 @ 5:30 P.M.🚨",
+   "image": "/ig/posts/DfwA12_G_e8.jpg",
+   "likes": 3,
+   "comments": 53,
+   "post_counts": {
+    "DfwA12_G_e8": [
+     3,
+     53
     ]
    },
    "posts": 1
@@ -2199,6 +2460,33 @@
     "DfngdmahiNa": [
      44,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfqQu7vBmaA-0",
+   "title": "TPUSA Protest",
+   "type": "Club",
+   "host": "University of Washington SDS (@uw_sds)",
+   "where": "Guggenheim Hall",
+   "pos": [
+    47.65424,
+    -122.30629
+   ],
+   "date": "2026-11-18",
+   "start": "18:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/DfqQu7vBmaA/",
+   "source": "instagram",
+   "description": "CALLING ALL DRUMMERS 🥁🥁🥁\nTURNING POINT USA IS COMING TO UW SEATTLE AGAIN!!!!🚨🚨🚨🚨🚨\nTPUSA UW, a registered student organization, is again hosting a transphobic right-wing grifter on WEDNESDAY, 11/18 at Guggenheim Hall at 6pm. Bring flags, drums, or anything to make some noise! \n\nWe have canceled them before let’s remind them again! TPUSA IS NOT TOLERATED HERE!!! Email UW admin to cancel the event and ban Turning Point USA from campus! WE WILL NOT TOLERATE HATE GROUPS ON CAMPUS. WE LOVE OUR TRANS COMMUNITY! 🏳️‍⚧️ FREE PALESTINE! 🇵🇸",
+   "image": "/ig/posts/DfqQu7vBmaA.jpg",
+   "likes": 284,
+   "comments": 2,
+   "post_counts": {
+    "DfqQu7vBmaA": [
+     284,
+     2
     ]
    },
    "posts": 1
@@ -2553,6 +2841,33 @@
     "Dfz6II1Mc65": [
      3,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df0EBIcGQQ3-1",
+   "title": "Gratitude Postcard Station",
+   "type": "Hangout",
+   "host": "UW CIRCLE (@uwcircle)",
+   "where": "Various (ODE, HUB, CIRCLE, IMA)",
+   "pos": [
+    47.65647,
+    -122.31042
+   ],
+   "date": "2026-11-18",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df0EBIcGQQ3/",
+   "source": "instagram",
+   "description": "Is there someone you’ve been meaning to thank?\n\nA friend?\nA mentor?\nA family member?\nSomeone who could use a little extra love right now?\n\nTell them in this year’s Husky Gratitude Challenge!\nStop by a Gratitude Postcard station and write a note of how you appreciate them. LiveWell covers the postage and mails it for you for FREE!\n\nFind a station at Odegaard Library, the HUB, CIRCLE, and the IMA from Tuesday, Nov. 17 through Thursday, Nov. 19 during regular building hours.\n\nA few minutes of gratitude can make all the difference.💜\n\n#UniversityOfWashington\n#UWLiveWell\n#UOfW\n#UDub\n\nWrite a note of appreciation at one our stations.\nLiveWell will pay for postage & mail for FREE!\n\nGratitude Postcard Stations at:\n- Odegaard Library (ODE)\n- Husky Union Building (HUB)\n- Center for International Relations and Cultural Leadership Exchange (CIRCLE)\n- Intramural Activities Building (IMA)",
+   "image": "/ig/posts/Df0EBIcGQQ3.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df0EBIcGQQ3": [
+     null,
+     null
     ]
    },
    "posts": 1
@@ -3357,6 +3672,84 @@
    "posts": 1
   },
   {
+   "id": "Dfy3Ne7lnab-0",
+   "title": "Bachata Night",
+   "type": "Hangout",
+   "host": "Salsa Club at UW (@uwsalsa)",
+   "where": "HUB 332",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-19",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Dfy3Ne7lnab/",
+   "source": "instagram",
+   "description": "Come get your Bachata fix and join us for another Bachata night! 💃🕺\nSee you there!\n\n¡Ven a recibir tu dosis de bachata y únete con nosotros para una noche de nuevo de bachata! 💃🕺¡Te verémos allí!\n\n#uw #uwsalsa #uwbachata #salsa #bachata #dance #seattledance #seattle #seattlesalsa #seattlebachata #partnerdance #latindance #baila #salsadance #bachatadance #salsaislife #bachataislife",
+   "image": "/ig/posts/Dfy3Ne7lnab.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Dfy3Ne7lnab": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df0LYE6E_CG-0",
+   "title": "Friendsgiving",
+   "type": "Food",
+   "host": "Khmer Student Association UW (@khsauw)",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-19",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df0LYE6E_CG/",
+   "source": "instagram",
+   "description": "hey khuties! \nthank you to everyone who came out to our game night last week! we had such a fun time watching everyone compete, cheer each other on, and share a few laughs with one another.\n\nwe hope to see you all this THURSDAY for our friendsgiving! 🦃🍂 don’t forget to rsvp and fill out the excel sheet if you’re interested in attending. we can’t wait to see everyone there!",
+   "image": "/ig/posts/Df0LYE6E_CG.jpg",
+   "likes": 37,
+   "comments": 0,
+   "post_counts": {
+    "Df0LYE6E_CG": [
+     37,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df0EBIcGQQ3-2",
+   "title": "Gratitude Postcard Station",
+   "type": "Hangout",
+   "host": "UW CIRCLE (@uwcircle)",
+   "where": "Various (ODE, HUB, CIRCLE, IMA)",
+   "pos": [
+    47.65647,
+    -122.31042
+   ],
+   "date": "2026-11-19",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df0EBIcGQQ3/",
+   "source": "instagram",
+   "description": "Is there someone you’ve been meaning to thank?\n\nA friend?\nA mentor?\nA family member?\nSomeone who could use a little extra love right now?\n\nTell them in this year’s Husky Gratitude Challenge!\nStop by a Gratitude Postcard station and write a note of how you appreciate them. LiveWell covers the postage and mails it for you for FREE!\n\nFind a station at Odegaard Library, the HUB, CIRCLE, and the IMA from Tuesday, Nov. 17 through Thursday, Nov. 19 during regular building hours.\n\nA few minutes of gratitude can make all the difference.💜\n\n#UniversityOfWashington\n#UWLiveWell\n#UOfW\n#UDub\n\nWrite a note of appreciation at one our stations.\nLiveWell will pay for postage & mail for FREE!\n\nGratitude Postcard Stations at:\n- Odegaard Library (ODE)\n- Husky Union Building (HUB)\n- Center for International Relations and Cultural Leadership Exchange (CIRCLE)\n- Intramural Activities Building (IMA)",
+   "image": "/ig/posts/Df0EBIcGQQ3.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df0EBIcGQQ3": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfVbLn2ywCN-0",
    "title": "Service Fair & Blood Drive",
    "type": "Club",
@@ -3563,33 +3956,6 @@
    "posts": 1
   },
   {
-   "id": "Dfqgy2GEddI-0",
-   "title": "Role Possibilities Panel",
-   "type": "Club",
-   "host": "Women in User Experience (@womeninux_uw)",
-   "where": "JHN 175",
-   "pos": [
-    47.65442,
-    -122.30875
-   ],
-   "date": "2026-11-20",
-   "start": "17:30",
-   "end": "18:30",
-   "url": "https://www.instagram.com/p/Dfqgy2GEddI/",
-   "source": "instagram",
-   "description": "As our final event this November, Women in UX will be hosting a Role Possibilities Panel where you’ll get a chance to hear directly from professionals working across research, design, engineering, and management. They’ll share their career journeys, break down what their roles look like day to day, and open up about how they got where they are. 🌟\n\nOur amazing panelists:\n🔹 Emily Rapada, Sr Staff Researcher at Pinterest\n🔹 Swati Swachdeva, SWE/Research at Google\n🔹 Julianne Bryant, UX Senior Manager at Google\n🔹 Sola Chang, Senior UX/UI Game Designer at Blizzard\n\n‼️Please note: this is an in-person-only event, with no virtual option. We hope to see you there!\n\n📆 Friday, 11/20\n🕠 5:30-6:30 PM PT\n📍 JHN 175 (Johnson Hall)\n\n🔗 RSVP using link in bio\n#uxdesign #universityofwashington #womeninux",
-   "image": "/ig/posts/Dfqgy2GEddI.jpg",
-   "likes": 3,
-   "comments": 0,
-   "post_counts": {
-    "Dfqgy2GEddI": [
-     3,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
    "id": "DfwPaWqy_bG-0",
    "title": "Gurpurab Kirtan Darbar",
    "type": "Club",
@@ -3611,6 +3977,34 @@
      1
     ]
    },
+   "posts": 1
+  },
+  {
+   "id": "lm-evt-XIyWlZpjAZEavfV",
+   "title": "Panel: HCI/HCDE Role Possibilities",
+   "type": "Club",
+   "host": "WiUX: Women in User Experience (@womeninux_uw)",
+   "where": "Johnson Hall (JHN)",
+   "pos": [
+    47.65464,
+    -122.30891
+   ],
+   "date": "2026-11-20",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://luma.com/ocgg8euy",
+   "source": "luma",
+   "description": "Join us in JHN 175 (Johnson Hall)\nThis panel will provide insight into all the different options and opportunities available to an HCDE/HCI+D or any UX graduate. Panelists will share their journeys, what their roles look like, and answer host questions. This will be followed by an audience Q&A and networking opportunities.\n\nSpeakers:\nEmily Rapada - Senior Staff Researcher, Pinterest\nSwati Sachdeva - SWE + Researcher, Google\nJulianne Bryant - UX Senior Manager, Google\nSola Chang - Senior UX/UI Game Designer, Blizzard\n\nThis event will be in person only and will not be recorded. Please RSVP yes if you intend on coming in person, and if your plans change, please update your RSVP so our friends on the waitlist can join us :)",
+   "image": "https://images.lumacdn.com/uploads/ms/4121c719-a524-41c7-b07b-bb7d12b4bc1d.png",
+   "rsvps": 59,
+   "post_counts": {
+    "Dfqgy2GEddI": [
+     3,
+     0
+    ]
+   },
+   "likes": 3,
+   "comments": 0,
    "posts": 1
   },
   {
@@ -3714,6 +4108,33 @@
     ]
    },
    "posts": 3
+  },
+  {
+   "id": "Df0SE7ihSm0-0",
+   "title": "Murder Mystery Night",
+   "type": "Hangout",
+   "host": "UW CIRCLE (@uwcircle)",
+   "where": "Schmitz Hall 250",
+   "pos": [
+    47.65647,
+    -122.31271
+   ],
+   "date": "2026-11-20",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/Df0SE7ihSm0/",
+   "source": "instagram",
+   "description": "Join us for an interactive murder mystery party hosted by \"CIRCLE Company\"!🕵️‍♂️🕵️‍♀️ Step into the shoes of a detective as you navigate workplace drama, uncover hidden secrets, and piece together the clues behind a shocking incident. Will you be able to crack the case before the night is over? 🫣😱\n\nDate: Friday, November 20, 2026\nTime: 6:00-8:00 PM\nLocation: Schmitz Hall 250 (CIRCLE office)\nRSVP Form: https://forms.gle/zJEycTCFUdXK6LLk9",
+   "image": "/ig/posts/Df0SE7ihSm0.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df0SE7ihSm0": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "DfvTGAnhRRa-0",
@@ -3966,6 +4387,30 @@
     "DfkxbTeyFUO": [
      null,
      null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df0Dn1cmwmo-0",
+   "title": "ODPhi Tailgate",
+   "type": "Food",
+   "host": "Omega Delta Phi Fraternity Inc. | UW Seattle (@uwknights)",
+   "where": "N24 Parking Lot",
+   "pos": null,
+   "date": "2026-11-21",
+   "start": "11:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/Df0Dn1cmwmo/",
+   "source": "instagram",
+   "description": "Lambda Chapter Alumni presents the LAST ODPhi Tailgate of the season! 🏈🔥\n\nYou don’t want to miss the last one! Come hang out with the bros, enjoy some good food, and get in the game day spirit before kickoff. Whether you’re stopping by to grab a bite or staying to kick it, we’d love to see you there! 😮‍💨\n\n📍 N24 Parking Lot\n🗓️ November 21st, 2026\n⏰ 11:00 AM\n\n🥤Nachos will be served, so come hungry!\n\n👀 Rep your UW gear and come enjoy one last tailgate with us before the season wraps up.\n\n🎟️ Tickets + more info → scan the QR code.\n\nSee y’all there!! 🐾💜💛",
+   "image": "/ig/posts/Df0Dn1cmwmo.jpg",
+   "likes": 44,
+   "comments": 8,
+   "post_counts": {
+    "Df0Dn1cmwmo": [
+     44,
+     8
     ]
    },
    "posts": 1
@@ -4996,6 +5441,33 @@
    "rsvps": 0
   },
   {
+   "id": "Dfz1-FRxXP1-0",
+   "title": "Health Tech Panel",
+   "type": "Club",
+   "host": "SASE UW (@saseuw)",
+   "where": "SAV 264",
+   "pos": [
+    47.65712,
+    -122.30842
+   ],
+   "date": "2026-12-01",
+   "start": "18:30",
+   "end": "20:30",
+   "url": "https://www.instagram.com/p/Dfz1-FRxXP1/",
+   "source": "instagram",
+   "description": "🩺💻 Interested in exploring careers in health tech?\n\nJoin us for our Health Tech Panel to hear from industry professionals about their experiences, career paths, and insights into the intersection of healthcare and technology! \n\nCome ready to ask questions, gain new perspectives, and connect with professionals in the field.🌟 \n\n🍽️ Food will be provided! Please RSVP using the form linked in our bio by November 29th! \n\n📅 Tuesday, December 1st\n🕐 6:30-8:30 PM\n📍 SAV 264 \n📚 Anyone is welcome !! \n\nWe can’t wait to see you there!",
+   "image": "/ig/posts/Dfz1-FRxXP1.jpg",
+   "likes": 30,
+   "comments": 0,
+   "post_counts": {
+    "Dfz1-FRxXP1": [
+     30,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfoWyIDNQVz-0",
    "title": "First-Year Mixer",
    "type": "Hangout",
@@ -5360,6 +5832,30 @@
    "description": "Emerald City Card Show – UW Seattle presented by the Washington Gaming Association at UW is bringing the ultimate collector experience to the heart of campus! Join us at the UW Husky Union Building (HUB) Ballrooms (2nd Floor) for a full day of buying, selling, trading, and connecting with the PNW community. This is a show built by collectors, for collectors.\nBrowse 145+ vendor tables featuring Pokémon, Magic: The Gathering, sports cards, Riftbound, custom art, handcrafted items, sealed products, slabs, accessories, and more. Whether you’re a student hobbyist, a seasoned collector, or brand new to the game, there’s something for everyone.\nWhat to expect:\nMassive Variety: A wide selection of trusted vendors, local artists, and exclusive finds.\nTrade-Friendly Environment: Bring your trade binders and find your next grail!\nVIP Early Entry: Get in at 10:00 AM — two hours before general admission—to get first dibs on the best inventory and be entered into our raffle for dozens of prizes!\nAccessible Location: Located right in the heart of campus in the spacious 2nd Floor Ballrooms.\nLocation: UW Husky Union Building (HUB)\nRoom: Ballrooms, 2nd Floor East Stevens Way Northeast, Seattle, WA",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_611982_posters1788672548435_5c6dc5a1-8d97-48c8-9b24-126db60ac986_11113250.png",
    "rsvps": 0
+  },
+  {
+   "id": "DfuywrrgbBL-0",
+   "title": "Holiday Bazaar",
+   "type": "Hangout",
+   "host": "SUPER UW (@super_uw)",
+   "where": "Cherry Street Village",
+   "pos": null,
+   "date": "2026-12-05",
+   "start": "11:00",
+   "end": "18:00",
+   "url": "https://www.instagram.com/p/DfuywrrgbBL/",
+   "source": "instagram",
+   "description": "SAVE THE DATE! December 5, 11-6pm at Cherry Street Village, will be a day full of opportunities to support the youth of Gaza at Al-Amal School and to support the refugee camps in Lebanon with the Palestine International Center. \nThere will be a holiday bazaar with music, classes, and several vendors selling art, jewelery, skincare, and more holiday goods. We’re hosting a silent auction, a film screening, and an educational teach-in. More details on the agenda will be shared soon, stay tuned! \n\nThis will be indoors and all ages are welcome. If you’d like to help with anything send us a DM!",
+   "image": "/ig/posts/DfuywrrgbBL.jpg",
+   "likes": 149,
+   "comments": 3,
+   "post_counts": {
+    "DfuywrrgbBL": [
+     149,
+     3
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "DfpxxicGz8G-1",

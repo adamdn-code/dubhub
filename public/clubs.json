@@ -583,13 +583,11 @@
    "instagram": "https://www.instagram.com/uwcircle/",
    "website": "https://linktr.ee/uwcircle",
    "category": "Cultural",
-   "about": "CIRCLE encourages cultural engagement and global connections for UW students.",
-   "description": "CIRCLE hosts social events such as international graduate student pool nights and cupcake decorating parties. The staff supports student‑led initiatives that build a vibrant, multicultural community.",
+   "about": "Fosters cultural engagement and community through events and resources.",
+   "description": "UW CIRCLE promotes cultural exchange and community building with interactive events like murder‑mystery parties, gratitude challenges, and social nights for graduate students. The group offers a space to connect across cultures on campus.",
    "logo": "/ig/clubs/uwcircle.jpg",
    "last_event": "2026-11-20",
-   "fields": [
-    "Social Sciences"
-   ]
+   "fields": []
   },
   {
    "name": "Ceramics Club at the University of Washington",
@@ -725,6 +723,20 @@
    "description": "UW Consulting Association provides consulting‑focused workshops, case‑practice events, and speaker sessions with firms like McKinsey. It’s a place to build professional skills, network, and bond with fellow aspiring consultants.",
    "logo": "/ig/clubs/uwconsultingassociation.jpg",
    "last_event": "2026-11-06",
+   "fields": [
+    "Business"
+   ]
+  },
+  {
+   "name": "Corporate Law and Business Association",
+   "handle": "uw_clba",
+   "instagram": "https://www.instagram.com/uw_clba/",
+   "website": "https://linktr.ee/uwclba",
+   "category": "Business",
+   "about": "Explores the overlap of business and law for undergraduates.",
+   "description": "CLBA offers workshops on topics like elevator pitches, M&A case studies, and LSAT preparation, helping students develop skills at the business‑law nexus. Open to all majors, the group hosts interactive sessions on campus.",
+   "logo": "/ig/clubs/uw_clba.jpg",
+   "last_event": "2026-11-16",
    "fields": [
     "Business"
    ]
@@ -1104,11 +1116,13 @@
    "instagram": "https://www.instagram.com/greengreeksuw/",
    "website": "https://groupme.com/join_group/110003433/JM19NAT7",
    "category": "Service",
-   "about": "Promotes sustainability on campus through meetings, events, and clean‑ups.",
-   "description": "Green Greeks is a UW environmental RSO that promotes sustainability through regular meetings and campus clean‑ups. They partner with groups like BeautifyUdub to tackle larger projects such as Greek Row clean‑ups.",
+   "about": "Environmental RSO promoting sustainability initiatives at UW.",
+   "description": "Green Greeks is an environmental registered student organization that runs campus clean‑ups, collaborates with groups like Beautify UDub, and encourages sustainable practices. Members meet weekly to plan events that keep the campus green and beautiful.",
    "logo": "/ig/clubs/greengreeksuw.jpg",
    "last_event": "2026-11-15",
-   "fields": []
+   "fields": [
+    "Sciences"
+   ]
   },
   {
    "name": "Hillel at the UW: Jewish Center for Campus Life",
@@ -1458,8 +1472,8 @@
    "instagram": "https://www.instagram.com/khsauw/",
    "website": "https://linktr.ee/khsauw",
    "category": "Cultural",
-   "about": "Celebrates Khmer heritage with potlucks, game nights, and creative workshops.",
-   "description": "Khmer Student Association creates a community for Khmer students with potlucks, game nights, and creative workshops. Members enjoy cultural celebrations and friendly competitions.",
+   "about": "Student group celebrating Khmer culture and community.",
+   "description": "The Khmer Student Association brings together UW students of Cambodian heritage and allies for cultural events, game nights, and holiday gatherings like Friendsgiving. It offers a space to share traditions, enjoy food, and build community on campus.",
    "logo": "/ig/clubs/khsauw.jpg",
    "discord": "https://discord.gg/4CxQxr2GWZ",
    "discord_server": "Khmer Student Association UW",
@@ -1477,6 +1491,20 @@
    "logo": "/ig/clubs/kpopclubuw.jpg",
    "discord": "https://discord.gg/xU9Wad6PNT",
    "discord_server": "KPOP CLUB @ UW 🐾",
+   "last_event": "2026-11-17",
+   "fields": []
+  },
+  {
+   "name": "Latine Student Union at the University of Washington",
+   "handle": "uwlsu",
+   "instagram": "https://www.instagram.com/uwlsu/",
+   "website": "https://linktr.ee/uwlatine",
+   "category": "Cultural",
+   "about": "Latinx student union hosting cultural events, meetings, and community projects.",
+   "description": "The UW Latine Student Union meets weekly in the Chicano room for activities like Jeopardy nights, DIY Ofrenda building, and board elections. It provides a space for students to celebrate Latinx heritage and get involved in cultural programming.",
+   "logo": "/ig/clubs/uwlsu.jpg",
+   "discord": "https://discord.gg/kJmQbKJgWM",
+   "discord_server": "UW Latine Student Union's server",
    "last_event": "2026-11-17",
    "fields": []
   },
@@ -1552,8 +1580,8 @@
    "instagram": "https://www.instagram.com/uwclubsoccer/",
    "website": "https://gofund.me/ba65a8efa",
    "category": "Sports",
-   "about": "Competitive men's soccer club representing UW nationally.",
-   "description": "UW Men's Club Soccer is a nationally ranked team with multiple regional titles. The club travels to national tournaments and engages supporters through fundraising campaigns.",
+   "about": "Student soccer club competing in men's club league.",
+   "description": "UW Men's Club Soccer fields a competitive team, celebrating achievements like national championships. Players train together and travel for tournaments, fostering teamwork and school spirit.",
    "logo": "/ig/clubs/uwclubsoccer.jpg",
    "last_event": "2026-11-12",
    "fields": []
@@ -1587,6 +1615,18 @@
    "fields": [
     "Health"
    ]
+  },
+  {
+   "name": "MSA Volunteer Corps",
+   "handle": "msauw.vc",
+   "instagram": "https://www.instagram.com/msauw.vc/",
+   "website": "http://linktr.ee/msauw.vc",
+   "category": "Service",
+   "about": "Volunteer group organizing charitable projects for the Muslim Student Association.",
+   "description": "MSA Volunteer Corps is the service arm of the UW Muslim Student Association, coordinating community‑service projects like hygiene‑kit drives, food collections, and health‑training events. They welcome all students to help with hands‑on volunteering and outreach, and provide contact info for involvement.",
+   "logo": "/ig/clubs/msauw.vc.jpg",
+   "last_event": "2026-11-17",
+   "fields": []
   },
   {
    "name": "Music for Charity at the University of Washington",
@@ -1689,13 +1729,27 @@
    "name": "Omega Delta Phi Fraternity, Inc. Lambda Chapter",
    "handle": "uwknights",
    "instagram": "https://www.instagram.com/uwknights/",
-   "website": "https://forms.gle/mr7RaGKZRq2vkxwC8",
+   "website": "https://forms.gle/RNYziT7ZHn9mXSieA",
    "category": "Greek Life",
-   "about": "Social fraternity focused on brotherhood, leadership, and community service.",
-   "description": "Omega Delta Phi’s Untouchable Lambda Chapter promotes brotherhood and service, honoring veterans and highlighting executive board members. The fraternity also shares upcoming regional conferences and tailgate events for members.",
+   "about": "Brotherhood fraternity focusing on service, alumni events, and veteran recognition.",
+   "description": "Omega Delta Phi’s Lambda Chapter hosts alumni tailgates, honors veterans, and participates in regional conferences, strengthening brotherhood and community involvement on campus. The fraternity emphasizes service, leadership, and cultural pride.",
    "logo": "/ig/clubs/uwknights.jpg",
    "last_event": "2027-04-18",
    "fields": []
+  },
+  {
+   "name": "Operation Smile UW Chapter",
+   "handle": "opsmileuw",
+   "instagram": "https://www.instagram.com/opsmileuw/",
+   "website": "https://msha.ke/opsmile.uw",
+   "category": "Service",
+   "about": "Student chapter supporting cleft‑condition care and awareness.",
+   "description": "Operation Smile UW Chapter raises awareness and funds for individuals with cleft lip and palate in underserved areas. The group hosts speaker sessions with dental professionals and fun activities like dental trivia to engage members.",
+   "logo": "/ig/clubs/opsmileuw.jpg",
+   "last_event": "2026-11-17",
+   "fields": [
+    "Health"
+   ]
   },
   {
    "name": "Organic Steps",
@@ -1731,15 +1785,13 @@
    "instagram": "https://www.instagram.com/uw_origamiclub/",
    "website": "https://linktr.ee/origami_club_at_uw",
    "category": "Arts",
-   "about": "A student group that teaches and practices origami folding for all skill levels.",
-   "description": "The UW Origami Club welcomes anyone interested in paper folding, from beginners to seasoned folders. They host regular sessions with fun themes like jumping frogs and cat designs, providing all materials needed.",
+   "about": "Teaches origami folding to all UW students, no experience needed.",
+   "description": "The UW Origami Club welcomes anyone interested in paper folding, providing materials and themed sessions such as Thanksgiving designs or jumping frogs. Members gather to learn, create, and share their origami projects.",
    "logo": "/ig/clubs/uw_origamiclub.jpg",
    "discord": "https://discord.gg/BJ6Scfz",
    "discord_server": "Origami Club at UW",
    "last_event": "2026-11-12",
-   "fields": [
-    "Arts & Humanities"
-   ]
+   "fields": []
   },
   {
    "name": "Pakistani Students Association at the UW",
@@ -2073,14 +2125,12 @@
    "handle": "uwsalsa",
    "instagram": "https://www.instagram.com/uwsalsa/",
    "website": "https://linktr.ee/uwsalsaclub",
-   "category": "Cultural",
-   "about": "UW Salsa Club offers weekly salsa and bachata lessons for all skill levels.",
-   "description": "The club invites students to learn and dance salsa and bachata in fun, partner‑free weekly sessions. Open to all levels, the group shares the rhythm of Latin dance and builds a lively community on campus.",
+   "category": "Arts",
+   "about": "Salsa club teaching salsa and bachata with weekly lessons for all skill levels.",
+   "description": "The UW Salsa Club hosts weekly salsa and bachata lessons open to all students, no partner required. Social dance nights let members practice and enjoy Latin rhythms in a fun, inclusive environment.",
    "logo": "/ig/clubs/uwsalsa.jpg",
    "last_event": "2026-11-19",
-   "fields": [
-    "Arts & Humanities"
-   ]
+   "fields": []
   },
   {
    "name": "Sapphic Social Club",
@@ -2148,11 +2198,11 @@
    "handle": "saseuw",
    "instagram": "https://www.instagram.com/saseuw/",
    "website": "https://linktr.ee/saseuw",
-   "category": "Engineering",
-   "about": "Society of Asian Scientists & Engineers provides networking, workshops, and fun fundraisers.",
-   "description": "SASE supports Asian students in science, technology, engineering, and math through networking workshops, industry talks, and fun fundraisers. Members build professional skills while enjoying community events.",
+   "category": "Tech",
+   "about": "Professional society for Asian students in science, tech, and engineering.",
+   "description": "SASE UW connects Asian‑heritage students pursuing STEM fields through panels, workshops, and networking events. Recent activities include a health‑tech career panel, a bake‑sale fundraiser, and a networking skills workshop.",
    "logo": "/ig/clubs/saseuw.jpg",
-   "last_event": "2026-11-20",
+   "last_event": "2026-12-01",
    "fields": [
     "Engineering",
     "Computing & Math",
@@ -2164,13 +2214,15 @@
    "handle": "shpeuw",
    "instagram": "https://www.instagram.com/shpeuw/",
    "website": "https://linktr.ee/shpeuw",
-   "category": "Tech",
-   "about": "Supports Latinx students in STEM with networking, events, and service opportunities.",
-   "description": "SHPE UW empowers Latinx students in STEM by offering networking events, cultural nights, and service projects. Activities include food‑focused gatherings, NASA‑themed Lotería, and trips to conferences.",
+   "category": "Engineering",
+   "about": "Supports Latinx students in STEM through community, education, and service.",
+   "description": "SHPE UW creates a supportive community for Latinx students in STEM, offering study tables, service events, and networking opportunities. Members enjoy cultural gatherings, professional development, and connections with the broader SHPE familia.",
    "logo": "/ig/clubs/shpeuw.jpg",
    "last_event": "2026-11-18",
    "fields": [
-    "Engineering"
+    "Engineering",
+    "Computing & Math",
+    "Sciences"
    ]
   },
   {
@@ -2227,8 +2279,8 @@
    "instagram": "https://www.instagram.com/uw_ssa/",
    "website": "https://www.uwssa.org/",
    "category": "Cultural",
-   "about": "Somali student community offering academic help and creative events.",
-   "description": "The Somali Student Association connects Somali students and allies through workshops, cultural gatherings, and creative projects. Join them for college application help, poetry nights, and opportunities to join the SSA Creatives board.",
+   "about": "Celebrates Somali culture and supports Somali students at UW.",
+   "description": "The Somali Student Association connects Somali students and allies through cultural events, workshops, and networking. Activities include launch gatherings, poetry, entrepreneurship talks, and college application help.",
    "logo": "/ig/clubs/uw_ssa.jpg",
    "last_event": "2026-11-14",
    "fields": []
@@ -2312,6 +2364,18 @@
    "discord": "https://discord.gg/j2D7s9hrBF",
    "discord_server": "Sumo Union Membership Organization",
    "last_event": "2026-11-23",
+   "fields": []
+  },
+  {
+   "name": "SUPER UW",
+   "handle": "super_uw",
+   "instagram": "https://www.instagram.com/super_uw/",
+   "website": "https://linktr.ee/superuw",
+   "category": "Social",
+   "about": "Student organization advocating for Palestinian rights and equality.",
+   "description": "SUPER UW unites students to raise awareness and support for Palestinian equality and the right of return. They host events such as bazaars, educational panels, and campaigns to pressure policymakers, while highlighting connections to local Indigenous lands.",
+   "logo": "/ig/clubs/super_uw.jpg",
+   "last_event": "2026-12-05",
    "fields": []
   },
   {
@@ -2635,6 +2699,18 @@
    ]
   },
   {
+   "name": "University of Washington SDS",
+   "handle": "uw_sds",
+   "instagram": "https://www.instagram.com/uw_sds/",
+   "website": null,
+   "category": "Social",
+   "about": "Student group promoting progressive politics and activism on campus.",
+   "description": "UW SDS is a chapter of Students for a Democratic Society, focusing on democratic reforms, anti‑racist work, and campus activism. They organize teach‑ins, protests against trans‑phobic speakers, and campaigns like divestment from fossil‑fuel‑linked companies.",
+   "logo": "/ig/clubs/uw_sds.jpg",
+   "last_event": "2026-11-18",
+   "fields": []
+  },
+  {
    "name": "Urban Accessibility Group",
    "website": "https://sites.uw.edu/uag/",
    "category": "Engineering",
@@ -2711,6 +2787,20 @@
    "source": "huskylink",
    "last_event": "2026-11-16",
    "fields": []
+  },
+  {
+   "name": "VisionEyes PreOptometry Club",
+   "handle": "uwpreoptclub",
+   "instagram": "https://www.instagram.com/uwpreoptclub/",
+   "website": "https://linktr.ee/uwpreoptclub",
+   "category": "Academic",
+   "about": "Pre‑optometry club offering resources, networking, and insights for future optometrists.",
+   "description": "UW Pre‑Optometry Club connects aspiring optometrists with resources, mentorship, and professional tips. Members share experiences through story takeovers, discuss topics like AI in eye care, and guide peers through the application process.",
+   "logo": "/ig/clubs/uwpreoptclub.jpg",
+   "last_event": "2026-11-17",
+   "fields": [
+    "Health"
+   ]
   },
   {
    "name": "VSAUW",
@@ -2841,8 +2931,8 @@
    "instagram": "https://www.instagram.com/uw.wic/",
    "website": "https://linktr.ee/uw.wic",
    "category": "Tech",
-   "about": "Supports women and non‑binary computing students at UW.",
-   "description": "Women in Computing is an Allen School RSO that supports women and non‑binary CSE students. It provides mentorship, career events, and social gatherings to foster inclusion in tech.",
+   "about": "Supports women and non‑binary students in computer science with community and events.",
+   "description": "WiC UW builds community among women and non‑binary CSE students through socials, committees, and career‑focused events. They organize meetings and activities that foster inclusion and professional growth in computing.",
    "logo": "/ig/clubs/uw.wic.jpg",
    "last_event": "2026-11-17",
    "fields": [
