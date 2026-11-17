@@ -10,7 +10,7 @@
    "status": "club",
    "club": "cseed (@cseeduw)",
    "why": "matches a club DubHub knows",
-   "checked": "2026-11-15"
+   "checked": "2026-11-16"
   },
   "cal-4sCzh3E6Dr5ORFx": {
    "name": "Haulvana",
@@ -33,6 +33,17 @@
    "club": null,
    "why": "Insufficient info to confirm student ownership",
    "checked": "2026-11-14"
+  },
+  "cal-1Hp3nj8BootOVXd": {
+   "name": "MUG Seattle - MongoDB User Group",
+   "slug": "mug-seattle",
+   "found": [
+    "events near UW"
+   ],
+   "status": "not",
+   "club": null,
+   "why": "Student-run UW group not indicated; it's a public MongoDB user group",
+   "checked": "2026-11-16"
   },
   "cal-cM9m3eZtQygkLqe": {
    "name": "North American Fintech Coalition",
@@ -168,6 +179,16 @@
    "start": "2026-11-11",
    "by": [
     "@figmaatuw"
+   ]
+  },
+  "pjpuuh1h": {
+   "kind": "event",
+   "event": "evt-uQJGSS4BSGRgxaC",
+   "calendar": "cal-wo0hC1fb640GqRN",
+   "personal": false,
+   "start": "2026-11-19",
+   "by": [
+    "cseed"
    ]
   }
  }

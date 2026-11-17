@@ -48,10 +48,12 @@
   "checked": "2026-11-15"
  },
  "Chi Omegas": {
-  "status": "new",
+  "status": "none",
   "by": [
    "University of Washington Panhellenic (@uwpanhellenic)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-16"
  },
  "Civic Health Initiative": {
   "status": "new",
@@ -86,6 +88,12 @@
   ],
   "same_as": "@figmaatuw",
   "checked": "2026-11-15"
+ },
+ "Filipinx Association for Healthcare Officers": {
+  "status": "new",
+  "by": [
+   "FAHC at UW (@fahcuw)"
+  ]
  },
  "Framer": {
   "status": "known",
@@ -140,6 +148,12 @@
   ],
   "same_as": "@msauw",
   "checked": "2026-11-15"
+ },
+ "MUG Seattle - MongoDB User Group": {
+  "status": "new",
+  "by": [
+   "an event on Luma, on the UW campus"
+  ]
  },
  "Notion": {
   "status": "new",

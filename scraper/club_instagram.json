@@ -3355,9 +3355,9 @@
   "checked": "2026-10-24"
  },
  "Micronesian Islands Club": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_mic",
+  "from": "mentioned",
+  "checked": "2026-11-16"
  },
  "Microphiles Journal @ UW": {
   "handle": "microphilesjournaluw",
