@@ -5416,6 +5416,11 @@
   "from": "huskylink",
   "checked": "2026-11-15"
  },
+ "@super_uw": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-17"
+ },
  "SuperSurya Research Group": {
   "invite": null,
   "from": null,
@@ -5898,6 +5903,11 @@
   "from": "instagram-link",
   "checked": "2026-11-15"
  },
+ "@udubques": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-17"
+ },
  "Ultrasound Interest Group": {
   "invite": null,
   "from": null,
@@ -6000,7 +6010,7 @@
  "UW Counseling Center": {
   "invite": null,
   "from": null,
-  "checked": "2026-11-09"
+  "checked": "2026-11-17"
  },
  "UW Recreation": {
   "invite": null,
@@ -6016,6 +6026,16 @@
   "invite": null,
   "from": null,
   "checked": "2026-11-14"
+ },
+ "@uw_csf": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-17"
+ },
+ "@uw_sds": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-17"
  },
  "@uw_seed": {
   "invite": null,
@@ -6095,6 +6115,11 @@
   "invite": null,
   "from": null,
   "checked": "2026-11-14"
+ },
+ "@uwundivided": {
+  "invite": null,
+  "from": null,
+  "checked": "2026-11-17"
  },
  "UX @ UW": {
   "invite": null,

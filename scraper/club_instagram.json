@@ -165,9 +165,9 @@
   "checked": "2026-10-24"
  },
  "Alpha Chi Omega": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwalphachi",
+  "from": "mentioned",
+  "checked": "2026-11-17"
  },
  "Alpha Delta Phi Fraternity": {
   "handle": "alphadelts_washington",
@@ -1795,9 +1795,9 @@
   "checked": "2026-10-24"
  },
  "Extended Reality Association": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_xra",
+  "from": "mentioned",
+  "checked": "2026-11-17"
  },
  "Faces of Afro Muslims": {
   "handle": null,

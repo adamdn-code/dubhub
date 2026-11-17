@@ -48,10 +48,12 @@
   "checked": "2026-11-15"
  },
  "Central Ace": {
-  "status": "new",
+  "status": "none",
   "by": [
    "Association for Computing Education (@ace_uw)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-17"
  },
  "Chi Omegas": {
   "status": "none",
@@ -243,10 +245,22 @@
   "handle": null,
   "checked": "2026-11-14"
  },
+ "TPUSA UW": {
+  "status": "new",
+  "by": [
+   "University of Washington SDS (@uw_sds)"
+  ]
+ },
  "UW Consulting & Business Development (CBDC) Advisory Board": {
   "status": "new",
   "by": [
    "UW Women in Informatics (@uwwinfo)"
+  ]
+ },
+ "UW Divest": {
+  "status": "new",
+  "by": [
+   "University of Washington SDS (@uw_sds)"
   ]
  },
  "UW EMS": {

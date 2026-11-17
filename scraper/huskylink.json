@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T15:46",
+ "updated": "2026-11-17T13:34",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -4043,7 +4043,7 @@
   },
   {
    "name": "Husky Roundnet Club",
-   "website": "https://sites.google.com/a/uw.edu/uwspike/",
+   "website": "https://www.instagram.com/huskyroundnetclub/",
    "category": "Sports",
    "about": "It shall be the purpose of this organization to promote the sport of Spikeball and assemble members to engage in…",
    "description": "It shall be the purpose of this organization to promote the sport of Spikeball and assemble members to engage in friendly tournaments within and outside of the club.",
@@ -9452,130 +9452,6 @@
  ],
  "events": [
   {
-   "id": "hl-375532",
-   "title": "Poker and Popcorn!",
-   "type": "Hangout",
-   "host": "Applied Mathematics Club",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-16",
-   "start": "17:00",
-   "end": "18:00",
-   "url": "https://huskylink.washington.edu/amathclub/rsvp?id=375532",
-   "source": "huskylink",
-   "description": "AMATH Club is going ALL IN for the next meeting! ♣️♦️♠️♥️ Join us at poker night for your chance to win a $25 Chipotle gift card!!! Don’t forget to RSVP: https://docs.google.com/forms/d/e/1FAIpQLScC5Ja_uCE3xEH4WCW6SpXTc8XoidnwTFAMQkOIbGkF3oYWtQ/viewform",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_645865_AMATH_Club_Profilejpg_f604803d-7d0e-4e9c-9c4f-8da00c92126e_11121372.jpeg",
-   "rsvps": 1
-  },
-  {
-   "id": "hl-375245",
-   "title": "Commander Night at the Hub!",
-   "type": "Game night",
-   "host": "WGA Magic: The Gathering",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-16",
-   "start": "18:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375245",
-   "source": "huskylink",
-   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_Magic_The_Gathering_Commander_2015_logojpg_a7d6e719-41a9-4aa8-9637-b06d03cff3d9_1092025.jpeg",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375542",
-   "title": "Autumn Decoration Making for Seattle Children's Transplant Center",
-   "type": "Club",
-   "host": "Project Sunshine at the University of Washington",
-   "where": "Savery Hall",
-   "pos": [
-    47.65712,
-    -122.30842
-   ],
-   "date": "2026-11-16",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/projsun/rsvp?id=375542",
-   "source": "huskylink",
-   "description": "Join us on Monday, November 16th in Savery Hall 162 at 6pm, then we will walk together to the HIB RSO Resource Center and make decorations for the Seattle Children's Transplant Center. This can include paper chains, turkey hands, etc, we hope to see you there!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_615292_Autumn_decoration_making_f843f7d9-c203-4db7-a49e-a4c3037b5192_111415321.png",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375006",
-   "title": "WashPIRG CORE Meeting",
-   "type": "Club",
-   "host": "Washington Public Interest Research Group",
-   "where": "Mechanical Engineering",
-   "pos": [
-    47.65369,
-    -122.30476
-   ],
-   "date": "2026-11-16",
-   "start": "18:30",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/washpirg/rsvp?id=375006",
-   "source": "huskylink",
-   "description": "Come hang out with WashPIRG on Mondays, 6:30pm-8:00pm in MEB 238! We're a student advocacy group focused on environmental and social justice causes! At CORE meetings, we discuss upcoming events, plans, and ideas. These weekly meetings give space for our different campaigns to work on their goals throughout the quarter.",
-   "image": null,
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375385",
-   "title": "Sentient Film Screening with Animal Advocacy at UW",
-   "type": "Hangout",
-   "host": "Viable Veganism at UW",
-   "where": "HUB 334",
-   "pos": [
-    47.65537,
-    -122.3051
-   ],
-   "date": "2026-11-16",
-   "start": "18:30",
-   "end": "20:30",
-   "url": "https://huskylink.washington.edu/viableveganismuw/rsvp?id=375385",
-   "source": "huskylink",
-   "description": "Come watch the screening for the powerful documentary Sentient, which explores animal experimentation, ahead of its release along with a Q&A with Dr. Lisa Jones-Engel!\nWhen/where: HUB 334 on November 16th from 6:30-8:30PM\nEveryone is welcome, regardless of diet, lifestyle, or familiarity with animal rights! Free vegan pizza and snacks will be provided.\nFree admission, please RSVP! https://luma.com/5bcotf0s",
-   "image": null,
-   "rsvps": 2
-  },
-  {
-   "id": "hl-375125",
-   "title": "Writers in Progress Meeting",
-   "type": "Club",
-   "host": "Writers in Progress",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-16",
-   "start": "19:00",
-   "end": "20:00",
-   "url": "https://huskylink.washington.edu/writersinprogressuw/rsvp?id=375125",
-   "source": "huskylink",
-   "description": "A meeting usually includes an icebreaker, a short freewrite, and a feedback session.\nRegistration not required :) Feel free to drop in and say hi",
-   "image": null,
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375475",
-   "title": "Sumo Usual Match Observation",
-   "type": "Hangout",
-   "host": "Sumo Union Membership Organization",
-   "where": "HUB",
-   "pos": [
-    47.65537,
-    -122.3051
-   ],
-   "date": "2026-11-16",
-   "start": "20:00",
-   "end": "21:30",
-   "url": "https://huskylink.washington.edu/sumounionmembershiporganization/rsvp?id=375475",
-   "source": "huskylink",
-   "description": "Watch real Japanese Grand Sumo with us in the HUB!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png",
-   "rsvps": 4
-  },
-  {
    "id": "hl-375533",
    "title": "We Are Blood Drive",
    "type": "Club",
@@ -9742,6 +9618,22 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375246",
+   "title": "Commander Night at the Hub!",
+   "type": "Game night",
+   "host": "WGA Magic: The Gathering",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-18",
+   "start": "18:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375246",
+   "source": "huskylink",
+   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_Magic_The_Gathering_Commander_2015_logojpg_a7d6e719-41a9-4aa8-9637-b06d03cff3d9_1092025.jpeg",
+   "rsvps": 0
+  },
+  {
    "id": "hl-375531",
    "title": "Thanksgiving Social",
    "type": "Hangout",
@@ -9755,7 +9647,7 @@
    "source": "huskylink",
    "description": "Come make Thanksgiving thank you cards with us!!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_610611_Thanksgiving_post_1300_x_780_px_49451091-13c1-4d63-8c50-b5a6e2f33a74_11122335.png",
-   "rsvps": 0
+   "rsvps": 1
   },
   {
    "id": "hl-375372",
@@ -9793,8 +9685,40 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375317",
+   "title": "SMC: Guest Lecture with Dr Ben Lemmond!",
+   "type": "Club",
+   "host": "Student Mycology Club",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-19",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/studentmycology/rsvp?id=375317",
+   "source": "huskylink",
+   "description": "Join Student Mycology Club! We meet Thursdays at 6pm. Activities include identification workshops, group forays, foraging, guest lecturers, fungi-related arts and crafts, and much more! No experience necessary. Open to all! Locations vary, please see IG or Discord for up-to-date meeting info!\nDiscord: https://discord.gg/NmqjPpVTUA\nIG: https://www.instagram.com/smc_uw/",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_604976_Screenshot_20261117_114926_11d09580-27cf-4298-8da6-34fa0d62a93e_1117144950.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375550",
+   "title": "Upcycling Workshop w/ Costume Club",
+   "type": "Study",
+   "host": "Costume Club",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-19",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://huskylink.washington.edu/costume/rsvp?id=375550",
+   "source": "huskylink",
+   "description": "Join Costume Club's monthly workshop with Deb, a costume design lecturer at the School of Drama!\nLearn some basic techniques (like hemming) to improve and upcycle your clothing! Bring in things you’d like to alter, watch a demonstration, and get your questions answered.\nNormal club activities will be happening during our usual club hours (6-10), where you are free to come and go as you please, but if you are interested in the workshop, please arrive at 6PM sharp! Please contact a club officer in our discord, email, or Instagram to be let into the building, as the doors lock at 5PM.",
+   "image": null,
+   "rsvps": 0
+  },
+  {
    "id": "hl-375539",
-   "title": "iYouth November Meeting",
+   "title": "iYouth November Meeting with Washington State Library",
    "type": "Club",
    "host": "iYouth",
    "where": "Online Event",
@@ -9879,6 +9803,22 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375545",
+   "title": "First Love Church Service❤️✝️",
+   "type": "Club",
+   "host": "First Love at UW",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-22",
+   "start": "11:00",
+   "end": "13:00",
+   "url": "https://huskylink.washington.edu/fluw/rsvp?id=375545",
+   "source": "huskylink",
+   "description": "POV: You just found your Sunday plans.\n✨ FIRST LOVE CHURCH — YOU’RE INVITED! ❤️\nNeed a place to worship, meet new people, and just be around good energy? Pull up!\nWorship\nGod’s Word\nReal fellowship\n❤️ Good people + good vibes\nNo pressure. No judgment. Just come as you are.\nEvent Information\nSunday, Nov. 22\n11:00 AM\nSpratlen Hall, Room 313\n4320 Little Canoe Channel NE, Seattle, WA 98195\nRSVP https://www.eventbrite.com/e/swollen-sunday-welcome-home-theres-room-for-you-tickets-2004631094567\n‍♀️ Come solo. Bring your roommate. Bring your friend. Bring your classmate.\nWe saved you a seat! ❤️\nNeed a ride?\nCall Augustus: 218-409-3477\nYour Sunday plans just got better. ❤️",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_645827_Swollen_Sunday_1b67cabb-53b9-4250-88a2-57fc6e80f97d_1117132024.png",
+   "rsvps": 0
+  },
+  {
    "id": "hl-375444",
    "title": "Med Connect: Connecting You to Healthcare",
    "type": "Club",
@@ -9892,7 +9832,42 @@
    "source": "huskylink",
    "description": "Interested in healthcare? We can connect you!\nOur mission is to break down barriers to healthcare experiences at UW by connecting students with meaningful opportunities and equipping them with the skills to succeed in empathetic, compassionate healthcare.\nWhether you’re pre-med, pre-nursing, pre-PA, pre-pharmacy, or simply interested in getting involved in healthcare, we’re here to help guide you toward your goals.\nCome meet fellow students, learn about upcoming clinical, volunteering, shadowing, and research opportunities, and discover how MedConnect can help you take the next step in your healthcare journey!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_601449_medconnect_15e58cb6-04f9-49b7-9718-e0f3c8577367_102610374.png",
-   "rsvps": 6
+   "rsvps": 8
+  },
+  {
+   "id": "hl-375007",
+   "title": "WashPIRG CORE Meeting",
+   "type": "Club",
+   "host": "Washington Public Interest Research Group",
+   "where": "Mechanical Engineering",
+   "pos": [
+    47.65369,
+    -122.30476
+   ],
+   "date": "2026-11-23",
+   "start": "18:30",
+   "end": "20:00",
+   "url": "https://huskylink.washington.edu/washpirg/rsvp?id=375007",
+   "source": "huskylink",
+   "description": "Come hang out with WashPIRG on Mondays, 6:30pm-8:00pm in MEB 238! We're a student advocacy group focused on environmental and social justice causes! At CORE meetings, we discuss upcoming events, plans, and ideas. These weekly meetings give space for our different campaigns to work on their goals throughout the quarter.",
+   "image": null,
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375126",
+   "title": "Writers in Progress Meeting",
+   "type": "Club",
+   "host": "Writers in Progress",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-23",
+   "start": "19:00",
+   "end": "20:00",
+   "url": "https://huskylink.washington.edu/writersinprogressuw/rsvp?id=375126",
+   "source": "huskylink",
+   "description": "A meeting usually includes an icebreaker, a short freewrite, and a feedback session.\nRegistration not required :) Feel free to drop in and say hi",
+   "image": null,
+   "rsvps": 0
   },
   {
    "id": "hl-375549",
@@ -9909,6 +9884,25 @@
    "description": "Join board members to eat pizza, hangout and fundraise!! Monday 11/23 is our MOD Fundraiser. If you tell the cashier while ordering that you’re here for the fundraiser, they’ll donate a percentage of your bill to our club, so we can fund fun future meetings & opportunities!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_614633_5981adb1e8684ea899b1b3157f042ae3_32073e83-83ef-411d-85ea-094c473d4785_1116144330.jpeg",
    "rsvps": 0
+  },
+  {
+   "id": "hl-375476",
+   "title": "Sumo Usual Match Observation",
+   "type": "Hangout",
+   "host": "Sumo Union Membership Organization",
+   "where": "HUB",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-23",
+   "start": "20:00",
+   "end": "21:30",
+   "url": "https://huskylink.washington.edu/sumounionmembershiporganization/rsvp?id=375476",
+   "source": "huskylink",
+   "description": "Watch real Japanese Grand Sumo with us in the HUB!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639840_SUMO_event_photo_a4f9e657-d6d8-4a02-af34-c31715bd4c4a_111235346.png",
+   "rsvps": 1
   },
   {
    "id": "hl-375479",
@@ -9931,14 +9925,17 @@
    "title": "Healthcare Panel with Fostermed",
    "type": "Club",
    "host": "NMDP UW",
-   "where": null,
-   "pos": null,
+   "where": "SAV 156",
+   "pos": [
+    47.65712,
+    -122.30842
+   ],
    "date": "2026-11-24",
    "start": "18:00",
    "end": "19:00",
    "url": "https://huskylink.washington.edu/btmuw/rsvp?id=375103",
    "source": "huskylink",
-   "description": "Speakers in Healthcare information that will be sharing their experiences and how they got to their position",
+   "description": "Niall Curley from Siemens Healthineers, Cristina Coppinger from NMDP, and Angela Pak from Fred Hutch speak about their roles on the business and administrative side of healthcare and how they support patients.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_643287_Screenshot_20260928_182241_06deb2ab-c655-430a-bc8a-e2e8bf3041cc_928212314.png",
    "rsvps": 0
   },

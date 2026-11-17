@@ -149,8 +149,8 @@
    "instagram": "https://www.instagram.com/uwaslclub/",
    "website": "https://linktr.ee/uwaslclub",
    "category": "Cultural",
-   "about": "ASL club teaching American Sign Language, hosting meetings, socials and cultural events.",
-   "description": "The ASL Club meets weekly to teach beginners and practice signing, plus hosts potlucks, trivia nights, and cultural outings. It’s a welcoming space for anyone interested in learning ASL and connecting with the Deaf community.",
+   "about": "Learns and practices American Sign Language through meetings and social outings.",
+   "description": "The ASL Club meets weekly for beginner lessons and hosts potluck socials to practice signing in a relaxed setting. Open to all students, the club shares resources via its website and Linktree.",
    "logo": "/ig/clubs/uwaslclub.jpg",
    "discord": "https://discord.gg/8j3Av2SMQd",
    "discord_server": "UW ASL Club",
@@ -245,8 +245,8 @@
    "instagram": "https://www.instagram.com/uwaacf/",
    "website": "https://www.flowcode.com/page/uwaacf",
    "category": "Faith & Spirituality",
-   "about": "Christian fellowship for Asian American students at UW.",
-   "description": "AACF provides weekly gatherings for worship, Bible study, and fellowship. Members enjoy retreats, share encouraging verses, and connect through small groups like the Fishies.",
+   "about": "Asian American Christian fellowship providing weekly gatherings and spiritual support.",
+   "description": "AACF UW meets Wednesdays for worship, prayer, and fellowship, sharing verses and encouragement during the semester. The group also connects members through social media and smaller interest groups.",
    "logo": "/ig/clubs/uwaacf.jpg",
    "last_event": "2027-01-10",
    "fields": []
@@ -609,8 +609,8 @@
    "instagram": "https://www.instagram.com/csauw/",
    "website": "https://linktr.ee/csauw",
    "category": "Cultural",
-   "about": "Chinese Student Association celebrating culture with events and community.",
-   "description": "CSA UW is the Chinese Student Association that brings together Chinese students and friends to celebrate culture. Activities include social events, food nights, and opportunities to connect with the community.",
+   "about": "Chinese Student Association connecting Chinese students and celebrating culture.",
+   "description": "CSA UW brings together Chinese students and allies through cultural events, family reveals, and fun themed nights. Their Instagram shows lively gatherings and invites newcomers to join.",
    "logo": "/ig/clubs/csauw.jpg",
    "last_event": "2026-11-20",
    "fields": []
@@ -703,8 +703,8 @@
    "instagram": "https://www.instagram.com/uwcom2/",
    "website": "https://linktr.ee/uwcom2",
    "category": "Tech",
-   "about": "Computing Community creates a homey environment for Allen School students.",
-   "description": "COM² hosts social gatherings, game nights, and fall festivals to connect computing majors. Members can RSVP to events that make the Allen School feel like a supportive community.",
+   "about": "Fosters a welcoming community for computing students in the Allen School.",
+   "description": "COM² organizes events, officer introductions, and networking opportunities to make the Allen School feel like home. Members can RSVP to gatherings and stay connected through the club’s Instagram.",
    "logo": "/ig/clubs/uwcom2.jpg",
    "discord": "https://discord.gg/TyHTz6gtX8",
    "discord_server": "Computing Community (COM2) @ the University of Washington",
@@ -965,12 +965,12 @@
    "instagram": "https://www.instagram.com/filmclubuw/",
    "website": "http://linktr.ee/uwfilmclub",
    "category": "Arts",
-   "about": "Hosts weekly film screenings and discussions for cinephiles.",
-   "description": "UW Film Club gathers cinephiles each Thursday to watch and discuss a variety of films in PAA 114. The club creates a relaxed space for students to share their love of movies.",
+   "about": "UW Film Club screens and discusses movies weekly for cinephiles.",
+   "description": "The club meets every Thursday evenings in PAA to watch a curated film and hold discussions. Members enjoy classics like \"Y Tu Mamá También\" and share their love of cinema.",
    "logo": "/ig/clubs/filmclubuw.jpg",
    "discord": "https://discord.gg/bdCuHxTC5w",
    "discord_server": "UW Film Club",
-   "last_event": "2026-11-12",
+   "last_event": "2026-11-19",
    "fields": [
     "Arts & Humanities"
    ]
@@ -992,13 +992,24 @@
    ]
   },
   {
+   "name": "First Love at UW",
+   "website": "https://huskylink.washington.edu/fluw/",
+   "category": "Faith & Spirituality",
+   "about": "The purpose of the FL@UW includes the following:",
+   "description": "The purpose of the FL@UW includes the following:\nTo give students an opportunity to find Christ in their youth at the University of Washington.\nTo offer a platform for training students to serve Christ at the",
+   "logo": null,
+   "source": "huskylink",
+   "last_event": "2026-11-22",
+   "fields": []
+  },
+  {
    "name": "First Nations at UW",
    "handle": "firstnationsuw",
    "instagram": "https://www.instagram.com/firstnationsuw/",
    "website": "https://forms.cloud.microsoft/r/XUqDvqgjXA",
    "category": "Cultural",
-   "about": "Largest inter‑tribal Native student group hosting cultural gatherings and meals.",
-   "description": "First Nations @ UW is the largest inter‑tribal Native student organization on campus, hosting cultural gatherings and community meals. Meetings feature food, music, and opportunities for members to share traditions.",
+   "about": "Largest inter‑tribal Native student group at UW fostering community.",
+   "description": "First Nations @ UW hosts cultural activities such as necklace making and community dinners, open to all. Meetings are held Wednesdays in the ECC Native Room, welcoming families and allies.",
    "logo": "/ig/clubs/firstnationsuw.jpg",
    "last_event": "2026-11-24",
    "fields": []
@@ -1130,10 +1141,10 @@
    "instagram": "https://www.instagram.com/huskyhillel/",
    "website": "http://linktr.ee/HillelUW",
    "category": "Faith & Spirituality",
-   "about": "Offers Jewish community events, Shabbat meals, and service projects.",
-   "description": "Hillel UW builds a vibrant Jewish community with Shabbat meals, Friendsgiving celebrations, and service projects like challah‑baking for charity. Students can join discussions, meals, and volunteer opportunities.",
+   "about": "Hillel UW offers Jewish community events, Shabbat meals, and cultural celebrations.",
+   "description": "Hillel at UW hosts Shabbat dinners, holiday gatherings, and fun activities like trivia and Friendsgiving. It provides a welcoming space for students to explore Jewish traditions and connect with peers.",
    "logo": "/ig/clubs/huskyhillel.jpg",
-   "last_event": "2026-11-15",
+   "last_event": "2026-11-19",
    "fields": []
   },
   {
@@ -1255,6 +1266,20 @@
    "fields": []
   },
   {
+   "name": "Husky Sales Club",
+   "handle": "huskysalesclub",
+   "instagram": "https://www.instagram.com/huskysalesclub/",
+   "website": "https://forms.gle/pdPKkAkn4dyUd34r9",
+   "category": "Business",
+   "about": "UW Husky Sales Club provides networking, sales training, and career insights.",
+   "description": "The Sales Club organizes weekly meetings with industry speakers, free dinner, and workshops to develop B2B sales skills. Members network with professionals and learn about internships and post‑grad careers.",
+   "logo": "/ig/clubs/huskysalesclub.jpg",
+   "last_event": "2026-11-17",
+   "fields": [
+    "Business"
+   ]
+  },
+  {
    "name": "Husky Snow Club",
    "handle": "huskysnowclub",
    "instagram": "https://www.instagram.com/huskysnowclub/",
@@ -1272,8 +1297,8 @@
    "instagram": "https://www.instagram.com/hubatuw/",
    "website": "https://linktr.ee/hubatuw",
    "category": "Social",
-   "about": "Runs campus events to enhance the Husky experience and student engagement.",
-   "description": "The Husky Union Building runs a dynamic event center that fosters community and student engagement across campus. From themed celebrations to trivia nights and sales, HUB offers a variety of activities for all Huskies.",
+   "about": "HUB supports the Husky Experience with events, community space, and engagement.",
+   "description": "The Husky Union Building creates a dynamic event center for student life, offering programs, scholarships, and social gatherings like Halloween and trivia nights. It aims to enhance community and student involvement across campus.",
    "logo": "/ig/clubs/hubatuw.jpg",
    "last_event": "2026-11-12",
    "fields": []
@@ -1296,13 +1321,12 @@
    "instagram": "https://www.instagram.com/huskyadapt/",
    "website": "https://linktr.ee/huskyadapt",
    "category": "Tech",
-   "about": "Student org adapting toys for accessibility using design and technology",
-   "description": "HuskyADAPT adapts toys and games so children with disabilities can play independently, offering hands‑on workshops in soldering and circuitry. The club welcomes all skill levels and runs an online Discord for collaboration and announcements.",
+   "about": "HuskyADAPT designs accessible play technology and promotes inclusive design.",
+   "description": "HuskyADAPT brings together designers, engineers, and volunteers to adapt toys and create accessible tech for kids with disabilities. Workshops include soldering, circuitry, and design contests, welcoming UW and Seattle community members.",
    "logo": "/ig/clubs/huskyadapt.jpg",
    "last_event": "2026-12-05",
    "fields": [
-    "Engineering",
-    "Computing & Math"
+    "Engineering"
    ]
   },
   {
@@ -1386,13 +1410,29 @@
    ]
   },
   {
+   "name": "Institute of Transportation Engineers at the University of Washington",
+   "handle": "ite_uw",
+   "instagram": "https://www.instagram.com/ite_uw/",
+   "website": "http://linktr.ee/ite_uw",
+   "category": "Engineering",
+   "about": "Connects UW students with transportation industry professionals.",
+   "description": "The ITE Student Chapter hosts meetings, workshops, and speaker events to help students explore careers in transportation engineering and build strong resumes. Members also collaborate with other engineering groups and participate in competitions like the Sandbox challenge.",
+   "logo": "/ig/clubs/ite_uw.jpg",
+   "discord": "https://discord.gg/NpyNGNJfmP",
+   "discord_server": "ITE at UW",
+   "last_event": "2026-11-17",
+   "fields": [
+    "Engineering"
+   ]
+  },
+  {
    "name": "Interaction Design Association at University of Washington ( IxDA UW )",
    "handle": "uw.ixda",
    "instagram": "https://www.instagram.com/uw.ixda/",
    "website": "https://www.linkedin.com/company/ixdauw/?viewAsMember=true",
    "category": "Tech",
-   "about": "Connects students interested in interaction and visual design at UW.",
-   "description": "IxDA at UW connects students interested in interaction, visual, and industrial design through talks, Q&A sessions, and collaborative projects. All majors are welcome to explore design thinking and network with peers.",
+   "about": "Uniting UW students interested in interaction and visual design.",
+   "description": "IxDA at UW hosts panels, AMA sessions, and design‑focused events where students and faculty discuss careers and projects. All majors are welcome, and meetings include snacks and opportunities to submit questions online.",
    "logo": "/ig/clubs/uw.ixda.jpg",
    "discord": "https://discord.gg/HwR3u7tqr8",
    "discord_server": "IxDA",
@@ -1509,6 +1549,20 @@
    "fields": []
   },
   {
+   "name": "LiveWell",
+   "handle": "uwlivewell",
+   "instagram": "https://www.instagram.com/uwlivewell/",
+   "website": "https://linktr.ee/uwlivewell",
+   "category": "Service",
+   "about": "Promotes student health and well‑being with education, resources, and advocacy.",
+   "description": "UW LiveWell offers workshops on topics like legal rights, vaping, and mental health, often partnering with campus services. The program shares tips for self‑care, movement, and nutrition to support overall wellness.",
+   "logo": "/ig/clubs/uwlivewell.jpg",
+   "last_event": "2026-11-19",
+   "fields": [
+    "Health"
+   ]
+  },
+  {
    "name": "Lutheran Campus Ministry @ UW",
    "handle": "uwlutherans",
    "instagram": "https://www.instagram.com/uwlutherans/",
@@ -1519,6 +1573,20 @@
    "logo": "/ig/clubs/uwlutherans.jpg",
    "last_event": "2026-11-13",
    "fields": []
+  },
+  {
+   "name": "LUX: Film Production Club",
+   "handle": "uwluxvideo",
+   "instagram": "https://www.instagram.com/uwluxvideo/",
+   "website": "http://linktr.ee/uwluxvideo",
+   "category": "Arts",
+   "about": "UW students collaborate to make films and learn production skills.",
+   "description": "LUX meets weekly on Wednesdays at 6‑7:30 pm for film‑making workshops and projects. Members get hands‑on experience, from directing actors to producing talk‑show style videos. The club also hosts fun events like karaoke nights.",
+   "logo": "/ig/clubs/uwluxvideo.jpg",
+   "last_event": "2026-11-18",
+   "fields": [
+    "Arts & Humanities"
+   ]
   },
   {
    "name": "Makers at UW",
@@ -1608,10 +1676,10 @@
    "instagram": "https://www.instagram.com/mapsuw/",
    "website": "https://linktr.ee/Mapsuw",
    "category": "Academic",
-   "about": "A UW pre‑medical group supporting minority students.",
-   "description": "The Minority Association of Pre‑Med Students (MAPS) connects underrepresented pre‑med students through meetings, shadowing opportunities, and panels. They host tours of the UW School of Medicine, research talks, and provide resources like shadowing cohorts.",
+   "about": "Supports minority pre‑medical students with meetings, mentorship, and shadowing.",
+   "description": "MAPS hosts weekly Thursday meetings where members hear from physicians, learn about specialties, and discuss medical careers. The group also runs a winter shadowing cohort and organizes tours of the UW School of Medicine.",
    "logo": "/ig/clubs/mapsuw.jpg",
-   "last_event": "2026-11-12",
+   "last_event": "2026-11-19",
    "fields": [
     "Health"
    ]
@@ -1650,8 +1718,8 @@
    "instagram": "https://www.instagram.com/msauw/",
    "website": "https://linktr.ee/msauw",
    "category": "Faith & Spirituality",
-   "about": "Muslim Student Association fostering community, culture, and service",
-   "description": "The Muslim Student Association at UW builds a supportive community through cultural festivals, hygiene‑kit drives, and dawah discussions. Open to all students, they offer events that celebrate Muslim heritage and service.",
+   "about": "Builds a Muslim community at UW through cultural events and service projects.",
+   "description": "The Muslim Student Association offers cultural festivals, like the annual Culture Fest, and service activities such as hygiene‑kit drives. Students can join the Discord community and volunteer through the MSA volunteer corps.",
    "logo": "/ig/clubs/msauw.jpg",
    "discord": "https://discord.gg/wb56SYhaF6",
    "discord_server": "MSA UW Seattle",
@@ -2971,10 +3039,10 @@
    "instagram": "https://www.instagram.com/uwwomxnsrugby/",
    "website": "http://linktr.ee/uwwomxnsrugby",
    "category": "Sports",
-   "about": "Inclusive UW rugby club for womxn, open to all skill levels.",
-   "description": "The Womxn’s Husky Rugby Club welcomes anyone interested in playing or cheering on the field. They host home games at IMA Field and share highlights from matches across the region.",
+   "about": "UW's inclusive rugby club for womxn, open to all skill levels.",
+   "description": "The Womxn’s Husky Rugby Club welcomes anyone interested in playing rugby, regardless of experience. They share updates about games, such as matchups against CWU at Alder Field, and encourage members to DM with questions. The team builds community both on and off the field.",
    "logo": "/ig/clubs/uwwomxnsrugby.jpg",
-   "last_event": "2026-11-14",
+   "last_event": "2026-11-21",
    "fields": []
   },
   {

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T18:29",
+ "updated": "2026-11-17T14:15",
  "applications": [
   {
    "id": "DfZC1L5m8jD",
@@ -146,6 +146,30 @@
    "category": "Social"
   },
   {
+   "id": "Dfz8nzxH19z",
+   "host": "Husky Union Building (@hubatuw)",
+   "for": "Scholarships",
+   "kind": "Programs",
+   "deadline": "2026-12-31",
+   "link": "https://linktr.ee/hubatuw",
+   "post": "https://www.instagram.com/p/Dfz8nzxH19z/",
+   "posted": "2026-11-16",
+   "logo": "/ig/clubs/hubatuw.jpg",
+   "category": "Other"
+  },
+  {
+   "id": "Dfy4odKpt8k",
+   "host": "Muse Media (@muse_uw)",
+   "for": "Models and stylists",
+   "kind": "Team & staff",
+   "deadline": "2027-01-04",
+   "link": "https://musemediauw.com",
+   "post": "https://www.instagram.com/p/Dfy4odKpt8k/",
+   "posted": "2026-11-16",
+   "logo": "/ig/clubs/muse_uw.jpg",
+   "category": "Social"
+  },
+  {
    "id": "DfSr-h9ErrC",
    "host": "UW Student Activities Office (@uw_sao)",
    "for": "RSO registration",
@@ -156,18 +180,6 @@
    "posted": "2026-11-03",
    "logo": "/ig/clubs/uw_sao.jpg",
    "category": "Other"
-  },
-  {
-   "id": "DemnPH5GPFL",
-   "host": "The Collective (@uwimprov)",
-   "for": "Auditions",
-   "kind": "Auditions & tryouts",
-   "deadline": null,
-   "link": null,
-   "post": "https://www.instagram.com/p/DemnPH5GPFL/",
-   "posted": "2026-10-17",
-   "logo": "/ig/clubs/uwimprov.jpg",
-   "category": "Arts"
   },
   {
    "id": "Der1GjVGb1k",

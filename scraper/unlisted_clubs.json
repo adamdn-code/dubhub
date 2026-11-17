@@ -185,6 +185,12 @@
    "post by @thekompanyuw"
   ]
  },
+ "a_sh163": {
+  "status": "new",
+  "found": [
+   "post by @opsmileuw"
+  ]
+ },
  "a_wild_snivy": {
   "status": "new",
   "found": [
@@ -1645,6 +1651,12 @@
   ],
   "checked": "2026-11-14"
  },
+ "ecc": {
+  "status": "new",
+  "found": [
+   "post by @uwlsu"
+  ]
+ },
  "ecobuilduw": {
   "status": "huskylink",
   "found": [
@@ -2035,6 +2047,12 @@
    "post by @uwadpi"
   ]
  },
+ "gnshpathi": {
+  "status": "new",
+  "found": [
+   "post by @opsmileuw"
+  ]
+ },
  "gofundme": {
   "status": "new",
   "found": [
@@ -2188,6 +2206,12 @@
   "status": "new",
   "found": [
    "post by @uwwomensclubbaseball"
+  ]
+ },
+ "handsoffirancoalition": {
+  "status": "new",
+  "found": [
+   "post by @uw_sds"
   ]
  },
  "hannahthao_16": {
@@ -2474,6 +2498,12 @@
    "post by @fasasauw"
   ]
  },
+ "itss.yomna": {
+  "status": "new",
+  "found": [
+   "post by @opsmileuw"
+  ]
+ },
  "iuga.uw": {
   "status": "missing",
   "found": [
@@ -2736,6 +2766,12 @@
   "status": "new",
   "found": [
    "post by @uwundivided"
+  ]
+ },
+ "kaittlin._": {
+  "status": "new",
+  "found": [
+   "post by @opsmileuw"
   ]
  },
  "kappalambda1978": {
@@ -3304,6 +3340,12 @@
    "post by @uwwomensclubbaseball"
   ]
  },
+ "masonlaii": {
+  "status": "new",
+  "found": [
+   "post by @opsmileuw"
+  ]
+ },
  "masters": {
   "status": "new",
   "found": [
@@ -3624,6 +3666,18 @@
    "post by @huskyboxing"
   ]
  },
+ "nationalsds": {
+  "status": "new",
+  "found": [
+   "bio of @uw_sds"
+  ]
+ },
+ "nationalsjp": {
+  "status": "new",
+  "found": [
+   "bio of @super_uw"
+  ]
+ },
  "nativesoulcuisine": {
   "status": "new",
   "found": [
@@ -3854,6 +3908,12 @@
   "why": "Operation Smile UW Chapter",
   "checked": "2026-11-16"
  },
+ "optomsoph": {
+  "status": "new",
+  "found": [
+   "post by @uwpreoptclub"
+  ]
+ },
  "oraclesencosplay": {
   "status": "new",
   "found": [
@@ -3936,6 +3996,12 @@
    "post by @washingtonmensgymnastics"
   ]
  },
+ "pacsci": {
+  "status": "new",
+  "found": [
+   "post by @stem_pals_uw"
+  ]
+ },
  "paige_morris_22": {
   "status": "new",
   "found": [
@@ -3990,6 +4056,12 @@
    "bio of @huskysailingteam"
   ]
  },
+ "pearly_agarwal17": {
+  "status": "new",
+  "found": [
+   "post by @opsmileuw"
+  ]
+ },
  "pennyh235": {
   "status": "new",
   "found": [
@@ -4019,10 +4091,22 @@
    "bio of @uwphimu"
   ]
  },
+ "phoeeb.c": {
+  "status": "new",
+  "found": [
+   "post by @opsmileuw"
+  ]
+ },
  "photos.bychristian": {
   "status": "new",
   "found": [
    "post by @huskywrestlingclub"
+  ]
+ },
+ "pia._.dave": {
+  "status": "new",
+  "found": [
+   "post by @opsmileuw"
   ]
  },
  "piebirdbakeshop": {
@@ -4192,6 +4276,12 @@
    "post by @uwdawgdaze"
   ]
  },
+ "repadamsmith": {
+  "status": "new",
+  "found": [
+   "post by @super_uw"
+  ]
+ },
  "repjayapal": {
   "status": "new",
   "found": [
@@ -4231,7 +4321,8 @@
  "riverwaysedu": {
   "status": "new",
   "found": [
-   "post by @shpeuw"
+   "post by @shpeuw",
+   "post by @stem_pals_uw"
   ]
  },
  "rlz1920": {
@@ -4461,6 +4552,12 @@
    "post by @a2f.uw"
   ]
  },
+ "seattle_upward_bound": {
+  "status": "new",
+  "found": [
+   "post by @stem_pals_uw"
+  ]
+ },
  "seattleaquarium": {
   "status": "new",
   "found": [
@@ -4646,6 +4743,12 @@
    "post by @tosauw"
   ]
  },
+ "simran.kbrar": {
+  "status": "new",
+  "found": [
+   "post by @opsmileuw"
+  ]
+ },
  "sionetnickerson": {
   "status": "new",
   "found": [
@@ -4803,6 +4906,12 @@
    "post by @washingtonsuperbike"
   ]
  },
+ "super.uwseattle": {
+  "status": "new",
+  "found": [
+   "bio of @super_uw"
+  ]
+ },
  "super_familia": {
   "status": "new",
   "found": [
@@ -4906,6 +5015,12 @@
   "status": "new",
   "found": [
    "post by @homeroomuw"
+  ]
+ },
+ "tariq_el_tahrir": {
+  "status": "new",
+  "found": [
+   "bio of @super_uw"
   ]
  },
  "tarobreaad": {
@@ -5503,10 +5618,13 @@
   "why": "student sustainability group"
  },
  "uw_tc_26": {
-  "status": "new",
+  "status": "not",
   "found": [
    "bio of @uwtranscollective"
-  ]
+  ],
+  "name": "Trans Collective at UW",
+  "why": "a second account of Trans Collective at University of Washington (@uwtranscollective)",
+  "checked": "2026-11-17"
  },
  "uw_wildlifesociety": {
   "found": [
@@ -5531,16 +5649,24 @@
   "why": "a second account of Women’s Club Soccer at UW (@uwclubwsoc)"
  },
  "uw_xra": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @cseeduw"
-  ]
+  ],
+  "name": "Extended Reality Association",
+  "why": "Extended Reality Association",
+  "checked": "2026-11-17"
  },
  "uwadpi.dei": {
-  "status": "new",
+  "status": "not",
   "found": [
    "bio of @uwadpi"
-  ]
+  ],
+  "name": "UW Alpha Delta Pi DEI",
+  "bio": "Diversity, Equity and Inclusion \n@uwadpi • Alpha Theta Chapter",
+  "latest": "2026-11-01",
+  "checked": "2026-11-17",
+  "why": "a second account of Alpha Delta Pi (@uwadpi)"
  },
  "uwallenschool": {
   "status": "new",
@@ -5550,10 +5676,13 @@
   ]
  },
  "uwalphachi": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @uwpike"
-  ]
+  ],
+  "name": "ALPHA CHI OMEGA",
+  "why": "Alpha Chi Omega",
+  "checked": "2026-11-17"
  },
  "uwalphasig": {
   "found": [
@@ -5567,10 +5696,13 @@
   "why": "fraternity chapter at UW"
  },
  "uwaoii.div": {
-  "status": "new",
+  "status": "inactive",
   "found": [
    "bio of @uw.aoii"
-  ]
+  ],
+  "name": null,
+  "why": "latest post 2021-01-20",
+  "checked": "2026-11-17"
  },
  "uwartsci": {
   "status": "not",
@@ -5609,10 +5741,15 @@
   "checked": "2026-11-14"
  },
  "uwbotanicgardens": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwfarm"
-  ]
+  ],
+  "name": "UW Botanic Gardens",
+  "bio": "Plant research, display, and education. Come visit our outstanding living collections!🌲🌿🌼Use #myuwbg for a chance to be featured!!",
+  "latest": "2026-11-16",
+  "checked": "2026-11-17",
+  "why": "university facility, not student-run club"
  },
  "uwbrigades": {
   "found": [
@@ -6175,6 +6312,12 @@
   "status": "new",
   "found": [
    "post by @uwzeta"
+  ]
+ },
+ "varsha.mantra": {
+  "status": "new",
+  "found": [
+   "post by @opsmileuw"
   ]
  },
  "varsityvocals": {
