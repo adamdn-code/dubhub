@@ -11,7 +11,7 @@
    "status": "club",
    "club": "cseed (@cseeduw)",
    "why": "matches a club DubHub knows",
-   "checked": "2026-11-17"
+   "checked": "2026-11-18"
   },
   "cal-4sCzh3E6Dr5ORFx": {
    "name": "Haulvana",
@@ -252,6 +252,16 @@
    "start": "2026-11-18",
    "by": [
     "cseed"
+   ]
+  },
+  "52mqewvo": {
+   "kind": "event",
+   "event": "evt-QOR9KJh4w4BsUlv",
+   "calendar": "cal-yPvdcNDOkmVE5Pl",
+   "personal": true,
+   "start": "2026-11-22",
+   "by": [
+    "MSA UW (@msauw)"
    ]
   }
  }

@@ -80,16 +80,20 @@
   "checked": "2026-11-15"
  },
  "Disability & d/Deaf Cultural Center": {
-  "status": "new",
+  "status": "none",
   "by": [
    "ASUW Office of Inclusive Design (@asuwoid)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-17"
  },
  "Esec Team": {
-  "status": "new",
+  "status": "none",
   "by": [
    "an event on Luma, on the UW campus"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-18"
  },
  "Figma": {
   "status": "known",
@@ -157,6 +161,12 @@
    "Ethnic Cultural Center (ECC) (@uw_ecc)"
   ]
  },
+ "MEChA": {
+  "status": "new",
+  "by": [
+   "University of Washington CCM (@uwccm)"
+  ]
+ },
  "Microsoft Learn Student Ambassadors": {
   "status": "new",
   "by": [
@@ -213,6 +223,12 @@
   "status": "new",
   "by": [
    "Alpha Xi (AΞ) Chapter of AΦA (@uwalphas)"
+  ]
+ },
+ "SpaceXSI": {
+  "status": "new",
+  "by": [
+   "an event on Luma, on the UW campus"
   ]
  },
  "Student Disability Commission": {
@@ -293,6 +309,12 @@
   "status": "new",
   "by": [
    "Gaming Assoc. at UW (@wgauw)"
+  ]
+ },
+ "WiChE": {
+  "status": "new",
+  "by": [
+   "Women in Chemical Engineering (@wcheuw)"
   ]
  },
  "Women in Cybersecurity": {

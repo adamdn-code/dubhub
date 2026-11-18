@@ -249,7 +249,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "Alpha Theta Delta|Interdisciplinary design fraternity for creative projects."
+"from": "Alpha Theta Delta|Interdisciplinary design fraternity promoting creative projects."
 },
 "americanassociationofpsychiatricpharmacistscollegiate": {
 "fields": [
@@ -714,7 +714,7 @@
 "fields": [
 "Social Sciences"
 ],
-"from": "ASUW Office of Government Relations|"
+"from": "ASUW Office of Government Relations|Student‑run office advocating for UW interests in government."
 },
 "asuwofficeofinclusivedesign": {
 "fields": [],
@@ -1080,10 +1080,8 @@
 "from": "Call of Duty @ UW|A place for people to play and talk about Call of Duty!"
 },
 "campkesem": {
-"fields": [
-"Health"
-],
-"from": "Camp Kesem at UW Seattle|Provides free camps and peer support for kids affected by a parent's cancer"
+"fields": [],
+"from": "Camp Kesem at UW Seattle|Runs free camps and peer support for children of cancer patients."
 },
 "cannaclub": {
 "fields": [
@@ -1970,7 +1968,7 @@
 "fields": [
 "Social Sciences"
 ],
-"from": "First Generation Leaders in preLaw|We are an undergraduate student prelaw organization at the University of Washington founded by firstgeneration…"
+"from": "First Generation Leaders in preLaw|Community supporting underrepresented pre‑law students at UW."
 },
 "firstlove": {
 "fields": [],
@@ -2208,7 +2206,7 @@
 "fields": [
 "Health"
 ],
-"from": "Global Medical and Dental Brigades UW Chapter|We are a studentrun organization striving to promote global health equality."
+"from": "Global Medical and Dental Brigades UW Chapter|Student group organizing medical and dental volunteer trips abroad."
 },
 "globalmedicalmissionsalliance": {
 "fields": [
@@ -2929,8 +2927,10 @@
 "from": "Institute of Transportation Engineers at the University of Washington|Connects UW students with transportation industry professionals."
 },
 "institutionalclimateaction": {
-"fields": [],
-"from": "Institutional Climate Action UW Chapter|ICA is a Climate Justice coalition demanding our Washington State higher education institutions begin modelling the…"
+"fields": [
+"Sciences"
+],
+"from": "Institutional Climate Action UW Chapter|Advocates for UW to cut ties with fossil fuels."
 },
 "interactiondesignassociationixda": {
 "fields": [
@@ -3198,7 +3198,7 @@
 },
 "laostudentassociation": {
 "fields": [],
-"from": "Lao Student Association|We, the Lao Student Association at the University of Washington strive to provide a safe and inclusive environment for…"
+"from": "Lao Student Association|Promotes and preserves Lao culture on campus."
 },
 "latinestudentunion": {
 "fields": [],
@@ -3911,7 +3911,7 @@
 "fields": [
 "Sciences"
 ],
-"from": "Organic Steps|Organic chemistry tutoring club offering study sessions and workshops."
+"from": "Organic Steps|Provides organic chemistry tutoring and workshops for UW students."
 },
 "organizationofhuaclassmates": {
 "fields": [],
@@ -4041,7 +4041,7 @@
 },
 "persiancircle": {
 "fields": [],
-"from": "Persian Circle|Fosters Persian culture through social events, cooking, and community."
+"from": "Persian Circle|Celebrates Persian culture with events, food, and community."
 },
 "personalfinance": {
 "fields": [
@@ -4210,7 +4210,7 @@
 },
 "pokemontrainerclub": {
 "fields": [],
-"from": "Pokemon Trainer Club at UW|Campus club for Pokémon fans to play, compete, and share art."
+"from": "Pokemon Trainer Club at UW|Club for Pokémon fans to play, trade, and compete together."
 },
 "polynesianstudentalliance": {
 "fields": [],
@@ -4400,7 +4400,7 @@
 },
 "qcenter": {
 "fields": [],
-"from": "Q Center|Queer, trans, and allied space offering programs and resources."
+"from": "Q Center|Affirming space offering resources and community for queer and trans students."
 },
 "qplusplus": {
 "fields": [],
@@ -4423,7 +4423,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Queer Cinema History at the University of Washington|Weekly queer film screenings for all majors and allies."
+"from": "Queer Cinema History at the University of Washington|Screens queer‑focused movies and shows for the UW community."
 },
 "queertranssportsclub": {
 "fields": [],
@@ -4467,7 +4467,7 @@
 },
 "reformeduniversityfellowship": {
 "fields": [],
-"from": "Reformed University Fellowship|Christian campus ministry offering Bible study, small groups, and fellowship activities."
+"from": "Reformed University Fellowship|Christian fellowship, Bible study, and community events for UW students."
 },
 "regenerationfieldinstitute": {
 "fields": [
@@ -5269,7 +5269,7 @@
 },
 "taiwaneseoverseasstudentassociation": {
 "fields": [],
-"from": "Taiwanese Overseas Student Association|Taiwanese student group hosting cultural events, games, and fundraisers."
+"from": "Taiwanese Overseas Student Association|Taiwanese student association promoting culture and community."
 },
 "taiwanesestudentassociation": {
 "fields": [],
@@ -5375,13 +5375,13 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "The Association of Library and Information Science Students at the University of Washington|Organization for library and information science students at UW."
+"from": "The Association of Library and Information Science Students at the University of Washington|Supports UW library and information science students."
 },
 "basement": {
 "fields": [
 "Arts & Humanities"
 ],
-"from": "the BASEMENT|Student‑run gallery and magazine showcasing visual art on campus."
+"from": "the BASEMENT|Student‑run gallery and magazine showcasing visual art."
 },
 "biomedicalbulletin": {
 "fields": [
@@ -5393,7 +5393,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "The Black Student Journal|Black Student Journal for UW community, publishing student writing."
+"from": "The Black Student Journal|Student‑run journal highlighting Black voices, literature, and discussion."
 },
 "booknook": {
 "fields": [
@@ -5519,7 +5519,7 @@
 },
 "purplegroup": {
 "fields": [],
-"from": "The Purple Group|The Purple Group provides a peer support network for undocumented students that meet weekly to foster community…"
+"from": "The Purple Group|Peer support network for undocumented and DACA students at UW."
 },
 "pursuitnwyoungadults": {
 "fields": [],
@@ -5671,7 +5671,7 @@
 },
 "tzuchicollegiateassociationseattle": {
 "fields": [],
-"from": "Tzu Chi Collegiate Association Seattle Chapter|The Tzu Chi Collegiate Association at Seattle (Seattle & UW Tzu Ching) is the servicebased collegiate organization…"
+"from": "Tzu Chi Collegiate Association Seattle Chapter|Volunteer group focused on humanitarian service in Seattle."
 },
 "ultrasoundinterestgroup": {
 "fields": [
@@ -5707,7 +5707,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Undergraduate Theater Society|Creates inclusive theatre productions and learning opportunities for undergrads."
+"from": "Undergraduate Theater Society|Creates inclusive theatre productions and learning opportunities for UW undergrads."
 },
 "undergraduatewomeninbusinessuwib": {
 "fields": [
@@ -5758,7 +5758,7 @@
 "fields": [
 "Business"
 ],
-"from": "Investment Group at the University of Washington|Student club focused on investing and finance."
+"from": "Investment Group at the University of Washington|Student club focused on investing and finance education."
 },
 "unleashedacappella": {
 "fields": [],
@@ -5874,7 +5874,7 @@
 },
 "vietnamesestudentassociation": {
 "fields": [],
-"from": "Vietnamese Student Association|Celebrates Vietnamese culture and community for UW students."
+"from": "Vietnamese Student Association|Vietnamese cultural association for UW students."
 },
 "virtualbedsideconcerts": {
 "fields": [
@@ -6003,7 +6003,7 @@
 },
 "washingtonyachtclub": {
 "fields": [],
-"from": "Washington Yacht Club|Our purpose is to teach and promote sailing among students, staff and alumni of the University of Washington."
+"from": "Washington Yacht Club|Student-run sailing club teaching sailing and hosting boat events at UW."
 },
 "wasiancultureclub": {
 "fields": [],
@@ -6085,10 +6085,9 @@
 },
 "womeninchemicalengineering": {
 "fields": [
-"Engineering",
-"Sciences"
+"Engineering"
 ],
-"from": "Women in Chemical Engineering at the University of Washington|Supports and mentors women in chemical engineering through community events and professional development."
+"from": "Women in Chemical Engineering at the University of Washington|Supports women in chemical engineering through mentorship and professional development."
 },
 "womenincomputing": {
 "fields": [
