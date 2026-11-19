@@ -1,41 +1,6 @@
 {
- "updated": "2026-11-18T18:03",
+ "updated": "2026-11-19T00:26",
  "events": [
-  {
-   "id": "lm-evt-uQJGSS4BSGRgxaC",
-   "title": "Fireside Chat with Joe Alterio",
-   "type": "Club",
-   "host": "cseed",
-   "where": "CSE2 G10",
-   "pos": null,
-   "date": "2026-11-18",
-   "start": "16:30",
-   "end": "18:30",
-   "url": "https://luma.com/pjpuuh1h",
-   "source": "luma",
-   "description": "CSEED is so excited to welcome Joe Alterio into UW! 🎨💻\nJoe Alterio is a multidisciplinary creative working at the intersection of art, technology, design, and storytelling. With over 15 years of experience leading design and product teams, he has created digital products and experiences across industries like media, publishing, gaming, and technology.\nThroughout his career, Joe has collaborated with major brands including Microsoft, Starbucks, Disney, Nickelodeon, Adobe, and Amazon. His work has received recognition from the Webby, Addy, and Anthem Awards and has been featured in The New York Times, The Atlantic, The Boston Globe, and the BBC.\nJoe is also an accomplished speaker, having shared his insights at SXSW, San Diego Comic-Con, and other major events. He co-hosts the design podcast Designer & Designer and is passionate about creativity, collaboration, and building teams where people can do their best work.\nJoin us for an exciting conversation about creativity, design, technology, and what it means to build things that matter. Don’t miss this opportunity to learn from someone who has spent over 15 years pushing creative boundaries!\nSee you there!! 🌟\n📅 Wednesday, November 18\n🕟 4:30–6:30 PM\n📍 CSE2 G10",
-   "image": "https://images.lumacdn.com/uploads/72/17cbc0cd-9631-48aa-9615-9cb9d03b0d76.webp",
-   "rsvps": 35
-  },
-  {
-   "id": "lm-evt-WraCRZIUFuHqu6K",
-   "title": "BuildHer Expo",
-   "type": "Club",
-   "host": "cseed (@cseeduw)",
-   "where": "PACCAR Hall",
-   "pos": [
-    47.65938,
-    -122.30901
-   ],
-   "date": "2026-11-18",
-   "start": "17:30",
-   "end": "19:00",
-   "url": "https://luma.com/mel1nc3d",
-   "source": "luma",
-   "description": "cseed buildHER is hosting our last event of fall quarter - buildHER fall EXPO!!!\nCome join us to explore Arduino, 3D modeling, Figma and more surrounded by a community of builders in a welcoming and inquisitive environment.\nThe expo will feature hands-on booths where you can dive into exploring these technologies, and leave having learned something new.\nWe hope to see you there!",
-   "image": "https://images.lumacdn.com/uploads/b7/f727062b-2629-4878-969c-c503463fe7e9.jpg",
-   "rsvps": 65
-  },
   {
    "id": "lm-evt-XIyWlZpjAZEavfV",
    "title": "Panel: HCI/HCDE Role Possibilities",
@@ -72,7 +37,7 @@
    "source": "luma",
    "description": "Arguably best MSA event of the year, you don’t want to miss it.",
    "image": "https://images.lumacdn.com/gallery-images/vi/fd9cbf3d-ed20-41dc-af79-1d38989c6c11.png",
-   "rsvps": 85
+   "rsvps": 89
   }
  ]
 }

@@ -31,8 +31,8 @@
    "instagram": "https://www.instagram.com/acsa_uw/",
    "website": "https://linktr.ee/acsa.udub",
    "category": "Cultural",
-   "about": "African Caribbean Student Association celebrating culture and community at UW.",
-   "description": "ACSA celebrates African and Caribbean heritage with lively events such as the PIE the E‑Board party and a mock wedding. These activities foster community spirit and cultural pride on campus.",
+   "about": "Celebrates African and Caribbean culture through events and community.",
+   "description": "The African Caribbean Student Association brings together students to celebrate African and Caribbean heritage. They host fun social events like themed parties, cultural activities, and community gatherings. Join to connect, share traditions, and enjoy a vibrant campus community.",
    "logo": "/ig/clubs/acsa_uw.jpg",
    "last_event": "2026-11-24",
    "fields": []
@@ -255,8 +255,8 @@
    "instagram": "https://www.instagram.com/uwaacf/",
    "website": "https://www.flowcode.com/page/uwaacf",
    "category": "Faith & Spirituality",
-   "about": "Asian American Christian fellowship providing weekly gatherings and spiritual support.",
-   "description": "AACF UW meets Wednesdays for worship, prayer, and fellowship, sharing verses and encouragement during the semester. The group also connects members through social media and smaller interest groups.",
+   "about": "Asian American Christian fellowship for students at UW.",
+   "description": "AACF UW offers weekly gatherings, prayer, and community for Asian American Christians. They share merch, midterm support, and fellowship activities throughout the year.",
    "logo": "/ig/clubs/uwaacf.jpg",
    "last_event": "2027-01-10",
    "fields": []
@@ -541,10 +541,10 @@
    "instagram": "https://www.instagram.com/businessimpactgroupuw/",
    "website": "https://linktr.ee/uwbig",
    "category": "Business",
-   "about": "Undergrad consulting org helping startups, small biz & social groups.",
-   "description": "Business Impact Group connects UW students with real‑world consulting projects. Join to gain experience advising startups, small businesses, and nonprofits while building professional skills.",
+   "about": "Undergraduate consulting group helping startups and organizations grow.",
+   "description": "Business Impact Group connects students with real consulting projects for startups, small businesses, and nonprofits. They host speaker panels, alumni evenings, and career‑focused events to develop consulting skills.",
    "logo": "/ig/clubs/businessimpactgroupuw.jpg",
-   "last_event": "2026-11-09",
+   "last_event": "2026-11-20",
    "fields": [
     "Business"
    ]
@@ -593,10 +593,10 @@
    "instagram": "https://www.instagram.com/uwnewman/",
    "website": "http://uwnewman.org",
    "category": "Faith & Spirituality",
-   "about": "Catholic community fostering faith, fellowship, and service at UW.",
-   "description": "The Catholic Newman Center provides worship, retreats, and social events such as pie‑making and lectures, helping students grow spiritually and build friendships.",
+   "about": "Catholic student center providing prayer, fellowship, and faith‑based activities.",
+   "description": "The Catholic Newman Center hosts weekly fellowship events, retreats, and lectures such as a talk on Christian friendship. It invites students to grow in faith, enjoy community meals, and explore spiritual life on campus.",
    "logo": "/ig/clubs/uwnewman.jpg",
-   "last_event": "2026-11-14",
+   "last_event": "2026-11-22",
    "fields": []
   },
   {
@@ -605,10 +605,10 @@
    "instagram": "https://www.instagram.com/uwcircle/",
    "website": "https://linktr.ee/uwcircle",
    "category": "Cultural",
-   "about": "Fosters cultural engagement and community through events and resources.",
-   "description": "UW CIRCLE promotes cultural exchange and community building with interactive events like murder‑mystery parties, gratitude challenges, and social nights for graduate students. The group offers a space to connect across cultures on campus.",
+   "about": "Program fostering cultural exchange and community for international students at UW.",
+   "description": "UW CIRCLE creates cultural engagement opportunities, from Thanksgiving home‑cooked meals to interactive murder‑mystery parties. The initiative connects international students with faculty, staff, and peers for a global campus experience.",
    "logo": "/ig/clubs/uwcircle.jpg",
-   "last_event": "2026-11-20",
+   "last_event": "2026-11-25",
    "fields": []
   },
   {
@@ -631,8 +631,8 @@
    "instagram": "https://www.instagram.com/csauw/",
    "website": "https://linktr.ee/csauw",
    "category": "Cultural",
-   "about": "Chinese Student Association connecting Chinese students and celebrating culture.",
-   "description": "CSA UW brings together Chinese students and allies through cultural events, family reveals, and fun themed nights. Their Instagram shows lively gatherings and invites newcomers to join.",
+   "about": "Chinese Student Association promoting Chinese culture and community at UW.",
+   "description": "CSA UW organizes cultural events, family reveal gatherings, and social activities for Chinese and interested students. Members celebrate traditions and build friendships across campus.",
    "logo": "/ig/clubs/csauw.jpg",
    "last_event": "2026-11-20",
    "fields": []
@@ -668,12 +668,12 @@
    "instagram": "https://www.instagram.com/christiansinseattleatuw/",
    "website": "http://cisuw.com",
    "category": "Faith & Spirituality",
-   "about": "Christian fellowship group offering meals, worship, and open discussion.",
-   "description": "Christians in Seattle at UW provides a welcoming space for worship, fellowship, and conversation. Gatherings include meals, discussion groups, and open‑door events for anyone interested.",
+   "about": "Faith community for Christian students and seekers at UW.",
+   "description": "Christians in Seattle offers worship gatherings, dinner fellowship, and open discussions for believers and those exploring faith. Meetings are held on weekdays and weekends in campus spaces, welcoming all.",
    "logo": "/ig/clubs/christiansinseattleatuw.jpg",
    "discord": "https://discord.gg/KaU6RJ3ZWE",
    "discord_server": "Christians in Seattle UW",
-   "last_event": "2026-11-13",
+   "last_event": "2026-11-22",
    "fields": []
   },
   {
@@ -725,12 +725,12 @@
    "instagram": "https://www.instagram.com/uwcom2/",
    "website": "https://linktr.ee/uwcom2",
    "category": "Tech",
-   "about": "Fosters a welcoming community for computing students in the Allen School.",
-   "description": "COM² organizes events, officer introductions, and networking opportunities to make the Allen School feel like home. Members can RSVP to gatherings and stay connected through the club’s Instagram.",
+   "about": "Computing community offering social events and support for Allen School students.",
+   "description": "COM² aims to make the Allen School feel like home, hosting officer introductions and relaxed gatherings like craft nights. It provides a welcoming space for students to connect beyond coursework.",
    "logo": "/ig/clubs/uwcom2.jpg",
    "discord": "https://discord.gg/TyHTz6gtX8",
    "discord_server": "Computing Community (COM2) @ the University of Washington",
-   "last_event": "2026-11-18",
+   "last_event": "2026-12-08",
    "fields": [
     "Computing & Math"
    ]
@@ -741,8 +741,8 @@
    "instagram": "https://www.instagram.com/uwconsultingassociation/",
    "website": "https://linktr.ee/uwconsultingassociation",
    "category": "Business",
-   "about": "Consulting club offering workshops, networking and events with top firms for aspiring consultants.",
-   "description": "UW Consulting Association provides consulting‑focused workshops, case‑practice events, and speaker sessions with firms like McKinsey. It’s a place to build professional skills, network, and bond with fellow aspiring consultants.",
+   "about": "Student consulting club linking members with industry insights and networking opportunities.",
+   "description": "UW Consulting Association hosts panels with firms like Rainier Partners, collaborates with other student groups, and runs social events such as bracelet‑making bonding nights. It supports members at every stage of their professional journey.",
    "logo": "/ig/clubs/uwconsultingassociation.jpg",
    "last_event": "2026-11-06",
    "fields": [
@@ -769,15 +769,13 @@
    "instagram": "https://www.instagram.com/uwcostumeclub/",
    "website": "https://linktr.ee/uwcostumeclub",
    "category": "Arts",
-   "about": "Student group that sews, crafts, and creates costumes together.",
-   "description": "Costume Club meets Thursdays 6‑10 PM in HUT 135’s costume shop, where members sew and chat. They host fun events like the Sweetheart Saloon western cosplay celebration. Join to learn crafting skills and meet fellow creators.",
+   "about": "Club for sewing, crafting, and sharing costumes and cosplay creations.",
+   "description": "Costume Club meets Thursdays in the HUT 135 Costume Shop for sewing and chat, and organizes cosplay contests, meetups at events like Kumoricon, and volunteer opportunities for themed productions. It’s a creative hub for costume enthusiasts.",
    "logo": "/ig/clubs/uwcostumeclub.jpg",
    "discord": "https://discord.gg/9FGhppagYs",
    "discord_server": "UW Costume Club",
    "last_event": "2027-02-13",
-   "fields": [
-    "Arts & Humanities"
-   ]
+   "fields": []
   },
   {
    "name": "Cru at UW",
@@ -785,8 +783,8 @@
    "instagram": "https://www.instagram.com/uwcru/",
    "website": "https://linktr.ee/uwcru",
    "category": "Faith & Spirituality",
-   "about": "Multicultural Christian community connecting people to Jesus.",
-   "description": "Cru at UW Seattle welcomes students from all backgrounds to grow in faith, share meals, and build lasting friendships. Join us for worship, community events, and meaningful conversations that deepen your spiritual journey.",
+   "about": "Multicultural Christian community focused on worship, fellowship, and service.",
+   "description": "Cru at UW offers gatherings for worship, spiritual gifts, and community building, including events like whittling nights, waffles, and Friendsgiving. It strives to connect people to Jesus in a caring, diverse environment.",
    "logo": "/ig/clubs/uwcru.jpg",
    "discord": "https://discord.gg/q92uGaj3Fr",
    "discord_server": "Cru Seattle Metro Server",
@@ -1100,9 +1098,9 @@
    "handle": "futurenursesatuw",
    "instagram": "https://www.instagram.com/futurenursesatuw/",
    "website": "https://linktr.ee/futurenursesuw",
-   "category": "Academic",
-   "about": "Provides mentorship and resources for UW nursing students.",
-   "description": "Future Nurses Club mentors current and prospective nursing students through workshops, mixers, and application guidance. Members connect with peers and learn about the UW School of Nursing pathways.",
+   "category": "Service",
+   "about": "Mentorship club supporting UW nursing students through peer guidance.",
+   "description": "Future Nurses Club provides mentorship and networking for current nursing students. Officers introduce themselves each year to lead recruitment, marketing, and social initiatives.",
    "logo": "/ig/clubs/futurenursesatuw.jpg",
    "last_event": "2026-11-16",
    "fields": [
@@ -1116,7 +1114,7 @@
    "website": "https://www.uw-wga.org",
    "category": "Gaming",
    "about": "Campus hub for esports, trading card games, and pop‑culture events.",
-   "description": "The Gaming Association at UW hosts esports tournaments, trading card game meetups, and pop‑culture gatherings. Members can join TCG events, win free packs, and connect with fellow gamers.",
+   "description": "The Gaming Association at UW organizes TCG tournaments, free Pokémon pack giveaways, and other gaming gatherings. It brings together students who love esports, card games, and broader pop‑culture activities.",
    "logo": "/ig/clubs/wgauw.jpg",
    "last_event": "2027-04-24",
    "fields": []
@@ -2120,8 +2118,8 @@
    "instagram": "https://www.instagram.com/uwprepharmacy/",
    "website": "https://linktr.ee/uwprepharm",
    "category": "Academic",
-   "about": "UW Pre‑Pharmacy Club supports students pursuing pharmacy careers with resources.",
-   "description": "The UW Pre‑Pharmacy Club provides resources like CASPer preparation sessions and health‑topic talks for aspiring pharmacists. Members share study tips, host events, and build a supportive community.",
+   "about": "Undergraduate group supporting pre‑pharmacy students with resources and events.",
+   "description": "UW Pre‑Pharmacy Club offers CASPer preparation sessions, career talks on PharmD pathways, and social gatherings with treats. It aims to help members feel confident and informed about pharmacy careers.",
    "logo": "/ig/clubs/uwprepharmacy.jpg",
    "discord": "https://discord.gg/VqS93CqrpA",
    "discord_server": "UW Pre-Pharmacy Club",
@@ -2308,8 +2306,8 @@
    "instagram": "https://www.instagram.com/spsuw/",
    "website": "https://linktr.ee/sherepunjab?utm_source=linktree_admin_share",
    "category": "Cultural",
-   "about": "Celebrates Punjabi culture with food socials and fun gatherings.",
-   "description": "The Sher‑E‑Punjab Society promotes Punjabi heritage on campus through cultural events. Members enjoy traditions like mango lassi socials, gol gappa contests, and game nights that bring the community together.",
+   "about": "Society celebrating Punjabi culture and heritage at UW.",
+   "description": "Sher‑E‑Punjab Society promotes Punjabi traditions through events and community building. The group shares updates about its leadership and activities each academic year.",
    "logo": "/ig/clubs/spsuw.jpg",
    "last_event": "2026-11-10",
    "fields": []

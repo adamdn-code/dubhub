@@ -95,6 +95,12 @@
   "handle": null,
   "checked": "2026-11-18"
  },
+ "Fedayeen Football": {
+  "status": "new",
+  "by": [
+   "SUPER UW (@super_uw)"
+  ]
+ },
  "Figma": {
   "status": "known",
   "by": [
@@ -128,10 +134,12 @@
   "checked": "2026-11-15"
  },
  "GitHub": {
-  "status": "new",
+  "status": "none",
   "by": [
    "the list of companies' campus programs"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-19"
  },
  "Google Developer Groups": {
   "status": "new",
@@ -237,6 +245,12 @@
   "status": "new",
   "by": [
    "an event on Luma, on the UW campus"
+  ]
+ },
+ "Stormtry Sail Club": {
+  "status": "new",
+  "by": [
+   "Husky Sailing Team (@huskysailingteam)"
   ]
  },
  "Student Disability Commission": {

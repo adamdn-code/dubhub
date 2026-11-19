@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T14:34",
+ "updated": "2026-11-19T00:24",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -1397,9 +1397,9 @@
    "name": "Black in Computer Science and Engineering",
    "website": "https://huskylink.washington.edu/blackincomputerscienceandengineering/",
    "category": "Engineering",
-   "about": "The purpose of Black in Computer Science and Engineering is to build a supportive community for Black students in…",
-   "description": "The purpose of Black in Computer Science and Engineering is to build a supportive community for Black students in computer science and engineering at the University of Washington.",
-   "logo": null
+   "about": "Black in Computer Science and Engineering brings together students of all backgrounds and identities across the Paul G.",
+   "description": "Black in Computer Science and Engineering brings together students of all backgrounds and identities across the Paul G. Allen School of Computer Science and Engineering who want to support and grow a community centered on Black students in computing. We strive to create a space where members feel a sense of belonging and grow together within the Allen School, personally, academically, and professionally.",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_629350_Cropped_Circle_Logo_Black_Version_0b6bb14e-12c6-446c-a0d1-1ff8feafda8c_1118234711.png"
   },
   {
    "name": "Black in Informatics",
@@ -9444,86 +9444,6 @@
  ],
  "events": [
   {
-   "id": "hl-375528",
-   "title": "Lab Animal Veterinarian Guest Speaker",
-   "type": "Study",
-   "host": "PreVeterinary Society",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-18",
-   "start": "17:30",
-   "end": "18:30",
-   "url": "https://huskylink.washington.edu/prevet/rsvp?id=375528",
-   "source": "huskylink",
-   "description": "Join us for a special meeting with Dr. Moore, a lab animal veterinarian at UW’s Department of Comparative Medicine! Learn about her career path, experiences in laboratory animal medicine, and what it's like working as a veterinarian at UW.",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639712_PreVeterinary_Society_Logojpg_637b279e-454b-4f14-a127-f59c31d4bc93_113213040.jpeg",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375055",
-   "title": "UNA UW Chapter Meeting",
-   "type": "Club",
-   "host": "United Nations Association University of Washington Chapter",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-18",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/unauw/rsvp?id=375055",
-   "source": "huskylink",
-   "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!",
-   "image": null,
-   "rsvps": 1
-  },
-  {
-   "id": "hl-375246",
-   "title": "Commander Night at the Hub!",
-   "type": "Game night",
-   "host": "WGA Magic: The Gathering",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-18",
-   "start": "18:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375246",
-   "source": "huskylink",
-   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_Magic_The_Gathering_Commander_2015_logojpg_a7d6e719-41a9-4aa8-9637-b06d03cff3d9_1092025.jpeg",
-   "rsvps": 0
-  },
-  {
-   "id": "hl-375531",
-   "title": "Thanksgiving Social",
-   "type": "Hangout",
-   "host": "The Women's Network at UW",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-18",
-   "start": "18:00",
-   "end": "19:00",
-   "url": "https://huskylink.washington.edu/thewomensnetwork/rsvp?id=375531",
-   "source": "huskylink",
-   "description": "Come make Thanksgiving thank you cards with us!!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_610611_Thanksgiving_post_1300_x_780_px_49451091-13c1-4d63-8c50-b5a6e2f33a74_11122335.png",
-   "rsvps": 1
-  },
-  {
-   "id": "hl-375372",
-   "title": "Large Group",
-   "type": "Club",
-   "host": "Asian American Christian Fellowship",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-18",
-   "start": "19:00",
-   "end": "21:00",
-   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375372",
-   "source": "huskylink",
-   "description": "Weekly gathering that brings together the entire community of AACF for worship, teaching, and community-building activities.\nCheck our Instagram @uwaacf for details! Locations may be subject to change each week.",
-   "image": null,
-   "rsvps": 0
-  },
-  {
    "id": "hl-375339",
    "title": "RSO Drop-In Advising",
    "type": "Study",
@@ -9677,6 +9597,22 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375247",
+   "title": "Commander Night at the Hub!",
+   "type": "Game night",
+   "host": "WGA Magic: The Gathering",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-23",
+   "start": "18:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/wgamtg/rsvp?id=375247",
+   "source": "huskylink",
+   "description": "Come play Magic: the Gathering Commander with us! Mondays and Wednesdays during the quarter in the Hub gameroom (in the basement, stairs down next to the Starbucks), relocated elsewhere when the Hub is closed (check Discord for notifications!) All power levels frequent. Proxy friendly.\nFor more information and to find a group whenever you want, check our club page to find our Discord link!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_Magic_The_Gathering_Commander_2015_logojpg_a7d6e719-41a9-4aa8-9637-b06d03cff3d9_1092025.jpeg",
+   "rsvps": 0
+  },
+  {
    "id": "hl-375444",
    "title": "Med Connect: Connecting You to Healthcare",
    "type": "Club",
@@ -9690,7 +9626,7 @@
    "source": "huskylink",
    "description": "Interested in healthcare? We can connect you!\nOur mission is to break down barriers to healthcare experiences at UW by connecting students with meaningful opportunities and equipping them with the skills to succeed in empathetic, compassionate healthcare.\nWhether you’re pre-med, pre-nursing, pre-PA, pre-pharmacy, or simply interested in getting involved in healthcare, we’re here to help guide you toward your goals.\nCome meet fellow students, learn about upcoming clinical, volunteering, shadowing, and research opportunities, and discover how MedConnect can help you take the next step in your healthcare journey!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_601449_medconnect_15e58cb6-04f9-49b7-9718-e0f3c8577367_102610374.png",
-   "rsvps": 10
+   "rsvps": 11
   },
   {
    "id": "hl-375007",
@@ -9849,6 +9785,22 @@
    "rsvps": 0
   },
   {
+   "id": "hl-375373",
+   "title": "Large Group",
+   "type": "Club",
+   "host": "Asian American Christian Fellowship",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-25",
+   "start": "19:00",
+   "end": "21:00",
+   "url": "https://huskylink.washington.edu/uwaacf/rsvp?id=375373",
+   "source": "huskylink",
+   "description": "Weekly gathering that brings together the entire community of AACF for worship, teaching, and community-building activities.\nCheck our Instagram @uwaacf for details! Locations may be subject to change each week.",
+   "image": null,
+   "rsvps": 0
+  },
+  {
    "id": "hl-375406",
    "title": "Video Game Party",
    "type": "Game night",
@@ -9929,6 +9881,22 @@
    "source": "huskylink",
    "description": "Join us for a panel with WSU College of Veterinary Medicine student ambassadors! Hear about their experiences navigating vet school, the application process, student life, and advice for aspiring veterinary students. Bring your questions and learn more about the path to becoming a veterinarian!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_639712_CVMgenericfeatured720x4751_fe844069-cd3c-4623-9330-d1f708e78567_1111154637.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375056",
+   "title": "UNA UW Chapter Meeting",
+   "type": "Club",
+   "host": "United Nations Association University of Washington Chapter",
+   "where": null,
+   "pos": null,
+   "date": "2026-12-02",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://huskylink.washington.edu/unauw/rsvp?id=375056",
+   "source": "huskylink",
+   "description": "At our Chapter Meetings, we gather to talk about critical issues facing our community, city, nation, and world today and how we can work to create positive change. Join us to learn about how you can make a difference, hear from inspiring speakers, find out about local volunteering opportunities, and discover we are implementing the UN's Sustainable Development Goals right here on UW Campus!",
+   "image": null,
    "rsvps": 0
   },
   {

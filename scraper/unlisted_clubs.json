@@ -107,6 +107,12 @@
    "post by @uwzeta"
   ]
  },
+ "_clubtnt": {
+  "status": "new",
+  "found": [
+   "post by @uwhcdesa"
+  ]
+ },
  "_ding_go": {
   "status": "new",
   "found": [
@@ -419,6 +425,12 @@
   "status": "new",
   "found": [
    "post by @uwundivided"
+  ]
+ },
+ "albastudyabroadbcn": {
+  "status": "new",
+  "found": [
+   "post by @cisbuw"
   ]
  },
  "alex.ciccanti": {
@@ -1937,7 +1949,8 @@
  "epsauw": {
   "status": "huskylink",
   "found": [
-   "https://sustainability.uw.edu/action/students/groups"
+   "https://sustainability.uw.edu/action/students/groups",
+   "post by @beautifyudub"
   ],
   "name": "Environmental Policy Student Association at UW",
   "why": "Environmental Policy Student Association",
@@ -2087,6 +2100,12 @@
   "status": "new",
   "found": [
    "post by @huskywrestlingclub"
+  ]
+ },
+ "fremontbrewing": {
+  "status": "new",
+  "found": [
+   "post by @uwhcdesa"
   ]
  },
  "gaascollective": {
@@ -3322,6 +3341,12 @@
   "status": "new",
   "found": [
    "post by @uwzeta"
+  ]
+ },
+ "lill1.fox": {
+  "status": "new",
+  "found": [
+   "post by @uwtridelta"
   ]
  },
  "lillymacao": {
@@ -4858,6 +4883,12 @@
    "post by @natyauw"
   ]
  },
+ "seattle_alpfa": {
+  "status": "new",
+  "found": [
+   "post by @alpfauw"
+  ]
+ },
  "seattle_dojo": {
   "status": "new",
   "found": [
@@ -5211,6 +5242,12 @@
   "status": "new",
   "found": [
    "post by @uwtridelta"
+  ]
+ },
+ "stormtrysailclub": {
+  "status": "new",
+  "found": [
+   "post by @huskysailingteam"
   ]
  },
  "stratasys": {
@@ -6494,16 +6531,24 @@
   ]
  },
  "uwjunoonouttakes": {
-  "status": "new",
+  "status": "not",
   "found": [
    "bio of @uwjunoon"
-  ]
+  ],
+  "name": "Junoon Outtakes",
+  "why": "doesn't say UW",
+  "checked": "2026-11-19"
  },
  "uwkendama": {
-  "status": "new",
+  "status": "club",
   "found": [
    "post by @uwhackysack"
-  ]
+  ],
+  "name": "Kendama Club at UW",
+  "bio": "University of Washington✖️Kendama\nJams are welcome to students and ANYONE in the Seattle area!!\nMeetups Every Friday",
+  "latest": "2026-11-14",
+  "checked": "2026-11-19",
+  "why": "clearly a student-run Kendama club"
  },
  "uwmedicine": {
   "status": "new",
@@ -6523,16 +6568,26 @@
   "why": "Husky Water Polo"
  },
  "uwmhcid": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @figmaatuw"
-  ]
+  ],
+  "name": "MHCI+D",
+  "bio": "The Master of Human-Computer Interaction + Design program at the University of Washington",
+  "latest": "2026-11-18",
+  "checked": "2026-11-19",
+  "why": "academic program, not a student club"
  },
  "uwmse.seattle": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @me_at_uw"
-  ]
+  ],
+  "name": "UW Materials Science & Engineering",
+  "bio": "We are the Department of Materials Science & Engineering at the University of Washington in Seattle, WA, USA",
+  "latest": "2026-11-17",
+  "checked": "2026-11-19",
+  "why": "department, not a club"
  },
  "uwneurobiologyclub": {
   "status": "huskylink",
@@ -6552,10 +6607,15 @@
   ]
  },
  "uwnightmarket": {
-  "status": "new",
+  "status": "not",
   "found": [
    "bio of @tsauw"
-  ]
+  ],
+  "name": "UW Night Market",
+  "bio": "See you on✨May 23rd, 2026✨ for the 26th annual UW Night Market! 🌙🏮 @tsauw\n🥠 FOOD + ART + GAMES + MUSIC\n🥠 Vendor Waitlist OPEN ↓",
+  "latest": "2026-05-22",
+  "checked": "2026-11-19",
+  "why": "event account, not a standing club"
  },
  "uwpoe": {
   "status": "new",
@@ -6651,6 +6711,12 @@
   "status": "new",
   "found": [
    "post by @uwfarm"
+  ]
+ },
+ "uwstagenotes": {
+  "status": "new",
+  "found": [
+   "post by @uwgwssrso"
   ]
  },
  "uwstudentlife": {
@@ -6825,6 +6891,13 @@
    "post by @uwzeta"
   ]
  },
+ "vsa": {
+  "status": "missing",
+  "found": [
+   "suggested on DubHub"
+  ],
+  "checked": "2026-11-19"
+ },
  "waldo.pz": {
   "status": "new",
   "found": [
@@ -6908,6 +6981,12 @@
   "status": "new",
   "found": [
    "post by @uwsigmanu"
+  ]
+ },
+ "winfohackathon": {
+  "status": "new",
+  "found": [
+   "bio of @uwwinfo"
   ]
  },
  "winnnism": {
