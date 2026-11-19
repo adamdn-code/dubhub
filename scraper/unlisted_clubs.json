@@ -6312,10 +6312,15 @@
   "why": "official college department"
  },
  "uwenvironment": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwfarm"
-  ]
+  ],
+  "name": "UW College of the Environment",
+  "bio": "Research for Washington. Research for the World.",
+  "latest": "2026-11-17",
+  "checked": "2026-11-18",
+  "why": "college department"
  },
  "uwequestrian": {
   "found": [
@@ -6379,16 +6384,22 @@
   "why": "student‑operated food‑pantry service for UW community"
  },
  "uwformulamotorsports": {
-  "status": "new",
+  "status": "inactive",
   "found": [
    "post by @me_at_uw"
-  ]
+  ],
+  "name": "UW Formula Motorsports",
+  "why": "latest post none",
+  "checked": "2026-11-18"
  },
  "uwfostermba": {
-  "status": "new",
+  "status": "inactive",
   "found": [
    "bio of @fosterevemba"
-  ]
+  ],
+  "name": "UW Foster MBA Program",
+  "why": "latest post 2025-10-23",
+  "checked": "2026-11-18"
  },
  "uwfosterschool": {
   "status": "new",
@@ -6433,10 +6444,11 @@
   "why": "appears to be an academic program/department, not a student club"
  },
  "uwgammaphi": {
-  "status": "new",
+  "status": "missing",
   "found": [
    "post by @uwalphasigmaphi"
-  ]
+  ],
+  "checked": "2026-11-18"
  },
  "uwgreekstakeaction": {
   "status": "inactive",
@@ -6448,16 +6460,26 @@
   "checked": "2026-11-13"
  },
  "uwgwssrso": {
-  "status": "new",
+  "status": "club",
   "found": [
    "post by @queercinemaclubuw"
-  ]
+  ],
+  "name": "UW GWSS RSO",
+  "bio": "UW student org devoted to building community around feminist, queer, and intersectional work  \nClick the link to get involved 💌",
+  "latest": "2026-11-11",
+  "checked": "2026-11-18",
+  "why": "registered student organization"
  },
  "uwhcdesa": {
-  "status": "new",
+  "status": "club",
   "found": [
    "post by @hcdeuw"
-  ]
+  ],
+  "name": "HCDEsa",
+  "bio": "The Official HCDE Undergraduate Student Association at the University of Washington 🐾\n⬇️ Suggestions box (and other links)! ⬇️",
+  "latest": "2026-10-22",
+  "checked": "2026-11-18",
+  "why": "undergraduate student association"
  },
  "uwischool": {
   "status": "new",

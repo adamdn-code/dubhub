@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T15:04",
+ "updated": "2026-11-18T18:38",
  "events": [
   {
    "id": "Dfsaa3mzTGq-0",
@@ -369,7 +369,7 @@
    "source": "luma",
    "description": "CSEED is so excited to welcome Joe Alterio into UW! 🎨💻\nJoe Alterio is a multidisciplinary creative working at the intersection of art, technology, design, and storytelling. With over 15 years of experience leading design and product teams, he has created digital products and experiences across industries like media, publishing, gaming, and technology.\nThroughout his career, Joe has collaborated with major brands including Microsoft, Starbucks, Disney, Nickelodeon, Adobe, and Amazon. His work has received recognition from the Webby, Addy, and Anthem Awards and has been featured in The New York Times, The Atlantic, The Boston Globe, and the BBC.\nJoe is also an accomplished speaker, having shared his insights at SXSW, San Diego Comic-Con, and other major events. He co-hosts the design podcast Designer & Designer and is passionate about creativity, collaboration, and building teams where people can do their best work.\nJoin us for an exciting conversation about creativity, design, technology, and what it means to build things that matter. Don’t miss this opportunity to learn from someone who has spent over 15 years pushing creative boundaries!\nSee you there!! 🌟\n📅 Wednesday, November 18\n🕟 4:30–6:30 PM\n📍 CSE2 G10",
    "image": "https://images.lumacdn.com/uploads/72/17cbc0cd-9631-48aa-9615-9cb9d03b0d76.webp",
-   "rsvps": 34,
+   "rsvps": 35,
    "post_counts": {
     "DfgGCFby218": [
      null,
@@ -528,7 +528,7 @@
    "url": "https://www.instagram.com/p/Dfk0btuymUP/",
    "source": "instagram",
    "description": "SCPH AUTUMN QUARTER CALENDAR🍁🍁🍁\nWe have so many fun upcoming events to finish off our Autumn Festival quarter and we hope to see you there!\nPosts with updates times and details will be up closer to the event.",
-   "image": null,
+   "image": "/ig/posts/Df5VzV3vWTT.jpg",
    "likes": null,
    "comments": null,
    "post_counts": {
@@ -539,9 +539,16 @@
     "Dfp4K3oS0fb": [
      null,
      null
+    ],
+    "Df5VzV3vWTT": [
+     null,
+     null
     ]
    },
-   "posts": 2
+   "posts": 3,
+   "aliases": [
+    "Df5VzV3vWTT-0"
+   ]
   },
   {
    "id": "DfplTV4IMqE-0",
@@ -649,6 +656,36 @@
    "posts": 1
   },
   {
+   "id": "Df22ZDaMaBY-0",
+   "title": "MPH Graduate Student Panel",
+   "type": "Club",
+   "host": "Students of Color for Public Health (SCPH) at UW (@scphuw)",
+   "where": "Smith Hall Room 105",
+   "pos": [
+    47.65666,
+    -122.30711
+   ],
+   "date": "2026-11-18",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/Df22ZDaMaBY/",
+   "source": "instagram",
+   "description": "Thinking about an MPH?\nSCPH is hosting a graduate student panel with students from various MPH programs at UW! \nCome join us on November 18th (this Wednesday) from 5:30-6:30pm @ Smith Hall Room 105 for a chance to ask questions to our lovely panelists and learn more about the path to graduate school!\n#seeyouthere 📓👩‍🏫🎓📚🏫",
+   "image": "/ig/posts/Df22ZDaMaBY.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df22ZDaMaBY": [
+     null,
+     null
+    ]
+   },
+   "posts": 1,
+   "aliases": [
+    "Df5VzV3vWTT-0"
+   ]
+  },
+  {
    "id": "hl-375528",
    "title": "Lab Animal Veterinarian Guest Speaker",
    "type": "Study",
@@ -681,7 +718,7 @@
    "source": "luma",
    "description": "cseed buildHER is hosting our last event of fall quarter - buildHER fall EXPO!!!\nCome join us to explore Arduino, 3D modeling, Figma and more surrounded by a community of builders in a welcoming and inquisitive environment.\nThe expo will feature hands-on booths where you can dive into exploring these technologies, and leave having learned something new.\nWe hope to see you there!",
    "image": "https://images.lumacdn.com/uploads/b7/f727062b-2629-4878-969c-c503463fe7e9.jpg",
-   "rsvps": 59,
+   "rsvps": 65,
    "post_counts": {
     "DfplF1sGtgj": [
      66,
@@ -1084,9 +1121,13 @@
     "DfsC12dpxQn": [
      32,
      1
+    ],
+    "Df3FrXPJKLT": [
+     null,
+     null
     ]
    },
-   "posts": 1
+   "posts": 2
   },
   {
    "id": "Dfsj3sESXT--0",
@@ -1521,6 +1562,84 @@
    "posts": 1
   },
   {
+   "id": "Df2yOkNsnES-0",
+   "title": "Fall Pickup",
+   "type": "Food",
+   "host": "@beautifyudub",
+   "where": null,
+   "pos": null,
+   "date": "2026-11-18",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df2yOkNsnES/",
+   "source": "instagram",
+   "description": "The fall vibes are chef’s kiss! 💋👨‍🍳 We have our last pickup of November TOMORROW 😭where’d all the time go🥹And of course, we are collaborating with two fabulous organizations, @epsauw & @apoga! 🙌 So come enjoy one of our last fall pickups and beautify our gorgeous campus! 🍃🍁🍂✨\n#letsbeautify #uw #environment #fallvibes",
+   "image": "/ig/posts/Df2yOkNsnES.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df2yOkNsnES": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df21ar0hhZy-0",
+   "title": "Bake Sale",
+   "type": "Food",
+   "host": "SASE UW (@saseuw)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-18",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df21ar0hhZy/",
+   "source": "instagram",
+   "description": "If you paid us no mind on Monday, we’ll be in Red Square again this Wednesday and Friday (11/18 & 11/20)! 🍪🍬\nCome by for day 2 of our bake sale - we have raspberry thumbprint cookies, peppermint chocolate cookies, and peppermint bark!",
+   "image": "/ig/posts/Df21ar0hhZy.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df21ar0hhZy": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df204VzBnZl-0",
+   "title": "SASE Bake Sale",
+   "type": "Food",
+   "host": "SASE UW (@saseuw)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-18",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df204VzBnZl/",
+   "source": "instagram",
+   "description": "🍪 Sneak peek at the treats we have for the next two days of SASE bake sale! \nCome find us in Red Square this Wednesday and Friday for our raspberry print cookies and peppermint bark 😍",
+   "image": "/ig/posts/Df204VzBnZl.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df204VzBnZl": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfNbCxaBHnn-0",
    "title": "Getting Through Grief",
    "type": "Club",
@@ -1540,6 +1659,33 @@
     "DfNbCxaBHnn": [
      14,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df3yyhLRi3n-0",
+   "title": "Red Square Fundraiser",
+   "type": "Food",
+   "host": "Partners in Health Engage UW (@pihengageuw)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-19",
+   "start": "09:00",
+   "end": "15:00",
+   "url": "https://www.instagram.com/p/Df3yyhLRi3n/",
+   "source": "instagram",
+   "description": "PULL UP TO RED SQUARE THIS THURSDAY! we are fundraising for maternal child health in Malawi",
+   "image": "/ig/posts/Df3yyhLRi3n.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df3yyhLRi3n": [
+     null,
+     null
     ]
    },
    "posts": 1
@@ -1664,9 +1810,13 @@
     "DfU51rOTH0p": [
      null,
      null
+    ],
+    "Df2g26uzxUE": [
+     null,
+     null
     ]
    },
-   "posts": 1,
+   "posts": 2,
    "aliases": [
     "DfU51rOTH0p-0"
    ]
@@ -2178,9 +2328,16 @@
     "Dfm39oYJCHe": [
      12,
      0
+    ],
+    "Df3CaccErHH": [
+     null,
+     null
     ]
    },
-   "posts": 1
+   "posts": 2,
+   "aliases": [
+    "Df3CaccErHH-0"
+   ]
   },
   {
    "id": "DfrIlj9ix42-0",
@@ -2229,6 +2386,33 @@
     "DfuqpecOqlD": [
      12,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DfoDRDCyBUT-0",
+   "title": "RSO Manifesto Writing",
+   "type": "Club",
+   "host": "UW GWSS RSO (@uwgwssrso)",
+   "where": "SAV 162",
+   "pos": [
+    47.65712,
+    -122.30842
+   ],
+   "date": "2026-11-19",
+   "start": "18:30",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DfoDRDCyBUT/",
+   "source": "instagram",
+   "description": "The GWSS RSO needs a manifesto ! 📢✨\n\nJoin us on Thursday, November 19th from 6:30-8 PM in SAV 162. We will be collaborate in writing our RSO’s very first manifesto. We hope to see you there — be there or be square !! 😼",
+   "image": "/ig/posts/DfoDRDCyBUT.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DfoDRDCyBUT": [
+     null,
+     null
     ]
    },
    "posts": 1
@@ -2678,6 +2862,33 @@
    "posts": 1
   },
   {
+   "id": "Df5cyI4ylYk-0",
+   "title": "Thrift Popup",
+   "type": "Hangout",
+   "host": "Green Greeks🌎♻️ (@greengreeksuw)",
+   "where": "Denny Field",
+   "pos": [
+    47.65976,
+    -122.30581
+   ],
+   "date": "2026-11-20",
+   "start": "12:30",
+   "end": "15:30",
+   "url": "https://www.instagram.com/p/Df5cyI4ylYk/",
+   "source": "instagram",
+   "description": "Our first thrift popup will be THIS FRIDAY AT DENNY FIELD!! Come by from 12:30-3:30!! 🌲👖♻️\n#thrift #shopsustainable",
+   "image": "/ig/posts/Df5cyI4ylYk.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df5cyI4ylYk": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DflGRcpvAdv-0",
    "title": "Fall Quarter UWCC Graduate Student Focus Group",
    "type": "Club",
@@ -2770,6 +2981,33 @@
     "Dfp8OsnhZE8": [
      3,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df55e1Zpsgx-0",
+   "title": "Hot Takes Debates",
+   "type": "Food",
+   "host": "Somali Student Association UW (@uw_ssa)",
+   "where": "Alder Hall 107",
+   "pos": [
+    47.65567,
+    -122.31355
+   ],
+   "date": "2026-11-20",
+   "start": "16:30",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/Df55e1Zpsgx/",
+   "source": "instagram",
+   "description": "We wanna hear your most diabolical hot takes this friday 👀 \n\nJoin us for debates, snacks, and a little chaos. We’ll also have EmpOUR stopping by for a quick intro and sign ups. See you there! 🔥\n\nAlder Hall 107, 4:30-7pm",
+   "image": "/ig/posts/Df55e1Zpsgx.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df55e1Zpsgx": [
+     null,
+     null
     ]
    },
    "posts": 1
@@ -2894,7 +3132,7 @@
    "source": "luma",
    "description": "Join us in JHN 175 (Johnson Hall)\nThis panel will provide insight into all the different options and opportunities available to an HCDE/HCI+D or any UX graduate. Panelists will share their journeys, what their roles look like, and answer host questions. This will be followed by an audience Q&A and networking opportunities.\n\nSpeakers:\nEmily Rapada - Senior Staff Researcher, Pinterest\nSwati Sachdeva - SWE + Researcher, Google\nJulianne Bryant - UX Senior Manager, Google\nSola Chang - Senior UX/UI Game Designer, Blizzard\n\nThis event will be in person only and will not be recorded. Please RSVP yes if you intend on coming in person, and if your plans change, please update your RSVP so our friends on the waitlist can join us :)",
    "image": "https://images.lumacdn.com/uploads/ms/4121c719-a524-41c7-b07b-bb7d12b4bc1d.png",
-   "rsvps": 62,
+   "rsvps": 63,
    "post_counts": {
     "Dfqgy2GEddI": [
      3,
@@ -2944,9 +3182,17 @@
     "Dfp5lUuyd_z": [
      34,
      6
+    ],
+    "Df5XkDySoSn": [
+     null,
+     null
+    ],
+    "Df2jx-0JZeh": [
+     null,
+     null
     ]
    },
-   "posts": 5
+   "posts": 7
   },
   {
    "id": "DfoLr_HEVRb-0",
@@ -3057,6 +3303,33 @@
     "Dfs0YHmptIn": [
      15,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df04pvmvJeV-0",
+   "title": "Pick Up Soccer Game",
+   "type": "Game night",
+   "host": "SUPER UW (@super_uw)",
+   "where": "Denny Field",
+   "pos": [
+    47.65976,
+    -122.30581
+   ],
+   "date": "2026-11-20",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/Df04pvmvJeV/",
+   "source": "instagram",
+   "description": "KICK⚽️⚽️ ZI.ONIS.M OFF OF CAMPUS!\n\nJoin SUPER UW and Fedayeen Football THIS FRIDAY, 11/20, 6-8pm on Denny Field (North Campus), for a game of pick up soccer (play or watch!) and free falafel 🧆🇵🇸 Bring your friends!!!\n#football #falafel #freepalestine",
+   "image": "/ig/posts/Df04pvmvJeV.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df04pvmvJeV": [
+     null,
+     null
     ]
    },
    "posts": 1
@@ -3311,6 +3584,60 @@
    "posts": 1
   },
   {
+   "id": "Df21ar0hhZy-1",
+   "title": "Bake Sale",
+   "type": "Food",
+   "host": "SASE UW (@saseuw)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-20",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df21ar0hhZy/",
+   "source": "instagram",
+   "description": "If you paid us no mind on Monday, we’ll be in Red Square again this Wednesday and Friday (11/18 & 11/20)! 🍪🍬\nCome by for day 2 of our bake sale - we have raspberry thumbprint cookies, peppermint chocolate cookies, and peppermint bark!",
+   "image": "/ig/posts/Df21ar0hhZy.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df21ar0hhZy": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df204VzBnZl-1",
+   "title": "SASE Bake Sale",
+   "type": "Food",
+   "host": "SASE UW (@saseuw)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-20",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df204VzBnZl/",
+   "source": "instagram",
+   "description": "🍪 Sneak peek at the treats we have for the next two days of SASE bake sale! \nCome find us in Red Square this Wednesday and Friday for our raspberry print cookies and peppermint bark 😍",
+   "image": "/ig/posts/Df204VzBnZl.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df204VzBnZl": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfbZt2QG1wD-0",
    "title": "Peaks and Plunging",
    "type": "Club",
@@ -3536,7 +3863,7 @@
    "source": "luma",
    "description": "Arguably best MSA event of the year, you don’t want to miss it.",
    "image": "https://images.lumacdn.com/gallery-images/vi/fd9cbf3d-ed20-41dc-af79-1d38989c6c11.png",
-   "rsvps": 83,
+   "rsvps": 85,
    "post_counts": {
     "DfL5IUojRMD": [
      null,
@@ -3851,6 +4178,33 @@
    "posts": 1
   },
   {
+   "id": "Df3n5fQxxQd-0",
+   "title": "Gen Meeting 3",
+   "type": "Club",
+   "host": "anime nation uw (@animenationuw)",
+   "where": "HUB 340",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-23",
+   "start": "17:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/Df3n5fQxxQd/",
+   "source": "instagram",
+   "description": "EVERYONE SHUT UP! GEN MEETING 3 IS HERE!\n\nnext Monday, come pull up to our last meeting of the quarter 😔. don’t worry, we have a RAFFLE and some awesome games like usual to commemorate the end of the quarter…\n\nand this is surely not the last time we’ll see you this quarter… maybe some ICE SKATING or some HOOPS will pop up soon?\n\nsee you soon~ 11/23, 5-7PM same time same place",
+   "image": "/ig/posts/Df3n5fQxxQd.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df3n5fQxxQd": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "hl-375444",
    "title": "Med Connect: Connecting You to Healthcare",
    "type": "Club",
@@ -3884,6 +4238,33 @@
    "description": "Come hang out with WashPIRG on Mondays, 6:30pm-8:00pm in MEB 238! We're a student advocacy group focused on environmental and social justice causes! At CORE meetings, we discuss upcoming events, plans, and ideas. These weekly meetings give space for our different campaigns to work on their goals throughout the quarter.",
    "image": null,
    "rsvps": 0
+  },
+  {
+   "id": "Df5OvLCs9wz-0",
+   "title": "Optometrist Q&A Session",
+   "type": "Food",
+   "host": "UW Pre-Optometry Club (@uwpreoptclub)",
+   "where": "STC 0020",
+   "pos": [
+    47.60383,
+    -122.33006
+   ],
+   "date": "2026-11-23",
+   "start": "19:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/Df5OvLCs9wz/",
+   "source": "instagram",
+   "description": "👀 Hey Pre-Optometry Club! We are so excited to announce our next event! We will be hosting an Optometrist Q&A session with our guest speaker, Dr. Jason Chau! \n\nJoin us on Monday, November 23rd at 7:00 PM in STC 0020 for an opportunity to learn more about the field of optometry, hear about Dr. Chau’s journey from optometry school to clinical practice, and gain insight into what it’s like to own and operate an optometry clinic!\n\nGrab your friends, get your questions ready, and come join us for an evening of great conversations, food, and refreshments!\n\n🔗Sign up using the link in our bio :)\n\nGet to know our speaker:\n\nDr. Jason Chau is an optometrist and Clinic Director at Innovation Eye Clinic, a modern optometry practice located in downtown Kitchener, Ontario. He earned his Doctor of Optometry (OD) degree from the University of Waterloo and has a special interest in dry eye therapy, myopia management, and orthokeratology (Ortho-K). After graduating, Dr. Chau gained experience in ocular research at the Centre for Ocular Research & Education (CORE). In 2023, he opened Innovation Eye Clinic with the goal of providing personalized, patient-centred eye care through advanced diagnostic technology and evidence-based treatments. Dr. Chau is passionate about patient education and combining innovative approaches to eye care with meaningful patient relationships.\n\nWe can’t wait to see you there! 💙👁️",
+   "image": "/ig/posts/Df5OvLCs9wz.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df5OvLCs9wz": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "hl-375126",
@@ -3959,6 +4340,33 @@
     "DfoDPRMFOTS": [
      12,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df5wVJoAC5k-0",
+   "title": "Pie the E-Board",
+   "type": "Food",
+   "host": "@acsa_uw",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-24",
+   "start": "13:00",
+   "end": "16:00",
+   "url": "https://www.instagram.com/p/Df5wVJoAC5k/",
+   "source": "instagram",
+   "description": "ARE YOU READY TO MAKE A MESS?🫟\nCome through to ACSA’s PIE THE E-BOARD event this Tuesday from 1–4 PM at the Red Square! 👀 Get ready to pie your favorite e-board members, bring the energy, and make some unforgettable memories.You don’t want to miss this one!🥧",
+   "image": "/ig/posts/Df5wVJoAC5k.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df5wVJoAC5k": [
+     null,
+     null
     ]
    },
    "posts": 1
@@ -4099,9 +4507,13 @@
     "DfxX_D0Jb7K": [
      15,
      6
+    ],
+    "Df0lsN9ptM6": [
+     null,
+     null
     ]
    },
-   "posts": 1
+   "posts": 2
   },
   {
    "id": "DflIJZNPEPT-0",
@@ -4183,6 +4595,33 @@
    "description": "Come play Super Smash Bros. Melee with us every Tuesday!",
    "image": null,
    "rsvps": 0
+  },
+  {
+   "id": "Df2mY1lJPep-0",
+   "title": "Gingerbread House Decorating",
+   "type": "Hangout",
+   "host": "Khmer Student Association UW (@khsauw)",
+   "where": "HUB 332",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-24",
+   "start": "18:15",
+   "end": "19:45",
+   "url": "https://www.instagram.com/p/Df2mY1lJPep/",
+   "source": "instagram",
+   "description": "hey khuties! 🎄 \nJoin us next Tuesday for a fun little gingerbread house decorating night! We know christmas is still a little ways away, but we just couldn’t wait to get into the holiday spirit! come decorate, get creative, and enjoy some festive fun with us for our last general meeting of the quarter! We hope to see everyone there! ❄️",
+   "image": "/ig/posts/Df2mY1lJPep.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df2mY1lJPep": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "Df1HXksIFqR-0",
@@ -4475,9 +4914,13 @@
     "Df0F73Gzjzz": [
      null,
      null
+    ],
+    "Df2wtDWNvRn": [
+     null,
+     null
     ]
    },
-   "posts": 3,
+   "posts": 4,
    "aliases": [
     "DfA85MuhM0V-0"
    ]
@@ -5059,6 +5502,30 @@
     "Dfq_m8jx75T": [
      31,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df4BiVUte0x-0",
+   "title": "MiT Study Date",
+   "type": "Study",
+   "host": "Minorities In Tech @ UW (@minoritiesintech)",
+   "where": null,
+   "pos": null,
+   "date": "2026-12-08",
+   "start": "16:00",
+   "end": "18:00",
+   "url": "https://www.instagram.com/p/Df4BiVUte0x/",
+   "source": "instagram",
+   "description": "Finals season is almost here, and you know what that means… MiT STUDY DATE!! 💻\nCome lock in with your fellow CS peers and get through those last exams, assignments, and projects together! Bring your study materials, and we’ll bring the snacks, chill music, and good vibes! 🍪🎧\n📅 Tuesday, December 8th ⏰ 4:00–6:00 PM 📍 Location: TBD\n🔗 RSVP through the link in our bio!",
+   "image": "/ig/posts/Df4BiVUte0x.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df4BiVUte0x": [
+     null,
+     null
     ]
    },
    "posts": 1

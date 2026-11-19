@@ -104,10 +104,12 @@
   "checked": "2026-11-15"
  },
  "Filipinx Association for Healthcare Officers": {
-  "status": "new",
+  "status": "none",
   "by": [
    "FAHC at UW (@fahcuw)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-18"
  },
  "Framer": {
   "status": "known",
@@ -135,6 +137,12 @@
   "status": "new",
   "by": [
    "the list of companies' campus programs"
+  ]
+ },
+ "HWSC": {
+  "status": "new",
+  "by": [
+   "an event on Luma, on the UW campus"
   ]
  },
  "Informatics Undergradudate Associatiomn": {

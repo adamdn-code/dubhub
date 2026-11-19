@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T15:00",
+ "updated": "2026-11-18T18:34",
  "applications": [
   {
    "id": "DfZC1L5m8jD",
@@ -564,6 +564,18 @@
    "posted": "2026-11-12",
    "logo": "/ig/clubs/aaivuw.jpg",
    "category": "Faith & Spirituality"
+  },
+  {
+   "id": "Df3CaccErHH",
+   "host": "UW Women's Lacrosse (@uwwomenslax)",
+   "for": "Lacrosse team tryouts",
+   "kind": "Auditions & tryouts",
+   "deadline": null,
+   "link": null,
+   "post": "https://www.instagram.com/p/Df3CaccErHH/",
+   "posted": "2026-11-17",
+   "logo": "/ig/clubs/uwwomenslax.jpg",
+   "category": "Sports"
   }
  ]
 }
