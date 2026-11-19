@@ -96,10 +96,12 @@
   "checked": "2026-11-18"
  },
  "Fedayeen Football": {
-  "status": "new",
+  "status": "none",
   "by": [
    "SUPER UW (@super_uw)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-19"
  },
  "Figma": {
   "status": "known",
@@ -325,6 +327,12 @@
   "status": "new",
   "by": [
    "New Student and Transfer Programs (@uwnstp)"
+  ]
+ },
+ "UWIG": {
+  "status": "new",
+  "by": [
+   "UW Consulting Association (@uwconsultingassociation)"
   ]
  },
  "Washington Gaming Association": {

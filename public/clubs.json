@@ -985,8 +985,8 @@
    "instagram": "https://www.instagram.com/filmclubuw/",
    "website": "http://linktr.ee/uwfilmclub",
    "category": "Arts",
-   "about": "UW Film Club screens and discusses movies weekly for cinephiles.",
-   "description": "The club meets every Thursday evenings in PAA to watch a curated film and hold discussions. Members enjoy classics like \"Y Tu Mamá También\" and share their love of cinema.",
+   "about": "Weekly Thursday film screenings and discussions for cinephiles.",
+   "description": "The UW Film Club meets each Thursday to screen a variety of movies and hold discussions. It's a great place for cinephiles to share their love of film and explore different genres together.",
    "logo": "/ig/clubs/filmclubuw.jpg",
    "discord": "https://discord.gg/bdCuHxTC5w",
    "discord_server": "UW Film Club",
@@ -1189,8 +1189,8 @@
    "instagram": "https://www.instagram.com/huskyhillel/",
    "website": "http://linktr.ee/HillelUW",
    "category": "Faith & Spirituality",
-   "about": "Hillel UW offers Jewish community events, Shabbat meals, and cultural celebrations.",
-   "description": "Hillel at UW hosts Shabbat dinners, holiday gatherings, and fun activities like trivia and Friendsgiving. It provides a welcoming space for students to explore Jewish traditions and connect with peers.",
+   "about": "Jewish student community with cultural, religious, and social events.",
+   "description": "Hillel UW offers a welcoming space for Jewish students to connect through cultural, religious, and social events. Activities include Shabbat gatherings, holiday celebrations, and fun programs for newcomers.",
    "logo": "/ig/clubs/huskyhillel.jpg",
    "last_event": "2026-11-19",
    "fields": []
@@ -1369,12 +1369,13 @@
    "instagram": "https://www.instagram.com/huskyadapt/",
    "website": "https://linktr.ee/huskyadapt",
    "category": "Tech",
-   "about": "HuskyADAPT designs accessible play technology and promotes inclusive design.",
-   "description": "HuskyADAPT brings together designers, engineers, and volunteers to adapt toys and create accessible tech for kids with disabilities. Workshops include soldering, circuitry, and design contests, welcoming UW and Seattle community members.",
+   "about": "Design and adapt toys/tech so kids with disabilities can play.",
+   "description": "HuskyADAPT brings together designers and engineers to create accessible toys and technology for children with disabilities. Members get hands‑on experience with soldering, circuitry, and adaptive design while supporting the community.",
    "logo": "/ig/clubs/huskyadapt.jpg",
    "last_event": "2026-12-05",
    "fields": [
-    "Engineering"
+    "Engineering",
+    "Health"
    ]
   },
   {
@@ -1463,12 +1464,12 @@
    "instagram": "https://www.instagram.com/ite_uw/",
    "website": "http://linktr.ee/ite_uw",
    "category": "Engineering",
-   "about": "Connects UW students with transportation industry professionals.",
-   "description": "The ITE Student Chapter hosts meetings, workshops, and speaker events to help students explore careers in transportation engineering and build strong resumes. Members also collaborate with other engineering groups and participate in competitions like the Sandbox challenge.",
+   "about": "Connect students to transportation engineering through talks and tours.",
+   "description": "The ITE UW Student Chapter links students with the transportation engineering field through talks, tours, and networking events. Members hear from industry professionals and learn about projects like waterfront development and design competitions.",
    "logo": "/ig/clubs/ite_uw.jpg",
    "discord": "https://discord.gg/NpyNGNJfmP",
    "discord_server": "ITE at UW",
-   "last_event": "2026-11-17",
+   "last_event": "2026-11-19",
    "fields": [
     "Engineering"
    ]
@@ -1806,8 +1807,8 @@
    "instagram": "https://www.instagram.com/msauw/",
    "website": "https://linktr.ee/msauw",
    "category": "Faith & Spirituality",
-   "about": "Builds a Muslim community at UW through cultural events and service projects.",
-   "description": "The Muslim Student Association offers cultural festivals, like the annual Culture Fest, and service activities such as hygiene‑kit drives. Students can join the Discord community and volunteer through the MSA volunteer corps.",
+   "about": "Muslim student group hosting cultural festivals, service and social events.",
+   "description": "MSA UW provides a community for Muslim students with cultural festivals, volunteer opportunities, and social events. Their annual Culture Fest celebrates diverse traditions with food, games, and student showcases.",
    "logo": "/ig/clubs/msauw.jpg",
    "discord": "https://discord.gg/wb56SYhaF6",
    "discord_server": "MSA UW Seattle",
@@ -2603,8 +2604,8 @@
    "instagram": "https://www.instagram.com/tsauw/",
    "website": "https://docs.google.com/forms/d/e/1FAIpQLSdPqJ9kXFMTrgtS2UtALPDrW-42abLKW4la44c-LumNvOCQLg/viewform",
    "category": "Cultural",
-   "about": "Taiwanese Student Association organizing cultural nights, fundraisers, and socials.",
-   "description": "TSAUW organizes cultural nights, night markets, and social gatherings for Taiwanese students on campus. Their events blend entertainment, food, and community outreach.",
+   "about": "Taiwanese student association celebrating culture with events and night markets.",
+   "description": "TSAUW promotes Taiwanese culture on campus with social events, night markets, and themed parties. Students gather to enjoy music, food, and celebrations that highlight Taiwan’s heritage.",
    "logo": "/ig/clubs/tsauw.jpg",
    "last_event": "2026-11-20",
    "fields": []
@@ -3166,8 +3167,8 @@
    "instagram": "https://www.instagram.com/womenshockeyuw/",
    "website": "https://linktr.ee/whockeyuw",
    "category": "Sports",
-   "about": "Women's ice hockey club competing in house league games and promoting the sport on campus.",
-   "description": "The Women’s Ice Hockey Club fields a house league team that competes at the Kraken Community Iceplex. Players and fans gather for games, streams, and community building around the sport.",
+   "about": "Women's ice hockey team competing in local games and building community.",
+   "description": "The Women’s Ice Hockey Club fields a competitive team that plays against regional opponents. Players and fans come together for games at the Kraken Community Iceplex and support the Huskies.",
    "logo": "/ig/clubs/womenshockeyuw.jpg",
    "last_event": "2026-11-21",
    "fields": []

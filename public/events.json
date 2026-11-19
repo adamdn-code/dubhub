@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T00:55",
+ "updated": "2026-11-19T08:45",
  "events": [
   {
    "id": "DfNbCxaBHnn-0",
@@ -94,6 +94,33 @@
    "description": "The Student Activities Office (SAO) offers RSO Drop-In Advising hours in HUB 111B, located within the RSO Resource Center. These drop-in hours provide RSOs with an opportunity to connect with an SAO Advisor, ask questions, and receive guidance and support on a variety of topics.",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_599699_RSO_DropIn_Advising_760_x_380_px_2658fc33-3cfa-474a-9df2-4b99c30a1a5b_101413143.png",
    "rsvps": 0
+  },
+  {
+   "id": "Df6ljFjxhIo-0",
+   "title": "Seattle Waterfront Tour",
+   "type": "Club",
+   "host": "ITE University of Washington Student Chapter (@ite_uw)",
+   "where": "626 Alaskan Way",
+   "pos": [
+    47.60235,
+    -122.33631
+   ],
+   "date": "2026-11-19",
+   "start": "13:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/Df6ljFjxhIo/",
+   "source": "instagram",
+   "description": "Huskies, join us this Thursday for a tour of the Seattle Waterfront led by project engineers from the City of Seattle Office of the Waterfront! \n\nThe event will begin with a presentation in the construction office located at 626 Alaskan Way, followed by a walking tour from Habitat Beach to the Overlook Walk.\n\nMake sure to RSVP!",
+   "image": "/ig/posts/Df6ljFjxhIo.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df6ljFjxhIo": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "DfAs_UYMODt-0",
@@ -226,7 +253,7 @@
    "url": "https://www.instagram.com/p/DfaNIzQO2zj/",
    "source": "instagram",
    "description": "Come learn more about how we are hydroponically growing our crops this quarter at our general meetings and daily maintenance sessions!",
-   "image": "/ig/posts/DfaNIzQO2zj.jpg",
+   "image": null,
    "likes": null,
    "comments": null,
    "post_counts": {
@@ -878,9 +905,13 @@
     "Dfxq5chybsN": [
      62,
      0
+    ],
+    "Df7gxFqpzjH": [
+     null,
+     null
     ]
    },
-   "posts": 2
+   "posts": 3
   },
   {
    "id": "DfX2A5vS6Zm-0",
@@ -1991,6 +2022,30 @@
    "posts": 1
   },
   {
+   "id": "Df3aQguT9GJ-0",
+   "title": "Thrillest Party",
+   "type": "Hangout",
+   "host": "TSAUW 🇹🇼 (@tsauw)",
+   "where": "Club Sur",
+   "pos": null,
+   "date": "2026-11-20",
+   "start": "21:00",
+   "end": "00:30",
+   "url": "https://www.instagram.com/p/Df3aQguT9GJ/",
+   "source": "instagram",
+   "description": "We love partying with you. Run it back this year at Thrillest. 🖤\n\n📅 Date: Friday, November 20th\n⏰ Time: 9:00 PM - 12:30 AM\n📍Location: Club Sur (2901 1st Ave S, Seattle, WA  98134)\n\nTickets on sale today. $24 for members, $28 for non-members.\nLink in bio 🔗\n\n⚠️IMPORTANT INFO\nBring a government-issued ID and proof of purchase.\nAll attendees must be 18+\nAttendees are responsible for any cleaning fees or property damages.\n\nPhoto & video: @rnald.lin\nEditing: @nat4lieh",
+   "image": "/ig/posts/Df3aQguT9GJ.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df3aQguT9GJ": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfRPoccmylD-5",
    "title": "Gear Swap",
    "type": "Hangout",
@@ -2396,7 +2451,7 @@
    "source": "luma",
    "description": "Arguably best MSA event of the year, you don’t want to miss it.",
    "image": "https://images.lumacdn.com/gallery-images/vi/fd9cbf3d-ed20-41dc-af79-1d38989c6c11.png",
-   "rsvps": 89,
+   "rsvps": 90,
    "post_counts": {
     "DfL5IUojRMD": [
      null,
@@ -2413,11 +2468,15 @@
     "DfqDoOKBT_k": [
      59,
      4
+    ],
+    "Df6hHjnJN4o": [
+     null,
+     null
     ]
    },
    "likes": 159,
    "comments": 9,
-   "posts": 4,
+   "posts": 5,
    "aliases": [
     "DfL5IUojRMD-0",
     "DfZVFCluRHU-0"
@@ -2558,6 +2617,33 @@
     "DfwSkWuheY_": [
      56,
      3
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df5lddtRfpk-0",
+   "title": "House Women's Hockey Game",
+   "type": "Game night",
+   "host": "Women’s Ice Hockey Club at UW (@womenshockeyuw)",
+   "where": "Kraken Community Iceplex",
+   "pos": [
+    47.70626,
+    -122.32523
+   ],
+   "date": "2026-11-21",
+   "start": "22:45",
+   "end": null,
+   "url": "https://www.instagram.com/p/Df5lddtRfpk/",
+   "source": "instagram",
+   "description": "Our House team is back at it again this Saturday, 11/21 @ 10:45 PM versus Snohomish County Women’s Hockey!!\n\nCome show your support for the Huskies at Kraken Community Iceplex!! \n\n#huskyhockey #womenshockey #uwhockey #uwwomenshockey #uofwa",
+   "image": "/ig/posts/Df5lddtRfpk.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df5lddtRfpk": [
+     null,
+     null
     ]
    },
    "posts": 1

@@ -3773,6 +3773,12 @@
    "post by @uwpsiu"
   ]
  },
+ "mimi_mccall_": {
+  "status": "new",
+  "found": [
+   "post by @uwcostumeclub"
+  ]
+ },
  "mimilwang": {
   "status": "new",
   "found": [
@@ -4090,6 +4096,12 @@
    "post by @uw_deltachi"
   ]
  },
+ "noodlecosplay": {
+  "status": "new",
+  "found": [
+   "post by @uwcostumeclub"
+  ]
+ },
  "nora.christianson": {
   "status": "new",
   "found": [
@@ -4373,6 +4385,12 @@
   "status": "new",
   "found": [
    "post by @kungfu_uw"
+  ]
+ },
+ "pepi_rain2440": {
+  "status": "new",
+  "found": [
+   "post by @uwcostumeclub"
   ]
  },
  "pepsi": {
@@ -4761,6 +4779,12 @@
   "status": "new",
   "found": [
    "post by @uwkappasig"
+  ]
+ },
+ "ryltanaka": {
+  "status": "new",
+  "found": [
+   "post by @uwkendama"
   ]
  },
  "rytaks6": {
@@ -5495,6 +5519,12 @@
   "status": "new",
   "found": [
    "post by @dbf_uw"
+  ]
+ },
+ "thatcostama": {
+  "status": "new",
+  "found": [
+   "post by @uwcostumeclub"
   ]
  },
  "thatking.g.1": {
@@ -6618,10 +6648,15 @@
   "why": "event account, not a standing club"
  },
  "uwpoe": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwfarm"
-  ]
+  ],
+  "name": "UW Program on the Environment",
+  "bio": "Home of the Environmental Studies major at UW - lead change for a sustainable future, explore your interests, and do meaningful work.",
+  "latest": "2026-06-15",
+  "checked": "2026-11-19",
+  "why": "University academic program, not student-run club"
  },
  "uwprepa": {
   "status": "huskylink",
@@ -6642,16 +6677,24 @@
   "checked": "2026-11-13"
  },
  "uwrcys": {
-  "status": "new",
+  "status": "not",
   "found": [
    "bio of @eedramasociety"
-  ]
+  ],
+  "name": "Robinson Center",
+  "bio": "Est. 1977\nSupporting UW's young scholars through Saturday and Summer Enrichment, Transition School, and UW Academy programs. 🐾",
+  "latest": "2026-11-17",
+  "checked": "2026-11-19",
+  "why": "University center/office, not a student organization"
  },
  "uws.ashrae": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @me_at_uw"
-  ]
+  ],
+  "name": "UW ASHRAE Student Chapter",
+  "why": "ASHRAE Chapter at University of Washington",
+  "checked": "2026-11-19"
  },
  "uwseha": {
   "status": "club",
@@ -6686,10 +6729,13 @@
   "why": "school/department account, not a student club"
  },
  "uwsoftball": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @dlp_psi"
-  ]
+  ],
+  "name": "Washington Softball",
+  "why": "doesn't say UW",
+  "checked": "2026-11-19"
  },
  "uwsolardecathlon": {
   "status": "inactive",
@@ -6702,16 +6748,26 @@
   "checked": "2026-11-15"
  },
  "uwsondawgs": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @uwson"
-  ]
+  ],
+  "name": "UW SoN DAwGs",
+  "bio": "Student leaders within the @uwson\nUW Nurse Camp 2026 July 20-24💜💛",
+  "latest": "2026-07-27",
+  "checked": "2026-11-19",
+  "why": "Dawg Pack"
  },
  "uwsph": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwfarm"
-  ]
+  ],
+  "name": "UW Public Health",
+  "bio": "@uofwa School of Public Health | Working towards a world of healthy people 💜🌎 #UWSPH",
+  "latest": "2026-11-10",
+  "checked": "2026-11-19",
+  "why": "School of Public Health, an academic unit"
  },
  "uwstagenotes": {
   "status": "new",
@@ -7087,6 +7143,12 @@
   "status": "new",
   "found": [
    "post by @uwjunoon"
+  ]
+ },
+ "yenachaa": {
+  "status": "new",
+  "found": [
+   "post by @uwaacf"
   ]
  },
  "yogisabellaa": {

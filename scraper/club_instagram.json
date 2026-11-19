@@ -480,9 +480,9 @@
   "checked": "2026-10-24"
  },
  "ASHRAE Chapter at University of Washington": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uws.ashrae",
+  "from": "mentioned",
+  "checked": "2026-11-19"
  },
  "Asian Alliance for Mental Health": {
   "handle": "aamhuw",
@@ -1440,9 +1440,9 @@
   "checked": "2026-10-24"
  },
  "Dawg Pack": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwsondawgs",
+  "from": "mentioned",
+  "checked": "2026-11-19"
  },
  "DawgWalks@UW": {
   "handle": null,

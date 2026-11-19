@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T00:52",
+ "updated": "2026-11-19T08:43",
  "applications": [
   {
    "id": "DfZC1L5m8jD",
@@ -528,6 +528,18 @@
    "posted": "2026-11-17",
    "logo": "/ig/clubs/uwwomenslax.jpg",
    "category": "Sports"
+  },
+  {
+   "id": "Df5kCNHp_Op",
+   "host": "Hillel UW (@huskyhillel)",
+   "for": "New York spring break",
+   "kind": "Programs",
+   "deadline": null,
+   "link": "http://linktr.ee/HillelUW",
+   "post": "https://www.instagram.com/p/Df5kCNHp_Op/",
+   "posted": "2026-11-18",
+   "logo": "/ig/clubs/huskyhillel.jpg",
+   "category": "Faith & Spirituality"
   }
  ]
 }
