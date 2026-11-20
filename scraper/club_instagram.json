@@ -4700,9 +4700,9 @@
   "checked": "2026-10-24"
  },
  "Stage Notes": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwstagenotes",
+  "from": "mentioned",
+  "checked": "2026-11-19"
  },
  "Star Wars Club at UW": {
   "handle": null,
@@ -5455,9 +5455,9 @@
   "checked": "2026-10-24"
  },
  "Unplugged": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uwunplugged",
+  "from": "mentioned",
+  "checked": "2026-11-19"
  },
  "Urban Accessibility Group": {
   "handle": null,
@@ -5585,9 +5585,9 @@
   "checked": "2026-10-24"
  },
  "Washington Gaming Association: Valorant": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "valorant_uw",
+  "from": "mentioned",
+  "checked": "2026-11-19"
  },
  "Washington Husky STUNT": {
   "handle": null,

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T08:45",
+ "updated": "2026-11-19T19:38",
  "events": [
   {
    "id": "DfNbCxaBHnn-0",
@@ -46,6 +46,33 @@
    "comments": null,
    "post_counts": {
     "Df3yyhLRi3n": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df24HrLzgyh-0",
+   "title": "KitKat Fundraiser",
+   "type": "Food",
+   "host": "Japanese Student Association (@jsauw)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-19",
+   "start": "10:30",
+   "end": "14:30",
+   "url": "https://www.instagram.com/p/Df24HrLzgyh/",
+   "source": "instagram",
+   "description": "Come support JSA at our KitKat Fundraiser during tabling, and treat yourself to some chocolate while supporting our club!\n\n📅 November 19 & 20\n⏰ 10:30 AM – 2:30 PM\n📍 Red Square\n\nStop by, grab a KitKat, and show JSA some support!! We can’t wait to see you there! 🍫💛\n\n#UW #JSA #KitKat",
+   "image": "/ig/posts/Df24HrLzgyh.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df24HrLzgyh": [
      null,
      null
     ]
@@ -116,6 +143,30 @@
    "comments": null,
    "post_counts": {
     "Df6ljFjxhIo": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df2ylZQPFyX-0",
+   "title": "Board Game Break",
+   "type": "Game night",
+   "host": "New Student and Transfer Programs (@uwnstp)",
+   "where": "CTC",
+   "pos": null,
+   "date": "2026-11-19",
+   "start": "13:30",
+   "end": "15:30",
+   "url": "https://www.instagram.com/p/Df2ylZQPFyX/",
+   "source": "instagram",
+   "description": "ANOTHA ONE! Join us for a board game break this Thursday in the CTC! \n\n#uofwa",
+   "image": "/ig/posts/Df2ylZQPFyX.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df2ylZQPFyX": [
      null,
      null
     ]
@@ -424,6 +475,33 @@
     "Df08n7UILU7": [
      97,
      1
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df28JWhy_6G-0",
+   "title": "Pathology Lab Tour",
+   "type": "Club",
+   "host": "NSBHP (@nsbhp_)",
+   "where": "HSEB",
+   "pos": [
+    47.65164,
+    -122.31052
+   ],
+   "date": "2026-11-19",
+   "start": "17:00",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/Df28JWhy_6G/",
+   "source": "instagram",
+   "description": "Hello everyone! \nWe’re so excited to announce our FIRST meeting this Thursday!  Join us for an exclusive tour of UW’s Pathology Lab! 🔬🥼\n Meeting Location: HSEB\nMeet-Up Time: 5:00 PM\nLab Tour: 5:30 PM\nWe’ll all meet at HSEB at 5:00 PM and walk over to the pathology lab together!\n\nIMPORTANT: A HIPAA form is required to participate in the lab tour! The form is linked in our bio, so please complete it beforehand if possible. If you’re unable to fill it out online, paper copies will be available to complete in person on the day of the tour!\nWe can’t wait to kick things off and see y’all there! 🙌🏽🧬💕",
+   "image": "/ig/posts/Df28JWhy_6G.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df28JWhy_6G": [
+     null,
+     null
     ]
    },
    "posts": 1
@@ -1249,6 +1327,33 @@
    "posts": 1
   },
   {
+   "id": "Df24HrLzgyh-1",
+   "title": "KitKat Fundraiser",
+   "type": "Food",
+   "host": "Japanese Student Association (@jsauw)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-20",
+   "start": "10:30",
+   "end": "14:30",
+   "url": "https://www.instagram.com/p/Df24HrLzgyh/",
+   "source": "instagram",
+   "description": "Come support JSA at our KitKat Fundraiser during tabling, and treat yourself to some chocolate while supporting our club!\n\n📅 November 19 & 20\n⏰ 10:30 AM – 2:30 PM\n📍 Red Square\n\nStop by, grab a KitKat, and show JSA some support!! We can’t wait to see you there! 🍫💛\n\n#UW #JSA #KitKat",
+   "image": "/ig/posts/Df24HrLzgyh.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df24HrLzgyh": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfVbLn2ywCN-0",
    "title": "Service Fair & Blood Drive",
    "type": "Club",
@@ -1427,6 +1532,33 @@
    "posts": 1
   },
   {
+   "id": "Df6MUiDJrL8-0",
+   "title": "AVELA Study Jam",
+   "type": "Study",
+   "host": "AVELA UW (@avela_uw)",
+   "where": "Loew 215",
+   "pos": [
+    47.65434,
+    -122.30452
+   ],
+   "date": "2026-11-20",
+   "start": "16:00",
+   "end": "17:00",
+   "url": "https://www.instagram.com/p/Df6MUiDJrL8/",
+   "source": "instagram",
+   "description": "Join our study jam for an evening of locking in with others!! 🤓 Food will be provided 😋\n🗓️: This Friday, Nov. 20\n📍: Loew 215\n⏰: 4-5PM",
+   "image": "/ig/posts/Df6MUiDJrL8.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df6MUiDJrL8": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "Df55e1Zpsgx-0",
    "title": "Hot Takes Debates",
    "type": "Food",
@@ -1577,6 +1709,33 @@
    "comments": null,
    "post_counts": {
     "Df3KoWkv_Sz": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df2l_GFhe91-0",
+   "title": "Dirty Dozen Potluck",
+   "type": "Food",
+   "host": "The Dirty Dozen (@uwfarmdirtydozen)",
+   "where": "Clubhouse",
+   "pos": [
+    47.64044,
+    -122.29137
+   ],
+   "date": "2026-11-20",
+   "start": "17:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/Df2l_GFhe91/",
+   "source": "instagram",
+   "description": "Yippee!! This Friday at 5:30pm we will be hosting a potluck at the clubhouse! Everyone is welcome, bring a dish or snack to share and be prepared to enjoy some lovely food, gratitude, and company :) 🥘🍁\n\nP.S. there may be dishes made from our very own corn... who knows.... 👀",
+   "image": "/ig/posts/Df2l_GFhe91.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df2l_GFhe91": [
      null,
      null
     ]
@@ -1796,6 +1955,33 @@
    "comments": null,
    "post_counts": {
     "Df04pvmvJeV": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df5OIcRzwPB-0",
+   "title": "Stage Notes Potluck",
+   "type": "Food",
+   "host": "UW Stage Notes (@uwstagenotes)",
+   "where": "Hutch 130",
+   "pos": [
+    47.62644,
+    -122.32976
+   ],
+   "date": "2026-11-20",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/Df5OIcRzwPB/",
+   "source": "instagram",
+   "description": "Join us for a potluck full of yummy food and good vibes! We just ask that you know what ingredients are in the food you bring so that we can clarify them to people with dietary restrictions!",
+   "image": "/ig/posts/Df5OIcRzwPB.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df5OIcRzwPB": [
      null,
      null
     ]
@@ -2178,6 +2364,30 @@
    "posts": 1
   },
   {
+   "id": "Df3nTKjvgEs-0",
+   "title": "Headbandz Food Edition",
+   "type": "Game night",
+   "host": "HCCUW (@huskyculinaryclub)",
+   "where": "IHUB 214",
+   "pos": null,
+   "date": "2026-11-20",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df3nTKjvgEs/",
+   "source": "instagram",
+   "description": "Come join us this Friday for Headbandz!",
+   "image": "/ig/posts/Df3nTKjvgEs.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df3nTKjvgEs": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "Dfy0apHmx97-1",
    "title": "Fall Mass",
    "type": "Hangout",
@@ -2451,7 +2661,7 @@
    "source": "luma",
    "description": "Arguably best MSA event of the year, you don’t want to miss it.",
    "image": "https://images.lumacdn.com/gallery-images/vi/fd9cbf3d-ed20-41dc-af79-1d38989c6c11.png",
-   "rsvps": 90,
+   "rsvps": 100,
    "post_counts": {
     "DfL5IUojRMD": [
      null,
@@ -2845,6 +3055,33 @@
    "posts": 1
   },
   {
+   "id": "Df2l0I_s0Bv-0",
+   "title": "Hot Cocoa Bar",
+   "type": "Food",
+   "host": "New Student and Transfer Programs (@uwnstp)",
+   "where": "HUB 141",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-23",
+   "start": "15:00",
+   "end": "16:30",
+   "url": "https://www.instagram.com/p/Df2l0I_s0Bv/",
+   "source": "instagram",
+   "description": "Shake off Seattle’s chilly weather with a hot cocoa bar! Stop by the CTC on Monday from 3:00 - 4:30 PM, get hot cocoa, add your favorite toppings, then hang out for some community time! \n\n#hotcocoa #uofwa",
+   "image": "/ig/posts/Df2l0I_s0Bv.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df2l0I_s0Bv": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "Df3n5fQxxQd-0",
    "title": "Gen Meeting 3",
    "type": "Club",
@@ -2865,6 +3102,33 @@
    "comments": null,
    "post_counts": {
     "Df3n5fQxxQd": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df8PujlhuNW-0",
+   "title": "Wealth Management Career Panel",
+   "type": "Club",
+   "host": "Personal Finance @ UW (@personalfinanceuw)",
+   "where": "PCAR 394",
+   "pos": [
+    47.65909,
+    -122.30867
+   ],
+   "date": "2026-11-23",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/Df8PujlhuNW/",
+   "source": "instagram",
+   "description": "💼 Join us for our Wealth Management Career Panel! Hear about their industry experiences, gain career insights, and connect with professionals in the field.\n\n📅 Nov. 23, 2026| ⏰ 5:30–6:30 PM\n📍 PCAR 394\n👔 Business Casual \n\nSee you there! 💜\n#PersonalFinance#PFUW#universityofwashington",
+   "image": "/ig/posts/Df8PujlhuNW.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df8PujlhuNW": [
      null,
      null
     ]
@@ -3097,7 +3361,7 @@
    "url": "https://www.instagram.com/p/DfvI8lITbLe/",
    "source": "instagram",
    "description": "We are so excited to invite you all to our annual Taking Back the Dinner. We will be having wonderful food from @nativesoulcuisine and songs from the Black River canoe family! Doors open at 4:45, dinner at 5:30. No RSVP required. This is open to all community members, please invite your families and relatives! 🌽",
-   "image": "/ig/posts/DfvI8lITbLe.jpg",
+   "image": null,
    "likes": null,
    "comments": null,
    "post_counts": {
@@ -3551,6 +3815,33 @@
    "posts": 1
   },
   {
+   "id": "Df5HGEFII_j-0",
+   "title": "W.E.B Du Bois Reading Club",
+   "type": "Club",
+   "host": "THE BSJ (@uw_bsj)",
+   "where": "ECC 207",
+   "pos": [
+    47.65509,
+    -122.31484
+   ],
+   "date": "2026-11-30",
+   "start": "18:30",
+   "end": "19:30",
+   "url": "https://www.instagram.com/p/Df5HGEFII_j/",
+   "source": "instagram",
+   "description": "Come join us on Nov 30th for our 2nd reading of W.E.B DU BOIS in our reading club activities.\nWe are reading part |: of our spiritual strivings & || : Of the dawn and freedom \nBring a book you like for a book exchange!\nPull through, bring your friends, and let’s have a beautiful discussion :)\n\n📍 ECC 207\n⏰: 6:30-7:30",
+   "image": "/ig/posts/Df5HGEFII_j.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df5HGEFII_j": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "Dfl6L8GxbiZ-0",
    "title": "Giving Tuesday",
    "type": "Club",
@@ -3784,6 +4075,30 @@
     "Dfz1-FRxXP1": [
      30,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df3iQFKGu-W-0",
+   "title": "Giving Tuesday",
+   "type": "Club",
+   "host": "Kesem at The University of Washington (@kesem_uw)",
+   "where": null,
+   "pos": null,
+   "date": "2026-12-01",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df3iQFKGu-W/",
+   "source": "instagram",
+   "description": "✌️ WEEKS UNTIL GIVING TUESDAY! \n\nGiving Tuesday is just around the corner, and there are so many ways YOU can make a difference! ✨\n\nWhether it’s making a donation, sharing our mission with friends and family, or helping spread the word on social media, every act of generosity helps us plant the seeds of Kesem magic to more kids impacted by a parent’s cancer. \n\nMark your calendars for DECEMBER 1st and join us in making this Giving Tuesday one to remember! Every share, donation, and show of support makes a difference. 💙\n\n🔗 https://donate.kesem.org/team/843658 \n\n#GivingTuesday #Kesem #KesemUW",
+   "image": "/ig/posts/Df3iQFKGu-W.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df3iQFKGu-W": [
+     null,
+     null
     ]
    },
    "posts": 1
@@ -4337,6 +4652,25 @@
    "posts": 1
   },
   {
+   "id": "lm-evt-oJJuPbPi3SwAyAz",
+   "title": "Pack Winter Market Social",
+   "type": "Hangout",
+   "host": "Venture Capital Club",
+   "where": "University of Washington Club (UW Club)",
+   "pos": [
+    47.65558,
+    -122.30412
+   ],
+   "date": "2026-12-16",
+   "start": "17:00",
+   "end": "20:00",
+   "url": "https://luma.com/azy1u074",
+   "source": "luma",
+   "description": "Join Pack Ventures founders, LPs, and friends of the fund for a festive winter market social at UW! Come by for a relaxed afternoon of winter market activities, good company, live music, tasty food, and drinks.\nBring the whole family and enjoy activities for all ages. \n\nWhether you’re catching up with familiar faces or meeting someone new, there’ll be plenty of time to mingle and soak up the winter market atmosphere.\nWe are happy to partner with the UW Alumni Association on the event venue!\nLocation: University of Washington Club - 4020 E Stevens Way NE, Seattle, WA 98195\nParking: Padelford Garage or Central Garage have self paid parking.",
+   "image": "https://images.lumacdn.com/uploads/qh/a5a99a77-45c9-4cc5-8ce8-548edb42f74c.png",
+   "rsvps": 10
+  },
+  {
    "id": "DenkLcPFKOB-0",
    "title": "Washington Holiday Clinic",
    "type": "Club",
@@ -4452,6 +4786,33 @@
     "DfWlu4XG2mW": [
      19,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df5RoJPG6X7-0",
+   "title": "Yoga Teacher Training",
+   "type": "Club",
+   "host": "UW Recreation (@uwrecreation)",
+   "where": "Studio 316, IMA",
+   "pos": [
+    47.65374,
+    -122.30123
+   ],
+   "date": "2027-01-09",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/Df5RoJPG6X7/",
+   "source": "instagram",
+   "description": "Ready to take your yoga practice to the next level? 🧘‍♀️ UW Recreation is offering our 200-hour Yoga Teacher Training this winter! The program is a great opportunity to deepen your practice, develop your teaching skills, and earn a Yoga Alliance RYS 200 certification.\n\n📅 January 9 - March 14, 2027\n📍 Studio 316, IMA \n* More information regarding dates and times is in the  link provided \n\nHear from one of our instructors who recently completed the YTT program! 🌟\n\n“Hi, my name is Carmela and I am a yoga instructor at the IMA. I graduated a few months ago from the University of Washington’s Yoga Teacher Training program. As a student and a long time practitioner of yoga, I needed a training that would fit into my schedule while still showing me the depth inherent to yoga. The UW program felt tailored to students and I was able to attend the weekly classes all quarter, forming connections with other students, while keeping up with classes and work expectations. I enjoyed the program’s emphasis on the historical roots of asana and spiritual practices as well as the posture workshops where we dove into the minutia of primary poses. If you are a UW student looking to deepen your practice without sacrificing other areas of your life, the IMA YTT may be for you!” - Carmela Leache\n\nRegistration is open! Follow link below to sign up today.\n\nhttps://www.washington.edu/ima/yoga-teacher-training/\n\n#YTT #yoga #uw #ima #2027goals",
+   "image": "/ig/posts/Df5RoJPG6X7.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df5RoJPG6X7": [
+     null,
+     null
     ]
    },
    "posts": 1

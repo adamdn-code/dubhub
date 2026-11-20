@@ -790,7 +790,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "AVELA A Vision for Engineering Literacy and Access|Promotes engineering literacy and access via workshops, camps, and panels."
+"from": "AVELA A Vision for Engineering Literacy and Access|Advances engineering literacy and access for underrepresented students."
 },
 "awaaz": {
 "fields": [],
@@ -954,7 +954,7 @@
 },
 "blackstudentunion": {
 "fields": [],
-"from": "Black Student Union|Black student community fostering dialogue and cultural connection."
+"from": "Black Student Union|Student organization celebrating Black culture and fostering dialogue."
 },
 "blockchainsociety": {
 "fields": [
@@ -1079,7 +1079,7 @@
 },
 "campkesem": {
 "fields": [],
-"from": "Camp Kesem at UW Seattle|Runs free camps and peer support for children of cancer patients."
+"from": "Camp Kesem at UW Seattle|Provides free camps and peer support for kids affected by parental cancer."
 },
 "cannaclub": {
 "fields": [
@@ -2563,7 +2563,7 @@
 },
 "huskyculinaryclub": {
 "fields": [],
-"from": "Husky Culinary Club|Student club exploring cooking, food culture, and sustainable kitchen practices."
+"from": "Husky Culinary Club|Explores cooking and food culture through communal meals and events."
 },
 "huskycyclingclub": {
 "fields": [],
@@ -2842,7 +2842,7 @@
 },
 "indonesianstudentassociation": {
 "fields": [],
-"from": "Indonesian Student Association at the University of Washington|Indonesian Student Association connecting Indonesian community at UW."
+"from": "Indonesian Student Association at the University of Washington|Indonesian student association connecting UW students with Indonesian culture."
 },
 "industrialdesignerssocietyofamerica": {
 "fields": [
@@ -3022,7 +3022,7 @@
 },
 "japanesestudentassociation": {
 "fields": [],
-"from": "Japanese Student Association at the University of Washington|Promotes Japanese culture with events like onigiri making, festivals, and socials."
+"from": "Japanese Student Association at the University of Washington|Promotes Japanese culture with events, food, and community activities."
 },
 "jewishlawstudentsassociation": {
 "fields": [
@@ -3820,7 +3820,7 @@
 },
 "newstudentandtransferprograms": {
 "fields": [],
-"from": "New Student and Transfer Programs|Provides resources and events to help new and transfer students transition to UW."
+"from": "New Student and Transfer Programs|Program supporting first‑year and transfer students' transition to UW."
 },
 "nikkeistudentunion": {
 "fields": [],
@@ -4042,7 +4042,7 @@
 "fields": [
 "Business"
 ],
-"from": "Personal Finance at UW|Empowers students with financial education and wealth‑management career insights."
+"from": "Personal Finance at UW|Offers financial education and career insights in wealth management."
 },
 "pharmacistsforreproductiveeducationandsexualhealth": {
 "fields": [
@@ -4052,9 +4052,9 @@
 },
 "phialphadeltaprelawfraternity": {
 "fields": [
-"Social Sciences"
+"Business"
 ],
-"from": "Phi Alpha Delta PreLaw Fraternity|Undergraduate pre‑law fraternity offering networking and service opportunities."
+"from": "Phi Alpha Delta PreLaw Fraternity|Undergraduate pre‑law fraternity fostering legal education and community."
 },
 "phibetasigmafraternityincorporatedkappalambda": {
 "fields": [],
@@ -4205,7 +4205,7 @@
 },
 "pokemontrainerclub": {
 "fields": [],
-"from": "Pokemon Trainer Club at UW|Club for Pokémon fans to play, trade, and compete together."
+"from": "Pokemon Trainer Club at UW|Gaming club for Pokémon enthusiasts with tournaments and meet‑ups."
 },
 "polynesianstudentalliance": {
 "fields": [],
@@ -5319,11 +5319,10 @@
 },
 "technologyandbusinessassociation": {
 "fields": [
-"Business",
-"Engineering",
-"Computing & Math"
+"Computing & Math",
+"Business"
 ],
-"from": "Technology and Business Association|Student group exploring technology, business trends, and future mobility."
+"from": "Technology and Business Association|Discusses technology and business trends through panels and interactive talks."
 },
 "technologyconsultingassociation": {
 "fields": [
@@ -5387,7 +5386,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "The Black Student Journal|Student‑run journal highlighting Black voices, literature, and discussion."
+"from": "The Black Student Journal|Publishes Black student writing and hosts reading discussions."
 },
 "booknook": {
 "fields": [
@@ -5427,7 +5426,7 @@
 "fields": [
 "Sciences"
 ],
-"from": "The Dirty Dozen Student Farm Club|Engages students in all stages of the food system through campus farming."
+"from": "The Dirty Dozen Student Farm Club|Student farm group exploring the full food system cycle on campus."
 },
 "dwellingplace": {
 "fields": [],
@@ -5782,7 +5781,7 @@
 },
 "recreation": {
 "fields": [],
-"from": "UW Recreation|Offers safe, accessible recreation like climbing, paddling, and wellness programs."
+"from": "UW Recreation|University recreation offering classes and activities for student wellbeing."
 },
 "cbc": {
 "fields": [],
@@ -6346,7 +6345,7 @@
 "fields": [
 "Health"
 ],
-"from": "NSBHP|Supports Black health professionals and students at UW."
+"from": "NSBHP|Supports Black health professionals with networking and lab tours."
 },
 "ravishingrholambdazeta": {
 "fields": [],

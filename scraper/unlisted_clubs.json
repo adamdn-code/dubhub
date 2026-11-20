@@ -1254,7 +1254,7 @@
   ]
  },
  "celsiusofficial": {
-  "status": "new",
+  "status": "not",
   "found": [
    "bio of @uwhuskycricketclub",
    "post by @uw_uwib",
@@ -1264,7 +1264,10 @@
    "post by @uw.wic",
    "post by @uwwinfo",
    "post by @projectmeduw"
-  ]
+  ],
+  "name": "CELSIUS Energy Drink",
+  "why": "doesn't say UW",
+  "checked": "2026-11-19"
  },
  "cerave": {
   "status": "new",
@@ -1724,12 +1727,15 @@
   ]
  },
  "drinkpoppi": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwadpi",
    "post by @uwgphi",
    "post by @uwdeltazeta"
-  ]
+  ],
+  "name": "poppi",
+  "why": "doesn't say UW",
+  "checked": "2026-11-19"
  },
  "drinkzaila": {
   "status": "new",
@@ -2143,6 +2149,15 @@
   "found": [
    "post by @uwpks"
   ]
+ },
+ "gdg.uw": {
+  "status": "inactive",
+  "found": [
+   "named as 'Google Developer Groups' by the list of companies' campus programs"
+  ],
+  "name": "Google Developer Group @ UW",
+  "why": "latest post 2025-09-11",
+  "checked": "2026-11-19"
  },
  "geekgirlcon": {
   "status": "new",
@@ -2606,12 +2621,15 @@
   ]
  },
  "indomieus": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uw_ssa",
    "post by @jsauw",
    "post by @tosauw"
-  ]
+  ],
+  "name": "Indomie USA",
+  "why": "doesn't say UW",
+  "checked": "2026-11-19"
  },
  "informaticsforimpact": {
   "status": "new",
@@ -3660,12 +3678,15 @@
   ]
  },
  "maybeevenofficial": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwfslc",
    "post by @uwpsiu",
    "post by @thebondsuw"
-  ]
+  ],
+  "name": "Maybe Even",
+  "why": "doesn't say UW",
+  "checked": "2026-11-19"
  },
  "mayordanaralph": {
   "status": "new",
@@ -3905,18 +3926,27 @@
   ]
  },
  "nardotheband": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwpsiu",
    "post by @eeriatuw",
    "post by @sick.uw",
    "post by @thebondsuw"
-  ]
+  ],
+  "name": "Nardo",
+  "why": "doesn't say UW",
+  "checked": "2026-11-19"
  },
  "narrapauline": {
   "status": "new",
   "found": [
    "post by @fasasauw"
+  ]
+ },
+ "nat4lieh": {
+  "status": "new",
+  "found": [
+   "post by @tsauw"
   ]
  },
  "nataliesoj": {
@@ -4029,12 +4059,15 @@
   ]
  },
  "nicobun.station": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @jsauw",
    "post by @tosauw",
    "post by @tsauw"
-  ]
+  ],
+  "name": null,
+  "why": "doesn't say UW",
+  "checked": "2026-11-19"
  },
  "nicolecchen": {
   "status": "new",
@@ -4618,12 +4651,15 @@
   ]
  },
  "remi__vernon": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwpsiu",
    "post by @asuwae",
    "post by @uwdawgdaze"
-  ]
+  ],
+  "name": "Remi Vernon",
+  "why": "doesn't say UW",
+  "checked": "2026-11-19"
  },
  "repadamsmith": {
   "status": "new",
@@ -4695,6 +4731,12 @@
   "status": "new",
   "found": [
    "post by @uwhhsa"
+  ]
+ },
+ "rnald.lin": {
+  "status": "new",
+  "found": [
+   "post by @tsauw"
   ]
  },
  "romes.mov": {
@@ -6770,10 +6812,13 @@
   "why": "School of Public Health, an academic unit"
  },
  "uwstagenotes": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @uwgwssrso"
-  ]
+  ],
+  "name": "UW Stage Notes",
+  "why": "Stage Notes",
+  "checked": "2026-11-19"
  },
  "uwstudentlife": {
   "status": "not",
@@ -6842,16 +6887,24 @@
   "checked": "2026-11-14"
  },
  "uwtransportation": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwsolar"
-  ]
+  ],
+  "name": "UW Transportation Services",
+  "bio": "Providing innovative and sustainable transportation solutions that facilitate the education, research, service and cultural missions of UW.",
+  "latest": "2026-10-28",
+  "checked": "2026-11-19",
+  "why": "University department, not student-run club"
  },
  "uwtridelta.dei": {
-  "status": "new",
+  "status": "inactive",
   "found": [
    "bio of @uwtridelta"
-  ]
+  ],
+  "name": "UW TriDelta",
+  "why": "latest post 2024-09-04",
+  "checked": "2026-11-19"
  },
  "uwuaa": {
   "status": "not",
@@ -6878,10 +6931,13 @@
   "why": "student dance team at UW"
  },
  "uwunplugged": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @uwfslc"
-  ]
+  ],
+  "name": "Unplugged",
+  "why": "Unplugged",
+  "checked": "2026-11-19"
  },
  "uwwinfo": {
   "status": "huskylink",
@@ -6900,10 +6956,15 @@
   ]
  },
  "valorant_uw": {
-  "status": "new",
+  "status": "huskylink",
   "found": [
    "post by @wgauw"
-  ]
+  ],
+  "name": "Valorant @ UW",
+  "bio": "Official VALORANT community at the University of Washington 🐺💜💛",
+  "latest": "2026-11-04",
+  "checked": "2026-11-19",
+  "why": "Washington Gaming Association: Valorant"
  },
  "vanessalking": {
   "status": "new",
@@ -7098,10 +7159,13 @@
   ]
  },
  "wwuwomensrugby": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwwomxnsrugby"
-  ]
+  ],
+  "name": "WWU Women’s Rugby Club",
+  "why": "names another school",
+  "checked": "2026-11-19"
  },
  "wyatt_kman": {
   "status": "new",
