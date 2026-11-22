@@ -23,6 +23,12 @@
   "handle": null,
   "checked": "2026-11-15"
  },
+ "ASUW SARVA": {
+  "status": "new",
+  "by": [
+   "UW LiveWell (@uwlivewell)"
+  ]
+ },
  "ASUW Seattle": {
   "status": "none",
   "by": [
@@ -31,11 +37,19 @@
   "handle": null,
   "checked": "2026-11-15"
  },
- "ATSA Northwest Sports Day": {
+ "ATSA": {
   "status": "new",
   "by": [
    "ThaiSA UW (@thaisauw)"
   ]
+ },
+ "ATSA Northwest Sports Day": {
+  "status": "none",
+  "by": [
+   "ThaiSA UW (@thaisauw)"
+  ],
+  "handle": null,
+  "checked": "2026-11-20"
  },
  "Brothers of Zeta Pi Lambda Chapter": {
   "status": "none",
@@ -46,10 +60,12 @@
   "checked": "2026-11-15"
  },
  "Build Your Library": {
-  "status": "new",
+  "status": "none",
   "by": [
    "UW Q Center (@uwqcenter)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-21"
  },
  "Canva": {
   "status": "none",
@@ -92,9 +108,17 @@
   "checked": "2026-11-16"
  },
  "ColorMode": {
-  "status": "new",
+  "status": "none",
   "by": [
    "UW Q Center (@uwqcenter)"
+  ],
+  "handle": null,
+  "checked": "2026-11-22"
+ },
+ "cosplay clubs of UW": {
+  "status": "new",
+  "by": [
+   "Costume Club at UW (@uwcostumeclub)"
   ]
  },
  "Cursor": {
@@ -173,6 +197,12 @@
    "UW Q Center (@uwqcenter)"
   ]
  },
+ "Girls Who Code UW": {
+  "status": "new",
+  "by": [
+   "Product Management Club at UW (@pmclubuw)"
+  ]
+ },
  "GitHub": {
   "status": "none",
   "by": [
@@ -205,6 +235,12 @@
   "status": "new",
   "by": [
    "an event on Luma, on the UW campus"
+  ]
+ },
+ "Kappa Lambda Chapter of Phi Beta Sigma Fraternity, Inc.": {
+  "status": "new",
+  "by": [
+   "UW Black Student Union (@uwseattlebsu)"
   ]
  },
  "KHB": {
@@ -385,6 +421,12 @@
    "Certificate of International Studies in Business (@cisbuw)"
   ]
  },
+ "UW Hazing Prevention": {
+  "status": "new",
+  "by": [
+   "UW LiveWell (@uwlivewell)"
+  ]
+ },
  "UW MIC": {
   "status": "none",
   "by": [
@@ -397,6 +439,12 @@
   "status": "new",
   "by": [
    "New Student and Transfer Programs (@uwnstp)"
+  ]
+ },
+ "UWCA": {
+  "status": "new",
+  "by": [
+   "University of Washington Investment Group (@uw_investmentgroup)"
   ]
  },
  "UWIG": {
@@ -427,6 +475,12 @@
   "status": "new",
   "by": [
    "an event on Luma, on the UW campus"
+  ]
+ },
+ "WWU Sailing": {
+  "status": "new",
+  "by": [
+   "Husky Sailing Team (@huskysailingteam)"
   ]
  },
  "Zeta Phi Beta Sorority, Incorporated": {

@@ -1,43 +1,21 @@
 {
- "updated": "2026-11-19T19:01",
+ "updated": "2026-11-22T14:12",
  "events": [
   {
-   "id": "lm-evt-XIyWlZpjAZEavfV",
-   "title": "Panel: HCI/HCDE Role Possibilities",
-   "type": "Club",
-   "host": "WiUX: Women in User Experience (@womeninux_uw)",
-   "where": "Johnson Hall (JHN)",
-   "pos": [
-    47.65464,
-    -122.30891
-   ],
-   "date": "2026-11-20",
-   "start": "17:30",
-   "end": "18:30",
-   "url": "https://luma.com/ocgg8euy",
+   "id": "lm-evt-EnrCNE5SnAWt73x",
+   "title": "End of Year Social",
+   "type": "Hangout",
+   "host": "cseed (@cseeduw)",
+   "where": "CSE2 G01",
+   "pos": null,
+   "date": "2026-12-02",
+   "start": "17:00",
+   "end": "18:00",
+   "url": "https://luma.com/ob230jhm",
    "source": "luma",
-   "description": "Join us in JHN 175 (Johnson Hall)\nThis panel will provide insight into all the different options and opportunities available to an HCDE/HCI+D or any UX graduate. Panelists will share their journeys, what their roles look like, and answer host questions. This will be followed by an audience Q&A and networking opportunities.\n\nSpeakers:\nEmily Rapada - Senior Staff Researcher, Pinterest\nSwati Sachdeva - SWE + Researcher, Google\nJulianne Bryant - UX Senior Manager, Google\nSola Chang - Senior UX/UI Game Designer, Blizzard\n\nThis event will be in person only and will not be recorded. Please RSVP yes if you intend on coming in person, and if your plans change, please update your RSVP so our friends on the waitlist can join us :)",
-   "image": "https://images.lumacdn.com/uploads/ms/4121c719-a524-41c7-b07b-bb7d12b4bc1d.png",
-   "rsvps": 63
-  },
-  {
-   "id": "lm-evt-QOR9KJh4w4BsUlv",
-   "title": "MSA CultureFest",
-   "type": "Club",
-   "host": "MSA UW (@msauw)",
-   "where": "Husky Union Building",
-   "pos": [
-    47.65539,
-    -122.30508
-   ],
-   "date": "2026-11-21",
-   "start": "16:30",
-   "end": "20:30",
-   "url": "https://luma.com/52mqewvo",
-   "source": "luma",
-   "description": "Arguably best MSA event of the year, you don’t want to miss it.",
-   "image": "https://images.lumacdn.com/gallery-images/vi/fd9cbf3d-ed20-41dc-af79-1d38989c6c11.png",
-   "rsvps": 100
+   "description": "Open to current UW students only.",
+   "image": "https://images.lumacdn.com/uploads/ak/b80581a1-b34c-40c2-9ce4-bc3f30938603.jpg",
+   "rsvps": null
   },
   {
    "id": "lm-evt-oJJuPbPi3SwAyAz",
@@ -56,7 +34,7 @@
    "source": "luma",
    "description": "Join Pack Ventures founders, LPs, and friends of the fund for a festive winter market social at UW! Come by for a relaxed afternoon of winter market activities, good company, live music, tasty food, and drinks.\nBring the whole family and enjoy activities for all ages. \n\nWhether you’re catching up with familiar faces or meeting someone new, there’ll be plenty of time to mingle and soak up the winter market atmosphere.\nWe are happy to partner with the UW Alumni Association on the event venue!\nLocation: University of Washington Club - 4020 E Stevens Way NE, Seattle, WA 98195\nParking: Padelford Garage or Central Garage have self paid parking.",
    "image": "https://images.lumacdn.com/uploads/qh/a5a99a77-45c9-4cc5-8ce8-548edb42f74c.png",
-   "rsvps": 10
+   "rsvps": 28
   }
  ]
 }

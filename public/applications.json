@@ -1,66 +1,6 @@
 {
- "updated": "2026-11-19T19:35",
+ "updated": "2026-11-22T14:36",
  "applications": [
-  {
-   "id": "DfZC1L5m8jD",
-   "host": "Ceramics Club at University of Washington (@ceramicsclubatuw)",
-   "for": "Admin positions",
-   "kind": "Team & staff",
-   "deadline": "2026-11-19",
-   "link": "https://linktr.ee/ceramicsclubatuw",
-   "post": "https://www.instagram.com/p/DfZC1L5m8jD/",
-   "posted": "2026-11-05",
-   "logo": "/ig/clubs/ceramicsclubatuw.jpg",
-   "category": "Social"
-  },
-  {
-   "id": "DfC5xLxGI-O",
-   "host": "@imuslimsuw",
-   "for": "First-Year Rep",
-   "kind": "Officer & board",
-   "deadline": "2026-11-20",
-   "link": null,
-   "post": "https://www.instagram.com/p/DfC5xLxGI-O/",
-   "posted": "2026-10-28",
-   "logo": "/ig/clubs/imuslimsuw.jpg",
-   "category": "Academic"
-  },
-  {
-   "id": "Dfd8qY_JnSc",
-   "host": "Community Health Outreach (@uw_cho)",
-   "for": "Officer applications",
-   "kind": "Officer & board",
-   "deadline": "2026-11-20",
-   "link": null,
-   "post": "https://www.instagram.com/p/Dfd8qY_JnSc/",
-   "posted": "2026-11-07",
-   "logo": "/ig/clubs/uw_cho.jpg",
-   "category": "Academic"
-  },
-  {
-   "id": "DfiGjPzD-l6",
-   "host": "Delta Epsilon Mu at UW (@dem_alphakappa)",
-   "for": "Research Expo presenters",
-   "kind": "Team & staff",
-   "deadline": "2026-11-20",
-   "link": "http://demuw.com",
-   "post": "https://www.instagram.com/p/DfiGjPzD-l6/",
-   "posted": "2026-11-09",
-   "logo": "/ig/clubs/dem_alphakappa.jpg",
-   "category": "Academic"
-  },
-  {
-   "id": "Df0IeK_gBKs",
-   "host": "Claude Builder Club @ UW (@claude.uofwa)",
-   "for": "Hackathon Committee",
-   "kind": "Officer & board",
-   "deadline": "2026-11-20",
-   "link": "https://discord.gg/ggZrNu55F",
-   "post": "https://www.instagram.com/p/Df0IeK_gBKs/",
-   "posted": "2026-11-16",
-   "logo": "/ig/clubs/claude.uofwa.jpg",
-   "category": "Tech"
-  },
   {
    "id": "De5hKvmGiiR",
    "host": "@vsauw",
@@ -180,30 +120,6 @@
    "posted": "2026-11-03",
    "logo": "/ig/clubs/uw_sao.jpg",
    "category": "Other"
-  },
-  {
-   "id": "DevXtU8FAaQ",
-   "host": "Sigma Lambda Gamma (@uwgammas)",
-   "for": "General membership",
-   "kind": "Membership",
-   "deadline": null,
-   "link": null,
-   "post": "https://www.instagram.com/p/DevXtU8FAaQ/",
-   "posted": "2026-10-20",
-   "logo": "/ig/clubs/uwgammas.jpg",
-   "category": "Greek Life"
-  },
-  {
-   "id": "De0GH4WhdBq",
-   "host": "UW Recycling (@uwrecycling)",
-   "for": "Husky Goods Free Store Student Volunteer",
-   "kind": "Team & staff",
-   "deadline": null,
-   "link": "http://linktr.ee/uwrecycling",
-   "post": "https://www.instagram.com/p/De0GH4WhdBq/",
-   "posted": "2026-10-22",
-   "logo": "/ig/clubs/uwrecycling.jpg",
-   "category": "Service"
   },
   {
    "id": "De2N31bPT3U",

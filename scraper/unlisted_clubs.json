@@ -107,6 +107,12 @@
    "post by @uwzeta"
   ]
  },
+ "_cjsnowden_": {
+  "status": "new",
+  "found": [
+   "post by @gh_nupes"
+  ]
+ },
  "_clubtnt": {
   "status": "new",
   "found": [
@@ -156,11 +162,13 @@
   ]
  },
  "_neeljoshi": {
-  "status": "new",
+  "status": "private",
   "found": [
    "post by @uwsae",
    "post by @muse_uw"
-  ]
+  ],
+  "name": "Neel Joshi",
+  "checked": "2026-11-20"
  },
  "_ria_guptaa": {
   "status": "new",
@@ -434,11 +442,13 @@
   ]
  },
  "alex.ciccanti": {
-  "status": "new",
+  "status": "private",
   "found": [
    "post by @uw_deltachi",
    "post by @uwkappasig"
-  ]
+  ],
+  "name": "Alex Ciccanti",
+  "checked": "2026-11-20"
  },
  "alex_chennn_": {
   "status": "new",
@@ -477,11 +487,14 @@
   ]
  },
  "aliciaahuangg": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @homeroomuw",
    "post by @huskyculinaryclub"
-  ]
+  ],
+  "name": "Alicia",
+  "why": "doesn't say UW",
+  "checked": "2026-11-20"
  },
  "alii.xh": {
   "status": "new",
@@ -496,11 +509,14 @@
   ]
  },
  "aliyasunhee": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @homeroomuw",
    "post by @huskyculinaryclub"
-  ]
+  ],
+  "name": "Aliya Aldinger",
+  "why": "doesn't say UW",
+  "checked": "2026-11-21"
  },
  "allyrileyw": {
   "status": "new",
@@ -509,11 +525,14 @@
   ]
  },
  "alpha.apparelco": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwkappa",
    "post by @uwpiphi"
-  ]
+  ],
+  "name": "Alpha Apparel Co.",
+  "why": "doesn't say UW",
+  "checked": "2026-11-21"
  },
  "alphachiceb": {
   "status": "new",
@@ -558,11 +577,14 @@
   ]
  },
  "americansolarchallenge": {
-  "status": "new",
+  "status": "not",
   "found": [
    "bio of @solarvehicleteamuw",
    "post by @me_at_uw"
-  ]
+  ],
+  "name": "American Solar Challenge",
+  "why": "doesn't say UW",
+  "checked": "2026-11-21"
  },
  "amyfpark": {
   "status": "new",
@@ -607,10 +629,14 @@
   ]
  },
  "animaltalkseattle": {
-  "status": "new",
+  "status": "not",
   "found": [
-   "post by @uwfslc"
-  ]
+   "post by @uwfslc",
+   "post by @uwunplugged"
+  ],
+  "name": "ANIMAL TALK 🧸",
+  "why": "only says Seattle",
+  "checked": "2026-11-21"
  },
  "anitahsuho": {
   "status": "new",
@@ -678,6 +704,12 @@
   "checked": "2026-11-14",
   "why": "UW sorority chapter"
  },
+ "aparna_iyer06": {
+  "status": "new",
+  "found": [
+   "post by @uwunplugged"
+  ]
+ },
  "aphiooz": {
   "status": "new",
   "found": [
@@ -685,11 +717,14 @@
   ]
  },
  "appletv": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @asuwoid",
    "post by @uwdcenter"
-  ]
+  ],
+  "name": "Apple TV",
+  "why": "doesn't say UW",
+  "checked": "2026-11-21"
  },
  "ar4dhyaaaaaaa": {
   "status": "new",
@@ -710,11 +745,14 @@
   ]
  },
  "arepa.vk": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @asuwlsc",
    "post by @mariachi.uw"
-  ]
+  ],
+  "name": "Arepa Venezuelan Kitchen 🇻🇪",
+  "why": "only says Seattle",
+  "checked": "2026-11-21"
  },
  "arhan_dager": {
   "status": "new",
@@ -738,6 +776,12 @@
   "status": "new",
   "found": [
    "post by @uwadvancedrobotics"
+  ]
+ },
+ "aseem.gauri__": {
+  "status": "new",
+  "found": [
+   "post by @uwunplugged"
   ]
  },
  "ashegeurtsphotography": {
@@ -880,6 +924,12 @@
    "post by @uwmocktrial"
   ]
  },
+ "ayushah.6": {
+  "status": "new",
+  "found": [
+   "post by @uwunplugged"
+  ]
+ },
  "bagley": {
   "status": "new",
   "found": [
@@ -932,11 +982,14 @@
   "checked": "2026-11-13"
  },
  "becu": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uw_seed",
    "post by @ecobuilduw"
-  ]
+  ],
+  "name": "BECU credit union",
+  "why": "doesn't say UW",
+  "checked": "2026-11-22"
  },
  "bellevuevalkyries": {
   "status": "new",
@@ -1288,11 +1341,14 @@
   ]
  },
  "chambered_geckos.band": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwpsiu",
    "post by @thebondsuw"
-  ]
+  ],
+  "name": "chambered geckos",
+  "why": "doesn't say UW",
+  "checked": "2026-11-22"
  },
  "chance__bates__": {
   "status": "new",
@@ -1499,6 +1555,12 @@
    "post by @uwblockchain"
   ]
  },
+ "csulbesports": {
+  "status": "new",
+  "found": [
+   "post by @valorant_uw"
+  ]
+ },
  "cwu.wclubrugby": {
   "status": "new",
   "found": [
@@ -1572,11 +1634,16 @@
   ]
  },
  "dbetfarhad": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwmenswp",
    "post by @uwifc"
-  ]
+  ],
+  "name": "Deneil",
+  "bio": "@uofwa ‘28| @uwdelts",
+  "latest": "2026-06-11",
+  "checked": "2026-11-22",
+  "why": "personal account, not a student club"
  },
  "dbf_edvardrusjan": {
   "status": "new",
@@ -1603,11 +1670,14 @@
   ]
  },
  "decobun_": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @jsauw",
    "post by @tosauw"
-  ]
+  ],
+  "name": null,
+  "why": "only says Seattle",
+  "checked": "2026-11-22"
  },
  "deerknits": {
   "status": "new",
@@ -1697,10 +1767,14 @@
   ]
  },
  "dormchair_therapist": {
-  "status": "new",
+  "status": "not",
   "found": [
-   "post by @uwfslc"
-  ]
+   "post by @uwfslc",
+   "post by @uwunplugged"
+  ],
+  "name": "dormchair therapist",
+  "why": "only says Seattle",
+  "checked": "2026-11-22"
  },
  "doughzoneusa": {
   "status": "new",
@@ -1815,11 +1889,15 @@
   ]
  },
  "edestus.wav": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwpsiu",
-   "post by @thebondsuw"
-  ]
+   "post by @thebondsuw",
+   "post by @uwunplugged"
+  ],
+  "name": "Edestus",
+  "why": "only says Seattle",
+  "checked": "2026-11-20"
  },
  "eeriatuw": {
   "status": "huskylink",
@@ -1830,6 +1908,12 @@
   "name": "Earthquake Engineering Research Institute at UW",
   "why": "Earthquake Engineering Research Institute at UW",
   "checked": "2026-11-15"
+ },
+ "efnan.xyz": {
+  "status": "new",
+  "found": [
+   "post by @gh_nupes"
+  ]
  },
  "eghseattle": {
   "status": "new",
@@ -1868,9 +1952,19 @@
   ]
  },
  "elixirdessertandbar": {
+  "status": "not",
+  "found": [
+   "post by @claude.uofwa",
+   "post by @uwunplugged"
+  ],
+  "name": "Elixir",
+  "why": "doesn't say UW",
+  "checked": "2026-11-22"
+ },
+ "elixirdessertandcafe": {
   "status": "new",
   "found": [
-   "post by @claude.uofwa"
+   "post by @uwunplugged"
   ]
  },
  "elizabethmello__": {
@@ -1992,6 +2086,12 @@
    "post by @uwzeta"
   ]
  },
+ "esportsatucf": {
+  "status": "new",
+  "found": [
+   "post by @valorant_uw"
+  ]
+ },
  "ethan.vlad": {
   "status": "new",
   "found": [
@@ -2002,6 +2102,12 @@
   "status": "new",
   "found": [
    "a club's post"
+  ]
+ },
+ "evilgeniuses": {
+  "status": "new",
+  "found": [
+   "post by @valorant_uw"
   ]
  },
  "ezra.sosa": {
@@ -2019,7 +2125,8 @@
  "ezraphotooo": {
   "status": "new",
   "found": [
-   "post by @uwfslc"
+   "post by @uwfslc",
+   "post by @uwunplugged"
   ]
  },
  "faunathebear": {
@@ -2148,6 +2255,12 @@
   "status": "new",
   "found": [
    "post by @uwpks"
+  ]
+ },
+ "gayu.bk": {
+  "status": "new",
+  "found": [
+   "post by @uwunplugged"
   ]
  },
  "gdg.uw": {
@@ -2308,6 +2421,12 @@
   "name": "Green Greeks🌎♻️",
   "why": "Green Greek Representative Program",
   "checked": "2026-11-13"
+ },
+ "greenl1ght.band": {
+  "status": "new",
+  "found": [
+   "post by @uwunplugged"
+  ]
  },
  "greenseattlepartnership": {
   "status": "new",
@@ -3682,7 +3801,8 @@
   "found": [
    "post by @uwfslc",
    "post by @uwpsiu",
-   "post by @thebondsuw"
+   "post by @thebondsuw",
+   "post by @uwunplugged"
   ],
   "name": "Maybe Even",
   "why": "doesn't say UW",
@@ -3931,7 +4051,8 @@
    "post by @uwpsiu",
    "post by @eeriatuw",
    "post by @sick.uw",
-   "post by @thebondsuw"
+   "post by @thebondsuw",
+   "post by @uwunplugged"
   ],
   "name": "Nardo",
   "why": "doesn't say UW",
@@ -4093,6 +4214,12 @@
    "post by @uwtekes"
   ]
  },
+ "nimai_belur": {
+  "status": "new",
+  "found": [
+   "post by @uwunplugged"
+  ]
+ },
  "nina.ry.liu": {
   "status": "new",
   "found": [
@@ -4182,7 +4309,8 @@
  "nudibranchcoffee": {
   "status": "new",
   "found": [
-   "post by @uwfslc"
+   "post by @uwfslc",
+   "post by @uwunplugged"
   ]
  },
  "nuttysquirrelgelato": {
@@ -4231,6 +4359,12 @@
   "status": "new",
   "found": [
    "post by @uwchiomega"
+  ]
+ },
+ "omgitspotter": {
+  "status": "new",
+  "found": [
+   "post by @valorant_uw"
   ]
  },
  "onies.mp4": {
@@ -4406,6 +4540,12 @@
   "status": "new",
   "found": [
    "bio of @huskysailingteam"
+  ]
+ },
+ "peachi.jpeg": {
+  "status": "new",
+  "found": [
+   "post by @uwunplugged"
   ]
  },
  "pearly_agarwal17": {
@@ -4999,11 +5139,15 @@
   ]
  },
  "seattleboulderingproject": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwfslc",
-   "bio of @climbuw"
-  ]
+   "bio of @climbuw",
+   "post by @uwunplugged"
+  ],
+  "name": "Seattle Bouldering Project",
+  "why": "only says Seattle",
+  "checked": "2026-11-20"
  },
  "seattleboxinggym": {
   "status": "new",
@@ -5081,10 +5225,22 @@
    "post by @uwtdx"
   ]
  },
+ "shadowsintherain.band": {
+  "status": "new",
+  "found": [
+   "post by @uwunplugged"
+  ]
+ },
  "shallowfitness": {
   "status": "new",
   "found": [
    "post by @ssa_uw"
+  ]
+ },
+ "sharvanik5": {
+  "status": "new",
+  "found": [
+   "post by @uwunplugged"
   ]
  },
  "shawnabeth06": {
@@ -5228,6 +5384,12 @@
    "post by @uwwushu"
   ]
  },
+ "sophatato_hashbrown": {
+  "status": "new",
+  "found": [
+   "post by @uwunplugged"
+  ]
+ },
  "sophia.sancon": {
   "status": "new",
   "found": [
@@ -5325,7 +5487,8 @@
  "sugar_n_tide": {
   "status": "new",
   "found": [
-   "post by @uwfslc"
+   "post by @uwfslc",
+   "post by @uwunplugged"
   ]
  },
  "sugarspoondough": {
@@ -5424,7 +5587,8 @@
  "suzette.alancheril": {
   "status": "new",
   "found": [
-   "post by @uwfslc"
+   "post by @uwfslc",
+   "post by @uwunplugged"
   ]
  },
  "swingkidsuw": {
@@ -5464,6 +5628,12 @@
   "status": "new",
   "found": [
    "post by @uw_smc"
+  ]
+ },
+ "tanay_doc": {
+  "status": "new",
+  "found": [
+   "post by @uwunplugged"
   ]
  },
  "tangemwallet": {
@@ -5561,6 +5731,12 @@
   "status": "new",
   "found": [
    "post by @dbf_uw"
+  ]
+ },
+ "tharealjj206": {
+  "status": "new",
+  "found": [
+   "post by @gh_nupes"
   ]
  },
  "thatcostama": {
@@ -5713,12 +5889,15 @@
   ]
  },
  "tt_supermarket_usa": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @jsauw",
    "post by @tosauw",
    "post by @tsauw"
-  ]
+  ],
+  "name": "T&T Supermarket 🇺🇸",
+  "why": "doesn't say UW",
+  "checked": "2026-11-20"
  },
  "tufjo_": {
   "status": "new",
@@ -5893,6 +6072,12 @@
   "status": "new",
   "found": [
    "post by @ecobuilduw"
+  ]
+ },
+ "uscesports": {
+  "status": "new",
+  "found": [
+   "post by @valorant_uw"
   ]
  },
  "uscsa_northwest": {
