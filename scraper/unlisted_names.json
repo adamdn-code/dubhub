@@ -24,10 +24,12 @@
   "checked": "2026-11-15"
  },
  "ASUW SARVA": {
-  "status": "new",
+  "status": "none",
   "by": [
    "UW LiveWell (@uwlivewell)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-22"
  },
  "ASUW Seattle": {
   "status": "none",
@@ -38,10 +40,12 @@
   "checked": "2026-11-15"
  },
  "ATSA": {
-  "status": "new",
+  "status": "none",
   "by": [
    "ThaiSA UW (@thaisauw)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-23"
  },
  "ATSA Northwest Sports Day": {
   "status": "none",
@@ -273,6 +277,18 @@
    "the list of companies' campus programs"
   ]
  },
+ "MiCSE": {
+  "status": "new",
+  "by": [
+   "COM²: Computing Community at UW (@uwcom2)"
+  ]
+ },
+ "MiT": {
+  "status": "new",
+  "by": [
+   "COM²: Computing Community at UW (@uwcom2)"
+  ]
+ },
  "MSAUW": {
   "status": "known",
   "by": [
@@ -347,6 +363,12 @@
   "status": "new",
   "by": [
    "Alpha Xi (AΞ) Chapter of AΦA (@uwalphas)"
+  ]
+ },
+ "SnoCoWoHo": {
+  "status": "new",
+  "by": [
+   "Women’s Ice Hockey Club at UW (@womenshockeyuw)"
   ]
  },
  "SpaceXSI": {

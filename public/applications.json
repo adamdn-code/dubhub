@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T14:36",
+ "updated": "2026-11-23T03:50",
  "applications": [
   {
    "id": "De5hKvmGiiR",
@@ -110,52 +110,16 @@
    "category": "Social"
   },
   {
-   "id": "DfSr-h9ErrC",
+   "id": "Df5iJxPGQD8",
    "host": "UW Student Activities Office (@uw_sao)",
    "for": "RSO registration",
    "kind": "Membership",
    "deadline": "2027-01-31",
    "link": null,
-   "post": "https://www.instagram.com/p/DfSr-h9ErrC/",
-   "posted": "2026-11-03",
+   "post": "https://www.instagram.com/p/Df5iJxPGQD8/",
+   "posted": "2026-11-18",
    "logo": "/ig/clubs/uw_sao.jpg",
    "category": "Other"
-  },
-  {
-   "id": "De2N31bPT3U",
-   "host": "SHPE University of Washington (@shpeuw)",
-   "for": "MentorSHPE program",
-   "kind": "Programs",
-   "deadline": null,
-   "link": null,
-   "post": "https://www.instagram.com/p/De2N31bPT3U/",
-   "posted": "2026-10-23",
-   "logo": "/ig/clubs/shpeuw.jpg",
-   "category": "Engineering"
-  },
-  {
-   "id": "De3Kk0vOz9M",
-   "host": "HCCUW (@huskyculinaryclub)",
-   "for": "spanakopita cooking class",
-   "kind": "Programs",
-   "deadline": null,
-   "link": "https://docs.google.com/forms/d/e/1FAIpQLSdB7yfFusVss79rbQ28vm1vcvVBy9tpb6SkUicg5MsH5rS9Kg/viewform?pli=1",
-   "post": "https://www.instagram.com/p/De3Kk0vOz9M/",
-   "posted": "2026-10-23",
-   "logo": "/ig/clubs/huskyculinaryclub.jpg",
-   "category": "Social"
-  },
-  {
-   "id": "De2OKezPKjn",
-   "host": "The Bean Basket (@asuwbeanbasket)",
-   "for": "Manager position",
-   "kind": "Team & staff",
-   "deadline": null,
-   "link": "https://asuweb2.wixsite.com/beanbasket",
-   "post": "https://www.instagram.com/p/De2OKezPKjn/",
-   "posted": "2026-10-23",
-   "logo": "/ig/clubs/asuwbeanbasket.jpg",
-   "category": "Service"
   },
   {
    "id": "De46YqOhGWy",
@@ -456,6 +420,30 @@
    "posted": "2026-11-18",
    "logo": "/ig/clubs/huskyhillel.jpg",
    "category": "Faith & Spirituality"
+  },
+  {
+   "id": "Df8b1Q4xOBT",
+   "host": "UW Husky Table Tennis Club (@uwhuskyttc)",
+   "for": "Officer positions",
+   "kind": "Officer & board",
+   "deadline": null,
+   "link": "https://docs.google.com/forms/u/1/d/e/1FAIpQLSdEJ7OCiGgSpvJeKAloBmaHGc4wyAa5ffKvutDWgiESBfOJPQ/viewform",
+   "post": "https://www.instagram.com/p/Df8b1Q4xOBT/",
+   "posted": "2026-11-19",
+   "logo": "/ig/clubs/uwhuskyttc.jpg",
+   "category": "Sports"
+  },
+  {
+   "id": "Df71wKVSs4_",
+   "host": "SER-UW Native Plant Nursery (@sernursery)",
+   "for": "Winter quarter team",
+   "kind": "Team & staff",
+   "deadline": null,
+   "link": null,
+   "post": "https://www.instagram.com/p/Df71wKVSs4_/",
+   "posted": "2026-11-19",
+   "logo": "/ig/clubs/sernursery.jpg",
+   "category": "Outdoors"
   }
  ]
 }

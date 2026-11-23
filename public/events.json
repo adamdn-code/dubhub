@@ -1,182 +1,53 @@
 {
- "updated": "2026-11-22T14:39",
+ "updated": "2026-11-23T03:53",
  "events": [
   {
-   "id": "Dfy0apHmx97-2",
-   "title": "Newman Thanksgiving Dinner",
+   "id": "DgA97qHylrl-0",
+   "title": "Pretty Little Postcard Fundraiser",
+   "type": "Club",
+   "host": "American Marketing Association (@uw_ama)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-23",
+   "start": "12:00",
+   "end": "15:30",
+   "url": "https://www.instagram.com/p/DgA97qHylrl/",
+   "source": "instagram",
+   "description": "Come spread the love at AMA’s Pretty Little Postcard Fundraiser! 💌🧡\n\nCelebrate the season of giving by sending a postcard to a loved one! Postcards will be $3 each or 2 for $5. This is the perfect opportunity to express your appreciation for someone special while supporting AMA! ⭐️\n\n📌Join us on:\nMonday, November 23rd & Tuesday, November 24th\n12-3:30 PM\nRed Square",
+   "image": "/ig/posts/DgA97qHylrl.jpg",
+   "likes": 11,
+   "comments": 0,
+   "post_counts": {
+    "DgA97qHylrl": [
+     11,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df57fnSBmIj-0",
+   "title": "Donuts with the Dean",
    "type": "Food",
-   "host": "Catholic Newman Center @ Univ. of Washington (@uwnewman)",
-   "where": null,
+   "host": "Undergraduate Business Council (UBC) (@ubc.uw)",
+   "where": "Deloitte Commons",
    "pos": null,
-   "date": "2026-11-22",
-   "start": "11:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/Dfy0apHmx97/",
+   "date": "2026-11-23",
+   "start": "12:30",
+   "end": "13:30",
+   "url": "https://www.instagram.com/p/Df57fnSBmIj/",
    "source": "instagram",
-   "description": "🎉 THIS WEEK'S EVENTS! 🎉\n\nWe have a fun and exciting week ahead! Come join us for fellowship, faith, and community. Everyone is welcome! ❤️\n\nMONDAY – 7:45 PM\n🥤 Come grab a root beer with Brother Antonino! A great chance to hear his experience from being in greek life.\n\nTUESDAY – 7:00 PM\n FOCUS Missionaries are hosting a Spelling Bee 🐝 Undergrads come join us!\n\nTHURSDAY – 7:00 PM\n🙏 Diving Deeper: Confession\nJoin us as we take a deeper look at the sacrament of Confession and grow in our faith.\n\nSATURDAY – 8:30 AM & 9:39 AM\n🍂 Fall Food Drive!\nStart the morning with Mass at 8:30 AM, followed by our Fall Food Drive at 9:30 AM. Come help us serve our community!\n\nSUNDAY\n🦃 Newman Thanksgiving Dinner!\nCome celebrate Thanksgiving with our Newman community! All undergrads and Frassati are welcome. We would love to see you there!\n\n❤️ We hope to see you at some of these events! Bring a friend and come be part of the Newman community. God bless!",
-   "image": "/ig/posts/Dfy0apHmx97.jpg",
+   "description": "seeking involvement at Foster but don’t know where to start? 🎤\n\njoin UBC & the Associate Dean of Undergraduate Programs Christina Fong at Donuts with the Dean! grab free donuts and share your experiences and ideas to help shape the future of Foster. \nattendees will enter into a raffle for a free gift card! 🍩 🗣️\n\n🗓️ Monday, November 23\n🕐 12:30 - 1:30 PM\n📍 Deloitte Commons\n\nregister now and have your voice heard! link in bio.\n\n#ubc_uw #fosterschoolofbusiness #uofwa #uw",
+   "image": "/ig/posts/Df57fnSBmIj.jpg",
    "likes": null,
    "comments": null,
    "post_counts": {
-    "Dfy0apHmx97": [
+    "Df57fnSBmIj": [
      null,
      null
-    ]
-   },
-   "posts": 1,
-   "aliases": [
-    "Dfy0apHmx97-3"
-   ]
-  },
-  {
-   "id": "Df5xTNsGe8k-0",
-   "title": "Worship Service",
-   "type": "Club",
-   "host": "Christians in Seattle At UW (@christiansinseattleatuw)",
-   "where": "3115 204th St SW, Lynnwood, WA 98036",
-   "pos": null,
-   "date": "2026-11-22",
-   "start": "11:00",
-   "end": "12:30",
-   "url": "https://www.instagram.com/p/Df5xTNsGe8k/",
-   "source": "instagram",
-   "description": "⛪️🤍 A New Place to Gather, Same Heart for Worship!\n\nWe’re so excited to welcome you to our new meeting location this Sunday! 🌿\n\nWhether you’ve been joining us for a while or it’s your very first time, we would love to see you! Come as you are, bring a friend, and let’s spend a beautiful Sunday worshiping God and growing together in faith. 🤍\n\n📅 Sunday, November 22\n⏰ 11:00 AM – 12:30 PM\n📍 3115 204th St SW, Lynnwood, WA 98036\n🍽️ Lunch will be provided!\n\n🚗 Need a ride or want to carpool? Feel free to DM us! We’d love to help you get here.\n\nThere's always a place for you here. We can't wait to worship with you! 🫶",
-   "image": "/ig/posts/Df5xTNsGe8k.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "Df5xTNsGe8k": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfoEMhnOX-R-0",
-   "title": "Fall Fantasia Concert",
-   "type": "Club",
-   "host": "Music for Charity at UW (@musicforcharityatuw)",
-   "where": "Sylvan Grove",
-   "pos": [
-    47.65279,
-    -122.30619
-   ],
-   "date": "2026-11-22",
-   "start": "14:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfoEMhnOX-R/",
-   "source": "instagram",
-   "description": "The weather is getting chillier, and nothing sounds better than a warm cup of hot cocoa and getting cozy in front of a tv watching your favorite cartoons... ☕️\n\nCome join us on Sunday, November 22 at 2:00PM for Fall Fantasia: Sunday Night Cartoons, a FREE concert for your enjoyment with music from all of your fall favorites! \n\nDate: Sunday, November 22\nTime: 2PM\nLocation: Sylvan Grove (W Stevens Wy NE, Seattle, WA 98195)\nFREE parking nearby!\n\n🎻 This concert will be in support of Music4Life, a nonprofit organization dedicated towards providing musical instruments and equipment free of charge to public schools in King, Snohomish and Kitsap County. \n\nRSVP with the link in our bio! \n\nHope to see you there!! 🍁",
-   "image": "/ig/posts/DfoEMhnOX-R.jpg",
-   "likes": 25,
-   "comments": 0,
-   "post_counts": {
-    "DfoEMhnOX-R": [
-     25,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "Df8q5OnOocx-3",
-   "title": "Trouble in Mind",
-   "type": "Club",
-   "host": "Undergraduate Theatre Society @ University of Washington (@uw_uts)",
-   "where": null,
-   "pos": null,
-   "date": "2026-11-22",
-   "start": "14:00",
-   "end": null,
-   "url": "https://www.instagram.com/p/Df8q5OnOocx/",
-   "source": "instagram",
-   "description": "Tickets might have been nearly sold out tonight, but you still have four more chances to see the amazing work our cast and crew is doing for our production of Trouble in Mind!! \nFriday, Nov 20th @ 7:30pm \nSaturday, Nov 21st @ 2:00 & 7:30pm \nSunday, Nov 22nd @ 2:00pm \n\nTickets at the link in our bio or at the door! \n\n#uts #undergraduatetheatresociety #uw #TroubleinMind #undergraduatetheatre #theatre #crew #play #show",
-   "image": "/ig/posts/Df8q5OnOocx.jpg",
-   "likes": null,
-   "comments": null,
-   "post_counts": {
-    "Df8q5OnOocx": [
-     null,
-     null
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfYtRU4qcOZ-2",
-   "title": "INFLUX 2026",
-   "type": "Club",
-   "host": "Dance Student Association (@uw.dsa)",
-   "where": "Meany Hall studio 267",
-   "pos": [
-    47.65566,
-    -122.31066
-   ],
-   "date": "2026-11-22",
-   "start": "14:30",
-   "end": null,
-   "url": "https://www.instagram.com/p/DfYtRU4qcOZ/",
-   "source": "instagram",
-   "description": "INFLUX 2026 IS OPENING SOON!\n\nCome see works by 7 incredible choreographers in Meany Hall studio 267 this November 21-22, with shows on both days at 2:30pm and 7:30pm. Seats are first come, first serve. The concert is free, but donations are welcome :)\n\nWe’re so excited to see you there!\n\n📸 @emottosenphotos",
-   "image": "/ig/posts/DfYtRU4qcOZ.jpg",
-   "likes": 16,
-   "comments": 0,
-   "post_counts": {
-    "DfYtRU4qcOZ": [
-     16,
-     0
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "DfqDoOKBT_k-2",
-   "title": "Culture Fest",
-   "type": "Club",
-   "host": "MSA UW (@msauw)",
-   "where": "HUB Ballroom",
-   "pos": [
-    47.65537,
-    -122.3051
-   ],
-   "date": "2026-11-22",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/DfqDoOKBT_k/",
-   "source": "instagram",
-   "description": "Salam everyone,\n\nMake sure to RSVP asap for culture fest this year via the link in bio!\n\nIf you’re interested in representing your culture, follow the tabling sign up link in bio or QR code!\n\nHope to see you there!\n\n- November 21st\n- 4:30 PM\n- HUB Ballroom\n\n#MSA #MSAUW #CultureFest #Cultures #UniversityofWashington",
-   "image": null,
-   "likes": 59,
-   "comments": 4,
-   "post_counts": {
-    "DfqDoOKBT_k": [
-     59,
-     4
-    ]
-   },
-   "posts": 1
-  },
-  {
-   "id": "Df1VQj_P5fh-0",
-   "title": "Mobilize to JBLM",
-   "type": "Club",
-   "host": "Institutional Climate Action UW (@ica_uwchapter)",
-   "where": "JBLM",
-   "pos": null,
-   "date": "2026-11-22",
-   "start": null,
-   "end": null,
-   "url": "https://www.instagram.com/p/Df1VQj_P5fh/",
-   "source": "instagram",
-   "description": "TRUMP OUT OF THE PHILIPPINES‼️⛓️‍💥\n\nStudents at UW condemn the violent mass arrests of 330+ people by Marcos and the Philippine National Police (PNP)!\n\nTrump is coming to the Philippines during the ASEAN Summit to make more deals with the Philippine government about developing an AI hub that would serve foreign companies and the U.S. war machine. Farmers, workers, students, women, youth, professionals and more traveled across the Philippines to gather in Manila for kampuhan (campout). \n\nDespite the PNP spreading human waste to prevent protests, slashing the tires of transport for the Southern Tagalog activists and mass activists, the people are still continuing to resist. \n\nUW has local ties as they sponsor military generals at Joint Base Lewis McCord (JBLM) to learn how to wage war in the Asia Pacific through the UW Army War College. \n\nJoin us as we mobilize to JBLM on Nov 22nd to make our voices heard and reject Pax Silica!",
-   "image": "/ig/posts/Df1VQj_P5fh.jpg",
-   "likes": 403,
-   "comments": 6,
-   "post_counts": {
-    "Df1VQj_P5fh": [
-     403,
-     6
     ]
    },
    "posts": 1
@@ -256,6 +127,60 @@
    "comments": null,
    "post_counts": {
     "Df8PujlhuNW": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DgEUBWUBsdM-0",
+   "title": "Last Fall General Meeting",
+   "type": "Club",
+   "host": "Circle K International at UW Seattle (@uwcki)",
+   "where": "Sav 132",
+   "pos": [
+    47.65712,
+    -122.30842
+   ],
+   "date": "2026-11-23",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/DgEUBWUBsdM/",
+   "source": "instagram",
+   "description": "A chill's in the air as we settle down 🌫\n\nCome hang with us tomorrow at our last general meeting of Fall quarter! we'll be going over weekend events, sharing details on our Fall social, and participate in an icebreaking game together.",
+   "image": "/ig/posts/DgEUBWUBsdM.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgEUBWUBsdM": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df0zr2VpQbH-0",
+   "title": "Thanksgiving Potluck",
+   "type": "Food",
+   "host": "ASUW MESC (@asuwmesc)",
+   "where": "HUB 145",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-11-23",
+   "start": "18:00",
+   "end": "20:30",
+   "url": "https://www.instagram.com/p/Df0zr2VpQbH/",
+   "source": "instagram",
+   "description": "Good food is even better when shared with friends! 🥧🧡\n\nJoin ASC, OISA, LSC, MESC, and VISA for a cozy Thanksgiving potluck filled with delicious food, new connections, and a sense of community! Bring a dish to share & celebrate with us. 🦃🍂\n\n📆 Monday, November 23, 2026\n⏰ 6:00 to 8:30 PM\n📍 HUB 145\n\n📝 RSVP required! Sign up through our Linktree in bio or using the link below.\n\n🔗 https://forms.cloud.microsoft/r/y9dDkehDGd\n\n#ASUW #UWSeattle #Friendsgiving #HuskyCommunity",
+   "image": "/ig/posts/Df0zr2VpQbH.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df0zr2VpQbH": [
      null,
      null
     ]
@@ -413,6 +338,33 @@
    "post_counts": {
     "DfoDPRMFOTS": [
      12,
+     0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DgA97qHylrl-1",
+   "title": "Pretty Little Postcard Fundraiser",
+   "type": "Club",
+   "host": "American Marketing Association (@uw_ama)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-24",
+   "start": "12:00",
+   "end": "15:30",
+   "url": "https://www.instagram.com/p/DgA97qHylrl/",
+   "source": "instagram",
+   "description": "Come spread the love at AMA’s Pretty Little Postcard Fundraiser! 💌🧡\n\nCelebrate the season of giving by sending a postcard to a loved one! Postcards will be $3 each or 2 for $5. This is the perfect opportunity to express your appreciation for someone special while supporting AMA! ⭐️\n\n📌Join us on:\nMonday, November 23rd & Tuesday, November 24th\n12-3:30 PM\nRed Square",
+   "image": "/ig/posts/DgA97qHylrl.jpg",
+   "likes": 11,
+   "comments": 0,
+   "post_counts": {
+    "DgA97qHylrl": [
+     11,
      0
     ]
    },
@@ -590,6 +542,33 @@
    "posts": 2
   },
   {
+   "id": "Df8ANfTS5G9-0",
+   "title": "Boba Social",
+   "type": "Food",
+   "host": "BITS at UW (@bitsatuw)",
+   "where": "The Alley",
+   "pos": [
+    47.56262,
+    -122.38733
+   ],
+   "date": "2026-11-24",
+   "start": "17:30",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/Df8ANfTS5G9/",
+   "source": "instagram",
+   "description": "Join us for a boba social! Network and socialize with other Foster students, get some snacks, and play board games.\n\n*Note: This event can still count for your extra credit point in IS 300\n* This meeting will take place at ‘The Alley UW’ (4515 Brooklyn Ave NE)\n* Attendees are responsible for their own purchases\n\n🗓️ November 24, Tuesday\n🕐 5:30 PM - 6:30 PM\n📍 The Alley",
+   "image": "/ig/posts/Df8ANfTS5G9.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df8ANfTS5G9": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "Df-wNgdBeC4-0",
    "title": "Kpop Show N Tell",
    "type": "Hangout",
@@ -639,6 +618,33 @@
     "DflIJZNPEPT": [
      43,
      3
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DgBUE-3yr6d-0",
+   "title": "Art Build and Banner Making",
+   "type": "Club",
+   "host": "SUPER UW (@super_uw)",
+   "where": "Christ Episcopal Church",
+   "pos": [
+    47.66286,
+    -122.31381
+   ],
+   "date": "2026-11-24",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DgBUE-3yr6d/",
+   "source": "instagram",
+   "description": "Join us this Tuesday, 6-8pm for an art build and banner making! And stay tuned with the collabed orgs for an upcoming action for Palestine 🇵🇸",
+   "image": "/ig/posts/DgBUE-3yr6d.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgBUE-3yr6d": [
+     null,
+     null
     ]
    },
    "posts": 1
@@ -844,6 +850,33 @@
    "description": "Weekly gathering that brings together the entire community of AACF for worship, teaching, and community-building activities.\nCheck our Instagram @uwaacf for details! Locations may be subject to change each week.",
    "image": null,
    "rsvps": 0
+  },
+  {
+   "id": "Df05ukCm79a-0",
+   "title": "Red Square Table",
+   "type": "Club",
+   "host": "WashPIRG at UW (@washpirg_uw)",
+   "where": "Red Square",
+   "pos": [
+    47.65603,
+    -122.30944
+   ],
+   "date": "2026-11-26",
+   "start": "13:00",
+   "end": "15:00",
+   "url": "https://www.instagram.com/p/Df05ukCm79a/",
+   "source": "instagram",
+   "description": "Our Earth & Energy campaign is adopting a new priority for the upcoming legislative session: Make Polluters Pay! Keep an eye out for our table in Red Square, from 1-3 pm on Thursdays to learn more!",
+   "image": "/ig/posts/Df05ukCm79a.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df05ukCm79a": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "Dfl5jjeBGpH-0",
@@ -1191,6 +1224,33 @@
    "posts": 1
   },
   {
+   "id": "Df5MumctFec-0",
+   "title": "Paint & Meditate",
+   "type": "Hangout",
+   "host": "@uwischoolaims",
+   "where": "HUB 334",
+   "pos": [
+    47.65537,
+    -122.3051
+   ],
+   "date": "2026-12-01",
+   "start": "17:00",
+   "end": "18:30",
+   "url": "https://www.instagram.com/p/Df5MumctFec/",
+   "source": "instagram",
+   "description": "This quarter’s been a lot 😮‍💨 Deadlines, projects, and everything in between. Come take a breather with us 🎨🧘\n\nAIMS presents Paint & Meditate: a chance to slow down, get creative, and hang out with your cohort before the end-of-quarter push.\n\n📅 Tuesday, Dec 1\n⏰ 5:00–6:30 PM\n📍 HUB 334\n\n✨ 15-minute guided meditation\n🖌️ All painting supplies provided\n🍊 Light snacks and refreshments\n\nNew to meditation, skeptical, or already a pro? You’re welcome either way. You’ll leave with breathwork techniques you can actually use when things get stressful.\n\nSpace is limited, so RSVP here: https://partiful.com/e/fQUucIYJA75IY6MNnIBu?c=x39C-Wva",
+   "image": "/ig/posts/Df5MumctFec.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df5MumctFec": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "hl-375527",
    "title": "Winter Snowcial",
    "type": "Hangout",
@@ -1224,6 +1284,33 @@
    "comments": null,
    "post_counts": {
     "Dfk3-FPkrol": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "Df82GBZxMzY-0",
+   "title": "Navigating the Job Market Panel",
+   "type": "Club",
+   "host": "SWE UW (@uwswe)",
+   "where": "THO 125",
+   "pos": [
+    47.6565,
+    -122.30575
+   ],
+   "date": "2026-12-01",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/Df82GBZxMzY/",
+   "source": "instagram",
+   "description": "✨ Standing out in today’s tech market takes more than just a strong resume\n\n💻 Join UW SWE for an interactive evening panel with industry professionals and a university recruiter from Expedia Group as they share insights on navigating the transition from college to industry\n\n🎤 Our panelists will discuss what helps candidates stand out beyond their resume, how to own your voice during interviews and networking, and how to build credibility and advocate for yourself once you land the role\n\n🍪 Stick around for networking, recruiter chats, cookies, and hot cocoa!\n\n📆 Tuesday, December 1st! 6-7 pm in THO 125",
+   "image": "/ig/posts/Df82GBZxMzY.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df82GBZxMzY": [
      null,
      null
     ]
@@ -1651,6 +1738,33 @@
    "rsvps": 2
   },
   {
+   "id": "Df5MCWusbAC-0",
+   "title": "LLSA Holiday Celebration",
+   "type": "Food",
+   "host": "LLSA at UW Law (@llsa_at_uw)",
+   "where": "416 University St, Seattle, WA",
+   "pos": [
+    47.60878,
+    -122.33414
+   ],
+   "date": "2026-12-04",
+   "start": "17:30",
+   "end": "21:00",
+   "url": "https://www.instagram.com/p/Df5MCWusbAC/",
+   "source": "instagram",
+   "description": "🎄🎄Attention LLSA Community!! 🎄🎄Please join UW and SU's LLSA for an exciting evening of celebration and community-building with our hosts Clyde & Co! \n\nInformation: \nDecember 4th from 5:30-9:00 PM\n416 University St, Seattle, WA\n\nPlease RSVP! +1's are invited!",
+   "image": "/ig/posts/Df5MCWusbAC.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "Df5MCWusbAC": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DfyPnWMBwO_-0",
    "title": "Ski & Snowboard Waxing",
    "type": "Hangout",
@@ -1963,6 +2077,30 @@
    "description": "General club meeting discussing upcoming club events, icebreakers, and training for new volunteers. Snacks will be provided!",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_643287_Screenshot_20260928_182241_06deb2ab-c655-430a-bc8a-e2e8bf3041cc_928212314.png",
    "rsvps": 0
+  },
+  {
+   "id": "DgDRMvbPSEx-0",
+   "title": "Are You OK? Panel",
+   "type": "Club",
+   "host": "University Of Washington Nupes (@gh_nupes)",
+   "where": "Oak Hall Denny Room",
+   "pos": null,
+   "date": "2026-12-08",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DgDRMvbPSEx/",
+   "source": "instagram",
+   "description": "The Brothers of the Gamma Eta Chapter of Kappa Alpha Psi Fraternity, Inc. present “Are You OK?”\n\nJoin us for an important and engaging panel discussion focused on mental health and the challenges college students face. Guest speakers will join the Brothers of the Fraternity to share their perspectives, experiences, and advice on navigating mental health while in college.\n\nLet’s create a space for open conversation, understanding, and support. Remember, it’s okay to not be okay, and it’s even more important to know that you are not alone.\n\n📅 December 8\n📍 Oak Hall – Denny Room\nWe hope to see you there!\n#AreYouOK #MentalHealthMatters #KappaAlphaPsi #GammaEta #CollegeMentalHealth\n👌🏾",
+   "image": "/ig/posts/DgDRMvbPSEx.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgDRMvbPSEx": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
   },
   {
    "id": "Df74dyazr9e-0",

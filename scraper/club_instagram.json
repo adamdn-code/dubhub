@@ -1370,9 +1370,9 @@
   "checked": "2026-10-24"
  },
  "Crafticians": {
-  "handle": null,
-  "from": null,
-  "checked": "2026-10-24"
+  "handle": "uw_crafticians",
+  "from": "mentioned",
+  "checked": "2026-11-23"
  },
  "Creating a Company at UW": {
   "handle": null,
