@@ -78,6 +78,18 @@
    ]
   },
   {
+   "name": "alpha Kappa Delta Phi at University of Washington",
+   "handle": "uw_akdphi",
+   "instagram": "https://www.instagram.com/uw_akdphi/",
+   "website": "https://linktr.ee/uwakdphi",
+   "category": "Greek Life",
+   "about": "Asian‑interest sorority promoting sisterhood, culture, and service at UW.",
+   "description": "Alpha Kappa Delta Phi is an Asian‑interest sorority that builds sisterhood through social events, philanthropy, and cultural collaborations. Members enjoy mentorship, community service, and campus involvement.",
+   "logo": "/ig/clubs/uw_akdphi.jpg",
+   "last_event": "2026-12-03",
+   "fields": []
+  },
+  {
    "name": "Alpha Phi Alpha Fraternity Incorporated",
    "handle": "uwalphas",
    "instagram": "https://www.instagram.com/uwalphas/",
@@ -329,10 +341,10 @@
    "instagram": "https://www.instagram.com/asuwgec/",
    "website": "https://linktr.ee/gecasuw",
    "category": "Service",
-   "about": "Promotes gender equity and supports trans and breast cancer communities.",
-   "description": "The Gender Equity Commission works to create an inclusive, affirming environment for all UW community members. It hosts educational panels, remembrance events, and collaborates on awareness campaigns such as breast cancer support.",
+   "about": "Advocates gender equity and provides resources for the UW community.",
+   "description": "The Gender Equity Commission works to create an inclusive campus culture through workshops, film screenings, and community discussions. They also honor trans and gender‑diverse lives during remembrance events.",
    "logo": "/ig/clubs/asuwgec.jpg",
-   "last_event": "2026-11-20",
+   "last_event": "2026-12-04",
    "fields": []
   },
   {
@@ -446,8 +458,8 @@
    "instagram": "https://www.instagram.com/barbellclubuw/",
    "website": "https://discord.gg/6MmpCFWCE",
    "category": "Sports",
-   "about": "Social lifting club for weekly workouts and occasional game nights.",
-   "description": "Barbell Club is a social lifting group that meets weekly for group workouts and occasional game nights. It’s a friendly place to stay active, meet fellow students, and share fitness goals.",
+   "about": "Social lifting club that meets Tuesdays for group workouts and spotting.",
+   "description": "Barbell Club offers a supportive environment for students to lift together, practice key lifts, and safely attempt maxes. Meet every Tuesday for group workouts and free pre‑workout snacks.",
    "logo": "/ig/clubs/barbellclubuw.jpg",
    "last_event": "2026-12-01",
    "fields": []
@@ -490,6 +502,18 @@
    "description": "Bengali Students Association celebrates Bengali culture, language, and traditions at UW. Through cultural events, food gatherings, and community outreach, we create a vibrant space for Bengali students and friends. Join us to connect, celebrate, and share your heritage.",
    "logo": "/ig/clubs/bsa.uw.jpg",
    "last_event": "2026-11-26",
+   "fields": []
+  },
+  {
+   "name": "Best Buddies",
+   "handle": "uwbestbuddies",
+   "instagram": "https://www.instagram.com/uwbestbuddies/",
+   "website": "https://forms.bestbuddies.org/4904012?pId=11WVz000002VF09",
+   "category": "Service",
+   "about": "Creates friendships between students with and without intellectual or developmental disabilities.",
+   "description": "Best Buddies at UW builds inclusive friendships by pairing students with and without disabilities. Members meet for social events and fundraisers, promoting understanding and community across campus.",
+   "logo": "/ig/clubs/uwbestbuddies.jpg",
+   "last_event": "2026-12-02",
    "fields": []
   },
   {
@@ -965,8 +989,8 @@
    "instagram": "https://www.instagram.com/uw_ecc/",
    "website": "https://linktr.ee/uw_ecc",
    "category": "Cultural",
-   "about": "Center promoting cultural diversity, kindness, and inclusion since 1972.",
-   "description": "The Ethnic Cultural Center offers a welcoming space for students to celebrate diverse cultures. Activities include free cocoa gatherings, leadership courses, and alumni panels that foster community.",
+   "about": "Promotes kindness, inclusion, and cultural programming for UW students.",
+   "description": "The ECC serves as a hub for cultural groups and student organizations on campus. It hosts workshops, meals, and spotlights for affiliated RSOs, fostering a welcoming community for all students.",
    "logo": "/ig/clubs/uw_ecc.jpg",
    "last_event": "2026-11-30",
    "fields": []
@@ -977,8 +1001,8 @@
    "instagram": "https://www.instagram.com/uwfigureskating/",
    "website": "https://linktr.ee/uwfigureskating",
    "category": "Sports",
-   "about": "Intercollegiate figure skating team competing nationally and fundraising for the program.",
-   "description": "The UW Figure Skating Team competes in intercollegiate events and showcases performances at competitions. Members also fundraise through community events to support travel and training.",
+   "about": "Intercollegiate figure skating team competing nationally for UW.",
+   "description": "UW's Figure Skating Team trains and competes in intercollegiate events, welcoming skaters of all levels. They host practices, bring‑a‑friend sessions, and fundraisers to support the team.",
    "logo": "/ig/clubs/uwfigureskating.jpg",
    "last_event": "2026-11-13",
    "fields": []
@@ -1001,8 +1025,8 @@
    "instagram": "https://www.instagram.com/fahcuw/",
    "website": "https://linktr.ee/fahcuw",
    "category": "Academic",
-   "about": "Filipinx Association supporting students pursuing health careers.",
-   "description": "FAHC at UW is the Filipinx Association for Health Careers, supporting students pursuing healthcare professions. The group offers mentorship, networking, and events to inspire future health leaders.",
+   "about": "Filipinx student association supporting health‑career pathways at UW.",
+   "description": "FAHC connects Filipinx students interested in health careers through networking, mentorship, and community events. They celebrate cultural traditions while preparing members for future healthcare roles.",
    "logo": "/ig/clubs/fahcuw.jpg",
    "last_event": "2026-11-09",
    "fields": [
@@ -1288,6 +1312,20 @@
    "fields": [
     "Social Sciences"
    ]
+  },
+  {
+   "name": "Husky Badminton Club",
+   "handle": "husky.badminton",
+   "instagram": "https://www.instagram.com/husky.badminton/",
+   "website": "https://linktr.ee/huskybadminton",
+   "category": "Sports",
+   "about": "Campus badminton club offering regular open play and tournaments.",
+   "description": "UW Husky Badminton hosts regular open‑play hours and organizes the Mini Husky Open tournament for all skill levels. Join the IMA Gym for friendly matches and a chance to meet fellow players.",
+   "logo": "/ig/clubs/husky.badminton.jpg",
+   "discord": "https://discord.gg/UTfs8Egek4",
+   "discord_server": "Husky Badminton Club",
+   "last_event": "2026-12-06",
+   "fields": []
   },
   {
    "name": "Husky Culinary Club",
@@ -1714,8 +1752,8 @@
    "instagram": "https://www.instagram.com/uwluxvideo/",
    "website": "http://linktr.ee/uwluxvideo",
    "category": "Arts",
-   "about": "UW students collaborate to make films and learn production skills.",
-   "description": "LUX meets weekly on Wednesdays at 6‑7:30 pm for film‑making workshops and projects. Members get hands‑on experience, from directing actors to producing talk‑show style videos. The club also hosts fun events like karaoke nights.",
+   "about": "Student film club that meets weekly to make and discuss movies.",
+   "description": "LUX is UW's film production club where students collaborate on short films and learn filmmaking skills. Weekly meetings include directing workshops, talk shows, and opportunities to work on set.",
    "logo": "/ig/clubs/uwluxvideo.jpg",
    "last_event": "2026-11-18",
    "fields": [
@@ -1882,8 +1920,8 @@
    "instagram": "https://www.instagram.com/netimpactuw/",
    "website": "https://linktr.ee/netimpactuw",
    "category": "Business",
-   "about": "Student group promoting sustainable business practices and career development.",
-   "description": "Net Impact UW connects students across majors with sustainability‑focused business education, activism, and career resources. Events include alumni panels, speed‑networking with ESG professionals, and speaker sessions on sustainable practices. Join to learn how to launch a career that makes a positive environmental impact.",
+   "about": "Sustainable business club connecting students with eco‑focused careers.",
+   "description": "Net Impact UW blends sustainability with business by hosting speaker panels, career workshops, and networking events. All majors are welcome to explore eco‑focused career paths and activism.",
    "logo": "/ig/clubs/netimpactuw.jpg",
    "last_event": "2026-11-17",
    "fields": [

@@ -912,6 +912,12 @@
    "post by @uwclubwsoc"
   ]
  },
+ "avaarcherrr": {
+  "status": "new",
+  "found": [
+   "post by @uwalphaxidelta"
+  ]
+ },
  "avi.matti": {
   "status": "new",
   "found": [
@@ -3493,6 +3499,12 @@
    "post by @uwalphachi"
   ]
  },
+ "la_cutie_fotos": {
+  "status": "new",
+  "found": [
+   "post by @uwsalsa"
+  ]
+ },
  "lalamarie.r": {
   "status": "new",
   "found": [
@@ -3614,11 +3626,14 @@
   ]
  },
  "losrebeldesdelacueca": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @asuwlsc",
    "post by @mariachi.uw"
-  ]
+  ],
+  "name": "Los Rebeldes de la Cueca",
+  "why": "doesn't say UW",
+  "checked": "2026-11-23"
  },
  "lovegraceguirnalda": {
   "status": "new",
@@ -3909,11 +3924,14 @@
   ]
  },
  "meitu.app": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @jsauw",
    "post by @tosauw"
-  ]
+  ],
+  "name": "Meitu🪄",
+  "why": "doesn't say UW",
+  "checked": "2026-11-23"
  },
  "melissalevinphotography": {
   "status": "new",
@@ -4030,11 +4048,14 @@
   ]
  },
  "modowmusic": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @eeriatuw",
    "post by @sick.uw"
-  ]
+  ],
+  "name": "Mo Dow",
+  "why": "only says Seattle",
+  "checked": "2026-11-23"
  },
  "mollymoonicecream": {
   "status": "new",
@@ -4106,11 +4127,14 @@
   ]
  },
  "nainoa.akiona": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uw_deltachi",
    "post by @uwkappasig"
-  ]
+  ],
+  "name": "Nainoa Akiona",
+  "why": "doesn't say UW",
+  "checked": "2026-11-23"
  },
  "naoboru": {
   "status": "new",
@@ -4380,11 +4404,14 @@
   ]
  },
  "nudibranchcoffee": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwfslc",
    "post by @uwunplugged"
-  ]
+  ],
+  "name": "nudibranch",
+  "why": "doesn't say UW",
+  "checked": "2026-11-23"
  },
  "nuttysquirrelgelato": {
   "status": "new",
@@ -4471,6 +4498,12 @@
   "status": "new",
   "found": [
    "post by @animenationuw"
+  ]
+ },
+ "oregonequestrian": {
+  "status": "new",
+  "found": [
+   "post by @uwequestrian"
   ]
  },
  "oregonstateequestrian": {
@@ -5340,6 +5373,12 @@
    "post by @dem_alphakappa"
   ]
  },
+ "shotbyvaleria": {
+  "status": "new",
+  "found": [
+   "post by @uw.dsa"
+  ]
+ },
  "shoukanghealth": {
   "status": "new",
   "found": [
@@ -5858,6 +5897,12 @@
   "status": "new",
   "found": [
    "post by @uw_triangle"
+  ]
+ },
+ "the_stefantor": {
+  "status": "new",
+  "found": [
+   "post by @uw_crafticians"
   ]
  },
  "thealleyuw": {
@@ -6559,6 +6604,15 @@
   "name": "Black in Computer Science and Engineering @ UW",
   "why": "latest post none",
   "checked": "2026-11-14"
+ },
+ "uwbestbuddies": {
+  "status": "huskylink",
+  "found": [
+   "post by @huskyclubcrawlers"
+  ],
+  "name": "UW Best Buddies",
+  "why": "Best Buddies",
+  "checked": "2026-11-23"
  },
  "uwbotanicgardens": {
   "status": "not",
@@ -7280,6 +7334,12 @@
    "post by @uwzeta"
   ]
  },
+ "vanilaxbean": {
+  "status": "new",
+  "found": [
+   "post by @uw_crafticians"
+  ]
+ },
  "varsha.mantra": {
   "status": "new",
   "found": [
@@ -7523,6 +7583,12 @@
    "post by @uwaacf"
   ]
  },
+ "yian_yw": {
+  "status": "new",
+  "found": [
+   "post by @uw.dsa"
+  ]
+ },
  "yogisabellaa": {
   "status": "new",
   "found": [
@@ -7551,6 +7617,12 @@
   "status": "new",
   "found": [
    "post by @uwpkmn"
+  ]
+ },
+ "zh_square": {
+  "status": "new",
+  "found": [
+   "post by @uw_crafticians"
   ]
  },
  "zhy.smitisa": {

@@ -120,10 +120,12 @@
   "checked": "2026-11-22"
  },
  "cosplay clubs of UW": {
-  "status": "new",
+  "status": "none",
   "by": [
    "Costume Club at UW (@uwcostumeclub)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-23"
  },
  "Cursor": {
   "status": "none",
@@ -253,6 +255,12 @@
    "University of Washington Army ROTC (@uwarmyrotc)"
   ]
  },
+ "Leadership Without Borders": {
+  "status": "new",
+  "by": [
+   "Ethnic Cultural Center (ECC) (@uw_ecc)"
+  ]
+ },
  "LWB": {
   "status": "new",
   "by": [
@@ -307,6 +315,12 @@
   "status": "new",
   "by": [
    "the list of companies' campus programs"
+  ]
+ },
+ "OISA": {
+  "status": "new",
+  "by": [
+   "ASUW MESC (@asuwmesc)"
   ]
  },
  "Omega Delta Phi Fraternity Inc.": {
@@ -377,6 +391,18 @@
    "an event on Luma, on the UW campus"
   ]
  },
+ "SSA UWS": {
+  "status": "new",
+  "by": [
+   "Sikh Student Association @ UW (@ssa_uw)"
+  ]
+ },
+ "SSA UWT": {
+  "status": "new",
+  "by": [
+   "Sikh Student Association @ UW (@ssa_uw)"
+  ]
+ },
  "Stormtry Sail Club": {
   "status": "new",
   "by": [
@@ -387,6 +413,12 @@
   "status": "new",
   "by": [
    "ASUW Office of Inclusive Design (@asuwoid)"
+  ]
+ },
+ "SU's LLSA": {
+  "status": "new",
+  "by": [
+   "LLSA at UW Law (@llsa_at_uw)"
   ]
  },
  "TheWomensNetwork": {
@@ -417,6 +449,18 @@
   "status": "new",
   "by": [
    "University of Washington SDS (@uw_sds)"
+  ]
+ },
+ "University of Washington Air Force ROTC": {
+  "status": "new",
+  "by": [
+   "University of Washington Army ROTC (@uwarmyrotc)"
+  ]
+ },
+ "University of Washington Navy ROTC": {
+  "status": "new",
+  "by": [
+   "University of Washington Army ROTC (@uwarmyrotc)"
   ]
  },
  "UW Consulting & Business Development (CBDC) Advisory Board": {
