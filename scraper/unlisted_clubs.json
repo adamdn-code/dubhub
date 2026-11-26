@@ -54,10 +54,13 @@
   ]
  },
  "7pm": {
-  "status": "new",
+  "status": "private",
   "found": [
-   "bio of @uwccm"
-  ]
+   "bio of @uwccm",
+   "post by @uwbestbuddies"
+  ],
+  "name": "Saoud Sultan Alsulaiti",
+  "checked": "2026-11-23"
  },
  "8bdearmyrotc": {
   "status": "new",
@@ -367,6 +370,17 @@
   "found": [
    "bio of @dbf_uw"
   ]
+ },
+ "aicheuw": {
+  "status": "club",
+  "found": [
+   "named as 'AIChE' by Women in Chemical Engineering (@wcheuw)"
+  ],
+  "name": "UW AIChE",
+  "bio": "American Institute of Chemical Engineers \nUniversity of Washington Chapter\n- - -\nCommunity • Industry • Development",
+  "latest": "2026-11-21",
+  "checked": "2026-11-26",
+  "why": "student chapter of AIChE at UW"
  },
  "aidan.e.smith": {
   "status": "new",
@@ -1033,6 +1047,12 @@
    "post by @uwpsiu"
   ]
  },
+ "bestbuddieswash": {
+  "status": "new",
+  "found": [
+   "bio of @uwbestbuddies"
+  ]
+ },
  "beyonders.studio": {
   "status": "new",
   "found": [
@@ -1065,6 +1085,12 @@
   "name": "Bird Friendly Campus (UW, Seattle)",
   "why": "latest post 2024-12-10",
   "checked": "2026-11-14"
+ },
+ "bisonmini": {
+  "status": "new",
+  "found": [
+   "post by @huskytennisclub"
+  ]
  },
  "bitsatuw": {
   "status": "club",
@@ -1144,6 +1170,12 @@
   "status": "new",
   "found": [
    "post by @huskyboxing"
+  ]
+ },
+ "bryantbestbuddies": {
+  "status": "new",
+  "found": [
+   "post by @uwbestbuddies"
   ]
  },
  "bryce.gilmartin": {
@@ -1510,6 +1542,12 @@
   "status": "new",
   "found": [
    "post by @uwundivided"
+  ]
+ },
+ "collar_photography": {
+  "status": "new",
+  "found": [
+   "post by @communistsatuw"
   ]
  },
  "collegeclubsoccer": {
@@ -2259,6 +2297,12 @@
    "post by @uwhcdesa"
   ]
  },
+ "frontline_amphibian": {
+  "status": "new",
+  "found": [
+   "post by @communistsatuw"
+  ]
+ },
  "gaascollective": {
   "status": "new",
   "found": [
@@ -2661,6 +2705,12 @@
   "status": "new",
   "found": [
    "bio of @uwhhsa"
+  ]
+ },
+ "hi_chloetry": {
+  "status": "new",
+  "found": [
+   "post by @communistsatuw"
   ]
  },
  "hirschmanvisuals": {
@@ -3933,6 +3983,12 @@
   "why": "doesn't say UW",
   "checked": "2026-11-23"
  },
+ "meiyacandlestudio": {
+  "status": "new",
+  "found": [
+   "post by @uw_akdphi"
+  ]
+ },
  "melissalevinphotography": {
   "status": "new",
   "found": [
@@ -4564,11 +4620,14 @@
   ]
  },
  "p0linal": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @eeriatuw",
    "post by @sick.uw"
-  ]
+  ],
+  "name": "Polina",
+  "why": "only says Seattle",
+  "checked": "2026-11-23"
  },
  "pac8hockeyconference": {
   "status": "new",
@@ -4866,11 +4925,14 @@
   ]
  },
  "redbull": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @huskyflying",
    "post by @uw_pad"
-  ]
+  ],
+  "name": "Red Bull",
+  "why": "doesn't say UW",
+  "checked": "2026-11-23"
  },
  "redefiningambition": {
   "status": "new",
@@ -4956,11 +5018,16 @@
   ]
  },
  "riverwaysedu": {
-  "status": "new",
+  "status": "club",
   "found": [
    "post by @shpeuw",
    "post by @stem_pals_uw"
-  ]
+  ],
+  "name": "Riverways",
+  "bio": "UW 💜💛 \nK-12 Tutoring & Mentoring Outreach Program 📚 Connecting with students, schools, and communities towards tribal sovereignty and racial justice✊🏽",
+  "latest": "2026-11-14",
+  "checked": "2026-11-23",
+  "why": "student-run tutoring/outreach program with UW branding"
  },
  "rlz1920": {
   "status": "club",
@@ -5432,11 +5499,14 @@
   ]
  },
  "simple_and_soft": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @jsauw",
    "post by @tosauw"
-  ]
+  ],
+  "name": "Simple & Soft by K I M M Y",
+  "why": "only says Seattle",
+  "checked": "2026-11-23"
  },
  "simran.kbrar": {
   "status": "new",
@@ -5466,6 +5536,12 @@
   "status": "new",
   "found": [
    "post by @uwjunoon"
+  ]
+ },
+ "snoqualmietribe": {
+  "status": "new",
+  "found": [
+   "post by @uwfarm"
   ]
  },
  "soc_in_lis_uw": {
@@ -5563,11 +5639,14 @@
   ]
  },
  "starheartsmileyface": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @asuwae",
    "post by @uwdawgdaze"
-  ]
+  ],
+  "name": "santiago",
+  "why": "only says Seattle",
+  "checked": "2026-11-23"
  },
  "starlightsupermeep": {
   "status": "new",
@@ -5596,6 +5675,12 @@
    "post by @uwtridelta"
   ]
  },
+ "stokespace": {
+  "status": "new",
+  "found": [
+   "post by @uwsarp"
+  ]
+ },
  "stormtrysailclub": {
   "status": "new",
   "found": [
@@ -5609,11 +5694,14 @@
   ]
  },
  "sugar_n_tide": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @uwfslc",
    "post by @uwunplugged"
-  ]
+  ],
+  "name": "Sugar n’ Tide Music",
+  "why": "only says Seattle",
+  "checked": "2026-11-26"
  },
  "sugarspoondough": {
   "status": "new",
@@ -5715,11 +5803,13 @@
   ]
  },
  "suzette.alancheril": {
-  "status": "new",
+  "status": "private",
   "found": [
    "post by @uwfslc",
    "post by @uwunplugged"
-  ]
+  ],
+  "name": "Suzette",
+  "checked": "2026-11-26"
  },
  "swingkidsuw": {
   "status": "huskylink",
@@ -5809,11 +5899,14 @@
   ]
  },
  "taylornguyeenn": {
-  "status": "new",
+  "status": "inactive",
   "found": [
    "post by @uw_deltachi",
    "post by @uwalphasig"
-  ]
+  ],
+  "name": "Taylor™️",
+  "why": "latest post 2025-08-01",
+  "checked": "2026-11-26"
  },
  "taynanea": {
   "status": "new",
@@ -6030,6 +6123,12 @@
    "post by @washingtonsuperbike"
   ]
  },
+ "trestles.sc": {
+  "status": "new",
+  "found": [
+   "post by @rainydawgradio"
+  ]
+ },
  "troyy.kelsch": {
   "status": "new",
   "found": [
@@ -6060,11 +6159,14 @@
   ]
  },
  "ubecrochets": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @jsauw",
    "post by @tosauw"
-  ]
+  ],
+  "name": "abby 💌",
+  "why": "doesn't say UW",
+  "checked": "2026-11-26"
  },
  "ubookstoreseattle": {
   "status": "new",
@@ -6082,6 +6184,12 @@
   "latest": "2026-10-09",
   "checked": "2026-11-15",
   "why": "University program/office, not a student organization"
+ },
+ "ucd.sc.tkd": {
+  "status": "new",
+  "found": [
+   "post by @uwhuskytkd"
+  ]
  },
  "ucla": {
   "status": "new",
@@ -6435,7 +6543,8 @@
  "uw_sds": {
   "status": "club",
   "found": [
-   "post by @asuwqsc"
+   "post by @asuwqsc",
+   "post by @communistsatuw"
   ],
   "name": "University of Washington SDS",
   "bio": "Students for a Democratic Society\nMeetings: DM for location and time\nChapter of @nationalsds\nPreviously known as: UW PSU",
@@ -7420,10 +7529,19 @@
   ]
  },
  "weee_korean": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @jsauw",
    "post by @tosauw"
+  ],
+  "name": "Weee! Korean 🇰🇷",
+  "why": "doesn't say UW",
+  "checked": "2026-11-26"
+ },
+ "welebaltnativegarden": {
+  "status": "new",
+  "found": [
+   "post by @uwfarm"
   ]
  },
  "westernclimbs": {
@@ -7490,11 +7608,14 @@
   "checked": "2026-11-14"
  },
  "woodscoffee": {
-  "status": "new",
+  "status": "not",
   "found": [
    "post by @geodat.uw",
    "post by @data_science_society_uw"
-  ]
+  ],
+  "name": "Woods Coffee",
+  "why": "doesn't say UW",
+  "checked": "2026-11-26"
  },
  "wp1911": {
   "status": "new",

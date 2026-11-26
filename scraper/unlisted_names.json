@@ -7,6 +7,12 @@
   "handle": null,
   "checked": "2026-11-19"
  },
+ "AEPi": {
+  "status": "new",
+  "by": [
+   "Hillel UW (@huskyhillel)"
+  ]
+ },
  "AIC @ UW": {
   "status": "known",
   "by": [
@@ -14,6 +20,26 @@
   ],
   "same_as": "@aic.uw",
   "checked": "2026-11-15"
+ },
+ "AIChE": {
+  "status": "found",
+  "by": [
+   "Women in Chemical Engineering (@wcheuw)"
+  ],
+  "handle": "aicheuw",
+  "checked": "2026-11-26"
+ },
+ "Alpha Sigma": {
+  "status": "new",
+  "by": [
+   "Omega Delta Phi Fraternity Inc. | UW Seattle (@uwknights)"
+  ]
+ },
+ "AMA Puget Sound": {
+  "status": "new",
+  "by": [
+   "American Marketing Association (@uw_ama)"
+  ]
  },
  "ASUW": {
   "status": "none",
@@ -70,6 +96,18 @@
   ],
   "handle": null,
   "checked": "2026-11-21"
+ },
+ "BuildHER": {
+  "status": "new",
+  "by": [
+   "cseed"
+  ]
+ },
+ "BUILDSPACE": {
+  "status": "new",
+  "by": [
+   "cseed"
+  ]
  },
  "Canva": {
   "status": "none",
@@ -144,10 +182,12 @@
   "checked": "2026-11-17"
  },
  "EnGender": {
-  "status": "new",
+  "status": "none",
   "by": [
    "UW Q Center (@uwqcenter)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-23"
  },
  "Esec Team": {
   "status": "none",
@@ -385,6 +425,12 @@
    "Women’s Ice Hockey Club at UW (@womenshockeyuw)"
   ]
  },
+ "Snow Club": {
+  "status": "new",
+  "by": [
+   "UW Hiking Club (@hikingclubuw)"
+  ]
+ },
  "SpaceXSI": {
   "status": "new",
   "by": [
@@ -479,6 +525,12 @@
   "status": "new",
   "by": [
    "MSA Volunteer Corps (@msauw.vc)"
+  ]
+ },
+ "UW Food Science & Nutrition": {
+  "status": "new",
+  "by": [
+   "The UW Farm (@uwfarm)"
   ]
  },
  "UW Foster": {

@@ -148,8 +148,8 @@
    "instagram": "https://www.instagram.com/uw_ama/",
    "website": "https://linktr.ee/uw.ama",
    "category": "Business",
-   "about": "Develop marketing skills and personal branding with AMA.",
-   "description": "The American Marketing Association at UW offers workshops on personal branding, portfolio building, and creative campaigns. Events include networking mixers, fundraisers, and industry talks.",
+   "about": "Student organization focused on marketing and networking.",
+   "description": "The American Marketing Association at UW connects students with marketing professionals through events like networking mixers and trend discussions. Members share hot takes on campaigns and learn from industry speakers, fostering a community of future marketers.",
    "logo": "/ig/clubs/uw_ama.jpg",
    "last_event": "2026-11-24",
    "fields": [
@@ -234,6 +234,18 @@
    "fields": []
   },
   {
+   "name": "ARMY ROTC at UW",
+   "handle": "uwarmyrotc",
+   "instagram": "https://www.instagram.com/uwarmyrotc/",
+   "website": "http://linktr.ee/uwarmyrotc",
+   "category": "Service",
+   "about": "Army ROTC program developing future military leaders at UW.",
+   "description": "UW Army ROTC builds leadership and mentorship among cadets, highlighting members and participating in campus events like Salute to Service. The program celebrates its community and prepares students for Army commissions.",
+   "logo": "/ig/clubs/uwarmyrotc.jpg",
+   "last_event": "2026-11-28",
+   "fields": []
+  },
+  {
    "name": "Artificial Intelligence Student Collective @ UW",
    "handle": "aic.uw",
    "instagram": "https://www.instagram.com/aic.uw/",
@@ -274,6 +286,19 @@
    "logo": "/ig/clubs/uwaacf.jpg",
    "last_event": "2027-01-10",
    "fields": []
+  },
+  {
+   "name": "Asians in Pre Health",
+   "website": "https://huskylink.washington.edu/aph/",
+   "category": "Academic",
+   "about": "Asians in Pre-Health aims to empower and support Asian-American students pursuing careers in medicine, dentistry,…",
+   "description": "Asians in Pre-Health aims to empower and support Asian-American students pursuing careers in medicine, dentistry, nursing, and other healthcare fields. We endeavor to provide valuable professional development, networking opportunities, cultural awareness, and community engagement to prepare members for healthcare professions. We hope to provide opportunities for students to explore and gain insight into different paths within healthcare so you can make informed choices about which path is best for you!",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_622074_APH_Logo_270b3e26-34be-4f0a-9f63-737a228c4389_1124174628.png",
+   "source": "huskylink",
+   "last_event": "2026-12-10",
+   "fields": [
+    "Health"
+   ]
   },
   {
    "name": "Association for Computing Education",
@@ -540,10 +565,10 @@
    "instagram": "https://www.instagram.com/uw_bioexplore/",
    "website": "https://linktr.ee/bioexploreuw",
    "category": "Engineering",
-   "about": "Student group offering bioengineering workshops, mentorship, lab tours, and panels.",
-   "description": "BioExplore offers hands‑on experiences like lab tours, resume workshops, and mentorship for students interested in bioengineering. Members get to explore cutting‑edge research and connect with professionals.",
+   "about": "Club for students interested in bioengineering and related careers.",
+   "description": "BioExplore offers workshops, mentorship, lab tours, and panels to help students explore bioengineering pathways. Events include career networking with researchers and professors, giving hands‑on insight into labs and industry.",
    "logo": "/ig/clubs/uw_bioexplore.jpg",
-   "last_event": "2026-11-23",
+   "last_event": "2026-11-30",
    "fields": [
     "Engineering",
     "Sciences"
@@ -555,12 +580,13 @@
    "instagram": "https://www.instagram.com/bitsatuw/",
    "website": "https://linktr.ee/uwbits",
    "category": "Business",
-   "about": "Club merging business and tech through workshops, socials, and competitions.",
-   "description": "BITS blends business and technology for UW students. They host boba socials, SQL workshops, and introduce the new executive board each year.",
+   "about": "Student group blending business and technology skills.",
+   "description": "BITS empowers students at the intersection of business and technology through networking socials, study sessions, and skill‑building workshops. Join to collaborate with peers, learn tools like SQL, and gain career insights.",
    "logo": "/ig/clubs/bitsatuw.jpg",
-   "last_event": "2026-11-24",
+   "last_event": "2026-11-30",
    "fields": [
     "Business",
+    "Engineering",
     "Computing & Math"
    ]
   },
@@ -588,13 +614,29 @@
    "fields": []
   },
   {
+   "name": "Bricolage: Literary and Visual Arts Journal",
+   "handle": "bricolageuw",
+   "instagram": "https://www.instagram.com/bricolageuw/",
+   "website": "http://linktr.ee/bricolageuw",
+   "category": "Arts",
+   "about": "Student‑run literary and visual arts journal.",
+   "description": "Bricolage is a student‑run literary and visual arts journal showcasing poetry, prose, and artwork from the UW community. The editorial team curates submissions and publishes an annual issue celebrating creative expression.",
+   "logo": "/ig/clubs/bricolageuw.jpg",
+   "discord": "https://discord.gg/y24aJH3b5C",
+   "discord_server": "Bricolage Literary & Visual Arts Journal",
+   "last_event": "2026-12-02",
+   "fields": [
+    "Arts & Humanities"
+   ]
+  },
+  {
    "name": "Business Impact Group at UW",
    "handle": "businessimpactgroupuw",
    "instagram": "https://www.instagram.com/businessimpactgroupuw/",
    "website": "https://linktr.ee/uwbig",
    "category": "Business",
-   "about": "Undergraduate consulting org helping startups, small businesses, and nonprofits grow.",
-   "description": "Business Impact Group connects students with real‑world consulting projects, offering strategic advice to local ventures and social organizations. Members gain experience through speaker panels, alumni talks, and hands‑on consulting work.",
+   "about": "Undergraduate consulting organization helping startups and nonprofits.",
+   "description": "Business Impact Group is UW’s largest undergraduate consulting club, partnering with startups, small businesses, and nonprofits to drive growth. Members gain real‑world experience through projects, speaker panels, and alumni mentorship.",
    "logo": "/ig/clubs/businessimpactgroupuw.jpg",
    "last_event": "2026-11-20",
    "fields": [
@@ -656,11 +698,11 @@
    "handle": "uwcircle",
    "instagram": "https://www.instagram.com/uwcircle/",
    "website": "https://linktr.ee/uwcircle",
-   "category": "Academic",
-   "about": "Offers writing support and cultural programs for UW students.",
-   "description": "CIRCLE provides one‑on‑one writing appointments, workshops, and community meals to help students thrive academically and socially. Explore resources and join inclusive events.",
+   "category": "Cultural",
+   "about": "Center promoting cultural engagement and global resources for students.",
+   "description": "CIRCLE offers cultural events, creative workshops, and academic support such as writing resources, helping Huskies thrive in a global future. Activities range from holiday DIY crafts to campus guide sessions.",
    "logo": "/ig/clubs/uwcircle.jpg",
-   "last_event": "2026-11-25",
+   "last_event": "2026-12-01",
    "fields": [
     "Social Sciences"
    ]
@@ -671,8 +713,8 @@
    "instagram": "https://www.instagram.com/ceramicsclubatuw/",
    "website": "https://linktr.ee/ceramicsclubatuw",
    "category": "Arts",
-   "about": "Provides a space for students and faculty to create and learn ceramics.",
-   "description": "The Ceramics Club offers a welcoming space for students and faculty to learn hand‑building techniques, from pinch pots to decorative elements. They host workshops, seasonal events like a Halloween paint‑your‑own figurine night, and collaborate with local studios for firing.",
+   "about": "Community for students to create and learn ceramics.",
+   "description": "The Ceramics Club offers a welcoming space for anyone interested in pottery, from pinch‑pot workshops to studio time. Members share their creations and can apply for leadership roles.",
    "logo": "/ig/clubs/ceramicsclubatuw.jpg",
    "last_event": "2026-11-21",
    "fields": [
@@ -736,12 +778,12 @@
    "instagram": "https://www.instagram.com/uwcki/",
    "website": "https://linktr.ee/circlkuw",
    "category": "Service",
-   "about": "Student‑led volunteer club serving UW and the Greater Seattle community.",
-   "description": "Circle K International mobilizes students to volunteer through service projects, community clean‑ups, and fundraising events. Meetings include fun activities like ice‑breaker games and crafting for local charities.",
+   "about": "Student‑run volunteer club serving UW and Seattle community.",
+   "description": "Circle K International organizes service projects, social gatherings, and fundraisers like making paper snowflakes for Ronald McDonald House. Members meet weekly to plan events and build community.",
    "logo": "/ig/clubs/uwcki.jpg",
    "discord": "https://discord.gg/qAUGa3m8Mg",
    "discord_server": "Circle K International - UW",
-   "last_event": "2026-11-23",
+   "last_event": "2026-12-02",
    "fields": []
   },
   {
@@ -807,10 +849,10 @@
    "instagram": "https://www.instagram.com/uw_clba/",
    "website": "https://linktr.ee/uwclba",
    "category": "Business",
-   "about": "Explores the overlap of business and law for undergraduates.",
-   "description": "CLBA offers workshops on topics like elevator pitches, M&A case studies, and LSAT preparation, helping students develop skills at the business‑law nexus. Open to all majors, the group hosts interactive sessions on campus.",
+   "about": "Student organization exploring business and law through simulations and workshops.",
+   "description": "The Corporate Law & Business Association blends business and legal education with hands‑on activities like contract simulations and case studies. Open to all majors, it builds well‑rounded leaders.",
    "logo": "/ig/clubs/uw_clba.jpg",
-   "last_event": "2026-11-16",
+   "last_event": "2026-11-23",
    "fields": [
     "Business"
    ]
@@ -921,8 +963,8 @@
    "instagram": "https://www.instagram.com/uwdelts/",
    "website": "https://docs.google.com/forms/d/e/1FAIpQLScPiPOWRacdf5gRRQKtZi6_WfYZyq5ZjwHlaHKgKynaqQ4Q-Q/viewform",
    "category": "Greek Life",
-   "about": "Brotherhood focused on truth, courage, faith, and service.",
-   "description": "Delta Tau Delta is a historic fraternity that emphasizes truth, courage, faith, and power. Brothers host social gatherings, live music events, and philanthropy nights for the UW community.",
+   "about": "Social fraternity chapter fostering brotherhood, philanthropy, and campus events.",
+   "description": "Delta Tau Delta Gamma Mu is a fraternity focused on brotherhood, philanthropy, and social events like live music nights. Rush events invite new members to join the chapter.",
    "logo": "/ig/clubs/uwdelts.jpg",
    "last_event": "2026-11-14",
    "fields": []
@@ -945,8 +987,8 @@
    "instagram": "https://www.instagram.com/uwclubbaseball/",
    "website": "https://linktr.ee/uwclubbaseball.links",
    "category": "Sports",
-   "about": "UW Club Baseball competes in NCBA Division I league.",
-   "description": "The official UW Club Baseball account shares game updates and team life, like playing at Interlake High School and handling road trips with a small roster. Follow for highlights of their competitive season.",
+   "about": "Club baseball team competing in NCBA Division I.",
+   "description": "UW Club Baseball competes in the Northern Pacific West Conference, sharing game updates and highlights from fall season play. Follow for scores, travel info, and team achievements.",
    "logo": "/ig/clubs/uwclubbaseball.jpg",
    "last_event": "2026-11-15",
    "fields": []
@@ -1098,8 +1140,8 @@
    "instagram": "https://www.instagram.com/firstnationsuw/",
    "website": "https://forms.cloud.microsoft/r/XUqDvqgjXA",
    "category": "Cultural",
-   "about": "Largest inter‑tribal Native student group at UW, fostering community and culture.",
-   "description": "First Nations @ UW hosts cultural events, workshops, and gatherings such as necklace making and communal dinners. Open to all, the group celebrates Native heritage and provides a space for connection.",
+   "about": "Largest inter‑tribal Native student group at UW.",
+   "description": "First Nations @ UW is the university’s largest inter‑tribal Native student organization, fostering community and cultural pride. They host meetings, workshops like necklace making, and share resources for Native American Heritage Month.",
    "logo": "/ig/clubs/firstnationsuw.jpg",
    "last_event": "2026-11-24",
    "fields": []
@@ -1204,10 +1246,10 @@
    "instagram": "https://www.instagram.com/gpssuw/",
    "website": "http://linktr.ee/gpssuw",
    "category": "Service",
-   "about": "Graduate student government representing UW grad students.",
-   "description": "GPSS is the official graduate student government at UW, advocating for grad student needs. They host focus groups, craft nights, and other events to build community and support.",
+   "about": "Graduate student government representing UW graduate students.",
+   "description": "GPSS advocates for grad student interests, from dining options to campus policy. They host events like craft nights and advocacy days to build community.",
    "logo": "/ig/clubs/gpssuw.jpg",
-   "last_event": "2026-12-02",
+   "last_event": "2027-02-24",
    "fields": []
   },
   {
@@ -1243,8 +1285,8 @@
    "instagram": "https://www.instagram.com/huskyhillel/",
    "website": "http://linktr.ee/HillelUW",
    "category": "Faith & Spirituality",
-   "about": "Jewish student organization offering community, worship, and cultural events.",
-   "description": "Hillel UW creates a welcoming space for Jewish students through Shabbat meals, guest speakers, and trips. Activities range from cultural celebrations to fitness events and travel opportunities.",
+   "about": "Jewish student organization offering community, events, and Israel trips.",
+   "description": "Hillel UW creates a welcoming space for Jewish students with Shabbat meals, cultural events, and trips like Birthright to Israel. They also host speakers and fitness sessions.",
    "logo": "/ig/clubs/huskyhillel.jpg",
    "last_event": "2026-11-30",
    "fields": []
@@ -1267,12 +1309,26 @@
    "instagram": "https://www.instagram.com/officialuwhosa/",
    "website": "https://linktr.ee/uwhosa",
    "category": "Service",
-   "about": "Student chapter preparing future health professionals through meetings and volunteer work.",
-   "description": "HOSA UW brings together students interested in health careers. The chapter offers guest speakers, volunteer projects such as clothing boutique clean‑ups, and information on competitions and leadership conferences. It’s a great way to gain experience and network in the health field.",
+   "about": "Future health professionals group offering volunteering and networking events.",
+   "description": "HOSA UW supports future health professionals through volunteer projects, guest speakers, and networking events. Members gain experience in healthcare and community service.",
    "logo": "/ig/clubs/officialuwhosa.jpg",
    "last_event": "2026-11-19",
    "fields": [
     "Health"
+   ]
+  },
+  {
+   "name": "Hounds of Music A Cappella",
+   "handle": "uwhounds",
+   "instagram": "https://www.instagram.com/uwhounds/",
+   "website": "https://www.tiktok.com/@hounds.of.music?_t=8qVJUwebwD8&_r=1",
+   "category": "Arts",
+   "about": "Co‑ed a cappella group performing, hosting events, and taking gig bookings.",
+   "description": "Hounds of Music is a co‑ed a cappella group that performs on campus and accepts gig bookings. They keep members updated with events and leadership introductions.",
+   "logo": "/ig/clubs/uwhounds.jpg",
+   "last_event": "2026-11-28",
+   "fields": [
+    "Arts & Humanities"
    ]
   },
   {
@@ -1453,8 +1509,8 @@
    "instagram": "https://www.instagram.com/uw_icehockey/",
    "website": "https://www.tickettailor.com/events/washingtonicehockey",
    "category": "Sports",
-   "about": "UW men's ice hockey team competing in collegiate games.",
-   "description": "Washington Ice Hockey represents the university in men's varsity hockey, sharing game highlights and team moments. Follow for updates, tickets, and behind‑the‑scenes content.",
+   "about": "Men’s ice hockey team representing UW in collegiate competition.",
+   "description": "The Washington Men’s Ice Hockey Instagram shares game updates and highlights as the Huskies compete in the season. Follow for scores, player moments, and upcoming matchups against regional rivals.",
    "logo": "/ig/clubs/uw_icehockey.jpg",
    "last_event": "2026-12-12",
    "fields": []
@@ -1791,6 +1847,19 @@
    ]
   },
   {
+   "name": "MBA Women in Business Association at the University of Washington",
+   "website": "http://www.uwfostermbaa.com/womeninbusiness",
+   "category": "Business",
+   "about": "The purpose of this club is to nurture the personal and professional development of Foster Women MBA students, with a…",
+   "description": "The purpose of this club is to nurture the personal and professional development of Foster Women MBA students, with a specific focus on grooming women into leadership positions and increasing visibility in the community.",
+   "logo": null,
+   "source": "huskylink",
+   "last_event": "2026-12-11",
+   "fields": [
+    "Business"
+   ]
+  },
+  {
    "name": "Med Connect",
    "website": "https://huskylink.washington.edu/medconnect/",
    "category": "Academic",
@@ -1832,8 +1901,8 @@
    "instagram": "https://www.instagram.com/minoritiesintech/",
    "website": "http://linktr.ee/minoritiesintech",
    "category": "Tech",
-   "about": "Community for underrepresented tech students at UW.",
-   "description": "Minorities In Tech creates a forum for diverse students in the Allen School, offering study dates, mixers, and networking opportunities. Events focus on academic support and building a welcoming tech community.",
+   "about": "Tech community supporting underrepresented students in computing.",
+   "description": "Minorities In Tech at UW builds an inclusive space for diverse CS students through mixers, leadership opportunities, and study dates during finals. They provide resources and networking for first‑year engineers.",
    "logo": "/ig/clubs/minoritiesintech.jpg",
    "discord": "https://discord.gg/CycEJpjsbT",
    "discord_server": "Minorities In Tech",
@@ -1892,8 +1961,8 @@
    "instagram": "https://www.instagram.com/msauw/",
    "website": "https://linktr.ee/msauw",
    "category": "Faith & Spirituality",
-   "about": "Muslim Student Association fostering community, worship, and cultural celebration.",
-   "description": "MSA UW hosts events like Culture Fest with food, games, and opportunities to share diverse traditions. The group also offers volunteer opportunities and a Discord community for staying connected.",
+   "about": "Muslim Student Association fostering community and cultural events.",
+   "description": "MSA UW connects Muslim students through volunteer work, cultural festivals, and leadership roles like freshman representatives. They host events with food, games, and discussions to celebrate diversity.",
    "logo": "/ig/clubs/msauw.jpg",
    "discord": "https://discord.gg/wb56SYhaF6",
    "discord_server": "MSA UW Seattle",
@@ -2039,7 +2108,7 @@
    "name": "Pakistani Students Association at the UW",
    "handle": "psauws",
    "instagram": "https://www.instagram.com/psauws/",
-   "website": "https://linktr.ee/psauw",
+   "website": "https://chat.whatsapp.com/DP8UTGbnCXi8pIcfbhm7hx",
    "category": "Cultural",
    "about": "Pakistani student community sharing culture and events at UW.",
    "description": "The Pakistani Students Association connects Pakistani students and allies through cultural events and community activities. Stay updated via their WhatsApp group and join gatherings like charity basketball tournaments.",
@@ -2145,13 +2214,27 @@
    ]
   },
   {
+   "name": "Poetry Club at the University of Washington",
+   "handle": "uwpoetryclub",
+   "instagram": "https://www.instagram.com/uwpoetryclub/",
+   "website": "https://tinyurl.com/yk6banfw",
+   "category": "Arts",
+   "about": "Student‑run poetry group meeting weekly to write, share, and publish poems.",
+   "description": "The UW Poetry Club is a student‑run space where anyone can write, share, and enjoy poetry. They meet every Tuesday in Smith Hall for informal writing sessions and host open‑mic nights and zine releases. All are welcome to drop by and bring a friend.",
+   "logo": "/ig/clubs/uwpoetryclub.jpg",
+   "last_event": "2026-11-24",
+   "fields": [
+    "Arts & Humanities"
+   ]
+  },
+  {
    "name": "Pokemon Trainer Club at UW",
    "handle": "uwpkmn",
    "instagram": "https://www.instagram.com/uwpkmn/",
    "website": "http://linktr.ee/uwpkmn",
    "category": "Gaming",
-   "about": "Pokemon Trainer Club organizes tournaments, meetups, and creative events.",
-   "description": "The club shares art features, presentation nights, and weekly meetings (e.g., Wednesdays at 5 PM in MOR 221) where members showcase Pokémon‑related projects and enjoy casual gaming sessions.",
+   "about": "Campus club for Pokémon fans offering tournaments, meetups, and games.",
+   "description": "The Pokémon Trainer Club brings together UW students who love Pokémon for tournaments, concerts, and creative activities. Their Instagram promotes game nights, art features, and lively meet‑ups.",
    "logo": "/ig/clubs/uwpkmn.jpg",
    "discord": "https://discord.gg/PHgz2hWk8C",
    "discord_server": "Pokemon Trainer Club @ UW",
@@ -2220,7 +2303,7 @@
    "category": "Academic",
    "about": "To help prepare members for careers in veterinary medicine and to better understanding of the many aspects of…",
    "description": "To help prepare members for careers in veterinary medicine and to better understanding of the many aspects of veterinary medicine through education, volunteer experience, and community leadership.",
-   "logo": null,
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_639712_PreVeterinary_Society_Logojpg_637b279e-454b-4f14-a127-f59c31d4bc93_113213040.jpeg",
    "source": "huskylink",
    "last_event": "2026-12-02",
    "fields": [
@@ -2304,9 +2387,9 @@
    "handle": "uwqcenter",
    "instagram": "https://www.instagram.com/uwqcenter/",
    "website": "https://linktr.ee/uwqcenter1",
-   "category": "Social",
-   "about": "Affirming space for queer, trans, and allied students at UW.",
-   "description": "The Q Center offers a safe, celebratory environment with book clubs, game nights, mentorship, and free STI testing. Connect with the queer community and access supportive resources.",
+   "category": "Cultural",
+   "about": "Affirming space for queer, trans, and allied UW students.",
+   "description": "The Q Center provides a brave, affirming space for queer, trans, and allied students, offering resources like a game library and gender‑affirming services. Their posts highlight courses, community art projects, and inclusive events.",
    "logo": "/ig/clubs/uwqcenter.jpg",
    "last_event": "2026-11-19",
    "fields": []
@@ -2391,8 +2474,8 @@
    "instagram": "https://www.instagram.com/spsuw/",
    "website": "https://linktr.ee/sherepunjab?utm_source=linktree_admin_share",
    "category": "Cultural",
-   "about": "Celebrates and promotes Punjabi culture at UW.",
-   "description": "Sher‑E‑Punjab Society shares Punjabi traditions, music, and food with the campus community. Join to experience cultural events and connect with fellow students.",
+   "about": "Society celebrating Punjabi culture on campus.",
+   "description": "Sher‑E‑Punjab Society promotes Punjabi heritage with social events, food, and cultural activities. Members enjoy gatherings like mango lassi socials and share leadership updates.",
    "logo": "/ig/clubs/spsuw.jpg",
    "last_event": "2026-11-10",
    "fields": []
@@ -2643,8 +2726,8 @@
    "instagram": "https://www.instagram.com/super_uw/",
    "website": "https://linktr.ee/superuw",
    "category": "Social",
-   "about": "Advocate for Palestinian equality and organize community actions.",
-   "description": "SUPER UW brings together students to promote Palestinian rights through events, art builds, and soccer games. The group partners with other organizations for activism and cultural awareness.",
+   "about": "Student organization advocating for Palestinian equality.",
+   "description": "SUPER UW advocates for Palestinian equality and raises awareness through art, sports, and community actions. The group organizes events such as banner‑making sessions, football games, and cultural gatherings.",
    "logo": "/ig/clubs/super_uw.jpg",
    "last_event": "2026-12-05",
    "fields": []
@@ -2785,7 +2868,7 @@
    "website": "https://thebasement.cargo.site",
    "category": "Arts",
    "about": "Student‑run gallery and magazine showcasing campus art.",
-   "description": "The BASEMENT offers gallery shows where students can exhibit their work and publishes magazines highlighting local art. Join for openings, music, drinks, and a supportive creative community.",
+   "description": "The BASEMENT offers gallery shows and publishes magazines featuring student artwork. Events include openings with music, drinks, and opportunities to meet fellow artists.",
    "logo": "/ig/clubs/thebasementuw.jpg",
    "last_event": "2026-11-20",
    "fields": [
@@ -2826,9 +2909,9 @@
    "category": "Cultural",
    "about": "FIUTS (The Foundation for International Understanding Through Students) advances international understanding through…",
    "description": "FIUTS (The Foundation for International Understanding Through Students) advances international understanding through crosscultural experiences, student leadership, and community connections.",
-   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_641444_Logojpg_584ca912-6a02-4197-910e-e01307c82ae2_1015143824.jpeg",
+   "logo": "https://huskylink.washington.edu/upload/washington/2026/s2_image_upload_641444_InstagramLogo_5a7032be-46d3-4f78-bcf5-69e275eb17f8_112412557.png",
    "source": "huskylink",
-   "last_event": "2026-11-13",
+   "last_event": "2026-12-04",
    "fields": []
   },
   {
@@ -2877,10 +2960,10 @@
    "instagram": "https://www.instagram.com/thewomensnetwork_uw/",
    "website": "https://linktr.ee/thewomensnetworkuw",
    "category": "Social",
-   "about": "Women‑led network promoting ambition and community at UW.",
-   "description": "The Women’s Network connects students through socials, podcasts, and creative events that celebrate ambition and well‑being. It offers a supportive space for women and allies to share ideas and grow together.",
+   "about": "Women‑led network empowering ambition and community.",
+   "description": "The Women’s Network at UW provides podcasts, socials, and events highlighting women in tech and leadership. Members gather for study dates, creative socials, and inspiring speaker talks.",
    "logo": "/ig/clubs/thewomensnetwork_uw.jpg",
-   "last_event": "2026-11-18",
+   "last_event": "2026-12-04",
    "fields": []
   },
   {
@@ -2930,10 +3013,10 @@
    "instagram": "https://www.instagram.com/ubc.uw/",
    "website": "https://linktr.ee/uwubc",
    "category": "Business",
-   "about": "Student org fostering leadership, collaboration, and inclusion in Foster Business.",
-   "description": "UBC connects undergraduates through mentorship programs, forums with faculty, and community events. It aims to build leadership skills and an inclusive environment within the Foster School of Business.",
+   "about": "Student council promoting leadership and collaboration in business.",
+   "description": "Undergraduate Business Council energizes the UW business community with study sessions, wellness breaks, and networking events. They partner with campus resources to support inclusive leadership.",
    "logo": "/ig/clubs/ubc.uw.jpg",
-   "last_event": "2026-11-23",
+   "last_event": "2026-12-03",
    "fields": [
     "Business"
    ]
@@ -2944,8 +3027,8 @@
    "instagram": "https://www.instagram.com/uw_uts/",
    "website": "http://linktr.ee/uwuts/",
    "category": "Arts",
-   "about": "Student theatre society creating inclusive productions and learning opportunities.",
-   "description": "The Undergraduate Theatre Society produces inclusive plays and provides learning opportunities for all undergraduates. Their current production, Trouble in Mind, invites the campus community to enjoy live theatre.",
+   "about": "Student theatre group producing inclusive productions for undergrads.",
+   "description": "UTS creates equitable learning opportunities and stages plays like Antigone and Trouble in Mind for the UW community. Rehearsal photos and ticket info showcase their collaborative, student‑run performances.",
    "logo": "/ig/clubs/uw_uts.jpg",
    "last_event": "2026-11-22",
    "fields": [
@@ -2958,10 +3041,10 @@
    "instagram": "https://www.instagram.com/uw_uwib/",
    "website": "https://linktr.ee/uwuwib",
    "category": "Business",
-   "about": "Undergraduate women’s business organization at UW fostering leadership and skills.",
-   "description": "UWiB hosts workshops like consumer‑insight case studies and AI skill series, helping members build real‑world business skills. Events such as Closing the Gap bring diverse voices together to network and learn.",
+   "about": "Women‑focused business club with networking, philanthropy, and case study events.",
+   "description": "UWiB empowers undergraduate women in business through philanthropy events, case‑study workshops, and speaker series. It fosters networking and professional growth across disciplines.",
    "logo": "/ig/clubs/uw_uwib.jpg",
-   "last_event": "2026-11-17",
+   "last_event": "2026-11-24",
    "fields": [
     "Business"
    ]
@@ -3012,13 +3095,11 @@
    "instagram": "https://www.instagram.com/uwcounseling/",
    "website": "https://linktr.ee/uwcounseling",
    "category": "Service",
-   "about": "Provides mental health services and supportive events for UW students.",
-   "description": "UW Counseling Center shares mental‑health resources and hosts supportive events such as art nights and discussion workshops. It aims to create a safe, inclusive space for all Huskies.",
+   "about": "Provides mental health counseling and resources for UW students.",
+   "description": "UW Counseling Center offers confidential mental‑health counseling and shares tips for wellbeing. Their Instagram shares supportive messages about holidays, identity, and navigating tough conversations.",
    "logo": "/ig/clubs/uwcounseling.jpg",
    "last_event": "2026-11-19",
-   "fields": [
-    "Health"
-   ]
+   "fields": []
   },
   {
    "name": "UW GWSS RSO",
@@ -3241,13 +3322,12 @@
    "instagram": "https://www.instagram.com/wcheuw/",
    "website": "https://linktr.ee/WChEUW",
    "category": "Engineering",
-   "about": "Community empowering women in chemical engineering via mentorship and professional events.",
-   "description": "Women in Chemical Engineering supports female students through networking, mentorship, and career‑building events. They host annual showcases like CHEM‑UPS where undergraduates present research and connect with industry speakers. It's a great place to build skills and find community in the engineering field.",
+   "about": "Community for women in chemical engineering with mentorship and events.",
+   "description": "Women in Chemical Engineering builds community for female chemical engineers with mentorship, research showcases, and social events. Their posts feature undergraduate research talks and fun gatherings like cookie decorating.",
    "logo": "/ig/clubs/wcheuw.jpg",
-   "last_event": "2026-11-18",
+   "last_event": "2026-12-01",
    "fields": [
-    "Engineering",
-    "Sciences"
+    "Engineering"
    ]
   },
   {
@@ -3270,8 +3350,8 @@
    "instagram": "https://www.instagram.com/uwwinfo/",
    "website": "http://linktr.ee/uwwinfo",
    "category": "Tech",
-   "about": "Diversity org empowering women and allies to lead in tech.",
-   "description": "UW Women in Informatics supports women in tech through creative events, hackathons, and community‑building activities like Clay & Chat. Open to all genders and majors, it fosters collaboration and leadership.",
+   "about": "Supports women in tech with events, hackathons, and entrepreneurship.",
+   "description": "Women in Informatics empowers women to lead in technology through workshops, hackathons, and entrepreneurship talks. Their feed showcases partnerships with Seattle startups and highlights past events.",
    "logo": "/ig/clubs/uwwinfo.jpg",
    "last_event": "2027-01-31",
    "fields": [
@@ -3296,8 +3376,8 @@
    "instagram": "https://www.instagram.com/uwwomxnsrugby/",
    "website": "http://linktr.ee/uwwomxnsrugby",
    "category": "Sports",
-   "about": "UW's inclusive womxn’s rugby club.",
-   "description": "The Womxn’s Husky Rugby Club is the university’s official rugby team for womxn, welcoming players of all skill levels. They compete in matches against regional rivals such as Central Washington University and share game highlights on Instagram.",
+   "about": "Official UW rugby club for womxn, open to all skill levels.",
+   "description": "Womxn’s Husky Rugby Club is the university’s official rugby team for womxn, welcoming players of all experience levels. Their Instagram shares game highlights, roster updates, and a fun community vibe.",
    "logo": "/ig/clubs/uwwomxnsrugby.jpg",
    "last_event": "2026-11-21",
    "fields": []

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T12:00",
+ "updated": "2026-11-26T01:31",
  "events": [
   {
    "id": "lm-evt-EnrCNE5SnAWt73x",
@@ -13,9 +13,28 @@
    "end": "18:00",
    "url": "https://luma.com/ob230jhm",
    "source": "luma",
-   "description": "Open to current UW students only.",
+   "description": "Open to current UW students only.\n✨ one last time before the end of this year, cseed!! ✨\nwe've made it to the end of 2026!! 🥹 from new ideas and crazy projects to new friendships and unforgettable memories, it's been quite the ride. before we head into winter break, let's get together one more time to celebrate everything we've accomplished and all the memories we've made along the way 💗\nwhat's happening:\n🍕 FREE food, snacks, and treats (because what's a social without food?)\n\n🎲 fun games, activities, and a little friendly competition\n\n💬 catching up with old friends and meeting new faces\n\n🫶 lots of time to hang out, relax, and just enjoy each other's company!\n\nwhether you've been part of cseed since day one or just joined us recently, we'd LOVE to see you there!! this community wouldn't be the same without you, so come celebrate with us before we wrap up the year 🥹\nno experience, projects, or big ideas needed — just bring yourself and a friend!! let's make our last cseed event of the year one to remember 💌\nDATE AND LOCATION: Wednesday, December 2nd, 5 PM-6 PM, CSE2 G01",
    "image": "https://images.lumacdn.com/uploads/ak/b80581a1-b34c-40c2-9ce4-bc3f30938603.jpg",
-   "rsvps": null
+   "rsvps": 6
+  },
+  {
+   "id": "lm-evt-gVayyqDlZwQg6yl",
+   "title": "WiB End-of-Year Happy Hour",
+   "type": "Club",
+   "host": "MBA Women in Business Association at the University of Washington",
+   "where": "Bale Breaker & Yonder Cider Taproom",
+   "pos": [
+    47.66461,
+    -122.36758
+   ],
+   "date": "2026-12-11",
+   "start": "17:00",
+   "end": "19:00",
+   "url": "https://luma.com/avh91hmv",
+   "source": "luma",
+   "description": "Join Foster Women in Business for our End-of-Year Happy Hour at Bale Breaker & Yonder Cider Taproom in Ballard. It’s a chance to reconnect, enjoy a few drinks, and spend some time together before everyone heads off for winter break. We’ll be covering drinks while our tab lasts!\nAnd if you’re heading to Foster Game Day that evening, stop by for a drink beforehand. You can enjoy both events without missing out!\nWant to add something creative to your evening?\n\nWe’re also offering an optional wreath-making workshop with Petal Baby Floral. You’ll get to create your own holiday wreath with all the materials and guidance provided. There are just 10 spots available, and WiB members will receive priority.\nHappy Hour\nWiB Members: FREE | Non-Members: $15\nOptional Wreath-Making Workshop\nWiB Members: $10 | Non-Members: $15\nAll materials provided and no crafting skills required. Sign up here: https://tinyurl.com/WiB-wreaths\nLet's toast to everything we accomplished this year! 🥂",
+   "image": "https://images.lumacdn.com/uploads/89/415d54a0-fb3f-443d-9728-6cd58b3642f0.jpg",
+   "rsvps": 9
   },
   {
    "id": "lm-evt-oJJuPbPi3SwAyAz",
@@ -34,7 +53,7 @@
    "source": "luma",
    "description": "Join Pack Ventures founders, LPs, and friends of the fund for a festive winter market social at UW! Come by for a relaxed afternoon of winter market activities, good company, live music, tasty food, and drinks.\nBring the whole family and enjoy activities for all ages. \n\nWhether you’re catching up with familiar faces or meeting someone new, there’ll be plenty of time to mingle and soak up the winter market atmosphere.\nWe are happy to partner with the UW Alumni Association on the event venue!\nLocation: University of Washington Club - 4020 E Stevens Way NE, Seattle, WA 98195\nParking: Padelford Garage or Central Garage have self paid parking.",
    "image": "https://images.lumacdn.com/uploads/qh/a5a99a77-45c9-4cc5-8ce8-548edb42f74c.png",
-   "rsvps": 31
+   "rsvps": 36
   }
  ]
 }

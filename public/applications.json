@@ -1,29 +1,17 @@
 {
- "updated": "2026-11-23T12:27",
+ "updated": "2026-11-26T01:58",
  "applications": [
   {
-   "id": "De5hKvmGiiR",
-   "host": "@vsauw",
-   "for": "General membership",
-   "kind": "Membership",
-   "deadline": "2026-11-25",
-   "link": "https://linktr.ee/vsauw",
-   "post": "https://www.instagram.com/p/De5hKvmGiiR/",
-   "posted": "2026-10-24",
-   "logo": "/ig/clubs/vsauw.jpg",
-   "category": "Cultural"
-  },
-  {
-   "id": "Dfp4BNISX26",
-   "host": "Students of Color for Public Health (SCPH) at UW (@scphuw)",
-   "for": "Research Mentorship",
-   "kind": "Programs",
-   "deadline": "2026-11-25",
-   "link": "https://linktr.ee/uwscph",
-   "post": "https://www.instagram.com/p/Dfp4BNISX26/",
-   "posted": "2026-11-12",
-   "logo": "/ig/clubs/scphuw.jpg",
-   "category": "Academic"
+   "id": "DgJRyk-Gv7n",
+   "host": "MSA UW (@msauw)",
+   "for": "Freshman Representative",
+   "kind": "Officer & board",
+   "deadline": "2026-11-28",
+   "link": "https://docs.google.com/forms/d/e/1FAIpQLSdxijaDvQe3dUZfOaXNSh08K-sp24KF2BGYjQCJfA_R851qPA/viewform",
+   "post": "https://www.instagram.com/p/DgJRyk-Gv7n/",
+   "posted": "2026-11-24",
+   "logo": "/ig/clubs/msauw.jpg",
+   "category": "Faith & Spirituality"
   },
   {
    "id": "DffZ6ComXPt",
@@ -74,6 +62,18 @@
    "category": "Cultural"
   },
   {
+   "id": "DgGHS9HTFuY",
+   "host": "Minorities In Tech @ UW (@minoritiesintech)",
+   "for": "First Year Representative",
+   "kind": "Officer & board",
+   "deadline": "2026-12-07",
+   "link": "http://linktr.ee/minoritiesintech",
+   "post": "https://www.instagram.com/p/DgGHS9HTFuY/",
+   "posted": "2026-11-23",
+   "logo": "/ig/clubs/minoritiesintech.jpg",
+   "category": "Engineering"
+  },
+  {
    "id": "DeiQCYesjVY",
    "host": "Bricolage (@bricolageuw)",
    "for": "Issue 45 submissions",
@@ -120,78 +120,6 @@
    "posted": "2026-11-18",
    "logo": "/ig/clubs/uw_sao.jpg",
    "category": "Other"
-  },
-  {
-   "id": "De46YqOhGWy",
-   "host": "The Garden Of Ideas (@gardenofideasuw)",
-   "for": "Staff writers",
-   "kind": "Team & staff",
-   "deadline": null,
-   "link": "https://forms.gle/pFHYfEyo7EHu5ZCt9",
-   "post": "https://www.instagram.com/p/De46YqOhGWy/",
-   "posted": "2026-10-24",
-   "logo": "/ig/clubs/gardenofideasuw.jpg",
-   "category": "Academic"
-  },
-  {
-   "id": "De8U-IgosUe",
-   "host": "COM²: Computing Community at UW (@uwcom2)",
-   "for": "Associate Officer apps",
-   "kind": "Officer & board",
-   "deadline": null,
-   "link": null,
-   "post": "https://www.instagram.com/p/De8U-IgosUe/",
-   "posted": "2026-10-25",
-   "logo": "/ig/clubs/uwcom2.jpg",
-   "category": "Engineering"
-  },
-  {
-   "id": "De8hgqJRnlj",
-   "host": "UW Husky Table Tennis Club (@uwhuskyttc)",
-   "for": "NCTTA tryouts",
-   "kind": "Auditions & tryouts",
-   "deadline": null,
-   "link": "https://linktr.ee/uwhuskyttc",
-   "post": "https://www.instagram.com/p/De8hgqJRnlj/",
-   "posted": "2026-10-25",
-   "logo": "/ig/clubs/uwhuskyttc.jpg",
-   "category": "Sports"
-  },
-  {
-   "id": "De76TggPTrw",
-   "host": "Neurobiology Club @ UWashington (@uwneurobiologyclub)",
-   "for": "Volunteer opportunity",
-   "kind": "Team & staff",
-   "deadline": null,
-   "link": null,
-   "post": "https://www.instagram.com/p/De76TggPTrw/",
-   "posted": "2026-10-25",
-   "logo": "/ig/clubs/uwneurobiologyclub.jpg",
-   "category": "Academic"
-  },
-  {
-   "id": "De7hInmEnYx",
-   "host": "UW Food Pantry (@uwfoodpantry)",
-   "for": "Food drive host",
-   "kind": "Team & staff",
-   "deadline": null,
-   "link": "https://linktr.ee/uwpantry",
-   "post": "https://www.instagram.com/p/De7hInmEnYx/",
-   "posted": "2026-10-25",
-   "logo": "/ig/clubs/uwfoodpantry.jpg",
-   "category": "Service"
-  },
-  {
-   "id": "De-urQeg-8Z",
-   "host": "ASUW Latine Student Commission (@asuwlsc)",
-   "for": "Intern positions",
-   "kind": "Team & staff",
-   "deadline": null,
-   "link": "https://forms.cloud.microsoft/r/EbDzSFBCf1",
-   "post": "https://www.instagram.com/p/De-urQeg-8Z/",
-   "posted": "2026-10-26",
-   "logo": "/ig/clubs/asuwlsc.jpg",
-   "category": "Service"
   },
   {
    "id": "DfA3pNukliu",
