@@ -1967,6 +1967,12 @@
   "why": "only says Seattle",
   "checked": "2026-11-20"
  },
+ "edikted": {
+  "status": "new",
+  "found": [
+   "post by @uwgphi"
+  ]
+ },
  "eeriatuw": {
   "status": "huskylink",
   "found": [
@@ -3597,6 +3603,12 @@
    "post by @huskyboxing"
   ]
  },
+ "leocadias.photography": {
+  "status": "new",
+  "found": [
+   "post by @uw_uts"
+  ]
+ },
  "lhfay35": {
   "status": "new",
   "found": [
@@ -3637,6 +3649,12 @@
   "status": "new",
   "found": [
    "post by @animenationuw"
+  ]
+ },
+ "lisachou__": {
+  "status": "new",
+  "found": [
+   "post by @uw_uts"
   ]
  },
  "livenationpnw": {
@@ -4800,6 +4818,12 @@
    "post by @uwpikapps"
   ]
  },
+ "piper.stiff": {
+  "status": "new",
+  "found": [
+   "post by @uwtridelta"
+  ]
+ },
  "pisigmaalphauw": {
   "status": "huskylink",
   "found": [
@@ -4839,6 +4863,12 @@
   "status": "new",
   "found": [
    "post by @uwzeta"
+  ]
+ },
+ "profnance": {
+  "status": "new",
+  "found": [
+   "post by @aicheuw"
   ]
  },
  "projectindoorfarm": {
@@ -6668,6 +6698,17 @@
   "name": null,
   "why": "latest post 2021-01-20",
   "checked": "2026-11-17"
+ },
+ "uwapress": {
+  "status": "not",
+  "found": [
+   "post by @uwcircle"
+  ],
+  "name": "University of Washington Press",
+  "bio": "Mission-driven nonprofit publisher committed to the idea of scholarship as a public good, serving intellectually curious readers for over 100 years.",
+  "latest": "2026-11-19",
+  "checked": "2026-11-26",
+  "why": "University press, a university unit, not student-run"
  },
  "uwartsci": {
   "status": "not",

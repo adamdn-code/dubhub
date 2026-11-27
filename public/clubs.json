@@ -83,8 +83,8 @@
    "instagram": "https://www.instagram.com/uw_akdphi/",
    "website": "https://linktr.ee/uwakdphi",
    "category": "Greek Life",
-   "about": "Asian‑interest sorority promoting sisterhood, culture, and service at UW.",
-   "description": "Alpha Kappa Delta Phi is an Asian‑interest sorority that builds sisterhood through social events, philanthropy, and cultural collaborations. Members enjoy mentorship, community service, and campus involvement.",
+   "about": "Asian‑interest fraternity fostering brotherhood, leadership, and service.",
+   "description": "Alpha Kappa Delta Phi is an Asian‑interest fraternity that fosters brotherhood, leadership, and service. The chapter hosts social events, collaborations, and community outreach for its members.",
    "logo": "/ig/clubs/uw_akdphi.jpg",
    "last_event": "2026-12-03",
    "fields": []
@@ -173,8 +173,8 @@
    "instagram": "https://www.instagram.com/uwaslclub/",
    "website": "https://linktr.ee/uwaslclub",
    "category": "Cultural",
-   "about": "Learns and practices American Sign Language through meetings and social outings.",
-   "description": "The ASL Club meets weekly for beginner lessons and hosts potluck socials to practice signing in a relaxed setting. Open to all students, the club shares resources via its website and Linktree.",
+   "about": "Learns and practices American Sign Language together.",
+   "description": "The ASL Club meets Mondays for beginner lessons and a social hour in HUB 332. It's a welcoming space to practice signing and connect with fellow students.",
    "logo": "/ig/clubs/uwaslclub.jpg",
    "discord": "https://discord.gg/8j3Av2SMQd",
    "discord_server": "UW ASL Club",
@@ -281,8 +281,8 @@
    "instagram": "https://www.instagram.com/uwaacf/",
    "website": "https://www.flowcode.com/page/uwaacf",
    "category": "Faith & Spirituality",
-   "about": "Asian American Christian fellowship for students at UW.",
-   "description": "AACF UW offers weekly gatherings, prayer, and community for Asian American Christians. They share merch, midterm support, and fellowship activities throughout the year.",
+   "about": "Christian fellowship for Asian American students with weekly worship and community.",
+   "description": "Asian American Christian Fellowship offers weekly worship, fellowship, and service for Asian American students. It provides a supportive faith community and opportunities to connect.",
    "logo": "/ig/clubs/uwaacf.jpg",
    "last_event": "2027-01-10",
    "fields": []
@@ -835,8 +835,8 @@
    "instagram": "https://www.instagram.com/uwconsultingassociation/",
    "website": "https://linktr.ee/uwconsultingassociation",
    "category": "Business",
-   "about": "Student consulting club linking members with industry insights and networking opportunities.",
-   "description": "UW Consulting Association hosts panels with firms like Rainier Partners, collaborates with other student groups, and runs social events such as bracelet‑making bonding nights. It supports members at every stage of their professional journey.",
+   "about": "Student consulting club offering mentorship and professional development.",
+   "description": "UW Consulting Association connects students with mentors, hosts panels on consulting and private equity, and welcomes new members each semester.",
    "logo": "/ig/clubs/uwconsultingassociation.jpg",
    "last_event": "2026-11-06",
    "fields": [
@@ -1066,11 +1066,11 @@
    "handle": "fahcuw",
    "instagram": "https://www.instagram.com/fahcuw/",
    "website": "https://linktr.ee/fahcuw",
-   "category": "Academic",
-   "about": "Filipinx student association supporting health‑career pathways at UW.",
-   "description": "FAHC connects Filipinx students interested in health careers through networking, mentorship, and community events. They celebrate cultural traditions while preparing members for future healthcare roles.",
+   "category": "Service",
+   "about": "Filipinx student group supporting health‑career pathways and community service.",
+   "description": "FAHC is the Filipinx Association for Health Careers, bringing together students interested in healthcare. They organize volunteer projects and community events to support health‑related initiatives.",
    "logo": "/ig/clubs/fahcuw.jpg",
-   "last_event": "2026-11-09",
+   "last_event": "2026-12-12",
    "fields": [
     "Health"
    ]
@@ -1194,11 +1194,11 @@
    "handle": "futurenursesatuw",
    "instagram": "https://www.instagram.com/futurenursesatuw/",
    "website": "https://linktr.ee/futurenursesuw",
-   "category": "Service",
-   "about": "Mentorship club supporting UW nursing students through peer guidance.",
-   "description": "Future Nurses Club provides mentorship and networking for current nursing students. Officers introduce themselves each year to lead recruitment, marketing, and social initiatives.",
+   "category": "Academic",
+   "about": "Mentors and supports current and prospective UW nursing students.",
+   "description": "Future Nurses Club mentors current and prospective nursing students through resume reviews, essay feedback, and peer support. It offers a welcoming space for anyone pursuing a BSN at UW.",
    "logo": "/ig/clubs/futurenursesatuw.jpg",
-   "last_event": "2026-11-16",
+   "last_event": "2026-12-02",
    "fields": [
     "Health"
    ]
@@ -1714,12 +1714,12 @@
    "instagram": "https://www.instagram.com/khsauw/",
    "website": "https://linktr.ee/khsauw",
    "category": "Cultural",
-   "about": "Celebrates Khmer heritage and builds community for students.",
-   "description": "The Khmer Student Association brings together UW students who share Khmer heritage, offering cultural events, game nights, and holiday celebrations. It provides a space for community building and leadership development.",
+   "about": "Celebrates Khmer culture and builds community for students at UW.",
+   "description": "Khmer Student Association celebrates Khmer heritage through cultural events, food, and community advocacy. It provides a supportive network for Khmer students and allies on campus.",
    "logo": "/ig/clubs/khsauw.jpg",
    "discord": "https://discord.gg/4CxQxr2GWZ",
    "discord_server": "Khmer Student Association UW",
-   "last_event": "2026-11-24",
+   "last_event": "2026-12-11",
    "fields": []
   },
   {
@@ -2450,8 +2450,8 @@
    "instagram": "https://www.instagram.com/uwsalsa/",
    "website": "https://linktr.ee/uwsalsaclub",
    "category": "Arts",
-   "about": "Weekly salsa and bachata lessons for all levels at UW.",
-   "description": "Salsa Club at UW offers fun, partner‑free dance classes and social events for beginners and experienced dancers. Join to learn rhythms, meet friends, and enjoy themed socials.",
+   "about": "Weekly salsa and bachata lessons for all levels, no partner needed.",
+   "description": "Salsa Club offers fun, inclusive dance classes each week, plus social events like themed photo nights. All skill levels are welcome to join the rhythm.",
    "logo": "/ig/clubs/uwsalsa.jpg",
    "last_event": "2026-11-19",
    "fields": []
@@ -2554,14 +2554,13 @@
    "instagram": "https://www.instagram.com/shpeuw/",
    "website": "https://linktr.ee/shpeuw",
    "category": "Engineering",
-   "about": "Supports Latinx students in STEM through community, education, and service.",
-   "description": "SHPE UW creates a supportive community for Latinx students in STEM, offering study tables, service events, and networking opportunities. Members enjoy cultural gatherings, professional development, and connections with the broader SHPE familia.",
+   "about": "Empowers Latinx students in engineering and tech through events and mentorship.",
+   "description": "SHPE UW empowers Latinx students in engineering and technology with workshops, study groups, and social gatherings. Members build professional skills while enjoying community events like gingerbread contests.",
    "logo": "/ig/clubs/shpeuw.jpg",
-   "last_event": "2026-11-18",
+   "last_event": "2026-12-02",
    "fields": [
     "Engineering",
-    "Computing & Math",
-    "Sciences"
+    "Computing & Math"
    ]
   },
   {
@@ -2619,8 +2618,8 @@
    "instagram": "https://www.instagram.com/uw_ssa/",
    "website": "https://www.uwssa.org/",
    "category": "Cultural",
-   "about": "Celebrates Somali culture and offers community events, workshops, and networking.",
-   "description": "The Somali Student Association brings together students to celebrate Somali heritage and foster community. They host debates, cultural events, and workshops such as college application help for high‑school seniors.",
+   "about": "Connects Somali students and promotes cultural dialogue and social events.",
+   "description": "Somali Student Association creates a space for Somali students to share culture, debate topics, and host social gatherings. Events feature discussions, snacks, and networking opportunities.",
    "logo": "/ig/clubs/uw_ssa.jpg",
    "last_event": "2026-11-20",
    "fields": []
@@ -3364,8 +3363,8 @@
    "instagram": "https://www.instagram.com/womenshockeyuw/",
    "website": "https://linktr.ee/whockeyuw",
    "category": "Sports",
-   "about": "UW's women's ice hockey club.",
-   "description": "The Women’s Ice Hockey Club at UW fields a house team that competes at the Kraken Community Iceplex. They post game updates, streams, and player interviews for the campus community.",
+   "about": "Women's ice hockey team competing in collegiate leagues.",
+   "description": "The UW Women's Ice Hockey Club fields a competitive team, hosts games at Kraken Community Iceplex, and runs a merch store for fans.",
    "logo": "/ig/clubs/womenshockeyuw.jpg",
    "last_event": "2026-11-21",
    "fields": []

@@ -8,10 +8,12 @@
   "checked": "2026-11-19"
  },
  "AEPi": {
-  "status": "new",
+  "status": "none",
   "by": [
    "Hillel UW (@huskyhillel)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-26"
  },
  "AIC @ UW": {
   "status": "known",
@@ -30,10 +32,12 @@
   "checked": "2026-11-26"
  },
  "Alpha Sigma": {
-  "status": "new",
+  "status": "none",
   "by": [
    "Omega Delta Phi Fraternity Inc. | UW Seattle (@uwknights)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-27"
  },
  "AMA Puget Sound": {
   "status": "new",
@@ -64,6 +68,18 @@
   ],
   "handle": null,
   "checked": "2026-11-15"
+ },
+ "ASUWB": {
+  "status": "new",
+  "by": [
+   "UW GPSS (@gpssuw)"
+  ]
+ },
+ "ASUWT": {
+  "status": "new",
+  "by": [
+   "UW GPSS (@gpssuw)"
+  ]
  },
  "ATSA": {
   "status": "none",
@@ -351,6 +367,12 @@
    "an event on Luma, on the UW campus"
   ]
  },
+ "NOBCChE": {
+  "status": "new",
+  "by": [
+   "Women in Chemical Engineering (@wcheuw)"
+  ]
+ },
  "Notion": {
   "status": "new",
   "by": [
@@ -431,6 +453,12 @@
    "UW Hiking Club (@hikingclubuw)"
   ]
  },
+ "Social Events Committee": {
+  "status": "new",
+  "by": [
+   "Hillel UW (@huskyhillel)"
+  ]
+ },
  "SpaceXSI": {
   "status": "new",
   "by": [
@@ -495,6 +523,12 @@
   "status": "new",
   "by": [
    "University of Washington SDS (@uw_sds)"
+  ]
+ },
+ "UDS": {
+  "status": "new",
+  "by": [
+   "Undergraduate Business Council (UBC) (@ubc.uw)"
   ]
  },
  "University of Washington Air Force ROTC": {
@@ -599,6 +633,12 @@
   "status": "new",
   "by": [
    "Husky Sailing Team (@huskysailingteam)"
+  ]
+ },
+ "WWU Women's Rugby": {
+  "status": "new",
+  "by": [
+   "Womxn’s Husky Rugby Club (@uwwomxnsrugby)"
   ]
  },
  "Zeta Phi Beta Sorority, Incorporated": {
