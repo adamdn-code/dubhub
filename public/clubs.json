@@ -713,13 +713,11 @@
    "instagram": "https://www.instagram.com/uwcircle/",
    "website": "https://linktr.ee/uwcircle",
    "category": "Cultural",
-   "about": "Center promoting cultural engagement and global resources for students.",
-   "description": "CIRCLE offers cultural events, creative workshops, and academic support such as writing resources, helping Huskies thrive in a global future. Activities range from holiday DIY crafts to campus guide sessions.",
+   "about": "UW department encouraging cultural engagement and global awareness for students.",
+   "description": "UW CIRCLE promotes cultural engagement and global perspectives through events like holiday dinners and DIY craft nights. It offers resources for students to thrive in an interconnected world.",
    "logo": "/ig/clubs/uwcircle.jpg",
    "last_event": "2026-12-01",
-   "fields": [
-    "Social Sciences"
-   ]
+   "fields": []
   },
   {
    "name": "Ceramics Club at the University of Washington",
@@ -905,8 +903,8 @@
    "instagram": "https://www.instagram.com/cseeduw/",
    "website": "http://cseed.co",
    "category": "Engineering",
-   "about": "Inspires UW engineering and design students to create and showcase projects.",
-   "description": "cseed hosts demo days, workshops and mentorship events where students build hardware, AI and creative projects. They connect members with industry professionals like multidisciplinary designer Joe Alterio.",
+   "about": "Inspires UW engineering and design students to innovate via workshops and demos.",
+   "description": "cseed helps engineering and design students turn ideas into projects. They host demo days, Buildspace showcases, and workshops led by women and non‑binary mentors across hardware and AI.",
    "logo": "/ig/clubs/cseeduw.jpg",
    "discord": "https://discord.gg/mRZ3v7XE5k",
    "discord_server": "🌱cseed🚀",
@@ -1061,8 +1059,8 @@
    "instagram": "https://www.instagram.com/uw_ecc/",
    "website": "https://linktr.ee/uw_ecc",
    "category": "Cultural",
-   "about": "Promotes kindness, inclusion, and cultural programming for UW students.",
-   "description": "The ECC serves as a hub for cultural groups and student organizations on campus. It hosts workshops, meals, and spotlights for affiliated RSOs, fostering a welcoming community for all students.",
+   "about": "Campus center promoting kindness, inclusion, and cultural exchange through events.",
+   "description": "The Ethnic Cultural Center cultivates kindness and inclusion with panels, RSO spotlights, and workshops like balanced meals. It serves as a hub for diverse student organizations on campus.",
    "logo": "/ig/clubs/uw_ecc.jpg",
    "last_event": "2026-11-30",
    "fields": []
@@ -1170,8 +1168,8 @@
    "instagram": "https://www.instagram.com/firstnationsuw/",
    "website": "https://forms.cloud.microsoft/r/XUqDvqgjXA",
    "category": "Cultural",
-   "about": "Largest inter‑tribal Native student group at UW.",
-   "description": "First Nations @ UW is the university’s largest inter‑tribal Native student organization, fostering community and cultural pride. They host meetings, workshops like necklace making, and share resources for Native American Heritage Month.",
+   "about": "Largest inter‑tribal Native student group at UW, fostering community and culture.",
+   "description": "First Nations @ UW brings together Native students across tribes, preserving heritage and building community. They host meetings, cultural events, and share resources like book recommendations.",
    "logo": "/ig/clubs/firstnationsuw.jpg",
    "last_event": "2026-11-24",
    "fields": []
@@ -1648,13 +1646,14 @@
    "instagram": "https://www.instagram.com/uw.ixda/",
    "website": "https://www.linkedin.com/company/ixdauw/?viewAsMember=true",
    "category": "Tech",
-   "about": "Uniting UW students interested in interaction and visual design.",
-   "description": "IxDA at UW hosts panels, AMA sessions, and design‑focused events where students and faculty discuss careers and projects. All majors are welcome, and meetings include snacks and opportunities to submit questions online.",
+   "about": "UW chapter of the Interaction Design Association, linking design students with industry.",
+   "description": "IxDA at UW connects interaction design enthusiasts with professionals through panels, Q&A sessions, and relaxed meet‑ups. All design majors are welcome to join for snacks and networking.",
    "logo": "/ig/clubs/uw.ixda.jpg",
    "discord": "https://discord.gg/HwR3u7tqr8",
    "discord_server": "IxDA",
-   "last_event": "2026-11-09",
+   "last_event": "2026-11-30",
    "fields": [
+    "Arts & Humanities",
     "Computing & Math"
    ]
   },
@@ -3229,8 +3228,8 @@
    "instagram": "https://www.instagram.com/uwpreoptclub/",
    "website": "https://linktr.ee/uwpreoptclub",
    "category": "Academic",
-   "about": "Provides resources, networking, and insights for students pursuing optometry.",
-   "description": "The Pre‑Optometry Club offers future optometrists resources, Q&A sessions with professionals, and insights into the field. Activities include guest speaker panels, story takeovers, and discussions on AI applications in eye care.",
+   "about": "Provides resources, connections, and tips for students pursuing optometry.",
+   "description": "The Pre‑Optometry Club shares resources, study breaks, and professional insights for future optometrists. Events include illusion showcases, Q&A sessions with optometrists, and student story takeovers.",
    "logo": "/ig/clubs/uwpreoptclub.jpg",
    "last_event": "2026-11-23",
    "fields": [
@@ -3253,14 +3252,15 @@
    "name": "Washington iGEM",
    "handle": "washington_igem",
    "instagram": "https://www.instagram.com/washington_igem/",
-   "website": "https://forms.gle/1cKqDPtC41ocjEMQ7",
-   "category": "Academic",
-   "about": "Undergraduate team researching synthetic biology for the iGEM competition.",
-   "description": "Washington iGEM is an interdisciplinary student team conducting synthetic biology projects for the global iGEM contest. Members collaborate on research and apply to join the program each year.",
+   "website": "https://drive.google.com/file/d/1KrXHjzd5A1JXgHz7DJQ_9xqIDkReQ2qF/view?usp=sharing",
+   "category": "Tech",
+   "about": "Undergraduate synthetic biology team competing in iGEM, doing interdisciplinary research.",
+   "description": "Washington iGEM is UW’s undergraduate synthetic biology team competing in the global iGEM competition. They host info sessions and recruit students for interdisciplinary research projects.",
    "logo": "/ig/clubs/washington_igem.jpg",
    "last_event": "2026-11-11",
    "fields": [
-    "Sciences"
+    "Sciences",
+    "Engineering"
    ]
   },
   {
@@ -3418,8 +3418,8 @@
    "instagram": "https://www.instagram.com/uwwomxnsrugby/",
    "website": "http://linktr.ee/uwwomxnsrugby",
    "category": "Sports",
-   "about": "Official UW rugby club for womxn, open to all skill levels.",
-   "description": "Womxn’s Husky Rugby Club is the university’s official rugby team for womxn, welcoming players of all experience levels. Their Instagram shares game highlights, roster updates, and a fun community vibe.",
+   "about": "Official UW women’s rugby club welcoming all who want to play.",
+   "description": "Womxn’s Husky Rugby Club offers a welcoming space for anyone interested in playing rugby. They share game highlights and connect members through social media.",
    "logo": "/ig/clubs/uwwomxnsrugby.jpg",
    "last_event": "2026-11-21",
    "fields": []

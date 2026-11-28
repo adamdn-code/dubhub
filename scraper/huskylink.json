@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T00:01",
+ "updated": "2026-11-28T06:22",
  "clubs": [
   {
    "name": "3D4M Collective",
@@ -9444,25 +9444,6 @@
  ],
  "events": [
   {
-   "id": "hl-375436",
-   "title": "Chinese Translation Club Meeting",
-   "type": "Club",
-   "host": "Chinese Translation Club @ UW",
-   "where": "Gowen Hall",
-   "pos": [
-    47.65633,
-    -122.3077
-   ],
-   "date": "2026-11-27",
-   "start": "15:00",
-   "end": "16:00",
-   "url": "https://huskylink.washington.edu/chinesetranslationclub/rsvp?id=375436",
-   "source": "huskylink",
-   "description": "Meet at Fridays at 3pm in the Asian Languages & Literature Department Lounge (M218) of Gowen Hall. All are welcome!",
-   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_quillauchina2542574_1920jpg_97356529-b868-49c1-9194-fb50579f127b_1016184932.jpeg",
-   "rsvps": 0
-  },
-  {
    "id": "hl-375249",
    "title": "Commander Night at the Hub!",
    "type": "Game night",
@@ -9728,6 +9709,25 @@
    "source": "huskylink",
    "description": "Join The Women’s Network at UW for a Seattle Public Library Excursion & Study Date!\nTake a break from campus and join us for a fun Friday afternoon exploring one of Seattle's most iconic libraries. We'll start with a FREE guided tour of the Seattle Public Library, where we'll get to explore the building and see the famous Red Room.\nAfter the tour, we'll stop by Howdy Y'all Coffee to try some of their matcha (we've heard really good things!) before heading back to the library for a cozy group study date. With dead week coming up, it's the perfect opportunity to get some studying done, meet other TWN members, and enjoy a little change of scenery before finals.\nSpots are limited to 20, so be sure to sign up before they fill up.\nDec. 4, Friday\n⏰ 12:15pm-3 pm\nSeattle Public Library. Complete RSVP for transport/logistical details!\nThis event is NOT hosted, sponsored, or endorsed by The Seattle Public Library • Any views that are discussed in this meeting are not a reflection of The Seattle Public Library’s views",
    "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625995_TWN_EOQ_Social_December_2026_1_fc40705d-395e-4816-bbac-afdbf2773ace_1123234119.png",
+   "rsvps": 0
+  },
+  {
+   "id": "hl-375437",
+   "title": "Chinese Translation Club Meeting",
+   "type": "Club",
+   "host": "Chinese Translation Club @ UW",
+   "where": "Gowen Hall",
+   "pos": [
+    47.65633,
+    -122.3077
+   ],
+   "date": "2026-12-04",
+   "start": "15:00",
+   "end": "16:00",
+   "url": "https://huskylink.washington.edu/chinesetranslationclub/rsvp?id=375437",
+   "source": "huskylink",
+   "description": "Meet at Fridays at 3pm in the Asian Languages & Literature Department Lounge (M218) of Gowen Hall. All are welcome!",
+   "image": "https://huskylink.washington.edu/upload/washington/2026/e3_image_upload_625493_quillauchina2542574_1920jpg_97356529-b868-49c1-9194-fb50579f127b_1016184932.jpeg",
    "rsvps": 0
   },
   {

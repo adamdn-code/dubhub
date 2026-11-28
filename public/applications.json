@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T18:25",
+ "updated": "2026-11-28T06:46",
  "applications": [
   {
    "id": "DgJRyk-Gv7n",
@@ -86,6 +86,18 @@
    "category": "Engineering"
   },
   {
+   "id": "DgL7MgjoY6X",
+   "host": "UWROV at UW (@uwrov)",
+   "for": "Winter applications",
+   "kind": "Membership",
+   "deadline": "2026-12-28",
+   "link": "https://linktr.ee/uwrov",
+   "post": "https://www.instagram.com/p/DgL7MgjoY6X/",
+   "posted": "2026-11-25",
+   "logo": "/ig/clubs/uwrov.jpg",
+   "category": "Engineering"
+  },
+  {
    "id": "DeiQCYesjVY",
    "host": "Bricolage (@bricolageuw)",
    "for": "Issue 45 submissions",
@@ -134,18 +146,6 @@
    "category": "Other"
   },
   {
-   "id": "DfDGi62j11K",
-   "host": "UW GPSS (@gpssuw)",
-   "for": "committee positions",
-   "kind": "Officer & board",
-   "deadline": null,
-   "link": "http://linktr.ee/gpssuw",
-   "post": "https://www.instagram.com/p/DfDGi62j11K/",
-   "posted": "2026-10-28",
-   "logo": "/ig/clubs/gpssuw.jpg",
-   "category": "Service"
-  },
-  {
    "id": "DfI0NsIj4S6",
    "host": "Kappa Delta Chi Sorority, Inc. (@uwkdchi)",
    "for": "join Kappa Delta Chi",
@@ -163,7 +163,7 @@
    "for": "2026-2027 Applications",
    "kind": "Team & staff",
    "deadline": null,
-   "link": "https://forms.gle/1cKqDPtC41ocjEMQ7",
+   "link": "https://drive.google.com/file/d/1KrXHjzd5A1JXgHz7DJQ_9xqIDkReQ2qF/view?usp=sharing",
    "post": "https://www.instagram.com/p/DfQDO3iBmaP/",
    "posted": "2026-11-02",
    "logo": "/ig/clubs/washington_igem.jpg",

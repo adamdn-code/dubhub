@@ -1124,10 +1124,8 @@
 "from": "Catholic Newman Center at the UW|Catholic community for worship, fellowship, and service at UW."
 },
 "centerforinternationalrelationsandculturalleadershipexchange": {
-"fields": [
-"Social Sciences"
-],
-"from": "Center for International Relations and Cultural Leadership Exchange|Center promoting cultural engagement and global resources for students."
+"fields": [],
+"from": "Center for International Relations and Cultural Leadership Exchange|UW department encouraging cultural engagement and global awareness for students."
 },
 "centralasianstudentassociation": {
 "fields": [],
@@ -1460,7 +1458,7 @@
 "fields": [
 "Engineering"
 ],
-"from": "cseed|Inspires UW engineering and design students to create and showcase projects."
+"from": "cseed|Inspires UW engineering and design students to innovate via workshops and demos."
 },
 "cseeduw": {
 "fields": [],
@@ -1866,7 +1864,7 @@
 },
 "ethnicculturalcenter": {
 "fields": [],
-"from": "Ethnic Cultural Center|Promotes kindness, inclusion, and cultural programming for UW students."
+"from": "Ethnic Cultural Center|Campus center promoting kindness, inclusion, and cultural exchange through events."
 },
 "ethnomusicologysociety": {
 "fields": [
@@ -1978,7 +1976,7 @@
 },
 "firstnations": {
 "fields": [],
-"from": "First Nations at UW|Largest inter‑tribal Native student group at UW."
+"from": "First Nations at UW|Largest inter‑tribal Native student group at UW, fostering community and culture."
 },
 "fishandturtleclub": {
 "fields": [
@@ -2933,9 +2931,10 @@
 },
 "interactiondesignassociationixda": {
 "fields": [
+"Arts & Humanities",
 "Computing & Math"
 ],
-"from": "Interaction Design Association at University of Washington ( IxDA UW )|Uniting UW students interested in interaction and visual design."
+"from": "Interaction Design Association at University of Washington ( IxDA UW )|UW chapter of the Interaction Design Association, linking design students with industry."
 },
 "interactiveintelligence": {
 "fields": [
@@ -5882,7 +5881,7 @@
 "fields": [
 "Health"
 ],
-"from": "VisionEyes PreOptometry Club|Provides resources, networking, and insights for students pursuing optometry."
+"from": "VisionEyes PreOptometry Club|Provides resources, connections, and tips for students pursuing optometry."
 },
 "visualartssociety": {
 "fields": [
@@ -5942,9 +5941,10 @@
 },
 "washingtonigem": {
 "fields": [
-"Sciences"
+"Sciences",
+"Engineering"
 ],
-"from": "Washington iGEM|Undergraduate team researching synthetic biology for the iGEM competition."
+"from": "Washington iGEM|Undergraduate synthetic biology team competing in iGEM, doing interdisciplinary research."
 },
 "washingtonjournaloflawtechnologyandarts": {
 "fields": [
@@ -6159,7 +6159,7 @@
 },
 "womensrugby": {
 "fields": [],
-"from": "Women’s Rugby at UW|Official UW rugby club for womxn, open to all skill levels."
+"from": "Women’s Rugby at UW|Official UW women’s rugby club welcoming all who want to play."
 },
 "womensrunclub": {
 "fields": [],

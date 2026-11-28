@@ -7,6 +7,12 @@
   "handle": null,
   "checked": "2026-11-19"
  },
+ "ACCE": {
+  "status": "new",
+  "by": [
+   "@vsauw"
+  ]
+ },
  "AEPi": {
   "status": "none",
   "by": [
@@ -56,10 +62,12 @@
   "checked": "2026-11-15"
  },
  "ASUW OSHR": {
-  "status": "new",
+  "status": "none",
   "by": [
    "ASUW Gender Equity Commission (@asuwgec)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-28"
  },
  "ASUW SARVA": {
   "status": "none",
@@ -231,6 +239,12 @@
   "handle": null,
   "checked": "2026-11-19"
  },
+ "FGLS": {
+  "status": "new",
+  "by": [
+   "First Generation Leaders in Pre-Law Est. 2023 (@fgll.uw)"
+  ]
+ },
  "Figma": {
   "status": "known",
   "by": [
@@ -290,6 +304,12 @@
   ],
   "handle": "gdg.uw",
   "checked": "2026-11-19"
+ },
+ "Gurmat Kirtan Association of UW": {
+  "status": "new",
+  "by": [
+   "Sikh Student Association @ UW (@ssa_uw)"
+  ]
  },
  "HWSC": {
   "status": "new",
@@ -617,6 +637,12 @@
   "status": "new",
   "by": [
    "UW LiveWell (@uwlivewell)"
+  ]
+ },
+ "UW HEF": {
+  "status": "new",
+  "by": [
+   "Students of Color for Public Health (SCPH) at UW (@scphuw)"
   ]
  },
  "UW MIC": {

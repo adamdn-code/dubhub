@@ -1,6 +1,25 @@
 {
- "updated": "2026-11-27T18:01",
+ "updated": "2026-11-28T06:23",
  "events": [
+  {
+   "id": "lm-evt-g85dGCuDG2EZTtK",
+   "title": "Build Your AI Recruiting Toolkit",
+   "type": "Club",
+   "host": "Claude Builder Club @ UW (@claude.uofwa)",
+   "where": "Savery Hall (SAV)",
+   "pos": [
+    47.65714,
+    -122.30839
+   ],
+   "date": "2026-11-30",
+   "start": "18:00",
+   "end": "19:30",
+   "url": "https://luma.com/e1hpp932",
+   "source": "luma",
+   "description": "Build Your AI Recruiting Toolkit\nColorStack UW, the Claude Builder Club @ UW Seattle and Boardsweep are hosting a hands-on recruiting workshop for students heading into internship and new grad season.\nDetails\nWhen: Monday, Nov 30, 6:00–7:30 PM\n\nWhere: Savery Hall 260 (SAV 260), University of Washington\n\nBring: a laptop and your resume (a PDF or Google Doc works)\n\nBring your laptop and your resume. We'll work through each step together, so you leave with a stronger resume, a list of roles that fit you and a plan for the next few weeks.\nWhat we'll cover\nSharpen your resume with Claude. Paste in a real job description, see what it's actually asking for, and rewrite your bullets around what you've done.\n\nFind internships that fit you. Connect Boardsweep to Claude, search open internships and new grad roles by field, city and visa needs, and build a target list with alerts for the companies you care about.\n\nPrep for interviews. Use Claude to work out the questions the role you picked is likely to bring up, and practice your answers.\n\nFor attendees\nClaude credits\n\nUber One credits\n\nA free month of Boardsweep\n\nSnacks after the workshop\n\nSpots are limited. Once the room is full, new RSVPs join the waitlist in order, so RSVP early.",
+   "image": "https://images.lumacdn.com/uploads/ac/c11ee554-3dd3-48c5-920e-37abb76d4a02.png",
+   "rsvps": 150
+  },
   {
    "id": "lm-evt-EnrCNE5SnAWt73x",
    "title": "End of Year Social",
