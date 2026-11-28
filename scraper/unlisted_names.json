@@ -55,6 +55,12 @@
   "handle": null,
   "checked": "2026-11-15"
  },
+ "ASUW OSHR": {
+  "status": "new",
+  "by": [
+   "ASUW Gender Equity Commission (@asuwgec)"
+  ]
+ },
  "ASUW SARVA": {
   "status": "none",
   "by": [
@@ -72,10 +78,12 @@
   "checked": "2026-11-15"
  },
  "ASUWB": {
-  "status": "new",
+  "status": "none",
   "by": [
    "UW GPSS (@gpssuw)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-27"
  },
  "ASUWT": {
   "status": "new",
@@ -289,6 +297,12 @@
    "an event on Luma, on the UW campus"
   ]
  },
+ "ICA": {
+  "status": "new",
+  "by": [
+   "Environmental Policy Student Association at UW (@epsauw)"
+  ]
+ },
  "Informatics Undergradudate Associatiomn": {
   "status": "new",
   "by": [
@@ -397,6 +411,12 @@
   "status": "new",
   "by": [
    "ALPFA UW (@alpfauw)"
+  ]
+ },
+ "OpenAI Student Collective": {
+  "status": "new",
+  "by": [
+   "UW Software Engineering Career Club (@swecc.uw)"
   ]
  },
  "Pack Ventures": {

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T17:26",
+ "updated": "2026-11-27T18:25",
  "applications": [
   {
    "id": "DgJRyk-Gv7n",
@@ -372,6 +372,18 @@
    "posted": "2026-11-23",
    "logo": "/ig/clubs/futurenursesatuw.jpg",
    "category": "Academic"
+  },
+  {
+   "id": "DgJIxX7D7P6",
+   "host": "Washington Yacht Club (@washingtonyachtclub)",
+   "for": "Rear commodore",
+   "kind": "Officer & board",
+   "deadline": null,
+   "link": null,
+   "post": "https://www.instagram.com/p/DgJIxX7D7P6/",
+   "posted": "2026-11-24",
+   "logo": "/ig/clubs/washingtonyachtclub.jpg",
+   "category": "Sports"
   }
  ]
 }

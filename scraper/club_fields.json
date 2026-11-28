@@ -469,7 +469,7 @@
 },
 "arabstudentassociation": {
 "fields": [],
-"from": "Arab Student Association at The University of Washington|The Arab Student Association at the University of Washington aims to unite and serve the Arab community on campus."
+"from": "Arab Student Association at The University of Washington|Connect Arab students through games, sports, and social events."
 },
 "arabiclanguageandcultureassociation": {
 "fields": [],
@@ -515,7 +515,7 @@
 "fields": [
 "Health"
 ],
-"from": "Asian Alliance for Mental Health|Advocates Asian mental health visibility through storytelling and events."
+"from": "Asian Alliance for Mental Health|Support Asian students' mental health through events and storytelling."
 },
 "asianamericanchristianfellowship": {
 "fields": [],
@@ -607,7 +607,7 @@
 "fields": [
 "Computing & Math"
 ],
-"from": "Association for Computing Education|Club for students passionate about computing education and outreach."
+"from": "Association for Computing Education|Explore computing education with fun events like the Computing Bee."
 },
 "associationforresearchonracialjustice": {
 "fields": [
@@ -1102,8 +1102,10 @@
 "from": "Cardiology Interest Group at UWSOM|The Cardiology Interest Group serves to encourage medical student interest in cardiology through informational…"
 },
 "careerandinternshipcenter": {
-"fields": [],
-"from": "Career and Internship Center|Career resource center helping UW students with jobs, internships, and graduate plans."
+"fields": [
+"Business"
+],
+"from": "Career and Internship Center|Provides career resources, coaching, headshots, and interview spaces for UW students."
 },
 "careerwomin": {
 "fields": [
@@ -1968,7 +1970,7 @@
 "fields": [
 "Social Sciences"
 ],
-"from": "First Generation Leaders in preLaw|Community supporting underrepresented pre‑law students at UW."
+"from": "First Generation Leaders in preLaw|Support underrepresented pre-law students with mentorship and networking."
 },
 "firstlove": {
 "fields": [],
@@ -3880,7 +3882,7 @@
 },
 "omegadeltaphifraternityinclambda": {
 "fields": [],
-"from": "Omega Delta Phi Fraternity, Inc. Lambda Chapter|Brotherhood fraternity focusing on service, alumni events, and veteran recognition."
+"from": "Omega Delta Phi Fraternity, Inc. Lambda Chapter|Brotherhood focused on unity, service, leadership, and community involvement."
 },
 "omegapsiphifraternityinccampus": {
 "fields": [],
@@ -4235,7 +4237,7 @@
 "fields": [
 "Health"
 ],
-"from": "PrePA Club at UW|Provides resources and networking for students pursuing a PA career."
+"from": "PrePA Club at UW|Supports students pursuing PA careers with networking, events, and resources."
 },
 "prepharmacyclub": {
 "fields": [
@@ -4388,7 +4390,7 @@
 "fields": [
 "Health"
 ],
-"from": "Pup Support|Mental‑health resource group sharing tips through husky‑themed art."
+"from": "Pup Support|Share mental health resources through husky artwork and creative events."
 },
 "purpleambassadors": {
 "fields": [
@@ -4747,7 +4749,7 @@
 },
 "sikhstudentassociation": {
 "fields": [],
-"from": "Sikh Student Association|Sikh Student Association sharing Sikh heritage, holidays, and education."
+"from": "Sikh Student Association|Promotes Sikh holidays, tenets, and history through events and kirtan."
 },
 "singaporestudentassociation": {
 "fields": [],
@@ -5180,7 +5182,7 @@
 "fields": [
 "Health"
 ],
-"from": "Students of Color for Public Health|Support network for students of color in public health."
+"from": "Students of Color for Public Health|Provide academic and professional support for students of color in public health."
 },
 "studentsofcolorinlis": {
 "fields": [
@@ -5264,7 +5266,7 @@
 },
 "taiwaneseoverseasstudentassociation": {
 "fields": [],
-"from": "Taiwanese Overseas Student Association|Taiwanese student association promoting culture and community."
+"from": "Taiwanese Overseas Student Association|Connects Taiwanese students with cultural events and member discount perks."
 },
 "taiwanesestudentassociation": {
 "fields": [],
@@ -5868,7 +5870,7 @@
 },
 "vietnamesestudentassociation": {
 "fields": [],
-"from": "Vietnamese Student Association|Vietnamese cultural association for UW students."
+"from": "Vietnamese Student Association|Celebrate Vietnamese culture and community at UW."
 },
 "virtualbedsideconcerts": {
 "fields": [
@@ -5953,7 +5955,7 @@
 },
 "washingtonmensgymnastics": {
 "fields": [],
-"from": "Washington Men’s Gymnastics|Washington Men’s Gymnastics team representing UW in collegiate gymnastics."
+"from": "Washington Men’s Gymnastics|Men’s gymnastics team competing and training at UW."
 },
 "washingtonmensultimatefrisbee": {
 "fields": [],
@@ -5997,7 +5999,7 @@
 },
 "washingtonyachtclub": {
 "fields": [],
-"from": "Washington Yacht Club|Student-run sailing club teaching sailing and hosting boat events at UW."
+"from": "Washington Yacht Club|Student‑run sailing club teaching sailing and organizing on‑water events."
 },
 "wasiancultureclub": {
 "fields": [],
@@ -6075,7 +6077,7 @@
 "fields": [
 "Health"
 ],
-"from": "Women Empowerment through Collaborations, Awareness, and Resources for Education|Women’s health education and empowerment group at UW."
+"from": "Women Empowerment through Collaborations, Awareness, and Resources for Education|Advances women’s health education and community service initiatives."
 },
 "womeninchemicalengineering": {
 "fields": [
@@ -6386,6 +6388,6 @@
 "Engineering",
 "Computing & Math"
 ],
-"from": "Claude Builder Club @ UW Seattle|Learn AI building and host hackathons with Claude Builder Club."
+"from": "Claude Builder Club @ UW Seattle|Build AI projects and host hackathons for students."
 }
 }

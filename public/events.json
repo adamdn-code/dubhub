@@ -1,6 +1,33 @@
 {
- "updated": "2026-11-27T17:27",
+ "updated": "2026-11-27T18:26",
  "events": [
+  {
+   "id": "DgG_3HeMgMz-0",
+   "title": "Free Headshot Booth",
+   "type": "Club",
+   "host": "UW Career & Internship Center (@uwcareercenter)",
+   "where": "Mary Gates Hall Suite 134",
+   "pos": [
+    47.65485,
+    -122.30779
+   ],
+   "date": "2026-11-27",
+   "start": "09:00",
+   "end": "16:30",
+   "url": "https://www.instagram.com/p/DgG_3HeMgMz/",
+   "source": "instagram",
+   "description": "Campus Cheat Codes, ep. 5: the Career & Internship Center 💼📸\n\nfree headshots?? a private room for virtual interviews?? career coaching?? why did nobody tell us 😭\n\n📸 free headshot booth: no check-in, just sit down. you get 3 digital photos, and all you need is an email\n🤫 room 134G: a private space for your virtual interviews\n💬 30-minute career coach appointments: book on Handshake\n👔 professional clothes on a rack you can borrow from\n\n📍 Mary Gates Hall, Suite 134\n🕒 Mon-Fri, 9 AM-4:30 PM\n\nyour LinkedIn photo is about to look SO good. tag a friend who needs a headshot 👇\n\n#UWLWB #CampusCheatCodes #UWCareerCenter #UW #HuskyResources",
+   "image": "/ig/posts/DgG_3HeMgMz.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgG_3HeMgMz": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
   {
    "id": "hl-375436",
    "title": "Chinese Translation Club Meeting",
@@ -189,6 +216,33 @@
    "posts": 1
   },
   {
+   "id": "DgIoVa_yWjX-0",
+   "title": "ASA Game Night",
+   "type": "Game night",
+   "host": "Arab Student Association (@asa.uw)",
+   "where": "MOR 230",
+   "pos": [
+    47.65249,
+    -122.30482
+   ],
+   "date": "2026-11-30",
+   "start": "17:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/DgIoVa_yWjX/",
+   "source": "instagram",
+   "description": "ASA game night is BACK!! 🎮 jeopardy AND free pizza 😨🍕\n📅 Monday, Nov 30th | 5–7pm | MOR 230\nRSVP using the link in bio (Free pizza only if you RSVP)",
+   "image": "/ig/posts/DgIoVa_yWjX.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgIoVa_yWjX": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "Df8vq-RvI_U6JH_V3TSyVvwnbDiSPt_IYHX4E40-0",
    "title": "Jewish Resilience In Motion",
    "type": "Club",
@@ -260,6 +314,33 @@
    "comments": null,
    "post_counts": {
     "DgKG6Zop-dw": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DgIqpnsB4VE-0",
+   "title": "AI Recruiting Toolkit Workshop",
+   "type": "Club",
+   "host": "Claude Builder Club @ UW Seattle (@claude.uofwa)",
+   "where": "SAV 260",
+   "pos": [
+    47.65712,
+    -122.30842
+   ],
+   "date": "2026-11-30",
+   "start": "18:00",
+   "end": "19:30",
+   "url": "https://www.instagram.com/p/DgIqpnsB4VE/",
+   "source": "instagram",
+   "description": "🚀 Still on the internship hunt? Lock in with us 💻ColorStack x Claude x Boardsweep are teaming up for a hands-on workshop on building your AI recruiting toolkit. Learn to break down job descriptions, level up your resume, prep for interviews, and find internships that fit you!!\n\n📍 Sav 260\n📆 Monday, November 30\n⏰ 6:00-7:30 PM\n🎁 Claude credits, UberOne credits, AND a free month of Boardsweep\n\nBring your laptop and resume. RSVP link in our bio! (Limited spots)",
+   "image": "/ig/posts/DgIqpnsB4VE.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgIqpnsB4VE": [
      null,
      null
     ]
@@ -362,6 +443,33 @@
    "comments": null,
    "post_counts": {
     "Dfl6L8GxbiZ": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DgQOiZdSBBg-0",
+   "title": "MOD Pizza Fundraiser",
+   "type": "Food",
+   "host": "UW Pre-PA Club 🩺 (@uwprepa)",
+   "where": "MOD Pizza, 1414 42nd St NE",
+   "pos": [
+    47.65845,
+    -122.31253
+   ],
+   "date": "2026-11-30",
+   "start": null,
+   "end": null,
+   "url": "https://www.instagram.com/p/DgQOiZdSBBg/",
+   "source": "instagram",
+   "description": "Join us this Monday at MOD Pizza to support our UW Pre-PA Club! Treat yourself to some pizza before finals season and help us raise funds for future club events and activities.\n\nShow this flyer in-store or use our fundraiser code when ordering online, and 20% of your qualifying purchase will go directly toward supporting our club!\n\nBring your friends and spread the word! We appreciate your support! 💜",
+   "image": "/ig/posts/DgQOiZdSBBg.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgQOiZdSBBg": [
      null,
      null
     ]
@@ -558,9 +666,13 @@
     "Df2wtDWNvRn": [
      null,
      null
+    ],
+    "DgJCbgmutsP": [
+     null,
+     null
     ]
    },
-   "posts": 4,
+   "posts": 5,
    "aliases": [
     "DfA85MuhM0V-0"
    ]
@@ -723,6 +835,60 @@
    "comments": null,
    "post_counts": {
     "DgMGmtbMIks": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DgInJMxlBME-0",
+   "title": "Holiday Card Making",
+   "type": "Club",
+   "host": "WE CARE UW (@wecareuw)",
+   "where": "SAV 138",
+   "pos": [
+    47.65712,
+    -122.30842
+   ],
+   "date": "2026-12-01",
+   "start": "18:00",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/DgInJMxlBME/",
+   "source": "instagram",
+   "description": "This holiday season, we’re sharing some love and warmth for our community 💙\n\nJoin WECARE in making holiday cards for women at the EGH! We need all hands on deck to make cards for each guest! 💌 \n\nAll UW students are welcome! \n\n📆 Tuesday, December 1st \n⏰ 6:00-7:00PM \n📍 SAV 138",
+   "image": "/ig/posts/DgInJMxlBME.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgInJMxlBME": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DgOjsS1kdbM-0",
+   "title": "Break the Ice GM #4",
+   "type": "Hangout",
+   "host": "@vsauw",
+   "where": "Denny Room",
+   "pos": [
+    47.65929,
+    -122.30555
+   ],
+   "date": "2026-12-01",
+   "start": "18:00",
+   "end": "20:00",
+   "url": "https://www.instagram.com/p/DgOjsS1kdbM/",
+   "source": "instagram",
+   "description": "Break the Ice with us at GM #4! ❄️ ✨ \n\nGet cozy and join us for a night filled with holiday cheer, winter magic, and festive fun!\n\n📍 Location: Denny Room 📅 Date: December 1st ⏰ Time: 6–8 PM\n\n⛄️ WHAT TO WEAR: Christmas PJs + VSA T-shirts!\n\n🥫 FOOD DRIVE: Spread some holiday cheer by bringing a food donation! Donations will count toward ACCE points.\n\nLet’s break the ice and kick off the holiday season together! See you there! 💙❄️\n\n#vsauw #holidays",
+   "image": "/ig/posts/DgOjsS1kdbM.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgOjsS1kdbM": [
      null,
      null
     ]
@@ -1107,6 +1273,33 @@
    "posts": 1
   },
   {
+   "id": "DgLO1tYlaAn-0",
+   "title": "SCPH Study Session",
+   "type": "Study",
+   "host": "Students of Color for Public Health (SCPH) at UW (@scphuw)",
+   "where": "SIG 228",
+   "pos": [
+    47.65489,
+    -122.30649
+   ],
+   "date": "2026-12-02",
+   "start": "17:30",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/DgLO1tYlaAn/",
+   "source": "instagram",
+   "description": "Come study with us. \nWe know you need to. \nDecember 2nd 5:30-7:00pm @ SIG 228.\nBe there!",
+   "image": "/ig/posts/DgLO1tYlaAn.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgLO1tYlaAn": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "hl-375529",
    "title": "WSU College of Veterinary Medicine - Veterinary Student Panel",
    "type": "Study",
@@ -1374,6 +1567,33 @@
    "comments": null,
    "post_counts": {
     "DfFkQk7vwLH": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DgIuN6rTRhb-0",
+   "title": "Immigrant Health Panel Discussion",
+   "type": "Club",
+   "host": "Students of Color for Public Health (SCPH) at UW (@scphuw)",
+   "where": "ART 003",
+   "pos": [
+    47.65841,
+    -122.30669
+   ],
+   "date": "2026-12-03",
+   "start": "15:30",
+   "end": "19:00",
+   "url": "https://www.instagram.com/p/DgIuN6rTRhb/",
+   "source": "instagram",
+   "description": "Join UW HEF and UW SCPH for Immigrant Health in Greater Seattle, a panel discussion with Dr. India Ornelas, Dr. Roxanne Kerani, and Dr. Raima Amin! Learn about the barriers immigrant\ncommunities face in accessing healthcare, hear from professionals working with these communities, and bring your questions for the Q&A.\n\nDr. India Ornelas, PhD, MPH is a professor at the UW School of Public Health. She studies how social and cultural factors influence health and well-being. As director of the MPH Core Curriculum, she teaches and mentors graduate students in social determinants of health, health equity, and community engagement.\n\nDr. Roxanne Kerani, PhD, MPH, is a research associate professor in the Division of Allergy and Infectious Disease in the Department of Medicine at the University of Washington. She has a longstanding affiliation with Public Health – Seattle & King County’s HIV/STI/Hepatitis C Program. Dr. Kerani earned her MPH and PhD in epidemiology at the University of Minnesota and completed postdoctoral training at UW. Her research focuses on HIV and STI prevention and control, including HIV and STI epidemiology, HIV in immigrant populations, STI partner services, and HIV cluster detection and response.\n\nDr. Raima Amin, MD, is a clinical assistant professor and movement disorders neurologist at UW. She studies racial and ethnic disparities in Parkinson’s disease care. With funding from the Michael J. Fox Foundation, she leads a study on how King County’s Somali community understands Parkinson’s disease and what barriers people face in accessing care. Outside the clinic, she has volunteered with Seattle-area Muslim community health organizations for over a decade, serving as a free clinic physician and running a support group for youth with special needs. She also mentors pre-med students from underrepresented backgrounds. Born and raised in Montana, she earned her bachelor’s degree at Montana State University and completed her medical training at UW.\n\nThursd",
+   "image": "/ig/posts/DgIuN6rTRhb.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgIuN6rTRhb": [
      null,
      null
     ]
@@ -2411,6 +2631,30 @@
    "rsvps": 36
   },
   {
+   "id": "DgGr5LAht1x-0",
+   "title": "Holiday Clinic",
+   "type": "Club",
+   "host": "Washington Men's Gymnastics (@washingtonmensgymnastics)",
+   "where": "Eureka City Gymnastics",
+   "pos": null,
+   "date": "2026-12-29",
+   "start": "09:00",
+   "end": "13:00",
+   "url": "https://www.instagram.com/p/DgGr5LAht1x/",
+   "source": "instagram",
+   "description": "One week left! Gift your son an unforgettable experience this holiday season!",
+   "image": "/ig/posts/DgGr5LAht1x.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgGr5LAht1x": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DenkLcPFKOB-0",
    "title": "Washington Holiday Clinic",
    "type": "Club",
@@ -2435,6 +2679,30 @@
    "posts": 1
   },
   {
+   "id": "DgGr5LAht1x-1",
+   "title": "Holiday Clinic",
+   "type": "Club",
+   "host": "Washington Men's Gymnastics (@washingtonmensgymnastics)",
+   "where": "Eureka City Gymnastics",
+   "pos": null,
+   "date": "2026-12-30",
+   "start": "09:00",
+   "end": "13:00",
+   "url": "https://www.instagram.com/p/DgGr5LAht1x/",
+   "source": "instagram",
+   "description": "One week left! Gift your son an unforgettable experience this holiday season!",
+   "image": "/ig/posts/DgGr5LAht1x.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgGr5LAht1x": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DenkLcPFKOB-1",
    "title": "Washington Holiday Clinic",
    "type": "Club",
@@ -2454,6 +2722,30 @@
     "DenkLcPFKOB": [
      48,
      0
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DgGr5LAht1x-2",
+   "title": "Holiday Clinic",
+   "type": "Club",
+   "host": "Washington Men's Gymnastics (@washingtonmensgymnastics)",
+   "where": "Eureka City Gymnastics",
+   "pos": null,
+   "date": "2026-12-31",
+   "start": "09:00",
+   "end": "13:00",
+   "url": "https://www.instagram.com/p/DgGr5LAht1x/",
+   "source": "instagram",
+   "description": "One week left! Gift your son an unforgettable experience this holiday season!",
+   "image": "/ig/posts/DgGr5LAht1x.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgGr5LAht1x": [
+     null,
+     null
     ]
    },
    "posts": 1

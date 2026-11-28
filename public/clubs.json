@@ -223,6 +223,18 @@
    ]
   },
   {
+   "name": "Arab Student Association at The University of Washington",
+   "handle": "asa.uw",
+   "instagram": "https://www.instagram.com/asa.uw/",
+   "website": "https://linktr.ee/asauw",
+   "category": "Cultural",
+   "about": "Connect Arab students through games, sports, and social events.",
+   "description": "The Arab Student Association hosts game nights, sports outings, and social gatherings for Arab students at UW. Activities include trivia, pizza, and soccer tournaments.",
+   "logo": "/ig/clubs/asa.uw.jpg",
+   "last_event": "2026-11-30",
+   "fields": []
+  },
+  {
    "name": "Armenian Student Association at the University of Washington",
    "website": "https://huskylink.washington.edu/armsocuw/",
    "category": "Cultural",
@@ -265,8 +277,8 @@
    "instagram": "https://www.instagram.com/aamhuw/",
    "website": "https://linktr.ee/aamhuw",
    "category": "Service",
-   "about": "Advocates Asian mental health visibility through storytelling and events.",
-   "description": "AAMH highlights Asian mental health through storytelling and hands‑on events. Their self‑care coloring sessions provide a relaxed space for creativity and community connection.",
+   "about": "Support Asian students' mental health through events and storytelling.",
+   "description": "Asian Alliance for Mental Health creates a supportive space for Asian students to discuss mental health and share stories. Events like self‑care coloring sessions foster connection and wellbeing.",
    "logo": "/ig/clubs/aamhuw.jpg",
    "discord": "https://discord.gg/cnyxqtzB77",
    "discord_server": "UW Asian Alliance for Mental Health",
@@ -306,8 +318,8 @@
    "instagram": "https://www.instagram.com/ace_uw/",
    "website": "https://linktr.ee/ACE_UW",
    "category": "Academic",
-   "about": "Club for students passionate about computing education and outreach.",
-   "description": "ACE brings together students interested in computing education, hosting events like the Computing Bee spelling competition and TA Social arts‑and‑craft gatherings. It's a place to learn, network, and have fun with tech education.",
+   "about": "Explore computing education with fun events like the Computing Bee.",
+   "description": "ACE focuses on computing education with fun, interactive events such as the Computing Bee. Members get to blend learning with friendly competition.",
    "logo": "/ig/clubs/ace_uw.jpg",
    "discord": "https://discord.gg/Fy9DfTxaTK",
    "discord_server": "Association for Computing Education (ACE)",
@@ -660,12 +672,14 @@
    "handle": "uwcareercenter",
    "instagram": "https://www.instagram.com/uwcareercenter/",
    "website": "http://linktr.ee/uwcic",
-   "category": "Business",
-   "about": "Career resource center helping UW students with jobs, internships, and graduate plans.",
-   "description": "The UW Career & Internship Center provides resources for undergraduates, graduates, and recent alumni to explore jobs, internships, and graduate pathways. They host alumni talks, industry‑specific panels, and informational sessions like the Peace Corps Q&A. Students can get guidance on building their professional future.",
+   "category": "Service",
+   "about": "Provides career resources, coaching, headshots, and interview spaces for UW students.",
+   "description": "The UW Career & Internship Center supports undergrad and graduate students with free headshot booths, private interview rooms, and personalized career coaching. It shares alumni success stories and highlights resources for various majors.",
    "logo": "/ig/clubs/uwcareercenter.jpg",
-   "last_event": "2026-11-17",
-   "fields": []
+   "last_event": "2026-11-27",
+   "fields": [
+    "Business"
+   ]
   },
   {
    "name": "Case Club at The University of Washington",
@@ -792,10 +806,10 @@
    "instagram": "https://www.instagram.com/claude.uofwa/",
    "website": "https://discord.gg/ggZrNu55F",
    "category": "Tech",
-   "about": "Learn AI building and host hackathons with Claude Builder Club.",
-   "description": "The Claude Builder Club helps students explore AI tools like Claude Code, run hackathons, and collaborate on projects. Join to connect with mentors, speakers, and fellow builders.",
+   "about": "Build AI projects and host hackathons for students.",
+   "description": "The Claude Builder Club helps students learn and build AI tools, from recruiting kits to hackathons. Join workshops, collaborate on projects, and connect with mentors and sponsors.",
    "logo": "/ig/clubs/claude.uofwa.jpg",
-   "last_event": "2026-11-17",
+   "last_event": "2026-11-30",
    "fields": [
     "Engineering",
     "Computing & Math"
@@ -1128,9 +1142,9 @@
    "handle": "fgll.uw",
    "instagram": "https://www.instagram.com/fgll.uw/",
    "website": "http://linktr.ee/uw.fgll",
-   "category": "Academic",
-   "about": "Community supporting underrepresented pre‑law students at UW.",
-   "description": "FGLL provides a supportive network for first‑generation pre‑law students, offering mentorship, speaker events with legal professionals, and resources for navigating law school applications.",
+   "category": "Service",
+   "about": "Support underrepresented pre-law students with mentorship and networking.",
+   "description": "First Generation Leaders in Pre‑Law builds a community for underrepresented pre‑law students through mentorship mixers and speaker events. It offers networking with judges and law students.",
    "logo": "/ig/clubs/fgll.uw.jpg",
    "discord": "https://discord.gg/esJEzVTJ9r",
    "discord_server": "First Generation Leaders in Law (FGLL)",
@@ -2057,8 +2071,8 @@
    "instagram": "https://www.instagram.com/uwknights/",
    "website": "https://forms.gle/RNYziT7ZHn9mXSieA",
    "category": "Greek Life",
-   "about": "Brotherhood fraternity focusing on service, alumni events, and veteran recognition.",
-   "description": "Omega Delta Phi’s Lambda Chapter hosts alumni tailgates, honors veterans, and participates in regional conferences, strengthening brotherhood and community involvement on campus. The fraternity emphasizes service, leadership, and cultural pride.",
+   "about": "Brotherhood focused on unity, service, leadership, and community involvement.",
+   "description": "Omega Delta Phi’s Lambda Chapter at UW emphasizes unity, honesty, integrity, and leadership while honoring its legacy. The fraternity hosts tailgate events, veterans‑day recognitions, and community service activities.",
    "logo": "/ig/clubs/uwknights.jpg",
    "last_event": "2027-04-18",
    "fields": []
@@ -2288,10 +2302,10 @@
    "instagram": "https://www.instagram.com/uwprepa/",
    "website": "https://linktr.ee/uwprepa",
    "category": "Academic",
-   "about": "Provides resources and networking for students pursuing a PA career.",
-   "description": "UW Pre‑PA Club supports students interested in physician assistant careers through Q&A sessions, networking, and skill‑building games. They share application tips, clinical experience advice, and peer support.",
+   "about": "Supports students pursuing PA careers with networking, events, and resources.",
+   "description": "UW Pre‑PA Club offers a supportive network for aspiring physician assistants, hosting fundraisers like pizza nights, alumni Q&A Zoom sessions, and PA‑themed Jeopardy to discuss patient‑care experience and application tips.",
    "logo": "/ig/clubs/uwprepa.jpg",
-   "last_event": "2026-11-17",
+   "last_event": "2026-11-30",
    "fields": [
     "Health"
    ]
@@ -2389,8 +2403,8 @@
    "instagram": "https://www.instagram.com/pupsupport/",
    "website": "https://forms.gle/Tn9wighBiGqo8ncH7",
    "category": "Service",
-   "about": "Mental‑health resource group sharing tips through husky‑themed art.",
-   "description": "Pup Support creates a welcoming space with art‑based events like clay worry stones and sticker sales, while providing mental‑health resources and education for UW students.",
+   "about": "Share mental health resources through husky artwork and creative events.",
+   "description": "Pup Support shares mental‑health resources using husky‑themed artwork and hands‑on creative workshops. Events like clay worry stones and sticker sales promote wellbeing and community.",
    "logo": "/ig/clubs/pupsupport.jpg",
    "last_event": "2026-11-20",
    "fields": [
@@ -2513,8 +2527,8 @@
    "instagram": "https://www.instagram.com/ssa_uw/",
    "website": "https://linktr.ee/uwssa",
    "category": "Faith & Spirituality",
-   "about": "Sikh Student Association sharing Sikh heritage, holidays, and education.",
-   "description": "The Sikh Student Association educates the campus about Sikh traditions, hosting Diwali, Gurpurab, and cultural discussions for all students.",
+   "about": "Promotes Sikh holidays, tenets, and history through events and kirtan.",
+   "description": "The Sikh Student Association educates both Sikhs and non‑Sikhs about Sikh traditions, hosting Gurpurab commemorations, Diwali celebrations, and sharing recorded Darbar Kirtan. It welcomes anyone interested in learning about Sikh culture.",
    "logo": "/ig/clubs/ssa_uw.jpg",
    "last_event": "2026-11-20",
    "fields": []
@@ -2711,10 +2725,10 @@
    "instagram": "https://www.instagram.com/scphuw/",
    "website": "https://linktr.ee/uwscph",
    "category": "Service",
-   "about": "Support network for students of color in public health.",
-   "description": "Students of Color for Public Health provides academic, professional, and social resources for UW students interested in public health. They host panels, speaker events, and share health‑related advocacy information.",
+   "about": "Provide academic and professional support for students of color in public health.",
+   "description": "Students of Color for Public Health offers academic, professional, and social support for students of color interested in public health. They host study sessions, panels, and collaborative events.",
    "logo": "/ig/clubs/scphuw.jpg",
-   "last_event": "2026-11-18",
+   "last_event": "2026-12-02",
    "fields": [
     "Health"
    ]
@@ -2804,8 +2818,8 @@
    "instagram": "https://www.instagram.com/tosauw/",
    "website": "https://linktr.ee/tosauw",
    "category": "Cultural",
-   "about": "Taiwanese student association promoting culture and community.",
-   "description": "TOSA_UW brings Taiwanese culture to campus through events like tea discounts, mahjong nights, and social gatherings, welcoming both newcomers and seasoned players.",
+   "about": "Connects Taiwanese students with cultural events and member discount perks.",
+   "description": "TOSA_UW brings together Taiwanese students at UW, offering a membership card with discounts at local eateries and organizing cultural activities like mahjong nights. Their posts highlight deals at Seattle Best Tea and other favorite spots.",
    "logo": "/ig/clubs/tosauw.jpg",
    "last_event": "2026-11-21",
    "fields": []
@@ -3229,8 +3243,8 @@
    "instagram": "https://www.instagram.com/vsauw/",
    "website": "https://linktr.ee/vsauw",
    "category": "Cultural",
-   "about": "Vietnamese cultural association for UW students.",
-   "description": "VSAUW celebrates Vietnamese heritage through social events, cultural activities, and community gatherings. Members enjoy discounts on events, themed gatherings, and opportunities to connect with fellow students.",
+   "about": "Celebrate Vietnamese culture and community at UW.",
+   "description": "VSAUW brings together Vietnamese students and allies through cultural events, socials, and community service. Members enjoy gatherings, holiday celebrations, and exclusive discounts.",
    "logo": "/ig/clubs/vsauw.jpg",
    "last_event": "2026-12-01",
    "fields": []
@@ -3255,8 +3269,8 @@
    "instagram": "https://www.instagram.com/washingtonmensgymnastics/",
    "website": "http://wagives.org/organization/wmgf",
    "category": "Sports",
-   "about": "Washington Men’s Gymnastics team representing UW in collegiate gymnastics.",
-   "description": "Washington Men’s Gymnastics shares training updates, team gatherings, and offers a holiday clinic for young gymnasts. The program showcases collegiate‑level coaching and promotes the sport on campus.",
+   "about": "Men’s gymnastics team competing and training at UW.",
+   "description": "Washington Men’s Gymnastics showcases student athletes, welcoming new freshmen such as Jae Newman, and trains at facilities like Pacific Reign. The team shares updates on workouts and seasonal highlights.",
    "logo": "/ig/clubs/washingtonmensgymnastics.jpg",
    "last_event": "2026-12-31",
    "fields": []
@@ -3295,8 +3309,8 @@
    "instagram": "https://www.instagram.com/washingtonyachtclub/",
    "website": "https://linktr.ee/washingtonyachtclub",
    "category": "Outdoors",
-   "about": "Student-run sailing club teaching sailing and hosting boat events at UW.",
-   "description": "Washington Yacht Club provides sailing lessons, keelboat clinics, and organizes boat moves and social sails. Members can crew on a fleet that includes the Catalina Capri 22 and connect through meetings and a Discord community.",
+   "about": "Student‑run sailing club teaching sailing and organizing on‑water events.",
+   "description": "Washington Yacht Club, operating since 1948, teaches students to sail and runs boat‑move events, grilling gatherings, and officer‑led lessons. It highlights its nonprofit status and community of sailors.",
    "logo": "/ig/clubs/washingtonyachtclub.jpg",
    "discord": "https://discord.gg/G7mmRPa6U7",
    "discord_server": "Washington Yacht Club",
@@ -3336,10 +3350,10 @@
    "instagram": "https://www.instagram.com/wecareuw/",
    "website": "https://huskylink.washington.edu/wecareuw/club_signup",
    "category": "Service",
-   "about": "Women’s health education and empowerment group at UW.",
-   "description": "WE CARE UW builds awareness and resources for women’s health locally and globally, partnering with organizations like the YWCA. Members lead fundraisers, fitness classes, and volunteer shifts supporting women experiencing homelessness.",
+   "about": "Advances women’s health education and community service initiatives.",
+   "description": "WE CARE UW empowers women through health education, holiday‑card making for women at EGH, flexibility‑class fundraisers, and volunteer work with the YWCA’s Angeline Day Center for homeless women.",
    "logo": "/ig/clubs/wecareuw.jpg",
-   "last_event": "2026-11-17",
+   "last_event": "2026-12-01",
    "fields": [
     "Health"
    ]
