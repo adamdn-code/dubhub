@@ -649,8 +649,8 @@
    "instagram": "https://www.instagram.com/kesem_uw/",
    "website": "https://linktr.ee/uwashington",
    "category": "Service",
-   "about": "Provides free camps and peer support for kids affected by parental cancer.",
-   "description": "Kesem UW runs summer camps and year‑round peer support for children dealing with a parent's cancer, and organizes fundraising initiatives like Giving Tuesday to sustain its programs.",
+   "about": "Provides free summer camps and peer support for kids affected by a parent's cancer.",
+   "description": "Kesem UW runs free summer camps and provides year‑round peer support for children coping with a parent’s cancer. Members connect with families, raise funds, and spread comfort throughout the Washington community.",
    "logo": "/ig/clubs/kesem_uw.jpg",
    "last_event": "2026-12-05",
    "fields": []
@@ -1023,6 +1023,22 @@
    "last_event": "2026-11-16",
    "fields": [
     "Engineering"
+   ]
+  },
+  {
+   "name": "Environmental Policy Student Association",
+   "handle": "epsauw",
+   "instagram": "https://www.instagram.com/epsauw/",
+   "website": "https://linktr.ee/epsa_uw",
+   "category": "Academic",
+   "about": "Student group discussing environmental policy, sustainability, and climate justice.",
+   "description": "EPSA meets weekly to discuss campus environmental policy, sustainability initiatives, and climate justice. Events include teach‑ins, trivia games, and debriefs of current policy news, giving members a chance to learn and get involved.",
+   "logo": "/ig/clubs/epsauw.jpg",
+   "discord": "https://discord.gg/EKwKRekrnW",
+   "discord_server": "Environmental Policy Student Association at UW",
+   "last_event": "2026-12-02",
+   "fields": [
+    "Social Sciences"
    ]
   },
   {
@@ -1481,8 +1497,8 @@
    "instagram": "https://www.instagram.com/huskywintersports/",
    "website": "https://linktr.ee/huskywintersports",
    "category": "Outdoors",
-   "about": "Teaches skiing, snowboarding, and organizes bike events for UW students.",
-   "description": "Husky Winter Sports teaches skiing and snowboarding during winter quarter and organizes bike meet‑ups year‑round. Join them for lessons, rides, and fun outdoor activities on campus.",
+   "about": "Club teaching skiing, snowboarding, and other outdoor recreation.",
+   "description": "Husky Winter Sports offers lessons in skiing and snowboarding during the winter quarter and organizes year‑round outdoor activities like Wheels Day. Join to learn new skills, have fun on the slopes, or explore bike riding with fellow students.",
    "logo": "/ig/clubs/huskywintersports.jpg",
    "last_event": "2026-11-19",
    "fields": []
@@ -1575,12 +1591,13 @@
    "instagram": "https://www.instagram.com/uwisengineering/",
    "website": "https://uwiise.weebly.com/",
    "category": "Engineering",
-   "about": "Connects ISE students with info sessions, game nights, and fundraising events.",
-   "description": "UW Industrial & Systems Engineering shares department news, info sessions, and community activities. Events include an ISE info session in MEB 106, game nights after sessions, and a campus‑wide bingo fundraiser. It’s a hub for students to connect with peers and faculty.",
+   "about": "Official page for UW's Industrial & Systems Engineering department.",
+   "description": "The UW Industrial & Systems Engineering page shares news, events, and community activities for the department’s students and faculty. It highlights fundraisers, holiday gatherings, and opportunities to connect within the ISE community.",
    "logo": "/ig/clubs/uwisengineering.jpg",
-   "last_event": "2026-11-09",
+   "last_event": "2026-12-04",
    "fields": [
-    "Engineering"
+    "Engineering",
+    "Computing & Math"
    ]
   },
   {
@@ -1605,13 +1622,11 @@
    "instagram": "https://www.instagram.com/ica_uwchapter/",
    "website": "https://tinyurl.com/UWProtectProtest",
    "category": "Service",
-   "about": "Advocates for UW to cut ties with fossil fuels.",
-   "description": "Institutional Climate Action UW organizes protests and meetings demanding the university end fossil fuel ties. Members host panels and sustainability planning sessions.",
+   "about": "Student activist group demanding UW cut ties with fossil fuels and military.",
+   "description": "Institutional Climate Action UW campaigns for the university to end ties with fossil fuels and military partnerships. The group shares alerts, organizes protests, and raises awareness about UW’s environmental and ethical impacts.",
    "logo": "/ig/clubs/ica_uwchapter.jpg",
    "last_event": "2026-11-22",
-   "fields": [
-    "Sciences"
-   ]
+   "fields": []
   },
   {
    "name": "Interaction Design Association at University of Washington ( IxDA UW )",
@@ -2068,8 +2083,8 @@
    "instagram": "https://www.instagram.com/ostepsuw/",
    "website": "https://discord.gg/nNk6pq92Pa",
    "category": "Academic",
-   "about": "Provides organic chemistry tutoring and workshops for UW students.",
-   "description": "Organic Steps UW offers tutoring and workshops on organic chemistry topics for undergraduates. Students can join meetings in Bagley 330 or connect via the Discord server.",
+   "about": "Organic chemistry tutoring club offering study sessions and workshops.",
+   "description": "Organic Steps UW is a tutoring club focused on organic chemistry, hosting study sessions and workshops in the General Chemistry Study Center. Students can ask questions, review reactions, and get help from peers via Discord.",
    "logo": "/ig/clubs/ostepsuw.jpg",
    "discord": "https://discord.gg/nNk6pq92Pa",
    "discord_server": "Organic Steps",
@@ -2150,8 +2165,8 @@
    "instagram": "https://www.instagram.com/uwpersiancircle/",
    "website": "https://linktr.ee/uwpersiancircle",
    "category": "Cultural",
-   "about": "Celebrates Persian culture with events, food, and community.",
-   "description": "The Persian Circle creates a vibrant community for students to celebrate Persian culture through panels, cooking competitions, and social gatherings. Events range from healthcare career talks to fun baking contests, fostering connections and cultural pride.",
+   "about": "Community celebrating Persian culture with events, panels, and social gatherings.",
+   "description": "The Persian Circle creates a vibrant cultural and social space for Persian students at UW, hosting panels, festivals, and networking events. Activities celebrate Persian heritage and provide career insights, especially in healthcare.",
    "logo": "/ig/clubs/uwpersiancircle.jpg",
    "last_event": "2026-11-24",
    "fields": []
@@ -2523,8 +2538,8 @@
    "instagram": "https://www.instagram.com/ser.uw/",
    "website": "https://linktr.ee/seruw",
    "category": "Service",
-   "about": "Promotes ecological restoration research and stewardship on campus.",
-   "description": "The Society for Ecological Restoration UW chapter promotes ecological stewardship through hands‑on work parties and research collaborations. Members help maintain campus gardens and learn about restoration practices.",
+   "about": "Student chapter promoting ecological restoration through research and garden work.",
+   "description": "The SER UW Chapter promotes ecological restoration through hands‑on work parties and garden projects on campus. Members collaborate with faculty, learn restoration techniques, and enjoy free coffee and snacks.",
    "logo": "/ig/clubs/ser.uw.jpg",
    "discord": "https://discord.gg/Zr5gUmgJp8",
    "discord_server": "SER-UW",
@@ -2637,6 +2652,20 @@
    "fields": []
   },
   {
+   "name": "Stage Notes",
+   "handle": "uwstagenotes",
+   "instagram": "https://www.instagram.com/uwstagenotes/",
+   "website": "https://docs.google.com/forms/d/e/1FAIpQLSehQJT10oNbnfpTgx4H0ph8WGdYulalFueAEXY9PXS2nw0AOw/viewform",
+   "category": "Arts",
+   "about": "Student‑run musical theatre club producing shows and workshops.",
+   "description": "UW Stage Notes is the university’s first student‑run musical theatre club, creating productions and behind‑the‑scenes opportunities. They host shows such as a Rocky Horror shadowcast, recruit crew for shows like Into the Woods, and organize community potlucks. As a 501(c)(3) organization, they celebrate the arts on the Coast Salish and Duwamish lands.",
+   "logo": "/ig/clubs/uwstagenotes.jpg",
+   "last_event": "2026-12-04",
+   "fields": [
+    "Arts & Humanities"
+   ]
+  },
+  {
    "name": "Student Activities Office",
    "website": "https://huskylink.washington.edu/SAO/",
    "category": "Other",
@@ -2655,8 +2684,8 @@
    "instagram": "https://www.instagram.com/uwsls/",
    "website": "https://linktr.ee/uwsls",
    "category": "Service",
-   "about": "Offers free legal consultations and low‑cost representation for UW students.",
-   "description": "UW Student Legal Services provides free 40‑minute legal consultations and affordable representation for students. They also run workshops on topics like work authorization and student rights.",
+   "about": "Free legal consultations and low-cost representation for UW students.",
+   "description": "UW Student Legal Services offers free 40‑minute legal consultations to UW students across Seattle, Bothell, and Tacoma, and can be hired for low‑cost ongoing representation. Their Instagram shares tips on immigration rights, work authorization for international students, and updates like a new website. It's a student‑run resource for navigating legal issues on campus.",
    "logo": "/ig/clubs/uwsls.jpg",
    "last_event": "2026-11-19",
    "fields": [

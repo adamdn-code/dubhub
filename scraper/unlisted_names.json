@@ -40,10 +40,12 @@
   "checked": "2026-11-27"
  },
  "AMA Puget Sound": {
-  "status": "new",
+  "status": "none",
   "by": [
    "American Marketing Association (@uw_ama)"
-  ]
+  ],
+  "handle": null,
+  "checked": "2026-11-27"
  },
  "ASUW": {
   "status": "none",
@@ -379,6 +381,12 @@
    "the list of companies' campus programs"
   ]
  },
+ "OGR": {
+  "status": "new",
+  "by": [
+   "Phi Alpha Delta | UW (@uw_pad)"
+  ]
+ },
  "OISA": {
   "status": "new",
   "by": [
@@ -421,6 +429,12 @@
    "UW Q Center (@uwqcenter)"
   ]
  },
+ "RCSA": {
+  "status": "new",
+  "by": [
+   "Phi Alpha Delta | UW (@uw_pad)"
+  ]
+ },
  "Replit": {
   "status": "new",
   "by": [
@@ -434,6 +448,12 @@
   ],
   "handle": null,
   "checked": "2026-11-14"
+ },
+ "Save Khmer at UW": {
+  "status": "new",
+  "by": [
+   "Khmer Student Association UW (@khsauw)"
+  ]
  },
  "Seattle Alpha Education Foundation": {
   "status": "new",

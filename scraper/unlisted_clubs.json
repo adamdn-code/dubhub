@@ -1086,6 +1086,12 @@
   "why": "latest post 2024-12-10",
   "checked": "2026-11-14"
  },
+ "birrieriapepeeltoro": {
+  "status": "new",
+  "found": [
+   "post by @shpeuw"
+  ]
+ },
  "bisonmini": {
   "status": "new",
   "found": [
@@ -1701,6 +1707,12 @@
    "post by @uwpsiu"
   ]
  },
+ "dayanna.ziad": {
+  "status": "new",
+  "found": [
+   "post by @uwphidelt"
+  ]
+ },
  "dbetfarhad": {
   "status": "not",
   "found": [
@@ -2167,6 +2179,12 @@
   "status": "new",
   "found": [
    "post by @valorant_uw"
+  ]
+ },
+ "estelitas_library": {
+  "status": "new",
+  "found": [
+   "post by @khsauw"
   ]
  },
  "ethan.vlad": {
@@ -3140,6 +3158,12 @@
   "status": "new",
   "found": [
    "post by @uwpike"
+  ]
+ },
+ "joys.spam.and.rice": {
+  "status": "new",
+  "found": [
+   "post by @womenshockeyuw"
   ]
  },
  "jsauw_career": {
@@ -5568,6 +5592,12 @@
    "post by @uwjunoon"
   ]
  },
+ "snohomishcoop": {
+  "status": "new",
+  "found": [
+   "post by @uwfarm"
+  ]
+ },
  "snoqualmietribe": {
   "status": "new",
   "found": [
@@ -6917,6 +6947,17 @@
   "name": "Delta Kappa Epsilon - UW",
   "why": "Delta Kappa Epsilon",
   "checked": "2026-11-13"
+ },
+ "uwearthlab": {
+  "status": "not",
+  "found": [
+   "post by @uwfarm"
+  ],
+  "name": "EarthLab",
+  "bio": "#uwearthlab is an institute at the University of Washington's @uwenvironment taking equitable action on climate change. 📍Coast Salish lands",
+  "latest": "2026-11-17",
+  "checked": "2026-11-27",
+  "why": "appears to be a university institute, not a student-run club"
  },
  "uwengineering": {
   "status": "not",

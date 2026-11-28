@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T00:28",
+ "updated": "2026-11-27T17:26",
  "applications": [
   {
    "id": "DgJRyk-Gv7n",
@@ -60,6 +60,18 @@
    "posted": "2026-11-10",
    "logo": "/ig/clubs/uwlsu.jpg",
    "category": "Cultural"
+  },
+  {
+   "id": "DgLgd7JSnUs",
+   "host": "UW Stage Notes (@uwstagenotes)",
+   "for": "Into the Woods positions",
+   "kind": "Team & staff",
+   "deadline": "2026-12-04",
+   "link": "https://docs.google.com/forms/d/e/1FAIpQLSehQJT10oNbnfpTgx4H0ph8WGdYulalFueAEXY9PXS2nw0AOw/viewform",
+   "post": "https://www.instagram.com/p/DgLgd7JSnUs/",
+   "posted": "2026-11-25",
+   "logo": "/ig/clubs/uwstagenotes.jpg",
+   "category": "Arts"
   },
   {
    "id": "DgGHS9HTFuY",

@@ -1081,7 +1081,7 @@
 },
 "campkesem": {
 "fields": [],
-"from": "Camp Kesem at UW Seattle|Provides free camps and peer support for kids affected by parental cancer."
+"from": "Camp Kesem at UW Seattle|Provides free summer camps and peer support for kids affected by a parent's cancer."
 },
 "cannaclub": {
 "fields": [
@@ -1831,7 +1831,7 @@
 "fields": [
 "Social Sciences"
 ],
-"from": "Environmental Policy Student Association|Join us for weekly meetings to engage with peers, professors, and professionals on a range of environmental policy and…"
+"from": "Environmental Policy Student Association|Student group discussing environmental policy, sustainability, and climate justice."
 },
 "essgeoclub": {
 "fields": [
@@ -2765,7 +2765,7 @@
 },
 "huskywintersports": {
 "fields": [],
-"from": "Husky Winter Sports|Teaches skiing, snowboarding, and organizes bike events for UW students."
+"from": "Husky Winter Sports|Club teaching skiing, snowboarding, and other outdoor recreation."
 },
 "huskywrestlingclub": {
 "fields": [],
@@ -2914,9 +2914,10 @@
 },
 "instituteofindustrialandsystemsengineers": {
 "fields": [
-"Engineering"
+"Engineering",
+"Computing & Math"
 ],
-"from": "Institute of Industrial and Systems Engineers|Connects ISE students with info sessions, game nights, and fundraising events."
+"from": "Institute of Industrial and Systems Engineers|Official page for UW's Industrial & Systems Engineering department."
 },
 "instituteoftransportationengineers": {
 "fields": [
@@ -2925,10 +2926,8 @@
 "from": "Institute of Transportation Engineers at the University of Washington|Connect students to transportation engineering through talks and tours."
 },
 "institutionalclimateaction": {
-"fields": [
-"Sciences"
-],
-"from": "Institutional Climate Action UW Chapter|Advocates for UW to cut ties with fossil fuels."
+"fields": [],
+"from": "Institutional Climate Action UW Chapter|Student activist group demanding UW cut ties with fossil fuels and military."
 },
 "interactiondesignassociationixda": {
 "fields": [
@@ -3909,7 +3908,7 @@
 "fields": [
 "Sciences"
 ],
-"from": "Organic Steps|Provides organic chemistry tutoring and workshops for UW students."
+"from": "Organic Steps|Organic chemistry tutoring club offering study sessions and workshops."
 },
 "organizationofhuaclassmates": {
 "fields": [],
@@ -4039,7 +4038,7 @@
 },
 "persiancircle": {
 "fields": [],
-"from": "Persian Circle|Celebrates Persian culture with events, food, and community."
+"from": "Persian Circle|Community celebrating Persian culture with events, panels, and social gatherings."
 },
 "personalfinance": {
 "fields": [
@@ -4798,7 +4797,7 @@
 "fields": [
 "Sciences"
 ],
-"from": "Society for Ecological Restoration, UW Chapter|Promotes ecological restoration research and stewardship on campus."
+"from": "Society for Ecological Restoration, UW Chapter|Student chapter promoting ecological restoration through research and garden work."
 },
 "societyforgeographyanddatascience": {
 "fields": [
@@ -4962,7 +4961,7 @@
 "fields": [
 "Arts & Humanities"
 ],
-"from": "Stage Notes|Stage Notes promotes the art of musical theater on the UW campus, provides opportunities for UW students to…"
+"from": "Stage Notes|Student‑run musical theatre club producing shows and workshops."
 },
 "starwarsclub": {
 "fields": [],
@@ -5085,7 +5084,7 @@
 "fields": [
 "Social Sciences"
 ],
-"from": "Student Legal Services|Offers free legal consultations and low‑cost representation for UW students."
+"from": "Student Legal Services|Free legal consultations and low-cost representation for UW students."
 },
 "studentmycologyclub": {
 "fields": [

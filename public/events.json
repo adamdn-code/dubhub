@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T00:29",
+ "updated": "2026-11-27T17:27",
  "events": [
   {
    "id": "hl-375436",
@@ -369,6 +369,30 @@
    "posts": 1
   },
   {
+   "id": "DgGdzOSyU1O-0",
+   "title": "Mini Conchas Fundraiser",
+   "type": "Food",
+   "host": "Sigma Lambda Gamma (@uwgammas)",
+   "where": null,
+   "pos": null,
+   "date": "2026-12-01",
+   "start": "10:00",
+   "end": "14:00",
+   "url": "https://www.instagram.com/p/DgGdzOSyU1O/",
+   "source": "instagram",
+   "description": "Stop by, treat yourself, and support our chapter next Tuesday 💗😊",
+   "image": "/ig/posts/DgGdzOSyU1O.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgGdzOSyU1O": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "Df7xQxvvekF-0",
    "title": "Fall Makers Fair",
    "type": "Club",
@@ -384,7 +408,7 @@
    "url": "https://www.instagram.com/p/Df7xQxvvekF/",
    "source": "instagram",
    "description": "What’s that just around the corner? It’s the Fall Makers Fair!! Better yet, there’s not one, but THREE days of creativity, community, and unique finds. There will be a selection of artists and vendors each day, so there’s always something exciting for you to discover. We can’t wait to see you there!",
-   "image": "/ig/posts/Df7xQxvvekF.jpg",
+   "image": null,
    "likes": null,
    "comments": null,
    "post_counts": {
@@ -814,9 +838,13 @@
     "Df3iQFKGu-W": [
      null,
      null
+    ],
+    "DgJuYJNxEIL": [
+     null,
+     null
     ]
    },
-   "posts": 1
+   "posts": 2
   },
   {
    "id": "Df7xQxvvekF-1",
@@ -834,7 +862,7 @@
    "url": "https://www.instagram.com/p/Df7xQxvvekF/",
    "source": "instagram",
    "description": "What’s that just around the corner? It’s the Fall Makers Fair!! Better yet, there’s not one, but THREE days of creativity, community, and unique finds. There will be a selection of artists and vendors each day, so there’s always something exciting for you to discover. We can’t wait to see you there!",
-   "image": "/ig/posts/Df7xQxvvekF.jpg",
+   "image": null,
    "likes": null,
    "comments": null,
    "post_counts": {
@@ -998,7 +1026,7 @@
    "source": "luma",
    "description": "Open to current UW students only.\n✨ one last time before the end of this year, cseed!! ✨\nwe've made it to the end of 2026!! 🥹 from new ideas and crazy projects to new friendships and unforgettable memories, it's been quite the ride. before we head into winter break, let's get together one more time to celebrate everything we've accomplished and all the memories we've made along the way 💗\nwhat's happening:\n🍕 FREE food, snacks, and treats (because what's a social without food?)\n\n🎲 fun games, activities, and a little friendly competition\n\n💬 catching up with old friends and meeting new faces\n\n🫶 lots of time to hang out, relax, and just enjoy each other's company!\n\nwhether you've been part of cseed since day one or just joined us recently, we'd LOVE to see you there!! this community wouldn't be the same without you, so come celebrate with us before we wrap up the year 🥹\nno experience, projects, or big ideas needed — just bring yourself and a friend!! let's make our last cseed event of the year one to remember 💌\nDATE AND LOCATION: Wednesday, December 2nd, 5 PM-6 PM, CSE2 G01",
    "image": "https://images.lumacdn.com/uploads/ak/b80581a1-b34c-40c2-9ce4-bc3f30938603.jpg",
-   "rsvps": 7
+   "rsvps": 9
   },
   {
    "id": "Dfk0btuymUP-1",
@@ -1165,6 +1193,33 @@
    "posts": 1
   },
   {
+   "id": "DgGq9vHO-6R-0",
+   "title": "Decarbonization Teach-in & Trivia",
+   "type": "Club",
+   "host": "Environmental Policy Student Association at UW (@epsauw)",
+   "where": "Savery 156",
+   "pos": [
+    47.65712,
+    -122.30842
+   ],
+   "date": "2026-12-02",
+   "start": "18:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/DgGq9vHO-6R/",
+   "source": "instagram",
+   "description": "join us (next) wednesday for an exciting collab! ICA will be leading a teach-in and activity about decarbonization at UW, then EPSA will be doing jeopardy-style trivia!! we are so excited to see you all there!\n\nnote that this is for NEXT wednesday (december 2) not this wednesday (november 25). enjoy your break we will see you soon!!",
+   "image": "/ig/posts/DgGq9vHO-6R.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgGq9vHO-6R": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "hl-375374",
    "title": "Large Group",
    "type": "Club",
@@ -1220,7 +1275,7 @@
    "url": "https://www.instagram.com/p/Df7xQxvvekF/",
    "source": "instagram",
    "description": "What’s that just around the corner? It’s the Fall Makers Fair!! Better yet, there’s not one, but THREE days of creativity, community, and unique finds. There will be a selection of artists and vendors each day, so there’s always something exciting for you to discover. We can’t wait to see you there!",
-   "image": "/ig/posts/Df7xQxvvekF.jpg",
+   "image": null,
    "likes": null,
    "comments": null,
    "post_counts": {
@@ -1478,6 +1533,30 @@
    "comments": null,
    "post_counts": {
     "DgGJ2UkPCty": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DgJFXW2PwR6-0",
+   "title": "ISE Holiday Party",
+   "type": "Food",
+   "host": "UW Industrial & Systems Engr (@uwisengineering)",
+   "where": "UW Intellectual House",
+   "pos": null,
+   "date": "2026-12-04",
+   "start": "17:00",
+   "end": "19:50",
+   "url": "https://www.instagram.com/p/DgJFXW2PwR6/",
+   "source": "instagram",
+   "description": "Join us on December 4th in the intellectual house to celebrate the holidays (and the end of the quarter) with all your fellow ISEs! There will be catered food and fun activities (more info to come on that) 🔜 \n\nRSVP with the QR code or the link in bio",
+   "image": "/ig/posts/DgJFXW2PwR6.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgJFXW2PwR6": [
      null,
      null
     ]
@@ -1853,6 +1932,30 @@
    "posts": 1
   },
   {
+   "id": "DgQxS-kSOVa-0",
+   "title": "Rocky Horror Shadowcast",
+   "type": "Club",
+   "host": "UW Stage Notes (@uwstagenotes)",
+   "where": "Alder Auditorium",
+   "pos": null,
+   "date": "2026-12-05",
+   "start": "19:30",
+   "end": null,
+   "url": "https://www.instagram.com/p/DgQxS-kSOVa/",
+   "source": "instagram",
+   "description": "Just one week until our annual Rocky Horror Picture Show Shadowcast production! Tickets are at the door only, and doors open at 7PM. Stay tuned for cast/crew announcements!",
+   "image": "/ig/posts/DgQxS-kSOVa.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgQxS-kSOVa": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
    "id": "DgL-5ooks4f-1",
    "title": "Ice Hockey vs Western Washington – Greek & Student Night",
    "type": "Game night",
@@ -1897,6 +2000,30 @@
    "comments": null,
    "post_counts": {
     "DgEW7wtkbew": [
+     null,
+     null
+    ]
+   },
+   "posts": 1
+  },
+  {
+   "id": "DgQxS-kSOVa-1",
+   "title": "Rocky Horror Shadowcast",
+   "type": "Club",
+   "host": "UW Stage Notes (@uwstagenotes)",
+   "where": "Alder Auditorium",
+   "pos": null,
+   "date": "2026-12-06",
+   "start": "14:00",
+   "end": null,
+   "url": "https://www.instagram.com/p/DgQxS-kSOVa/",
+   "source": "instagram",
+   "description": "Just one week until our annual Rocky Horror Picture Show Shadowcast production! Tickets are at the door only, and doors open at 7PM. Stay tuned for cast/crew announcements!",
+   "image": "/ig/posts/DgQxS-kSOVa.jpg",
+   "likes": null,
+   "comments": null,
+   "post_counts": {
+    "DgQxS-kSOVa": [
      null,
      null
     ]
